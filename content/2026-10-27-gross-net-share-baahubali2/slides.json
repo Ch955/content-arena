@@ -1,0 +1,59 @@
+{
+  "post_slug": "2026-10-27-gross-net-share-baahubali2",
+  "pillar": "explainer",
+  "language": "te+en",
+  "topic": "Gross vs Net vs Share — explained with Baahubali 2 (AP/Nizam)",
+  "source_note": "Data: Andhra Box Office via IBTimes India, 20 Sep 2017 (AP/Nizam lifetime). Trade estimates, not audited.",
+  "slides": [
+    {
+      "type": "cover",
+      "eyebrow": "AP + Telangana • 2017",
+      "title_en": "BAAHUBALI 2",
+      "value": "₹327.9 CR GROSS",
+      "title_te": "కానీ డిస్ట్రిబ్యూటర్ల చేతికి వచ్చింది ఎంత?"
+    },
+    {
+      "type": "point",
+      "step": "STEP 1",
+      "label": "GROSS",
+      "accent": "gold",
+      "value": "₹327.9 CR",
+      "te": "టికెట్ అమ్మకాల మొత్తం — పన్నులతో కలిపి",
+      "en": "Everything audiences paid at the counter, taxes included."
+    },
+    {
+      "type": "point",
+      "step": "STEP 2",
+      "label": "NET",
+      "accent": "teal",
+      "value": "₹295.3 CR",
+      "te": "పన్నులు తీసేశాక మిగిలేది",
+      "minus": {"value": "− ₹32.6 CR", "label": "పన్నులు • taxes"}
+    },
+    {
+      "type": "point",
+      "step": "STEP 3",
+      "label": "SHARE",
+      "accent": "red",
+      "value": "₹203.65 CR",
+      "te": "థియేటర్ వాటా తీసేశాక డిస్ట్రిబ్యూటర్‌కి వచ్చేది",
+      "minus": {"value": "− ₹91.65 CR", "label": "థియేటర్ వాటా • theatres"}
+    },
+    {
+      "type": "bars",
+      "heading_te": "ఒకే సినిమా… మూడు నంబర్లు",
+      "bars": [
+        {"label": "GROSS", "value": "₹327.9 CR", "pct": 100, "accent": "gold"},
+        {"label": "NET", "value": "₹295.3 CR", "pct": 90.1, "accent": "teal"},
+        {"label": "SHARE", "value": "₹203.65 CR", "pct": 62.1, "accent": "red"}
+      ],
+      "en": "Only about 62% of the gross reached distributors as share."
+    },
+    {
+      "type": "cta",
+      "te": "ఇకపై \"కలెక్షన్స్\" వార్త చూస్తే…",
+      "big": "GROSS? NET? SHARE?",
+      "en": "Next time you read a collections headline, ask which number it is."
+    }
+  ]
+}

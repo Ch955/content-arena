@@ -1,0 +1,26 @@
+{
+  "name": "Reel Rasam",
+  "handle": "@reelrasam",
+  "tagline_en": "Your daily dose of cinema",
+  "tagline_te": "రోజుకో సినిమా రసం",
+  "colors": {
+    "ink": "#0E0E12",
+    "card": "#1B1A22",
+    "gold": "#F5B700",
+    "red": "#E63946",
+    "teal": "#2EC4B6",
+    "white": "#F4F1EA",
+    "mute": "#8C8A93"
+  },
+  "fonts": {
+    "display_en": "Anton-Regular.ttf",
+    "body_en": "Inter.ttf",
+    "display_te": "Ramabhadra-Regular.ttf",
+    "body_te": "NotoSansTelugu.ttf"
+  },
+  "pillar_tags": {
+    "explainer": "BOX OFFICE 101",
+    "trivia": "QUIZ TIME",
+    "ott-weekly": "THIS WEEK ON OTT"
+  }
+}

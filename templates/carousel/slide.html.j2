@@ -1,0 +1,121 @@
+{#- One carousel slide, 1080×1350. Context: slide, post, brand, index, total, fonts_url. -#}
+{%- set c = brand.colors -%}
+{%- set accents = {"gold": c.gold, "teal": c.teal, "red": c.red, "white": c.white} -%}
+{%- set accent = accents.get(slide.accent or "gold", c.gold) -%}
+<!doctype html>
+<html lang="te"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url({{ fonts_url }}/{{ brand.fonts.display_en }})}
+@font-face{font-family:InterB;src:url({{ fonts_url }}/{{ brand.fonts.body_en }})}
+@font-face{font-family:Rama;src:url({{ fonts_url }}/{{ brand.fonts.display_te }})}
+@font-face{font-family:NotoTe;src:url({{ fonts_url }}/{{ brand.fonts.body_te }})}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:{{ width }}px;height:{{ height }}px;overflow:hidden}
+body{background:{{ c.ink }};color:{{ c.white }};font-family:InterB,sans-serif;position:relative}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(800px 600px at 50% 40%,#24202e 0%,transparent 70%),
+  radial-gradient(520px 420px at 90% 100%,#3a1016 0%,transparent 70%)}
+.bulbs{position:absolute;left:0;right:0;top:34px;display:flex;justify-content:space-around;padding:0 30px}
+.bulb{width:14px;height:14px;border-radius:50%;background:{{ c.gold }};box-shadow:0 0 14px 3px rgba(245,183,0,.5)}
+.bulb.off{opacity:.25;box-shadow:none}
+.top{position:absolute;top:82px;left:64px;right:64px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:14px;font-family:Anton;font-size:36px;letter-spacing:3px}
+.brand i{width:48px;height:48px;border-radius:50%;background:{{ c.gold }};color:{{ c.ink }};display:grid;place-items:center;font-style:normal;font-size:26px}
+.tag{font-family:Anton;font-size:26px;letter-spacing:2px;color:{{ c.ink }};background:{{ c.teal }};padding:7px 16px;border-radius:8px}
+.main{position:absolute;left:72px;right:72px;top:190px;bottom:230px;display:flex;flex-direction:column;justify-content:center}
+.te{font-family:Rama,NotoTe;line-height:1.4}
+.teb{font-family:NotoTe;font-weight:500;line-height:1.5}
+.en{font-family:Anton;letter-spacing:1px;line-height:1.05}
+.sub{font-weight:600;color:{{ c.mute }};font-size:36px;line-height:1.35;margin-top:22px}
+.accent{color:{{ accent }}}
+.chip{align-self:flex-start;font-family:Anton;font-size:38px;letter-spacing:2px;padding:8px 22px;border-radius:12px;margin-bottom:26px;background:{{ accent }};color:{{ c.ink }}}
+.mega{font-size:170px}.big{font-size:132px}.h1{font-size:104px}.h2{font-size:68px}.h3{font-size:52px}
+.minus{margin-top:30px;font-family:Anton;font-size:48px;background:{{ c.card }};border:3px solid #2c2a36;border-radius:20px;padding:20px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.minus small{font-family:NotoTe;font-size:32px;color:{{ c.mute }};font-weight:500}
+.bars{display:flex;flex-direction:column;gap:34px;margin-top:30px}
+.lbl{font-family:Anton;font-size:44px;margin-bottom:10px;display:flex;justify-content:space-between}
+.track{height:60px;border-radius:12px;background:{{ c.card }};overflow:hidden}
+.fill{height:100%;border-radius:12px}
+.opts{display:flex;flex-direction:column;gap:22px;margin-top:40px}
+.opt{font-family:InterB;font-weight:700;font-size:44px;background:{{ c.card }};border:3px solid #2c2a36;border-radius:18px;padding:22px 28px;display:flex;gap:22px;align-items:center}
+.opt b{font-family:Anton;font-weight:400;color:{{ c.ink }};background:{{ c.teal }};width:58px;height:58px;border-radius:12px;display:grid;place-items:center;flex:none}
+.items{display:flex;flex-direction:column;gap:20px;margin-top:34px}
+.item{background:{{ c.card }};border-left:8px solid {{ accent }};border-radius:14px;padding:20px 26px}
+.item .t{font-family:Anton;font-size:48px;letter-spacing:1px}
+.item .m{font-weight:600;font-size:30px;color:{{ c.mute }};margin-top:6px}
+.foot{position:absolute;left:72px;right:72px;bottom:130px;text-align:center;font-size:24px;color:#6d6b75;line-height:1.35}
+.bottom{position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:30px;color:{{ c.mute }}}
+.dots{display:flex;gap:10px}.dots span{width:14px;height:14px;border-radius:50%;background:#3a3842}.dots span.on{background:{{ c.gold }};width:36px;border-radius:7px}
+.swipe{font-family:Anton;font-size:30px;letter-spacing:2px;color:{{ c.gold }}}
+</style></head>
+<body>
+<div class="bg"></div>
+<div class="bulbs">{% for b in range(16) %}<div class="bulb{{ ' off' if (b + index) % 3 else '' }}"></div>{% endfor %}</div>
+<div class="top">
+  <div class="brand"><i>R</i>{{ brand.name | upper }}</div>
+  <div class="tag">{{ slide.kicker or brand.pillar_tags.get(post.pillar, "") }}</div>
+</div>
+
+<div class="main">
+{%- if slide.type == "cover" %}
+  {% if slide.eyebrow %}<div class="sub" style="margin:0 0 8px">{{ slide.eyebrow }}</div>{% endif %}
+  {% if slide.title_en %}<div class="en accent" style="font-size:{{ slide.title_size or 150 }}px">{{ slide.title_en }}</div>{% endif %}
+  {% if slide.value %}<div class="en h1" style="margin-top:18px">{{ slide.value }}</div>{% endif %}
+  {% if slide.title_te %}<div class="te h2" style="margin-top:34px">{{ slide.title_te }}</div>{% endif %}
+  {% if slide.sub %}<div class="sub">{{ slide.sub }}</div>{% endif %}
+
+{%- elif slide.type == "point" %}
+  {% if slide.step or slide.label %}<div class="chip">{{ slide.step }}{{ " • " if slide.step and slide.label }}{{ slide.label }}</div>{% endif %}
+  {% if slide.value %}<div class="en big accent">{{ slide.value }}</div>{% endif %}
+  {% if slide.te %}<div class="te h2" style="margin-top:20px">{{ slide.te }}</div>{% endif %}
+  {% if slide.en %}<div class="sub">{{ slide.en }}</div>{% endif %}
+  {% if slide.minus %}<div class="minus"><span style="color:{{ c.red }}">{{ slide.minus.value }}</span><small>{{ slide.minus.label }}</small></div>{% endif %}
+
+{%- elif slide.type == "stat" %}
+  <div class="en mega accent">{{ slide.value }}</div>
+  {% if slide.te %}<div class="te h2" style="margin-top:20px">{{ slide.te }}</div>{% endif %}
+  {% if slide.en %}<div class="sub">{{ slide.en }}</div>{% endif %}
+
+{%- elif slide.type == "bars" %}
+  {% if slide.heading_te %}<div class="te h2">{{ slide.heading_te }}</div>{% endif %}
+  <div class="bars">
+  {% for b in slide.bars %}{% set col = accents.get(b.accent or "gold", c.gold) %}
+    <div><div class="lbl"><span>{{ b.label }}</span><span style="color:{{ col }}">{{ b.value }}</span></div>
+    <div class="track"><div class="fill" style="width:{{ b.pct }}%;background:{{ col }}"></div></div></div>
+  {% endfor %}
+  </div>
+  {% if slide.en %}<div class="sub" style="margin-top:34px">{{ slide.en }}</div>{% endif %}
+
+{%- elif slide.type == "quiz" %}
+  <div class="chip" style="background:{{ c.teal }}">{{ slide.label or "GUESS" }}</div>
+  {% if slide.prompt %}<div class="en h1">{{ slide.prompt }}</div>{% endif %}
+  {% if slide.question_te %}<div class="te h2" style="margin-top:18px">{{ slide.question_te }}</div>{% endif %}
+  {% if slide.question_en %}<div class="sub">{{ slide.question_en }}</div>{% endif %}
+  {% if slide.options %}<div class="opts">{% for o in slide.options %}<div class="opt"><b>{{ "ABCD"[loop.index0] }}</b>{{ o }}</div>{% endfor %}</div>{% endif %}
+
+{%- elif slide.type == "answer" %}
+  <div class="chip" style="background:{{ c.gold }}">ANSWER</div>
+  <div class="en h1 accent">{{ slide.answer }}</div>
+  {% if slide.te %}<div class="te h3" style="margin-top:22px">{{ slide.te }}</div>{% endif %}
+  {% if slide.en %}<div class="sub">{{ slide.en }}</div>{% endif %}
+
+{%- elif slide.type == "list" %}
+  {% if slide.heading_te %}<div class="te h2">{{ slide.heading_te }}</div>{% endif %}
+  {% if slide.heading_en %}<div class="sub" style="margin-top:6px">{{ slide.heading_en }}</div>{% endif %}
+  <div class="items">{% for it in slide["items"] %}<div class="item"><div class="t">{{ it.title }}</div>{% if it.meta %}<div class="m">{{ it.meta }}</div>{% endif %}</div>{% endfor %}</div>
+
+{%- elif slide.type == "cta" %}
+  {% if slide.te %}<div class="te h2">{{ slide.te }}</div>{% endif %}
+  {% if slide.big %}<div class="en h1" style="margin-top:30px">{{ slide.big }}</div>{% endif %}
+  {% if slide.en %}<div class="sub">{{ slide.en }}</div>{% endif %}
+  <div class="teb" style="font-size:46px;margin-top:50px">Save చేసుకోండి • Follow <span style="color:{{ c.gold }}">{{ brand.handle }}</span></div>
+{%- endif %}
+</div>
+
+{% set note = slide.source or post.source_note %}{% if note %}<div class="foot">{{ note }}</div>{% endif %}
+<div class="bottom">
+  <span>{{ brand.handle }}</span>
+  <div class="dots">{% for d in range(total) %}<span class="{{ 'on' if d + 1 == index }}"></span>{% endfor %}</div>
+  <span class="swipe">{{ "SWIPE →" if index < total else "" }}</span>
+</div>
+</body></html>

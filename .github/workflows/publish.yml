@@ -1,0 +1,45 @@
+name: publish
+
+# Posts at most ONE approved row per run. Twice daily (~12:30 and ~19:30 IST).
+# Guard: does nothing unless the repo variable PUBLISH_ENABLED is "true".
+on:
+  schedule:
+    - cron: "57 6 * * *"   # 12:27 IST
+    - cron: "57 13 * * *"  # 19:27 IST
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Actually post (otherwise dry run)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: vars.PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[sheet]"
+      - name: Publish next approved row
+        env:
+          TABLE_BACKEND: sheet
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GRAPH_API_VERSION: ${{ vars.GRAPH_API_VERSION || 'v23.0' }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.live }}" = "true" ]; then
+            python -m content_arena publish --live
+          else
+            python -m content_arena publish
+          fi

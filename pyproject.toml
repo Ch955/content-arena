@@ -1,0 +1,23 @@
+[project]
+name = "content-arena"
+version = "0.1.0"
+description = "Reel Rasam content system: briefs, carousel rendering, content table, approved-only publishing."
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "jinja2>=3.1",
+    "python-dotenv>=1.0",
+    "playwright>=1.45",
+]
+
+[project.optional-dependencies]
+sheet = ["gspread>=6.0", "google-auth>=2.29"]
+r2 = ["boto3>=1.34"]
+all = ["gspread>=6.0", "google-auth>=2.29", "boto3>=1.34"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
