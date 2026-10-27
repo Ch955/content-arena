@@ -2,7 +2,8 @@
 
 An AI-assisted content system for **Reel Rasam**, a faceless Telugu + English
 cinema/OTT channel on Instagram, Facebook and (later) YouTube.
-Handle: `@reelrasam` (placeholder until the owner confirms — see `brand/brand.json`).
+Handles: Instagram `@_reelrasam`, YouTube `@reel_rasam` (see `brand/brand.json`).
+Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasam`.
 
 ## Roles
 

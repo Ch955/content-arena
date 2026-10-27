@@ -16,8 +16,9 @@ Meta renames menus often — if a label differs, look for the closest match.
 - [ ] **Brand Gmail** created (e.g. `reelrasam.official@gmail.com`), 2-step verification ON.
 - [ ] **Facebook profile** you control (Meta requires a personal profile to own Pages/apps).
       Use your real one or create one with the brand Gmail; turn on 2FA.
+- [ ] **YouTube channel** `@reel_rasam` (Phase 2 — reserved).
 - [ ] **Facebook Page** "Reel Rasam" — category *Media/News company* or *Entertainment website*.
-- [ ] **Instagram account** `@reelrasam` with the brand Gmail → Settings → *Account type and tools*
+- [ ] **Instagram account** `@_reelrasam` with the brand Gmail → Settings → *Account type and tools*
       → **Switch to professional account → Business**.
 - [ ] **Link Instagram to the Page**: Facebook Page → Settings → *Linked accounts* → Instagram → Connect
       (or Instagram → Settings → *Accounts Center*).
@@ -48,7 +49,7 @@ Meta renames menus often — if a label differs, look for the closest match.
   - `pages_read_engagement`
   - `pages_manage_posts` (for Facebook Page posts)
   - `business_management` (only if the Page is inside a Meta Business portfolio)
-- [ ] In the login popup, select **the Reel Rasam Page and the @reelrasam Instagram account**.
+- [ ] In the login popup, select **the Reel Rasam Page and the @_reelrasam Instagram account**.
 - [ ] You now have a **short-lived user token** (expires in ~1–2 hours). Don't save it anywhere.
 
 ## D. Long-lived user token → never-expiring Page token
@@ -76,7 +77,7 @@ curl -s "https://graph.facebook.com/v23.0/me/accounts?fields=id,name,access_toke
 
 - [ ] In Graph API Explorer (with the Page token): `GET {META_PAGE_ID}?fields=instagram_business_account`
 - [ ] The returned `instagram_business_account.id` → **`IG_USER_ID`**.
-- [ ] Sanity check: `GET {IG_USER_ID}?fields=username` → should return `reelrasam`.
+- [ ] Sanity check: `GET {IG_USER_ID}?fields=username` → should return `_reelrasam`.
 - [ ] Check publishing quota: `GET {IG_USER_ID}/content_publishing_limit` (limit is 100 API posts
       per 24 h; we post 2 per day).
 

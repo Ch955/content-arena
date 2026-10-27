@@ -70,7 +70,7 @@ Pillar patterns:
 
 <source line if numbers are used>
 
-Save చేసుకోండి & follow @reelrasam for daily cinema rasam 🍲
+Save చేసుకోండి & follow @_reelrasam for daily cinema rasam 🍲
 
 #reelrasam #tollywood #telugucinema ... (8–15 relevant hashtags, max 30, no banned/spammy tags)
 ```

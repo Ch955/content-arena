@@ -9,6 +9,6 @@ Next time you see a collections headline, ask: gross, net or share? 🤔
 
 Data: Andhra Box Office via IBTimes India (20 Sep 2017), AP/Nizam lifetime. Trade estimates, not audited figures.
 
-Save చేసుకోండి & follow @reelrasam for daily cinema rasam 🍲
+Save చేసుకోండి & follow @_reelrasam for daily cinema rasam 🍲
 
 #reelrasam #boxoffice #tollywood #telugucinema #baahubali2 #boxofficecollection #telugumovies #cinemafacts

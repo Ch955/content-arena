@@ -1,6 +1,11 @@
 {
   "name": "Reel Rasam",
-  "handle": "@reelrasam",
+  "handle": "@_reelrasam",
+  "handles": {
+    "instagram": "@_reelrasam",
+    "youtube": "@reel_rasam",
+    "facebook": "Reel Rasam (Page)"
+  },
   "tagline_en": "Your daily dose of cinema",
   "tagline_te": "రోజుకో సినిమా రసం",
   "colors": {
