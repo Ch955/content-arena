@@ -9,9 +9,15 @@ import json
 import re
 from pathlib import Path
 
+from . import config
 from .table import LOCKED, Table
 
-PLATFORMS = ["instagram", "facebook"]
+
+def platforms() -> list[str]:
+    """Platforms to create rows for. Instagram only until a Facebook Page exists."""
+    return [p.strip() for p in config.get("PLATFORMS", "instagram").split(",") if p.strip()]
+
+
 MAX_CAPTION = 2200   # Instagram caption limit
 MAX_HASHTAGS = 30    # Instagram hashtag limit
 
@@ -40,7 +46,7 @@ def validate_caption(caption: str, hashtags: list[str]) -> None:
         raise ValueError(f"Caption is over Instagram's {MAX_CAPTION}-character limit")
 
 
-def sync(post_dir: Path, table: Table, upload=None) -> list[dict]:
+def sync(post_dir: Path, table: Table, upload=None, platforms_: list[str] | None = None) -> list[dict]:
     """Create/update rows for a post. `upload(slug, jpg_paths) -> urls` is called only when
     rendered images exist; pass None to skip uploading (rows then stay at 'drafted')."""
     post_dir = Path(post_dir)
@@ -69,7 +75,7 @@ def sync(post_dir: Path, table: Table, upload=None) -> list[dict]:
             status = "rendered"
 
     rows = []
-    for platform in PLATFORMS:
+    for platform in platforms_ or platforms():
         row_id = f"{slug}-{platform}"
         row = table.get(row_id) or table.insert({"id": row_id, "platform": platform, "status": "idea"})
         if row["status"] in LOCKED:

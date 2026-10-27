@@ -71,7 +71,7 @@ class PipelineTests(TmpCase):
         self.assertIn("#reelrasam", tags)
 
     def test_sync_creates_rendered_rows_for_both_platforms(self):
-        rows = pipeline.sync(self.copy_sample(), self.table, upload=fake_upload)
+        rows = pipeline.sync(self.copy_sample(), self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         self.assertEqual({r["platform"] for r in rows}, {"instagram", "facebook"})
         self.assertTrue(all(r["status"] == "rendered" for r in rows))
         self.assertEqual(len(rows[0]["media_urls"].split()), 6)
@@ -83,23 +83,64 @@ class PipelineTests(TmpCase):
 
     def test_sync_never_touches_approved_rows(self):
         post = self.copy_sample()
-        pipeline.sync(post, self.table, upload=fake_upload)
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         row_id = f"{post.name}-instagram"
         self.table.update(row_id, status="approved")
         before = self.table.get(row_id)
         (post / "caption.md").write_text("changed\n\n#x", encoding="utf-8")
-        pipeline.sync(post, self.table, upload=fake_upload)
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         after = self.table.get(row_id)
         self.assertEqual(after["status"], "approved")
         self.assertEqual(after["caption"], before["caption"])
 
     def test_sync_reworks_rejected_rows(self):
         post = self.copy_sample()
-        pipeline.sync(post, self.table, upload=fake_upload)
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         row_id = f"{post.name}-facebook"
         self.table.update(row_id, status="rejected")
-        pipeline.sync(post, self.table, upload=fake_upload)
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         self.assertEqual(self.table.get(row_id)["status"], "rendered")
+
+
+class InstagramLoginTests(TmpCase):
+    def setUp(self):
+        super().setUp()
+        import os
+        self.env = dict(os.environ)
+        os.environ.pop("META_AUTH", None)
+        os.environ.pop("PLATFORMS", None)
+
+    def tearDown(self):
+        import os
+        os.environ.clear()
+        os.environ.update(self.env)
+        super().tearDown()
+
+    def test_default_is_instagram_only(self):
+        rows = pipeline.sync(self.copy_sample(), self.table, upload=fake_upload)
+        self.assertEqual([r["platform"] for r in rows], ["instagram"])
+
+    def test_default_client_uses_graph_instagram(self):
+        import os
+        os.environ["IG_ACCESS_TOKEN"] = "IGTOKEN"
+        client = publish.make_client()
+        self.assertTrue(client.base.startswith("https://graph.instagram.com/"))
+
+    def test_facebook_row_refused_without_page_mode(self):
+        post = self.copy_sample()
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["facebook"])
+        self.table.update(f"{post.name}-facebook", status="approved")
+        with self.assertRaises(publish.PublishError):
+            publish.run(self.table, live=False, log=lambda *_: None)
+
+    def test_write_env_value_replaces_only_that_line(self):
+        from content_arena import tokens
+        env = self.tmp / ".env"
+        env.write_text("A=1\nIG_ACCESS_TOKEN=old\nB=2\n")
+        tokens.write_env_value(env, "IG_ACCESS_TOKEN", "new")
+        self.assertEqual(env.read_text(), "A=1\nIG_ACCESS_TOKEN=new\nB=2\n")
+        tokens.write_env_value(env, "C", "3")
+        self.assertTrue(env.read_text().endswith("C=3\n"))
 
 
 class FakeResponse:
@@ -130,7 +171,7 @@ class FakeSession:
 class PublishTests(TmpCase):
     def approved_rows(self):
         post = self.copy_sample()
-        pipeline.sync(post, self.table, upload=fake_upload)
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["instagram", "facebook"])
         for platform in ("instagram", "facebook"):
             self.table.update(f"{post.name}-{platform}", status="approved")
         return post
@@ -148,7 +189,7 @@ class PublishTests(TmpCase):
     def test_live_posts_exactly_one_row(self):
         self.approved_rows()
         import os
-        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1")
+        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         client = self.client()
         done = publish.run(self.table, live=True, client=client, log=lambda *_: None)
         self.assertEqual(done["status"], "posted")
@@ -178,7 +219,7 @@ class PublishTests(TmpCase):
     def test_failure_marks_row_failed(self):
         self.approved_rows()
         import os
-        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1")
+        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         with self.assertRaises(publish.PublishError):
             publish.run(self.table, live=True, client=self.client(fail_on="/media"), log=lambda *_: None)
         self.assertEqual(len(self.table.by_status("failed")) + len(self.table.by_status("posted")), 1)

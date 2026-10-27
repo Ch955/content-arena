@@ -12,7 +12,7 @@ See [`CLAUDE.md`](CLAUDE.md) for the architecture, status flow and rules, and
 2. Ask Claude to run the **instagram-worker** agent on that folder → `slides.json`, `caption.md`, rendered slides.
 3. `python -m content_arena sync content/<post>` → uploads images to R2, adds rows to the Sheet (`rendered`).
 4. **You** review on your phone (Sheet → image links + facts) and set status to `approved` (or `rejected`).
-5. GitHub Actions posts one approved row at ~12:30 and ~19:30 IST.
+5. GitHub Actions posts one approved row at ~12:30 and ~19:30 IST (Instagram; Facebook paused).
 
 ## Setup (laptop)
 
@@ -31,6 +31,6 @@ python -m content_arena render content/2026-10-27-gross-net-share-baahubali2
 |---|---|---|
 | Content table | Google Sheet + service account | Approve from your phone. `TABLE_BACKEND=csv` for local testing. |
 | Image hosting | Cloudflare R2 | Instagram's API needs public JPEG URLs. |
-| Publishing | Meta Graph API | Page token; app stays in Development mode. |
+| Publishing | Instagram API (Instagram Login) | No Facebook Page needed; 60-day token auto-refreshed. Facebook later. |
 | Schedule | GitHub Actions | Off until repo variable `PUBLISH_ENABLED=true`. |
 | Fonts | Anton, Inter, Ramabhadra, Noto Sans Telugu | SIL Open Font License, in `brand/fonts/`. |

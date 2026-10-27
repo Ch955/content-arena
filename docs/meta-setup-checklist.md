@@ -1,107 +1,106 @@
-# Meta setup checklist (Instagram + Facebook)
+# Meta setup checklist (Instagram now, Facebook later)
 
-Goal: a **never-expiring Page access token** plus the **Page ID** and **Instagram
-user ID**, so `python -m content_arena publish` can post approved rows.
-Everything here is free. Do it on a laptop browser (developer pages are painful on a phone).
+**Current path: Instagram API with Instagram Login** — Meta's docs: *"This API setup does not
+require a Facebook Page to be linked to the Instagram professional account."*
+Goal: an **Instagram User access token** (`IG_ACCESS_TOKEN`) and your **Instagram user ID**
+(`IG_USER_ID`), so `python -m content_arena publish` can post approved rows.
+Everything here is free. Use a laptop browser (developer pages are painful on a phone).
 
 Checked against Meta's docs on 2026-10-27:
+[Instagram Login](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login),
 [Content publishing](https://developers.facebook.com/docs/instagram-platform/content-publishing),
-[Long-lived tokens](https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived).
+[Refresh token](https://developers.facebook.com/docs/instagram-platform/reference/refresh_access_token).
 Meta renames menus often — if a label differs, look for the closest match.
 
 ---
 
-## A. Accounts (phone is fine)
+## A. Accounts
 
-- [ ] **Brand Gmail** created (e.g. `reelrasam.official@gmail.com`), 2-step verification ON.
-- [ ] **Facebook profile** you control (Meta requires a personal profile to own Pages/apps).
-      Use your real one or create one with the brand Gmail; turn on 2FA.
-- [ ] **YouTube channel** `@reel_rasam` (Phase 2 — reserved).
-- [ ] **Facebook Page** "Reel Rasam" — category *Media/News company* or *Entertainment website*.
-- [ ] **Instagram account** `@_reelrasam` with the brand Gmail → Settings → *Account type and tools*
-      → **Switch to professional account → Business**.
-- [ ] **Link Instagram to the Page**: Facebook Page → Settings → *Linked accounts* → Instagram → Connect
-      (or Instagram → Settings → *Accounts Center*).
-- [ ] **Warm-up (recommended):** for the first ~7 days, post 3–5 things manually from the app
-      (profile photo, bio, highlights). Brand-new accounts that start with API posts are more
+- [ ] **Brand Gmail**, 2-step verification ON.
+- [ ] **Instagram** `@_reelrasam` → Settings → *Account type and tools* →
+      **Switch to professional account → Business** (Creator also works).
+- [ ] **YouTube** `@reel_rasam` (Phase 2 — reserved).
+- [ ] **Facebook Page — paused.** Not needed for this path. See section F when you want it.
+- [ ] **Warm-up (recommended):** for the first ~7 days, set profile photo + bio and post
+      3–5 times manually from the app. Brand-new accounts that start with API posts are more
       likely to be flagged.
 
-## B. Meta developer app
+## B. Meta developer account + app
 
-- [ ] Go to <https://developers.facebook.com> → log in with the Facebook profile → *Get started*
-      (verify your phone/email when asked).
-- [ ] **My Apps → Create app**. Name: `content-arena`. Use case: choose the one for
-      **managing Instagram / Pages content** (Facebook Login for Business). App type *Business* if asked.
-- [ ] In the app, add products: **Facebook Login for Business** and **Instagram** (API setup with Facebook Login).
-- [ ] Leave the app in **Development mode**. You are an admin of the app *and* the owner of the
-      Page/IG, so you can use these permissions on your own accounts **without App Review**
-      or business verification.
-- [ ] Note the **App ID** and **App Secret** (App settings → Basic). Store the secret in your
-      password manager only — it's needed once for the token exchange, not by the publisher.
+- [ ] Go to <https://developers.facebook.com> and register as a developer. As far as I know
+      this still needs a Facebook login (a personal profile — *not* a Page). If your personal
+      Facebook login works, you're fine even though Page creation failed. If the site offers
+      another login option, that works too. If you can't log in at all, stop and tell Claude.
+- [ ] **My Apps → Create app**, name `content-arena`. Pick the use case for **Instagram**
+      (manage messages and content / "Instagram API"). App type *Business* if asked.
+- [ ] Keep the app in **Development mode**. You'll only post to your own account, so no
+      App Review or business verification is needed.
+- [ ] Note the **Instagram App ID / App Secret** shown on the Instagram product page.
+      Secret → password manager only.
 
-## C. Permissions and a short-lived token
+## C. Connect @_reelrasam and get a token
 
-- [ ] Open **Graph API Explorer**: <https://developers.facebook.com/tools/explorer/>
-- [ ] Select your app; *User or Page* → **Get User Access Token** with these permissions:
-  - `instagram_basic`
-  - `instagram_content_publish`
-  - `pages_show_list`
-  - `pages_read_engagement`
-  - `pages_manage_posts` (for Facebook Page posts)
-  - `business_management` (only if the Page is inside a Meta Business portfolio)
-- [ ] In the login popup, select **the Reel Rasam Page and the @_reelrasam Instagram account**.
-- [ ] You now have a **short-lived user token** (expires in ~1–2 hours). Don't save it anywhere.
+- [ ] App dashboard → **App roles → Roles → Add people → Instagram Tester** → enter `_reelrasam`.
+- [ ] In the Instagram app (logged in as @_reelrasam): Settings → *Website permissions /
+      Apps and websites* → **Tester invites** → **Accept**.
+- [ ] App dashboard → **Instagram → API setup with Instagram login** → *Generate access tokens* →
+      **Add account** → log in as @_reelrasam → allow the permissions
+      `instagram_business_basic` and `instagram_business_content_publish`.
+- [ ] Copy the generated token **straight into `.env`** as `IG_ACCESS_TOKEN` (never into chat).
+      It should be a **long-lived token (60 days)** — the dashboard shows its expiry. If it says
+      ~1 hour, tell Claude and we'll add the exchange step.
 
-## D. Long-lived user token → never-expiring Page token
+## D. Instagram user ID + checks
 
-Easiest path (no code):
-- [ ] **Access Token Debugger** (<https://developers.facebook.com/tools/debug/accesstoken/>) → paste
-      the short-lived token → **Debug** → **Extend Access Token** at the bottom.
-      This gives a **long-lived user token** (~60 days).
-- [ ] Back in Graph API Explorer, paste the long-lived user token into the token box and run:
-      `GET me/accounts?fields=id,name,access_token`
-- [ ] Find "Reel Rasam" in the result:
-  - `id` → this is **`META_PAGE_ID`**
-  - `access_token` → this is **`META_PAGE_ACCESS_TOKEN`**
-- [ ] Paste that Page token into the Access Token Debugger and confirm **Expires: Never**.
-      (Page tokens made from a long-lived user token don't expire; they're invalidated only if
-      you change your password, remove the app, or lose your Page role.)
-
-Command-line alternative (same result, run it yourself — never paste tokens into chat):
+Run these yourself in a terminal (they print only your account ID/username, not the token):
 ```bash
-curl -s "https://graph.facebook.com/v23.0/oauth/access_token?grant_type=fb_exchange_token&client_id=APP_ID&client_secret=APP_SECRET&fb_exchange_token=SHORT_LIVED_TOKEN"
-curl -s "https://graph.facebook.com/v23.0/me/accounts?fields=id,name,access_token&access_token=LONG_LIVED_USER_TOKEN"
+source .env   # or set the variables in your shell
+curl -s -H "Authorization: Bearer $IG_ACCESS_TOKEN" \
+  "https://graph.instagram.com/v23.0/me?fields=user_id,username"
 ```
+- [ ] `username` should be `_reelrasam`. Put `user_id` into `.env` as `IG_USER_ID`.
+- [ ] Quota check: `.../v23.0/$IG_USER_ID/content_publishing_limit` — limit is 100 API posts per
+      24 h (carousels count as one); we post 2 per day.
 
-## E. Instagram user ID
-
-- [ ] In Graph API Explorer (with the Page token): `GET {META_PAGE_ID}?fields=instagram_business_account`
-- [ ] The returned `instagram_business_account.id` → **`IG_USER_ID`**.
-- [ ] Sanity check: `GET {IG_USER_ID}?fields=username` → should return `_reelrasam`.
-- [ ] Check publishing quota: `GET {IG_USER_ID}/content_publishing_limit` (limit is 100 API posts
-      per 24 h; we post 2 per day).
-
-## F. Store the values (never in chat, code or git)
+## E. Store the values and keep the token alive
 
 | Name | Where |
 |---|---|
-| `META_PAGE_ACCESS_TOKEN`, `META_PAGE_ID`, `IG_USER_ID`, `GRAPH_API_VERSION` | `.env` on your laptop |
-| same names | GitHub → `content-arena` → Settings → Secrets and variables → Actions → *Secrets* |
-| App Secret | password manager only |
+| `IG_ACCESS_TOKEN`, `IG_USER_ID` | `.env` on your laptop |
+| same names | GitHub → `content-arena` → Settings → Secrets and variables → Actions → **Secrets** |
+| `GH_SECRETS_TOKEN` | Secret: a GitHub fine-grained token for **this repo only** with **Secrets: Read and write** (lets the refresh workflow save the new IG token) |
+| `PUBLISH_ENABLED=true`, `GRAPH_API_VERSION` | GitHub → **Variables** (set `PUBLISH_ENABLED` only after a good manual test) |
 
-Set `GRAPH_API_VERSION` to the latest version shown in Graph API Explorer's version dropdown
-(the code defaults to `v23.0`).
+The token lasts 60 days. It can be refreshed once it's at least 24 hours old:
+- Laptop: `python -m content_arena refresh-ig-token` (updates `.env`, never prints the token).
+- GitHub: `.github/workflows/refresh-ig-token.yml` refreshes on the 1st and 15th and saves the
+  new token into the `IG_ACCESS_TOKEN` secret automatically.
 
-## G. First test (with Claude or on your own)
+First live test:
+- [ ] `python -m content_arena publish` → dry run; shows which row would go out.
+- [ ] Approve one row, run `python -m content_arena publish --live` once by hand, check the post.
+- [ ] Then set `PUBLISH_ENABLED=true` to turn on the twice-daily schedule.
 
-- [ ] `python -m content_arena publish` → **dry run**; shows which row would go out.
-- [ ] Approve one test row, then `python -m content_arena publish --live` once, by hand.
-- [ ] Check the post on Instagram/Facebook. If it's wrong, delete it in the app and tell Claude.
-- [ ] Only after a good manual run: set the GitHub repo variable `PUBLISH_ENABLED=true` to turn on
-      the twice-daily schedule.
+If the token leaks: Instagram → Settings → *Apps and websites* → remove `content-arena`, then redo C–E.
 
-## Rotating / revoking
+---
 
-- If a token leaks: Facebook → Settings → *Business integrations* → remove `content-arena`
-  (kills all its tokens), then redo C–F.
-- Changing your Facebook password invalidates the Page token — redo D–F afterwards.
+## F. Later: adding Facebook (when a Page can be created)
+
+1. Create the Page "Reel Rasam" and link @_reelrasam to it (Page → Settings → Linked accounts).
+2. In the app, add **Facebook Login for Business**. In Graph API Explorer get a user token with
+   `instagram_basic`, `instagram_content_publish`, `pages_show_list`, `pages_read_engagement`,
+   `pages_manage_posts` (+ `business_management` if the Page is in a business portfolio).
+3. Access Token Debugger → **Extend Access Token** (long-lived user token, ~60 days) →
+   Graph API Explorer `GET me/accounts?fields=id,name,access_token` → the Page's `access_token`
+   is a Page token that **doesn't expire**; `id` is `META_PAGE_ID`.
+   ([Long-lived tokens](https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived))
+4. `GET {META_PAGE_ID}?fields=instagram_business_account` → that id is `IG_USER_ID` for this mode.
+5. Set `META_AUTH=facebook_login`, `PLATFORMS=instagram,facebook`, `META_PAGE_ID`,
+   `META_PAGE_ACCESS_TOKEN` in `.env` and GitHub (secrets/variables).
+
+### Facebook Page creation troubleshooting
+- Try from a laptop browser at <https://www.facebook.com/pages/create> instead of the app.
+- New or recently changed Facebook profiles are often limited for a few days — wait 24–48 h.
+- Make sure the personal profile has a confirmed email/phone and 2FA on.
+- Try a slightly different Page name ("Reel Rasam Telugu"); some names get silently blocked.

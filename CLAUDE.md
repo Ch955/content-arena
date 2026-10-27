@@ -12,8 +12,10 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 - **Manager** — the `/content-manager` skill (`.claude/skills/content-manager/`).
   Finds trending topics, picks one, writes a master brief.
 - **Workers** — subagents in `.claude/agents/`. Each adapts one brief to one
-  platform format. Phase 1 has `instagram-worker` only (its carousel is also
-  posted to Facebook). `facebook-worker` and `youtube-worker` come later.
+  platform format. Phase 1 has `instagram-worker` only. Facebook is **paused**
+  (no Page yet): rows are Instagram-only (`PLATFORMS=instagram`) and publishing
+  uses Instagram Login (`META_AUTH=instagram_login`, no Page needed).
+  `facebook-worker` and `youtube-worker` come later.
 - **Python scripts** (`src/content_arena/`) — rendering, storage, the content
   table and publishing. **The AI never calls publishing APIs directly**;
   only `python -m content_arena publish` does, and only for approved rows.
@@ -40,7 +42,7 @@ owner (Sheet/CLI) →                                                  row: appr
 publish (Actions) →  Instagram / Facebook                            row: posting → posted | failed
 ```
 
-- One table row per **platform post** (`<post-slug>-instagram`, `<post-slug>-facebook`).
+- One table row per **platform post** (`<post-slug>-instagram`; `-facebook` once a Page exists).
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.
@@ -56,6 +58,7 @@ python -m content_arena sync content/<post>       # upload images + create/updat
 python -m content_arena list [--status approved]
 python -m content_arena approve <row-id>          # owner only — never run this yourself
 python -m content_arena publish [--live]
+python -m content_arena refresh-ig-token          # owner: extend the 60-day IG token (touches account)
 python -m unittest discover -s tests              # tests (no network, no accounts)
 ```
 
@@ -91,4 +94,5 @@ content/<date>-<slug>/                    brief.md, slides.json, caption.md, ren
 src/content_arena/                        Python package
 docs/meta-setup-checklist.md              Meta account/app/token setup
 .github/workflows/publish.yml             twice-daily publish (guarded by PUBLISH_ENABLED)
+.github/workflows/refresh-ig-token.yml    twice-monthly IG token refresh (guarded by PUBLISH_ENABLED)
 ```

@@ -26,7 +26,22 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("publish", help="publish the next approved row (dry run unless --live)")
     p.add_argument("--live", action="store_true")
     sub.add_parser("init-sheet", help="add the status dropdown to the Google Sheet")
+    p = sub.add_parser("refresh-ig-token", help="extend IG_ACCESS_TOKEN by 60 days (writes .env, never prints it)")
+    p.add_argument("--out", type=Path, help="also write the new token to this file (for CI)")
     args = ap.parse_args(argv)
+
+    if args.cmd == "refresh-ig-token":
+        from . import config, tokens
+        new, expires_in = tokens.refresh_ig_token(config.get("IG_ACCESS_TOKEN", required=True))
+        env = config.ROOT / ".env"
+        if env.exists():
+            tokens.write_env_value(env, "IG_ACCESS_TOKEN", new)
+            print("Updated IG_ACCESS_TOKEN in .env")
+        if args.out:
+            tokens.write_secret_file(args.out, new)
+            print(f"Wrote new token to {args.out}")
+        print(f"New token valid for ~{expires_in // 86400} days")
+        return 0
 
     if args.cmd == "trends":
         print(json.dumps(trends.collect(), ensure_ascii=False, indent=2))
@@ -69,7 +84,8 @@ def run() -> int:
         return main()
     except KeyError as exc:
         print(f"No row with id {exc}. See: python -m content_arena list", file=sys.stderr)
-    except (ConfigError, table_mod.TransitionError, publish.PublishError, ValueError, FileNotFoundError) as exc:
+    except (ConfigError, table_mod.TransitionError, publish.PublishError, ValueError, FileNotFoundError,
+            RuntimeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
     return 1
 

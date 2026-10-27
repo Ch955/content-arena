@@ -1,4 +1,9 @@
-"""Publish ONE approved row per run to Instagram or Facebook via the Meta Graph API.
+"""Publish ONE approved row per run to Instagram (and later Facebook) via Meta's APIs.
+
+Auth modes (META_AUTH):
+- instagram_login (default): Instagram API with Instagram Login — no Facebook Page needed.
+  Host graph.instagram.com, long-lived Instagram User token (IG_ACCESS_TOKEN, refresh every <60 days).
+- facebook_login: Instagram + Facebook Page via a Page token (META_PAGE_ACCESS_TOKEN).
 
 Safety rules:
 - Only rows with status 'approved' are considered; oldest first; at most one per run.
@@ -27,8 +32,8 @@ class PublishError(RuntimeError):
 
 class MetaClient:
     def __init__(self, token: str, version: str, session: requests.Session | None = None,
-                 poll_interval: float = 3.0, poll_attempts: int = 20):
-        self.base = f"https://graph.facebook.com/{version}"
+                 poll_interval: float = 3.0, poll_attempts: int = 20, host: str = "graph.facebook.com"):
+        self.base = f"https://{host}/{version}"
         self.http = session or requests.Session()
         self.http.headers["Authorization"] = f"Bearer {token}"
         self.poll_interval, self.poll_attempts = poll_interval, poll_attempts
@@ -81,6 +86,20 @@ def parse_when(value: str) -> datetime:
     return dt if dt.tzinfo else dt.replace(tzinfo=IST)
 
 
+def make_client() -> MetaClient:
+    version = config.get("GRAPH_API_VERSION", "v23.0")
+    if auth_mode() == "instagram_login":
+        return MetaClient(config.get("IG_ACCESS_TOKEN", required=True), version, host="graph.instagram.com")
+    return MetaClient(config.get("META_PAGE_ACCESS_TOKEN", required=True), version)
+
+
+def auth_mode() -> str:
+    mode = config.get("META_AUTH", "instagram_login")
+    if mode not in ("instagram_login", "facebook_login"):
+        raise config.ConfigError(f"META_AUTH must be instagram_login or facebook_login, not {mode!r}")
+    return mode
+
+
 def pick_next(table: Table, now: datetime | None = None) -> dict | None:
     """Oldest approved row whose scheduled_for (if any) has passed."""
     now = now or datetime.now(timezone.utc)
@@ -99,6 +118,8 @@ def check_row(row: dict) -> tuple[list[str], str]:
     validate_caption(row["caption"], tags)
     if row["platform"] not in ("instagram", "facebook"):
         raise PublishError(f"Row {row['id']}: unsupported platform {row['platform']!r}")
+    if row["platform"] == "facebook" and auth_mode() != "facebook_login":
+        raise PublishError(f"Row {row['id']}: Facebook posts need a Page and META_AUTH=facebook_login")
     return urls, full_caption(row["caption"], tags)
 
 
@@ -113,8 +134,7 @@ def run(table: Table, live: bool = False, client: MetaClient | None = None, log=
         log("DRY RUN — nothing was posted and the table was not changed. Use --live to publish.")
         return row
 
-    client = client or MetaClient(config.get("META_PAGE_ACCESS_TOKEN", required=True),
-                                  config.get("GRAPH_API_VERSION", "v23.0"))
+    client = client or make_client()
     table.update(row["id"], status="posting", error="")
     try:
         if row["platform"] == "instagram":
