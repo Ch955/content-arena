@@ -59,6 +59,21 @@ class TableTests(TmpCase):
         self.assertEqual(CsvTable(self.table.path).get("t")["caption"], "గ్రాస్ vs నెట్ 🎬")
 
 
+class ServiceAccountTests(unittest.TestCase):
+    def test_accepts_raw_and_base64_json(self):
+        import base64
+        from content_arena.table import parse_service_account
+        raw = json.dumps({"type": "service_account", "client_email": "bot@x.iam.gserviceaccount.com"})
+        b64 = base64.b64encode(raw.encode()).decode().rstrip("=")
+        self.assertEqual(parse_service_account(raw), parse_service_account(b64))
+
+    def test_rejects_oauth_client_file(self):
+        from content_arena.config import ConfigError
+        from content_arena.table import parse_service_account
+        with self.assertRaises(ConfigError):
+            parse_service_account(json.dumps({"web": {"client_id": "x"}}))
+
+
 class PipelineTests(TmpCase):
     def test_parse_caption_splits_hashtags(self):
         body, tags = pipeline.parse_caption("Hello\n\nWorld\n\n#a #b")

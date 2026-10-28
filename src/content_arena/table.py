@@ -114,6 +114,23 @@ class CsvTable(Table):
         tmp.replace(self.path)
 
 
+def parse_service_account(raw: str) -> dict:
+    """The service-account key as raw JSON or base64-encoded JSON (some settings UIs mangle raw JSON)."""
+    raw = raw.strip()
+    if not raw.startswith("{"):
+        import base64
+        try:
+            raw = base64.b64decode(raw + "=" * (-len(raw) % 4)).decode("utf-8")
+        except ValueError:
+            raise config.ConfigError("GOOGLE_SERVICE_ACCOUNT_JSON is neither JSON nor base64 — "
+                                     "see docs/sheet-and-r2-setup.md") from None
+    info = json.loads(raw)
+    if info.get("type") != "service_account" or "client_email" not in info:
+        raise config.ConfigError("GOOGLE_SERVICE_ACCOUNT_JSON is not a service-account key "
+                                 "(it must contain \"type\": \"service_account\")")
+    return info
+
+
 class SheetTable(Table):
     """Google Sheet backend. Worksheet 'content', header row = COLUMNS."""
 
@@ -126,7 +143,7 @@ class SheetTable(Table):
         scopes = ["https://www.googleapis.com/auth/spreadsheets"]
         raw = config.get("GOOGLE_SERVICE_ACCOUNT_JSON")
         if raw:
-            creds = Credentials.from_service_account_info(json.loads(raw), scopes=scopes)
+            creds = Credentials.from_service_account_info(parse_service_account(raw), scopes=scopes)
         else:
             path = config.get("GOOGLE_SERVICE_ACCOUNT_FILE", required=True)
             creds = Credentials.from_service_account_file(path, scopes=scopes)

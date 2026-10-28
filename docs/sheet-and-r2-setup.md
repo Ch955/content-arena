@@ -25,6 +25,9 @@ The code keeps a `csv` backend for offline testing (`TABLE_BACKEND=csv`).
 7. `python -m content_arena list` (creates the `content` tab + headers), then
    `python -m content_arena init-sheet` (adds the status dropdown).
 8. GitHub Actions secrets: `GOOGLE_SHEET_ID`, and `GOOGLE_SERVICE_ACCOUNT_JSON` = the whole JSON file contents.
+   Settings screens that only take `NAME=value` lines (e.g. Claude's environment settings) can mangle JSON —
+   paste it **base64-encoded** instead. Windows PowerShell (copies to clipboard, prints nothing):
+   `[Convert]::ToBase64String([IO.File]::ReadAllBytes("C:\path\service-account.json")) | Set-Clipboard`
 
 Approving on the phone: open the Sheet → find rows with status `rendered` → open the
 `media_urls` links to see the slides, read `caption` and `facts_to_verify` → set status to
