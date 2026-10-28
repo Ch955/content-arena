@@ -6,7 +6,8 @@ frame-by-frame with headless Chromium, original synthesized music/SFX, Sarvam vo
 ```bash
 mkdir -p /tmp/reel && cp tools/reel/* /tmp/reel/ && cd /tmp/reel
 mv intro.html reel.html && ln -s "$OLDPWD/brand/fonts" fonts && mkdir -p vo
-python tts_sarvam.py      # needs SARVAM_API_KEY; writes vo/*.wav + durs.json (≈₹3 per reel)
+python tts_gemini.py lines.json  # narrator Gopi (Gemini TTS); writes vo/*.wav + durs.json (≈₹2 per reel)
+# python tts_sarvam.py           # old Sarvam house voice, fallback only
 python audio.py           # timeline.json + mix.wav (music bed, whooshes, ducking under voice)
 node render.js            # needs Node + playwright; writes reel-rasam-intro.mp4
 ```

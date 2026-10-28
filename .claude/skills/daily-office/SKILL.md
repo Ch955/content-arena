@@ -20,7 +20,7 @@ art-director, editor, quality-checker, instagram-worker), collect their work, an
 ## Evening mode — prepare TOMORROW (date = today + 1, IST)
 1. `python -m content_arena plan --start <tomorrow> --days 1` → comedy + rotating pillar.
 2. Rotating post (ott-weekly / tfi-fact / quiz): researcher → scriptwriter → render a reel
-   (`tools/reel/` pattern, house voice) or carousel (instagram-worker) → quality-checker →
+   (`tools/reel/` pattern, narrator Gopi via `tools/reel/tts_gemini.py`) or carousel (instagram-worker) → quality-checker →
    `python -m content_arena sync content/<post>` → rows `rendered`.
 3. Comedy: scriptwriter (genre of the day) → art-director (prompts + `pack`) → the owner's "tomorrow"
    tab + Drive folder `Reel Rasam Inbox/<post>` are ready.

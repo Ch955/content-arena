@@ -123,7 +123,7 @@ content/<date>-<slug>/                    brief.md, slides.json, caption.md, ren
 src/content_arena/                        Python package
 docs/meta-setup-checklist.md              Meta account/app/token setup
 docs/youtube-setup.md                     YouTube OAuth + API audit (uploads are private until audited)
-tools/reel/                               reel renderer prototype (HTML scenes + Sarvam voice + ffmpeg)
+tools/reel/                               reel renderer prototype (HTML scenes + Gemini narrator + ffmpeg)
 .github/workflows/publish.yml             twice-daily publish (guarded by PUBLISH_ENABLED)
 .github/workflows/refresh-ig-token.yml    twice-monthly IG token refresh (guarded by PUBLISH_ENABLED)
 ```
