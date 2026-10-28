@@ -23,9 +23,9 @@ rng = np.random.default_rng(7)
 
 def env(length, a, r):
     e = np.ones(length)
-    ai, ri = int(a * SR), int(r * SR)
+    ai, ri = min(int(a * SR), length // 2), min(int(r * SR), length // 2)
     e[:ai] = np.linspace(0, 1, ai)
-    e[-ri:] *= np.linspace(1, 0, ri)
+    if ri: e[-ri:] *= np.linspace(1, 0, ri)
     return e
 
 def lowpass(x, alpha):
@@ -86,7 +86,7 @@ for i, (key, a, b) in enumerate(scenes):
         L = int(0.6 * SR); s = max(0, int((a - 0.25) * SR)); seg = np.arange(L) / L
         noise = lowpass(rng.standard_normal(L), 0.05 + 0.25 * np.sin(np.pi * seg))
         sfx[s:s + L] += 0.5 * noise * np.sin(np.pi * seg) ** 2
-    if key in ("s2", "s3", "s4", "s5"):
+    if key in ("s1", "s2", "s3", "s4", "s5"):
         s = int((a + 1.8) * SR); L = int(0.8 * SR); seg = np.arange(L) / SR
         sfx[s:s + L] += 0.12 * (np.sin(2 * np.pi * 1318.5 * seg) + 0.5 * np.sin(2 * np.pi * 1975.5 * seg)) * np.exp(-seg * 6)
 
