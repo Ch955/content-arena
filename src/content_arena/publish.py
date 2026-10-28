@@ -77,6 +77,12 @@ class MetaClient:
         self._wait_ready(cid, attempts=self.poll_attempts * 5)  # video processing takes minutes
         return self._call("POST", f"{ig_user_id}/media_publish", creation_id=cid)["id"]
 
+    def instagram_user_id(self) -> str:
+        """The account the token belongs to (Instagram Login tokens only)."""
+        me = self._call("GET", "me", fields="user_id,username")
+        print(f"Instagram account: @{me.get('username')}")
+        return str(me["user_id"])
+
     def facebook_multi_photo(self, page_id: str, image_urls: list[str], message: str) -> str:
         photo_ids = [self._call("POST", f"{page_id}/photos", url=url, published="false")["id"]
                      for url in image_urls]
@@ -105,6 +111,16 @@ def auth_mode() -> str:
     if mode not in ("instagram_login", "facebook_login"):
         raise config.ConfigError(f"META_AUTH must be instagram_login or facebook_login, not {mode!r}")
     return mode
+
+
+def ig_user_id(client: MetaClient) -> str:
+    """IG_USER_ID if it's a real numeric ID; otherwise ask Instagram which account the token is for."""
+    configured = (config.get("IG_USER_ID") or "").strip()
+    if configured.isdigit():
+        return configured
+    if auth_mode() != "instagram_login":
+        raise config.ConfigError("IG_USER_ID must be the numeric Instagram account ID")
+    return client.instagram_user_id()
 
 
 def pick_next(table: Table, now: datetime | None = None) -> dict | None:
@@ -166,9 +182,9 @@ def run(table: Table, live: bool = False, client: MetaClient | None = None, log=
         else:
             client = client or make_client()
             if row["platform"] == "instagram" and fmt == "reel":
-                post_id = client.instagram_reel(config.get("IG_USER_ID", required=True), urls[0], caption)
+                post_id = client.instagram_reel(ig_user_id(client), urls[0], caption)
             elif row["platform"] == "instagram":
-                post_id = client.instagram_carousel(config.get("IG_USER_ID", required=True), urls, caption)
+                post_id = client.instagram_carousel(ig_user_id(client), urls, caption)
             else:
                 post_id = client.facebook_multi_photo(config.get("META_PAGE_ID", required=True), urls, caption)
     except Exception as exc:

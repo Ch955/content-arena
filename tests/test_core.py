@@ -216,6 +216,18 @@ class ReelTests(TmpCase):
         self.assertIn("#shorts", seen["tags"])
 
 
+class IgUserIdTests(unittest.TestCase):
+    def test_placeholder_id_is_resolved_from_token(self):
+        import os
+        from unittest import mock
+        client = mock.Mock()
+        client.instagram_user_id.return_value = "1789"
+        with mock.patch.dict(os.environ, {"IG_USER_ID": "IG_USER_ID", "META_AUTH": "instagram_login"}):
+            self.assertEqual(publish.ig_user_id(client), "1789")
+        with mock.patch.dict(os.environ, {"IG_USER_ID": "555", "META_AUTH": "instagram_login"}):
+            self.assertEqual(publish.ig_user_id(client), "555")
+
+
 class FakeResponse:
     def __init__(self, body, status=200):
         self.body, self.status_code = body, status
@@ -262,7 +274,7 @@ class PublishTests(TmpCase):
     def test_live_posts_exactly_one_row(self):
         self.approved_rows()
         import os
-        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1", META_AUTH="facebook_login")
+        os.environ.update(IG_USER_ID="17841", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         client = self.client()
         done = publish.run(self.table, live=True, client=client, log=lambda *_: None)
         self.assertEqual(done["status"], "posted")
@@ -292,7 +304,7 @@ class PublishTests(TmpCase):
     def test_failure_marks_row_failed(self):
         self.approved_rows()
         import os
-        os.environ.update(IG_USER_ID="IG1", META_PAGE_ID="PG1", META_AUTH="facebook_login")
+        os.environ.update(IG_USER_ID="17841", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         with self.assertRaises(publish.PublishError):
             publish.run(self.table, live=True, client=self.client(fail_on="/media"), log=lambda *_: None)
         self.assertEqual(len(self.table.by_status("failed")) + len(self.table.by_status("posted")), 1)
