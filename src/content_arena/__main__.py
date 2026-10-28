@@ -29,7 +29,19 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("refresh-ig-token", help="extend IG_ACCESS_TOKEN by 60 days (writes .env, never prints it)")
     p.add_argument("--out", type=Path, help="also write the new token to this file (for CI)")
     sub.add_parser("youtube-auth", help="owner, one time: connect the YouTube channel (writes .env)")
+    p = sub.add_parser("plan", help="what to make each day (comedy daily + OTT/fact/quiz rotation)")
+    p.add_argument("--days", type=int, default=7)
+    p.add_argument("--start", help="YYYY-MM-DD (default: today, IST)")
     args = ap.parse_args(argv)
+
+    if args.cmd == "plan":
+        from datetime import date, datetime
+        from zoneinfo import ZoneInfo
+        from . import schedule
+        start = date.fromisoformat(args.start) if args.start else datetime.now(ZoneInfo("Asia/Kolkata")).date()
+        for day, pillars in schedule.plan(start, args.days):
+            print(f"{day:%a %d %b}: {' + '.join(pillars)}")
+        return 0
 
     if args.cmd == "youtube-auth":
         from . import config, tokens, youtube

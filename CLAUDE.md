@@ -24,11 +24,25 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 
 ## Content pillars
 
-| Pillar | Cadence | Format (Phase 1) |
+Owner's plan (28 Oct 2026): **2 posts a day** — one fixed comedy reel + one rotating post.
+`python -m content_arena plan` prints what to make for the coming days (`src/content_arena/schedule.py`).
+
+| Pillar | When | Format |
 |---|---|---|
-| `ott-weekly` — This Week on OTT | 1 / week (Friday) | carousel |
-| `trivia` — quizzes, guess-the-movie | 1 / day | carousel |
-| `explainer` — Box Office 101 & cinema explainers | 1 / day | carousel |
+| `comedy` — original animated spoof of iconic TFI moments/tropes | **every day** (slot 1) | reel |
+| `ott-weekly` — This Week on OTT | **Fridays** (slot 2) | carousel or reel |
+| `tfi-fact` — TFI facts & Box Office 101 explainers | **every 3rd day** from 29 Oct 2026 (slot 2); a Friday fact day moves to Saturday | reel or carousel |
+| `quiz` — guess-the-movie, dialogue/song quizzes | **all other days** (slot 2) | reel or carousel |
+
+**Comedy spoofs — how to stay safe (Indian courts have granted Telugu stars protection against
+AI use of their face/voice/name, e.g. Nagarjuna 2025, Allu Arjun 2026):**
+- Spoof the **moment or trope** ("mass hero entry", "slow-mo fight", "interval bang", "mother sentiment"),
+  never a real person. Characters are our own original cartoon cast (e.g. kid versions of *generic*
+  hero/villain/mom types) — no star lookalikes, no real names, no voice imitation, no deepfakes.
+- No film footage, stills, posters, songs, BGM or long verbatim dialogues. Film titles may be named in
+  the caption only as "inspired by the classic ___ moment" when it helps; never imply endorsement.
+- Never mock real people, castes, religions, regions or fan wars; punch at situations, not people.
+- Mark AI-generated/altered content where the platform asks (YouTube "altered or synthetic", Meta AI label).
 
 Language: Telugu-first slides (Telugu script, English movie titles/terms),
 captions with a Telugu paragraph then an English one. Spoken scripts are

@@ -24,8 +24,11 @@
     "body_te": "NotoSansTelugu.ttf"
   },
   "pillar_tags": {
+    "comedy": "RASAM COMEDY",
+    "tfi-fact": "TFI FACTS",
+    "quiz": "QUIZ TIME",
+    "ott-weekly": "THIS WEEK ON OTT",
     "explainer": "BOX OFFICE 101",
-    "trivia": "QUIZ TIME",
-    "ott-weekly": "THIS WEEK ON OTT"
+    "trivia": "QUIZ TIME"
   }
 }

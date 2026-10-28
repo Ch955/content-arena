@@ -59,6 +59,23 @@ class TableTests(TmpCase):
         self.assertEqual(CsvTable(self.table.path).get("t")["caption"], "గ్రాస్ vs నెట్ 🎬")
 
 
+class ScheduleTests(unittest.TestCase):
+    def test_owner_plan(self):
+        from datetime import date
+        from content_arena import schedule
+        anchor = date(2026, 10, 29)
+        got = {d.isoformat(): p[1] for d, p in schedule.plan(date(2026, 10, 29), 10, anchor)}
+        self.assertTrue(all(p[0] == "comedy" for _, p in schedule.plan(date(2026, 10, 29), 10, anchor)))
+        self.assertEqual(got["2026-10-29"], "tfi-fact")   # anchor
+        self.assertEqual(got["2026-10-30"], "ott-weekly")  # Friday
+        self.assertEqual(got["2026-11-01"], "tfi-fact")   # anchor + 3
+        self.assertEqual(got["2026-10-31"], "quiz")
+        self.assertEqual(got["2026-11-06"], "ott-weekly")  # Friday, anchor + 8 is not a fact day anyway
+        # a fact day that lands on Friday moves to Saturday
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 13), anchor)[1], "ott-weekly")  # anchor + 15, Friday
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 14), anchor)[1], "tfi-fact")
+
+
 class ServiceAccountTests(unittest.TestCase):
     def test_accepts_raw_and_base64_json(self):
         import base64
