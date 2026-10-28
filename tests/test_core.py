@@ -228,7 +228,7 @@ class ReelTests(TmpCase):
         resp = mock.Mock(content=b"VIDEO", raise_for_status=lambda: None)
         with mock.patch("content_arena.publish.requests.get", return_value=resp):
             done = publish.run(self.table, live=True, log=lambda *_: None, yt_uploader=fake_uploader)
-        self.assertEqual((done["status"], done["platform_post_id"]), ("posted", "YT123"))
+        self.assertEqual((done[0]["status"], done[0]["platform_post_id"]), ("posted", "YT123"))
         self.assertEqual(seen["video"], b"VIDEO")
         self.assertIn("#shorts", seen["tags"])
 
@@ -284,7 +284,10 @@ class PublishTests(TmpCase):
     def test_dry_run_changes_nothing(self):
         self.approved_rows()
         client = self.client()
-        publish.run(self.table, live=False, client=client, log=lambda *_: None)
+        import os
+        from unittest import mock
+        with mock.patch.dict(os.environ, {"META_AUTH": "facebook_login"}):
+            publish.run(self.table, live=False, client=client, log=lambda *_: None)
         self.assertEqual(client.http.calls, [])
         self.assertEqual(len(self.table.by_status("approved")), 2)
 
@@ -294,9 +297,10 @@ class PublishTests(TmpCase):
         os.environ.update(IG_USER_ID="17841", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         client = self.client()
         done = publish.run(self.table, live=True, client=client, log=lambda *_: None)
-        self.assertEqual(done["status"], "posted")
-        self.assertEqual(len(self.table.by_status("posted")), 1)
-        self.assertEqual(len(self.table.by_status("approved")), 1)
+        self.assertEqual([d["status"] for d in done], ["posted", "posted"])  # one per platform
+        self.assertEqual(len(self.table.by_status("posted")), 2)
+        publish.run(self.table, live=True, client=client, log=lambda *_: None)
+        self.assertEqual(len(self.table.by_status("posted")), 2)  # nothing left to post
         self.assertEqual(client.http.headers["Authorization"], "Bearer TOKEN")
         self.assertTrue(all("TOKEN" not in str(c) for c in client.http.calls))
 
@@ -324,7 +328,7 @@ class PublishTests(TmpCase):
         os.environ.update(IG_USER_ID="17841", META_PAGE_ID="PG1", META_AUTH="facebook_login")
         with self.assertRaises(publish.PublishError):
             publish.run(self.table, live=True, client=self.client(fail_on="/media"), log=lambda *_: None)
-        self.assertEqual(len(self.table.by_status("failed")) + len(self.table.by_status("posted")), 1)
+        self.assertEqual(len(self.table.by_status("failed")) + len(self.table.by_status("posted")), 2)
 
     def test_future_schedule_is_skipped(self):
         self.approved_rows()

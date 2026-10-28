@@ -70,7 +70,7 @@ publish (Actions) →  Instagram / Facebook                            row: post
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.
-- `publish` posts **at most one** row per run, oldest `approved` first, and
+- `publish` posts **at most one row per platform** per run, oldest `approved` first, and
   defaults to dry run; `--live` is required to actually post.
 
 ## Commands

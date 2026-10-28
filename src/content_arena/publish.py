@@ -123,11 +123,12 @@ def ig_user_id(client: MetaClient) -> str:
     return client.instagram_user_id()
 
 
-def pick_next(table: Table, now: datetime | None = None) -> dict | None:
-    """Oldest approved row whose scheduled_for (if any) has passed."""
+def pick_next(table: Table, now: datetime | None = None, platform: str | None = None) -> dict | None:
+    """Oldest approved row (optionally for one platform) whose scheduled_for (if any) has passed."""
     now = now or datetime.now(timezone.utc)
     due = [r for r in table.by_status("approved")
-           if not r["scheduled_for"] or parse_when(r["scheduled_for"]) <= now]
+           if (platform is None or r["platform"] == platform)
+           and (not r["scheduled_for"] or parse_when(r["scheduled_for"]) <= now)]
     return min(due, key=lambda r: r["approved_at"] or r["created_at"], default=None)
 
 
@@ -162,19 +163,9 @@ def post_youtube(row: dict, url: str, description: str, uploader=None) -> str:
                                               row["hashtags"].split(), privacy=privacy)
 
 
-def run(table: Table, live: bool = False, client: MetaClient | None = None, log=print,
-        yt_uploader=None) -> dict | None:
-    row = pick_next(table)
-    if row is None:
-        log("No approved rows are due. Nothing to publish.")
-        return None
+def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uploader=None) -> dict:
     urls, caption = check_row(row)
     fmt = row["format"] or "carousel"
-    log(f"Next: {row['id']} ({row['platform']} {fmt}, {len(urls)} media)")
-    if not live:
-        log("DRY RUN — nothing was posted and the table was not changed. Use --live to publish.")
-        return row
-
     table.update(row["id"], status="posting", error="")
     try:
         if row["platform"] == "youtube":
@@ -194,4 +185,29 @@ def run(table: Table, live: bool = False, client: MetaClient | None = None, log=
     done = table.update(row["id"], status="posted", platform_post_id=post_id,
                         posted_at=datetime.now(timezone.utc).replace(microsecond=0).isoformat())
     log(f"POSTED: {row['id']} → {post_id}")
+    return done
+
+
+def run(table: Table, live: bool = False, client: MetaClient | None = None, log=print,
+        yt_uploader=None) -> list[dict]:
+    """Publish at most ONE approved row per platform (oldest first). Returns the rows handled."""
+    due = [r for p in sorted({r["platform"] for r in table.by_status("approved")})
+           if (r := pick_next(table, platform=p))]
+    if not due:
+        log("No approved rows are due. Nothing to publish.")
+        return []
+    for row in due:
+        urls, _ = check_row(row)
+        log(f"Next: {row['id']} ({row['platform']} {row['format'] or 'carousel'}, {len(urls)} media)")
+    if not live:
+        log("DRY RUN — nothing was posted and the table was not changed. Use --live to publish.")
+        return due
+    done, errors = [], []
+    for row in due:  # one platform failing must not block the others
+        try:
+            done.append(publish_row(table, row, client, log, yt_uploader))
+        except Exception as exc:
+            errors.append(exc)
+    if errors:
+        raise errors[0]
     return done
