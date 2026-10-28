@@ -1,4 +1,4 @@
-"""Intro reel voiceover: Sarvam bulbul:v3, speaker shubh, pace 1.18 (~12% faster than the 1.05 sample)."""
+"""Reel voiceover — house voice: Sarvam bulbul:v3, speaker "shubh", pace 1.18, temperature 0.9 (expressive)."""
 import base64, io, json, os, wave
 from pathlib import Path
 import requests
@@ -18,7 +18,8 @@ for key, text in LINES.items():
     r = requests.post("https://api.sarvam.ai/text-to-speech", timeout=60,
                       headers={"api-subscription-key": os.environ["SARVAM_API_KEY"]},
                       json={"text": text, "target_language_code": "te-IN", "model": "bulbul:v3",
-                            "speaker": "shubh", "pace": 1.18, "speech_sample_rate": 44100})
+                            "speaker": "shubh", "pace": 1.18, "temperature": 0.9,
+                            "speech_sample_rate": 44100})
     r.raise_for_status()
     data = base64.b64decode(r.json()["audios"][0])
     (HERE / "vo" / f"{key}.wav").write_bytes(data)

@@ -67,8 +67,10 @@ status: idea
 (4–6 points; each one becomes roughly one slide)
 
 ## Core script (Tenglish, ~30–45 s)
-<natural Telugu–English mix, the way people talk: "Gross ante — theatre counter daggara
-audience kattina total amount." Short lines, one idea each. Used later for reels.>
+<Interactive, talking TO the viewer — not a read-out paragraph. Hook first ("Hey! ఆగండి ఆగండి…
+scroll చేయకండి!"), then short punchy lines (≤ ~12 words), questions to the viewer, reactions,
+"Number one —" countdowns, and a direct CTA ("follow కొట్టండి, bell నొక్కండి!").
+Numbers spoken as English words. Used later for reels.>
 
 ## Facts to verify
 - [ ] <fact> — <source name, date>: <link>

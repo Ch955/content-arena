@@ -34,6 +34,12 @@ Language: Telugu-first slides (Telugu script, English movie titles/terms),
 captions with a Telugu paragraph then an English one. Spoken scripts are
 natural Tenglish ("Gross ante — theatre counter daggara audience kattina total amount").
 
+**Spoken style (reels): talk *to* the viewer, never read a paragraph.** Open with a scroll-stopping
+hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), use short punchy lines (one idea each, ≤ ~12 words),
+questions to the viewer ("Ready ఆ?", "మీరు నిజంగా Tollywood fan ఆ?"), reactions and countdowns
+("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). House voice: Sarvam
+bulbul:v3 `shubh`, pace 1.18, temperature 0.9 (owner-approved, ~₹3–5 per reel).
+
 ## Pipeline and status flow
 
 ```
