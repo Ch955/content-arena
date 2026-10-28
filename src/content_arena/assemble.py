@@ -2,15 +2,19 @@
 
 Inputs (content/<post>/): shots.json  ({"shots":[{"n":1,"lines":[{"who":"gopi","text":"..."}]}, ...]})
                           clips/shot1.mp4 … (downloaded from the Drive inbox)
-Output: rendered/video.mp4 — 1080×1920, 30 fps, Telugu voices (Sarvam), music bed with ducking,
+Lines may carry an acting direction: {"who": "pinky", "text": "...", "act": "a trembling, frightened whisper"}.
+Output: rendered/video.mp4 — 1080×1920, 30 fps, Telugu voices (Gemini TTS), music bed with ducking,
 subtitle + speaker chips, brand header and end card. Clip audio is muted (Flow may add its own speech).
 """
 from __future__ import annotations
 
 import base64
+import difflib
 import json
+import re
 import subprocess
 import wave
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -20,10 +24,16 @@ from . import config
 
 SR = 44100
 W, H = 1080, 1920
-# character -> (Sarvam bulbul:v3 speaker, pitch factor). Kids are pitched up.
+TTS_MODEL = "gemini-2.5-flash-tts"
+CHECK_MODEL = "gemini-3-flash-preview"   # listens to each take and confirms it says only the line
+SPEED = 1.05                             # owner: Gemini's acting is ~5% too slow
+# character -> (Gemini voice, pitch factor, persona). Kids are pitched up.
 CAST = {
-    "gopi": ("shubh", 1.0), "chinna": ("aayan", 1.22), "pandu": ("rahul", 1.12),
-    "pinky": ("priya", 1.22), "amma": ("kavitha", 1.0),
+    "gopi": ("Puck", 1.0, "Gopi, a lively young Telugu storyteller talking straight to the viewer, playful and punchy"),
+    "chinna": ("Fenrir", 1.12, "Chinna, a cheeky 8-year-old boy who thinks he is a mass movie hero"),
+    "pandu": ("Algenib", 1.1, "Pandu, a mischievous 9-year-old boy who loves pranks"),
+    "pinky": ("Leda", 1.15, "Pinky, a sweet 5-year-old girl"),
+    "amma": ("Kore", 1.0, "Lakshmi Amma, a warm but fierce Telugu mother"),
 }
 NAMES = {"gopi": "GOPI", "chinna": "CHINNA", "pandu": "PANDU", "pinky": "PINKY", "amma": "LAKSHMI AMMA"}
 COLORS = {"gopi": "#F5B700", "chinna": "#64B5F6", "pandu": "#81C784", "pinky": "#F48FB1", "amma": "#CE93D8"}
@@ -39,16 +49,74 @@ def duration(path: Path) -> float:
     return float(out.strip())
 
 
-def tts(text: str, who: str, dest: Path) -> float:
-    speaker, pitch = CAST[who]
-    r = requests.post("https://api.sarvam.ai/text-to-speech", timeout=60,
-                      headers={"api-subscription-key": config.get("SARVAM_API_KEY", required=True)},
-                      json={"text": text, "target_language_code": "te-IN", "model": "bulbul:v3", "speaker": speaker,
-                            "pace": 1.15, "temperature": 0.9, "speech_sample_rate": SR})
+@lru_cache(maxsize=1)
+def _google() -> tuple[str, str]:
+    """(access token, project) for the service-account robot; needs the Vertex AI ("Agent Platform") User role."""
+    from google.auth.transport.requests import Request
+    from google.oauth2.service_account import Credentials
+
+    from .table import parse_service_account
+
+    info = parse_service_account(config.get("GOOGLE_SERVICE_ACCOUNT_JSON", required=True))
+    creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/cloud-platform"])
+    creds.refresh(Request())
+    return creds.token, info["project_id"]
+
+
+def _post(url: str, body: dict) -> dict:
+    token, project = _google()
+    for wait in (0, 15, 30, 45, 60, 90):  # new projects have a low per-minute TTS quota
+        if wait:
+            import time
+            time.sleep(wait)
+        r = requests.post(url, json=body, timeout=120,
+                          headers={"Authorization": f"Bearer {token}", "x-goog-user-project": project})
+        if r.status_code != 429:
+            break
     r.raise_for_status()
+    return r.json()
+
+
+def direction(line: dict) -> str:
+    persona = CAST[line["who"]][2]
+    act = line.get("act") or "natural and expressive"
+    return (f"You are {persona}. Speak natural Telugu (English words as an Indian kid would say them), "
+            f"a little more animated and expressive than usual. The tone should be {act}. "
+            f"Say only the line, nothing else.")
+
+
+def heard_ok(expected: str, wav: Path) -> bool:
+    """Ask a Gemini listener whether the take says just the line (it sometimes reads the direction aloud)."""
+    _, project = _google()
+    url = (f"https://aiplatform.googleapis.com/v1/projects/{project}/locations/global/"
+           f"publishers/google/models/{CHECK_MODEL}:generateContent")
+    try:
+        out = _post(url, {"contents": [{"role": "user", "parts": [
+            {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(wav.read_bytes()).decode()}},
+            {"text": "Transcribe exactly what is spoken. Reply with the transcript only."}]}]})
+        heard = out["candidates"][0]["content"]["parts"][0]["text"]
+    except (requests.RequestException, KeyError, IndexError):
+        return True  # the check is best-effort; never block the reel on it
+    norm = lambda t: re.sub(r"[\W_]+", "", t.lower())
+    # Extra words (e.g. the direction read aloud) make the take much longer than the line.
+    return len(norm(heard)) <= 1.5 * len(norm(expected)) + 6 or \
+        difflib.SequenceMatcher(None, norm(heard), norm(expected)).ratio() > 0.7
+
+
+def tts(line: dict, dest: Path, tries: int = 3) -> float:
+    voice, pitch, _ = CAST[line["who"]]
+    url = "https://texttospeech.googleapis.com/v1/text:synthesize"
     raw = dest.with_suffix(".raw.wav")
-    raw.write_bytes(base64.b64decode(r.json()["audios"][0]))
-    af = f"asetrate={SR}*{pitch},aresample={SR},atempo={1 / pitch:.4f}" if pitch != 1.0 else "anull"
+    for _ in range(tries):
+        out = _post(url, {"input": {"prompt": direction(line), "text": line["text"]},
+                          "voice": {"languageCode": "te-IN", "name": voice, "modelName": TTS_MODEL},
+                          "audioConfig": {"audioEncoding": "LINEAR16", "sampleRateHertz": 24000}})
+        raw.write_bytes(base64.b64decode(out["audioContent"]))
+        # Too long for its text (a 1-word wail once ran 22 s) or extra words spoken -> take it again.
+        if duration(raw) <= max(3.5, 0.16 * len(line["text"])) and heard_ok(line["text"], raw):
+            break
+    trim = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
+    af = f"{trim},asetrate=24000*{pitch},aresample={SR},atempo={SPEED / pitch:.4f}"
     run(["ffmpeg", "-y", "-i", str(raw), "-af", af, "-ac", "1", "-ar", str(SR), str(dest)])
     raw.unlink()
     return duration(dest)
@@ -129,7 +197,7 @@ def assemble(post_dir: Path, voice=tts) -> Path:
     if missing:
         raise FileNotFoundError(f"Missing clips: {', '.join(missing)}")
     clip_durs = [duration(c) for c in clips]
-    voice_durs = [[voice(l["text"], l["who"], work / f"v_{s['n']}_{i}.wav") for i, l in enumerate(s.get("lines", []))]
+    voice_durs = [[voice(l, work / f"v_{s['n']}_{i}.wav") for i, l in enumerate(s.get("lines", []))]
                   for s in shots]
     tl = plan_timeline(shots, clip_durs, voice_durs)
     total = tl[-1]["start"] + tl[-1]["dur"]

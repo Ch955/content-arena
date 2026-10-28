@@ -13,7 +13,8 @@ art-director, editor, quality-checker, instagram-worker), collect their work, an
 1. Repo at `/home/user/content-arena` (clone `https://github.com/Ch955/content-arena` if missing),
    branch `claude/keen-faraday-9ahtue`, `git pull`.
 2. `python3 -m venv .venv && .venv/bin/pip install -q -e ".[all]"` if `.venv` is missing. Use `.venv/bin/python`.
-3. Required env: GOOGLE_SERVICE_ACCOUNT_JSON, GOOGLE_SHEET_ID, TABLE_BACKEND=sheet, PLATFORMS, R2_*, SARVAM_API_KEY.
+3. Required env: GOOGLE_SERVICE_ACCOUNT_JSON, GOOGLE_SHEET_ID, TABLE_BACKEND=sheet, PLATFORMS, R2_*, SARVAM_API_KEY (fallback voice).
+   Comedy voices are Gemini TTS through the same service account (needs its Vertex AI / "Agent Platform" User role).
    If any is missing, notify the owner and stop.
 
 ## Evening mode — prepare TOMORROW (date = today + 1, IST)
@@ -34,4 +35,4 @@ art-director, editor, quality-checker, instagram-worker), collect their work, an
 3. Push-notify the owner: "2 reels ready — approve in the Sheet before 12 PM" (or exactly what's missing).
 
 ## Never
-Approve rows, run `publish --live`, touch tokens, or spend money beyond Sarvam voices without the owner.
+Approve rows, run `publish --live`, touch tokens, or spend money beyond the approved voices (Gemini TTS, Sarvam fallback) without the owner.

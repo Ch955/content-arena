@@ -357,5 +357,26 @@ class RenderTests(unittest.TestCase):
         shutil.rmtree(tmp)
 
 
+class GeminiVoiceTests(unittest.TestCase):
+    def test_direction_carries_act_and_guard(self):
+        from content_arena import assemble
+        d = assemble.direction({"who": "pinky", "text": "x", "act": "a frightened whisper"})
+        self.assertIn("a frightened whisper", d)
+        self.assertIn("Say only the line", d)
+
+    def test_retakes_overlong_or_wrong_takes(self):
+        from unittest import mock
+        from content_arena import assemble
+        tmp = Path(tempfile.mkdtemp())
+        durs = iter([22.0, 2.0, 2.0, 1.9])  # take 1 too long, take 2 fine (then final output)
+        with mock.patch.object(assemble, "_post", return_value={"audioContent": ""}) as post, \
+             mock.patch.object(assemble, "duration", side_effect=lambda p: next(durs)), \
+             mock.patch.object(assemble, "heard_ok", return_value=True), \
+             mock.patch.object(assemble, "run"):
+            assemble.tts({"who": "chinna", "text": "అమ్మాఆఆ!"}, tmp / "v.wav")
+        self.assertEqual(post.call_count, 2)
+        shutil.rmtree(tmp)
+
+
 if __name__ == "__main__":
     unittest.main()

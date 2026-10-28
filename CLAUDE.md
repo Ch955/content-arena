@@ -51,8 +51,12 @@ natural Tenglish ("Gross ante — theatre counter daggara audience kattina total
 **Spoken style (reels): talk *to* the viewer, never read a paragraph.** Open with a scroll-stopping
 hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), use short punchy lines (one idea each, ≤ ~12 words),
 questions to the viewer ("Ready ఆ?", "మీరు నిజంగా Tollywood fan ఆ?"), reactions and countdowns
-("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). House voice: Sarvam
-bulbul:v3 `shubh`, pace 1.18, temperature 0.9 (owner-approved, ~₹3–5 per reel).
+("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). Voices (owner-approved
+28 Oct 2026): **Gemini TTS** (`gemini-2.5-flash-tts` via Cloud TTS, service-account robot with the Vertex AI /
+"Agent Platform" User role), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
+`assemble.py`); cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
+$300 trial credit). Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
+direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.
 
 ## Pipeline and status flow
 
