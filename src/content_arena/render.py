@@ -10,6 +10,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from . import config
 from .config import ROOT
 
 WIDTH, HEIGHT = 1080, 1350
@@ -53,7 +54,7 @@ def render(post_dir: Path) -> list[Path]:
         old.unlink()
     jpgs = []
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(**config.chromium_launch_args())
         page = browser.new_page(viewport={"width": WIDTH, "height": HEIGHT})
         for i, html in enumerate(pages, 1):
             src = out / f"{i:02d}.html"

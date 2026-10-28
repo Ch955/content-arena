@@ -29,11 +29,37 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("refresh-ig-token", help="extend IG_ACCESS_TOKEN by 60 days (writes .env, never prints it)")
     p.add_argument("--out", type=Path, help="also write the new token to this file (for CI)")
     sub.add_parser("youtube-auth", help="owner, one time: connect the YouTube channel (writes .env)")
+    p = sub.add_parser("pack", help="write tomorrow's Flow prompt pack to the Sheet + create Drive upload folders")
+    p.add_argument("post_dirs", type=Path, nargs="+")
+    p = sub.add_parser("fetch-clips", help="download the owner's clips from the Drive inbox into content/<post>/clips/")
+    p.add_argument("post_dir", type=Path)
+    p = sub.add_parser("assemble", help="clips + Telugu voices + music + subtitles → rendered/video.mp4")
+    p.add_argument("post_dir", type=Path)
     p = sub.add_parser("plan", help="what to make each day (comedy daily + OTT/fact/quiz rotation)")
     p.add_argument("--days", type=int, default=7)
     p.add_argument("--start", help="YYYY-MM-DD (default: today, IST)")
     args = ap.parse_args(argv)
 
+    if args.cmd == "pack":
+        from . import drive, pack
+        d, rows = drive.Drive(), []
+        for post in args.post_dirs:
+            rows += pack.rows_for(post, d.folder(post.name)["webViewLink"])
+        url = pack.write_tab(rows, "Tomorrow's shots — for each row: make the image in Flow (step 1), turn it into a "
+                                   "video (step 2), upload the clip to the Drive folder with the given name.")
+        print(f"Pack ready: {url}")
+        return 0
+    if args.cmd == "fetch-clips":
+        from . import drive
+        d = drive.Drive(); clips = d.clips(args.post_dir.name)
+        for i, c in enumerate(clips, 1):
+            print(d.download(c["id"], args.post_dir / "clips" / f"shot{drive.shot_number(c['name'])}.mp4"))
+        print(f"{len(clips)} clip(s) downloaded")
+        return 0 if clips else 2
+    if args.cmd == "assemble":
+        from . import assemble
+        print(assemble.assemble(args.post_dir))
+        return 0
     if args.cmd == "plan":
         from datetime import date, datetime
         from zoneinfo import ZoneInfo

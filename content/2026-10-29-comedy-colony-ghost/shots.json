@@ -1,0 +1,80 @@
+{
+ "post_slug": "2026-10-29-comedy-colony-ghost",
+ "style": "3d-flow",
+ "shots": [
+  {
+   "n": 1,
+   "image_prompt": "Medium shot of Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone) standing in the colourful apartment-colony playground in a Hyderabad suburb at night, lit by warm street lamps and moonlight, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree, holding a torch under his chin like a spooky storyteller, looking straight at the camera. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "Gopi leans towards the camera with the torch under his chin, eyebrows raised, then whispers dramatically; the torch light flickers; crickets and wind. Slow push-in. Spooky but funny. No speech.",
+   "lines": [
+    {
+     "who": "gopi",
+     "text": "Hey! ఆగండి… ఈ రోజు మా colony లో ఒక దెయ్యం కథ! Lights off చేసి చూడండి…"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "image_prompt": "Wide shot of the colourful apartment-colony playground in a Hyderabad suburb at night, lit by warm street lamps and moonlight, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) and Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop) playing near the swings; behind the neem tree a mysterious white sheet-covered figure peeks out. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "Pinky stops playing and points nervously at the tree; Chinna puffs out his chest bravely; the white figure slowly peeks out from behind the tree. Static camera. Horror-movie tension, comedic.",
+   "lines": [
+    {
+     "who": "pinky",
+     "text": "అన్నయ్యా… ఆ చెట్టు వెనక ఏదో ఉంది!"
+    },
+    {
+     "who": "chinna",
+     "text": "దెయ్యాలు లేవు Pinky… నేను mass hero ని!"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "image_prompt": "Low-angle shot in the colourful apartment-colony playground in a Hyderabad suburb at night, lit by warm street lamps and moonlight, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: a child-sized ghost made from a flowery white bedsheet with two eye holes, red slippers visible underneath, arms raised, moonlight behind. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "The bedsheet ghost glides forward waving its arms and wobbling, leaves blowing, street lamp flickering. Camera slowly tilts up. Over-the-top spooky, clearly a kid underneath. No speech.",
+   "lines": [
+    {
+     "who": "pandu",
+     "text": "హూఊఊ… నేను ఈ colony దెయ్యాన్ని!"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "image_prompt": "Comedy shot in the colourful apartment-colony playground in a Hyderabad suburb at night, lit by warm street lamps and moonlight, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) has jumped into the arms of tiny Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop), his red cape covering his face in fear, while she looks unimpressed. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "Chinna screams and leaps into Pinky's arms, legs flailing, cape over his face; Pinky rolls her eyes; then Chinna runs away in exaggerated slow motion. Cartoon comedy timing. No speech.",
+   "lines": [
+    {
+     "who": "chinna",
+     "text": "అమ్మాఆఆ!"
+    },
+    {
+     "who": "gopi",
+     "text": "Mass hero… slow motion లో పారిపోతున్నాడు!"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "image_prompt": "Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) switching on a bright light switch on a colony pillar with one hand and pulling the white bedsheet off a child with the other, revealing Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers) caught red-handed, in the colourful apartment-colony playground in a Hyderabad suburb at night, lit by warm street lamps and moonlight, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "The lights snap on brightly; Amma yanks the bedsheet away revealing a guilty, grinning Pandu who freezes; Amma glares with the steel ladle raised. Quick zoom on Pandu's face. Comedic. No speech.",
+   "lines": [
+    {
+     "who": "amma",
+     "text": "ఏయ్ Pandu! నా కొత్త bedsheet తో దెయ్యం ఆటా?!"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "image_prompt": "Wide shot of the lit colony playground at night: Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) chasing Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers) around the slide with the steel ladle; Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone) in the foreground looking at the camera. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+   "video_prompt": "Amma chases Pandu in circles around the slide waving the ladle while Pandu runs holding his cap; Gopi turns to the camera, shrugs and grins. Static camera. Cartoon chase energy. No speech.",
+   "lines": [
+    {
+     "who": "gopi",
+     "text": "Colony లో అసలైన దెయ్యం… మా అమ్మ ladle! Follow Reel Rasam!"
+    }
+   ]
+  }
+ ]
+}
