@@ -28,7 +28,15 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("init-sheet", help="add the status dropdown to the Google Sheet")
     p = sub.add_parser("refresh-ig-token", help="extend IG_ACCESS_TOKEN by 60 days (writes .env, never prints it)")
     p.add_argument("--out", type=Path, help="also write the new token to this file (for CI)")
+    sub.add_parser("youtube-auth", help="owner, one time: connect the YouTube channel (writes .env)")
     args = ap.parse_args(argv)
+
+    if args.cmd == "youtube-auth":
+        from . import config, tokens, youtube
+        token = youtube.authorize()
+        tokens.write_env_value(config.ROOT / ".env", "YOUTUBE_REFRESH_TOKEN", token)
+        print("Saved YOUTUBE_REFRESH_TOKEN to .env. Add the same value as a GitHub secret.")
+        return 0
 
     if args.cmd == "refresh-ig-token":
         from . import config, tokens

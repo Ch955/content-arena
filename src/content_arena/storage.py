@@ -10,6 +10,8 @@ from pathlib import Path
 
 from . import config
 
+CONTENT_TYPES = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".mp4": "video/mp4"}
+
 
 def object_key(post_slug: str, path: Path) -> str:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()[:10]
@@ -35,6 +37,7 @@ class R2Storage:
         urls = []
         for path in files:
             key = object_key(post_slug, path)
-            self.s3.upload_file(str(path), self.bucket, key, ExtraArgs={"ContentType": "image/jpeg"})
+            content_type = CONTENT_TYPES.get(path.suffix.lower(), "application/octet-stream")
+            self.s3.upload_file(str(path), self.bucket, key, ExtraArgs={"ContentType": content_type})
             urls.append(f"{self.public_base}/{key}")
         return urls

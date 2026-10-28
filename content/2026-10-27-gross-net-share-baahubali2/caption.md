@@ -11,4 +11,4 @@ Data: Andhra Box Office via IBTimes India (20 Sep 2017), AP/Nizam lifetime. Trad
 
 Save చేసుకోండి & follow @_reelrasam for daily cinema rasam 🍲
 
-#reelrasam #boxoffice #tollywood #telugucinema #baahubali2 #boxofficecollection #telugumovies #cinemafacts
+#reelrasam #tollywood #telugucinema #boxoffice #baahubali2

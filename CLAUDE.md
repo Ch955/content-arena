@@ -15,7 +15,9 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
   platform format. Phase 1 has `instagram-worker` only. Facebook is **paused**
   (no Page yet): rows are Instagram-only (`PLATFORMS=instagram`) and publishing
   uses Instagram Login (`META_AUTH=instagram_login`, no Page needed).
-  `facebook-worker` and `youtube-worker` come later.
+  Reels (format `reel`: `caption.md` + `youtube.md` + `rendered/video.mp4`) go to
+  Instagram Reels and YouTube Shorts (`PLATFORMS=instagram,youtube`). `facebook-worker`
+  and a dedicated `youtube-worker` come later; reel rendering is a prototype in `tools/reel/`.
 - **Python scripts** (`src/content_arena/`) — rendering, storage, the content
   table and publishing. **The AI never calls publishing APIs directly**;
   only `python -m content_arena publish` does, and only for approved rows.
@@ -42,7 +44,9 @@ owner (Sheet/CLI) →                                                  row: appr
 publish (Actions) →  Instagram / Facebook                            row: posting → posted | failed
 ```
 
-- One table row per **platform post** (`<post-slug>-instagram`; `-facebook` once a Page exists).
+- One table row per **platform post** (`<post-slug>-instagram`, `-youtube` for reels; `-facebook` once a Page exists).
+- **Hashtags:** Instagram max **5** (its cap since Dec 2025) — brand + 2 broad + 2 specific, always
+  relevant; no #viral/#explore spam. YouTube: `#shorts` + 2 relevant first (shown above the title), ≤ 15.
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.
@@ -59,6 +63,7 @@ python -m content_arena list [--status approved]
 python -m content_arena approve <row-id>          # owner only — never run this yourself
 python -m content_arena publish [--live]
 python -m content_arena refresh-ig-token          # owner: extend the 60-day IG token (touches account)
+python -m content_arena youtube-auth              # owner, once: connect @reel_rasam (touches account)
 python -m unittest discover -s tests              # tests (no network, no accounts)
 ```
 
@@ -93,6 +98,8 @@ templates/carousel/slide.html.j2          slide template (1080×1350)
 content/<date>-<slug>/                    brief.md, slides.json, caption.md, rendered/
 src/content_arena/                        Python package
 docs/meta-setup-checklist.md              Meta account/app/token setup
+docs/youtube-setup.md                     YouTube OAuth + API audit (uploads are private until audited)
+tools/reel/                               reel renderer prototype (HTML scenes + Sarvam voice + ffmpeg)
 .github/workflows/publish.yml             twice-daily publish (guarded by PUBLISH_ENABLED)
 .github/workflows/refresh-ig-token.yml    twice-monthly IG token refresh (guarded by PUBLISH_ENABLED)
 ```

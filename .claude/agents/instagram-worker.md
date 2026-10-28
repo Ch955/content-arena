@@ -72,6 +72,6 @@ Pillar patterns:
 
 Save చేసుకోండి & follow @_reelrasam for daily cinema rasam 🍲
 
-#reelrasam #tollywood #telugucinema ... (8–15 relevant hashtags, max 30, no banned/spammy tags)
+#reelrasam #tollywood #telugucinema #<topic> #<film>   (MAX 5 — Instagram's cap since Dec 2025: brand + 2 broad + 2 specific)
 ```
 Keep the whole caption under 2,200 characters.

@@ -2,10 +2,13 @@
 
 `sync` infers the stage from the files present and creates/updates one row per
 platform. It never touches rows the owner or publisher controls (approved/posting/posted).
+
+Post formats (brief front matter `format:`):
+- carousel (default): slides.json + caption.md → rendered/*.jpg      → Instagram (+ Facebook later)
+- reel:               caption.md (+ youtube.md) → rendered/video.mp4 → Instagram Reel, YouTube Short
 """
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 
@@ -14,20 +17,30 @@ from .table import LOCKED, Table
 
 
 def platforms() -> list[str]:
-    """Platforms to create rows for. Instagram only until a Facebook Page exists."""
+    """Platforms to create rows for, e.g. "instagram,youtube". Facebook waits for a Page."""
     return [p.strip() for p in config.get("PLATFORMS", "instagram").split(",") if p.strip()]
 
 
-MAX_CAPTION = 2200   # Instagram caption limit
-MAX_HASHTAGS = 30    # Instagram hashtag limit
+MAX_CAPTION = 2200      # Instagram caption limit
+MAX_HASHTAGS = 5        # Instagram's cap since Dec 2025 (Help Center: "up to 5 tags on a post")
+YT_MAX_TITLE = 100
+YT_MAX_DESCRIPTION = 5000
+YT_MAX_HASHTAGS = 15    # YouTube ignores every hashtag on a video that has more than 60; stay well under
 
 
 def parse_caption(text: str) -> tuple[str, list[str]]:
-    """Split caption.md into (caption body, hashtags). Hashtags = the last paragraph if it is only #tags."""
+    """Split caption text into (body, hashtags). Hashtags = the last paragraph if it is only #tags."""
     paras = [p.strip() for p in re.split(r"\n\s*\n", text.strip()) if p.strip()]
     if paras and all(tok.startswith("#") for tok in paras[-1].split()):
         return "\n\n".join(paras[:-1]), paras[-1].split()
     return "\n\n".join(paras), []
+
+
+def parse_youtube(text: str) -> tuple[str, str, list[str]]:
+    """youtube.md: first line is the title ('# ' optional), the rest is the description + hashtags."""
+    first, _, rest = text.strip().partition("\n")
+    body, tags = parse_caption(rest)
+    return first.lstrip("# ").strip(), body, tags
 
 
 def facts_section(brief: str) -> str:
@@ -46,36 +59,67 @@ def validate_caption(caption: str, hashtags: list[str]) -> None:
         raise ValueError(f"Caption is over Instagram's {MAX_CAPTION}-character limit")
 
 
+def validate_youtube(title: str, description: str, hashtags: list[str]) -> None:
+    if not title or len(title) > YT_MAX_TITLE:
+        raise ValueError(f"YouTube title must be 1–{YT_MAX_TITLE} characters")
+    if "<" in title + description or ">" in title + description:
+        raise ValueError("YouTube rejects '<' and '>' in titles/descriptions")
+    if len(hashtags) > YT_MAX_HASHTAGS:
+        raise ValueError(f"{len(hashtags)} YouTube hashtags — keep it to {YT_MAX_HASHTAGS} or fewer")
+    if len(full_caption(description, hashtags)) > YT_MAX_DESCRIPTION:
+        raise ValueError(f"YouTube description is over {YT_MAX_DESCRIPTION} characters")
+
+
+def front_matter(brief: str, key: str) -> str:
+    m = re.search(rf"^{key}:\s*(.+)$", brief, flags=re.M)
+    return m.group(1).strip() if m else ""
+
+
 def sync(post_dir: Path, table: Table, upload=None, platforms_: list[str] | None = None) -> list[dict]:
-    """Create/update rows for a post. `upload(slug, jpg_paths) -> urls` is called only when
-    rendered images exist; pass None to skip uploading (rows then stay at 'drafted')."""
+    """Create/update rows for a post. `upload(slug, paths) -> urls` is called only when rendered
+    media exists; pass None to skip uploading (rows then stay at 'drafted')."""
     post_dir = Path(post_dir)
     slug = post_dir.name
     brief_path = post_dir / "brief.md"
     if not brief_path.exists():
         raise FileNotFoundError(f"{brief_path} is missing — run /content-manager first")
     brief = brief_path.read_text(encoding="utf-8")
+    fmt = front_matter(brief, "format") or "carousel"
+    if fmt not in ("carousel", "reel"):
+        raise ValueError(f"Unknown format {fmt!r} in {brief_path} (use carousel or reel)")
 
-    fields = {"post_slug": slug, "brief_path": str(brief_path), "facts_to_verify": facts_section(brief)}
+    common = {"post_slug": slug, "format": fmt, "brief_path": str(brief_path),
+              "facts_to_verify": facts_section(brief)}
     for key in ("pillar", "language", "topic"):
-        m = re.search(rf"^{key}:\s*(.+)$", brief, flags=re.M)
-        if m:
-            fields[key] = m.group(1).strip()
-    status = "idea"
+        if front_matter(brief, key):
+            common[key] = front_matter(brief, key)
 
-    if (post_dir / "slides.json").exists() and (post_dir / "caption.md").exists():
-        caption, tags = parse_caption((post_dir / "caption.md").read_text(encoding="utf-8"))
+    caption_md = post_dir / "caption.md"
+    drafted = caption_md.exists() and (fmt == "reel" or (post_dir / "slides.json").exists())
+    media = sorted((post_dir / "rendered").glob("*.jpg")) if fmt == "carousel" \
+        else [p for p in [post_dir / "rendered" / "video.mp4"] if p.exists()]
+    status = "idea"
+    if drafted:
+        caption, tags = parse_caption(caption_md.read_text(encoding="utf-8"))
         validate_caption(caption, tags)
-        meta = json.loads((post_dir / "slides.json").read_text(encoding="utf-8"))
-        fields.update(caption=caption, hashtags=" ".join(tags), topic=meta.get("topic", fields.get("topic", "")))
+        common.update(caption=caption, hashtags=" ".join(tags))
         status = "drafted"
-        jpgs = sorted((post_dir / "rendered").glob("*.jpg"))
-        if jpgs and upload is not None:
-            fields["media_urls"] = "\n".join(upload(slug, jpgs))
+        if media and upload is not None:
+            common["media_urls"] = "\n".join(upload(slug, media))
             status = "rendered"
 
     rows = []
     for platform in platforms_ or platforms():
+        if platform == "youtube" and fmt != "reel":
+            continue  # YouTube gets videos only
+        fields = dict(common)
+        if platform == "youtube" and drafted:
+            yt = post_dir / "youtube.md"
+            if not yt.exists():
+                raise FileNotFoundError(f"{yt} is missing — reels need a YouTube title/description")
+            title, description, yt_tags = parse_youtube(yt.read_text(encoding="utf-8"))
+            validate_youtube(title, description, yt_tags)
+            fields.update(title=title, caption=description, hashtags=" ".join(yt_tags))
         row_id = f"{slug}-{platform}"
         row = table.get(row_id) or table.insert({"id": row_id, "platform": platform, "status": "idea"})
         if row["status"] in LOCKED:
@@ -96,7 +140,7 @@ def _advance(table: Table, row_id: str, current: str, target: str) -> None:
     if current == "rejected":  # reworked after rejection
         table.update(row_id, status="drafted")
         current = "drafted"
-    if current == "rendered" and target == "drafted":  # images removed → back to drafted
+    if current == "rendered" and target == "drafted":  # media removed → back to drafted
         table.update(row_id, status="drafted")
         return
     for stage in STAGES[STAGES.index(current) + 1: STAGES.index(target) + 1]:

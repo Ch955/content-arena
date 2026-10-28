@@ -143,6 +143,64 @@ class InstagramLoginTests(TmpCase):
         self.assertTrue(env.read_text().endswith("C=3\n"))
 
 
+INTRO = ROOT / "content" / "2026-10-28-welcome-intro"
+
+
+class ReelTests(TmpCase):
+    def copy_intro(self) -> Path:
+        post = self.tmp / INTRO.name
+        shutil.copytree(INTRO, post, ignore=shutil.ignore_patterns("rendered"))
+        (post / "rendered").mkdir()
+        (post / "rendered" / "video.mp4").write_bytes(b"mp4")
+        return post
+
+    def test_reel_sync_creates_instagram_and_youtube_rows(self):
+        rows = pipeline.sync(self.copy_intro(), self.table, upload=fake_upload,
+                             platforms_=["instagram", "youtube"])
+        ig, yt = rows
+        self.assertEqual((ig["format"], yt["format"]), ("reel", "reel"))
+        self.assertTrue(ig["media_urls"].endswith("video.mp4"))
+        self.assertTrue(yt["title"].startswith("Welcome to Reel Rasam"))
+        self.assertIn("#shorts", yt["hashtags"])
+        self.assertLessEqual(len(ig["hashtags"].split()), 5)
+
+    def test_carousel_skips_youtube(self):
+        rows = pipeline.sync(self.copy_sample(), self.table, upload=fake_upload,
+                             platforms_=["instagram", "youtube"])
+        self.assertEqual([r["platform"] for r in rows], ["instagram"])
+
+    def test_too_many_instagram_hashtags_rejected(self):
+        with self.assertRaises(ValueError):
+            pipeline.validate_caption("hi", ["#a", "#b", "#c", "#d", "#e", "#f"])
+
+    def test_instagram_reel_call_sequence(self):
+        client = publish.MetaClient("T", "v23.0", session=FakeSession(), poll_interval=0)
+        media_id = client.instagram_reel("IG1", "https://x/video.mp4", "cap")
+        posts = [c[2] for c in client.http.calls if c[0] == "POST"]
+        self.assertEqual(posts[0]["media_type"], "REELS")
+        self.assertEqual(posts[0]["share_to_feed"], "true")
+        self.assertEqual(posts[1], {"creation_id": "id1"})
+        self.assertEqual(media_id, "id2")
+
+    def test_youtube_row_publishes_via_uploader(self):
+        from unittest import mock
+        post = self.copy_intro()
+        pipeline.sync(post, self.table, upload=fake_upload, platforms_=["youtube"])
+        self.table.update(f"{post.name}-youtube", status="approved")
+        seen = {}
+
+        def fake_uploader(video, title, description, tags, privacy):
+            seen.update(video=video, title=title, tags=tags, privacy=privacy)
+            return "YT123"
+
+        resp = mock.Mock(content=b"VIDEO", raise_for_status=lambda: None)
+        with mock.patch("content_arena.publish.requests.get", return_value=resp):
+            done = publish.run(self.table, live=True, log=lambda *_: None, yt_uploader=fake_uploader)
+        self.assertEqual((done["status"], done["platform_post_id"]), ("posted", "YT123"))
+        self.assertEqual(seen["video"], b"VIDEO")
+        self.assertIn("#shorts", seen["tags"])
+
+
 class FakeResponse:
     def __init__(self, body, status=200):
         self.body, self.status_code = body, status

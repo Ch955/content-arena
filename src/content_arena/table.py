@@ -12,8 +12,8 @@ from pathlib import Path
 from . import config
 
 COLUMNS = [
-    "id", "post_slug", "platform", "pillar", "language", "status", "topic",
-    "caption", "hashtags", "media_urls", "facts_to_verify", "brief_path",
+    "id", "post_slug", "platform", "format", "pillar", "language", "status", "topic",
+    "title", "caption", "hashtags", "media_urls", "facts_to_verify", "brief_path",
     "scheduled_for", "created_at", "updated_at", "approved_at", "posted_at",
     "platform_post_id", "error",
 ]

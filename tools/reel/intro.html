@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Ramabhadra;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+:root{--ink:#0E0E12;--gold:#F5B700;--red:#E63946;--white:#F4F1EA;--teal:#2EC4B6;--mute:#8C8A93;--card:#1b1a22}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{font-family:InterB,sans-serif;color:var(--white);position:relative}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(900px 700px at 50% 38%,#24202e 0%,transparent 70%),
+  radial-gradient(600px 500px at 85% 95%,#3a1016 0%,transparent 70%),var(--ink)}
+.bulbs{position:absolute;left:0;right:0;height:44px;display:flex;justify-content:space-around;align-items:center;padding:0 30px}
+.bulbs.top{top:70px}.bulbs.bot{bottom:110px}
+.bulb{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px 4px rgba(245,183,0,.55)}
+.brand{position:absolute;top:150px;left:70px;display:flex;align-items:center;gap:16px;font-family:Anton;font-size:40px;letter-spacing:3px}
+.brand .dot{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:30px}
+.tag{position:absolute;top:158px;right:70px;font-family:Anton;font-size:28px;letter-spacing:2px;color:var(--ink);background:var(--gold);padding:8px 18px;border-radius:8px}
+.scene{position:absolute;left:80px;right:80px;top:300px;bottom:420px;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.center{align-items:center;text-align:center}
+.te{font-family:Ramabhadra,NotoTe;line-height:1.35}
+.teb{font-family:NotoTe;font-weight:500;line-height:1.5}
+.en{font-family:Anton;letter-spacing:1px;line-height:1.05}
+.sub{font-weight:600;color:var(--mute);font-size:42px;line-height:1.35;margin-top:26px}
+.gold{color:var(--gold)}.red{color:var(--red)}.teal{color:var(--teal)}
+.mega{font-size:190px}.big{font-size:140px}.h1{font-size:110px}.h2{font-size:80px}.h3{font-size:60px}
+.num{font-family:Anton;font-size:44px;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:var(--ink);margin-bottom:30px}
+.chip{display:inline-block;font-family:Anton;font-size:40px;letter-spacing:2px;padding:10px 24px;border-radius:12px;margin-top:34px;align-self:flex-start;background:var(--card);border:3px solid #2c2a36}
+.trio{display:flex;flex-direction:column;gap:26px;margin-top:50px;width:100%}
+.pill{font-family:Anton;font-size:64px;letter-spacing:2px;padding:26px 34px;border-radius:22px;background:var(--card);border-left:14px solid;text-align:left}
+.qbox{display:flex;gap:22px;margin-top:40px}
+.qbox div{font-family:Anton;font-size:70px;width:130px;height:130px;border-radius:24px;background:var(--card);border:3px solid #2c2a36;display:grid;place-items:center;color:var(--teal)}
+.prog{position:absolute;left:80px;right:80px;bottom:190px;height:10px;border-radius:5px;background:#24222c}
+.prog i{display:block;height:100%;width:0;border-radius:5px;background:var(--gold)}
+.handles{position:absolute;left:0;right:0;bottom:228px;text-align:center;font-weight:700;font-size:30px;color:#6d6b75}
+</style></head>
+<body>
+<div class="bg"></div>
+<div class="bulbs top" id="bt"></div>
+<div class="brand"><div class="dot">R</div>REEL RASAM</div>
+<div class="tag">EPISODE 0</div>
+
+<section class="scene center" id="s1">
+  <div class="te mega gold">నమస్కారం!</div>
+  <div class="en h2" style="margin-top:40px">WELCOME TO</div>
+  <div class="en" style="font-size:180px;margin-top:10px">REEL <span class="gold">RASAM</span></div>
+  <div class="te h3" style="margin-top:40px;color:var(--mute)">రోజుకో సినిమా రసం 🍲</div>
+</section>
+
+<section class="scene center" id="s2">
+  <div class="te h2">ఇక్కడ రోజూ</div>
+  <div class="en" style="font-size:260px;margin-top:10px" ><span class="gold">3</span></div>
+  <div class="te h2">రకాల <span class="gold">rasam</span> 🍲</div>
+  <div class="trio">
+    <div class="pill" style="border-color:var(--teal)">THIS WEEK ON OTT</div>
+    <div class="pill" style="border-color:var(--gold)">QUIZ TIME</div>
+    <div class="pill" style="border-color:var(--red)">BOX OFFICE 101</div>
+  </div>
+</section>
+
+<section class="scene" id="s3">
+  <div class="num" style="background:var(--teal)">1</div>
+  <div class="en big teal">THIS WEEK<br>ON OTT</div>
+  <div class="te h2" style="margin-top:30px">ఈ వారం OTT లో ఏ సినిమాలు?</div>
+  <div class="sub">This week's OTT releases — all in one post.</div>
+  <div class="chip">EVERY FRIDAY</div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="num" style="background:var(--gold)">2</div>
+  <div class="en big gold">QUIZ TIME</div>
+  <div class="te h2" style="margin-top:30px">మీ Tollywood knowledge ని test చేసుకోండి!</div>
+  <div class="qbox"><div>?</div><div>?</div><div>?</div></div>
+  <div class="chip">EVERY DAY</div>
+</section>
+
+<section class="scene" id="s5">
+  <div class="num" style="background:var(--red)">3</div>
+  <div class="en big red">BOX OFFICE<br>101</div>
+  <div class="en h3" style="margin-top:30px">GROSS • NET • SHARE</div>
+  <div class="te h3" style="margin-top:24px">cinema business — simple గా, real numbers తో</div>
+  <div class="chip">EVERY DAY</div>
+</section>
+
+<section class="scene center" id="s6">
+  <div class="en h1">NO GOSSIP.</div>
+  <div class="en h1 red" style="margin-top:10px">NO FAKE NEWS.</div>
+  <div class="te h2" style="margin-top:50px">Sources తో <span class="gold">verified facts</span> మాత్రమే ✅</div>
+</section>
+
+<section class="scene center" id="s7">
+  <div class="en h1">FOLLOW</div>
+  <div class="en big gold" style="margin-top:10px">@_REELRASAM</div>
+  <div class="te h3" style="margin-top:40px">notifications on చేయండి 🔔</div>
+  <div class="sub" style="font-size:46px">YouTube: <span class="gold">@reel_rasam</span></div>
+</section>
+
+<div class="handles">Instagram @_reelrasam  •  YouTube @reel_rasam</div>
+<div class="bulbs bot" id="bb"></div>
+<div class="prog"><i id="pg"></i></div>
+
+<script>
+for(const id of ["bt","bb"]){const el=document.getElementById(id);for(let i=0;i<18;i++){const b=document.createElement("div");b.className="bulb";el.appendChild(b)}}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+window.render=function(t){
+  const S=window.SCENES, last=S[S.length-1][0];
+  for(const [id,a,b] of S){
+    const el=document.getElementById(id);
+    const fin=ease((t-a)/0.45), fout=id===last?1:1-ease((t-(b-0.3))/0.3);
+    el.style.opacity=(t>=a&&t<b+0.01)?Math.min(fin,fout):0;
+    el.style.transform=`translateY(${(1-fin)*60}px)`;
+    [...el.children].forEach((c,i)=>{const k=ease((t-a-0.12*i)/0.45);c.style.opacity=k;c.style.transform=`translateY(${(1-k)*40}px)`});
+    el.querySelectorAll(".pill").forEach((p,i)=>{const k=ease((t-a-0.9-0.35*i)/0.4);p.style.opacity=k;p.style.transform=`translateX(${(1-k)*-80}px)`});
+    el.querySelectorAll(".qbox div").forEach((q,i)=>{const k=ease((t-a-0.8-0.25*i)/0.35);q.style.transform=`scale(${0.3+0.7*k}) rotate(${(1-k)*-20}deg)`;q.style.opacity=k});
+  }
+  document.querySelectorAll(".bulb").forEach((b,i)=>{b.style.opacity=((Math.floor(t*6)+i)%3===0)?1:0.25});
+  document.getElementById("pg").style.width=(t/window.DUR*100)+"%";
+};
+</script>
+</body></html>
