@@ -46,7 +46,7 @@ def build_html(post: dict, brand: dict) -> list[str]:
 def render(post_dir: Path) -> list[Path]:
     from playwright.sync_api import sync_playwright
 
-    post_dir = Path(post_dir)
+    post_dir = Path(post_dir).resolve()
     pages = build_html(load_post(post_dir), load_brand())
     out = post_dir / "rendered"
     out.mkdir(exist_ok=True)

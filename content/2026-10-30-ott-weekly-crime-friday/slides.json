@@ -1,0 +1,59 @@
+{
+  "post_slug": "2026-10-30-ott-weekly-crime-friday",
+  "pillar": "ott-weekly",
+  "language": "te+en",
+  "topic": "This Week on OTT (29 Oct – 1 Nov 2026) — cops, gangsters and a headless body",
+  "source_note": "Dates per platform announcements — check the app before you watch.",
+  "slides": [
+    {
+      "type": "cover",
+      "eyebrow": "29 OCT – 1 NOV 2026",
+      "title_en": "CRIME FRIDAY",
+      "title_size": 150,
+      "title_te": "పోలీసులు, గ్యాంగ్‌స్టర్లు, ఒక తల లేని శవం!",
+      "sub": "4 new picks with Telugu audio on Netflix, ZEE5 & JioHotstar."
+    },
+    {
+      "type": "point",
+      "step": "NETFLIX",
+      "label": "FRI 30 OCT",
+      "accent": "gold",
+      "value": "SI YUGANDHAR",
+      "te": "పోలీస్‌గా ఆది సాయికుమార్ — క్రైమ్ యాక్షన్ థ్రిల్లర్",
+      "en": "Telugu original • also in Tamil, Kannada, Malayalam & Hindi. A crime-action investigation thriller."
+    },
+    {
+      "type": "point",
+      "step": "ZEE5",
+      "label": "FRI 30 OCT",
+      "accent": "red",
+      "value": "RUDRAVANAM PS",
+      "te": "తప్పిపోయిన మనిషి, తల లేని శవం! SI శివకుమార్ దర్యాప్తు",
+      "en": "Telugu ZEE5 Original series • 7 episodes. Small-town crime thriller with Naresh Agastya."
+    },
+    {
+      "type": "point",
+      "step": "NETFLIX",
+      "label": "THU 29 OCT",
+      "accent": "teal",
+      "value": "BATHTHA",
+      "te": "విజయ్ సేతుపతి గ్యాంగ్‌స్టర్ కామెడీ — తెలుగు డబ్‌లో",
+      "en": "Tamil original with Telugu dub • lands a day early, on Thursday."
+    },
+    {
+      "type": "point",
+      "step": "JIOHOTSTAR",
+      "label": "FRI 30 OCT",
+      "accent": "gold",
+      "value": "LOVE ALWAYS",
+      "te": "కొరియన్ వెబ్‌టూన్ ఆధారంగా రొమాన్స్ సిరీస్",
+      "en": "Tamil original series with Telugu dub • 8 episodes. Billed as India's first Korean-webtoon adaptation."
+    },
+    {
+      "type": "cta",
+      "te": "ఈ వారం మీరు ఏది ముందు చూస్తారు?",
+      "big": "COMMENT 1, 2, 3 OR 4",
+      "en": "Tag the friend you binge with."
+    }
+  ]
+}
