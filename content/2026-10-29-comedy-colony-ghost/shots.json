@@ -9,8 +9,13 @@
       "lines": [
         {
           "who": "gopi",
-          "text": "Hey! ఆగండి… ఈ రోజు మా colony లో ఒక దెయ్యం కథ! Lights off చేసి చూడండి…",
-          "act": "excited, then dropping to a spooky whisper on 'Lights off చేసి చూడండి'"
+          "text": "Hey! ఆగండి… ఈ రోజు మా colony లో ఒక దెయ్యం కథ!",
+          "act": "an excited, punchy hook straight to the viewer"
+        },
+        {
+          "who": "gopi",
+          "text": "Lights off చేసి చూడండి…",
+          "act": "a quick, spooky whisper"
         }
       ]
     },

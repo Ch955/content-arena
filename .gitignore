@@ -22,3 +22,6 @@ data/content.csv
 .DS_Store
 .idea/
 .vscode/
+content/*/stills/
+content/*/clips/
+content/*/work/

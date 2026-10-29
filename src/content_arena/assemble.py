@@ -151,7 +151,7 @@ margin-bottom:10px;color:#0E0E12;text-shadow:none}}
 .top{{position:absolute;top:70px;left:50px;right:50px;display:flex;justify-content:space-between;align-items:center}}
 .brand{{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000}}
 .tag{{font-family:Anton;font-size:28px;letter-spacing:2px;background:#E63946;color:#fff;padding:7px 16px;border-radius:8px}}
-.end{{position:absolute;left:0;right:0;top:760px;text-align:center;font-family:Anton;font-size:72px;color:#F5B700;
+.end{{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:Anton;font-size:72px;color:#F5B700;
 text-shadow:0 5px 0 #000}}"""
     pages = [("brand", '<div class="top"><div class="brand">🍲 REEL RASAM</div><div class="tag">RASAM COMEDY</div></div>'),
              ("end", '<div class="end">FOLLOW @_REELRASAM</div>')]
@@ -160,7 +160,7 @@ text-shadow:0 5px 0 #000}}"""
         for i, l in enumerate(shot["lines"]):
             name = f"sub_{shot['n']}_{i}"
             pages.append((name, f'<div class="sub"><span class="who" style="background:{COLORS[l["who"]]}">'
-                                f'{NAMES[l["who"]]}</span><br>{l["text"]}</div>'))
+                                f'{NAMES[l["who"]]}</span><br>{l["text"].replace("…", "...")}</div>'))  # the font has no "…"
             items.append((work / f"{name}.png", l["start"] - 0.05, l["start"] + l["dur"] + 0.2))
     with sync_playwright() as p:
         b = p.chromium.launch(**config.chromium_launch_args())
@@ -188,8 +188,19 @@ def music_bed(total: float, voice: np.ndarray) -> np.ndarray:
     return out * (1 - 0.6 * np.clip(act * 3, 0, 1)) * np.minimum(1, np.minimum(x / 0.5, (total - x) / 1.2))
 
 
+def _cached(voice, line: dict, dest: Path) -> float:
+    """Reuse a take from an earlier run of the same line (re-renders shouldn't pay for voices again)."""
+    key = dest.with_suffix(".json")
+    sig = json.dumps({k: line.get(k) for k in ("who", "text", "act")}, ensure_ascii=False)
+    if dest.exists() and key.exists() and key.read_text(encoding="utf-8") == sig:
+        return duration(dest)
+    d = voice(line, dest)
+    key.write_text(sig, encoding="utf-8")
+    return d
+
+
 def assemble(post_dir: Path, voice=tts) -> Path:
-    post_dir = Path(post_dir)
+    post_dir = Path(post_dir).resolve()
     shots = json.loads((post_dir / "shots.json").read_text(encoding="utf-8"))["shots"]
     work = post_dir / "work"; work.mkdir(exist_ok=True)
     clips = [post_dir / "clips" / f"shot{s['n']}.mp4" for s in shots]
@@ -197,7 +208,7 @@ def assemble(post_dir: Path, voice=tts) -> Path:
     if missing:
         raise FileNotFoundError(f"Missing clips: {', '.join(missing)}")
     clip_durs = [duration(c) for c in clips]
-    voice_durs = [[voice(l, work / f"v_{s['n']}_{i}.wav") for i, l in enumerate(s.get("lines", []))]
+    voice_durs = [[_cached(voice, l, work / f"v_{s['n']}_{i}.wav") for i, l in enumerate(s.get("lines", []))]
                   for s in shots]
     tl = plan_timeline(shots, clip_durs, voice_durs)
     total = tl[-1]["start"] + tl[-1]["dur"]

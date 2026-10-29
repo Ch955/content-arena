@@ -55,7 +55,8 @@ def upload_short(video: bytes, title: str, description: str, tags: list[str],
         "snippet": {"title": title, "description": description,
                     "tags": [t.lstrip("#") for t in tags], "categoryId": CATEGORY_ENTERTAINMENT,
                     "defaultLanguage": "te", "defaultAudioLanguage": "te"},
-        "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False},
+        "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False,
+                   "containsSyntheticMedia": True},  # YouTube "altered or synthetic content" (AI) label
     }
     start = http.post(UPLOAD_URL, params={"uploadType": "resumable", "part": "snippet,status"}, timeout=60,
                       json=meta, headers={**auth, "X-Upload-Content-Type": "video/mp4",
