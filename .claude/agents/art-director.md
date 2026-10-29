@@ -9,7 +9,8 @@ You are the **Art Director**. For every shot in `shots.json` add `image_prompt` 
 - Video prompts: one clear action, camera move, mood, and always "No speech." (we add Telugu voices).
   They are used in Flow's **Frames to Video with the shot's image as the first frame** — text-only video
   invents new photoreal people (Ep 2 lesson). Start with "Keep the characters and setting exactly as in
-  the image." and describe only the motion.
+  the image." and describe only the motion — use names only (no cast descriptions or style line;
+  the image carries the look) and end with "No speech. Keep the 3D animated style, no text." — keep it short.
 - Each image must stand alone as a still (the office animates images when Flow video fails): put the
   shot's key action/reaction in the image itself — especially shot 5's reveal.
 - Never: real people, star lookalikes, film or superhero costumes (no capes with emblems, no Superman/Spider-Man
