@@ -1,0 +1,48 @@
+{
+  "post_slug": "2026-10-30-comedy-fake-rich",
+  "style": "3d-flow",
+  "shots": [
+    {
+      "n": 1,
+      "lines": [
+        {"who": "gopi", "text": "Hey! ఆగండి ఆగండి… scroll చేయకండి!", "act": "an excited, punchy hook straight to the viewer"},
+        {"who": "gopi", "text": "ఈ రోజు మా colony లో ఒక పెద్ద rich బాబు!", "act": "a cheeky, teasing gossip tone, eyebrows raised"}
+      ]
+    },
+    {
+      "n": 2,
+      "lines": [
+        {"who": "pandu", "text": "మా ఇంట్లో AC car ఉంది!", "act": "a loud, puffed-up boast, very pleased with himself"},
+        {"who": "pandu", "text": "Swimming pool కూడా ఉంది!", "act": "an even bigger show-off brag, slow and grand"}
+      ]
+    },
+    {
+      "n": 3,
+      "lines": [
+        {"who": "pinky", "text": "నిజమా? చూపించు అన్నా!", "act": "a small, sweet, curious challenge"},
+        {"who": "chinna", "text": "Proof లేకపోతే… నమ్మం!", "act": "a cool, suspicious hero drawl with a dramatic pause"}
+      ]
+    },
+    {
+      "n": 4,
+      "lines": [
+        {"who": "pandu", "text": "Welcome to… Pandu Palace!", "act": "a nervous but grand announcer voice, voice cracking slightly"},
+        {"who": "gopi", "text": "Rich బాబు walk చూడండి… full slow motion!", "act": "laughing, mock-dramatic like a sports commentator"}
+      ]
+    },
+    {
+      "n": 5,
+      "lines": [
+        {"who": "chinna", "text": "ఇదా నీ AC car?!", "act": "shocked disbelief, cracking up at the end"},
+        {"who": "amma", "text": "ఏయ్ Pandu! నా table fan ఇక్కడ ఏం చేస్తోంది?!", "act": "sharp, loud, outraged scolding with comic exasperation"}
+      ]
+    },
+    {
+      "n": 6,
+      "lines": [
+        {"who": "gopi", "text": "AC car ready… కానీ fan మాత్రం Amma ది!", "act": "a warm laughing punchline with a playful pause"},
+        {"who": "gopi", "text": "Follow Reel Rasam!", "act": "an upbeat, energetic call to action"}
+      ]
+    }
+  ]
+}
