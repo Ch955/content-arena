@@ -188,6 +188,29 @@ def music_bed(total: float, voice: np.ndarray) -> np.ndarray:
     return out * (1 - 0.6 * np.clip(act * 3, 0, 1)) * np.minimum(1, np.minimum(x / 0.5, (total - x) / 1.2))
 
 
+MOVES = [  # slow camera moves for still images (zoompan on a 2x upscale), cycled per shot
+    "z='min(1+0.0009*on,1.16)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
+    "z=1.15:x='(iw-iw/zoom)*(1-on/180)':y='ih/2-(ih/zoom/2)'",
+    "z='max(1.18-0.0009*on,1.0)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
+    "z=1.15:x='(iw-iw/zoom)*on/180':y='ih/2-(ih/zoom/2)'",
+]
+
+
+def _clip_for(clips: Path, n: int, work: Path) -> Path | None:
+    """clips/shotN.mp4, or an image clips/shotN.(jpg|png|webp) turned into a 6 s clip with a slow camera move."""
+    if (clips / f"shot{n}.mp4").exists():
+        return clips / f"shot{n}.mp4"
+    img = next((clips / f"shot{n}{e}" for e in (".jpg", ".jpeg", ".png", ".webp") if (clips / f"shot{n}{e}").exists()), None)
+    if img is None:
+        return None
+    out = work / f"still{n}.mp4"
+    run(["ffmpeg", "-y", "-loop", "1", "-i", str(img), "-vf",
+         f"scale={2 * W}:{2 * H}:force_original_aspect_ratio=increase,crop={2 * W}:{2 * H},"
+         f"zoompan={MOVES[(n - 1) % len(MOVES)]}:d=180:s={W}x{H}:fps=30",
+         "-frames:v", "180", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", str(out)])
+    return out
+
+
 def _cached(voice, line: dict, dest: Path) -> float:
     """Reuse a take from an earlier run of the same line (re-renders shouldn't pay for voices again)."""
     key = dest.with_suffix(".json")
@@ -203,8 +226,8 @@ def assemble(post_dir: Path, voice=tts) -> Path:
     post_dir = Path(post_dir).resolve()
     shots = json.loads((post_dir / "shots.json").read_text(encoding="utf-8"))["shots"]
     work = post_dir / "work"; work.mkdir(exist_ok=True)
-    clips = [post_dir / "clips" / f"shot{s['n']}.mp4" for s in shots]
-    missing = [c.name for c in clips if not c.exists()]
+    clips = [_clip_for(post_dir / "clips", s["n"], work) for s in shots]
+    missing = [f"shot{s['n']}" for s, c in zip(shots, clips) if c is None]
     if missing:
         raise FileNotFoundError(f"Missing clips: {', '.join(missing)}")
     clip_durs = [duration(c) for c in clips]

@@ -46,15 +46,18 @@ def main(argv: list[str] | None = None) -> int:
         for post in args.post_dirs:
             rows += pack.rows_for(post, d.folder(post.name)["webViewLink"])
         url = pack.write_tab(rows, "Tomorrow's shots — for each row: make the image in Flow (step 1), turn it into a "
-                                   "video (step 2), upload the clip to the Drive folder with the given name.")
+                                   "video with Flow's 'Frames to Video' using that image as the first frame (text-only video invents "
+                                   "new people), then upload the clip straight into the Drive folder (no sub-folders) with the given "
+                                   "name. If the video fails, upload the image instead (shotN.jpg) — the office animates it.")
         print(f"Pack ready: {url}")
         return 0
     if args.cmd == "fetch-clips":
         from . import drive
         d = drive.Drive(); clips = d.clips(args.post_dir.name)
-        for i, c in enumerate(clips, 1):
-            print(d.download(c["id"], args.post_dir / "clips" / f"shot{drive.shot_number(c['name'])}.mp4"))
-        print(f"{len(clips)} clip(s) downloaded")
+        for c in clips:
+            ext = ".mp4" if drive.media_kind(c) == "video" else Path(c["name"]).suffix.lower() or ".jpg"
+            print(d.download(c["id"], args.post_dir / "clips" / f"shot{drive.shot_number(c['name'])}{ext}"))
+        print(f"{len(clips)} shot file(s) downloaded (images are animated by assemble)")
         return 0 if clips else 2
     if args.cmd == "assemble":
         from . import assemble

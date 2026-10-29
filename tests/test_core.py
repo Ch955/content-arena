@@ -378,5 +378,22 @@ class GeminiVoiceTests(unittest.TestCase):
         shutil.rmtree(tmp)
 
 
+class DriveInboxTests(unittest.TestCase):
+    def test_prefers_video_and_reads_shot_subfolders(self):
+        from unittest import mock
+        from content_arena import drive
+        tree = {"inbox-post": [{"id": "f1", "name": "Shot1.mp4", "mimeType": drive.FOLDER},
+                               {"id": "v2", "name": "shot2.mp4", "mimeType": "video/mp4"},
+                               {"id": "i2", "name": "shot2.jpg", "mimeType": "image/jpeg"},
+                               {"id": "i3", "name": "shot3.png", "mimeType": "image/png"},
+                               {"id": "x", "name": "notes.txt", "mimeType": "text/plain"}],
+                "f1": [{"id": "i1b", "name": "b.jpg", "mimeType": "image/jpeg"},
+                       {"id": "i1a", "name": "a.jpg", "mimeType": "image/jpeg"}]}
+        d = drive.Drive.__new__(drive.Drive)
+        d.folder = lambda name: {"id": "inbox-post"}
+        d._list = lambda q: tree[q.split("'")[1]]
+        self.assertEqual([c["id"] for c in d.clips("post")], ["i1a", "v2", "i3"])
+
+
 if __name__ == "__main__":
     unittest.main()

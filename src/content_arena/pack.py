@@ -21,7 +21,7 @@ def cast_block() -> str:
 
 def rows_for(post_dir: Path, folder_link: str) -> list[list[str]]:
     data = json.loads((post_dir / "shots.json").read_text(encoding="utf-8"))
-    return [[data["post_slug"], str(s["n"]), s["image_prompt"], s["video_prompt"], f"shot{s['n']}.mp4", folder_link]
+    return [[data["post_slug"], str(s["n"]), s["image_prompt"], s["video_prompt"], f"shot{s['n']}.mp4 (or shot{s['n']}.jpg)", folder_link]
             for s in data["shots"]]
 
 

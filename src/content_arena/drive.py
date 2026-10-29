@@ -47,10 +47,20 @@ class Drive:
         return r.json()
 
     def clips(self, name: str) -> list[dict]:
+        """One file per shot: a video if there is one, else an image (the Editor animates it).
+        Also looks one level into sub-folders named like a shot ("Shot1.mp4/", "shot 1/")."""
         f = self.folder(name)
-        vids = [x for x in self._list(f"'{f['id']}' in parents and trashed=false")
-                if x["mimeType"].startswith("video/") or x["name"].lower().endswith((".mp4", ".mov", ".webm"))]
-        return sorted(vids, key=lambda x: shot_number(x["name"]))
+        found: dict[int, dict] = {}
+        for x in self._list(f"'{f['id']}' in parents and trashed=false"):
+            items = [x]
+            if x["mimeType"] == FOLDER:
+                items = sorted(self._list(f"'{x['id']}' in parents and trashed=false"), key=lambda y: y["name"])
+            n = shot_number(x["name"])
+            for y in items:
+                kind = media_kind(y)
+                if kind and (n not in found or (kind == "video" and media_kind(found[n]) == "image")):
+                    found[n] = y
+        return [found[n] for n in sorted(found) if n < 10**6]
 
     def download(self, file_id: str, dest: Path) -> Path:
         with self.http.get(f"{API}/{file_id}", params={"alt": "media", "supportsAllDrives": "true"},
@@ -61,6 +71,15 @@ class Drive:
                 for chunk in r.iter_content(1 << 20):
                     fh.write(chunk)
         return dest
+
+
+def media_kind(f: dict) -> str | None:
+    name, mime = f["name"].lower(), f.get("mimeType", "")
+    if mime.startswith("video/") or name.endswith((".mp4", ".mov", ".webm")):
+        return "video"
+    if mime.startswith("image/") or name.endswith((".jpg", ".jpeg", ".png", ".webp")):
+        return "image"
+    return None
 
 
 def shot_number(name: str) -> int:
