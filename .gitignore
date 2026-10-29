@@ -25,3 +25,5 @@ data/content.csv
 content/*/stills/
 content/*/clips/
 content/*/work/
+content/*/clips_stills/
+content/*/clips_flow/
