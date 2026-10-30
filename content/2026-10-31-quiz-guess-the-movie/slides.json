@@ -35,7 +35,7 @@
       "type": "quiz",
       "label": "Q2 • MEDIUM",
       "prompt": "2006",
-      "question_te": "Tamil, Hindi లో remake అయిన సినిమా",
+      "question_te": "Tamil & Hindi లో remake!",
       "question_en": "Dir. Puri Jagannadh. Remade in Tamil (2007) and in Hindi as \"Wanted\" (2009).",
       "options": [
         "Athadu",
@@ -64,7 +64,7 @@
     {
       "type": "answer",
       "answer": "B) MAYABAZAR",
-      "te": "తొలి colourised తెలుగు సినిమా!",
+      "te": "తొలి digitally colourised తెలుగు సినిమా!",
       "en": "K. V. Reddy's 1957 Mahabharata fantasy. Bonus: the first Telugu film to be digitally colourised, re-released in 2010."
     },
     {
