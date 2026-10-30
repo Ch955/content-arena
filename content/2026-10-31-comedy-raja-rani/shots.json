@@ -1,0 +1,96 @@
+{
+  "post_slug": "2026-10-31-comedy-raja-rani",
+  "style": "3d-flow",
+  "shots": [
+    {
+      "n": 1,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Hey! ఆగండి ఆగండి… scroll చేయకండి!",
+          "act": "an excited, punchy hook straight to the viewer"
+        },
+        {
+          "who": "gopi",
+          "text": "Colony లో రాజుల యుద్ధం… అసలు రాజు ఎవరో చూడండి!",
+          "act": "a mock-epic movie-trailer hush, then a cheeky teasing lift"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "lines": [
+        {
+          "who": "pinky",
+          "text": "బహు పరాక్! మహారాజా వారు వస్తున్నారు!",
+          "act": "a tiny little-girl voice trying hard to boom like a royal herald, very proud"
+        },
+        {
+          "who": "chinna",
+          "text": "ప్రజలారా… ఒక ముఖ్యమైన ప్రకటన!",
+          "act": "slow, deep, over-grand royal swagger with a long dramatic pause"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "lines": [
+        {
+          "who": "chinna",
+          "text": "ఈ రోజు నుంచి… homework బంద్!",
+          "act": "a triumphant kingly proclamation, punching the last word"
+        },
+        {
+          "who": "pandu",
+          "text": "ఆగు! ఈ slide రాజ్యం నాది!",
+          "act": "a loud, cocky rival-king challenge, puffed-up and theatrical"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "lines": [
+        {
+          "who": "chinna",
+          "text": "అయితే… యుద్ధమే!",
+          "act": "a stretched, slow-motion war cry, low and heroic"
+        },
+        {
+          "who": "gopi",
+          "text": "Slow motion war charge… కానీ twist ఇంకా ఉంది!",
+          "act": "excited sports-commentator energy, dropping to a secretive whisper at the end"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "lines": [
+        {
+          "who": "pinky",
+          "text": "Sorry Maharaja… నేను Amma party!",
+          "act": "a sweet, sing-song, guilty-but-smug little confession"
+        },
+        {
+          "who": "amma",
+          "text": "ఏయ్! నా గిన్నె మూత లేక పప్పు పొంగుతోంది!",
+          "act": "sharp, loud, outraged scolding with comic exasperation"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "రాజు ఎవరైనా… రాజ్యం మాత్రం Amma దే!",
+          "act": "a warm, laughing punchline with a playful pause"
+        },
+        {
+          "who": "gopi",
+          "text": "Follow Reel Rasam!",
+          "act": "an upbeat, energetic call to action"
+        }
+      ]
+    }
+  ]
+}
