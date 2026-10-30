@@ -1,0 +1,95 @@
+{
+  "post_slug": "2026-10-31-quiz-guess-the-movie",
+  "pillar": "quiz",
+  "language": "te+en",
+  "topic": "Guess the Telugu movie from the clue — 4 eras (2022, 2006, 1957, 1980), easy to hard",
+  "slides": [
+    {
+      "type": "cover",
+      "eyebrow": "GUESS THE MOVIE • EASY → HARD",
+      "title_en": "4 CLUES. 4 ERAS.",
+      "title_size": 140,
+      "value": "FULL MARKS?",
+      "title_te": "మీరు నిజంగా Tollywood fan ఆ?",
+      "sub": "2022 → 2006 → 1957 → 1980. Pick A, B or C before you swipe!"
+    },
+    {
+      "type": "quiz",
+      "label": "Q1 • EASY",
+      "prompt": "2022",
+      "question_te": "Oscar గెలిచిన పాట ఉన్న సినిమా ఏది?",
+      "question_en": "Dir. S. S. Rajamouli. Its song was the first song from an Indian film to win the Oscar for Best Original Song.",
+      "options": [
+        "Magadheera",
+        "RRR",
+        "Sye"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) RRR",
+      "te": "\"Naatu Naatu\" పాటకు Oscar వచ్చింది!",
+      "en": "The first song from an Indian film to win the Oscar for Best Original Song, at the 95th Academy Awards (12 Mar 2023)."
+    },
+    {
+      "type": "quiz",
+      "label": "Q2 • MEDIUM",
+      "prompt": "2006",
+      "question_te": "Tamil, Hindi లో remake అయిన సినిమా",
+      "question_en": "Dir. Puri Jagannadh. Remade in Tamil (2007) and in Hindi as \"Wanted\" (2009).",
+      "options": [
+        "Athadu",
+        "Pokiri",
+        "Okkadu"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) POKIRI",
+      "te": "Hindi లో \"Wanted\" గా remake అయింది!",
+      "en": "Puri Jagannadh's 2006 film was remade in Tamil (2007) and in Hindi as Wanted (2009)."
+    },
+    {
+      "type": "quiz",
+      "label": "Q3 • HARD",
+      "prompt": "1957",
+      "question_te": "మహాభారత కథ ఆధారంగా ఒక fantasy",
+      "question_en": "Dir. K. V. Reddy. Topped a 2013 CNN-IBN online poll of the greatest Indian films.",
+      "options": [
+        "Pathala Bhairavi",
+        "Mayabazar",
+        "Lava Kusa"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) MAYABAZAR",
+      "te": "తొలి colourised తెలుగు సినిమా!",
+      "en": "K. V. Reddy's 1957 Mahabharata fantasy. Bonus: the first Telugu film to be digitally colourised, re-released in 2010."
+    },
+    {
+      "type": "quiz",
+      "label": "Q4 • HARDEST",
+      "prompt": "1980",
+      "question_te": "ఒక Carnatic సంగీత విద్వాంసుడి కథ",
+      "question_en": "Dir. K. Viswanath. S. P. Balasubrahmanyam's first National Award for playback singing.",
+      "options": [
+        "Sagara Sangamam",
+        "Swathi Kiranam",
+        "Sankarabharanam"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "C) SANKARABHARANAM",
+      "te": "SPB కి తొలి National Award ఈ సినిమాతోనే!",
+      "en": "K. Viswanath's 1980 film about a Carnatic music maestro gave S. P. Balasubrahmanyam his first National Award for playback singing."
+    },
+    {
+      "type": "cta",
+      "te": "మీ score ఎంత? 4/4 వచ్చిందా?",
+      "big": "COMMENT YOUR SCORE",
+      "en": "Mee answers & score comment lo, cheating ledu! Tag the friend who thinks they know TFI."
+    }
+  ]
+}
