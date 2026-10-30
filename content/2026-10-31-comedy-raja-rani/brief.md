@@ -90,7 +90,7 @@ VALUE (the period-film beats every fan recognises)
 - Gopi: Slow motion war charge… కానీ twist ఇంకా ఉంది!
 
 PAYOFF (twist)
-- Pinky: Sorry Maharaja… నేను Amma party!
+- Pinky: Sorry Maharaja… నేను Amma వైపు!
 - Amma: ఏయ్! నా గిన్నె మూత లేక పప్పు పొంగుతోంది!
 
 PUNCHLINE + CTA
@@ -125,7 +125,7 @@ PUNCHLINE + CTA
 - "homework బంద్!" — Hyderabad slang "బంద్" for "cancelled"; OK, or "homework లేదు!"?
 - "ఈ slide రాజ్యం నాది!" — natural, or "ఈ slide నా రాజ్యం!"?
 - "అయితే… యుద్ధమే!" — confirm form.
-- "నేను Amma party!" — kid slang for "I'm on Amma's team"; if "party" feels political, use "నేను Amma వైపు!".
+- "నేను Amma వైపు!" — kid slang for "I'm on Amma's team"; if "party" feels political, use "నేను Amma వైపు!".
 - "నా గిన్నె మూత లేక పప్పు పొంగుతోంది!" — "without my lid the dal is boiling over"; confirm it reads naturally.
 - "రాజ్యం మాత్రం Amma దే!" — spacing/form ("Amma దే" vs "అమ్మదే").
 
