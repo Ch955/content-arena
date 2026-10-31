@@ -1,0 +1,96 @@
+{
+  "post_slug": "2026-11-01-comedy-interval-bang",
+  "style": "3d-flow",
+  "shots": [
+    {
+      "n": 1,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Hey! ఆగండి ఆగండి… scroll చేయకండి!",
+          "act": "an excited, punchy hook straight to the viewer"
+        },
+        {
+          "who": "gopi",
+          "text": "Interval bang తర్వాత hero కి ఏమైందో చూడండి!",
+          "act": "a hushed movie-trailer tease, then a cheeky lift at the end"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "lines": [
+        {
+          "who": "pandu",
+          "text": "Swing నాది… colony నాది! ఏం చేస్తావ్?",
+          "act": "a lazy, smug villain drawl, very pleased with himself"
+        },
+        {
+          "who": "pinky",
+          "text": "అన్నయ్యా… ఏదో ఒకటి చెయ్!",
+          "act": "a tiny, pleading little-girl whine, close to tears"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "lines": [
+        {
+          "who": "chinna",
+          "text": "నేను ఎవరో… నీకు తెలుసా?",
+          "act": "slow, deep, over-dramatic heroic menace with a long pause, like a punch dialogue"
+        },
+        {
+          "who": "pandu",
+          "text": "అ… అమ్మో!",
+          "act": "a short, scared gulp of a gasp"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Freeze! ఇదే… Interval bang!",
+          "act": "a sudden sharp shout, then thrilled sports-commentator excitement"
+        },
+        {
+          "who": "amma",
+          "text": "Interval! వేడి వేడి samosa ready!",
+          "act": "a warm, loud, cheerful sing-song call like a canteen announcement"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "lines": [
+        {
+          "who": "chinna",
+          "text": "Interval… ఇంకా ఎంత సేపు…?",
+          "act": "a strained, trembling whisper through clenched teeth, trying not to move"
+        },
+        {
+          "who": "gopi",
+          "text": "Hero freeze లో… audience samosa లో!",
+          "act": "a cheeky, giggly punchline with a playful pause in the middle"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Next ఏ movie scene spoof చేయాలి? Comment లో చెప్పండి!",
+          "act": "an eager, friendly question to the viewer, leaning in"
+        },
+        {
+          "who": "gopi",
+          "text": "Follow Reel Rasam!",
+          "act": "an upbeat, energetic call to action"
+        }
+      ]
+    }
+  ]
+}
