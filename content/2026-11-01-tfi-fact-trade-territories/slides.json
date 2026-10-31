@@ -1,0 +1,91 @@
+{
+  "post_slug": "2026-11-01-tfi-fact-trade-territories",
+  "pillar": "tfi-fact",
+  "language": "te+en",
+  "topic": "Box Office 101 — Nizam, Ceded, Andhra: the 3 Telugu trade areas (RRR example)",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BOX OFFICE 101",
+      "eyebrow": "AP + Telangana film trade",
+      "title_en": "NIZAM? CEDED?",
+      "title_size": 150,
+      "title_te": "కలెక్షన్ పోస్టర్లలో ఈ పేర్లు అంటే ఏంటి?",
+      "sub": "The 3 Telugu film trade areas, explained with a real RRR example."
+    },
+    {
+      "type": "list",
+      "heading_te": "తెలుగు సినిమా ట్రేడ్‌లో 3 ఏరియాలు",
+      "heading_en": "How the film trade splits AP + Telangana",
+      "items": [
+        {
+          "title": "NIZAM",
+          "meta": "Telangana districts"
+        },
+        {
+          "title": "CEDED",
+          "meta": "Rayalaseema: Kurnool • Kadapa • Chittoor • Anantapur"
+        },
+        {
+          "title": "ANDHRA",
+          "meta": "6 areas: UA • East • West • Krishna • Guntur • Nellore"
+        }
+      ]
+    },
+    {
+      "type": "point",
+      "label": "WHY \"CEDED\"?",
+      "accent": "teal",
+      "value": "1800",
+      "te": "నిజాం ఈ జిల్లాలను బ్రిటిష్ వారికి అప్పగించారు",
+      "en": "In 1800 the Nizam of Hyderabad ceded (handed over) these districts to the British East India Company. The old name stuck in the film trade.",
+      "source": "History: British Library archives • GKToday"
+    },
+    {
+      "type": "bars",
+      "heading_te": "RRR: మొదటి 27 రోజుల SHARE",
+      "bars": [
+        {
+          "label": "NIZAM",
+          "value": "₹110.02 CR",
+          "pct": 41.6,
+          "accent": "teal"
+        },
+        {
+          "label": "CEDED",
+          "value": "₹50.20 CR",
+          "pct": 19.0,
+          "accent": "teal"
+        },
+        {
+          "label": "ANDHRA (6 AREAS)",
+          "value": "₹104.51 CR",
+          "pct": 39.5,
+          "accent": "teal"
+        },
+        {
+          "label": "TOTAL AP + TS",
+          "value": "₹264.73 CR",
+          "pct": 100,
+          "accent": "gold"
+        }
+      ],
+      "en": "Andhra = UA 34.32 + East 15.87 + West 12.99 + Guntur 17.83 + Krishna 14.36 + Nellore 9.14",
+      "source": "Trade estimate • Source: Filmibeat (RRR, first 27 days, distributor share)"
+    },
+    {
+      "type": "stat",
+      "value": "42 • 19 • 39",
+      "accent": "gold",
+      "te": "మొత్తం SHARE లో % వాటా: Nizam • Ceded • Andhra",
+      "en": "Total = 110.02 + 50.20 + 104.51 = ₹264.73 Cr. Nizam ≈ 41.6% • Ceded ≈ 19.0% • Andhra ≈ 39.5%",
+      "source": "Trade estimate • Source: Filmibeat (RRR, first 27 days, distributor share)"
+    },
+    {
+      "type": "cta",
+      "te": "Next fan debate లో వాడేయండి!",
+      "big": "NIZAM. CEDED. ANDHRA.",
+      "en": "Now you know the 3 trade areas behind every collection poster."
+    }
+  ]
+}
