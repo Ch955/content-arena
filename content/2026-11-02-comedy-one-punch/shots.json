@@ -1,0 +1,96 @@
+{
+  "post_slug": "2026-11-02-comedy-one-punch",
+  "style": "3d-flow",
+  "shots": [
+    {
+      "n": 1,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Hey! ఆగండి… scroll చేయకండి!",
+          "act": "an excited, punchy hook straight to the viewer"
+        },
+        {
+          "who": "gopi",
+          "text": "ఒక్క punch, పది rowdies… last ఎవరు ఎగిరారో చూడండి!",
+          "act": "a hushed action-trailer tease, then a cheeky lift at the end"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "lines": [
+        {
+          "who": "pandu",
+          "text": "ఇది నా gang… పది మంది rowdies!",
+          "act": "a proud, puffed-up gang-boss boast, very pleased with himself"
+        },
+        {
+          "who": "chinna",
+          "text": "పది మందా? నాకు ఒక్క punch చాలు!",
+          "act": "cool, unbothered heroic swagger, slow like a punch dialogue"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "Slow motion లో… ఒకటి, రెండు… పది!",
+          "act": "a breathless sports-commentator count, building fast to a thrilled roar"
+        },
+        {
+          "who": "pandu",
+          "text": "నా gang…!",
+          "act": "a short, heartbroken wail"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "lines": [
+        {
+          "who": "chinna",
+          "text": "Mass అంటే… ఇదే!",
+          "act": "an over-the-top victorious hero boast with a dramatic pause"
+        },
+        {
+          "who": "pinky",
+          "text": "నా bunny pillow…?",
+          "act": "a tiny, quiet, ominous little-girl voice, slow and dangerous"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "lines": [
+        {
+          "who": "pinky",
+          "text": "ఫూ!",
+          "act": "one tiny, cute, deliberate puff of breath, very short"
+        },
+        {
+          "who": "gopi",
+          "text": "Punch కి పది rowdies… Pinky ఫూ కి hero!",
+          "act": "a stunned whisper that breaks into a giggly punchline"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "lines": [
+        {
+          "who": "gopi",
+          "text": "మీ gang లో ఈ Pinky ఎవరు? Tag చేయండి!",
+          "act": "a playful, knowing question to the viewer, leaning in"
+        },
+        {
+          "who": "gopi",
+          "text": "Follow Reel Rasam!",
+          "act": "an upbeat, energetic call to action"
+        }
+      ]
+    }
+  ]
+}
