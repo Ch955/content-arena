@@ -1,0 +1,95 @@
+{
+  "post_slug": "2026-11-02-quiz-emoji-movies",
+  "pillar": "quiz",
+  "language": "te+en",
+  "topic": "Guess the Telugu movie from emojis — 4 films, easy to hard (2012, 2019, 1991, 1955)",
+  "slides": [
+    {
+      "type": "cover",
+      "eyebrow": "GUESS THE MOVIE • EASY → HARD",
+      "title_en": "4 EMOJI CLUES",
+      "title_size": 140,
+      "value": "CAN YOU GET 4/4?",
+      "title_te": "Emojis చూసి movie చెప్పండి!",
+      "sub": "Only real TFI fans get full marks. Pick A, B or C before you swipe!"
+    },
+    {
+      "type": "quiz",
+      "label": "Q1 • EASY",
+      "prompt": "💑🔪🪰😤",
+      "question_te": "ఈ emojis ఏ సినిమా?",
+      "question_en": "2012 • All three are S. S. Rajamouli films.",
+      "options": [
+        "Vikramarkudu",
+        "Maryada Ramanna",
+        "Eega"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "C) EEGA",
+      "te": "హత్యకు గురైన యువకుడు ఈగగా మళ్ళీ పుడతాడు!",
+      "en": "S. S. Rajamouli's 2012 film: a murdered young man is reborn as a housefly and takes revenge on his killer."
+    },
+    {
+      "type": "quiz",
+      "label": "Q2 • MEDIUM",
+      "prompt": "🏏👨👦👕⏳",
+      "question_te": "ఈ సినిమా పేరు చెప్పండి!",
+      "question_en": "2019 • All three options have the same hero.",
+      "options": [
+        "Jersey",
+        "Bhale Bhale Magadivoy",
+        "Ninnu Kori"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "A) JERSEY",
+      "te": "కొడుకు కోసం 30s లో మళ్ళీ cricket!",
+      "en": "Gowtam Tinnanuri's 2019 film: a failed cricketer makes a comeback in his mid-30s to gift his son an India team jersey."
+    },
+    {
+      "type": "quiz",
+      "label": "Q3 • HARD",
+      "prompt": "🕰️⚙️⏪👑",
+      "question_te": "ఈ emoji కథ ఏ సినిమాది?",
+      "question_en": "1991 • All three are Singeetam Srinivasa Rao films.",
+      "options": [
+        "Bhairava Dweepam",
+        "Aditya 369",
+        "Sri Krishnarjuna Vijayam"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) ADITYA 369",
+      "te": "Time machine లో రాయల వారి ఆస్థానానికి!",
+      "en": "Singeetam Srinivasa Rao's 1991 film takes its heroes back to Sri Krishnadevaraya's court. Often called Indian cinema's first time-travel film."
+    },
+    {
+      "type": "quiz",
+      "label": "Q4 • HARDEST",
+      "prompt": "🎓😩💍🎭🏫",
+      "question_te": "Classic fans కి మాత్రమే!",
+      "question_en": "1955 • All three are L. V. Prasad films.",
+      "options": [
+        "Shavukaru",
+        "Pelli Chesi Choodu",
+        "Missamma"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "C) MISSAMMA",
+      "te": "Job కోసం భార్యాభర్తలుగా నటించిన graduates!",
+      "en": "L. V. Prasad's 1955 film: two jobless graduates pretend to be married to get teaching jobs at a village school."
+    },
+    {
+      "type": "cta",
+      "te": "మీ score ఎంత? 4/4 వచ్చిందా?",
+      "big": "SCORE COMMENT LO",
+      "en": "Drop your score (like \"3/4\"), cheating ledu! Tag the friend who thinks they know TFI."
+    }
+  ]
+}
