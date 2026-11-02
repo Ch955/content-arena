@@ -1,0 +1,91 @@
+{
+  "post_slug": "2026-11-03-quiz-which-came-first",
+  "pillar": "quiz",
+  "language": "te+en",
+  "topic": "Which came first? 4 pairs of Telugu hits (same star in each pair)",
+  "slides": [
+    {
+      "type": "cover",
+      "eyebrow": "QUIZ • SAME STAR, TWO HITS",
+      "title_en": "WHICH CAME FIRST?",
+      "title_size": 130,
+      "value": "CAN YOU GET 4/4?",
+      "title_te": "ఏది ముందు వచ్చింది?",
+      "sub": "4 pairs of Telugu hits. Both films in each pair share a star. Pick A or B before you swipe!"
+    },
+    {
+      "type": "quiz",
+      "label": "Q1 • EASY",
+      "prompt": "WHICH CAME FIRST?",
+      "question_te": "ఏది ముందు వచ్చింది?",
+      "question_en": "Both star Vijay Deverakonda.",
+      "options": [
+        "Arjun Reddy",
+        "Pelli Choopulu"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) PELLI CHOOPULU",
+      "te": "Vijay కి first lead role ఇదే!",
+      "en": "Pelli Choopulu (Jul 2016) came before Arjun Reddy (Aug 2017). It also won the National Award for Best Feature Film in Telugu."
+    },
+    {
+      "type": "quiz",
+      "label": "Q2 • MEDIUM",
+      "prompt": "WHICH CAME FIRST?",
+      "question_te": "ఏ సినిమా ముందు release అయ్యింది?",
+      "question_en": "Both: Jr NTR + director S. S. Rajamouli.",
+      "options": [
+        "Student No: 1",
+        "Simhadri"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "A) STUDENT NO: 1",
+      "te": "Rajamouli కి director గా first సినిమా!",
+      "en": "Student No: 1 (Sep 2001) came before Simhadri (Jul 2003). It was S. S. Rajamouli's first film as a director."
+    },
+    {
+      "type": "quiz",
+      "label": "Q3 • HARD",
+      "prompt": "WHICH CAME FIRST?",
+      "question_te": "ముందు ఏది? ఆలోచించి చెప్పండి!",
+      "question_en": "Both star Prabhas.",
+      "options": [
+        "Chatrapathi",
+        "Varsham"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "B) VARSHAM",
+      "te": "Trisha కి ఇదే first Telugu release!",
+      "en": "Varsham (Jan 2004, Sankranti) came before Chatrapathi (Sep 2005). It was also Trisha's first Telugu release."
+    },
+    {
+      "type": "quiz",
+      "label": "Q4 • HARDEST",
+      "prompt": "WHICH CAME FIRST?",
+      "question_te": "రెండూ ఒకే ఏడాది! ఏది ముందు?",
+      "question_en": "Both star Nagarjuna, and both released in the same year.",
+      "options": [
+        "Geethanjali",
+        "Shiva"
+      ]
+    },
+    {
+      "type": "answer",
+      "answer": "A) GEETHANJALI",
+      "te": "రెండూ 1989 లోనే, Geethanjali ముందు!",
+      "en": "Geethanjali (May 1989) came before Shiva (Oct 1989). Geethanjali was Mani Ratnam's first Telugu film; Shiva was Ram Gopal Varma's first film as director."
+    },
+    {
+      "type": "cta",
+      "te": "మీ score ఎంత? 4/4 వచ్చిందా?",
+      "big": "SCORE COMMENT LO",
+      "en": "Drop your score (like \"3/4\") in the comments. Cheating ledu! Tag the friend who thinks they know TFI."
+    }
+  ]
+}
