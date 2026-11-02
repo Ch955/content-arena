@@ -5,44 +5,104 @@
     {
       "n": 1,
       "lines": [
-        {"who": "gopi", "text": "Hey! ఆగండి… scroll చేయకండి!", "act": "an excited, punchy hook straight to the viewer"},
-        {"who": "gopi", "text": "ఒక్కటే jamun… last లో ఎవరు తింటారో guess చేయండి!", "act": "a sly, teasing whisper, like daring the viewer to place a bet"}
-      ]
+        {
+          "who": "gopi",
+          "text": "Hey! ఆగండి… scroll చేయకండి!",
+          "act": "an excited, punchy hook straight to the viewer"
+        },
+        {
+          "who": "gopi",
+          "text": "ఒక్కటే jamun… last లో ఎవరు తింటారో guess చేయండి!",
+          "act": "a sly, teasing whisper, like daring the viewer to place a bet"
+        }
+      ],
+      "image_prompt": "Medium shot in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: in the foreground Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone) leans towards the camera with an excited, sly grin, toy microphone held up, one hand raised palm-out as if saying stop, looking straight at the camera; behind him, slightly out of focus, on a woven plastic picnic mat spread under the big neem tree, Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) and Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) kneel facing each other with a small shiny steel bowl holding exactly one glossy gulab jamun in a little golden syrup between them, both staring at the single jamun with wobbling, teary eyes; beside them sits Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop), watching the bowl. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. Gopi leans in and raises his hand as if saying stop, then grins slyly; behind him Amma and Chinna stare teary-eyed at the single jamun. Slow push-in on Gopi. Excited, teasing mood. No speech. Keep the 3D animated style, no text."
     },
     {
       "n": 2,
       "lines": [
-        {"who": "chinna", "text": "అమ్మా… ఈ jamun నువ్వే తిను.", "act": "a slow, trembling, noble voice, hand on heart, fighting back tears"},
-        {"who": "amma", "text": "వద్దు నాన్నా… నువ్వే తిను!", "act": "an overflowing, tearful motherly sob, melodramatic and loving"}
-      ]
+        {
+          "who": "chinna",
+          "text": "అమ్మా… ఈ jamun నువ్వే తిను.",
+          "act": "a slow, trembling, noble voice, hand on heart, fighting back tears"
+        },
+        {
+          "who": "amma",
+          "text": "వద్దు నాన్నా… నువ్వే తిను!",
+          "act": "an overflowing, tearful motherly sob, melodramatic and loving"
+        }
+      ],
+      "image_prompt": "Close two-shot on a woven plastic picnic mat spread under the big neem tree in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) kneels with one hand pressed on his heart, slowly sliding a small shiny steel bowl holding exactly one glossy gulab jamun in a little golden syrup towards his mother with trembling dignity, lip quivering, eyes shining with held-back tears; facing him Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) has eyes brimming with tears, pressing the steel ladle to her chest with one hand and gently pushing the bowl back with the other; at the edge of the mat Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone), with the toy microphone tucked in his shorts pocket, now holding a small plain wooden toy violin and bow, bows the toy violin with his eyes closed in deep feeling; in the background, half hidden behind the thick neem tree trunk, Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers) peeks out, only his backwards black cap and cheeky gap-toothed grin visible, eyes fixed on the bowl. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. Chinna, hand on heart, slowly slides the bowl to Amma; tearful, she presses the ladle to her chest and slides it back. Gopi bows his violin, eyes closed. Pandu peeks from behind the tree. Slow push-in. Melodramatic. No speech. Keep the 3D animated style, no text."
     },
     {
       "n": 3,
       "lines": [
-        {"who": "chinna", "text": "నీ కోసం… ఈ త్యాగం, అమ్మా!", "act": "an over-the-top heroic sacrifice speech, voice cracking with emotion, slow and grand"},
-        {"who": "gopi", "text": "Sentiment level… fifty… ninety… HUNDRED!", "act": "a breathless sports-commentator build, rising fast to a thrilled roar"}
-      ]
+        {
+          "who": "chinna",
+          "text": "నీ కోసం… ఈ త్యాగం, అమ్మా!",
+          "act": "an over-the-top heroic sacrifice speech, voice cracking with emotion, slow and grand"
+        },
+        {
+          "who": "gopi",
+          "text": "Sentiment level… fifty… ninety… HUNDRED!",
+          "act": "a breathless sports-commentator build, rising fast to a thrilled roar"
+        }
+      ],
+      "image_prompt": "Dramatic slow-motion medium-wide shot on a woven plastic picnic mat spread under the big neem tree in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) and Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) push a small shiny steel bowl holding exactly one glossy gulab jamun in a little golden syrup back and forth between them, the bowl caught mid-slide with a soft motion blur; Chinna dabs his eyes with the corner of his red towel cape; Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop) sits beside them crying a big cartoon waterfall of tears, her lollipop dripping; Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone), with the toy microphone tucked in his shorts pocket, now holding a small plain wooden toy violin and bow, bows the toy violin furiously, curls bouncing, eyes squeezed shut; behind them on the grass, clearly visible, Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers) tiptoes closer, crouched low, arms out for balance, eyes locked on the bowl with a sneaky grin. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. In slow motion the bowl slides back and forth faster between Chinna and Amma; Chinna dabs his eyes with his cape, Pinky cries a waterfall, Gopi bows wildly. Pandu tiptoes closer. Slow orbit. Over-the-top sentiment. No speech. Keep the 3D animated style, no text."
     },
     {
       "n": 4,
       "lines": [
-        {"who": "amma", "text": "సరే… చెరి సగం తిందాం.", "act": "a soft, relieved, sniffly smile in the voice, warm and gentle"},
-        {"who": "chinna", "text": "Jamun… ఏది?!", "act": "a sudden shocked gasp, high-pitched and panicked"}
-      ]
+        {
+          "who": "amma",
+          "text": "సరే… చెరి సగం తిందాం.",
+          "act": "a soft, relieved, sniffly smile in the voice, warm and gentle"
+        },
+        {
+          "who": "chinna",
+          "text": "Jamun… ఏది?!",
+          "act": "a sudden shocked gasp, high-pitched and panicked"
+        }
+      ],
+      "image_prompt": "Close-up comic reaction shot on a woven plastic picnic mat spread under the big neem tree in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) and Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head), both still sniffling, reach into the bowl together and freeze; in the centre of the frame the small shiny steel bowl is completely empty, only a little smear of golden syrup left at the bottom; Chinna's jaw drops wide open, Amma's eyebrows shoot up in disbelief; beside them Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone), with the toy microphone tucked in his shorts pocket, now holding a small plain wooden toy violin and bow, freezes mid-bow, a violin string sprung loose and curling in the air, his round glasses slipping down his nose; Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop) stops crying, mouth open. No one else is in frame. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. Amma and Chinna reach into the bowl together and freeze at the empty bowl; Chinna's jaw drops, Amma's eyebrows shoot up, Gopi's violin string pings loose. Quick push-in on the empty bowl. Comic shock. No speech. Keep the 3D animated style, no text."
     },
     {
       "n": 5,
       "lines": [
-        {"who": "pinky", "text": "అదిగో… Pandu!", "act": "a tiny, wide-eyed little-girl tattle, pointing, half-whisper"},
-        {"who": "pandu", "text": "త్యాగం మీది… jamun నాది!", "act": "a smug, muffled villain gloat with a full mouth, slow and satisfied"}
-      ]
+        {
+          "who": "pinky",
+          "text": "అదిగో… Pandu!",
+          "act": "a tiny, wide-eyed little-girl tattle, pointing, half-whisper"
+        },
+        {
+          "who": "pandu",
+          "text": "త్యాగం మీది… jamun నాది!",
+          "act": "a smug, muffled villain gloat with a full mouth, slow and satisfied"
+        }
+      ],
+      "image_prompt": "Wide payoff shot in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree, the reveal: on a swing near the neem tree sits Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers), swinging gently, his cheeks stuffed round like a hamster, a shiny drip of golden syrup on his chin, licking his sticky fingers with a huge gap-toothed grin; in the foreground on a woven plastic picnic mat spread under the big neem tree the small shiny steel bowl sits clearly empty; Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop) points straight at Pandu with a tiny wide-eyed tattle face; Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head), Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) and Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone) all turn their heads towards Pandu in one synchronised head-turn, Chinna gaping, Gopi stunned, Amma's mouth twitching into a stunned half-laugh. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. Pinky points; Pandu swings gently, cheeks stuffed, licking syrup off his fingers, grinning. Chinna, Amma and Gopi slowly turn their heads to him together; Amma gives a stunned half-laugh. Slow-motion pan to Pandu. Comic payoff. No speech. Keep the 3D animated style, no text."
     },
     {
       "n": 6,
       "lines": [
-        {"who": "gopi", "text": "మీ ఇంట్లో last piece ఎవరు కొట్టేస్తారు? Tag చేయండి!", "act": "a playful, knowing question to the viewer, leaning in"},
-        {"who": "gopi", "text": "Follow Reel Rasam!", "act": "an upbeat, energetic call to action"}
-      ]
+        {
+          "who": "gopi",
+          "text": "మీ ఇంట్లో last piece ఎవరు కొట్టేస్తారు? Tag చేయండి!",
+          "act": "a playful, knowing question to the viewer, leaning in"
+        },
+        {
+          "who": "gopi",
+          "text": "Follow Reel Rasam!",
+          "act": "an upbeat, energetic call to action"
+        }
+      ],
+      "image_prompt": "Medium shot in a colourful apartment-colony playground in a Hyderabad suburb at golden-hour evening, pastel apartment blocks, a red slide, swings, a sandbox and a big neem tree: in the foreground Gopi (a skinny 8-year-old South Indian boy with big round black glasses and curly hair, wearing an orange t-shirt and blue jeans shorts, holding a toy microphone) grins at the camera, toy microphone up, pointing straight at the viewer; in the background on a woven plastic picnic mat spread under the big neem tree Lakshmi Amma (a 35-year-old South Indian mother with warm brown skin, hair in a neat bun and a small red bindi, wearing a purple cotton saree with a gold border, holding a steel ladle, stern but loving) and Chinna (an 8-year-old South Indian boy with warm brown skin, a round face, big expressive brown eyes and short spiky black hair, wearing a red bath towel tied around his neck as a cape, a plain royal-blue t-shirt, dark grey shorts and white sneakers, with yellow toy sunglasses pushed up on his head) hug each other and sob dramatically over the small empty steel bowl; on a swing near the neem tree Pandu (a chubby 9-year-old South Indian boy with brown skin and a cheeky gap-toothed grin, wearing a black cap backwards, a green t-shirt with a yellow lightning bolt, brown shorts and red slippers) pats his round full tummy with a satisfied grin; Pinky (a 5-year-old South Indian girl with two pigtails tied with pink ribbons, wearing a pink frock with white polka dots and pink sandals, holding a big rainbow swirl lollipop) toddles up to Chinna and holds out her big rainbow swirl lollipop to him with a sweet, generous smile. Nobody is hurt. Household props only: a plain woven plastic picnic mat, a small plain steel bowl, a plain steel ladle; plain red towel cape with no emblem; no costumes of any known character, no superhero suits or emblems, no logos, no text or name labels, no signs, no religious items, no lamps, no festival decorations, no flags, no symbols. 3D animated family-movie style, soft cinematic lighting, expressive faces, vibrant colours, high detail, vertical 9:16 frame, no text, no subtitles, no logos",
+      "video_prompt": "Keep the characters and setting exactly as in the image. Gopi points at the viewer, then gives a big thumbs-up; behind him Amma and Chinna sob and hug over the empty bowl, Pandu pats his tummy on the swing, Pinky holds out her lollipop to Chinna. Gentle push-in. Warm, playful. No speech. Keep the 3D animated style, no text."
     }
   ]
 }
