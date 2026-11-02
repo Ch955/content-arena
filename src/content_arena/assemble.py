@@ -122,6 +122,37 @@ def tts(line: dict, dest: Path, tries: int = 3) -> float:
     return duration(dest)
 
 
+# Fallback voices (Sarvam bulbul:v3) when Gemini is unavailable, e.g. Google billing disabled.
+SARVAM_CAST = {"gopi": ("shubh", 1.0), "chinna": ("aayan", 1.22), "pandu": ("rahul", 1.12),
+               "pinky": ("priya", 1.22), "amma": ("kavitha", 1.0)}
+
+
+def tts_sarvam(line: dict, dest: Path) -> float:
+    speaker, pitch = SARVAM_CAST[line["who"]]
+    r = requests.post("https://api.sarvam.ai/text-to-speech", timeout=60,
+                      headers={"api-subscription-key": config.get("SARVAM_API_KEY", required=True)},
+                      json={"text": line["text"], "target_language_code": "te-IN", "model": "bulbul:v3",
+                            "speaker": speaker, "pace": 1.15, "temperature": 0.9, "speech_sample_rate": SR})
+    r.raise_for_status()
+    raw = dest.with_suffix(".raw.wav")
+    raw.write_bytes(base64.b64decode(r.json()["audios"][0]))
+    af = f"asetrate={SR}*{pitch},aresample={SR},atempo={1 / pitch:.4f}" if pitch != 1.0 else "anull"
+    run(["ffmpeg", "-y", "-i", str(raw), "-af", af, "-ac", "1", "-ar", str(SR), str(dest)])
+    raw.unlink()
+    return duration(dest)
+
+
+def voice_with_fallback(line: dict, dest: Path) -> float:
+    """Gemini voice; if Google refuses (403 — billing/permission), use the Sarvam fallback for this line."""
+    try:
+        return tts(line, dest)
+    except requests.HTTPError as e:
+        if e.response is None or e.response.status_code != 403:
+            raise
+        print(f"Gemini TTS refused ({e.response.status_code}); using Sarvam fallback voice")
+        return tts_sarvam(line, dest)
+
+
 def plan_timeline(shots: list[dict], clip_durs: list[float], voice_durs: list[list[float]]) -> list[dict]:
     """Each shot lasts max(clip, its lines + gaps); lines start 0.3 s into the shot, 0.25 s apart."""
     t, out = 0.0, []
@@ -222,7 +253,7 @@ def _cached(voice, line: dict, dest: Path) -> float:
     return d
 
 
-def assemble(post_dir: Path, voice=tts) -> Path:
+def assemble(post_dir: Path, voice=voice_with_fallback) -> Path:
     post_dir = Path(post_dir).resolve()
     shots = json.loads((post_dir / "shots.json").read_text(encoding="utf-8"))["shots"]
     work = post_dir / "work"; work.mkdir(exist_ok=True)
