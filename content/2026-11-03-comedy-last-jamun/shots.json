@@ -1,0 +1,48 @@
+{
+  "post_slug": "2026-11-03-comedy-last-jamun",
+  "style": "3d-flow",
+  "shots": [
+    {
+      "n": 1,
+      "lines": [
+        {"who": "gopi", "text": "Hey! ఆగండి… scroll చేయకండి!", "act": "an excited, punchy hook straight to the viewer"},
+        {"who": "gopi", "text": "ఒక్కటే jamun… last లో ఎవరు తింటారో guess చేయండి!", "act": "a sly, teasing whisper, like daring the viewer to place a bet"}
+      ]
+    },
+    {
+      "n": 2,
+      "lines": [
+        {"who": "chinna", "text": "అమ్మా… ఈ jamun నువ్వే తిను.", "act": "a slow, trembling, noble voice, hand on heart, fighting back tears"},
+        {"who": "amma", "text": "వద్దు నాన్నా… నువ్వే తిను!", "act": "an overflowing, tearful motherly sob, melodramatic and loving"}
+      ]
+    },
+    {
+      "n": 3,
+      "lines": [
+        {"who": "chinna", "text": "నీ కోసం… ఈ త్యాగం, అమ్మా!", "act": "an over-the-top heroic sacrifice speech, voice cracking with emotion, slow and grand"},
+        {"who": "gopi", "text": "Sentiment level… fifty… ninety… HUNDRED!", "act": "a breathless sports-commentator build, rising fast to a thrilled roar"}
+      ]
+    },
+    {
+      "n": 4,
+      "lines": [
+        {"who": "amma", "text": "సరే… చెరి సగం తిందాం.", "act": "a soft, relieved, sniffly smile in the voice, warm and gentle"},
+        {"who": "chinna", "text": "Jamun… ఏది?!", "act": "a sudden shocked gasp, high-pitched and panicked"}
+      ]
+    },
+    {
+      "n": 5,
+      "lines": [
+        {"who": "pinky", "text": "అదిగో… Pandu!", "act": "a tiny, wide-eyed little-girl tattle, pointing, half-whisper"},
+        {"who": "pandu", "text": "త్యాగం మీది… jamun నాది!", "act": "a smug, muffled villain gloat with a full mouth, slow and satisfied"}
+      ]
+    },
+    {
+      "n": 6,
+      "lines": [
+        {"who": "gopi", "text": "మీ ఇంట్లో last piece ఎవరు కొట్టేస్తారు? Tag చేయండి!", "act": "a playful, knowing question to the viewer, leaning in"},
+        {"who": "gopi", "text": "Follow Reel Rasam!", "act": "an upbeat, energetic call to action"}
+      ]
+    }
+  ]
+}
