@@ -1,7 +1,7 @@
-పొడుపు కథ #1 🧩 తెల్లని పొలంలో నల్లని విత్తనాలు… చేత్తో చల్లుతారు, నోటితో ఏరుతారు! ఏంటది? మీ answer comment లో చెప్పండి 👇 సరైన answer రేపటి reel లో!
+పొడుపు కథ #1 🧩 తెల్లని పొలంలో నల్లని విత్తనాలు… చేత్తో చల్లుతారు, నోటితో ఏరుతారు! ఏంటది? Answer reveal అయ్యే ముందే మీ answer comment లో పెట్టండి 👇 మీ friends కి share చేసి వాళ్ళ knowledge check చేయండి!
 
-Podupu Katha #1 — a classic Telugu riddle. Can you crack it in 5 seconds? Comment your answer; we reveal it tomorrow. A new riddle every day on Reel Rasam.
+Podupu Katha #1 — a classic Telugu riddle. Can you crack it before the answer drops at the end? Comment your answer, share it with a friend, and follow for a new riddle every day.
 
-Follow @_reelrasam for daily podupu kathalu, stories & life lessons 🍲 | YouTube: @reel_rasam
+Follow @_reelrasam for daily podupu kathalu & stories 🍲 | YouTube: @reel_rasam
 
 #reelrasam #podupukathalu #teluguriddles #riddles #telugu
