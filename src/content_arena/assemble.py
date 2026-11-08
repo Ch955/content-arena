@@ -24,8 +24,8 @@ from . import config
 
 SR = 44100
 W, H = 1080, 1920
-TTS_MODEL = "gemini-2.5-flash-tts"
-CHECK_MODEL = "gemini-3-flash-preview"   # listens to each take and confirms it says only the line
+TTS_MODEL = "gemini-2.5-flash-preview-tts"   # Gemini API (AI Studio key, free tier) — Cloud billing is off
+CHECK_MODEL = "gemini-2.5-flash"   # listens to each take and confirms it says only the line
 SPEED = 1.05                             # owner: Gemini's acting is ~5% too slow
 # character -> (Gemini voice, pitch factor, persona). Kids are pitched up.
 CAST = {
@@ -78,21 +78,35 @@ def _post(url: str, body: dict) -> dict:
     return r.json()
 
 
+STUDIO = "https://generativelanguage.googleapis.com/v1beta/models"
+
+
+def _studio(model: str, body: dict) -> dict:
+    """Gemini API call; the AI Studio key is added by the environment's network secret (x-goog-api-key).
+    The free tier allows only a few requests a minute, so 429s are waited out."""
+    import time
+    for wait in (0, 20, 40, 60, 90):
+        if wait:
+            time.sleep(wait)
+        r = requests.post(f"{STUDIO}/{model}:generateContent", json=body, timeout=120)
+        if r.status_code != 429:
+            break
+    r.raise_for_status()
+    return r.json()
+
+
 def direction(line: dict) -> str:
     persona = CAST[line["who"]][2]
     act = line.get("act") or "natural and expressive"
     return (f"You are {persona}. Speak natural Telugu (English words as an Indian kid would say them), "
             f"a little more animated and expressive than usual. The tone should be {act}. "
-            f"Say only the line, nothing else.")
+            f"Say only this line, nothing else:")
 
 
 def heard_ok(expected: str, wav: Path) -> bool:
     """Ask a Gemini listener whether the take says just the line (it sometimes reads the direction aloud)."""
-    _, project = _google()
-    url = (f"https://aiplatform.googleapis.com/v1/projects/{project}/locations/global/"
-           f"publishers/google/models/{CHECK_MODEL}:generateContent")
     try:
-        out = _post(url, {"contents": [{"role": "user", "parts": [
+        out = _studio(CHECK_MODEL, {"contents": [{"role": "user", "parts": [
             {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(wav.read_bytes()).decode()}},
             {"text": "Transcribe exactly what is spoken. Reply with the transcript only."}]}]})
         heard = out["candidates"][0]["content"]["parts"][0]["text"]
@@ -106,20 +120,23 @@ def heard_ok(expected: str, wav: Path) -> bool:
 
 def tts(line: dict, dest: Path, tries: int = 3) -> float:
     voice, pitch, _ = CAST[line["who"]]
-    url = "https://texttospeech.googleapis.com/v1/text:synthesize"
     raw = dest.with_suffix(".raw.wav")
     for _ in range(tries):
-        out = _post(url, {"input": {"prompt": direction(line), "text": line["text"]},
-                          "voice": {"languageCode": "te-IN", "name": voice, "modelName": TTS_MODEL},
-                          "audioConfig": {"audioEncoding": "LINEAR16", "sampleRateHertz": 24000}})
-        raw.write_bytes(base64.b64decode(out["audioContent"]))
+        out = _studio(TTS_MODEL, {
+            "contents": [{"parts": [{"text": f"{direction(line)}\n{line['text']}"}]}],
+            "generationConfig": {"responseModalities": ["AUDIO"],
+                                 "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}})
+        pcm = base64.b64decode(out["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+        pcm_path = dest.with_suffix(".pcm"); pcm_path.write_bytes(pcm)
+        run(["ffmpeg", "-y", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", str(pcm_path), str(raw)])
+        pcm_path.unlink()
         # Too long for its text (a 1-word wail once ran 22 s) or extra words spoken -> take it again.
         if duration(raw) <= max(3.5, 0.16 * len(line["text"])) and heard_ok(line["text"], raw):
             break
     trim = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
     af = f"{trim},asetrate=24000*{pitch},aresample={SR},atempo={SPEED / pitch:.4f}"
     run(["ffmpeg", "-y", "-i", str(raw), "-af", af, "-ac", "1", "-ar", str(SR), str(dest)])
-    raw.unlink()
+    raw.unlink(missing_ok=True)
     return duration(dest)
 
 
@@ -148,7 +165,7 @@ def voice_with_fallback(line: dict, dest: Path) -> float:
     try:
         return tts(line, dest)
     except requests.HTTPError as e:
-        if e.response is None or e.response.status_code != 403:
+        if e.response is None or e.response.status_code not in (403, 429):
             raise
         print(f"Gemini TTS refused ({e.response.status_code}); using Sarvam fallback voice")
         return tts_sarvam(line, dest)

@@ -30,13 +30,24 @@ premium life lessons — **2 posts a day, every post interactive** (a question t
 
 | Pillar | When | Format |
 |---|---|---|
-| `podupu` — పొడుపు కథ (Telugu riddle) | **every day** (slot 1) | card reel: hook → riddle → 5 s countdown → "answer comment చేయండి, answer రేపటి reel లో". The next day's riddle reel **opens by revealing yesterday's answer** (record it as `answer:` in the brief). |
-| `book-story` — a story from a great book: Betala Kathalu, Panchatantra, Tenali Rama, Jataka/Aesop-style fables, big ideas from good non-fiction | **Mon/Wed/Fri/Sun** (slot 2) | card reel, ~60–75 s, ends with a question → countdown → answer/reasoning → "మీరు agree ఆ?" |
-| `life-lesson` — premium, non-cliché lessons (Vemana, Sumathi Satakam, Thirukkural, Marcus Aurelius/Seneca, ideas like second-order thinking) | **Tue/Thu/Sat** (slot 2) | card reel, ~45 s, a dilemma the viewer answers ("A or B? comment చేయండి") |
+| `podupu` — పొడుపు కథ / story-riddle (lateral-thinking mysteries welcome) | **every day** (slot 1) | animated reel, ~35–50 s: hook → riddle/clues → comment-before-reveal + countdown → **answer in the same reel** → why → share/follow |
+| `book-story` — a story from a great book: Betala Kathalu, Panchatantra, Tenali Rama, Jataka/Aesop-style fables, big ideas from good non-fiction | **Mon/Wed/Fri/Sun** (slot 2) | animated reel, ~60–75 s, ends with a question → countdown → answer/reasoning → "మీరు agree ఆ?" |
+| `life-lesson` — premium, non-cliché lessons (Vemana, Sumathi Satakam, Thirukkural, Marcus Aurelius/Seneca, ideas like second-order thinking) | **Tue/Thu/Sat** (slot 2) | animated reel, ~45 s, a dilemma the viewer answers ("A or B? comment చేయండి") |
 
-Every reel ends with: comment prompt + "follow చేయండి, YouTube లో subscribe చేయండి". Reels are **card reels**:
-`shots.json` shots carry a `card` (kicker/emoji/title/body) that `assemble` renders and animates, plus host
-lines (`who: "host"`) and optional `countdown` seconds — no Flow clips or owner uploads needed.
+**Owner's rule (9 Nov 2026): every answer is revealed in the same reel — never held for a later reel.**
+
+**Format (owner-approved 9 Nov 2026): 2D animated reels** made with `tools/anim2d/` (our drawn cast — Gopi hosts,
+Pinky guesses — lip-synced Gemini voices, synthesized music/SFX, Telugu subtitles). Card reels (`shots.json` with
+`card`s → `python -m content_arena assemble`) are the quick fallback. No owner uploads are needed.
+
+**Interaction beats in every reel** (wording adapted to the reel; Tenglish, talk to the viewer):
+1. 0–3 s hook ("Hey! ఆగండి… 90% మంది దీన్ని solve చేయలేరు!").
+2. ~5 s: "Answer చివర్లో ఉంది… చివరి వరకు చూడండి!" (on screen: ANSWER AT THE END 👀).
+3. After the clues: "ఇలాంటివి రోజూ కావాలంటే… follow చేయండి, YouTube లో subscribe!" (animated follow tap).
+4. Right before the reveal: "Answer reveal అయ్యే ముందే… మీ answer comment లో పెట్టండి!" + 5 s countdown.
+5. After the reveal: "మీ answer correct ఆ? Comment లో ✅ పెట్టండి!".
+6. Share: "ఈ riddle మీ friend కి share చేసి… వాళ్ళ knowledge check చేయండి!" (stories: "మీ పిల్లలకి share చేయండి").
+7. Close: "Follow చేయండి… subscribe చేయండి… రేపు ఇంకో twist!" + end card.
 
 **Book and lesson content — how to stay safe and true:**
 - Public-domain classics retold in our own words, or a modern book's *idea* explained in our own words with the
@@ -58,8 +69,8 @@ captions with a Telugu paragraph then an English one. Spoken scripts are natural
 hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), use short punchy lines (one idea each, ≤ ~12 words),
 questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్పగలరా?"), reactions and countdowns
 ("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). Voices (owner-approved
-28 Oct 2026): **Gemini TTS** (`gemini-2.5-flash-tts` via Cloud TTS, service-account robot with the Vertex AI /
-"Agent Platform" User role), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
+28 Oct 2026): **Gemini TTS** — since 9 Nov via the **Gemini API / AI Studio key** (network secret for
+`generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
 `assemble.py`); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
 $300 trial credit). Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
 direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.
@@ -129,6 +140,7 @@ content/<date>-<slug>/                    brief.md, slides.json, caption.md, ren
 src/content_arena/                        Python package
 docs/meta-setup-checklist.md              Meta account/app/token setup
 docs/youtube-setup.md                     YouTube OAuth + API audit (uploads are private until audited)
+tools/anim2d/                             2D animated reel engine (default format; see its README)
 tools/reel/                               reel renderer prototype (HTML scenes + Gemini narrator + ffmpeg)
 .github/workflows/publish.yml             twice-daily publish (guarded by PUBLISH_ENABLED)
 .github/workflows/refresh-ig-token.yml    twice-monthly IG token refresh (guarded by PUBLISH_ENABLED)

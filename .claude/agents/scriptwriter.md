@@ -22,13 +22,11 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
      pillar's goal in `brand/audience.md`. Short spoken lines, small open loops ("last one is the craziest…").
   4. *Retention pass*: name where viewers may drop, cut it or add a real pattern interrupt (reveal, question,
      countdown) — never a random one; then 3 CTA options with the chosen one.
-- **Card reels (from 9 Nov 2026: podupu, book-story, life-lesson)** — format example
-  `content/2026-11-09-podupu-01/` and `content/2026-11-09-book-betal-three-brothers/`. shots.json `"style": "cards"`;
-  each shot has a `card` {kicker, emoji, title, body} (short Telugu; title ≤ ~20 chars a line, use `\n`) and
-  `lines` with `who: "host"` + `act`. Use `"countdown": 5` on the question shot. Podupu: shot 1 reveals yesterday's
-  answer, then the new riddle, countdown, "answer comment చేయండి, answer రేపటి reel లో". Book story: 7–9 shots,
-  question → countdown → answer + reasoning → "మీరు agree ఆ?". Life lesson: hook (a surprising claim) → the idea
-  with its source named → a real-life example → an A-or-B dilemma with countdown → CTA. Every reel ends with
-  "follow చేయండి, YouTube లో subscribe చేయండి". Captions: hashtags relevant to riddles/stories/lessons, not cinema.
+- **Reels from 10 Nov 2026 (podupu, book-story, life-lesson)** are 2D animated (`tools/anim2d/`); reference
+  script: `tools/anim2d/voices.py` (Podupu #1). Write `script.json` in the post folder: {"lines": [{"who": "gopi"|"pinky"|…,
+  "text", "act", "beat"}], "visual_plan": [...]} plus brief.md, caption.md, youtube.md. Hook with a contradiction
+  or challenge in line 1; Pinky makes a funny wrong guess; include all 7 interaction beats from CLAUDE.md, worded
+  for this reel; **reveal the answer in the same reel** with a short "why" that makes it click. Lines ≤ ~10 words.
+  Captions: "answer reveal అయ్యే ముందే comment చేయండి… friends కి share చేయండి".
 - Files go in `content/<YYYY-MM-DD>-<slug>/`. Brief front matter needs `pillar`, `format: reel`, `topic`.
 - Flag any Telugu you're unsure of for the owner.

@@ -18,23 +18,20 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    If any is missing, notify the owner and stop.
 
 ## Evening mode — make TOMORROW's two reels (date = today + 1, IST)
-Since 9 Nov 2026 everything is a **card reel** the office makes alone (no owner uploads).
 1. `python -m content_arena plan --start <tomorrow> --days 1` → `podupu` + `book-story` or `life-lesson`.
-2. **Podupu** (`content/<date>-podupu-NN/`, NN = next number): scriptwriter → shots.json with cards. Shot 1 reveals
-   **yesterday's answer** (read `answer:` from the previous podupu brief) then hooks the new riddle; record the new
-   answer in the brief front matter (`answer:`); never show it in today's reel or caption.
-3. **Book story / life lesson**: researcher (source the story/quote; public domain or the book named) → scriptwriter
-   (cards + host lines + a question, countdown, answer/reasoning or A-or-B, CTA) → quality-checker.
-4. For each: `python -m content_arena assemble content/<post>` → look at 4–6 frames (cards readable, countdown and
-   end card clear) → `python -m content_arena sync content/<post>` → rows `rendered`.
-5. Commit + push the new `content/` folders (never `rendered/`, `clips/` or `work/`).
-6. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 12 PM" (+ anything to check).
+2. Pick strong material: riddles that make people stop (lateral-thinking story-riddles, fair classic podupu kathalu,
+   our own originals) and stories with a hook in the first line. **The answer is always revealed in the same reel.**
+3. Researcher (sources for any story/quote) → scriptwriter (script with the 7 interaction beats in CLAUDE.md,
+   acting notes per line) → editor (2D animation with `tools/anim2d/`, Gemini voices; card reel only as a fallback)
+   → quality-checker → `python -m content_arena sync content/<post>` → rows `rendered`.
+4. Commit + push the new `content/` folders (never `rendered/`, `clips/` or `work/`).
+5. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 12 PM" (+ anything to check).
 
 ## Morning mode — check TODAY
 1. Make sure today's two reels are in the Sheet as `rendered`/`approved`; if the evening run failed, make them now
    (same steps as evening).
-2. If Google voices were unavailable last night and are back now, delete the post's `work/` voice takes and
-   re-assemble + re-sync rows that are still `rendered` (never touch `approved` rows).
+2. If Gemini voices were unavailable last night (Sarvam fallback) and work now, re-voice + re-render rows that
+   are still `rendered` (never touch `approved` rows).
 3. Push-notify only if something needs the owner (missing approval, a problem).
 
 ## Never

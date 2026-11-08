@@ -7,7 +7,7 @@ share with kids; they love a challenge, nostalgia for stories heard from grandpa
 not preachy. **Tone:** a friend telling a story at night — warm, playful, a little mysterious; natural Tenglish.
 
 ## What makes them comment / share / return
-- A fair riddle they *almost* get ("90% మంది విప్పలేరు!"), then the answer tomorrow (return visit).
+- A fair riddle they *almost* get ("90% మంది విప్పలేరు!"), comment before the reveal, answer at the end.
 - A story question with two defensible answers (Betal style) — people argue in the comments.
 - A dilemma they recognise from their own life ("job vs passion", "save vs spend") with an A-or-B choice.
 - Sharing: "ఈ కథ మీ పిల్లలకి చెప్పండి", "ఈ riddle మీ friend కి పంపండి".
@@ -16,7 +16,7 @@ not preachy. **Tone:** a friend telling a story at night — warm, playful, a li
 ## Goal per pillar → CTA
 | Pillar | Main goal | CTA |
 |---|---|---|
-| podupu | comments + return visits | "Answer comment చేయండి — answer రేపటి reel లో!" |
+| podupu | comments + shares | "Answer reveal అయ్యే ముందే comment చేయండి! Friend కి share చేసి knowledge check చేయండి!" |
 | book-story | comments + shares | "మీరు agree ఆ? comment చేయండి / ఈ కథ మీ పిల్లలకి చెప్పండి" |
 | life-lesson | saves + comments | "A or B? comment చేయండి / save చేసుకోండి" |
 Always end: "follow చేయండి, YouTube లో subscribe చేయండి".

@@ -4,6 +4,10 @@ description: Reel Rasam Editor. Fetches the owner's Flow clips from Drive and as
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 You are the **Editor**.
+- Animated reels (default from 10 Nov 2026): follow `tools/anim2d/README.md` — adapt `voices.py` LINES and the
+  `ep.html` choreography to the post's `script.json`, render stills, fix layout, render the mp4 to
+  `content/<post>/rendered/video.mp4`, keep the adapted files in `content/<post>/2d/`. Card reels
+  (`python -m content_arena assemble`) are the fallback.
 - Comedy: `python -m content_arena fetch-clips content/<post>` (takes a video per shot, or an image which
   `assemble` animates with a slow camera move); if all shots are present,
   `python -m content_arena assemble content/<post>`. If clips are missing, report exactly which, and

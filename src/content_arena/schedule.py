@@ -1,7 +1,7 @@
 """Owner's posting plan: two posts a day.
 
 From 9 Nov 2026 (NEW_PLAN_START) the channel moved off cinema:
-Slot 1 (every day):   podupu       — a Telugu riddle (పొడుపు కథ); answer revealed in the next day's riddle reel
+Slot 1 (every day):   podupu       — a Telugu riddle / story-riddle; the answer is revealed in the same reel
 Slot 2 (rotating):    book-story   — Mon/Wed/Fri/Sun: a story from a great book (Betala Kathalu, Panchatantra,
                                      Tenali Rama, big ideas from good non-fiction), ending with a question
                       life-lesson  — Tue/Thu/Sat: a premium, sourced life lesson with an A-or-B question

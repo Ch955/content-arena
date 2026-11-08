@@ -371,14 +371,15 @@ class GeminiVoiceTests(unittest.TestCase):
         from content_arena import assemble
         d = assemble.direction({"who": "pinky", "text": "x", "act": "a frightened whisper"})
         self.assertIn("a frightened whisper", d)
-        self.assertIn("Say only the line", d)
+        self.assertIn("Say only this line", d)
 
     def test_retakes_overlong_or_wrong_takes(self):
         from unittest import mock
         from content_arena import assemble
         tmp = Path(tempfile.mkdtemp())
         durs = iter([22.0, 2.0, 2.0, 1.9])  # take 1 too long, take 2 fine (then final output)
-        with mock.patch.object(assemble, "_post", return_value={"audioContent": ""}) as post, \
+        studio = {"candidates": [{"content": {"parts": [{"inlineData": {"data": ""}}]}}]}
+        with mock.patch.object(assemble, "_studio", return_value=studio) as post, \
              mock.patch.object(assemble, "duration", side_effect=lambda p: next(durs)), \
              mock.patch.object(assemble, "heard_ok", return_value=True), \
              mock.patch.object(assemble, "run"):

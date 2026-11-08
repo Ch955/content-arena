@@ -1,0 +1,449 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E0E12}
+svg{display:block}
+.sub{position:absolute;left:60px;right:60px;bottom:190px;text-align:center;font-family:Rama,NotoTe;font-size:56px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 18px rgba(0,0,0,.8);opacity:0}
+.who{display:inline-block;font-family:Anton;font-size:34px;letter-spacing:2px;padding:4px 16px;border-radius:10px;margin-bottom:10px;text-shadow:none;color:#0E0E12}
+.top{position:absolute;top:70px;left:50px;right:50px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B700;color:#0E0E12;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none}
+.tag{font-family:Anton;font-size:28px;letter-spacing:2px;background:#2E7D32;color:#fff;padding:7px 16px;border-radius:8px}
+.title{position:absolute;top:165px;left:0;right:0;text-align:center;opacity:0}
+.title .t{font-family:Rama,NotoTe;font-size:104px;line-height:1.15;color:#F5B700;text-shadow:0 6px 0 #000,0 0 20px rgba(0,0,0,.5)}
+.title small{display:block;font-family:Anton;font-size:38px;color:#fff;letter-spacing:4px;text-shadow:0 4px 0 #000}
+.title .hook{display:inline-block;margin-top:16px;font-family:Rama,NotoTe;font-size:56px;color:#0E0E12;background:#fff;padding:6px 26px;border-radius:14px;border:5px solid #0E0E12}
+.bar{position:absolute;left:0;right:0;height:0;background:#000}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+#clock{position:absolute;top:150px;left:50%;width:250px;height:270px;margin-left:-125px;opacity:0}
+#digit{position:absolute;top:540px;left:0;right:0;text-align:center;font-family:Anton;font-size:400px;line-height:1;color:#F5B700;
+  -webkit-text-stroke:12px #0E0E12;paint-order:stroke fill;text-shadow:0 14px 0 #0E0E12;opacity:0}
+#think{position:absolute;bottom:250px;left:0;right:0;text-align:center;font-family:Rama,NotoTe;font-size:60px;color:#fff;text-shadow:0 4px 0 #000;opacity:0}
+#ans{position:absolute;top:175px;left:0;right:0;text-align:center;opacity:0}
+#ans .k{display:inline-block;font-family:Anton;font-size:40px;letter-spacing:4px;color:#0E0E12;background:#7CDA6A;padding:4px 22px;border-radius:10px;border:4px solid #0E0E12}
+#ans .a{display:block;margin-top:6px;font-family:Rama,NotoTe;font-size:110px;color:#fff;text-shadow:0 7px 0 #0E0E12,0 0 24px rgba(0,0,0,.5)}
+.end{position:absolute;left:40px;right:40px;top:150px;text-align:center;opacity:0;background:rgba(14,14,18,.55);border-radius:28px;padding:22px 10px 26px}
+.end .q{font-family:Rama,NotoTe;font-size:70px;color:#fff;text-shadow:0 5px 0 #000;line-height:1.25}
+.end .c{display:inline-block;margin-top:12px;font-family:Rama,NotoTe;font-size:46px;color:#0E0E12;background:#fff;border:5px solid #0E0E12;border-radius:16px;padding:4px 22px;opacity:0}
+.end .f{margin-top:16px;font-family:Anton;font-size:60px;letter-spacing:1px;color:#F5B700;text-shadow:0 5px 0 #000;line-height:1.2;opacity:0}
+.end .f span{color:#fff}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="bar" id="barT" style="top:0"></div><div class="bar" id="barB" style="bottom:0"></div>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">PODUPU KATHA</div></div>
+<div class="title" id="title"><div class="t">పొడుపు కథ #1 🧩</div><small>TELUGU RIDDLE</small><span class="hook">90% మంది విప్పలేరు!</span></div>
+<div id="clock"><svg width="250" height="270" viewBox="-125 -145 250 270">
+  <g id="clockBody">
+  <path d="M-62 -98 A40 40 0 0 1 -112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <path d="M62 -98 A40 40 0 0 0 112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <line x1="-60" y1="92" x2="-82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <line x1="60" y1="92" x2="82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <circle r="104" fill="#E63946" stroke="#0E0E12" stroke-width="8"/>
+  <circle r="86" fill="#FFFDF5" stroke="#0E0E12" stroke-width="5"/>
+  <circle id="arc" r="62" fill="none" stroke="#F5B700" stroke-width="40" transform="rotate(-90)" stroke-dasharray="389.6 389.6" opacity=".55"/>
+  <g id="ticks"></g>
+  <line id="hand" x1="0" y1="10" x2="0" y2="-70" stroke="#0E0E12" stroke-width="9" stroke-linecap="round"/>
+  <circle r="11" fill="#0E0E12"/>
+  </g></svg></div>
+<div id="digit">5</div>
+<div id="think">మీరు కూడా ఆలోచించండి... 🤔</div>
+<div id="ans"><span class="k">ANSWER ✅</span><span class="a">అక్షరాలు!</span></div>
+<div class="end" id="end"><div class="q">మీకు ముందే తెలుసా? 🤔</div><div class="c" id="endC">💬 Comment లో చెప్పండి!</div>
+  <div class="f" id="endF">FOLLOW <span>@_REELRASAM</span> ·<br>SUBSCRIBE <span>@REEL_RASAM</span></div></div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,k)=>a+(b-a)*k;
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const out=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=2.2;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};   // overshoot pop
+const txt=(s,attrs,parent)=>{const e=el("text",attrs,parent);e.textContent=s;return e};
+
+// ---------- defs + world ----------
+const defs=el("defs",{});
+const sky=el("linearGradient",{id:"sky",x1:0,y1:0,x2:0,y2:1},defs);   // golden-hour evening
+el("stop",{offset:"0","stop-color":"#FF9E6D"},sky);el("stop",{offset:"0.55","stop-color":"#FFC98B"},sky);el("stop",{offset:"1","stop-color":"#FFE9B8"},sky);
+const vig=el("radialGradient",{id:"vig",cx:.5,cy:.5,r:.75},defs);
+el("stop",{offset:".55","stop-color":"#000","stop-opacity":"0"},vig);el("stop",{offset:"1","stop-color":"#000","stop-opacity":".7"},vig);
+const slate=el("radialGradient",{id:"slate",cx:.45,cy:.4,r:.8},defs);
+el("stop",{offset:"0","stop-color":"#3C8A55"},slate);el("stop",{offset:"1","stop-color":"#245A37"},slate);
+
+const cam=el("g",{});
+el("rect",{x:-800,y:-600,width:3400,height:2400,fill:"url(#sky)"},cam);
+el("circle",{cx:820,cy:520,r:95,fill:"#FFE082",opacity:.95},cam);
+el("circle",{cx:820,cy:520,r:150,fill:"#FFE082",opacity:.25},cam);
+const clouds=[[150,330,1],[620,250,.8],[980,420,1.1],[1400,300,.9]].map(([x,y,s])=>{const g=el("g",{},cam);
+  [[0,0,60],[55,-20,70],[115,0,55],[55,20,50]].forEach(([dx,dy,r])=>el("circle",{cx:dx,cy:dy,r:r*s,fill:"#FFF3E0",opacity:.9},g));return {g,x,y}});
+// birds
+const birds=[...Array(3)].map(()=>el("path",{d:"M-18 0 Q-9 -10 0 0 Q9 -10 18 0",stroke:"#5D4037","stroke-width":4,fill:"none"},cam));
+// colony buildings (pastel)
+[[-420,860,260,"#F4A261"],[-140,820,260,"#F7C59F"],[150,900,220,"#E9C46A"],[380,780,250,"#90BE6D"],[640,860,230,"#F28482"],[880,800,300,"#84A59D"],[1190,880,240,"#B8A1D9"],[1440,820,280,"#F4A261"]].forEach(([x,y,w,c])=>{
+  el("rect",{x,y,width:w,height:1300-y,fill:c,rx:6},cam);
+  for(let r=y+40;r<1220;r+=90)for(let cx=x+30;cx<x+w-40;cx+=70)el("rect",{x:cx,y:r,width:38,height:48,fill:"#FFF8E7",rx:4,opacity:.85},cam)});
+// festive bunting across the courtyard
+const bunt=el("g",{},cam);
+el("path",{d:"M-300 640 Q300 760 900 650 Q1300 600 1700 700",stroke:"#5D4037","stroke-width":4,fill:"none"},bunt);
+const flagCols=["#E63946","#F5B700","#2E7D32","#1E88E5","#8E24AA"];
+const flags=[];for(let i=0;i<26;i++){const x=-280+i*76, k=(x+300)/1200; const y=x<900?lerp(640,650,k)+Math.sin(k*Math.PI)*58:650+((x-900)/800)*50-Math.sin((x-900)/800*Math.PI)*25;
+  flags.push({e:el("path",{d:"M-18 0 L18 0 L0 34 Z",fill:flagCols[i%5]},bunt),x,y})}
+// ground
+el("rect",{x:-800,y:1270,width:3400,height:1000,fill:"#C9A66B"},cam);
+el("rect",{x:-800,y:1260,width:3400,height:30,fill:"#6DBE45"},cam);
+el("rect",{x:-800,y:1290,width:3400,height:120,fill:"#9CCB5B",opacity:.55},cam);
+[[60,1450],[300,1520],[760,1480],[1100,1540],[520,1600]].forEach(([x,y])=>el("ellipse",{cx:x,cy:y,rx:46,ry:9,fill:"#A8875A",opacity:.6},cam));
+// potted tulasi-style plant + a stool at the edges
+el("path",{d:"M1150 1300 L1170 1220 L1250 1220 L1270 1300 Z",fill:"#C1440E"},cam);
+[[1185,1180,40],[1230,1165,44],[1210,1130,36]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#3E8E41"},cam));
+el("rect",{x:-60,y:1220,width:150,height:20,rx:6,fill:"#8D6E63"},cam);el("path",{d:"M-45 1240 L-55 1300 M75 1240 L85 1300",stroke:"#6D4C41","stroke-width":12},cam);
+
+// ---------- the chalkboard (world) ----------
+const BX=380,BY=620,BW=540,BH=400, GROUND=1290;
+const FW=440,FH=280, FCX=BW/2, FCY=80+FH/2;          // field, board-local centre
+const board=el("g",{transform:`translate(${BX},${BY})`},cam);
+el("path",{d:`M80 ${BH} L50 ${GROUND-BY} M${BW-80} ${BH} L${BW-50} ${GROUND-BY}`,stroke:"#6D4C41","stroke-width":24,"stroke-linecap":"round"},board);
+el("ellipse",{cx:BW/2,cy:GROUND-BY+6,rx:320,ry:20,fill:"#000",opacity:.12},board);
+el("rect",{x:-24,y:-24,width:BW+48,height:BH+48,rx:16,fill:"#8D5524",stroke:"#4E2E12","stroke-width":6},board);
+el("rect",{x:0,y:0,width:BW,height:BH,rx:6,fill:"url(#slate)"},board);
+[[90,60,70],[400,320,90],[300,120,60],[120,330,50]].forEach(([x,y,r])=>el("ellipse",{cx:x,cy:y,rx:r,ry:r*.45,fill:"#fff",opacity:.05},board));
+el("rect",{x:-14,y:BH+16,width:BW+28,height:18,rx:6,fill:"#6D4C41"},board);
+el("rect",{x:60,y:BH+8,width:44,height:12,rx:5,fill:"#FAFAFA"},board);el("rect",{x:120,y:BH+9,width:30,height:11,rx:5,fill:"#FFE082"},board);
+const head1=txt("పొడుపు కథ",{x:BW/2,y:58,"font-family":"Rama, NotoTe","font-size":44,fill:"#F1F8E9","text-anchor":"middle",opacity:.92},board);
+const head2=txt("అక్షరాలు! ✅",{x:BW/2,y:58,"font-family":"Rama, NotoTe","font-size":44,fill:"#FFF59D","text-anchor":"middle",opacity:0},board);
+el("path",{d:`M${BW/2-110} 72 q110 10 220 0`,stroke:"#F1F8E9","stroke-width":4,fill:"none",opacity:.6},board);
+// the field (morphs into paper)
+const fieldG=el("g",{},board), fieldIn=el("g",{},fieldG);
+const fBase=el("rect",{x:-FW/2,y:-FH/2,width:FW,height:FH,rx:12,fill:"#FFF6E0",stroke:"#CDB98F","stroke-width":5},fieldIn);
+const furrows=el("g",{},fieldIn);
+for(let i=0;i<6;i++){const y=-FH/2+30+i*44;el("path",{d:`M${-FW/2+16} ${y} Q${-FW/4} ${y-10} 0 ${y} T${FW/2-16} ${y}`,stroke:"#E2CFA6","stroke-width":6,fill:"none","stroke-linecap":"round"},furrows)}
+[[-FW/2+8,-FH/2+10],[FW/2-30,-FH/2+12],[-FW/2+14,FH/2-24],[FW/2-26,FH/2-28]].forEach(([x,y])=>{el("path",{d:`M${x+10} ${y+14} q-12 -14 -6 -24 M${x+10} ${y+14} q10 -16 18 -18`,stroke:"#66BB6A","stroke-width":5,fill:"none","stroke-linecap":"round"},furrows)});
+const paper=el("g",{opacity:0},fieldIn);
+for(let i=0;i<7;i++){const y=-FH/2+40+i*36;el("line",{x1:-FW/2+12,y1:y,x2:FW/2-12,y2:y,stroke:"#90CAF9","stroke-width":3},paper)}
+el("line",{x1:-FW/2+52,y1:-FH/2+6,x2:-FW/2+52,y2:FH/2-6,stroke:"#EF9A9A","stroke-width":4},paper);
+el("path",{d:`M${FW/2-46} ${-FH/2} L${FW/2} ${-FH/2+46} L${FW/2-46} ${-FH/2+46} Z`,fill:"#E3E3E3",stroke:"#BDBDBD","stroke-width":3},paper);
+const fold=el("path",{d:`M${FW/2-46} ${-FH/2} L${FW/2} ${-FH/2} L${FW/2} ${-FH/2+46} Z`,fill:"url(#slate)"},paper);
+// seeds: 0-4 become letters; 0,4,7 pop in on "నల్లని విత్తనాలు"; the rest are sown by the hand; 9-11 get picked by the mouth
+const SEEDS=[[-150,-70],[-60,40],[20,-90],[110,35],[170,-62],[-180,88],[-20,104],[60,-24],[150,100],[-122,4],[-28,-14],[78,8]];
+const POP=[0,4,7], PICK=[9,10,11];
+const seeds=SEEDS.map((p,i)=>{const g=el("g",{},fieldIn);el("ellipse",{cx:0,cy:0,rx:16,ry:10,fill:"#1b1b1b"},g);el("ellipse",{cx:-5,cy:-4,rx:5,ry:2.5,fill:"#fff",opacity:.55},g);return g});
+const LET=["అ","ఆ","ఇ","ఈ","ఉ"], LX=i=>-184+i*92, LY=14;
+const letters=LET.map((s,i)=>txt(s,{x:0,y:0,"font-family":"Rama, NotoTe","font-size":82,"text-anchor":"middle","dominant-baseline":"central",fill:"#1b1b1b",opacity:0},fieldIn));
+const scrib=el("path",{d:`M-205 ${LY+62} `+[...Array(21)].map((_,k)=>`L${-205+k*20.5} ${LY+62+(k%2?7:-5)}`).join(" "),stroke:"#1E50C8","stroke-width":6,fill:"none","stroke-linecap":"round","stroke-linejoin":"round"},fieldIn);
+const waves=[...Array(3)].map(()=>el("path",{stroke:"#E65100","stroke-width":6,fill:"none","stroke-linecap":"round",opacity:0},fieldIn));
+const handE=txt("🤚",{"font-size":96,"text-anchor":"middle","dominant-baseline":"central",opacity:0},fieldIn);
+const writeE=txt("✍️",{"font-size":100,"text-anchor":"middle","dominant-baseline":"central",opacity:0},fieldIn);
+const mouthE=txt("👄",{"font-size":84,"text-anchor":"middle","dominant-baseline":"central",opacity:0},fieldIn);
+const qmark=txt("?",{x:FCX,y:FCY+86,"font-family":"Anton","font-size":250,fill:"#FFFFFF",stroke:"#0E0E12","stroke-width":10,"paint-order":"stroke","text-anchor":"middle",opacity:0},board);
+// chalk-dust puffs (seed -> letter)
+const puffs=[...Array(5)].map(()=>el("circle",{r:30,fill:"#fff",opacity:0},fieldIn));
+
+// ---------- characters ----------
+function makeChar(o){
+  const g=el("g",{},o.parent||cam), body=el("g",{},g);
+  const legL=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body),legR=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body);
+  const shoeL=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body),shoeR=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body);
+  if(o.dress) el("path",{d:"M-70 -150 L70 -150 L95 -40 L-95 -40 Z",fill:o.dress},body);
+  else el("rect",{x:-62,y:-175,width:124,height:60,rx:16,fill:o.shorts},body);
+  el("rect",{x:-62,y:-300,width:124,height:150,rx:36,fill:o.shirt},body);
+  if(o.dots) [[-30,-260],[20,-230],[-15,-190],[35,-280],[30,-175]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:7,fill:"#fff",opacity:.9},body));
+  const armL=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body),armR=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body);
+  const handItem=el("g",{},body), items={};
+  const head=el("g",{},body);
+  if(o.pigtails){el("circle",{cx:-112,cy:-430,r:38,fill:o.hair},head);el("circle",{cx:112,cy:-430,r:38,fill:o.hair},head);
+    [-1,1].forEach(s=>el("path",{d:`M${s*90} -470 l${s*30} -18 l${-s*4} 30 z`,fill:"#F06292"},head))}
+  if(o.curls) [[-90,-470],[-55,-505],[-15,-520],[25,-518],[62,-500],[92,-468],[-100,-430],[100,-430]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:30,fill:o.hair},head));
+  el("circle",{cx:0,cy:-400,r:105,fill:o.skin},head);
+  el("path",{d:o.hairPath||"M-105 -410 Q-100 -520 0 -515 Q100 -520 105 -410 Q60 -470 0 -455 Q-60 -470 -105 -410Z",fill:o.hair},head);
+  el("circle",{cx:-60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);el("circle",{cx:60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);
+  const eyeW=[-36,36].map(x=>el("ellipse",{cx:x,cy:-405,rx:21,ry:25,fill:"#fff"},head));
+  const pup=[-36,36].map(x=>el("circle",{cx:x,cy:-402,r:11,fill:"#1b1b1b"},head));
+  const lids=[-36,36].map(x=>el("path",{d:`M${x-22} -404 Q${x} -390 ${x+22} -404`,stroke:"#3a2a1a","stroke-width":6,fill:"none",opacity:0},head));
+  const brow=[-1,1].map(s=>el("line",{stroke:"#3a2a1a","stroke-width":9,"stroke-linecap":"round"},head));
+  const mouth=el("ellipse",{cx:0,cy:-345,rx:20,ry:4,fill:"#7A1F1F"},head);
+  const smile=el("path",{d:"M-34 -356 Q0 -318 34 -356",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  const grin=el("g",{opacity:0},head);el("path",{d:"M-48 -362 Q0 -296 48 -362 Z",fill:"#7A1F1F"},grin);
+  el("rect",{x:-40,y:-362,width:34,height:13,fill:"#fff"},grin);el("rect",{x:6,y:-362,width:34,height:13,fill:"#fff"},grin);
+  const hmm=el("path",{d:"M-26 -342 Q-6 -350 24 -338",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  if(o.glasses==="round"){const gl=el("g",{},head);[-38,38].forEach(x=>el("circle",{cx:x,cy:-405,r:33,fill:"rgba(255,255,255,.12)",stroke:"#111","stroke-width":9},gl));el("line",{x1:-6,y1:-410,x2:6,y2:-410,stroke:"#111","stroke-width":7},gl)}
+  if(o.items){
+    if(o.items.includes("mic")){const it=items.mic=el("g",{},handItem);el("rect",{x:-9,y:-70,width:18,height:80,rx:6,fill:"#424242"},it);el("circle",{cx:0,cy:-82,r:24,fill:"#9E9E9E",stroke:"#424242","stroke-width":4},it)}
+    if(o.items.includes("palm")){const it=items.palm=el("g",{},handItem);txt("✋",{x:0,y:-8,"font-size":78,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("point")){const it=items.point=el("g",{},handItem);txt("👉",{x:14,y:-6,"font-size":70,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("stick")){const it=items.stick=el("g",{},handItem);el("line",{x1:0,y1:10,x2:0,y2:-150,stroke:"#8D6E63","stroke-width":9,"stroke-linecap":"round"},it);el("circle",{cx:0,cy:-152,r:8,fill:"#FAFAFA"},it)}
+  }
+  const st={x:0,y:0,s:1,flip:1,rot:0,walk:0,armL:200,armR:160,lenL:115,lenR:115,talk:0,brow:"n",look:0,lookY:0,blink:0,hop:0,item:"",itemRot:0,
+            smile:0,grin:0,hmm:0,shut:0,jaw:0,headRot:0,vis:1};
+  function draw(){
+    const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) rotate(${k.rot}) scale(${k.s*k.flip},${k.s})`); g.style.opacity=k.vis;
+    head.setAttribute("transform",`rotate(${k.headRot} 0 -300)`);
+    const sw=Math.sin(k.walk)*28, ll=150;
+    [[legL,shoeL,-28,sw],[legR,shoeR,28,-sw]].forEach(([l,sh,hx,a])=>{const r=a*Math.PI/180,x2=hx+Math.sin(r)*ll,y2=-150+Math.cos(r)*ll;
+      l.setAttribute("x1",hx);l.setAttribute("y1",-150);l.setAttribute("x2",x2);l.setAttribute("y2",y2);sh.setAttribute("cx",x2+8);sh.setAttribute("cy",y2)});
+    [[armL,-58,k.armL,k.lenL],[armR,58,k.armR,k.lenR]].forEach(([a,sx,deg,len])=>{const r=deg*Math.PI/180;a.setAttribute("x1",sx);a.setAttribute("y1",-280);
+      a.setAttribute("x2",sx+Math.sin(r)*len);a.setAttribute("y2",-280-Math.cos(r)*len)});
+    const r=k.armR*Math.PI/180; handItem.setAttribute("transform",`translate(${58+Math.sin(r)*(k.lenR+3)},${-280-Math.cos(r)*(k.lenR+3)}) rotate(${k.itemRot})`);
+    for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    const open=Math.max(k.talk,k.jaw), quiet=open<0.15;
+    mouth.setAttribute("ry",3+22*open+18*k.jaw); mouth.setAttribute("rx",18+6*open);
+    mouth.style.opacity=quiet&&(k.grin||k.smile||k.hmm)?0:1;
+    smile.style.opacity=k.smile&&quiet&&!k.grin?1:0; grin.style.opacity=k.grin&&quiet?1:0; hmm.style.opacity=k.hmm&&quiet&&!k.smile&&!k.grin?1:0;
+    const closed=k.blink||k.shut; eyeW.forEach(e=>e.setAttribute("ry",closed?2:25*(1+0.2*k.jaw))); lids.forEach(l=>l.style.opacity=closed?1:0);
+    pup.forEach((p,i)=>{p.setAttribute("cx",(i?36:-36)+k.look*8);p.setAttribute("cy",-402+k.lookY*8);p.style.opacity=closed?0:1});
+    brow.forEach((b,i)=>{const s=i?1:-1,B={a:[-424,-446],s:[-452,-432],u:[-462,-458],n:[-440,-440],q:i?[-468,-462]:[-436,-440]}[k.brow];
+      b.setAttribute("x1",s*14);b.setAttribute("y1",B[0]);b.setAttribute("x2",s*58);b.setAttribute("y2",B[1])});
+  }
+  function aimLocal(side,lx,ly,len){const sx=side==="L"?-58:58,dx=lx-sx,dy=ly+280,d=Math.hypot(dx,dy);const a=Math.atan2(dx,-dy)*180/Math.PI;
+    if(side==="L"){st.armL=a;st.lenL=len||Math.min(d,140)}else{st.armR=a;st.lenR=len||Math.min(d,140)}}
+  function aim(side,wx,wy,len){const lx=(wx-st.x)/(st.s*st.flip), ly=(wy-(st.y-st.hop))/st.s; aimLocal(side,lx,ly,len)}
+  return {st,draw,g,aim,aimLocal};
+}
+const C={
+  gopi:  makeChar({skin:"#B97A45",hair:"#1b1b1b",shirt:"#FB8C00",shorts:"#1E5AA8",curls:true,glasses:"round",items:["mic","stick","palm","point"]}),
+  pinky: makeChar({skin:"#D49A6A",hair:"#2b1a10",shirt:"#EC407A",dress:"#F48FB1",dots:true,pigtails:true,shoe:"#F06292"}),
+};
+// Pinky's guess bubble (world)
+const bub=el("g",{opacity:0},cam);
+el("path",{d:"M-150 -80 Q-150 -110 -120 -110 L120 -110 Q150 -110 150 -80 L150 60 Q150 90 120 90 L40 90 L70 140 L-10 90 L-120 90 Q-150 90 -150 60 Z",fill:"#fff",stroke:"#0E0E12","stroke-width":7},bub);
+[[-95,-50,15],[-70,-62,-20],[-48,-44,40],[-82,-30,70],[-58,-25,-50],[-110,-28,10],[-36,-64,25]].forEach(([x,y,r])=>el("ellipse",{cx:x,cy:y,rx:11,ry:6.5,fill:"#F3E5C0",stroke:"#8D6E63","stroke-width":2.5,transform:`rotate(${r} ${x} ${y})`},bub));
+txt("✨",{x:-10,y:-30,"font-size":40,"text-anchor":"middle"},bub);
+txt("నువ్వులా?",{x:0,y:58,"font-family":"Rama, NotoTe","font-size":58,"text-anchor":"middle",fill:"#0E0E12"},bub);
+txt("🤔",{x:95,y:-24,"font-size":56,"text-anchor":"middle"},bub);
+const cross=el("g",{opacity:0},bub);
+el("path",{d:"M-95 -85 L95 75 M95 -85 L-95 75",stroke:"#fff","stroke-width":44,"stroke-linecap":"round"},cross);
+el("path",{d:"M-95 -85 L95 75 M95 -85 L-95 75",stroke:"#E53935","stroke-width":28,"stroke-linecap":"round"},cross);
+// thought dots + "?" for the countdown
+const thought=el("g",{opacity:0},cam);
+[[0,0,10],[-26,-34,15],[-60,-78,22]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#fff",stroke:"#0E0E12","stroke-width":4},thought));
+const tq=txt("?",{x:-96,y:-104,"font-family":"Anton","font-size":110,fill:"#E63946",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke","text-anchor":"middle"},thought);
+const sparks=[...Array(7)].map(()=>txt("✨",{"font-size":52,"text-anchor":"middle",opacity:0},cam));
+const clapFx=[...Array(4)].map(()=>el("path",{stroke:"#fff","stroke-width":7,"stroke-linecap":"round",fill:"none",opacity:0},cam));
+const exclaim=txt("!",{"font-family":"Anton","font-size":120,fill:"#F5B700",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke","text-anchor":"middle",opacity:0},cam);
+// screen-space: confetti, vignette, speed streaks
+const conf=[...Array(46)].map((_,i)=>el("rect",{width:18,height:30,rx:4,fill:["#E63946","#F5B700","#2E7D32","#1E88E5","#8E24AA","#fff"][i%6],opacity:0}));
+const vigR=el("rect",{x:0,y:0,width:1080,height:1920,fill:"url(#vig)",opacity:0});
+const streaks=[...Array(14)].map(()=>el("line",{stroke:"#fff","stroke-width":6,opacity:0}));
+// clock ticks
+const tickG=document.getElementById("ticks");
+for(let i=0;i<5;i++){const a=i*72*Math.PI/180;el("line",{x1:Math.sin(a)*70,y1:-Math.cos(a)*70,x2:Math.sin(a)*82,y2:-Math.cos(a)*82,stroke:"#0E0E12","stroke-width":8,"stroke-linecap":"round"},tickG)}
+
+// ---------- timeline ----------
+const COLORS={gopi:"#F5B700",pinky:"#F48FB1"}, NAMES={gopi:"GOPI",pinky:"PINKY"};
+let TL;
+function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
+function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
+const S=i=>TL.lines[i].start, E=i=>TL.lines[i].start+TL.lines[i].dur;
+// spoken phrases of a line (from the loudness envelope); falls back to an even split
+const _seg={};
+function seg(i,k,n){const key=i+"/"+n; if(!_seg[key]){const l=TL.lines[i],e=l.env.concat([0,0,0,0,0,0]);let segs=[],on=null,low=0;
+  e.forEach((v,f)=>{if(v>0.1){if(on===null)on=f;low=0}else{low++;if(on!==null&&low>=5){segs.push([l.start+on/30,l.start+(f-low+1)/30]);on=null}}});
+  if(segs.length!==n){segs=[...Array(n)].map((_,j)=>[l.start+l.dur*j/n,l.start+l.dur*(j+1)/n])} _seg[key]=segs} return _seg[key][k]}
+
+const GX=240,GY=1330,GS=0.95, PX=1000,PY=1350,PS=0.78;
+// field-local position -> world
+const F2W=(x,y)=>[BX+FCX+x,BY+FCY+y];
+
+window.render=function(t){
+  const gp=C.gopi.st, pi=C.pinky.st;
+  const sh2=S(1)-0.35, sh3=S(3)-0.45, CD0=E(4)+0.35, CD1=CD0+TL.countdown, sh6=S(9)-0.3;
+  const shot=t<sh2?1:t<sh3?2:t<CD0?3:t<CD1?4:t<sh6?5:6;
+  for(const k in C){const s=C[k].st;Object.assign(s,{talk:talkOf(k,t),blink:((t*0.7+k.length)%3.1)<0.12?1:0,hop:0,rot:0,brow:"n",look:0,lookY:0,
+    walk:0,smile:0,grin:0,hmm:0,shut:0,jaw:0,item:"",itemRot:0,armL:200,armR:160,lenL:115,lenR:115,flip:1,headRot:0,vis:1})}
+  // ---------------- Gopi ----------------
+  Object.assign(gp,{x:GX,y:GY,s:GS,flip:1,item:"stick",look:1,lookY:-0.5,smile:1});
+  gp.headRot=Math.sin(t*2.1)*2.5+gp.talk*3*Math.sin(t*9);
+  const pointStick=(wx,wy)=>{C.gopi.aim("R",wx,wy,135); gp.itemRot=gp.armR};
+  // ---------------- board state ----------------
+  const [a1,b1]=seg(1,0,2), [a1b,b1b]=seg(1,1,2), [a2,b2]=seg(2,0,3), [a2b,b2b]=seg(2,1,3), [a2c]=seg(2,2,3);
+  const fieldIn_=back((t-a1+0.15)/0.45);
+  const dim=t>a2c&&t<CD1+0.05?lerp(1,0.4,clamp((t-a2c)/0.3)):1;
+  // reveal timing
+  const d6=TL.lines[6].dur, M0=S(6), M1=S(6)+0.42*d6, LT=i=>M1+0.1+i*((E(6)+0.25-M1)/5);
+  const [a7,b7]=seg(7,0,2), [a7b,b7b]=seg(7,1,2);
+  const morph=ease((t-M0)/(M1-M0));
+  fieldG.setAttribute("transform",`translate(${FCX},${FCY}) rotate(${-3*morph}) scale(${Math.max(0.001,fieldIn_)*(1+0.04*morph)})`);
+  fieldIn.style.opacity=dim;
+  fBase.setAttribute("fill",morph>0?`rgb(${lerp(255,255,morph)},${lerp(246,255,morph)},${lerp(224,252,morph)})`:"#FFF6E0");
+  fBase.setAttribute("stroke",morph>0.5?"#BDBDBD":"#CDB98F");
+  furrows.style.opacity=1-morph; paper.style.opacity=morph;
+  head1.style.opacity=t<CD0||(t>=CD1&&t<S(5))?0.92:0; head2.style.opacity=t>=S(5)?clamp((t-S(5))/0.3):0;
+  head2.textContent=t<M0?"అక్షరాలు! ✅":t<M1?"పొలం = కాగితం 📄":t<a7-0.1?"విత్తనాలు = అక్షరాలు":"✍️ రాస్తాం · 👄 చదువుతాం";
+  const qk=t>a2c-0.05&&t<CD0?back((t-a2c+0.05)/0.35):0;
+  qmark.style.opacity=qk>0?1:0; qmark.setAttribute("transform",`translate(${FCX},${FCY}) scale(${Math.max(0.001,qk)*(1+0.04*Math.sin(t*8))}) translate(${-FCX},${-FCY})`);
+  // hand sowing
+  const hk=(t-a2)/(b2-a2+0.1), hx=k=>lerp(-205,215,k), hy=k=>-112+12*Math.sin(k*Math.PI*4);
+  handE.style.opacity=t>a2-0.2&&t<b2+0.25?clamp(Math.min((t-a2+0.2)/0.15,(b2+0.25-t)/0.15)):0;
+  handE.setAttribute("transform",`translate(${hx(clamp(hk))},${hy(clamp(hk))}) rotate(${-15+22*Math.sin(t*20)})`);
+  // mouth picking
+  const mk=(t-a2b)/(b2b-a2b+0.1), mx=k=>lerp(-215,215,k), my=k=>-6-Math.abs(Math.sin(k*Math.PI*5))*26;
+  const mOn=t>a2b-0.2&&t<b2b+0.25;
+  mouthE.style.opacity=mOn?clamp(Math.min((t-a2b+0.2)/0.15,(b2b+0.25-t)/0.15)):0;
+  // reveal: writing hand and reading mouth
+  const wk=clamp((t-a7)/(b7-a7+0.1)), rk=clamp((t-a7b)/(b7b-a7b+0.1));
+  writeE.style.opacity=t>a7-0.2&&t<b7+0.25?clamp(Math.min((t-a7+0.2)/0.15,(b7+0.25-t)/0.15)):0;
+  const wxp=lerp(-200,210,wk); writeE.setAttribute("transform",`translate(${wxp+30},${LY-40+Math.sin(t*30)*6}) rotate(${Math.sin(t*25)*6})`);
+  const sl=scrib.getTotalLength(); scrib.setAttribute("stroke-dasharray",sl); scrib.setAttribute("stroke-dashoffset",sl*(1-wk)); scrib.style.opacity=t>a7-0.1?1:0;
+  if(mOn) mouthE.setAttribute("transform",`translate(${mx(clamp(mk))},${my(clamp(mk))})`);
+  const rOn=t>a7b-0.2&&t<b7b+0.25; const rxp=lerp(-200,200,rk);
+  if(rOn){mouthE.style.opacity=clamp(Math.min((t-a7b+0.2)/0.15,(b7b+0.25-t)/0.15)); mouthE.setAttribute("transform",`translate(${rxp},${LY+108+Math.sin(t*22)*4}) scale(${1+0.12*Math.abs(Math.sin(t*14))})`)}
+  waves.forEach((w,j)=>{const life=((t*2.2+j/3)%1), r=30+life*50; w.setAttribute("d",`M${rxp-r*.7} ${LY+108-r*.7} A${r} ${r} 0 0 1 ${rxp+r*.7} ${LY+108-r*.7}`); w.style.opacity=rOn&&t>a7b?(1-life)*0.9:0});
+  // seeds
+  seeds.forEach((g,i)=>{const [sx,sy]=SEEDS[i]; let x=sx,y=sy,s=1,o=1,rot=(i*37)%180;
+    if(POP.includes(i)){const ta=a1b+POP.indexOf(i)*0.2; s=back((t-ta)/0.3); o=t<ta?0:1}
+    else{const tr=a2+(b2-a2)*clamp((sx+205)/420)*0.9, k=clamp((t-tr)/0.38);
+      if(t<tr){o=0} else if(k<1){const k0=clamp((tr-a2)/(b2-a2+0.1)); x=lerp(hx(k0),sx,k); y=lerp(hy(k0)+30,sy,k*k); rot+=k*400}
+      else{const b=Math.max(0,1-(t-tr-0.38)/0.2); y=sy-Math.sin(b*Math.PI)*8}}
+    if(PICK.includes(i)){const tp=a2b+(b2b-a2b+0.1)*clamp((sx+215)/430)-0.05, k=clamp((t-tp)/0.16);
+      if(t>tp){const kk=clamp((tp-a2b)/(b2b-a2b+0.1)); x=lerp(sx,mx(kk),k); y=lerp(sy,my(kk)+10,k); s*=1-k; if(k>=1)o=0}}
+    if(t>M0){ if(i<5){const k=ease((t-M0)/0.7); x=lerp(x,LX(i),k); y=lerp(y,LY,k); rot=lerp(rot,0,k); const lt=LT(i); if(t>lt){const k2=clamp((t-lt)/0.2); s*=1+k2*1.2; o*=1-k2}}
+      else {s*=1-clamp((t-M0)/0.4); if(s<=0.01)o=0} }
+    g.setAttribute("transform",`translate(${x},${y}) rotate(${rot}) scale(${Math.max(0.001,s)})`); g.style.opacity=o});
+  letters.forEach((L,i)=>{const lt=LT(i); const k=back((t-lt)/0.32); let sc=Math.max(0.001,k), col="#1b1b1b";
+    if(t>a7-0.1&&t<b7+0.2&&Math.abs(wxp-LX(i))<45){sc*=1.08}
+    if(rOn&&Math.abs(rxp-LX(i))<48){sc*=1.28; col="#E65100"}
+    L.setAttribute("transform",`translate(${LX(i)},${LY}) scale(${sc})`); L.setAttribute("fill",col); L.style.opacity=t>lt?1:0});
+  puffs.forEach((p,i)=>{const lt=LT(i), k=clamp((t-lt)/0.45); p.setAttribute("cx",LX(i)); p.setAttribute("cy",LY); p.setAttribute("r",20+k*60); p.style.opacity=t>lt&&k<1?0.7*(1-k):0});
+
+  // ---------------- shot 1: hook ----------------
+  if(shot===1){
+    gp.look=0; gp.lookY=0;
+    gp.hop=t<1.0?Math.max(0,Math.sin(clamp((t-0.55)/0.35)*Math.PI))*40:0;
+    C.gopi.aimLocal("L",-95,-165,112);                                                    // hand on hip
+    if(t<1.1){const w=Math.sin(t*16); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; gp.brow="u"; gp.jaw=t>0.55&&t<0.85?0.4:0}  // "Hey!" wave
+    else if(t<2.0){C.gopi.aimLocal("R",190,-310,130); gp.item="palm"; gp.brow="a"; gp.smile=0}   // "ఆగండి" palm out: stop!
+    else {C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.brow="u"; gp.look=0.3}          // "90% మంది..." points at the riddle
+  }
+  // ---------------- shot 2: the riddle on the board ----------------
+  if(shot===2){
+    gp.look=1; gp.lookY=-0.6;
+    if(t<a2){const [wx,wy]=F2W(-60,-20); pointStick(wx,wy); C.gopi.aimLocal("L",-120,-210)}
+    else if(t<b2+0.1){const [wx,wy]=F2W(hx(clamp(hk)),hy(clamp(hk))+60); pointStick(wx,wy); C.gopi.aimLocal("L",-60+Math.sin(t*18)*40,-200)}  // mimes sowing
+    else if(t<b2b+0.1){const [wx,wy]=F2W(mx(clamp(mk)),40); pointStick(wx,wy); C.gopi.aimLocal("L",-30,-350,90)}                              // hand by his mouth
+    else {gp.look=0; gp.lookY=0; C.gopi.aimLocal("L",-150,-440); C.gopi.aimLocal("R",150,-440); gp.item=""; gp.brow="u"; gp.hop=Math.max(0,Math.sin(clamp((t-a2c)/0.35)*Math.PI))*22}  // "ఏంటది?" shrug
+  }
+  // ---------------- Pinky ----------------
+  Object.assign(pi,{x:PX,y:PY,s:PS,flip:-1,look:1,lookY:-0.3});
+  const pop=back((t-sh3)/0.42); pi.vis=t>sh3?1:0; pi.s=PS*Math.max(0.001,pop); pi.rot=t<sh3+0.5?(1-clamp((t-sh3)/0.5))*-20:0;
+  pi.headRot=Math.sin(t*1.7+1)*3;
+  const [a4,b4]=seg(4,0,2), [a4b,b4b]=seg(4,1,2);
+  if(shot===3){
+    if(t<S(3)){pi.brow="u"; pi.jaw=0.3; C.pinky.aimLocal("R",150,-460,120); C.pinky.aimLocal("L",-120,-200)}       // hand up: "I know!"
+    else if(t<a4){pi.brow="q"; pi.look=1; pi.lookY=-0.6; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-90,-200)}   // finger on chin
+    else {pi.brow="s"; pi.hmm=1; pi.look=1; C.pinky.aimLocal("R",90,-170); C.pinky.aimLocal("L",-90,-170); pi.headRot=-6}
+    gp.look=-0.2; gp.lookY=0;
+    if(t<a4){gp.look=1; gp.lookY=-0.3; C.gopi.aimLocal("L",-120,-210); C.gopi.aimLocal("R",100,-200); gp.itemRot=gp.armR+20}
+    else if(t<b4+0.2){const w=Math.sin(t*22); C.gopi.aimLocal("R",95+w*30,-470,120); gp.item=""; gp.headRot=w*7; gp.brow="a"; gp.grin=1; C.gopi.aimLocal("L",-120,-210)}  // "ఉహూ!" finger wag
+    else {gp.look=0; gp.lookY=0; C.gopi.aimLocal("R",170,-420,125); gp.item="palm"; gp.brow="u"; C.gopi.aimLocal("L",-95,-165,112)}  // "five seconds" — open palm
+  }
+  // ---------------- shot 4: countdown ----------------
+  const cdk=t-CD0, sec=Math.floor(cdk), fr=cdk-sec;
+  if(shot===4){
+    gp.look=1; gp.lookY=0; gp.smile=1; gp.brow="q"; C.gopi.aimLocal("L",45,-232,96); C.gopi.aimLocal("R",-45,-214,96);   // arms folded, waiting
+    gp.walk=Math.asin(0.45*Math.max(0,Math.sin(t*Math.PI*2))); gp.headRot=Math.sin(t*Math.PI*2)*3;
+    pi.brow="q"; pi.hmm=1; pi.look=-0.6; pi.lookY=-1; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-60,-240);
+    pi.headRot=Math.sin(t*1.6)*8; if(sec>=3){pi.look=Math.sin(t*5); pi.brow="s"}     // getting desperate
+  }
+  // ---------------- shot 5: answer ----------------
+  if(shot===5){
+    if(t<S(5)+0.6){pi.brow="u"; pi.jaw=0.5; pi.look=-1; pi.lookY=-0.4; C.pinky.aimLocal("R",80,-450); C.pinky.aimLocal("L",-80,-450); pi.hop=Math.max(0,Math.sin(clamp((t-CD1)/0.4)*Math.PI))*35}
+    else if(t<S(8)-0.15){pi.brow="u"; pi.look=-1; pi.lookY=-0.5; pi.smile=t>E(6)?1:0; C.pinky.aimLocal("R",40,-240); C.pinky.aimLocal("L",-40,-240)}
+    else {const c=Math.abs(Math.sin(t*15)); pi.smile=1; pi.brow="u"; pi.shut=t<E(8)?1:0; pi.look=-1; C.pinky.aimLocal("R",12+c*45,-285,110); C.pinky.aimLocal("L",-12-c*45,-285,110); pi.hop=Math.abs(Math.sin(t*7.5))*22}  // claps
+    gp.look=1; gp.lookY=-0.5;
+    if(t<S(6)){gp.look=0; gp.lookY=0; C.gopi.aimLocal("R",150,-460,125); C.gopi.aimLocal("L",-150,-460,125); gp.item=""; gp.brow="u"; gp.hop=Math.max(0,Math.sin(clamp((t-S(5)-0.3)/0.4)*Math.PI))*30}
+    else if(t<b7b+0.2){const tx=t<a7?lerp(-150,150,clamp((t-M0)/d6)):t<a7b?wxp:rxp; const [wx,wy]=F2W(tx,LY+(t<a7?-40:40)); pointStick(wx,wy); C.gopi.aimLocal("L",-110,-200)}
+    else {gp.look=1; gp.lookY=0; gp.grin=1; C.gopi.aimLocal("R",120,-330,110); C.gopi.aimLocal("L",-110,-200)}  // thumbs up at Pinky
+  }
+  // ---------------- shot 6: CTA ----------------
+  const [a9,b9]=seg(9,0,3), [a9b,b9b]=seg(9,1,3), [a9c]=seg(9,2,3);
+  if(shot===6){
+    gp.look=0; gp.lookY=0; gp.smile=1; gp.item="";
+    if(t<a9b){C.gopi.aimLocal("R",175,-340,128); gp.item="point"; C.gopi.aimLocal("L",-95,-165,112); gp.brow="q"}           // points at you
+    else if(t<a9c){C.gopi.aimLocal("R",150,-120,125); gp.item="point"; gp.itemRot=60; C.gopi.aimLocal("L",-95,-165,112); gp.brow="n"; gp.lookY=0.8}   // points down: comments
+    else {const w=Math.sin(t*12); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; C.gopi.aimLocal("L",-95,-165,112); gp.hop=t>a9c+1.2?Math.abs(Math.sin(t*6))*12:0}   // waves
+    pi.smile=1; pi.look=t<a9c?-1:0; pi.lookY=0; const w=Math.sin(t*11+1);
+    C.pinky.aimLocal("R",90+w*35,-460,115); C.pinky.aimLocal("L",-60,-190); if(t>a9c) pi.hop=Math.abs(Math.sin(t*6+0.5))*16;
+  }
+  for(const k in C)C[k].draw();
+
+  // ---------------- props in front of the cast ----------------
+  const bk=t>S(3)-0.05&&t<CD0+0.1?back((t-S(3)+0.05)/0.35):0;
+  bub.style.opacity=bk>0?clamp((CD0+0.1-t)/0.2):0;
+  bub.setAttribute("transform",`translate(${PX-75},${PY-PS*520-150+Math.sin(t*3)*5}) scale(${Math.max(0.001,bk)})`);
+  const xk=back((t-a4+0.05)/0.28); cross.style.opacity=t>a4-0.05?1:0; cross.setAttribute("transform",`scale(${Math.max(0.001,lerp(2.2,1,clamp((t-a4+0.05)/0.2)))*(xk>0?1:0)}) rotate(${(1-clamp((t-a4)/0.2))*-15})`);
+  thought.style.opacity=shot===4?clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.2):0;
+  thought.setAttribute("transform",`translate(${PX-70},${PY-PS*540}) scale(${0.95+0.08*Math.sin(t*6)})`);
+  tq.setAttribute("transform",`rotate(${Math.sin(t*4)*10} -96 -140)`);
+  exclaim.style.opacity=shot===5&&t<S(5)+0.9?1:0; exclaim.setAttribute("x",PX-120); exclaim.setAttribute("y",PY-PS*540-pi.hop); exclaim.setAttribute("transform",`rotate(-12 ${PX-120} ${PY-460})`);
+  const clapOn=shot===5&&t>S(8)-0.15&&t<E(8)+0.3;
+  sparks.forEach((s,i)=>{const life=((t*1.1+i/7)%1), a=i/7*Math.PI*2+t*0.6; const on=clapOn||(shot===6&&t>a9c);
+    s.setAttribute("x",PX+Math.cos(a)*(140+life*80)); s.setAttribute("y",PY-260+Math.sin(a)*(140+life*80)-life*40); s.style.opacity=on?(1-life):0});
+  clapFx.forEach((p,j)=>{const a=(-90+(j-1.5)*30)*Math.PI/180, hx_=PX, hy_=PY-PS*290-pi.hop; const c=Math.abs(Math.sin(t*15));
+    p.setAttribute("d",`M${hx_+Math.cos(a)*60} ${hy_+Math.sin(a)*60} L${hx_+Math.cos(a)*95} ${hy_+Math.sin(a)*95}`); p.style.opacity=clapOn&&c<0.35?1:0});
+
+  // ---------------- camera ----------------
+  let z=1.1,fx=600,fy=1080;
+  const fyFor=(z,wy,sy)=>wy-(sy-1000)/z;        // put world y `wy` at screen y `sy`
+  if(shot===1){z=lerp(1.75,1.5,out(t/1.2))+0.02*Math.sin(t*2); fx=lerp(250,320,ease(t/3.5)); fy=fyFor(z,GY-GS*300,1080)}
+  if(shot===2){const k=clamp((t-sh2)/0.5); const k2=(t-sh2)/(sh3-sh2);
+    z=lerp(1.5,1.06,ease(k))+0.06*k2; fx=lerp(320,600,ease(k))+8*Math.sin(t*1.3); fy=lerp(fyFor(1.5,GY-GS*300,1080),fyFor(1.06,BY+BH/2,820),ease(k));
+    if(t>a2c){const k3=out((t-a2c)/0.3); z+=0.1*k3; fy=fyFor(z,BY+BH/2,820)} else fy=k<1?fy:fyFor(z,BY+BH/2,820)}
+  if(shot===3){
+    if(t<a4-0.05){const k=ease((t-sh3)/0.45); z=lerp(1.12,1.2,k); fx=lerp(600,760,k); fy=fyFor(z,BY+BH/2+60,820)}
+    else if(t<a4b){const k=out((t-a4+0.05)/0.3); z=lerp(1.2,1.0,k); fx=lerp(760,620,k); fy=fyFor(z,BY+BH/2+60,820)}
+    else {const k=ease((t-a4b)/0.5); z=lerp(1.0,1.35,k)+0.03*(t-a4b); fx=lerp(620,330,k); fy=fyFor(z,GY-GS*300,lerp(780,1060,k))}
+  }
+  if(shot===4){const k=ease(cdk/0.45); const pulse=Math.exp(-fr*6)*0.025;
+    z=lerp(1.4,1.0,k)+0.016*cdk+pulse; fx=lerp(330,630,k); fy=fyFor(z,BY+BH/2,lerp(1060,830,k))}
+  if(shot===5){
+    if(t<S(6)){const k=out((t-CD1)/0.35); z=lerp(0.95,1.12,k); fx=615; fy=fyFor(z,BY+BH/2,860)}
+    else if(t<S(8)-0.25){const k=(t-S(6))/(S(8)-S(6)); z=lerp(1.12,1.3,k); fx=lerp(615,650,k); fy=fyFor(z,BY+FCY,840)}
+    else {const k=ease((t-S(8)+0.25)/0.45); z=lerp(1.3,1.2,k); fx=lerp(650,800,k); fy=lerp(fyFor(1.3,BY+FCY,840),fyFor(1.2,PY-PS*260,1060),k)}
+  }
+  if(shot===6){const k=ease((t-sh6)/0.6); z=lerp(1.2,1.0,k)+0.012*(t-sh6); fx=lerp(800,620,k); fy=lerp(fyFor(1.2,PY-PS*260,1060),fyFor(1.0,BY+BH/2,900),k)}
+  let sx=0,sy=0;
+  const shake=(t0,d,a)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
+  shake(a4,0.3,16); shake(CD1,0.35,18); shake(sh3+0.05,0.2,8);
+  cam.setAttribute("transform",`translate(${540+sx},${1000+sy}) scale(${z}) translate(${-fx},${-fy})`);
+
+  // ---------------- ambience ----------------
+  clouds.forEach((c,i)=>c.g.setAttribute("transform",`translate(${(c.x+t*(8+i*4))%1700-200},${c.y})`));
+  birds.forEach((b,i)=>{const x=((t*(40+i*12)+i*500)%1900)-400, y=380+i*60+Math.sin(t*2+i)*15; b.setAttribute("transform",`translate(${x},${y}) scale(${1+0.3*Math.sin(t*10+i)},1)`)});
+  flags.forEach((f,i)=>f.e.setAttribute("transform",`translate(${f.x},${f.y}) rotate(${Math.sin(t*3+i*0.7)*7})`));
+  // countdown overlay
+  const clock=document.getElementById("clock"), dig=document.getElementById("digit"), th=document.getElementById("think");
+  const cOn=shot===4; const cIn=clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.25);
+  clock.style.opacity=cOn?cIn:0; th.style.opacity=cOn?cIn:0;
+  if(cOn){const hand=document.getElementById("hand"), tick=Math.min(1,fr/0.08);
+    hand.setAttribute("transform",`rotate(${(sec+tick)*72})`);
+    document.getElementById("arc").setAttribute("stroke-dasharray",`${389.6*(1-cdk/TL.countdown)} 389.6`);
+    document.getElementById("clockBody").setAttribute("transform",`rotate(${Math.exp(-fr*7)*Math.sin(fr*60)*9}) scale(${1+Math.exp(-fr*8)*0.08})`);
+    const n=Math.max(1,5-sec); dig.textContent=n; dig.style.opacity=fr<0.82?1:clamp(1-(fr-0.82)/0.18);
+    dig.style.transform=`scale(${lerp(1.6,1,out(fr/0.22))})`; dig.style.color=n<=2?"#FF5252":"#F5B700";
+    th.style.transform=`translateY(${Math.sin(t*3)*5}px)`;
+  } else dig.style.opacity=0;
+  // tension vignette + streaks
+  vigR.style.opacity=shot===4?clamp(cdk/1.5)*0.8:0;
+  streaks.forEach((ln,i)=>{const on=shot===5&&t<CD1+0.4; const a=i/14*Math.PI*2, r0=260+((t*900+i*37)%300);
+    ln.setAttribute("x1",540+Math.cos(a)*r0);ln.setAttribute("y1",760+Math.sin(a)*r0);ln.setAttribute("x2",540+Math.cos(a)*(r0+180));ln.setAttribute("y2",760+Math.sin(a)*(r0+180));ln.style.opacity=on?0.75:0});
+  conf.forEach((c,i)=>{const t0=S(5)+0.05, k=t-t0; const on=k>0&&k<3.2; const x0=(i*97)%1080, vx=((i*53)%11-5)*14;
+    c.setAttribute("x",x0+vx*k+Math.sin(k*4+i)*30); c.setAttribute("y",-60+k*(420+(i%7)*60)-(i%5)*40); c.setAttribute("transform",`rotate(${k*200+i*30} ${x0+vx*k} ${-60+k*(420+(i%7)*60)})`); c.style.opacity=on?Math.min(1,(3.2-k)/0.6):0});
+  document.getElementById("flash").style.opacity=(t>CD1&&t<CD1+0.25?0.85*(1-(t-CD1)/0.25):0)+(t>S(5)&&t<S(5)+0.12?0.4*(1-(t-S(5))/0.12):0);
+  // title, answer banner, end card
+  const ti=document.getElementById("title"); ti.style.opacity=t<0.15?0:t<sh2-0.2?1:clamp(1-(t-sh2+0.2)/0.35); ti.style.transform=`scale(${Math.max(0.01,back((t-0.15)/0.5))}) rotate(${Math.sin(t*2.5)*1.2}deg)`;
+  const an=document.getElementById("ans"), ak=t>S(5)-0.05&&t<sh6?1:0; an.style.opacity=ak?clamp(Math.min((t-S(5)+0.05)/0.15,(sh6-t)/0.25)):0;
+  an.style.transform=`scale(${Math.max(0.01,back((t-S(5)+0.05)/0.4))})`;
+  const en=document.getElementById("end"); en.style.opacity=t>sh6?clamp((t-sh6)/0.3):0; en.style.transform=`translateY(${(1-out((t-sh6)/0.5))*40}px)`;
+  const ec=document.getElementById("endC"); ec.style.opacity=t>a9b-0.1?1:0; ec.style.display=t>a9b-0.1?"inline-block":"none"; ec.style.transform=`scale(${Math.max(0.01,back((t-a9b+0.1)/0.35))})`;
+  const ef=document.getElementById("endF"); ef.style.opacity=t>a9c-0.1?1:0; ef.style.display=t>a9c-0.1?"block":"none"; ef.style.transform=`scale(${Math.max(0.01,back((t-a9c+0.1)/0.4))*(1+(t>a9c+0.5?0.03*Math.sin(t*6):0))})`;
+  // subtitles
+  const sub=document.getElementById("sub"), L=curLine(t);
+  if(L){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+};
+</script>
+</body></html>
