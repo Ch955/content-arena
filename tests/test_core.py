@@ -72,8 +72,17 @@ class ScheduleTests(unittest.TestCase):
         self.assertEqual(got["2026-10-31"], "quiz")
         self.assertEqual(got["2026-11-06"], "ott-weekly")  # Friday, anchor + 8 is not a fact day anyway
         # a fact day that lands on Friday moves to Saturday
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 13), anchor)[1], "ott-weekly")  # anchor + 15, Friday
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 14), anchor)[1], "tfi-fact")
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 4), anchor)[1], "tfi-fact")  # anchor + 6
+
+    def test_new_plan_from_9_nov(self):
+        from datetime import date
+        from content_arena import schedule
+        got = {d.isoformat(): p for d, p in schedule.plan(date(2026, 11, 8), 8)}
+        self.assertEqual(got["2026-11-08"][0], "comedy")             # old plan up to 8 Nov
+        self.assertTrue(all(p[0] == "podupu" for k, p in got.items() if k >= "2026-11-09"))
+        self.assertEqual(got["2026-11-09"][1], "book-story")         # Monday
+        self.assertEqual(got["2026-11-10"][1], "life-lesson")        # Tuesday
+        self.assertEqual(got["2026-11-15"][1], "book-story")         # Sunday
 
 
 class ServiceAccountTests(unittest.TestCase):

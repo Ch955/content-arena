@@ -1,7 +1,7 @@
 # Content Arena — Reel Rasam
 
 An AI-assisted content system for **Reel Rasam**, a faceless Telugu + English
-cinema/OTT channel on Instagram, Facebook and (later) YouTube.
+riddles, stories & life-lessons channel (cinema/OTT until 8 Nov 2026) on Instagram, Facebook and (later) YouTube.
 Handles: Instagram `@_reelrasam`, YouTube `@reel_rasam` (see `brand/brand.json`).
 Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasam`.
 
@@ -24,37 +24,43 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 
 ## Content pillars
 
-Owner's plan (28 Oct 2026): **2 posts a day** — one fixed comedy reel + one rotating post.
-`python -m content_arena plan` prints what to make for the coming days (`src/content_arena/schedule.py`).
+**Owner's plan from 9 Nov 2026: the channel moved off cinema** to riddles, stories from great books and
+premium life lessons — **2 posts a day, every post interactive** (a question the viewer answers in the comments).
+`python -m content_arena plan` prints what to make (`src/content_arena/schedule.py`).
 
 | Pillar | When | Format |
 |---|---|---|
-| `comedy` — original animated spoof of iconic TFI moments/tropes | **every day** (slot 1) | reel |
-| `ott-weekly` — This Week on OTT | **Fridays** (slot 2) | carousel or reel |
-| `tfi-fact` — TFI facts & Box Office 101 explainers | **every 3rd day** from 29 Oct 2026 (slot 2); a Friday fact day moves to Saturday | reel or carousel |
-| `quiz` — guess-the-movie, dialogue/song quizzes | **all other days** (slot 2) | reel or carousel |
+| `podupu` — పొడుపు కథ (Telugu riddle) | **every day** (slot 1) | card reel: hook → riddle → 5 s countdown → "answer comment చేయండి, answer రేపటి reel లో". The next day's riddle reel **opens by revealing yesterday's answer** (record it as `answer:` in the brief). |
+| `book-story` — a story from a great book: Betala Kathalu, Panchatantra, Tenali Rama, Jataka/Aesop-style fables, big ideas from good non-fiction | **Mon/Wed/Fri/Sun** (slot 2) | card reel, ~60–75 s, ends with a question → countdown → answer/reasoning → "మీరు agree ఆ?" |
+| `life-lesson` — premium, non-cliché lessons (Vemana, Sumathi Satakam, Thirukkural, Marcus Aurelius/Seneca, ideas like second-order thinking) | **Tue/Thu/Sat** (slot 2) | card reel, ~45 s, a dilemma the viewer answers ("A or B? comment చేయండి") |
 
-**Comedy spoofs — how to stay safe (Indian courts have granted Telugu stars protection against
-AI use of their face/voice/name, e.g. Nagarjuna 2025, Allu Arjun 2026):**
-- Spoof the **moment or trope** ("mass hero entry", "slow-mo fight", "interval bang", "mother sentiment"),
-  never a real person. Characters are our own original cartoon cast (e.g. kid versions of *generic*
-  hero/villain/mom types) — no star lookalikes, no real names, no voice imitation, no deepfakes.
-- No film footage, stills, posters, songs, BGM or long verbatim dialogues. Film titles may be named in
-  the caption only as "inspired by the classic ___ moment" when it helps; never imply endorsement.
-- Never mock real people, castes, religions, regions or fan wars; punch at situations, not people.
+Every reel ends with: comment prompt + "follow చేయండి, YouTube లో subscribe చేయండి". Reels are **card reels**:
+`shots.json` shots carry a `card` (kicker/emoji/title/body) that `assemble` renders and animates, plus host
+lines (`who: "host"`) and optional `countdown` seconds — no Flow clips or owner uploads needed.
+
+**Book and lesson content — how to stay safe and true:**
+- Public-domain classics retold in our own words, or a modern book's *idea* explained in our own words with the
+  book and author named. Never copy text; quote at most one short line, always attributed.
+- Every quote, attribution and claim needs a source in `Facts to verify`; mark adaptations ("retold and adapted
+  from …") in the caption. Never invent a quote or put words in a real person's mouth.
+- Nothing that mocks or argues about religion, caste, region or politics; drop caste labels and ritual details
+  from old stories. Keep it family-friendly.
+- Riddles: traditional folk riddles or our own originals, with exactly one fair answer.
 - Mark AI-generated/altered content where the platform asks (YouTube "altered or synthetic", Meta AI label).
 
-Language: Telugu-first slides (Telugu script, English movie titles/terms),
-captions with a Telugu paragraph then an English one. Spoken scripts are
-natural Tenglish ("Gross ante — theatre counter daggara audience kattina total amount").
+The old cinema pillars (comedy, ott-weekly, tfi-fact, quiz; 28 Oct – 8 Nov 2026) are retired; their safety
+rules (no star lookalikes, no film footage/music) still apply to anything cinema-related.
+
+Language: Telugu-first slides and cards (Telugu script, English terms where natural),
+captions with a Telugu paragraph then an English one. Spoken scripts are natural Tenglish.
 
 **Spoken style (reels): talk *to* the viewer, never read a paragraph.** Open with a scroll-stopping
 hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), use short punchy lines (one idea each, ≤ ~12 words),
-questions to the viewer ("Ready ఆ?", "మీరు నిజంగా Tollywood fan ఆ?"), reactions and countdowns
+questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్పగలరా?"), reactions and countdowns
 ("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). Voices (owner-approved
 28 Oct 2026): **Gemini TTS** (`gemini-2.5-flash-tts` via Cloud TTS, service-account robot with the Vertex AI /
 "Agent Platform" User role), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
-`assemble.py`); cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
+`assemble.py`); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
 $300 trial credit). Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
 direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.
 

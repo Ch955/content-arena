@@ -1,9 +1,12 @@
-"""Owner's posting plan (set 28 Oct 2026): two posts a day.
+"""Owner's posting plan: two posts a day.
 
-Slot 1 (every day):   comedy   — original animated TFI spoof reel
-Slot 2 (rotating):    ott-weekly on Fridays;
-                      tfi-fact every 3rd day (from FACT_ANCHOR), moved to the next day if it lands on a Friday;
-                      quiz on every other day.
+From 9 Nov 2026 (NEW_PLAN_START) the channel moved off cinema:
+Slot 1 (every day):   podupu       — a Telugu riddle (పొడుపు కథ); answer revealed in the next day's riddle reel
+Slot 2 (rotating):    book-story   — Mon/Wed/Fri/Sun: a story from a great book (Betala Kathalu, Panchatantra,
+                                     Tenali Rama, big ideas from good non-fiction), ending with a question
+                      life-lesson  — Tue/Thu/Sat: a premium, sourced life lesson with an A-or-B question
+
+Before that date (28 Oct – 8 Nov 2026): comedy daily + ott-weekly Fridays / tfi-fact every 3rd day / quiz.
 """
 from __future__ import annotations
 
@@ -13,6 +16,8 @@ from . import config
 
 FRIDAY = 4
 DEFAULT_FACT_ANCHOR = "2026-10-29"
+NEW_PLAN_START = date(2026, 11, 9)
+LESSON_DAYS = {1, 3, 5}  # Tue, Thu, Sat
 
 
 def fact_anchor() -> date:
@@ -30,6 +35,8 @@ def is_fact_day(day: date, anchor: date | None = None) -> bool:
 
 
 def pillars_for(day: date, anchor: date | None = None) -> list[str]:
+    if day >= NEW_PLAN_START:
+        return ["podupu", "life-lesson" if day.weekday() in LESSON_DAYS else "book-story"]
     if day.weekday() == FRIDAY:
         second = "ott-weekly"
     elif is_fact_day(day, anchor):

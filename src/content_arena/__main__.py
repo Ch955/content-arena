@@ -35,7 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("post_dir", type=Path)
     p = sub.add_parser("assemble", help="clips + Telugu voices + music + subtitles → rendered/video.mp4")
     p.add_argument("post_dir", type=Path)
-    p = sub.add_parser("plan", help="what to make each day (comedy daily + OTT/fact/quiz rotation)")
+    p = sub.add_parser("plan", help="what to make each day (podupu katha daily + book story / life lesson)")
     p.add_argument("--days", type=int, default=7)
     p.add_argument("--start", help="YYYY-MM-DD (default: today, IST)")
     args = ap.parse_args(argv)

@@ -1,5 +1,29 @@
 # Reel Rasam — audience card (read before every script)
 
+**Niche (from 9 Nov 2026):** Telugu podupu kathalu (riddles), stories from great books (Betala Kathalu,
+Panchatantra, Tenali Rama, good non-fiction ideas) and premium life lessons. Every post asks the viewer something.
+**Audience:** Telugu speakers 16–40 in AP/Telangana and abroad — students, young professionals, parents who
+share with kids; they love a challenge, nostalgia for stories heard from grandparents, and lessons that feel smart,
+not preachy. **Tone:** a friend telling a story at night — warm, playful, a little mysterious; natural Tenglish.
+
+## What makes them comment / share / return
+- A fair riddle they *almost* get ("90% మంది విప్పలేరు!"), then the answer tomorrow (return visit).
+- A story question with two defensible answers (Betal style) — people argue in the comments.
+- A dilemma they recognise from their own life ("job vs passion", "save vs spend") with an A-or-B choice.
+- Sharing: "ఈ కథ మీ పిల్లలకి చెప్పండి", "ఈ riddle మీ friend కి పంపండి".
+- They dislike: lectures, recycled WhatsApp quotes with fake attributions, long intros, clickbait.
+
+## Goal per pillar → CTA
+| Pillar | Main goal | CTA |
+|---|---|---|
+| podupu | comments + return visits | "Answer comment చేయండి — answer రేపటి reel లో!" |
+| book-story | comments + shares | "మీరు agree ఆ? comment చేయండి / ఈ కథ మీ పిల్లలకి చెప్పండి" |
+| life-lesson | saves + comments | "A or B? comment చేయండి / save చేసుకోండి" |
+Always end: "follow చేయండి, YouTube లో subscribe చేయండి".
+
+---
+# Reel Rasam — audience card (read before every script)
+
 **Niche:** Telugu cinema & OTT — comedy spoofs of TFI tropes, OTT picks, box-office explainers, movie quizzes.
 **Audience:** Telugu movie lovers, 16–35, AP/Telangana + Telugu diaspora; watch on phone, mostly Tenglish;
 fans who rewatch mass scenes, argue about collections, and ask "ee week emi chudali?".

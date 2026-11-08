@@ -34,9 +34,10 @@ CAST = {
     "pandu": ("Algenib", 1.1, "Pandu, a mischievous 9-year-old boy who loves pranks"),
     "pinky": ("Leda", 1.15, "Pinky, a sweet 5-year-old girl"),
     "amma": ("Kore", 1.0, "Lakshmi Amma, a warm but fierce Telugu mother"),
+    "host": ("Puck", 1.0, "the Reel Rasam host, a warm, lively Telugu storyteller talking straight to the viewer like a friend"),
 }
-NAMES = {"gopi": "GOPI", "chinna": "CHINNA", "pandu": "PANDU", "pinky": "PINKY", "amma": "LAKSHMI AMMA"}
-COLORS = {"gopi": "#F5B700", "chinna": "#64B5F6", "pandu": "#81C784", "pinky": "#F48FB1", "amma": "#CE93D8"}
+NAMES = {"host": "", "gopi": "GOPI", "chinna": "CHINNA", "pandu": "PANDU", "pinky": "PINKY", "amma": "LAKSHMI AMMA"}
+COLORS = {"host": "#F5B700", "gopi": "#F5B700", "chinna": "#64B5F6", "pandu": "#81C784", "pinky": "#F48FB1", "amma": "#CE93D8"}
 
 
 def run(cmd: list[str]) -> None:
@@ -123,7 +124,7 @@ def tts(line: dict, dest: Path, tries: int = 3) -> float:
 
 
 # Fallback voices (Sarvam bulbul:v3) when Gemini is unavailable, e.g. Google billing disabled.
-SARVAM_CAST = {"gopi": ("shubh", 1.0), "chinna": ("aayan", 1.22), "pandu": ("rahul", 1.12),
+SARVAM_CAST = {"host": ("shubh", 1.0), "gopi": ("shubh", 1.0), "chinna": ("aayan", 1.22), "pandu": ("rahul", 1.12),
                "pinky": ("priya", 1.22), "amma": ("kavitha", 1.0)}
 
 
@@ -161,16 +162,20 @@ def plan_timeline(shots: list[dict], clip_durs: list[float], voice_durs: list[li
         for line, vd in zip(shot.get("lines", []), vds):
             lines.append({**line, "start": round(t + lt, 3), "dur": vd})
             lt += vd + 0.25
-        dur = max(cd, lt + 0.2)
-        out.append({"n": shot["n"], "start": round(t, 3), "dur": round(dur, 3), "clip_dur": cd, "lines": lines})
+        countdown = int(shot.get("countdown", 0))  # seconds of on-screen timer after the lines (riddles)
+        dur = max(cd, lt + 0.2 + countdown)
+        out.append({"n": shot["n"], "start": round(t, 3), "dur": round(dur, 3), "clip_dur": cd, "lines": lines,
+                    "countdown": countdown, "countdown_at": round(t + lt, 3)})
         t += dur
     return out
 
 
-def overlay_pngs(work: Path, timeline: list[dict], fonts: Path) -> list[tuple[Path, float, float]]:
+def overlay_pngs(work: Path, timeline: list[dict], fonts: Path, tag: str = "RASAM COMEDY",
+                 cards: bool = False) -> list[tuple[Path, float, float]]:
     """Render subtitle/branding overlays as transparent PNGs with Chromium (handles Telugu shaping)."""
     from playwright.sync_api import sync_playwright
 
+    end_top, count_top = (1180, 1130) if cards else (300, 640)  # card reels: keep the card's centre clear
     css = f"""@font-face{{font-family:Anton;src:url({fonts.as_uri()}/Anton-Regular.ttf)}}
 @font-face{{font-family:Rama;src:url({fonts.as_uri()}/Ramabhadra-Regular.ttf)}}
 @font-face{{font-family:NotoTe;src:url({fonts.as_uri()}/NotoSansTelugu.ttf)}}
@@ -182,17 +187,25 @@ margin-bottom:10px;color:#0E0E12;text-shadow:none}}
 .top{{position:absolute;top:70px;left:50px;right:50px;display:flex;justify-content:space-between;align-items:center}}
 .brand{{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000}}
 .tag{{font-family:Anton;font-size:28px;letter-spacing:2px;background:#E63946;color:#fff;padding:7px 16px;border-radius:8px}}
-.end{{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:Anton;font-size:72px;color:#F5B700;
-text-shadow:0 5px 0 #000}}"""
-    pages = [("brand", '<div class="top"><div class="brand">🍲 REEL RASAM</div><div class="tag">RASAM COMEDY</div></div>'),
-             ("end", '<div class="end">FOLLOW @_REELRASAM</div>')]
+.end{{position:absolute;left:0;right:0;top:{end_top}px;text-align:center;font-family:Anton;font-size:72px;color:#F5B700;
+text-shadow:0 5px 0 #000}}
+.end small{{display:block;font-size:44px;color:#fff;margin-top:14px;letter-spacing:2px}}
+.count{{position:absolute;left:0;right:0;top:{count_top}px;text-align:center;font-family:Anton;font-size:330px;color:#F5B700;
+-webkit-text-stroke:10px #000;text-shadow:0 14px 0 #000}}"""
+    pages = [("brand", f'<div class="top"><div class="brand">🍲 REEL RASAM</div><div class="tag">{tag}</div></div>'),
+             ("end", '<div class="end">FOLLOW @_REELRASAM<small>SUBSCRIBE ON YOUTUBE · @REEL_RASAM</small></div>')]
     items = []
     for shot in timeline:
         for i, l in enumerate(shot["lines"]):
             name = f"sub_{shot['n']}_{i}"
-            pages.append((name, f'<div class="sub"><span class="who" style="background:{COLORS[l["who"]]}">'
-                                f'{NAMES[l["who"]]}</span><br>{l["text"].replace("…", "...")}</div>'))  # the font has no "…"
+            chip = (f'<span class="who" style="background:{COLORS[l["who"]]}">{NAMES[l["who"]]}</span><br>'
+                    if NAMES[l["who"]] else "")
+            pages.append((name, f'<div class="sub">{chip}{l["text"].replace("…", "...")}</div>'))  # the font has no "…"
             items.append((work / f"{name}.png", l["start"] - 0.05, l["start"] + l["dur"] + 0.2))
+        for k in range(shot.get("countdown", 0)):
+            name = f"count_{shot['n']}_{k}"
+            pages.append((name, f'<div class="count">{shot["countdown"] - k}</div>'))
+            items.append((work / f"{name}.png", shot["countdown_at"] + k, shot["countdown_at"] + k + 0.95))
     with sync_playwright() as p:
         b = p.chromium.launch(**config.chromium_launch_args())
         pg = b.new_page(viewport={"width": W, "height": H})
@@ -253,10 +266,22 @@ def _cached(voice, line: dict, dest: Path) -> float:
     return d
 
 
+def pillar_of(post_dir: Path) -> str:
+    brief = post_dir / "brief.md"
+    m = re.search(r"^pillar:\s*([\w-]+)", brief.read_text(encoding="utf-8"), re.M) if brief.exists() else None
+    return m.group(1) if m else "comedy"
+
+
 def assemble(post_dir: Path, voice=voice_with_fallback) -> Path:
     post_dir = Path(post_dir).resolve()
     shots = json.loads((post_dir / "shots.json").read_text(encoding="utf-8"))["shots"]
     work = post_dir / "work"; work.mkdir(exist_ok=True)
+    pillar = pillar_of(post_dir)
+    tags = json.loads((config.ROOT / "brand" / "brand.json").read_text(encoding="utf-8")).get("pillar_tags", {})
+    cards = any(s.get("card") for s in shots)
+    if cards:
+        from .cards import render_cards
+        render_cards(post_dir, pillar)
     clips = [_clip_for(post_dir / "clips", s["n"], work) for s in shots]
     missing = [f"shot{s['n']}" for s, c in zip(shots, clips) if c is None]
     if missing:
@@ -295,7 +320,7 @@ def assemble(post_dir: Path, voice=voice_with_fallback) -> Path:
         w.writeframes((np.stack([mix, mix], 1) * 32767).astype(np.int16).tobytes())
 
     # overlays
-    ovs = overlay_pngs(work, tl, config.ROOT / "brand" / "fonts")
+    ovs = overlay_pngs(work, tl, config.ROOT / "brand" / "fonts", tags.get(pillar, "REEL RASAM"), cards)
     inputs = ["-i", str(joined), "-i", str(work / "mix.wav")]
     chain, last = [], "0:v"
     for k, (png, a, b) in enumerate(ovs):

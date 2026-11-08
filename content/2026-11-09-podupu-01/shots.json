@@ -1,0 +1,18 @@
+{
+  "post_slug": "2026-11-09-podupu-01",
+  "style": "cards",
+  "shots": [
+    {"n": 1, "card": {"kicker": "పొడుపు కథ #1", "emoji": "🧩", "title": "90% మంది\nవిప్పలేరు!"},
+     "lines": [{"who": "host", "text": "Hey! ఆగండి… scroll చేయకండి!", "act": "a bright, urgent hook, like stopping a friend"},
+               {"who": "host", "text": "ఈ పొడుపు కథ మీరు విప్పగలరా?", "act": "playful challenge, a teasing smile"}]},
+    {"n": 2, "card": {"kicker": "పొడుపు కథ", "emoji": "📜", "title": "తెల్లని పొలంలో…\nనల్లని విత్తనాలు", "body": "చేత్తో చల్లుతారు…\nనోటితో ఏరుతారు!"},
+     "lines": [{"who": "host", "text": "తెల్లని పొలంలో… నల్లని విత్తనాలు.", "act": "slow, mysterious storyteller voice"},
+               {"who": "host", "text": "చేత్తో చల్లుతారు… నోటితో ఏరుతారు!", "act": "slow, mysterious, rising at the end"}]},
+    {"n": 3, "card": {"kicker": "ఆలోచించండి", "emoji": "🤔", "title": "ఏంటది?"}, "countdown": 5,
+     "lines": [{"who": "host", "text": "ఏంటది? Five seconds… ఆలోచించండి!", "act": "excited quiz-host energy"}]},
+    {"n": 4, "card": {"kicker": "మీ answer?", "emoji": "💬", "title": "Answer comment\nచేయండి!", "body": "సరైన answer రేపటి reel లో 🔥"},
+     "lines": [{"who": "host", "text": "మీ answer comment లో పెట్టండి!", "act": "warm, inviting, upbeat"},
+               {"who": "host", "text": "సరైన answer రేపు చెప్తా… follow చేయండి!", "act": "playful promise, slightly secretive"},
+               {"who": "host", "text": "YouTube లో subscribe కూడా చేయండి!", "act": "friendly, energetic sign-off"}]}
+  ]
+}
