@@ -1,0 +1,31 @@
+{"lines": [
+ {"who": "gopi", "text": "Hey! ఆగండి… ఈ race లో నెమ్మదిగా వెళ్ళినవాడే గెలుస్తాడు!", "act": "bright, intriguing hook, playful disbelief", "beat": "hook"},
+ {"who": "gopi", "text": "Answer చివర్లో ఉంది… చివరి వరకు చూడండి!", "act": "teasing, secretive", "beat": "hold"},
+ {"who": "gopi", "text": "ఒక ఊరి పెద్ద… ఇద్దరు కొడుకులకి ఒక పరీక్ష పెట్టాడు.", "act": "storyteller, inviting", "beat": "story"},
+ {"who": "gopi", "text": "ఎవరి గుర్రం ఆఖరున చేరుతుందో… వాడికే నా పొలం!", "act": "imitating a stern old village elder", "beat": "story"},
+ {"who": "gopi", "text": "ఇద్దరూ నత్తలా… రోజంతా నెమ్మదిగా!", "act": "comic, slowed-down exaggeration", "beat": "story"},
+ {"who": "gopi", "text": "అప్పుడు ఒక తాతయ్య… రెండే మాటలు చెప్పాడు.", "act": "mysterious, lowering the voice", "beat": "clue"},
+ {"who": "gopi", "text": "వెంటనే ఇద్దరూ… full speed లో పరుగు!", "act": "sudden excitement, fast", "beat": "clue"},
+ {"who": "gopi", "text": "ఇలాంటివి రోజూ కావాలంటే… follow చేయండి, YouTube లో subscribe!", "act": "quick friendly aside", "beat": "follow"},
+ {"who": "pinky", "text": "అన్నయ్యా… 'పరిగెత్తండి' అన్నాడా?", "act": "unsure, hopeful guess", "beat": "guess"},
+ {"who": "gopi", "text": "ఉహూ! Answer reveal అయ్యే ముందే… మీ answer comment లో పెట్టండి!", "act": "playful no, then urgent quiz-host energy", "beat": "comment-countdown"},
+ {"who": "gopi", "text": "ఆ రెండు మాటలు… గుర్రాలు మార్చుకోండి!", "act": "dramatic pause, then a big satisfied reveal", "beat": "reveal"},
+ {"who": "gopi", "text": "అన్న గుర్రం మీద తమ్ముడు… తమ్ముడి గుర్రం మీద అన్న!", "act": "explaining with delight", "beat": "why"},
+ {"who": "gopi", "text": "ఎదుటివాడి గుర్రం ముందు చేరితే… తన గుర్రమే ఆఖరు!", "act": "aha moment, satisfied", "beat": "why"},
+ {"who": "pinky", "text": "అబ్బా! భలే trick!", "act": "amazed, clapping", "beat": "react"},
+ {"who": "gopi", "text": "మీ answer correct ఆ? Comment లో ✅ పెట్టండి!", "act": "warm, inviting", "beat": "check"},
+ {"who": "gopi", "text": "ఈ riddle friend కి share చేసి… వాళ్ళ brain check చేయండి! Follow… subscribe… రేపు ఇంకో twist!", "act": "energetic, smiling sign-off", "beat": "share-close"}
+],
+"visual_plan": [
+ "hook: title 'పొడుపు కథ #2 🐎' + 'Slow గా వెళ్ళినవాడే గెలుస్తాడు!' pill; Gopi at the chalkboard",
+ "hold: 'ANSWER AT THE END 👀' tag pops",
+ "story: chalkboard shows a village road to a finish flag, an old elder with a stick, two sons on two horses (simple drawn horses, different colours: brown and white)",
+ "snail crawl: both horses inch forward, a 🐌 and a sun moving across the sky (day passing), sweat drops",
+ "clue: a tiny old grandfather whispers '2 words' (speech bubble with '??'); then both sons jump onto horses and race with speed lines",
+ "follow: an animated FOLLOW button gets tapped by a hand",
+ "guess: Pinky bubble 'పరిగెత్తండి?' → red ✗ + buzzer",
+ "comment-countdown: '💬 COMMENT NOW' + 5-second countdown clock (no voice during the 5 s)",
+ "reveal: confetti, 'ANSWER ✅ గుర్రాలు మార్చుకోండి!' banner; the sons swap horses on the board (arrows)",
+ "why: brown son on white horse rushes ahead so his own brown horse comes last; finish flag",
+ "check/share: ✅ sticker, share-arrow animation, end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM"
+]}
