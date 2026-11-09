@@ -1,0 +1,573 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Life lesson #1 'Vemana: salt and camphor' (2D animated). Script: content/2026-11-10-lesson-vemana-salt-camphor/script.json -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E0E12}
+svg{display:block}
+.sub{position:absolute;left:60px;right:60px;bottom:190px;text-align:center;font-family:Rama,NotoTe;font-size:56px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 18px rgba(0,0,0,.8);opacity:0}
+.who{display:inline-block;font-family:Anton;font-size:34px;letter-spacing:2px;padding:4px 16px;border-radius:10px;margin-bottom:10px;text-shadow:none;color:#0E0E12}
+.top{position:absolute;top:70px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B700;color:#0E0E12;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none}
+.tag{font-family:Anton;font-size:28px;letter-spacing:2px;background:#7B1FA2;color:#fff;padding:7px 16px;border-radius:8px}
+.title{position:absolute;top:165px;left:60px;right:60px;text-align:center;opacity:0}
+.title .t{font-family:Rama,NotoTe;font-size:104px;line-height:1.15;color:#F5B700;text-shadow:0 6px 0 #000,0 0 20px rgba(0,0,0,.5)}
+.title small{display:block;font-family:Anton;font-size:38px;color:#fff;letter-spacing:4px;text-shadow:0 4px 0 #000}
+.title .hook{display:inline-block;margin-top:16px;font-family:Rama,NotoTe;font-size:56px;color:#0E0E12;background:#fff;padding:6px 26px;border-radius:14px;border:5px solid #0E0E12}
+.pill{position:absolute;left:60px;right:60px;text-align:center;opacity:0}
+.pill span{display:inline-block;font-family:Anton;letter-spacing:2px;color:#0E0E12;border:6px solid #0E0E12;border-radius:18px;box-shadow:0 8px 0 #0E0E12}
+#hold{top:200px}
+#hold span{font-size:64px;background:#F5B700;padding:8px 30px}
+#cdq{top:150px}
+#cdq span{font-size:62px;background:#fff;padding:6px 26px}
+.bar{position:absolute;left:0;right:0;height:0;background:#000}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+#clock{position:absolute;top:285px;left:170px;width:250px;height:270px;opacity:0}
+#digit{position:absolute;top:288px;left:520px;width:360px;text-align:center;font-family:Anton;font-size:270px;line-height:1;color:#F5B700;
+  -webkit-text-stroke:12px #0E0E12;paint-order:stroke fill;text-shadow:0 12px 0 #0E0E12;opacity:0}
+#ans{position:absolute;top:165px;left:60px;right:60px;text-align:center;opacity:0}
+#ans .k{display:inline-block;font-family:Anton;font-size:48px;letter-spacing:4px;color:#0E0E12;background:#7CDA6A;padding:4px 26px;border-radius:12px;border:5px solid #0E0E12}
+#ans .a{display:block;margin-top:2px;font-family:Anton;font-size:170px;line-height:1.05;color:#fff;-webkit-text-stroke:10px #0E0E12;paint-order:stroke fill;text-shadow:0 9px 0 #0E0E12}
+.btns{position:absolute;top:330px;left:60px;right:60px;display:flex;justify-content:center;gap:36px;opacity:0}
+.btn{font-family:Anton;font-size:56px;letter-spacing:2px;color:#fff;padding:14px 34px;border-radius:22px;border:6px solid #0E0E12;box-shadow:0 9px 0 #0E0E12}
+#bF{background:linear-gradient(90deg,#F58529,#DD2A7B,#8134AF)}
+#bS{background:#E53935}
+#tap{position:absolute;font-size:120px;opacity:0;left:0;top:0}
+#stk{position:absolute;top:240px;right:90px;width:330px;height:330px;opacity:0}
+#stk .c{position:absolute;inset:0;border-radius:50%;background:#fff;border:9px solid #0E0E12;box-shadow:0 12px 0 #0E0E12;display:grid;place-items:center}
+#stk .e{font-size:150px;line-height:1;margin-top:-70px}
+#stk .l{position:absolute;bottom:58px;left:0;right:0;text-align:center;font-family:Anton;font-size:40px;letter-spacing:2px;color:#0E0E12}
+#shr{position:absolute;top:330px;left:90px;right:60px;text-align:left;opacity:0;transform-origin:20% 50%}
+#shr .btn{display:inline-block;background:#1E88E5}
+.end{position:absolute;left:60px;right:60px;top:150px;text-align:center;opacity:0;background:rgba(14,14,18,.6);border-radius:28px;padding:22px 10px 26px}
+.end .q{font-family:Rama,NotoTe;font-size:70px;color:#fff;text-shadow:0 5px 0 #000;line-height:1.25}
+.end .c{display:inline-block;margin-top:12px;font-family:Rama,NotoTe;font-size:46px;color:#0E0E12;background:#fff;border:5px solid #0E0E12;border-radius:16px;padding:4px 22px;opacity:0}
+.end .f{margin-top:16px;font-family:Anton;font-size:58px;letter-spacing:1px;color:#F5B700;text-shadow:0 5px 0 #000;line-height:1.2;opacity:0}
+.end .f span{color:#fff}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="bar" id="barT" style="top:0"></div><div class="bar" id="barB" style="bottom:0"></div>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">LIFE LESSON</div></div>
+<div class="title" id="title"><div class="t">జీవిత పాఠం 💡</div><small>TELUGU LIFE LESSON</small><span class="hook">ఉప్పు, కర్పూరం... ఒకటేనా?</span></div>
+<div class="pill" id="hold"><span>ANSWER AT THE END 👀</span></div>
+<div class="pill" id="cdq"><span>A or B? 💬 COMMENT NOW</span></div>
+<div id="clock"><svg width="250" height="270" viewBox="-125 -145 250 270">
+  <g id="clockBody">
+  <path d="M-62 -98 A40 40 0 0 1 -112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <path d="M62 -98 A40 40 0 0 0 112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <line x1="-60" y1="92" x2="-82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <line x1="60" y1="92" x2="82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <circle r="104" fill="#E63946" stroke="#0E0E12" stroke-width="8"/>
+  <circle r="86" fill="#FFFDF5" stroke="#0E0E12" stroke-width="5"/>
+  <circle id="arc" r="62" fill="none" stroke="#F5B700" stroke-width="40" transform="rotate(-90)" stroke-dasharray="389.6 389.6" opacity=".55"/>
+  <g id="ticks"></g>
+  <line id="hand" x1="0" y1="10" x2="0" y2="-70" stroke="#0E0E12" stroke-width="9" stroke-linecap="round"/>
+  <circle r="11" fill="#0E0E12"/>
+  </g></svg></div>
+<div id="digit">5</div>
+<div class="btns" id="btns"><div class="btn" id="bF">➕ FOLLOW</div><div class="btn" id="bS">🔔 SUBSCRIBE</div></div>
+<div id="shr"><div class="btn" id="bSh">📤 SHARE</div></div>
+<div id="stk"><div class="c"><div class="e">✅</div></div><div class="l">COMMENT IT!</div></div>
+<div id="ans"><span class="k">ANSWER ✅</span><span class="a">B</span></div>
+<div class="end" id="end"><div class="q">మాటలు కాదు... పనులే! 💡</div><div class="c" id="endC">📤 Friend కి share చేయండి!</div>
+  <div class="f" id="endF">FOLLOW <span>@_REELRASAM</span> ·<br>SUBSCRIBE <span>@REEL_RASAM</span></div></div>
+<div id="tap">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,k)=>a+(b-a)*k;
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const out=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=2.2;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};   // overshoot pop
+const txt=(s,attrs,parent)=>{const e=el("text",attrs,parent);e.textContent=s;return e};
+const CHALK="#F1F8E9", CHALKY="#FFF59D", TE="Rama, NotoTe";
+// shrink an svg text to fit maxW (cached per content)
+const _fit=new Map();
+function fit(e,maxW,size){const key=e.textContent+"/"+maxW+"/"+size; if(_fit.get(e)===key)return;
+  e.setAttribute("font-size",size); const w=e.getComputedTextLength(); if(w>maxW) e.setAttribute("font-size",Math.floor(size*maxW/w));
+  if(w>0&&document.fonts.status==="loaded")_fit.set(e,key)}
+
+// ---------- defs + world ----------
+const defs=el("defs",{});
+const sky=el("linearGradient",{id:"sky",x1:0,y1:0,x2:0,y2:1},defs);   // golden-hour evening
+el("stop",{offset:"0","stop-color":"#FF9E6D"},sky);el("stop",{offset:"0.55","stop-color":"#FFC98B"},sky);el("stop",{offset:"1","stop-color":"#FFE9B8"},sky);
+const vig=el("radialGradient",{id:"vig",cx:.5,cy:.5,r:.75},defs);
+el("stop",{offset:".55","stop-color":"#000","stop-opacity":"0"},vig);el("stop",{offset:"1","stop-color":"#000","stop-opacity":".7"},vig);
+const slate=el("radialGradient",{id:"slate",cx:.45,cy:.4,r:.8},defs);
+el("stop",{offset:"0","stop-color":"#3C8A55"},slate);el("stop",{offset:"1","stop-color":"#245A37"},slate);
+const steel=el("linearGradient",{id:"steel",x1:0,y1:0,x2:1,y2:0},defs);
+el("stop",{offset:"0","stop-color":"#78909C"},steel);el("stop",{offset:".35","stop-color":"#ECEFF1"},steel);el("stop",{offset:".6","stop-color":"#B0BEC5"},steel);el("stop",{offset:"1","stop-color":"#607D8B"},steel);
+const glowG=el("radialGradient",{id:"glow",cx:.5,cy:.5,r:.6},defs);
+el("stop",{offset:"0","stop-color":"#FFF59D","stop-opacity":".75"},glowG);el("stop",{offset:"1","stop-color":"#FFF59D","stop-opacity":"0"},glowG);
+
+const cam=el("g",{});
+el("rect",{x:-800,y:-600,width:3400,height:2400,fill:"url(#sky)"},cam);
+el("circle",{cx:900,cy:420,r:95,fill:"#FFE082",opacity:.95},cam);
+el("circle",{cx:900,cy:420,r:150,fill:"#FFE082",opacity:.25},cam);
+const clouds=[[150,330,1],[620,250,.8],[980,420,1.1],[1400,300,.9]].map(([x,y,s])=>{const g=el("g",{},cam);
+  [[0,0,60],[55,-20,70],[115,0,55],[55,20,50]].forEach(([dx,dy,r])=>el("circle",{cx:dx,cy:dy,r:r*s,fill:"#FFF3E0",opacity:.9},g));return {g,x,y}});
+const birds=[...Array(3)].map(()=>el("path",{d:"M-18 0 Q-9 -10 0 0 Q9 -10 18 0",stroke:"#5D4037","stroke-width":4,fill:"none"},cam));
+[[-420,860,260,"#F4A261"],[-140,820,260,"#F7C59F"],[150,900,220,"#E9C46A"],[380,780,250,"#90BE6D"],[640,860,230,"#F28482"],[880,800,300,"#84A59D"],[1190,880,240,"#B8A1D9"],[1440,820,280,"#F4A261"]].forEach(([x,y,w,c])=>{
+  el("rect",{x,y,width:w,height:1300-y,fill:c,rx:6},cam);
+  for(let r=y+40;r<1220;r+=90)for(let cx=x+30;cx<x+w-40;cx+=70)el("rect",{x:cx,y:r,width:38,height:48,fill:"#FFF8E7",rx:4,opacity:.85},cam)});
+const bunt=el("g",{},cam);
+el("path",{d:"M-300 640 Q300 760 900 650 Q1300 600 1700 700",stroke:"#5D4037","stroke-width":4,fill:"none"},bunt);
+const flagCols=["#E63946","#F5B700","#2E7D32","#1E88E5","#8E24AA"];
+const flags=[];for(let i=0;i<26;i++){const x=-280+i*76, k=(x+300)/1200; const y=x<900?lerp(640,650,k)+Math.sin(k*Math.PI)*58:650+((x-900)/800)*50-Math.sin((x-900)/800*Math.PI)*25;
+  flags.push({e:el("path",{d:"M-18 0 L18 0 L0 34 Z",fill:flagCols[i%5]},bunt),x,y})}
+el("rect",{x:-800,y:1270,width:3400,height:1000,fill:"#C9A66B"},cam);
+el("rect",{x:-800,y:1260,width:3400,height:30,fill:"#6DBE45"},cam);
+el("rect",{x:-800,y:1290,width:3400,height:120,fill:"#9CCB5B",opacity:.55},cam);
+[[60,1450],[300,1520],[760,1480],[1100,1540],[520,1600]].forEach(([x,y])=>el("ellipse",{cx:x,cy:y,rx:46,ry:9,fill:"#A8875A",opacity:.6},cam));
+el("path",{d:"M1250 1300 L1270 1220 L1350 1220 L1370 1300 Z",fill:"#C1440E"},cam);
+[[1285,1180,40],[1330,1165,44],[1310,1130,36]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#3E8E41"},cam));
+
+// ---------- the chalkboard (world) ----------
+const BX=330,BY=540,BW=700,BH=520, GROUND=1290;
+const board=el("g",{transform:`translate(${BX},${BY})`},cam);
+el("path",{d:`M90 ${BH} L60 ${GROUND-BY} M${BW-90} ${BH} L${BW-60} ${GROUND-BY}`,stroke:"#6D4C41","stroke-width":26,"stroke-linecap":"round"},board);
+el("ellipse",{cx:BW/2,cy:GROUND-BY+6,rx:400,ry:22,fill:"#000",opacity:.12},board);
+el("rect",{x:-24,y:-24,width:BW+48,height:BH+48,rx:16,fill:"#8D5524",stroke:"#4E2E12","stroke-width":6},board);
+el("rect",{x:0,y:0,width:BW,height:BH,rx:6,fill:"url(#slate)"},board);
+[[110,70,80],[520,380,110],[380,140,70],[150,400,60]].forEach(([x,y,r])=>el("ellipse",{cx:x,cy:y,rx:r,ry:r*.45,fill:"#fff",opacity:.05},board));
+el("rect",{x:-14,y:BH+16,width:BW+28,height:18,rx:6,fill:"#6D4C41"},board);
+el("rect",{x:60,y:BH+8,width:44,height:12,rx:5,fill:"#FAFAFA"},board);el("rect",{x:120,y:BH+9,width:30,height:11,rx:5,fill:"#FFE082"},board);
+const chalkT=(s,x,y,size,parent,extra)=>txt(s,Object.assign({x,y,"font-family":TE,"font-size":size,fill:CHALK,"text-anchor":"middle"},extra||{}),parent);
+
+// (1) salt bowl vs camphor plate
+const gSalt=el("g",{opacity:0},board);
+const SB=[200,330], CP=[500,330];
+el("ellipse",{cx:SB[0],cy:SB[1]+70,rx:120,ry:14,fill:"#000",opacity:.18},gSalt);
+const saltPile=el("g",{},gSalt);
+(()=>{let r=7;for(let i=0;i<150;i++){const a=(i*137.5)%360*Math.PI/180, k=Math.sqrt(i/150);const x=SB[0]+Math.cos(a)*k*88, y=SB[1]-8-(1-k*k)*62+Math.sin(a)*k*14;
+  el("rect",{x:x-r/2,y:y-r/2,width:r+(i%3)*2,height:r+(i%2)*2,fill:i%5?"#FFFFFF":"#E3ECEF",transform:`rotate(${(i*47)%90} ${x} ${y})`},saltPile)}})();
+el("path",{d:`M${SB[0]-110} ${SB[1]} Q${SB[0]-100} ${SB[1]+75} ${SB[0]} ${SB[1]+75} Q${SB[0]+100} ${SB[1]+75} ${SB[0]+110} ${SB[1]} Z`,fill:"url(#steel)",stroke:"#455A64","stroke-width":5},gSalt);
+el("ellipse",{cx:SB[0],cy:SB[1],rx:110,ry:16,fill:"none",stroke:"#CFD8DC","stroke-width":7},gSalt);
+el("ellipse",{cx:CP[0],cy:CP[1]+62,rx:140,ry:16,fill:"#000",opacity:.18},gSalt);
+el("ellipse",{cx:CP[0],cy:CP[1]+44,rx:130,ry:26,fill:"#ECEFF1",stroke:"#90A4AE","stroke-width":5},gSalt);
+el("ellipse",{cx:CP[0],cy:CP[1]+40,rx:90,ry:14,fill:"#CFD8DC",opacity:.6},gSalt);
+const campPile=el("g",{},gSalt);
+[[-60,30],[-20,32],[20,30],[60,32],[-40,8],[0,10],[40,8],[-20,-14],[20,-14],[0,-36],[-75,12],[75,14]].forEach(([dx,dy],i)=>{const x=CP[0]+dx, y=CP[1]+dy;
+  el("rect",{x:x-19,y:y-15,width:38,height:30,rx:8,fill:"#FFFFFF",stroke:"#DCE3E6","stroke-width":3,transform:`rotate(${(i*29)%24-12} ${x} ${y})`},campPile)});
+const lblS=chalkT("ఉప్పు",SB[0],SB[1]+150,52,gSalt), lblC=chalkT("కర్పూరం",CP[0],CP[1]+150,52,gSalt);
+const eqQ=txt("?",{x:350,y:300,"font-family":"Anton","font-size":130,fill:CHALKY,"text-anchor":"middle",opacity:0},gSalt);
+const saltHead=chalkT("ఒకేలా ఉన్నాయి కదా? 🤔",350,80,46,gSalt);
+// taste gag (reveal): tongue on salt, nose sniffs camphor (no tasting camphor!)
+const tongue=txt("👅",{"font-size":90,"text-anchor":"middle","dominant-baseline":"central",opacity:0},gSalt);
+const nose=txt("👃",{"font-size":90,"text-anchor":"middle","dominant-baseline":"central",opacity:0},gSalt);
+const yuck=txt("😝",{x:SB[0]+95,y:SB[1]-95,"font-size":76,"text-anchor":"middle",opacity:0},gSalt);
+const waft=[...Array(3)].map(()=>el("path",{stroke:CHALK,"stroke-width":6,fill:"none","stroke-linecap":"round",opacity:0},gSalt));
+const tSpark=[...Array(8)].map(()=>txt("✨",{"font-size":44,"text-anchor":"middle",opacity:0},gSalt));
+
+// (2) the padyam, chalk-written line by line
+const gPoem=el("g",{opacity:0},board);
+const poemHead=chalkT("వేమన పద్యం 📜",BW/2,64,44,gPoem,{fill:CHALKY});
+el("path",{d:`M${BW/2-150} 82 q150 12 300 0`,stroke:CHALKY,"stroke-width":4,fill:"none",opacity:.7},gPoem);
+const POEM=["ఉప్పు కప్పురంబు నొక్కపోలికనుండు","చూడ చూడ రుచుల జాడ వేరు","పురుషులందు పుణ్యపురుషులు వేరయా","విశ్వదాభిరామ వినురవేమ"];
+const PY0=170, PDY=100;
+const poemClip=POEM.map((_,i)=>{const cp=el("clipPath",{id:"pc"+i},defs); return el("rect",{x:0,y:PY0+i*PDY-75,width:0,height:105},cp)});
+const poemT=POEM.map((s,i)=>chalkT(s,BW/2,PY0+i*PDY,56,gPoem,{"clip-path":`url(#pc${i})`,fill:i===3?CHALKY:CHALK}));
+const chalkStick=el("rect",{x:-6,y:-34,width:12,height:40,rx:4,fill:"#FAFAFA",stroke:"#BDBDBD","stroke-width":2,opacity:0},gPoem);
+const dust=[...Array(6)].map(()=>el("circle",{r:4,fill:"#fff",opacity:0},gPoem));
+
+// (3) meaning: two look-alike chalk figures, a magnifier finds the heart
+const gMean=el("g",{opacity:0},board);
+const meanHead=chalkT("పైకి... అందరూ ఒకేలా 👥",BW/2,72,46,gMean);
+const FIGX=[220,480];
+const fig=FIGX.map(x=>{const g=el("g",{},gMean);
+  el("circle",{cx:x,cy:175,r:44,fill:"none",stroke:CHALK,"stroke-width":9},g);
+  el("path",{d:`M${x} 219 L${x} 345 M${x} 250 L${x-62} 305 M${x} 250 L${x+62} 305 M${x} 345 L${x-50} 440 M${x} 345 L${x+50} 440`,stroke:CHALK,"stroke-width":9,fill:"none","stroke-linecap":"round"},g);
+  el("path",{d:`M${x-16} 168 l0 2 M${x+16} 168 l0 2 M${x-16} 192 q16 12 32 0`,stroke:CHALK,"stroke-width":6,fill:"none","stroke-linecap":"round"},g);return g});
+const heartClipC=el("circle",{cx:-200,cy:-200,r:62},el("clipPath",{id:"hclip"},defs));
+const HP=(x,y,s)=>`M${x} ${y+12*s} C${x-30*s} ${y-12*s} ${x-14*s} ${y-34*s} ${x} ${y-18*s} C${x+14*s} ${y-34*s} ${x+30*s} ${y-12*s} ${x} ${y+12*s} Z`;
+const heartG=el("g",{"clip-path":"url(#hclip)"},gMean);
+const heartGlow=el("circle",{cx:FIGX[1],cy:285,r:70,fill:"url(#glow)",opacity:0},gMean);
+const heart=el("path",{d:HP(0,0,1.25),fill:"#E53935",stroke:"#fff","stroke-width":3},heartG);
+const heartFull=el("path",{d:HP(0,0,1.25),fill:"#E53935",stroke:"#fff","stroke-width":3,opacity:0},gMean);
+const lens=el("g",{opacity:0},gMean);
+el("line",{x1:44,y1:44,x2:110,y2:110,stroke:"#6D4C41","stroke-width":22,"stroke-linecap":"round"},lens);
+el("circle",{r:62,fill:"rgba(255,255,255,.18)",stroke:"#FFD54F","stroke-width":14},lens);
+el("path",{d:"M-34 -26 q10 -16 28 -20",stroke:"#fff","stroke-width":7,fill:"none","stroke-linecap":"round",opacity:.8},lens);
+
+// (4) dilemma: A (Pandu: big talk, empty hands) | B (Chinna helps an elder)
+const gAB=el("g",{opacity:0},board);
+const glowB=el("rect",{x:352,y:4,width:344,height:BH-8,rx:6,fill:"url(#glow)",opacity:0},gAB);
+const glowBs=el("rect",{x:356,y:8,width:336,height:BH-16,rx:8,fill:"none",stroke:"#FFEB3B","stroke-width":9,opacity:0},gAB);
+const dimA=el("rect",{x:4,y:4,width:344,height:BH-8,rx:6,fill:"#0E0E12",opacity:0},gAB);
+const divider=el("path",{d:`M350 110 L350 ${BH-24}`,stroke:CHALK,"stroke-width":5,"stroke-dasharray":"16 12",opacity:.8},gAB);
+const abHead=chalkT("ఎవరిని నమ్ముతారు? 🤔",BW/2,64,42,gAB,{fill:CHALKY,opacity:0});
+const gA=el("g",{},gAB), gB=el("g",{},gAB);
+const letA=txt("A",{x:60,y:96,"font-family":"Anton","font-size":76,fill:"#F5B700",stroke:"#0E0E12","stroke-width":5,"paint-order":"stroke","text-anchor":"middle"},gA);
+const letB=txt("B",{x:640,y:96,"font-family":"Anton","font-size":76,fill:"#64B5F6",stroke:"#0E0E12","stroke-width":5,"paint-order":"stroke","text-anchor":"middle"},gB);
+const miniA=el("g",{},gA), miniB=el("g",{},gB);
+const capA1=chalkT("మాటలు బంగారం 🗣️",175,450,32,gA), capA2=chalkT("పనులు సున్నా ✖",175,494,32,gA,{fill:"#FF8A80"});
+const capB1=chalkT("మాటలు తక్కువ",525,450,32,gB), capB2=chalkT("అవసరానికి ముందు 🤝",525,494,32,gB,{fill:"#A5D6A7"});
+const talkE=txt("🗣️",{x:0,y:0,"font-size":60,"text-anchor":"middle","dominant-baseline":"central"},gA);
+const bubbles=[[245,170,0],[290,265,1]].map(([x,y,j])=>{const g=el("g",{},gA);
+  el("path",{d:"M-62 -40 Q-62 -62 -40 -62 L40 -62 Q62 -62 62 -40 L62 20 Q62 42 40 42 L-12 42 L-38 66 L-30 42 L-40 42 Q-62 42 -62 20 Z",fill:"#fff",stroke:"#0E0E12","stroke-width":5},g);
+  txt("💬",{x:0,y:-6,"font-size":58,"text-anchor":"middle","dominant-baseline":"central"},g);return {g,x,y,j}});
+const emptyQ=txt("🤷",{x:0,y:0,"font-size":52,"text-anchor":"middle","dominant-baseline":"central",opacity:0},gA);
+const helpE=txt("🤝",{x:528,y:185,"font-size":58,"text-anchor":"middle","dominant-baseline":"central",opacity:0},gB);
+const helpH=[...Array(3)].map(()=>el("path",{d:HP(0,0,.5),fill:"#FF8A80",opacity:0},gB));
+const tickB=el("path",{d:"M440 120 L480 160 L560 80",stroke:"#7CDA6A","stroke-width":16,fill:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:0},gB);
+
+// (5) the lesson
+const gWhy=el("g",{opacity:0},board);
+const why1=chalkT("మాటలు కాదు...",BW/2,200,84,gWhy), why2=chalkT("పనులే! 💪",BW/2,350,118,gWhy,{fill:CHALKY});
+const whyU=el("path",{d:"M150 392 Q350 418 560 386",stroke:"#FF8A80","stroke-width":10,fill:"none","stroke-linecap":"round"},gWhy);
+const whyX=el("path",{d:"M110 196 L590 160",stroke:"#FF8A80","stroke-width":7,fill:"none","stroke-linecap":"round",opacity:0},gWhy);
+
+// ---------- characters ----------
+function makeChar(o){
+  const g=el("g",{},o.parent||cam), body=el("g",{},g);
+  const legL=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body),legR=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body);
+  const shoeL=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body),shoeR=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body);
+  if(o.dress) el("path",{d:o.long?"M-70 -150 L70 -150 L100 0 L-100 0 Z":"M-70 -150 L70 -150 L95 -40 L-95 -40 Z",fill:o.dress},body);
+  else el("rect",{x:-62,y:-175,width:124,height:60,rx:16,fill:o.shorts},body);
+  el("rect",{x:-62,y:-300,width:124,height:150,rx:36,fill:o.shirt},body);
+  if(o.border) el("path",{d:"M-62 -260 L62 -190",stroke:"#F5B700","stroke-width":16},body);
+  if(o.dots) [[-30,-260],[20,-230],[-15,-190],[35,-280],[30,-175]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:7,fill:"#fff",opacity:.9},body));
+  const armL=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body),armR=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body);
+  const handItem=el("g",{},body), items={};
+  const head=el("g",{},body);
+  if(o.pigtails){el("circle",{cx:-112,cy:-430,r:38,fill:o.hair},head);el("circle",{cx:112,cy:-430,r:38,fill:o.hair},head);
+    [-1,1].forEach(s=>el("path",{d:`M${s*90} -470 l${s*30} -18 l${-s*4} 30 z`,fill:"#F06292"},head))}
+  if(o.curls) [[-90,-470],[-55,-505],[-15,-520],[25,-518],[62,-500],[92,-468],[-100,-430],[100,-430]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:30,fill:o.hair},head));
+  if(o.bun) el("circle",{cx:0,cy:-520,r:42,fill:o.hair},head);
+  el("circle",{cx:0,cy:-400,r:105,fill:o.skin},head);
+  el("path",{d:o.hairPath||"M-105 -410 Q-100 -520 0 -515 Q100 -520 105 -410 Q60 -470 0 -455 Q-60 -470 -105 -410Z",fill:o.hair},head);
+  if(o.spiky) el("path",{d:"M-80 -480 L-60 -540 L-35 -495 L-10 -555 L15 -500 L40 -550 L60 -492 L85 -530 L90 -470 Z",fill:o.hair},head);
+  el("circle",{cx:-60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);el("circle",{cx:60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);
+  const eyeW=[-36,36].map(x=>el("ellipse",{cx:x,cy:-405,rx:21,ry:25,fill:"#fff"},head));
+  const pup=[-36,36].map(x=>el("circle",{cx:x,cy:-402,r:11,fill:"#1b1b1b"},head));
+  const lids=[-36,36].map(x=>el("path",{d:`M${x-22} -404 Q${x} -390 ${x+22} -404`,stroke:"#3a2a1a","stroke-width":6,fill:"none",opacity:0},head));
+  const brow=[-1,1].map(s=>el("line",{stroke:o.browC||"#3a2a1a","stroke-width":9,"stroke-linecap":"round"},head));
+  const mouth=el("ellipse",{cx:0,cy:-345,rx:20,ry:4,fill:"#7A1F1F"},head);
+  const smile=el("path",{d:"M-34 -356 Q0 -318 34 -356",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  const grin=el("g",{opacity:0},head);el("path",{d:"M-48 -362 Q0 -296 48 -362 Z",fill:"#7A1F1F"},grin);
+  el("rect",{x:-40,y:-362,width:34,height:13,fill:"#fff"},grin);el("rect",{x:6,y:-362,width:34,height:13,fill:"#fff"},grin);
+  const hmm=el("path",{d:"M-26 -342 Q-6 -350 24 -338",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  if(o.bindi) el("circle",{cx:0,cy:-445,r:8,fill:"#D32F2F"},head);
+  if(o.glasses==="round"){const gl=el("g",{},head);[-38,38].forEach(x=>el("circle",{cx:x,cy:-405,r:33,fill:"rgba(255,255,255,.12)",stroke:"#111","stroke-width":9},gl));el("line",{x1:-6,y1:-410,x2:6,y2:-410,stroke:"#111","stroke-width":7},gl)}
+  if(o.cap){el("path",{d:"M-100 -440 Q0 -540 100 -440 Z M-60 -450 L-150 -440 L-100 -430 Z",fill:o.cap},head)}
+  if(o.items){
+    if(o.items.includes("palm")){const it=items.palm=el("g",{},handItem);txt("✋",{x:0,y:-8,"font-size":78,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("point")){const it=items.point=el("g",{},handItem);txt("👉",{x:14,y:-6,"font-size":70,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("thumb")){const it=items.thumb=el("g",{},handItem);txt("👍",{x:0,y:-10,"font-size":80,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("stick")){const it=items.stick=el("g",{},handItem);el("line",{x1:0,y1:10,x2:0,y2:-150,stroke:"#8D6E63","stroke-width":9,"stroke-linecap":"round"},it);el("circle",{cx:0,cy:-152,r:8,fill:"#FAFAFA"},it)}
+    if(o.items.includes("cane")){const it=items.cane=el("g",{},handItem);el("path",{d:"M0 -10 L0 260 M0 -10 q0 -30 -30 -30",stroke:"#6D4C41","stroke-width":14,fill:"none","stroke-linecap":"round"},it)}
+    if(o.items.includes("bag")){const it=items.bag=el("g",{},handItem);el("path",{d:"M-22 10 q22 -36 44 0",stroke:"#5D4037","stroke-width":8,fill:"none"},it);
+      el("rect",{x:-48,y:8,width:96,height:92,rx:14,fill:"#A1887F",stroke:"#4E342E","stroke-width":6},it);txt("🥬",{x:-14,y:6,"font-size":44,"text-anchor":"middle"},it);txt("🍅",{x:18,y:12,"font-size":38,"text-anchor":"middle"},it)}
+    if(o.items.includes("card")){const it0=items.card=el("g",{},handItem), it=el("g",{transform:o.mirrorCard?"scale(-1,1)":""},it0);el("line",{x1:0,y1:10,x2:0,y2:-40,stroke:"#8D6E63","stroke-width":10},it);
+      el("rect",{x:-80,y:-230,width:160,height:190,rx:18,fill:"#fff",stroke:"#0E0E12","stroke-width":8},it);
+      txt("B",{x:0,y:-135,"font-family":"Anton","font-size":150,fill:"#1E88E5","text-anchor":"middle","dominant-baseline":"central"},it)}
+  }
+  const st={x:0,y:0,s:1,flip:1,rot:0,walk:0,armL:200,armR:160,lenL:115,lenR:115,talk:0,brow:"n",look:0,lookY:0,blink:0,hop:0,item:"",itemRot:0,
+            smile:0,grin:0,hmm:0,shut:0,jaw:0,headRot:0,vis:1};
+  function draw(){
+    const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) rotate(${k.rot}) scale(${k.s*k.flip},${k.s})`); g.style.opacity=k.vis;
+    head.setAttribute("transform",`rotate(${k.headRot} 0 -300)`);
+    const sw=Math.sin(k.walk)*28, ll=150;
+    [[legL,shoeL,-28,sw],[legR,shoeR,28,-sw]].forEach(([l,sh,hx,a])=>{const r=a*Math.PI/180,x2=hx+Math.sin(r)*ll,y2=-150+Math.cos(r)*ll;
+      l.setAttribute("x1",hx);l.setAttribute("y1",-150);l.setAttribute("x2",x2);l.setAttribute("y2",y2);sh.setAttribute("cx",x2+8);sh.setAttribute("cy",y2)});
+    [[armL,-58,k.armL,k.lenL],[armR,58,k.armR,k.lenR]].forEach(([a,sx,deg,len])=>{const r=deg*Math.PI/180;a.setAttribute("x1",sx);a.setAttribute("y1",-280);
+      a.setAttribute("x2",sx+Math.sin(r)*len);a.setAttribute("y2",-280-Math.cos(r)*len)});
+    const r=k.armR*Math.PI/180; handItem.setAttribute("transform",`translate(${58+Math.sin(r)*(k.lenR+3)},${-280-Math.cos(r)*(k.lenR+3)}) rotate(${k.itemRot})`);
+    for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    const open=Math.max(k.talk,k.jaw), quiet=open<0.15;
+    mouth.setAttribute("ry",3+22*open+18*k.jaw); mouth.setAttribute("rx",18+6*open);
+    mouth.style.opacity=quiet&&(k.grin||k.smile||k.hmm)?0:1;
+    smile.style.opacity=k.smile&&quiet&&!k.grin?1:0; grin.style.opacity=k.grin&&quiet?1:0; hmm.style.opacity=k.hmm&&quiet&&!k.smile&&!k.grin?1:0;
+    const closed=k.blink||k.shut; eyeW.forEach(e=>e.setAttribute("ry",closed?2:25*(1+0.2*k.jaw))); lids.forEach(l=>l.style.opacity=closed?1:0);
+    pup.forEach((p,i)=>{p.setAttribute("cx",(i?36:-36)+k.look*8);p.setAttribute("cy",-402+k.lookY*8);p.style.opacity=closed?0:1});
+    brow.forEach((b,i)=>{const s=i?1:-1,B={a:[-424,-446],s:[-452,-432],u:[-462,-458],n:[-440,-440],q:i?[-468,-462]:[-436,-440]}[k.brow];
+      b.setAttribute("x1",s*14);b.setAttribute("y1",B[0]);b.setAttribute("x2",s*58);b.setAttribute("y2",B[1])});
+  }
+  function aimLocal(side,lx,ly,len){const sx=side==="L"?-58:58,dx=lx-sx,dy=ly+280,d=Math.hypot(dx,dy);const a=Math.atan2(dx,-dy)*180/Math.PI;
+    if(side==="L"){st.armL=a;st.lenL=len||Math.min(d,140)}else{st.armR=a;st.lenR=len||Math.min(d,140)}}
+  function aim(side,wx,wy,len){const lx=(wx-st.x)/(st.s*st.flip), ly=(wy-(st.y-st.hop))/st.s; aimLocal(side,lx,ly,len)}
+  return {st,draw,g,aim,aimLocal};
+}
+const C={
+  gopi:  makeChar({skin:"#B97A45",hair:"#1b1b1b",shirt:"#FB8C00",shorts:"#1E5AA8",curls:true,glasses:"round",items:["stick","palm","point","thumb"]}),
+  pinky: makeChar({skin:"#D49A6A",hair:"#2b1a10",shirt:"#EC407A",dress:"#F48FB1",dots:true,pigtails:true,shoe:"#F06292",items:["card"],mirrorCard:true}),
+  pandu: makeChar({skin:"#B5733A",hair:"#1b1b1b",shirt:"#43A047",shorts:"#5D4037",cap:"#212121",parent:miniA}),
+  chinna:makeChar({skin:"#C68642",hair:"#1b1b1b",shirt:"#1E50C8",shorts:"#37474F",spiky:true,shoe:"#fafafa",items:["bag"],parent:miniB}),
+  elder: makeChar({skin:"#B98A5E",hair:"#E0E0E0",browC:"#BDBDBD",shirt:"#00897B",dress:"#26A69A",long:true,border:true,bun:true,bindi:true,glasses:"round",items:["cane"],parent:miniB}),
+};
+// Pinky's thought dots for the countdown
+const thought=el("g",{opacity:0},cam);
+[[0,0,10],[-26,-34,15],[-60,-78,22]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#fff",stroke:"#0E0E12","stroke-width":4},thought));
+const tq=txt("?",{x:96,y:-104,"font-family":"Anton","font-size":110,fill:"#E63946",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke","text-anchor":"middle"},thought);
+const sparks=[...Array(7)].map(()=>txt("✨",{"font-size":52,"text-anchor":"middle",opacity:0},cam));
+// screen-space: share arrow, confetti, vignette, speed streaks
+const shareArrow=el("path",{d:"M470 360 C560 210 730 210 790 330",stroke:"#F5B700","stroke-width":22,fill:"none","stroke-linecap":"round",opacity:0});
+const shareHead=el("path",{d:"M-40 -34 L30 0 L-40 34 Z",fill:"#F5B700",stroke:"#0E0E12","stroke-width":6,opacity:0});
+const friendE=txt("👫",{x:850,y:430,"font-size":150,"text-anchor":"middle","dominant-baseline":"central",opacity:0});
+const conf=[...Array(46)].map((_,i)=>el("rect",{width:18,height:30,rx:4,fill:["#E63946","#F5B700","#2E7D32","#1E88E5","#8E24AA","#fff"][i%6],opacity:0}));
+const vigR=el("rect",{x:0,y:0,width:1080,height:1920,fill:"url(#vig)",opacity:0});
+const streaks=[...Array(14)].map(()=>el("line",{stroke:"#fff","stroke-width":6,opacity:0}));
+const tickG=document.getElementById("ticks");
+for(let i=0;i<5;i++){const a=i*72*Math.PI/180;el("line",{x1:Math.sin(a)*70,y1:-Math.cos(a)*70,x2:Math.sin(a)*82,y2:-Math.cos(a)*82,stroke:"#0E0E12","stroke-width":8,"stroke-linecap":"round"},tickG)}
+
+// ---------- timeline ----------
+const COLORS={gopi:"#F5B700",pinky:"#F48FB1"}, NAMES={gopi:"GOPI",pinky:"PINKY"};
+let TL;
+function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
+function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
+const S=i=>TL.lines[i].start, E=i=>TL.lines[i].start+TL.lines[i].dur;
+// time at which a word of line i is spoken (proportional to text length, '…' counts as a pause); same as mix.py
+const W_=s=>[...s].reduce((a,c)=>a+(c==="…"?4:1),0);
+function atx(i,sub){const l=TL.lines[i], k=l.text.indexOf(sub); return l.start+l.dur*(k<0?0:W_(l.text.slice(0,k))/W_(l.text))}
+const fade=(t,a,b,d=0.25)=>clamp((t-a)/d)*clamp((b-t)/d);
+
+const GX=200,GY=1330,GS=0.85, PX=1125,PY=1350,PS=0.72;
+const B2W=(x,y)=>[BX+x,BY+y];
+
+window.render=function(t){
+  const gp=C.gopi.st, pi=C.pinky.st;
+  const T1=S(2)-0.3, T2=S(5)-0.35, T3=S(7)-0.3, T4=S(8)-0.35, CD0=E(10)+0.35, CD1=CD0+TL.countdown, T7=S(12)-0.2, T8=S(13)-0.3, T9=S(14)-0.3, T10=S(15)-0.3;
+  const shot=t<T1?1:t<T2?2:t<T3?3:t<T4?4:t<CD0?5:t<CD1?6:t<T7?7:t<T8?8:t<T9?9:t<T10?10:11;
+  for(const k in C){const s=C[k].st;Object.assign(s,{talk:talkOf(k,t),blink:((t*0.7+k.length)%3.1)<0.12?1:0,hop:0,rot:0,brow:"n",look:0,lookY:0,
+    walk:0,smile:0,grin:0,hmm:0,shut:0,jaw:0,item:"",itemRot:0,armL:200,armR:160,lenL:115,lenR:115,flip:1,headRot:0,vis:1})}
+  Object.assign(gp,{x:GX,y:GY,s:GS,flip:1,item:"stick",look:1,lookY:-0.5,smile:1});
+  gp.headRot=Math.sin(t*2.1)*2.5+gp.talk*3*Math.sin(t*9);
+  const pointStick=(bx,by)=>{const [wx,wy]=B2W(bx,by); C.gopi.aim("R",wx,wy,135); gp.itemRot=gp.armR};
+  const hipL=()=>C.gopi.aimLocal("L",-95,-165,112);
+
+  // ---------------- key times ----------------
+  const tSalt=atx(0,"ఉప్పు"), tCamph=atx(0,"కర్పూరం"), tSame=atx(0,"రెండూ");
+  const tDiff=atx(1,"తేడా"), tLife=atx(1,"మీ life"), tWatch=atx(1,"చివరి");
+  const P=[[S(3),atx(3,"చూడ")-0.15],[atx(3,"చూడ"),E(3)],[S(4),atx(4,"విశ్వదాభిరామ")-0.15],[atx(4,"విశ్వదాభిరామ"),E(4)]];
+  const tLook=atx(6,"దగ్గరగా"), tGood=atx(6,"మంచితనం");
+  const tFol=atx(7,"follow"), tSub=atx(7,"YouTube");
+  const tA=atx(8,"A —"), tB=S(9), tB2=atx(9,"అవసరానికి"), tWho=S(10), tAorB=atx(10,"A or B");
+  const tCorr=S(12), tSaltR=atx(12,"ఉప్పు"), tTaste=atx(12,"రుచి"), tKnow=atx(12,"తెలుస్తుంది");
+  const tPanul=atx(13,"పనులే"), tTick=atx(14,"Comment"), tShare=atx(15,"share"), tAsk=atx(15,"వాళ్ళు"), tFollow=atx(15,"Follow"), tSubs=atx(15,"subscribe"), tRepu=atx(15,"రేపు");
+
+  // ---------------- board groups ----------------
+  gSalt.style.opacity=Math.max(fade(t,-1,T1+0.1),fade(t,tSaltR-0.15,T8+0.1));
+  gPoem.style.opacity=fade(t,T1-0.1,T2+0.1);
+  gMean.style.opacity=fade(t,T2-0.1,T4+0.1);
+  gAB.style.opacity=fade(t,T4-0.1,tSaltR+0.1);
+  gWhy.style.opacity=fade(t,T8-0.1,1e9);
+  // salt/camphor: piles pop, "?" between
+  saltPile.setAttribute("transform",`translate(${SB[0]},${SB[1]}) scale(${Math.max(0.001,back((t-tSalt+0.2)/0.35))}) translate(${-SB[0]},${-SB[1]})`);
+  campPile.setAttribute("transform",`translate(${CP[0]},${CP[1]+30}) scale(${Math.max(0.001,back((t-tCamph+0.2)/0.35))}) translate(${-CP[0]},${-CP[1]-30})`);
+  lblS.style.opacity=t>tSalt?1:0; lblC.style.opacity=t>tCamph?1:0;
+  const qk=back((t-tSame)/0.35); eqQ.style.opacity=t>tSame&&t<T1?1:0; eqQ.setAttribute("transform",`translate(350 260) scale(${Math.max(.001,qk)*(1+0.05*Math.sin(t*7))}) translate(-350 -260)`);
+  saltHead.textContent=t<T1?"ఒకేలా ఉన్నాయి కదా? 🤔":"రుచి చూస్తేనే తెలుస్తుంది! ✨"; fit(saltHead,640,46);
+  saltHead.style.opacity=t<T1?(t>tSame?1:0):(t>tTaste?1:0);
+  // taste gag
+  const g1=clamp((t-tTaste)/0.6), g2=clamp((t-tKnow)/0.6);
+  tongue.style.opacity=t>tTaste-0.1&&t<tKnow+0.2?1:0; tongue.setAttribute("transform",`translate(${SB[0]+lerp(-40,0,g1)},${SB[1]-90+Math.abs(Math.sin(t*14))*-14})`);
+  yuck.style.opacity=t>tTaste+0.35?1:0; yuck.setAttribute("transform",`rotate(${Math.sin(t*9)*8} ${SB[0]+95} ${SB[1]-120})`);
+  nose.style.opacity=t>tKnow-0.1?1:0; nose.setAttribute("transform",`translate(${CP[0]+lerp(40,0,g2)},${CP[1]-90}) scale(${1+0.08*Math.sin(t*16)})`);
+  waft.forEach((w,j)=>{const life=(t*1.4+j/3)%1, x=CP[0]-40+j*40; w.setAttribute("d",`M${x} ${CP[1]-10-life*60} q12 -14 0 -28 q-12 -14 0 -28`); w.style.opacity=t>tKnow?(1-life)*0.8:0});
+  tSpark.forEach((s,j)=>{const life=(t*1.2+j/8)%1, a=j/8*Math.PI*2, cx=j<4?SB[0]:CP[0], on=j<4?t>tTaste+0.3:t>tKnow+0.3;
+    s.setAttribute("x",cx+Math.cos(a)*(70+life*40)); s.setAttribute("y",SB[1]-20+Math.sin(a)*(50+life*30)); s.style.opacity=on?1-life:0});
+  // padyam chalk-writing
+  let chalkOn=false;
+  poemT.forEach((e,i)=>{fit(e,640,56); const [a,b]=P[i], k=clamp((t-a)/(b-a)); const bb=e.getBBox();
+    poemClip[i].setAttribute("x",bb.x-10); poemClip[i].setAttribute("width",(bb.width+20)*k);
+    if(k>0&&k<1){chalkOn=true; const cx=bb.x+bb.width*k, cy=PY0+i*PDY-8; chalkStick.setAttribute("transform",`translate(${cx},${cy+Math.sin(t*40)*5}) rotate(25)`);
+      dust.forEach((d,j)=>{const life=(t*3+j/6)%1; d.setAttribute("cx",cx-life*20+j*3); d.setAttribute("cy",cy+life*40); d.style.opacity=(1-life)*0.7})}});
+  chalkStick.style.opacity=chalkOn?1:0; if(!chalkOn) dust.forEach(d=>d.style.opacity=0);
+  poemHead.style.opacity=clamp((t-T1-0.2)/0.3);
+  // meaning: figures + magnifier + heart
+  const H=[FIGX[1],285];
+  meanHead.textContent=t<tGood?"పైకి... అందరూ ఒకేలా 👥":"మంచితనం = ❤️"; fit(meanHead,640,46); meanHead.style.opacity=clamp((T3-t)/0.25);
+  fig.forEach((g,i)=>{const k=back((t-S(5)-0.15-i*0.25)/0.4); g.setAttribute("transform",`translate(${FIGX[i]} 300) scale(${Math.max(.001,k)}) translate(${-FIGX[i]} -300)`)});
+  const lk=ease((t-tLook)/(tGood-tLook)); const lx=t<tLook?FIGX[0]:lerp(FIGX[0],H[0],lk), ly=lerp(250,H[1],lk)+Math.sin(t*5)*6;
+  lens.style.opacity=t>tLook-0.3?clamp((t-tLook+0.3)/0.2):0; lens.setAttribute("transform",`translate(${lx},${ly})`);
+  heartClipC.setAttribute("cx",lx); heartClipC.setAttribute("cy",ly);
+  const hb=1+0.12*Math.abs(Math.sin(t*5)); heart.setAttribute("transform",`translate(${H[0]},${H[1]}) scale(${hb})`);
+  const hk=back((t-tGood-0.2)/0.4); heartFull.style.opacity=t>tGood+0.2?1:0; heartFull.setAttribute("transform",`translate(${H[0]},${H[1]}) scale(${Math.max(.001,hk)*hb})`);
+  heartGlow.style.opacity=t>tGood?clamp((t-tGood)/0.3)*(0.7+0.3*Math.sin(t*5)):0;
+  // dilemma
+  const ak=back((t-tA+0.1)/0.4), bk=back((t-tB+0.05)/0.4);
+  gA.style.opacity=t>tA-0.1?1:0; gB.style.opacity=t>tB-0.05?1:0;
+  letA.setAttribute("transform",`translate(60 70) scale(${Math.max(.001,ak)*(t>tAorB&&t<CD1?1+0.12*Math.abs(Math.sin(t*6)):1)}) translate(-60 -70)`);
+  letB.setAttribute("transform",`translate(640 70) scale(${Math.max(.001,bk)*(t>tAorB&&t<CD1?1+0.12*Math.abs(Math.sin(t*6+1.5)):1)}) translate(-640 -70)`);
+  [capA1,capA2,capB1,capB2].forEach(c=>fit(c,320,32));
+  capA1.style.opacity=t>tA+0.2?1:0; capA2.style.opacity=t>atx(8,"పనులు")?1:0; capB1.style.opacity=t>tB+0.2?1:0; capB2.style.opacity=t>tB2?1:0;
+  abHead.style.opacity=t>tWho&&t<CD1?clamp((t-tWho)/0.3)*clamp((CD1-t)/0.2):0; fit(abHead,440,42);
+  letA.style.opacity=letB.style.opacity=1;
+  const reveal=t>tCorr-0.05;
+  glowB.style.opacity=reveal?0.6+0.4*Math.sin(t*6):0; glowBs.style.opacity=reveal?0.7+0.3*Math.sin(t*8):0; dimA.style.opacity=reveal?0.5*clamp((t-tCorr)/0.3):0;
+  const tk=clamp((t-tCorr-0.1)/0.3); tickB.style.opacity=reveal?1:0; tickB.setAttribute("stroke-dasharray","200"); tickB.setAttribute("stroke-dashoffset",200*(1-tk));
+  // mini cast on the board
+  const pa=C.pandu.st, ch=C.chinna.st, ol=C.elder.st;
+  Object.assign(pa,{x:100,y:400,s:0.42,look:1,lookY:0,brow:"u",grin:0,smile:0});
+  pa.jaw=t<tCorr?Math.abs(Math.sin(t*11))*0.7:0; pa.headRot=Math.sin(t*7)*6;
+  C.pandu.aimLocal("L",-170,-300+Math.sin(t*8)*30,120); C.pandu.aimLocal("R",170,-300+Math.sin(t*8+1.5)*30,120);   // big gestures, nothing in hand
+  if(reveal){pa.jaw=0; pa.hmm=1; pa.brow="s"; C.pandu.aimLocal("L",-130,-160,110); C.pandu.aimLocal("R",130,-160,110); pa.headRot=-8}
+  talkE.setAttribute("transform",`translate(${180},${235}) scale(${1+0.1*Math.sin(t*12)})`); talkE.style.opacity=0;
+  bubbles.forEach(b=>{const k=back((t-tA-0.25-b.j*0.35)/0.35); b.g.setAttribute("transform",`translate(${b.x},${b.y}) scale(${Math.max(.001,k)*(1.0+0.07*Math.sin(t*9+b.j*2))})`); b.g.style.opacity=t>tCorr?0.35:1});
+  emptyQ.style.opacity=0; emptyQ.setAttribute("transform",`translate(100,${350-Math.abs(Math.sin(t*4))*6})`);
+  Object.assign(ch,{x:450,y:400,s:0.40,look:1,lookY:0.4,smile:1,item:"bag"});
+  Object.assign(ol,{x:610,y:400,s:0.42,look:-1,lookY:0.2,smile:1,item:"cane",itemRot:180});
+  ch.walk=t<CD1?Math.sin(t*7)*0.5:0; ch.x=450+Math.sin(t*1.5)*6;
+  C.chinna.aimLocal("R",120,-200,110); ch.itemRot=-C.chinna.st.armR; C.chinna.aimLocal("L",60,-240,100);
+  C.elder.aimLocal("R",70,-140,110); C.elder.aimLocal("L",-150,-250,120); ol.headRot=Math.sin(t*2)*3;
+  const hk2=clamp((t-tB2)/0.3); helpE.style.opacity=hk2; helpE.setAttribute("transform",`translate(528,${185-Math.abs(Math.sin(t*4))*8}) translate(-528,-185)`);
+  helpH.forEach((h,j)=>{const life=(t*0.8+j/3)%1; h.setAttribute("transform",`translate(${500+j*30},${230-life*90}) scale(${0.6+life*0.5})`); h.style.opacity=t>tB2?(1-life)*0.9:0});
+  // lesson
+  const wu=clamp((t-tPanul)/0.5); whyU.setAttribute("stroke-dasharray","430"); whyU.setAttribute("stroke-dashoffset",430*(1-wu));
+  why1.style.opacity=t>T8+0.05?1:0; why2.style.opacity=t>tPanul-0.15?1:0;
+  why2.setAttribute("transform",`translate(${BW/2} 320) scale(${Math.max(.001,back((t-tPanul+0.15)/0.4))}) translate(${-BW/2} -320)`);
+  fit(why1,640,84); fit(why2,640,118);
+  const wx=clamp((t-atx(13,"కాదు"))/0.3); whyX.setAttribute("stroke-dasharray","490"); whyX.setAttribute("stroke-dashoffset",490*(1-wx)); whyX.style.opacity=t>atx(13,"కాదు")?0.9:0;
+
+  // ---------------- Gopi ----------------
+  if(shot===1){
+    gp.look=0; gp.lookY=0; hipL();
+    gp.hop=t<1.0?Math.max(0,Math.sin(clamp((t-0.35)/0.35)*Math.PI))*40:0;
+    if(t<tSalt-0.2){const w=Math.sin(t*16); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; gp.brow="u"; gp.jaw=t>0.35&&t<0.7?0.4:0}  // "Hey!" wave / stop
+    else if(t<tSame){gp.look=1; gp.lookY=-0.4; pointStick(t<tCamph?SB[0]:CP[0],SB[1]); C.gopi.aimLocal("L",-120,-210)}                    // points at salt, then camphor
+    else if(t<S(1)){gp.look=0.3; C.gopi.aimLocal("L",-150,-440); C.gopi.aimLocal("R",150,-440); gp.item=""; gp.brow="q"}                  // shrug: same?
+    else if(t<tLife){gp.brow="a"; gp.smile=0; C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.itemRot=-30; gp.look=0.4}                   // "ఈ ఒక్క తేడా" one finger
+    else if(t<tWatch){gp.brow="u"; gp.jaw=0.15; C.gopi.aimLocal("L",-160,-470,125); C.gopi.aimLocal("R",160,-470,125); gp.item=""; gp.hop=Math.abs(Math.sin((t-tLife)*5))*10}  // life-changing!
+    else {gp.brow="q"; C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.look=0; gp.headRot+=Math.sin(t*8)*3}                              // points at you: watch till the end
+  }
+  if(shot===2){
+    if(t<S(3)-0.2){pointStick(BW/2-80,60); C.gopi.aimLocal("L",-5,-250); gp.look=1; gp.lookY=-0.6}                                         // hand on heart: respect
+    else {gp.shut=gp.talk>0.1?1:0; gp.look=0.4; gp.lookY=-0.4; C.gopi.aimLocal("L",-5,-250); C.gopi.aimLocal("R",40+Math.sin(t*1.6)*15,-250,100); gp.item=""; gp.headRot=Math.sin(t*1.3)*6}  // reciting
+  }
+  if(shot===3){
+    gp.look=1; gp.lookY=-0.5;
+    if(t<tLook){const k=Math.sin(t*2.2); pointStick(lerp(FIGX[0],FIGX[1],(k+1)/2),300); C.gopi.aimLocal("L",-120,-210)}                     // both look the same
+    else if(t<tGood+0.3){pointStick(lx,ly); C.gopi.aimLocal("L",-30,-380,95); gp.brow="u"}                                               // look closely
+    else {pointStick(H[0],H[1]); C.gopi.aimLocal("L",-5,-250); gp.grin=1}
+  }
+  if(shot===4){
+    gp.look=0.3; gp.lookY=-0.6; gp.brow="u"; hipL();
+    const k=t<tSub?0:1; C.gopi.aimLocal("R",lerp(150,190,k),-470,130); gp.item="point"; gp.itemRot=-70; gp.hop=Math.abs(Math.sin(t*5))*8;
+  }
+  if(shot===5){
+    gp.look=1; gp.lookY=-0.5;
+    if(t<tA){gp.look=0; gp.lookY=0; C.gopi.aimLocal("R",175,-340,128); gp.item="point"; hipL(); gp.brow="q"}
+    else if(t<tWho){const [wx,wy]=B2W(t<tB?175:525,200); C.gopi.aimLocal("R",130,-330,110); gp.item=""; C.gopi.aimLocal("L",-120,-210)}   // off-frame here: open hand toward the board (nothing over the board text)
+    else {gp.look=0; gp.lookY=0; C.gopi.aimLocal("R",175,-340,128); gp.item="point"; hipL(); gp.brow="u"}
+  }
+  const cdk=t-CD0, sec=Math.floor(cdk), fr=cdk-sec;
+  if(shot===6){gp.look=1; gp.lookY=-0.3; gp.smile=1; gp.brow="q"; C.gopi.aimLocal("L",45,-232,96); C.gopi.aimLocal("R",-45,-214,96);
+    gp.walk=Math.asin(0.45*Math.max(0,Math.sin(t*Math.PI*2))); gp.headRot=Math.sin(t*Math.PI*2)*3}
+  if(shot===7){gp.look=1; gp.lookY=0; gp.brow="u"; C.gopi.aimLocal("L",45,-232,96); C.gopi.aimLocal("R",-45,-214,96)}
+  if(shot===8){
+    if(t<tSaltR){gp.look=0; gp.lookY=0; C.gopi.aimLocal("R",150,-460,125); C.gopi.aimLocal("L",-150,-460,125); gp.item=""; gp.brow="u"; gp.hop=Math.max(0,Math.sin(clamp((t-tCorr)/0.4)*Math.PI))*30}
+    else {pointStick(t<tKnow?SB[0]:CP[0],SB[1]-40); C.gopi.aimLocal("L",-120,-210)}
+  }
+  if(shot===9){gp.look=0; gp.lookY=0; hipL(); if(t<tPanul){C.gopi.aimLocal("R",150,-300,110); gp.item="palm"; gp.brow="s"} else {pointStick(BW/2,320); gp.look=1; gp.lookY=-0.4; gp.brow="u"}}
+  if(shot===10){gp.look=0; gp.lookY=0; hipL(); if(t<tTick){C.gopi.aimLocal("R",160,-330,115); gp.item="thumb"; gp.grin=1} else {C.gopi.aimLocal("R",150,-120,125); gp.item="point"; gp.itemRot=60; gp.lookY=0.8}}
+  if(shot===11){gp.look=0; gp.lookY=0; gp.smile=1; hipL();
+    if(t<tFollow){C.gopi.aimLocal("R",175,-340,128); gp.item="point"}
+    else {const w=Math.sin(t*12); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; gp.hop=t>tRepu?Math.abs(Math.sin(t*6))*12:0}}
+  // ---------------- Pinky ----------------
+  Object.assign(pi,{x:PX,y:PY,s:PS,flip:-1,look:1,lookY:-0.3,smile:1});
+  const p0=CD0-0.4, pop=back((t-p0)/0.42); pi.vis=t>p0?1:0; pi.s=PS*Math.max(0.001,pop); pi.headRot=Math.sin(t*1.7+1)*3;
+  C.pinky.aimLocal("R",90,-170); C.pinky.aimLocal("L",-90,-170);
+  if(shot===6){pi.smile=0; pi.brow="q"; pi.hmm=1; pi.look=-0.6; pi.lookY=-1; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-60,-240);
+    pi.headRot=Math.sin(t*1.6)*8; if(sec>=3){pi.look=Math.sin(t*5); pi.brow="s"}}
+  const cr=t>S(11)-0.35&&shot>=7;
+  if(shot===7){pi.look=0; pi.lookY=0; pi.brow="u"; if(cr){const k=out((t-S(11)+0.35)/0.3); C.pinky.aimLocal("R",lerp(60,130,k),lerp(-200,-500,k),130); pi.item="card"; pi.itemRot=-pi.armR+Math.sin(t*9)*6; pi.hop=Math.abs(Math.sin(t*7))*10*k} else {C.pinky.aimLocal("R",30,-345,105); pi.brow="q"; pi.hmm=1}}
+  if(shot===8){const c=Math.abs(Math.sin(t*15)); pi.brow="u"; pi.look=-1; pi.hop=Math.abs(Math.sin(t*7.5))*22*(t<tSaltR?1:0);
+    if(t<tSaltR){C.pinky.aimLocal("R",130,-500,130); pi.item="card"; pi.itemRot=-pi.armR} else {C.pinky.aimLocal("R",12+c*45,-285,110); C.pinky.aimLocal("L",-12-c*45,-285,110)}}
+  if(shot>=9){pi.look=-1; pi.lookY=-0.3; if(shot===11){const w=Math.sin(t*11+1); C.pinky.aimLocal("R",90+w*35,-460,115); C.pinky.aimLocal("L",-60,-190); pi.look=0; if(t>tRepu)pi.hop=Math.abs(Math.sin(t*6+0.5))*16}}
+  for(const k in C)C[k].draw();
+
+  thought.style.opacity=shot===6?clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.2):0;
+  thought.setAttribute("transform",`translate(${PX+30},${PY-PS*600}) scale(${-(0.95+0.08*Math.sin(t*6))},${0.95+0.08*Math.sin(t*6)})`);
+  tq.setAttribute("transform",`scale(-1,1) rotate(${Math.sin(t*4)*10} 96 -140)`);
+  const clapOn=shot===8&&t>tSaltR;
+  sparks.forEach((s,i)=>{const life=((t*1.1+i/7)%1), a=i/7*Math.PI*2+t*0.6; const on=clapOn||(shot===11&&t>tFollow);
+    s.setAttribute("x",PX+Math.cos(a)*(120+life*70)); s.setAttribute("y",PY-240+Math.sin(a)*(120+life*70)-life*40); s.style.opacity=on?(1-life):0});
+
+  // ---------------- camera ----------------
+  let z=1.0,fx=640,fy=800;
+  const fyFor=(z,wy,sy)=>wy-(sy-1000)/z;        // put world y `wy` at screen y `sy`
+  const BCX=BX+BW/2, BCY=BY+BH/2;
+  const W1={z:0.98,fx:630,fy:fyFor(0.98,BCY,920)};                          // Gopi + board, under the title
+  const GC={z:1.5,fx:GX+70,fy:fyFor(1.5,GY-GS*300,1120)};                    // close on Gopi
+  const BC={z:1.32,fx:BCX,fy:fyFor(1.32,BCY,830)};                          // board close-up (poem, dilemma)
+  const mixc=(a,b,k)=>({z:lerp(a.z,b.z,k),fx:lerp(a.fx,b.fx,k),fy:lerp(a.fy,b.fy,k)});
+  let V=W1;
+  if(shot===1){V=t<0.9?GC:mixc(GC,W1,ease((t-0.9)/0.8)); if(t>tWatch) V=mixc(V,{z:1.12,fx:520,fy:fyFor(1.12,GY-GS*360,1080)},ease((t-tWatch)/0.5))}
+  if(shot===2){const M={z:1.08,fx:600,fy:fyFor(1.08,BCY,900)}; V=t<S(3)-0.4?mixc({z:1.12,fx:520,fy:fyFor(1.12,GY-GS*360,1080)},M,ease((t-T1)/0.5)):mixc(M,BC,ease((t-S(3)+0.4)/0.6));
+    V={...V,z:V.z+0.004*(t-T1)}}
+  if(shot===3){V=mixc(BC,{z:1.0,fx:620,fy:fyFor(1.0,BCY,880)},ease((t-T2)/0.6))}
+  if(shot===4){V=mixc({z:1.0,fx:620,fy:fyFor(1.0,BCY,880)},{z:1.4,fx:GX+120,fy:fyFor(1.4,GY-GS*300,1150)},ease((t-T3)/0.45))}
+  if(shot===5){V=mixc({z:1.4,fx:GX+120,fy:fyFor(1.4,GY-GS*300,1150)},BC,ease((t-T4)/0.55)); V={...V,z:V.z+0.006*(t-T4)}}
+  if(shot===6){const CDv={z:0.92,fx:760,fy:fyFor(0.92,BCY,880)}; const k=ease(cdk/0.45); const pulse=Math.exp(-fr*6)*0.02; V=mixc(BC,CDv,k); V={...V,z:V.z+0.01*cdk+pulse}}
+  if(shot===7){V=mixc({z:0.92,fx:760,fy:fyFor(0.92,BCY,880)},{z:1.35,fx:PX-60,fy:fyFor(1.35,PY-PS*330,1120)},out((t-CD1)/0.35))}
+  if(shot===8){V=mixc({z:1.35,fx:PX-60,fy:fyFor(1.35,PY-PS*330,1120)},{z:0.98,fx:680,fy:fyFor(0.98,BCY,930)},out((t-T7)/0.4))}
+  if(shot===9){V=mixc({z:0.98,fx:680,fy:fyFor(0.98,BCY,930)},{z:1.22,fx:BCX-40,fy:fyFor(1.22,BCY,900)},ease((t-T8)/0.5))}
+  if(shot===10){V=mixc({z:1.22,fx:BCX-40,fy:fyFor(1.22,BCY,900)},{z:1.05,fx:560,fy:fyFor(1.05,BCY,980)},ease((t-T9)/0.5))}
+  if(shot===11){V=mixc({z:1.05,fx:560,fy:fyFor(1.05,BCY,980)},{z:0.9,fx:670,fy:fyFor(0.9,BCY,1010)},ease((t-T10)/0.6)); V={...V,z:V.z+0.008*(t-T10)}}
+  z=V.z; fx=V.fx; fy=V.fy;
+  let sx=0,sy=0;
+  const shake=(t0,d,a)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
+  shake(CD1,0.35,14); shake(tCorr,0.3,12); shake(tTick,0.25,10);
+  cam.setAttribute("transform",`translate(${540+sx},${1000+sy}) scale(${z}) translate(${-fx},${-fy})`);
+
+  // ---------------- ambience ----------------
+  clouds.forEach((c,i)=>c.g.setAttribute("transform",`translate(${(c.x+t*(8+i*4))%1700-200},${c.y})`));
+  birds.forEach((b,i)=>{const x=((t*(40+i*12)+i*500)%1900)-400, y=380+i*60+Math.sin(t*2+i)*15; b.setAttribute("transform",`translate(${x},${y}) scale(${1+0.3*Math.sin(t*10+i)},1)`)});
+  flags.forEach((f,i)=>f.e.setAttribute("transform",`translate(${f.x},${f.y}) rotate(${Math.sin(t*3+i*0.7)*7})`));
+  // countdown overlay
+  const clock=document.getElementById("clock"), dig=document.getElementById("digit"), cq=document.getElementById("cdq");
+  const cOn=shot===6; const cIn=clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.25);
+  clock.style.opacity=cOn?cIn:0; cq.style.opacity=cOn?cIn:0;
+  cq.style.transform=`scale(${cOn?Math.max(0.01,back(cdk/0.4))*(1+0.025*Math.sin(t*8)):1})`;
+  if(cOn){const hand=document.getElementById("hand"), tick=Math.min(1,fr/0.08);
+    hand.setAttribute("transform",`rotate(${(sec+tick)*72})`);
+    document.getElementById("arc").setAttribute("stroke-dasharray",`${389.6*(1-cdk/TL.countdown)} 389.6`);
+    document.getElementById("clockBody").setAttribute("transform",`rotate(${Math.exp(-fr*7)*Math.sin(fr*60)*9}) scale(${1+Math.exp(-fr*8)*0.08})`);
+    const n=Math.max(1,5-sec); dig.textContent=n; dig.style.opacity=fr<0.82?1:clamp(1-(fr-0.82)/0.18);
+    dig.style.transform=`scale(${lerp(1.18,1,out(fr/0.22))})`; dig.style.color=n<=2?"#FF5252":"#F5B700";
+  } else dig.style.opacity=0;
+  vigR.style.opacity=shot===6?clamp(cdk/1.5)*0.7:0;
+  streaks.forEach((ln,i)=>{const on=t>tCorr&&t<tCorr+0.4; const a=i/14*Math.PI*2, r0=260+((t*900+i*37)%300);
+    ln.setAttribute("x1",540+Math.cos(a)*r0);ln.setAttribute("y1",860+Math.sin(a)*r0);ln.setAttribute("x2",540+Math.cos(a)*(r0+180));ln.setAttribute("y2",860+Math.sin(a)*(r0+180));ln.style.opacity=on?0.75:0});
+  conf.forEach((c,i)=>{const t0=tCorr+0.05, k=t-t0; const on=k>0&&k<3.2; const x0=(i*97)%1080, vx=((i*53)%11-5)*14;
+    c.setAttribute("x",x0+vx*k+Math.sin(k*4+i)*30); c.setAttribute("y",-60+k*(420+(i%7)*60)-(i%5)*40); c.setAttribute("transform",`rotate(${k*200+i*30} ${x0+vx*k} ${-60+k*(420+(i%7)*60)})`); c.style.opacity=on?Math.min(1,(3.2-k)/0.6):0});
+  document.getElementById("flash").style.opacity=(t>CD1&&t<CD1+0.25?0.7*(1-(t-CD1)/0.25):0)+(t>tCorr&&t<tCorr+0.15?0.5*(1-(t-tCorr)/0.15):0);
+  // title, hold tag, follow buttons, answer banner, sticker, share, end card
+  const ti=document.getElementById("title"); ti.style.opacity=t<0.15?0:t<tWatch-0.45?1:clamp(1-(t-tWatch+0.45)/0.3); ti.style.transform=`scale(${Math.max(0.01,back((t-0.15)/0.5))}) rotate(${Math.sin(t*2.5)*1.2}deg)`;
+  const ho=document.getElementById("hold"); ho.style.opacity=fade(t,tWatch-0.1,S(2)+0.6,0.2); ho.style.transform=`scale(${Math.max(0.01,back((t-tWatch+0.1)/0.4))*(1+0.03*Math.sin(t*7))}) rotate(${-2+Math.sin(t*3)*1.5}deg)`;
+  const bt=document.getElementById("btns"); bt.style.opacity=fade(t,S(7)-0.2,T4+0.1,0.2); bt.style.transform=`scale(${Math.max(0.01,back((t-S(7)+0.2)/0.4))})`;
+  const bF=document.getElementById("bF"), bS=document.getElementById("bS"), tap=document.getElementById("tap");
+  const tapF=t>tFol&&t<tFol+0.25, tapS=t>tSub&&t<tSub+0.25;
+  bF.textContent=t>tFol+0.12?"✓ FOLLOWING":"➕ FOLLOW"; bF.style.transform=`scale(${tapF?0.9:1})`;
+  bS.textContent=t>tSub+0.12?"🔔 SUBSCRIBED":"🔔 SUBSCRIBE"; bS.style.background=t>tSub+0.12?"#616161":"#E53935"; bS.style.transform=`scale(${tapS?0.9:1})`;
+  // the tap hand: hovers to FOLLOW, taps, slides to SUBSCRIBE, taps (button centres measured from the DOM)
+  const rF=bF.getBoundingClientRect(), rS=bS.getBoundingClientRect();
+  const tgt=t<(tFol+tSub)/2?rF:rS, prevT=t<(tFol+tSub)/2?tFol:tSub;
+  const press=(t>tFol-0.15&&t<tFol+0.2)||(t>tSub-0.15&&t<tSub+0.2);
+  const hx_=lerp(rF.left+rF.width/2,rS.left+rS.width/2,ease((t-tFol-0.3)/0.4)), hy_=rF.top+rF.height*0.7+(press?0:30)+Math.sin(t*6)*6;
+  tap.style.opacity=bt.style.opacity>0.5&&t>S(7)+0.2?1:0; tap.style.transform=`translate(${hx_-45}px,${hy_}px) scale(${press?0.9:1})`;
+  const an=document.getElementById("ans"); an.style.opacity=fade(t,tCorr-0.05,T8,0.15); an.style.transform=`scale(${Math.max(0.01,back((t-tCorr+0.05)/0.4))})`;
+  const sk=document.getElementById("stk"); sk.style.opacity=fade(t,tTick-0.1,T10+0.2,0.1); sk.style.transform=`scale(${Math.max(0.01,lerp(2.2,1,out((t-tTick+0.1)/0.2)))}) rotate(${12+Math.sin(t*3)*2}deg)`;
+  const sh=document.getElementById("shr"); const shOn=fade(t,tShare-0.3,tFollow-0.1,0.2); sh.style.opacity=shOn; sh.style.transform=`scale(${Math.max(0.01,back((t-tShare+0.3)/0.4))})`;
+  const ak2=clamp((t-tShare-0.2)/0.6); const al=shareArrow.getTotalLength(); shareArrow.setAttribute("stroke-dasharray",al); shareArrow.setAttribute("stroke-dashoffset",al*(1-ak2));
+  shareArrow.style.opacity=shOn*(t>tShare+0.2?1:0); const pt=shareArrow.getPointAtLength(al*Math.max(0.01,ak2)), pt0=shareArrow.getPointAtLength(Math.max(0,al*ak2-5));
+  shareHead.setAttribute("transform",`translate(${pt.x},${pt.y}) rotate(${Math.atan2(pt.y-pt0.y,pt.x-pt0.x)*180/Math.PI})`); shareHead.style.opacity=ak2>0.05?shareArrow.style.opacity:0;
+  friendE.style.opacity=shOn*(t>tAsk?1:0); friendE.setAttribute("transform",`translate(850 430) scale(${Math.max(.001,back((t-tAsk)/0.4))}) translate(-850 -430)`);
+  if(shOn>0){const r=document.getElementById("bSh").getBoundingClientRect(); const pr=t>tShare-0.1&&t<tShare+0.2; tap.style.opacity=t>tShare-0.4?1:0; tap.style.transform=`translate(${r.left+r.width/2-45}px,${r.top+r.height*0.7+(pr?0:30)}px)`}
+  const en=document.getElementById("end"); en.style.opacity=t>tFollow-0.1?clamp((t-tFollow+0.1)/0.3):0; en.style.transform=`translateY(${(1-out((t-tFollow+0.1)/0.5))*40}px)`;
+  const ec=document.getElementById("endC"); ec.style.opacity=1; ec.style.display="inline-block"; ec.style.transform=`scale(${Math.max(0.01,back((t-tFollow)/0.35))})`;
+  const ef=document.getElementById("endF"); ef.style.opacity=t>tFollow+0.1?1:0; ef.style.transform=`scale(${Math.max(0.01,back((t-tFollow-0.1)/0.4))*(1+(t>tRepu?0.03*Math.sin(t*6):0))})`;
+  // subtitles
+  const sub=document.getElementById("sub"), L=curLine(t);
+  if(L){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+};
+</script>
+</body></html>
