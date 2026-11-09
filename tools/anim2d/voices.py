@@ -1,6 +1,9 @@
-"""Podupu Katha #1 (2D animated prototype) voices: Gemini TTS (AI Studio key), Gopi=Puck + Pinky=Leda.
-Writes vo/L*.wav and timeline.json (line timings + 30fps loudness envelope for lip sync).
-Temperature 1.0 / pace 1.1 for livelier modulation (Gemini TTS unavailable: Google billing disabled)."""
+"""2D animated reel voices (example LINES: life lesson 'Vemana: salt and camphor'). Gemini TTS via the AI Studio key,
+Gopi=Puck + Pinky=Leda. Writes vo/L*.wav and timeline.json (line timings + 30fps loudness envelope for lip sync).
+The whole reel is voiced in a few requests (content_arena.scenevoice: up to 8 lines per call as a two-voice
+conversation, cut back into lines at the pauses) because the free tier allows only ~10 TTS requests a day.
+Lines it can't split cleanly are voiced one by one; if Gemini refuses, those lines fall back to Sarvam.
+Re-take lines with `python voices.py 3 4`; `VOICE=sarvam python voices.py` voices everything with Sarvam."""
 import base64, json, os, subprocess, sys, wave
 import numpy as np, requests
 
@@ -13,51 +16,126 @@ CAST = {  # character -> (Gemini voice, pitch factor)
 }
 PERSONA = {"gopi": "You are Gopi, a lively young Telugu storyteller talking straight to the viewer like a close friend.",
            "pinky": "You are Pinky, a sweet, curious 6-year-old Telugu girl."}
-LINES = [  # (who, subtitle text, gap before, acting direction)
-    ("gopi",  "Hey! ఆగండి… 90% మంది ఈ పొడుపు కథ విప్పలేరు!", 0.6, "a bright, urgent hook with a teasing smile, a real pause after ఆగండి"),
-    ("gopi",  "తెల్లని పొలంలో… నల్లని విత్తనాలు.", 0.45, "slow, mysterious, storyteller voice, dropping low"),
-    ("gopi",  "చేత్తో చల్లుతారు… నోటితో ఏరుతారు! ఏంటది?", 0.35, "mysterious, then a playful challenge on ఏంటది"),
-    ("pinky", "అన్నయ్యా… నువ్వులా?", 0.7, "unsure, thinking out loud, a hopeful guess with a little pause"),
-    ("gopi",  "ఉహూ! Five seconds… మీరు కూడా ఆలోచించండి!", 0.75, "a playful 'no' (ఉహూ, like shaking the head), then excited quiz-host energy"),
-    ("gopi",  "Answer… అక్షరాలు!", 0.35 + COUNTDOWN + 0.4, "dramatic pause after Answer, then a big satisfied reveal"),
-    ("gopi",  "తెల్ల కాగితమే పొలం… నల్ల అక్షరాలే విత్తనాలు!", 0.6, "explaining with delight, an aha feeling"),
-    ("gopi",  "చేత్తో రాస్తాం… నోటితో చదువుతాం!", 0.45, "warm, satisfied conclusion"),
-    ("pinky", "అబ్బా! భలే ఉంది!", 0.5, "genuinely amazed and happy, clapping"),
-    ("gopi",  "మీకు ముందే తెలుసా? Comment లో చెప్పండి! Follow చేయండి… YouTube లో subscribe!", 0.55, "friendly, energetic, smiling call to action"),
+LINES = [  # (who, subtitle text, gap before, acting direction[, spoken text if different])  -- beat in the comment
+    ("gopi",  "Hey! ఆగండి… ఉప్పు, కర్పూరం… రెండూ ఒకేలా ఉంటాయి కదా?", 0.6, "curious, intriguing hook"),                 # 0 hook
+    ("gopi",  "కానీ ఈ ఒక్క తేడా… మీ life నే మార్చేస్తుంది! చివరి వరకు చూడండి!", 0.4, "dramatic, then teasing"),          # 1 hold
+    ("gopi",  "ప్రజాకవి వేమన గారు… ఒక పద్యంలో చెప్పారు.", 0.6, "respectful storyteller"),                                # 2 story
+    ("gopi",  "ఉప్పు కప్పురంబు నొక్కపోలికనుండు… చూడ చూడ రుచుల జాడ వేరు…", 0.6, "slow, melodic recitation of a classic Telugu poem, with feeling"),  # 3 poem
+    ("gopi",  "పురుషులందు పుణ్యపురుషులు వేరయా… విశ్వదాభిరామ వినురవేమ!", 0.45, "slow, melodic recitation, ending warmly"),  # 4 poem
+    ("gopi",  "అర్థం… పైకి అందరూ ఒకేలా కనిపిస్తారు.", 0.7, "thoughtful explaining"),                                    # 5 meaning
+    ("gopi",  "కానీ దగ్గరగా చూస్తేనే… మంచితనం తెలుస్తుంది!", 0.4, "warm, wise"),                                         # 6 meaning
+    ("gopi",  "ఇలాంటి పాఠాలు రోజూ కావాలంటే… follow చేయండి, YouTube లో subscribe!", 0.55, "quick friendly aside"),     # 7 follow
+    ("gopi",  "ఇప్పుడు మీకు ఒక test! A — మాటలు బంగారం, పనులు సున్నా.", 0.6, "playful challenge"),                       # 8 dilemma
+    ("gopi",  "B — మాటలు తక్కువ… అవసరానికి ముందుంటాడు.", 0.45, "playful challenge"),                                    # 9 dilemma
+    ("gopi",  "మీరు ఎవరిని నమ్ముతారు? A or B? Answer comment లో పెట్టండి!", 0.5, "urgent quiz-host energy"),           # 10 comment-countdown
+    ("pinky", "నేనైతే… B!", 0.35 + COUNTDOWN + 0.4, "confident little voice"),                                          # 11 guess (after the 5 s countdown)
+    ("gopi",  "Correct! ఉప్పు, కర్పూరం లాగే… రుచి చూస్తేనే తెలుస్తుంది!", 0.5, "satisfied reveal"),                    # 12 reveal
+    ("gopi",  "మాటలు కాదు… పనులే అసలు రుచి!", 0.45, "punchy, memorable takeaway"),                                      # 13 why
+    ("gopi",  "మీ answer B ఆ? Comment లో ✅ పెట్టండి!", 0.55, "warm, inviting", "మీ answer B ఆ? Comment లో tick పెట్టండి!"),  # spoken: ✅ = "tick" (first take read it as "H")                                        # 14 check
+    ("gopi",  "మీ friend కి share చేసి… వాళ్ళు A ఆ B ఆ అడగండి! Follow… subscribe… రేపు ఇంకో పాఠం!", 0.5, "energetic, smiling sign-off"),  # 15 share-close
 ]
 
-import time
-def tts(text, voice, who, act):
-    body = {"contents": [{"parts": [{"text": f"{PERSONA[who]} Speak natural Telugu (English words as Indians say them), "
-                                             f"expressive and human, with natural pauses at '…'. The tone should be {act}. "
-                                             f"Say only this line:\n{text}"}]}],
-            "generationConfig": {"responseModalities": ["AUDIO"],
-                                 "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}}
-    for wait in (0, 20, 40, 60, 90):
+import difflib, re, time
+API = "https://generativelanguage.googleapis.com/v1beta/models"
+TTS_MODELS = ["gemini-2.5-flash-preview-tts", "gemini-3.1-flash-tts-preview", "gemini-3.8-flash-tts"]  # next one is used once a model's daily free quota is gone
+def studio(model, body):
+    for wait in (0, 20, 40, 60, 90, 120):
         time.sleep(wait)
-        r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent",
-                          json=body, timeout=120)
+        r = requests.post(f"{API}/{model}:generateContent", json=body, timeout=120)
         if r.status_code != 429: break
+        if "PerDay" in r.text: break   # daily quota: waiting won't help
         print("  rate-limited, waiting", flush=True)
     r.raise_for_status()
-    pcm = base64.b64decode(r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
-    open("vo/_tmp.pcm", "wb").write(pcm)
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", "vo/_tmp.pcm",
-                    "-ar", "44100", "vo/_tmp.wav"], check=True)
+    return r.json()
+
+def tts_call(body):
+    while True:
+        try: return studio(TTS_MODELS[0], body), TTS_MODELS[0]
+        except requests.HTTPError as e:
+            if e.response is not None and e.response.status_code == 429 and "PerDay" in e.response.text and len(TTS_MODELS) > 1:
+                print(f"  {TTS_MODELS[0]}: daily free quota used up -> {TTS_MODELS[1]}", flush=True); TTS_MODELS.pop(0)
+            else: raise
+
+def heard_ok(expected, wav):
+    """Gemini listener: does the take say just the line? (best-effort, never blocks)"""
+    try:
+        out = studio("gemini-flash-latest", {"contents": [{"role": "user", "parts": [
+            {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(open(wav, "rb").read()).decode()}},
+            {"text": "Transcribe exactly what is spoken. Reply with the transcript only."}]}]})
+        heard = out["candidates"][0]["content"]["parts"][0]["text"]
+    except Exception as e:
+        print("  listener skipped:", e); return True
+    norm = lambda s: re.sub(r"[\W_]+", "", s.lower())
+    ok = len(norm(heard)) <= 1.5 * len(norm(expected)) + 6 or difflib.SequenceMatcher(None, norm(heard), norm(expected)).ratio() > 0.7
+    print("  heard:", heard.strip()[:120], "| ok" if ok else "| RETAKE", flush=True)
+    return ok
+
+def dur_of(path):
+    with wave.open(path) as w: return w.getnframes() / w.getframerate()
+
+def tts(text, voice, who, act, tries=3):
+    body = {"contents": [{"parts": [{"text": f"{PERSONA[who]} Speak natural Telugu (English words as Indians say them), "
+                                             f"expressive and human, with natural pauses at '…'. The tone should be {act}. "
+                                             f"Say only this line, nothing else:\n{text}"}]}],
+            "generationConfig": {"responseModalities": ["AUDIO"],
+                                 "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}}
+    for k in range(tries):
+        if k: time.sleep(21)
+        j, model = tts_call(body)
+        open(f"vo/_model.txt", "w").write(model)
+        pcm = base64.b64decode(j["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+        open("vo/_tmp.pcm", "wb").write(pcm)
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", "vo/_tmp.pcm",
+                        "-ar", "44100", "vo/_tmp.wav"], check=True)
+        d = dur_of("vo/_tmp.wav"); lim = max(3.5, 0.16 * len(text) * (1.5 if "recitation" in act else 1))
+        print(f"  take {k}: {d:.2f}s (limit {lim:.1f})", flush=True)
+        if d <= lim and heard_ok(text, "vo/_tmp.wav"): break
     return open("vo/_tmp.wav", "rb").read()
 
+SARVAM = {"gopi": ("shubh", 1.0), "pinky": ("priya", 1.22)}
+def tts_sarvam(text, who):
+    r = requests.post("https://api.sarvam.ai/text-to-speech", timeout=60,
+                      headers={"api-subscription-key": os.environ["SARVAM_API_KEY"]},
+                      json={"text": text, "target_language_code": "te-IN", "model": "bulbul:v3", "speaker": SARVAM[who][0],
+                            "pace": 1.18, "temperature": 0.9, "speech_sample_rate": 44100})
+    r.raise_for_status()
+    return base64.b64decode(r.json()["audios"][0])
+
 only = {int(a) for a in sys.argv[1:]}   # re-take only these line numbers (keeps the other takes)
+os.makedirs("vo", exist_ok=True)
+todo = [i for i in range(len(LINES)) if not os.path.exists(f"vo/L{i}_raw.wav") or i in only]
+sarvam_lines = set()
+if todo and os.environ.get("VOICE") != "sarvam":   # 1) whole-reel batches (2–3 requests per reel)
+    sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
+    from content_arena import scenevoice
+    batch = [{"who": LINES[i][0], "text": LINES[i][1], "act": LINES[i][3], "say": (LINES[i][4] if len(LINES[i]) > 4 else None)}
+             for i in todo]
+    got = scenevoice.voice_batch(batch, "vo_batch", {"Gopi": CAST["gopi"][0], "Pinky": CAST["pinky"][0]})
+    for k, path in got.items():
+        os.replace(path, f"vo/L{todo[k]}_raw.wav")
+    todo = [i for k, i in enumerate(todo) if k not in got]
+    if todo: print("  voicing one by one:", todo, flush=True)
+elif todo:
+    sarvam_lines = set(todo)
 t, out = 0.0, []
-for i, (who, text, gap, act) in enumerate(LINES):
+for i, (who, text, gap, act, *say) in enumerate(LINES):
     spk, pitch = CAST[who]
     raw, dst = f"vo/L{i}_raw.wav", f"vo/L{i}.wav"
-    if not os.path.exists(raw) or i in only:
+    if i in todo:
         parts = [text]
-        if len(parts) == 1: open(raw, "wb").write(tts(text, spk, who, act)); time.sleep(21)
+        if i in sarvam_lines:
+            open(raw, "wb").write(tts_sarvam(say[0] if say else text, who)); pitch = SARVAM[who][1]
+        elif len(parts) == 1:
+            try:   # 2) one-by-one Gemini; 3) Sarvam if Gemini refuses (quota)
+                take = tts(say[0] if say else text, spk, who, act); os.replace("vo/_model.txt", f"vo/L{i}_model.txt"); time.sleep(21)
+            except requests.HTTPError as e:
+                print(f"  line {i}: Gemini refused ({e.response.status_code if e.response is not None else '?'}) -> Sarvam", flush=True)
+                take = tts_sarvam(say[0] if say else text, who); pitch = SARVAM[who][1]
+            open(raw, "wb").write(take)
         else:
             segs = []
             for j, ptxt in enumerate(parts):
-                open(f"vo/L{i}_p{j}.wav", "wb").write(tts(ptxt, spk))
+                open(f"vo/L{i}_p{j}.wav", "wb").write(tts(ptxt, spk, who, act))
                 subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", f"vo/L{i}_p{j}.wav", "-af",
                                 "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse",
                                 "-ac", "1", "-ar", "44100", f"vo/L{i}_t{j}.wav"], check=True)

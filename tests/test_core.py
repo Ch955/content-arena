@@ -405,5 +405,27 @@ class DriveInboxTests(unittest.TestCase):
         self.assertEqual([c["id"] for c in d.clips("post")], ["i1a", "v2", "i3"])
 
 
+class SceneVoiceTests(unittest.TestCase):
+    def test_splits_conversation_at_the_right_pauses(self):
+        import numpy as np
+        from content_arena.scenevoice import split_by_pauses
+        sr = 24000
+        tone = lambda sec: (np.sin(np.arange(int(sec * sr)) / 7) * 8000).astype(np.int16)
+        gap = lambda sec: np.zeros(int(sec * sr), np.int16)
+        # line 1 has a short internal pause ("…"); real line breaks are ~1 s
+        audio = np.concatenate([gap(.2), tone(1.0), gap(.35), tone(1.0), gap(1.0), tone(1.0), gap(1.0), tone(3.0), gap(.3)])
+        parts = split_by_pauses(audio, sr, [20, 10, 30])
+        self.assertIsNotNone(parts)
+        secs = [round((b - a) / sr, 1) for a, b in parts]
+        self.assertAlmostEqual(secs[0], 2.9, delta=0.6)  # kept the "…" pause inside line 1
+        self.assertAlmostEqual(secs[2], 3.5, delta=0.6)
+
+    def test_refuses_when_pauses_are_missing(self):
+        import numpy as np
+        from content_arena.scenevoice import split_by_pauses
+        audio = (np.sin(np.arange(24000 * 3) / 7) * 8000).astype(np.int16)
+        self.assertIsNone(split_by_pauses(audio, 24000, [10, 10]))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -9,5 +9,7 @@ and the choreography in `ep.html` `render(t)` to the script, then:
 and keep the adapted `ep.html`/`voices.py` in `content/<post>/2d/`.
 
 Voices: Gemini API (AI Studio key via the environment's network secret; Gopi=Puck, Pinky=Leda, +5% speed).
-Free tier = a few requests a minute (voices.py waits out 429s). If Gemini refuses, swap `tts()` for Sarvam
-(see `content/2026-11-03-comedy-last-jamun/2d/voices.py`). The soundtrack in `mix.py` is synthesized (no film music).
+The free tier allows only ~10 TTS requests a day per model, so `voices.py` voices the reel in batches of up to
+8 lines per request as a two-voice conversation (`src/content_arena/scenevoice.py`) and cuts it back into lines
+at the pauses — about 2 requests per reel. Lines that can't be split are voiced one by one; if Gemini refuses
+(quota), they fall back to Sarvam automatically (`VOICE=sarvam` forces Sarvam). The soundtrack in `mix.py` is synthesized (no film music).
