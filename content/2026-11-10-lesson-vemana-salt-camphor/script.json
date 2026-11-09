@@ -1,0 +1,31 @@
+{"lines": [
+ {"who": "gopi", "text": "Hey! ఆగండి… ఉప్పు, కర్పూరం… రెండూ ఒకేలా ఉంటాయి కదా?", "act": "curious, intriguing hook", "beat": "hook"},
+ {"who": "gopi", "text": "కానీ ఈ ఒక్క తేడా… మీ life నే మార్చేస్తుంది! చివరి వరకు చూడండి!", "act": "dramatic, then teasing", "beat": "hold"},
+ {"who": "gopi", "text": "ప్రజాకవి వేమన గారు… ఒక పద్యంలో చెప్పారు.", "act": "respectful storyteller", "beat": "story"},
+ {"who": "gopi", "text": "ఉప్పు కప్పురంబు నొక్కపోలికనుండు… చూడ చూడ రుచుల జాడ వేరు…", "act": "slow, melodic recitation of a classic Telugu poem, with feeling", "beat": "poem"},
+ {"who": "gopi", "text": "పురుషులందు పుణ్యపురుషులు వేరయా… విశ్వదాభిరామ వినురవేమ!", "act": "slow, melodic recitation, ending warmly", "beat": "poem"},
+ {"who": "gopi", "text": "అర్థం… పైకి అందరూ ఒకేలా కనిపిస్తారు.", "act": "thoughtful explaining", "beat": "meaning"},
+ {"who": "gopi", "text": "కానీ దగ్గరగా చూస్తేనే… మంచితనం తెలుస్తుంది!", "act": "warm, wise", "beat": "meaning"},
+ {"who": "gopi", "text": "ఇలాంటి పాఠాలు రోజూ కావాలంటే… follow చేయండి, YouTube లో subscribe!", "act": "quick friendly aside", "beat": "follow"},
+ {"who": "gopi", "text": "ఇప్పుడు మీకు ఒక test! A — మాటలు బంగారం, పనులు సున్నా.", "act": "playful challenge", "beat": "dilemma"},
+ {"who": "gopi", "text": "B — మాటలు తక్కువ… అవసరానికి ముందుంటాడు.", "act": "playful challenge", "beat": "dilemma"},
+ {"who": "gopi", "text": "మీరు ఎవరిని నమ్ముతారు? A or B? Answer comment లో పెట్టండి!", "act": "urgent quiz-host energy", "beat": "comment-countdown"},
+ {"who": "pinky", "text": "నేనైతే… B!", "act": "confident little voice", "beat": "guess"},
+ {"who": "gopi", "text": "Correct! ఉప్పు, కర్పూరం లాగే… రుచి చూస్తేనే తెలుస్తుంది!", "act": "satisfied reveal", "beat": "reveal"},
+ {"who": "gopi", "text": "మాటలు కాదు… పనులే అసలు రుచి!", "act": "punchy, memorable takeaway", "beat": "why"},
+ {"who": "gopi", "text": "మీ answer B ఆ? Comment లో ✅ పెట్టండి!", "act": "warm, inviting", "beat": "check"},
+ {"who": "gopi", "text": "మీ friend కి share చేసి… వాళ్ళు A ఆ B ఆ అడగండి! Follow… subscribe… రేపు ఇంకో పాఠం!", "act": "energetic, smiling sign-off", "beat": "share-close"}
+],
+"visual_plan": [
+ "hook: title 'జీవిత పాఠం 💡' + 'ఉప్పు, కర్పూరం… ఒకటేనా?' pill; on the chalkboard two small white piles side by side (salt crystals in a steel bowl vs camphor tablets on a plate), both look the same",
+ "hold: 'ANSWER AT THE END 👀' tag",
+ "story/poem: the board shows the 4 lines of the padyam appearing line by line in chalk (Telugu, big and clear) as they are recited; soft melodic backing",
+ "meaning: two look-alike stick figures on the board; a magnifying glass reveals a little heart ❤️ inside one",
+ "follow: animated FOLLOW button tap",
+ "dilemma: board split: A = Pandu with big speech bubbles '🗣️💬💬' but empty hands; B = Chinna quietly carrying a bag for an elder / helping 🤝",
+ "comment-countdown: 'A or B? 💬 COMMENT NOW' + 5 s countdown clock (no voice during the 5 s)",
+ "guess: Pinky raises a 'B' card",
+ "reveal: confetti, 'ANSWER ✅ B' banner; B side glows; a tiny tongue taste ✨ gag on the salt/camphor piles",
+ "why: 'మాటలు కాదు… పనులే!' chalk underline",
+ "check/share: ✅ sticker, share-arrow animation, end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM"
+]}
