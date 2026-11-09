@@ -86,8 +86,14 @@ publish (Actions) →  Instagram / Facebook                            row: post
 ```
 
 - One table row per **platform post** (`<post-slug>-instagram`, `-youtube` for reels; `-facebook` once a Page exists).
-- **Hashtags:** Instagram max **5** (its cap since Dec 2025) — brand + 2 broad + 2 specific, always
-  relevant; no #viral/#explore spam. YouTube: `#shorts` + 2 relevant first (shown above the title), ≤ 15.
+- **Hashtags (owner, 9 Nov 2026: use the high-reach ones):** Instagram allows only **5** (its cap since Dec 2025),
+  so pick the biggest *relevant* tags — e.g. riddle reel: `#telugu #telugureels #riddles #podupukathalu #reelrasam`;
+  story: `#telugu #telugureels #telugustories #moralstories #reelrasam`. YouTube: up to **15** — `#shorts` + 2 big
+  ones first (shown above the title), then e.g. `#telugu #telugushorts #riddles #riddle #brainteaser #puzzle
+  #iqtest #teluguriddles #podupukathalu #kathalu #telugustories #reelrasam`. Tags must match the reel (unrelated
+  trending tags get a video ignored); YouTube drops all tags if a video has more than 60.
+- **Publish times (owner, 9 Nov 2026):** ~7:30 AM and ~6:30 PM IST (`.github/workflows/publish.yml`); the owner
+  approves the next day's reels by 7 AM.
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.

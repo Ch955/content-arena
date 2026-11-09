@@ -25,7 +25,7 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    acting notes per line) → editor (2D animation with `tools/anim2d/`, Gemini voices; card reel only as a fallback)
    → quality-checker → `python -m content_arena sync content/<post>` → rows `rendered`.
 4. Commit + push the new `content/` folders (never `rendered/`, `clips/` or `work/`).
-5. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 12 PM" (+ anything to check).
+5. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 7 AM (they post at ~7:30 AM and ~6:30 PM)" (+ anything to check).
 
 ## Morning mode — check TODAY
 1. Make sure today's two reels are in the Sheet as `rendered`/`approved`; if the evening run failed, make them now
