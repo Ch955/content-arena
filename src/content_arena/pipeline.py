@@ -75,6 +75,16 @@ def front_matter(brief: str, key: str) -> str:
     return m.group(1).strip() if m else ""
 
 
+# Owner's posting slots (9 Nov 2026), IST: the riddle in the morning, the story/lesson in the evening.
+SLOT_TIMES = {"podupu": "07:30", "book-story": "18:30", "life-lesson": "18:30"}
+
+
+def slot_time(slug: str, pillar: str | None) -> str | None:
+    """'2026-11-10 07:30' (IST) for a dated post of a slotted pillar, else None (post at the next run)."""
+    m = re.match(r"(\d{4}-\d{2}-\d{2})-", slug)
+    return f"{m.group(1)} {SLOT_TIMES[pillar]}" if m and pillar in SLOT_TIMES else None
+
+
 def sync(post_dir: Path, table: Table, upload=None, platforms_: list[str] | None = None) -> list[dict]:
     """Create/update rows for a post. `upload(slug, paths) -> urls` is called only when rendered
     media exists; pass None to skip uploading (rows then stay at 'drafted')."""
@@ -93,6 +103,8 @@ def sync(post_dir: Path, table: Table, upload=None, platforms_: list[str] | None
     for key in ("pillar", "language", "topic"):
         if front_matter(brief, key):
             common[key] = front_matter(brief, key)
+    if slot_time(slug, common.get("pillar")):
+        common["scheduled_for"] = slot_time(slug, common.get("pillar"))
 
     caption_md = post_dir / "caption.md"
     drafted = caption_md.exists() and (fmt == "reel" or (post_dir / "slides.json").exists())

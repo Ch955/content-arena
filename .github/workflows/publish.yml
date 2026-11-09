@@ -1,12 +1,13 @@
 name: publish
 
-# Posts at most ONE approved row per platform per run. Twice daily (~7:30 and ~18:30 IST; owner, 9 Nov 2026).
-# Scheduled a few minutes early because GitHub often starts scheduled runs late.
+# Posts at most ONE due approved row per platform per run. Rows carry scheduled_for (riddle 07:30, story/lesson
+# 18:30 IST; owner, 9 Nov 2026). GitHub often runs schedules late or skips them, so it checks every 30 minutes
+# around both slots (07:00–10:25 and 17:30–21:25 IST); a row posts at the first run after its time.
 # Guard: does nothing unless the repo variable PUBLISH_ENABLED is "true".
 on:
   schedule:
-    - cron: "55 1 * * *"   # 07:25 IST
-    - cron: "55 12 * * *"  # 18:25 IST
+    - cron: "25,55 1-4 * * *"    # 07:25–10:25 IST
+    - cron: "25,55 12-15 * * *"  # 17:55–21:25 IST
   workflow_dispatch:
     inputs:
       live:

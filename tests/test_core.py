@@ -405,6 +405,15 @@ class DriveInboxTests(unittest.TestCase):
         self.assertEqual([c["id"] for c in d.clips("post")], ["i1a", "v2", "i3"])
 
 
+class SlotTimeTests(unittest.TestCase):
+    def test_riddle_morning_story_evening(self):
+        from content_arena.pipeline import slot_time
+        self.assertEqual(slot_time("2026-11-10-podupu-02-slow-horse", "podupu"), "2026-11-10 07:30")
+        self.assertEqual(slot_time("2026-11-10-lesson-vemana", "life-lesson"), "2026-11-10 18:30")
+        self.assertIsNone(slot_time("2026-10-28-comedy-mass-entry", "comedy"))
+        self.assertIsNone(slot_time("intro", "podupu"))
+
+
 class SceneVoiceTests(unittest.TestCase):
     def test_splits_conversation_at_the_right_pauses(self):
         import numpy as np
