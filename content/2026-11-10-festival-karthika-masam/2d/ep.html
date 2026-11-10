@@ -1,0 +1,656 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Karthika Masam festival special (2D animated): colony at dusk -> 4 traditions -> Pournami 365-wick quiz -> glowing colony outro -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E0E12}
+svg{display:block}
+.sub{position:absolute;left:60px;right:60px;bottom:170px;text-align:center;font-family:Rama,NotoTe;font-size:56px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 18px rgba(0,0,0,.8);opacity:0}
+.who{display:inline-block;font-family:Anton;font-size:34px;letter-spacing:2px;padding:4px 16px;border-radius:10px;margin-bottom:10px;text-shadow:none;color:#0E0E12}
+.top{position:absolute;top:70px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B700;color:#0E0E12;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none}
+.tag{font-family:Anton;font-size:28px;letter-spacing:2px;background:#E65100;color:#fff;padding:7px 16px;border-radius:8px;border:3px solid #0E0E12}
+.title{position:absolute;top:175px;left:60px;right:60px;text-align:center;opacity:0}
+.title .t{font-family:Rama,NotoTe;font-size:110px;line-height:1.15;color:#FFD54F;text-shadow:0 6px 0 #000,0 0 30px rgba(255,160,0,.6)}
+.title .hook{display:inline-block;margin-top:16px;font-family:Rama,NotoTe;font-size:58px;color:#0E0E12;background:#fff;padding:6px 26px;border-radius:14px;border:5px solid #0E0E12}
+#atend{position:absolute;top:215px;left:0;right:0;text-align:center;opacity:0}
+#atend span{display:inline-block;font-family:Anton;font-size:62px;letter-spacing:2px;color:#0E0E12;background:#F5B700;padding:8px 30px;border-radius:16px;border:6px solid #0E0E12;box-shadow:0 8px 0 #0E0E12}
+#badge{position:absolute;top:270px;left:60px;right:60px;text-align:center;opacity:0}
+#badge .n{display:inline-grid;place-items:center;width:150px;height:150px;border-radius:50%;background:#F5B700;border:7px solid #0E0E12;box-shadow:0 8px 0 #0E0E12;
+  font-family:Anton;font-size:104px;color:#0E0E12;line-height:1}
+#badge .l{display:block;width:max-content;max-width:960px;margin:20px auto 0;font-family:Rama,NotoTe;font-size:62px;color:#0E0E12;background:#FFF8E1;padding:6px 28px;border-radius:16px;border:5px solid #0E0E12}
+#qtag{position:absolute;top:270px;left:60px;right:60px;text-align:center;opacity:0}
+#qtag span{display:inline-block;font-family:Rama,NotoTe;font-size:72px;color:#0E0E12;background:#FFD54F;padding:8px 32px;border-radius:18px;border:6px solid #0E0E12;box-shadow:0 8px 0 #0E0E12}
+#fol{position:absolute;top:300px;left:0;right:0;text-align:center;opacity:0}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #0E0E12;box-shadow:0 9px 0 #0E0E12;margin-bottom:34px}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+#bS{background:#FF0000}
+.btn.done{background:#4A4A55 !important}
+#tapHand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45))}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+.wipe{position:absolute;inset:0;background:radial-gradient(circle at 50% 55%,#FFE082,#FF8F00 60%,#BF360C);opacity:0}
+#cnow{position:absolute;top:150px;left:0;right:0;text-align:center;opacity:0}
+#cnow span{display:inline-block;font-family:Anton;font-size:66px;letter-spacing:3px;color:#fff;background:#E53935;padding:6px 30px;border-radius:16px;border:6px solid #0E0E12;box-shadow:0 8px 0 #0E0E12}
+#clock{position:absolute;top:290px;left:50%;width:250px;height:270px;margin-left:-125px;opacity:0}
+#digit{position:absolute;top:600px;left:0;right:0;text-align:center;font-family:Anton;font-size:380px;line-height:1;color:#F5B700;
+  -webkit-text-stroke:12px #0E0E12;paint-order:stroke fill;text-shadow:0 14px 0 #0E0E12;opacity:0}
+#think{position:absolute;bottom:250px;left:60px;right:60px;text-align:center;font-family:Rama,NotoTe;font-size:60px;color:#fff;text-shadow:0 4px 0 #000;opacity:0}
+#ans{position:absolute;top:170px;left:60px;right:60px;text-align:center;opacity:0}
+#ans .k{display:inline-block;font-family:Anton;font-size:44px;letter-spacing:4px;color:#0E0E12;background:#7CDA6A;padding:4px 22px;border-radius:10px;border:4px solid #0E0E12}
+#ans .a{display:block;margin-top:6px;font-family:Rama,NotoTe;font-size:116px;color:#FFD54F;text-shadow:0 7px 0 #0E0E12,0 0 24px rgba(0,0,0,.5)}
+#ans .a b{font-family:Anton;font-weight:normal;font-size:128px;color:#fff}
+#ans .e{display:inline-block;margin-top:4px;font-family:Rama,NotoTe;font-size:56px;color:#0E0E12;background:#fff;padding:4px 26px;border-radius:14px;border:5px solid #0E0E12;opacity:0}
+#tick{position:absolute;top:230px;left:0;right:0;text-align:center;opacity:0}
+#tick span{display:inline-block;font-size:210px;line-height:1;filter:drop-shadow(0 10px 0 rgba(0,0,0,.5))}
+#cbub{position:absolute;top:280px;left:150px;width:780px;opacity:0}
+#cbub .b{background:#fff;border:6px solid #0E0E12;border-radius:30px;padding:22px 30px;font-family:Rama,NotoTe;font-size:58px;color:#0E0E12;box-shadow:0 8px 0 #0E0E12;display:flex;align-items:center;gap:18px}
+#cbub .dots{flex:1;display:flex;gap:16px;align-items:center}
+#cbub .d{display:block;width:30px;height:30px;border-radius:50%;background:#9E9E9E}
+#cbub .b>span:first-child{font-size:70px}
+#cbub .h{font-size:84px;display:inline-block}
+#share{position:absolute;top:240px;left:60px;right:60px;opacity:0}
+#share .card{margin:0 auto;width:720px;background:#E8F5E9;border:6px solid #0E0E12;border-radius:30px;box-shadow:0 8px 0 #0E0E12;overflow:hidden}
+#share .hd{background:#2E7D32;color:#fff;font-family:Rama,NotoTe;font-size:52px;padding:12px 26px;display:flex;align-items:center;gap:14px}
+#share .msg{margin:20px 24px 24px auto;width:max-content;max-width:560px;background:#fff;border:4px solid #0E0E12;border-radius:22px;padding:10px 22px;font-family:Rama,NotoTe;font-size:46px;color:#0E0E12}
+#share .arr{position:absolute;left:0;top:0;font-size:120px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45))}
+.end{position:absolute;left:60px;right:60px;top:160px;text-align:center;opacity:0;background:rgba(14,14,18,.6);border-radius:28px;padding:24px 10px 28px;border:4px solid rgba(255,213,79,.6)}
+.end .q{font-family:Rama,NotoTe;font-size:78px;color:#FFD54F;text-shadow:0 5px 0 #000,0 0 24px rgba(255,160,0,.6);line-height:1.25}
+.end .f{margin-top:18px;font-family:Anton;font-size:60px;letter-spacing:1px;color:#F5B700;text-shadow:0 5px 0 #000;line-height:1.2;opacity:0}
+.end .f span{color:#fff}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">FESTIVAL SPECIAL</div></div>
+<div class="title" id="title"><div class="t">కార్తీక మాసం 🪔</div><span class="hook">కార్తీక మాసం మొదలైంది!</span></div>
+<div id="atend"><span>ANSWER AT THE END 👀</span></div>
+<div id="badge"><div class="n" id="bN">1</div><span class="l" id="bL">కార్తీక దీపం 🪔</span></div>
+<div id="qtag"><span>❓ ఎన్ని వత్తులు?</span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div><br><div class="btn" id="bS">▶ SUBSCRIBE</div></div>
+<div id="tapHand">👆</div><div class="ring" id="ring"></div>
+<div id="cnow"><span>💬 COMMENT NOW</span></div>
+<div id="clock"><svg width="250" height="270" viewBox="-125 -145 250 270">
+  <g id="clockBody">
+  <path d="M-62 -98 A40 40 0 0 1 -112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <path d="M62 -98 A40 40 0 0 0 112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <line x1="-60" y1="92" x2="-82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <line x1="60" y1="92" x2="82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <circle r="104" fill="#E63946" stroke="#0E0E12" stroke-width="8"/>
+  <circle r="86" fill="#FFFDF5" stroke="#0E0E12" stroke-width="5"/>
+  <circle id="arc" r="62" fill="none" stroke="#F5B700" stroke-width="40" transform="rotate(-90)" stroke-dasharray="389.6 389.6" opacity=".55"/>
+  <g id="ticks"></g>
+  <line id="hand" x1="0" y1="10" x2="0" y2="-70" stroke="#0E0E12" stroke-width="9" stroke-linecap="round"/>
+  <circle r="11" fill="#0E0E12"/>
+  </g></svg></div>
+<div id="digit">5</div>
+<div id="think">మీరు కూడా ఆలోచించండి... 🤔</div>
+<div id="ans"><span class="k">ANSWER ✅</span><span class="a"><b id="cnt">365</b> వత్తులు!</span><span class="e" id="ansE">1 రోజు = 1 వత్తి 🪔</span></div>
+<div id="tick"><span>✅</span></div>
+<div id="cbub"><div class="b"><span>💬</span><span class="dots"><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="h" id="heart">❤️</span></div></div>
+<div id="share"><div class="card"><div class="hd">👨‍👩‍👧 Family group</div><div class="msg">🪔 కార్తీక మాసం reel ▶</div></div><div class="arr" id="arr">➦</div></div>
+<div class="end" id="end"><div class="q">కార్తీక మాస<br>శుభాకాంక్షలు 🪔</div>
+  <div class="f" id="endF">FOLLOW <span>@_REELRASAM</span> ·<br>SUBSCRIBE <span>@REEL_RASAM</span></div></div>
+<div class="wipe" id="wipe"></div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,k)=>a+(b-a)*k;
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const out=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=2.2;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const txt=(s,attrs,parent)=>{const e=el("text",attrs,parent);e.textContent=s;return e};
+const grad=(id,stops,v=true)=>{const g=el("linearGradient",{id,x1:0,y1:0,x2:v?0:1,y2:v?1:0},defs);stops.forEach(([o,c])=>el("stop",{offset:o,"stop-color":c},g));return g};
+const rgrad=(id,stops)=>{const g=el("radialGradient",{id,cx:.5,cy:.5,r:.5},defs);stops.forEach(([o,c,op])=>el("stop",{offset:o,"stop-color":c,"stop-opacity":op??1},g));return g};
+
+// ---------- defs ----------
+const defs=el("defs",{});
+grad("dusk",[["0","#3A1C5C"],["0.45","#B5476B"],["0.8","#F28A4B"],["1","#FFC27A"]]);
+grad("night",[["0","#070B24"],["0.6","#1B1F4F"],["1","#3B2A5E"]]);
+grad("sunrise",[["0","#7FA7D9"],["0.45","#F7B7A3"],["0.8","#FFD59A"],["1","#FFE9C2"]]);
+grad("day",[["0","#8FD0F5"],["0.7","#CDEBFA"],["1","#F3FAE8"]]);
+grad("eve",[["0","#5C6BC0"],["0.5","#F29E7C"],["1","#FFD8A8"]]);
+grad("river",[["0","#8EC5E8"],["1","#3D7FB5"]]);
+grad("brass",[["0","#FFE7A0"],["0.45","#E0A93A"],["1","#8A5A12"]],false);
+rgrad("glow",[["0","#FFE082",.95],["0.4","#FFB300",.45],["1","#FF6F00",0]]);
+rgrad("moonGlow",[["0","#FFFDE7",.6],["1","#FFFDE7",0]]);
+const vig=el("radialGradient",{id:"vig",cx:.5,cy:.5,r:.75},defs);
+el("stop",{offset:".55","stop-color":"#000","stop-opacity":"0"},vig);el("stop",{offset:"1","stop-color":"#000","stop-opacity":".7"},vig);
+const steel=el("linearGradient",{id:"steel"},defs);el("stop",{offset:0,"stop-color":"#eee"},steel);el("stop",{offset:1,"stop-color":"#999"},steel);
+
+const stage=el("g",{});
+const backL=el("g",{},stage), castL=el("g",{},stage), frontL=el("g",{},stage);
+const SC={};["A","B","C","D","E","G"].forEach(k=>{SC[k]={b:el("g",{},backL),f:el("g",{},frontL)}});
+
+// a clay diya with a flickering flame
+const diyas=[];
+function diya(x,y,s,parent){const g=el("g",{transform:`translate(${x},${y}) scale(${s})`},parent);
+  const halo=el("circle",{cx:0,cy:-34,r:70,fill:"url(#glow)",opacity:0},g);
+  el("path",{d:"M-42 -14 Q-40 18 0 20 Q40 18 42 -14 Q20 -4 0 -4 Q-20 -4 -42 -14 Z",fill:"#B5541E",stroke:"#5A2408","stroke-width":4},g);
+  el("path",{d:"M-42 -14 Q0 -24 42 -14 Q0 -6 -42 -14 Z",fill:"#7A3410"},g);
+  el("path",{d:"M30 -16 Q46 -22 50 -18 Q44 -10 30 -12 Z",fill:"#B5541E",stroke:"#5A2408","stroke-width":3},g);
+  el("line",{x1:40,y1:-18,x2:44,y2:-26,stroke:"#fff","stroke-width":4},g);
+  const fl=el("g",{transform:"translate(44,-24)",opacity:0},g);
+  el("path",{d:"M0 0 Q-14 -14 0 -46 Q14 -14 0 0 Z",fill:"#FFB300"},fl);el("path",{d:"M0 -2 Q-7 -10 0 -28 Q7 -10 0 -2 Z",fill:"#FFF59D"},fl);
+  const d={g,halo,fl,lit:0,seed:Math.random()*10};diyas.push(d);return d}
+function setLit(d,k,t){d.lit=k; const f=1+0.12*Math.sin(t*17+d.seed)+0.06*Math.sin(t*31+d.seed*2);
+  d.fl.style.opacity=k>0?1:0; d.fl.setAttribute("transform",`translate(44,-24) scale(${Math.max(0.001,back(k))*f},${Math.max(0.001,back(k))*(2-f)}) rotate(${Math.sin(t*9+d.seed)*6})`);
+  d.halo.style.opacity=k*0.9*(0.9+0.1*Math.sin(t*13+d.seed)); d.halo.setAttribute("cx",44)}
+function stars(parent,n,y1){return [...Array(n)].map((_,i)=>el("circle",{cx:(i*137)%1080,cy:40+((i*271)%y1),r:1.5+(i%3),fill:"#fff",opacity:.8},parent))}
+// colony houses (used at dusk and at night)
+function houses(parent,night){const win=[];
+  [[-60,780,250,"#C0607A"],[170,720,230,"#9B6FB0"],[380,800,200,"#D0875A"],[560,700,250,"#6F8FB8"],[790,760,220,"#B86B8E"],[990,820,200,"#7E6AA8"]].forEach(([x,y,w,c])=>{
+    el("rect",{x,y,width:w,height:1200-y,fill:c,rx:6,opacity:.95},parent);
+    el("rect",{x:x-10,y:y-18,width:w+20,height:22,fill:"#0E0E12",opacity:.25,rx:4},parent);
+    for(let r=y+40;r<1120;r+=95)for(let cx=x+28;cx<x+w-40;cx+=72)win.push(el("rect",{x:cx,y:r,width:40,height:50,fill:"#FFD180",rx:4,opacity:.3},parent))});
+  return win}
+
+// ---------- scene A/H: the colony ----------
+const A=SC.A.b;
+const skyDusk=el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#dusk)"},A);
+const skyNight=el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#night)",opacity:0},A);
+const starsA=stars(A,40,560);
+const moonA=el("g",{transform:"translate(860,720)",opacity:0},A);el("circle",{r:230,fill:"url(#moonGlow)"},moonA);el("circle",{r:100,fill:"#FFFDE7"},moonA);
+[[-30,-20,16],[25,30,12],[30,-35,9]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#EDE7C8"},moonA));
+const winA=houses(A);
+el("rect",{x:-200,y:1180,width:1480,height:800,fill:"#6B4A3A"},A);
+el("rect",{x:-200,y:1150,width:1480,height:60,fill:"#A1887F"},A);         // compound wall top
+el("rect",{x:-200,y:1150,width:1480,height:10,fill:"#D7CCC8"},A);
+const ledgeDiyas=[];[[80,775],[300,715],[470,795],[690,695],[900,755],[1060,815]].forEach(([x,y])=>ledgeDiyas.push(diya(x,y-6,.75,A)));
+const wallDiyas=[...Array(11)].map((_,i)=>diya(40+i*96,1156,1,A));
+el("rect",{x:-200,y:1210,width:1480,height:800,fill:"#3E2A22",opacity:.35},A);
+const nightTint=el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"#0A0830",opacity:0},A);
+const floorDiyas=[[110,1300],[420,1310],[660,1310],[970,1300]].map(([x,y])=>diya(x,y,1.05,A));
+
+// ---------- scene B: Lakshmi Amma at the doorstep, kolam ----------
+const B=SC.B.b;
+el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#dusk)"},B);
+el("rect",{x:-200,y:560,width:1480,height:800,fill:"#F3D9B1"},B);                       // house front wall
+el("rect",{x:-200,y:540,width:1480,height:40,fill:"#C1440E"},B);
+el("rect",{x:540,y:740,width:300,height:560,fill:"#6D3B1A",stroke:"#3E2010","stroke-width":10},B);   // door frame
+el("rect",{x:570,y:770,width:115,height:530,fill:"#8D5524"},B);el("rect",{x:695,y:770,width:115,height:530,fill:"#8D5524"},B);
+[[585,800],[710,800],[585,1050],[710,1050]].forEach(([x,y])=>el("rect",{x,y,width:85,height:200,fill:"none",stroke:"#5D3317","stroke-width":6,rx:6},B));
+el("circle",{cx:675,cy:1060,r:8,fill:"#FFD54F"},B);el("circle",{cx:705,cy:1060,r:8,fill:"#FFD54F"},B);
+// mango-leaf toran above the door
+for(let i=0;i<9;i++)el("path",{d:`M${555+i*34} 742 q10 34 0 56 q-10 -22 0 -56`,fill:i%2?"#43A047":"#66BB6A"},B);
+el("rect",{x:60,y:760,width:200,height:220,fill:"#5D4037",rx:6},B);el("rect",{x:76,y:776,width:168,height:188,fill:"#FFD180",opacity:.6},B);
+el("rect",{x:-200,y:1300,width:1480,height:700,fill:"#BCA58A"},B);                      // courtyard floor
+el("rect",{x:500,y:1290,width:380,height:30,fill:"#E0C9A6",stroke:"#8D6E63","stroke-width":5},B);   // doorstep
+// simple geometric kolam (dots + loops), squashed in perspective
+const kol=el("g",{transform:"translate(690,1420) scale(1,.42)"},B);
+el("circle",{r:200,fill:"#9C7B5B",opacity:.25},kol);
+const kolLines=[];
+[[0,-170,170,0],[170,0,0,170],[0,170,-170,0],[-170,0,0,-170]].forEach(([x1,y1,x2,y2],i)=>kolLines.push(el("path",{d:`M${x1} ${y1} Q${(x1+x2)*0.2} ${(y1+y2)*0.2} ${x2} ${y2}`,stroke:"#fff","stroke-width":9,fill:"none","stroke-linecap":"round"},kol)));
+[0,1,2,3].forEach(i=>{const a=i*Math.PI/2+Math.PI/4;kolLines.push(el("ellipse",{cx:Math.cos(a)*85,cy:Math.sin(a)*85,rx:46,ry:46,stroke:"#fff","stroke-width":8,fill:"none"},kol))});
+kolLines.push(el("circle",{r:40,stroke:"#F06292","stroke-width":12,fill:"#FFF59D"},kol));
+for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++)if(Math.abs(i)+Math.abs(j)<=3)el("circle",{cx:i*70,cy:j*70,r:9,fill:"#fff"},kol);
+const dB=diya(560,1290,1.25,B), dB2=diya(830,1290,1.0,B);
+const matchFl=el("g",{opacity:0},SC.B.f);el("path",{d:"M0 0 Q-9 -10 0 -30 Q9 -10 0 0 Z",fill:"#FFB300"},matchFl);
+
+// ---------- scene C: sunrise river ghat ----------
+const Cg=SC.C.b;
+el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#sunrise)"},Cg);
+const sun=el("circle",{cx:800,cy:930,r:120,fill:"#FFB74D"},Cg);const sunG=el("circle",{cx:800,cy:930,r:220,fill:"url(#glow)",opacity:.6},Cg);
+el("path",{d:"M-200 950 Q100 860 350 930 Q600 870 850 935 Q1050 880 1280 940 L1280 980 L-200 980 Z",fill:"#7E6F8F"},Cg);   // far bank
+el("rect",{x:-200,y:960,width:1480,height:420,fill:"url(#river)"},Cg);
+const ripples=[...Array(12)].map((_,i)=>el("path",{stroke:"#fff","stroke-width":5,"stroke-linecap":"round",fill:"none",opacity:.5},Cg));
+el("path",{d:"M720 970 L880 970 L860 1100 L740 1100 Z",fill:"#FFE0B2",opacity:.35},Cg);   // sun path on water
+// ghat steps (front left)
+for(let i=0;i<6;i++)el("rect",{x:-200,y:1180+i*50,width:760+i*120,height:52,fill:i%2?"#C9B79C":"#D8C8AE",stroke:"#9E8B70","stroke-width":4},Cg);
+el("rect",{x:-200,y:1480,width:1480,height:600,fill:"#B9A588"},Cg);
+const mist=[...Array(6)].map((_,i)=>el("ellipse",{rx:260,ry:40,fill:"#fff",opacity:.35},Cg));
+const birdsC=[...Array(4)].map(()=>el("path",{d:"M-16 0 Q-8 -9 0 0 Q8 -9 16 0",stroke:"#5D4037","stroke-width":4,fill:"none"},Cg));
+const mistF=[...Array(3)].map(()=>el("ellipse",{rx:300,ry:36,fill:"#fff",opacity:.22},SC.C.f));
+
+// ---------- scene D: temple on a hill with a bell ----------
+const D=SC.D.b;
+el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#eve)"},D);
+el("circle",{cx:250,cy:700,r:70,fill:"#FFE0B2",opacity:.8},D);
+el("path",{d:"M-200 1100 Q300 900 620 820 Q760 790 900 830 Q1150 900 1280 1000 L1280 2000 L-200 2000 Z",fill:"#4E7D4A"},D);
+el("path",{d:"M-200 1200 Q400 1080 1280 1180 L1280 2000 L-200 2000 Z",fill:"#3E6B3B"},D);
+const path=el("path",{d:"M560 1460 Q760 1340 600 1210 Q470 1110 680 1010 Q830 940 760 860",stroke:"#D7C3A0","stroke-width":26,fill:"none","stroke-linecap":"round"},D);
+// temple silhouette (simple tiered tower, no deity)
+const tmp=el("g",{transform:"translate(770,850)"},D);
+el("rect",{x:-110,y:-90,width:220,height:90,fill:"#F1DDBB",stroke:"#7A5A3A","stroke-width":5},tmp);
+el("path",{d:"M-34 0 L-34 -54 Q0 -84 34 -54 L34 0 Z",fill:"#5D3B22"},tmp);
+[[-90,-90,90,-140],[-70,-140,70,-185],[-50,-185,50,-225],[-30,-225,30,-258]].forEach(([x1,y1,x2,y2])=>el("path",{d:`M${x1} ${y1} L${x2} ${y1} L${x2-10} ${y2} L${x1+10} ${y2} Z`,fill:"#EBCB99",stroke:"#7A5A3A","stroke-width":5},tmp));
+el("circle",{cx:0,cy:-268,r:12,fill:"#FFB300",stroke:"#7A5A3A","stroke-width":4},tmp);
+el("line",{x1:0,y1:-280,x2:0,y2:-340,stroke:"#5D4037","stroke-width":5},tmp);
+const flagD=el("path",{d:"M0 -340 L50 -326 L0 -312 Z",fill:"#FF7043"},tmp);
+// bell under a small arch in front of the temple
+const arch=el("g",{transform:"translate(770,850)"},D);
+el("path",{d:"M-170 0 L-170 -150 M170 0 L170 -150",stroke:"#7A5A3A","stroke-width":12},arch);
+el("rect",{x:-185,y:-165,width:370,height:22,fill:"#8D6E63",rx:6},arch);
+const bell=el("g",{transform:"translate(-140,-143)"},arch);
+el("line",{x1:0,y1:0,x2:0,y2:20,stroke:"#5D4037","stroke-width":4},bell);
+el("path",{d:"M-22 60 Q-24 22 0 18 Q24 22 22 60 Z",fill:"url(#brass)",stroke:"#6D4C0C","stroke-width":4},bell);el("circle",{cx:0,cy:64,r:7,fill:"#6D4C0C"},bell);
+const ringD=[...Array(3)].map(()=>el("path",{stroke:"#FFF8E1","stroke-width":5,fill:"none","stroke-linecap":"round",opacity:0},arch));
+// devotees walking up
+const devs=[...Array(6)].map((_,i)=>{const g=el("g",{},D);const c=["#E57373","#FFB74D","#BA68C8","#4DB6AC","#F06292","#7986CB"][i];
+  el("rect",{x:-14,y:-56,width:28,height:46,rx:12,fill:c},g);el("circle",{cx:0,cy:-68,r:13,fill:"#8D5A3A"},g);el("circle",{cx:0,cy:-74,r:13,fill:"#1b1b1b",opacity:.9},g);
+  el("line",{x1:-7,y1:-10,x2:-9,y2:6,stroke:"#5D4037","stroke-width":7},g);el("line",{x1:7,y1:-10,x2:9,y2:6,stroke:"#5D4037","stroke-width":7},g);return g});
+const lampD=[diya(640,840,.8,D),diya(900,840,.8,D)];
+
+// ---------- scene E: vanabhojanam under the usiri tree ----------
+const E_=SC.E.b;
+el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#day)"},E_);
+[[150,640],[930,600]].forEach(([x,y])=>{[[0,0,50],[45,-15,60],[95,0,45]].forEach(([dx,dy,r])=>el("circle",{cx:x+dx,cy:y+dy,r,fill:"#fff",opacity:.9},E_))});
+el("rect",{x:-200,y:1100,width:1480,height:900,fill:"#7CB342"},E_);
+el("rect",{x:-200,y:1100,width:1480,height:24,fill:"#9CCC65"},E_);
+el("path",{d:"M690 1300 L700 900 Q690 830 640 800 M700 900 Q740 820 800 790 M700 960 Q640 930 600 900",stroke:"#5D4037","stroke-width":60,fill:"none","stroke-linecap":"round"},E_);
+el("path",{d:"M660 1310 Q700 1290 740 1310",stroke:"#4E342E","stroke-width":30,fill:"none"},E_);
+const canopy=el("g",{},E_);
+[[700,760,230],[500,820,160],[900,820,170],[600,640,150],[820,650,150],[700,600,120],[420,900,110],[990,920,110]].forEach(([x,y,r],i)=>el("circle",{cx:x,cy:y,r,fill:i%2?"#388E3C":"#43A047"},canopy));
+[...Array(26)].forEach((_,i)=>el("circle",{cx:440+(((Math.sin(i*12.9898)*43758.5453)%1+1)%1)*540,cy:600+(((Math.sin(i*78.233)*12345.678)%1+1)%1)*340,r:13,fill:"#C5E1A5",stroke:"#7CB342","stroke-width":3},canopy));   // usiri (amla) fruits
+// mat (perspective) with stripes
+const mat=el("g",{},E_);
+el("path",{d:"M300 1250 L1060 1250 L1120 1460 L240 1460 Z",fill:"#F9A825",stroke:"#8D6E63","stroke-width":6},mat);
+for(let i=1;i<7;i++){const y=1250+i*30;el("line",{x1:300-i*8.6,y1:y,x2:1060+i*8.6,y2:y,stroke:i%2?"#E53935":"#FFF59D","stroke-width":8},mat)}
+// banana-leaf meals (front layer)
+const leaves=[[470,1420],[760,1430],[1000,1420]].map(([x,y],i)=>{const g=el("g",{transform:`translate(${x},${y})`},SC.E.f);
+  el("path",{d:"M-120 0 Q-110 -44 0 -48 Q110 -44 130 0 Q110 40 0 44 Q-110 40 -120 0 Z",fill:"#2E7D32",stroke:"#1B5E20","stroke-width":4},g);
+  el("path",{d:"M-118 0 L128 0",stroke:"#81C784","stroke-width":5},g);
+  el("ellipse",{cx:-10,cy:-6,rx:40,ry:22,fill:"#FAFAFA"},g);el("circle",{cx:50,cy:-18,r:16,fill:"#FBC02D"},g);el("circle",{cx:56,cy:16,r:15,fill:"#E65100"},g);
+  el("circle",{cx:-70,cy:10,r:13,fill:"#8D6E63"},g);el("circle",{cx:-62,cy:-22,r:12,fill:"#FFB300"},g);return g});
+
+// ---------- scene G: Karthika Pournami night, brass lamp with many wicks ----------
+const G=SC.G.b;
+el("rect",{x:-200,y:-200,width:1480,height:2400,fill:"url(#night)"},G);
+const starsG=stars(G,55,700);
+const moonG=el("g",{transform:"translate(800,640)"},G);el("circle",{r:300,fill:"url(#moonGlow)"},moonG);el("circle",{r:125,fill:"#FFFDE7"},moonG);
+[[-40,-25,20],[30,38,15],[40,-45,11],[-20,50,9]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#EDE7C8"},moonG));
+[[-200,1040,330],[110,1080,240],[330,1010,260],[640,1060,240],[860,1000,300]].forEach(([x,y,w])=>el("rect",{x,y,width:w,height:600,fill:"#15142E"},G));
+[[-150,1100],[180,1130],[420,1070],[700,1110],[940,1060]].forEach(([x,y])=>el("rect",{x,y,width:36,height:46,fill:"#FFD180",opacity:.55,rx:3},G));
+el("rect",{x:-200,y:1400,width:1480,height:600,fill:"#241B2F"},G);
+const lampGlow=el("ellipse",{cx:540,cy:1060,rx:420,ry:300,fill:"url(#glow)",opacity:0},G);
+// lamp (stand + big plate) drawn in G front? keep it behind the cast
+const lamp=el("g",{transform:"translate(540,0)"},G);
+el("ellipse",{cx:0,cy:1462,rx:150,ry:26,fill:"#000",opacity:.35},lamp);
+el("path",{d:"M-130 1460 Q-120 1400 -50 1390 L50 1390 Q120 1400 130 1460 Z",fill:"url(#brass)",stroke:"#6D4C0C","stroke-width":5},lamp);
+el("rect",{x:-18,y:1110,width:36,height:285,fill:"url(#brass)",stroke:"#6D4C0C","stroke-width":5},lamp);
+[1180,1260,1330].forEach(y=>el("ellipse",{cx:0,cy:y,rx:34,ry:14,fill:"url(#brass)",stroke:"#6D4C0C","stroke-width":4},lamp));
+el("path",{d:"M-210 1060 Q-200 1130 0 1135 Q200 1130 210 1060 Z",fill:"url(#brass)",stroke:"#6D4C0C","stroke-width":5},lamp);
+el("ellipse",{cx:0,cy:1060,rx:210,ry:52,fill:"#C98B22",stroke:"#6D4C0C","stroke-width":5},lamp);
+el("ellipse",{cx:0,cy:1064,rx:180,ry:40,fill:"#E9B949"},lamp);
+const WICK=[];[[175,38,22],[120,26,14],[65,14,8],[0,0,1]].forEach(([rx,ry,n])=>{for(let i=0;i<n;i++){const a=i/n*Math.PI*2+(n%2?0.2:0);WICK.push([Math.cos(a)*rx,1062+Math.sin(a)*ry])}});
+WICK.sort((a,b)=>a[1]-b[1]);
+const wicks=WICK.map(([x,y])=>{const g=el("g",{transform:`translate(${x},${y})`},lamp);el("ellipse",{cx:0,cy:0,rx:6,ry:3,fill:"#FFF8E1"},g);
+  const f=el("g",{opacity:0},g);el("path",{d:"M0 0 Q-9 -9 0 -30 Q9 -9 0 0 Z",fill:"#FFB300"},f);el("path",{d:"M0 -1 Q-4 -6 0 -17 Q4 -6 0 -1 Z",fill:"#FFF59D"},f);return f});
+const wickOrder=wicks.map((_,i)=>i).sort((a,b)=>((a*37)%wicks.length)-((b*37)%wicks.length));
+
+// ---------- characters ----------
+function makeChar(o){
+  const g=el("g",{},o.parent||castL), body=el("g",{},g);
+  const legL=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body),legR=el("line",{stroke:o.skin,"stroke-width":30,"stroke-linecap":"round"},body);
+  const shoeL=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body),shoeR=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body);
+  if(o.dress) el("path",{d:o.saree?"M-70 -150 L70 -150 L100 0 L-100 0 Z":"M-70 -150 L70 -150 L95 -40 L-95 -40 Z",fill:o.dress},body);
+  else el("rect",{x:-62,y:-175,width:124,height:60,rx:16,fill:o.shorts},body);
+  if(o.saree) el("path",{d:"M-100 -8 L100 -8 L100 0 L-100 0 Z",fill:"#FFC107"},body);
+  el("rect",{x:-62,y:-300,width:124,height:150,rx:36,fill:o.shirt},body);
+  if(o.dots) [[-30,-260],[20,-230],[-15,-190],[35,-280],[30,-175]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:7,fill:"#fff",opacity:.9},body));
+  if(o.border) el("path",{d:"M-62 -300 L62 -160",stroke:"#FFC107","stroke-width":14},body);
+  let tw=null; if(o.towel){tw=el("g",{},body);el("path",{d:"M-70 -300 Q-20 -320 40 -296 L58 -180 L30 -176 L18 -276 Q-20 -290 -60 -270 Z",fill:"#FAFAFA",stroke:"#BDBDBD","stroke-width":3},tw);
+    el("line",{x1:34,y1:-200,x2:56,y2:-202,stroke:"#E53935","stroke-width":5},tw);el("line",{x1:32,y1:-214,x2:54,y2:-216,stroke:"#E53935","stroke-width":5},tw)}
+  const armL=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body),armR=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body);
+  const handItem=el("g",{},body), items={};
+  const head=el("g",{},body);
+  if(o.pigtails){el("circle",{cx:-112,cy:-430,r:38,fill:o.hair},head);el("circle",{cx:112,cy:-430,r:38,fill:o.hair},head);
+    [-1,1].forEach(s=>el("path",{d:`M${s*90} -470 l${s*30} -18 l${-s*4} 30 z`,fill:"#F06292"},head))}
+  if(o.bun){el("circle",{cx:0,cy:-520,r:42,fill:o.hair},head);[-14,0,14].forEach(dx=>el("circle",{cx:dx-30,cy:-540+Math.abs(dx),r:8,fill:"#fff"},head))}
+  if(o.curls) [[-90,-470],[-55,-505],[-15,-520],[25,-518],[62,-500],[92,-468],[-100,-430],[100,-430]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:30,fill:o.hair},head));
+  el("circle",{cx:0,cy:-400,r:105,fill:o.skin},head);
+  el("path",{d:o.hairPath||"M-105 -410 Q-100 -520 0 -515 Q100 -520 105 -410 Q60 -470 0 -455 Q-60 -470 -105 -410Z",fill:o.hair},head);
+  if(o.spiky) el("path",{d:"M-80 -480 L-60 -540 L-35 -495 L-10 -555 L15 -500 L40 -550 L60 -492 L85 -530 L90 -470 Z",fill:o.hair},head);
+  if(o.bindi) el("circle",{cx:0,cy:-445,r:7,fill:"#C62828"},head);
+  el("circle",{cx:-60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);el("circle",{cx:60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);
+  const eyeW=[-36,36].map(x=>el("ellipse",{cx:x,cy:-405,rx:21,ry:25,fill:"#fff"},head));
+  const pup=[-36,36].map(x=>el("circle",{cx:x,cy:-402,r:11,fill:"#1b1b1b"},head));
+  const lids=[-36,36].map(x=>el("path",{d:`M${x-22} -404 Q${x} -390 ${x+22} -404`,stroke:"#3a2a1a","stroke-width":6,fill:"none",opacity:0},head));
+  const brow=[-1,1].map(s=>el("line",{stroke:"#3a2a1a","stroke-width":9,"stroke-linecap":"round"},head));
+  const mouth=el("ellipse",{cx:0,cy:-345,rx:20,ry:4,fill:"#7A1F1F"},head);
+  const smile=el("path",{d:"M-34 -356 Q0 -318 34 -356",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  const grin=el("g",{opacity:0},head);el("path",{d:"M-48 -362 Q0 -296 48 -362 Z",fill:"#7A1F1F"},grin);
+  el("rect",{x:-40,y:-362,width:34,height:13,fill:"#fff"},grin);el("rect",{x:6,y:-362,width:34,height:13,fill:"#fff"},grin);
+  const hmm=el("path",{d:"M-26 -342 Q-6 -350 24 -338",stroke:"#7A1F1F","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  if(o.glasses==="round"){const gl=el("g",{},head);[-38,38].forEach(x=>el("circle",{cx:x,cy:-405,r:33,fill:"rgba(255,255,255,.12)",stroke:"#111","stroke-width":9},gl));el("line",{x1:-6,y1:-410,x2:6,y2:-410,stroke:"#111","stroke-width":7},gl)}
+  if(o.items){
+    if(o.items.includes("mic")){const it=items.mic=el("g",{},handItem);el("rect",{x:-9,y:-70,width:18,height:80,rx:6,fill:"#424242"},it);el("circle",{cx:0,cy:-82,r:24,fill:"#9E9E9E",stroke:"#424242","stroke-width":4},it)}
+    if(o.items.includes("palm")){const it=items.palm=el("g",{},handItem);txt("✋",{x:0,y:-8,"font-size":78,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("point")){const it=items.point=el("g",{},handItem);txt("👉",{x:14,y:-6,"font-size":70,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("match")){const it=items.match=el("g",{},handItem);el("line",{x1:0,y1:0,x2:0,y2:-50,stroke:"#D7B377","stroke-width":7,"stroke-linecap":"round"},it);
+      el("path",{d:"M0 -48 Q-10 -60 0 -84 Q10 -60 0 -48 Z",fill:"#FFB300"},it);el("path",{d:"M0 -50 Q-5 -58 0 -72 Q5 -58 0 -50 Z",fill:"#FFF59D"},it)}
+  }
+  const st={x:0,y:0,s:1,flip:1,rot:0,walk:0,armL:200,armR:160,lenL:115,lenR:115,talk:0,brow:"n",look:0,lookY:0,blink:0,hop:0,item:"",itemRot:0,
+            smile:0,grin:0,hmm:0,shut:0,jaw:0,headRot:0,vis:1,sit:0,towel:1};
+  function draw(){
+    const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) rotate(${k.rot}) scale(${k.s*k.flip},${k.s})`); g.style.opacity=k.vis;
+    body.setAttribute("transform",`translate(0,${k.sit*115})`);
+    head.setAttribute("transform",`rotate(${k.headRot} 0 -300)`);
+    const sw=Math.sin(k.walk)*28, ll=lerp(150,70,k.sit);
+    [[legL,shoeL,-28,k.sit?78:sw],[legR,shoeR,28,k.sit?82:-sw]].forEach(([l,sh,hx,a])=>{const r=a*Math.PI/180,x2=hx+Math.sin(r)*ll,y2=-150+Math.cos(r)*ll;
+      l.setAttribute("x1",hx);l.setAttribute("y1",-150);l.setAttribute("x2",x2);l.setAttribute("y2",y2);sh.setAttribute("cx",x2+8);sh.setAttribute("cy",y2)});
+    [[armL,-58,k.armL,k.lenL],[armR,58,k.armR,k.lenR]].forEach(([a,sx,deg,len])=>{const r=deg*Math.PI/180;a.setAttribute("x1",sx);a.setAttribute("y1",-280);
+      a.setAttribute("x2",sx+Math.sin(r)*len);a.setAttribute("y2",-280-Math.cos(r)*len)});
+    const r=k.armR*Math.PI/180; handItem.setAttribute("transform",`translate(${58+Math.sin(r)*(k.lenR+3)},${-280-Math.cos(r)*(k.lenR+3)}) rotate(${k.itemRot})`);
+    for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    if(tw) tw.style.opacity=k.towel;
+    const open=Math.max(k.talk,k.jaw), quiet=open<0.15;
+    mouth.setAttribute("ry",3+22*open+18*k.jaw); mouth.setAttribute("rx",18+6*open);
+    mouth.style.opacity=quiet&&(k.grin||k.smile||k.hmm)?0:1;
+    smile.style.opacity=k.smile&&quiet&&!k.grin?1:0; grin.style.opacity=k.grin&&quiet?1:0; hmm.style.opacity=k.hmm&&quiet&&!k.smile&&!k.grin?1:0;
+    const closed=k.blink||k.shut; eyeW.forEach(e=>e.setAttribute("ry",closed?2:25*(1+0.2*k.jaw))); lids.forEach(l=>l.style.opacity=closed?1:0);
+    pup.forEach((p,i)=>{p.setAttribute("cx",(i?36:-36)+k.look*8);p.setAttribute("cy",-402+k.lookY*8);p.style.opacity=closed?0:1});
+    brow.forEach((b,i)=>{const s=i?1:-1,B={a:[-424,-446],s:[-452,-432],u:[-462,-458],n:[-440,-440],q:i?[-468,-462]:[-436,-440]}[k.brow];
+      b.setAttribute("x1",s*14);b.setAttribute("y1",B[0]);b.setAttribute("x2",s*58);b.setAttribute("y2",B[1])});
+  }
+  function aimLocal(side,lx,ly,len){const sx=side==="L"?-58:58,dx=lx-sx,dy=ly+280,d=Math.hypot(dx,dy);const a=Math.atan2(dx,-dy)*180/Math.PI;
+    if(side==="L"){st.armL=a;st.lenL=len||Math.min(d,140)}else{st.armR=a;st.lenR=len||Math.min(d,140)}}
+  function aim(side,wx,wy,len){const lx=(wx-st.x)/(st.s*st.flip), ly=(wy-(st.y-st.hop))/st.s-st.sit*115; aimLocal(side,lx,ly,len)}
+  return {st,draw,g,aim,aimLocal};
+}
+const C={
+  amma:  makeChar({skin:"#C68642",hair:"#1b1b1b",shirt:"#7B1FA2",dress:"#8E24AA",saree:true,border:true,bun:true,bindi:true,shoe:"#5D4037",items:["match"]}),
+  chinna:makeChar({skin:"#C68642",hair:"#1b1b1b",shirt:"#1E50C8",shorts:"#37474F",spiky:true,shoe:"#fafafa",towel:true}),
+  gopi:  makeChar({skin:"#B97A45",hair:"#1b1b1b",shirt:"#FB8C00",shorts:"#1E5AA8",curls:true,glasses:"round",towel:true,items:["palm","point"]}),
+  pinky: makeChar({skin:"#D49A6A",hair:"#2b1a10",shirt:"#EC407A",dress:"#F48FB1",dots:true,pigtails:true,shoe:"#F06292"}),
+};
+// Gopi's towel for the ghat scene (drawn on top of his shirt)
+const gTowel=el("g",{opacity:0});
+// Pinky's bubbles (cast layer, on top)
+const qbub=el("g",{opacity:0},frontL);
+el("path",{d:"M-130 -80 Q-130 -110 -100 -110 L100 -110 Q130 -110 130 -80 L130 40 Q130 70 100 70 L40 70 L60 120 L-10 70 L-100 70 Q-130 70 -130 40 Z",fill:"#fff",stroke:"#0E0E12","stroke-width":7},qbub);
+txt("🪔❓",{x:0,y:-2,"font-size":92,"text-anchor":"middle","dominant-baseline":"central"},qbub);
+const bub=el("g",{opacity:0},frontL);
+el("path",{d:"M-200 -80 Q-200 -110 -170 -110 L170 -110 Q200 -110 200 -80 L200 50 Q200 80 170 80 L50 80 L80 130 L0 80 L-170 80 Q-200 80 -200 50 Z",fill:"#fff",stroke:"#0E0E12","stroke-width":7},bub);
+txt("వంద వత్తులా?",{x:0,y:-14,"font-family":"Rama, NotoTe","font-size":64,"text-anchor":"middle","dominant-baseline":"central",fill:"#0E0E12"},bub);
+txt("💯 🤔",{x:0,y:48,"font-size":44,"text-anchor":"middle","dominant-baseline":"central"},bub);
+const cross=el("g",{opacity:0},bub);
+el("path",{d:"M-110 -90 L110 70 M110 -90 L-110 70",stroke:"#fff","stroke-width":44,"stroke-linecap":"round"},cross);
+el("path",{d:"M-110 -90 L110 70 M110 -90 L-110 70",stroke:"#E53935","stroke-width":28,"stroke-linecap":"round"},cross);
+const thought=el("g",{opacity:0},frontL);
+[[0,0,10],[-26,-34,15],[-60,-78,22]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#fff",stroke:"#0E0E12","stroke-width":4},thought));
+txt("?",{x:-96,y:-104,"font-family":"Anton","font-size":110,fill:"#E63946",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke","text-anchor":"middle"},thought);
+const sparks=[...Array(10)].map(()=>txt("✨",{"font-size":52,"text-anchor":"middle",opacity:0},frontL));
+// screen-space fx
+const conf=[...Array(46)].map((_,i)=>el("rect",{width:18,height:30,rx:4,fill:["#E63946","#F5B700","#2E7D32","#1E88E5","#8E24AA","#fff"][i%6],opacity:0}));
+const embers=[...Array(26)].map(()=>el("circle",{r:5,fill:"#FFD54F",opacity:0}));
+const vigR=el("rect",{x:0,y:0,width:1080,height:1920,fill:"url(#vig)",opacity:0});
+const subShade=el("rect",{x:0,y:1480,width:1080,height:440,fill:"#000",opacity:.0});
+const tickG=document.getElementById("ticks");
+for(let i=0;i<5;i++){const a=i*72*Math.PI/180;el("line",{x1:Math.sin(a)*70,y1:-Math.cos(a)*70,x2:Math.sin(a)*82,y2:-Math.cos(a)*82,stroke:"#0E0E12","stroke-width":8,"stroke-linecap":"round"},tickG)}
+
+// ---------- timeline ----------
+const COLORS={gopi:"#F5B700",pinky:"#F48FB1"}, NAMES={gopi:"GOPI",pinky:"PINKY"};
+let TL;
+function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
+function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
+const S=i=>TL.lines[i].start, E=i=>TL.lines[i].start+TL.lines[i].dur;
+const _seg={};
+function seg(i,k,n){const key=i+"/"+n; if(!_seg[key]){const l=TL.lines[i],e=l.env.concat([0,0,0,0,0,0]);let segs=[],on=null,low=0;
+  e.forEach((v,f)=>{if(v>0.1){if(on===null)on=f;low=0}else{low++;if(on!==null&&low>=5){segs.push([l.start+on/30,l.start+(f-low+1)/30]);on=null}}});
+  if(segs.length!==n){segs=[...Array(n)].map((_,j)=>[l.start+l.dur*j/n,l.start+l.dur*(j+1)/n])} _seg[key]=segs} return _seg[key][k]}
+// scene cut times (mix.py uses the same formulas)
+function cuts(){const c={};c.B=S(3)-0.3;c.C=S(4)-0.3;c.D=S(5)-0.3;c.E=S(6)-0.3;c.F=S(7)-0.3;c.G=S(8)-0.3;c.CD0=E(10)+0.35;c.CD1=c.CD0+TL.countdown;
+  c.H=S(12)-0.3;c.O=E(14)+0.35;return c}
+const tLight=i=>0.35+i*0.22;                  // wall diyas light one by one in the solo intro
+const NW=()=>wicks.length;
+
+window.render=function(t){
+  const c=cuts(); const sc=t<c.B?"A":t<c.C?"B":t<c.D?"C":t<c.E?"D":t<c.F?"E":t<c.G?"F":t<c.CD0?"G":t<c.CD1?"CD":t<c.H?"R":t<c.O?"H":"O";
+  const bg={A:"A",F:"A",H:"A",O:"A",B:"B",C:"C",D:"D",E:"E",G:"G",CD:"G",R:"G"}[sc];
+  for(const k in SC){SC[k].b.style.display=k===bg?"inline":"none";SC[k].f.style.display=k===bg?"inline":"none"}
+  const t0={A:0,B:c.B,C:c.C,D:c.D,E:c.E,F:c.F,G:c.G,CD:c.CD0,R:c.CD1,H:c.H,O:c.O}[sc], ts=t-t0;
+  for(const k in C){const s=C[k].st;Object.assign(s,{talk:talkOf(k,t),blink:((t*0.7+k.length)%3.1)<0.12?1:0,hop:0,rot:0,brow:"n",look:0,lookY:0,
+    walk:0,smile:1,grin:0,hmm:0,shut:0,jaw:0,item:"",itemRot:0,armL:200,armR:160,lenL:115,lenR:115,flip:1,headRot:0,vis:0,sit:0,s:1,towel:k==="chinna"?1:0})}
+  const gp=C.gopi.st, pi=C.pinky.st, am=C.amma.st, ch=C.chinna.st;
+  gp.headRot=Math.sin(t*2.1)*2.5+gp.talk*3*Math.sin(t*9); pi.headRot=Math.sin(t*1.7+1)*3;
+  const restArms=(C_,k)=>{C_.aimLocal("L",-95,-165,112);C_.aimLocal("R",95,-165,112)};
+  const wave=(C_,side,ph)=>{const w=Math.sin(t*12+ph); C_.aimLocal(side,(side==="R"?1:-1)*(150+w*35),-455,130)};
+  // ---------- colony: dusk -> night ----------
+  if(bg==="A"){
+    const nightK=sc==="A"||sc==="F"?(sc==="F"?0.25*clamp(ts/2):0):1;
+    skyNight.style.opacity=nightK; nightTint.style.opacity=0.15*nightK; moonA.style.opacity=sc==="F"?0:nightK;
+    moonA.setAttribute("transform",`translate(860,${(sc==="O"?720-6*clamp(ts/8):720)})`);
+    starsA.forEach((s,i)=>s.style.opacity=nightK*(0.5+0.5*Math.sin(t*3+i)));
+    winA.forEach((w,i)=>w.style.opacity=0.3+0.5*nightK*(i%3?1:0.6));
+    wallDiyas.forEach((d,i)=>setLit(d,sc==="A"?clamp((t-tLight(i))/0.3):1,t));
+    ledgeDiyas.forEach((d,i)=>setLit(d,bg==="A"&&sc!=="A"&&sc!=="F"?clamp((t-c.H-0.2-i*0.15)/0.3):sc==="A"?clamp((t-S(1)-0.2-i*0.2)/0.3):1,t));
+    floorDiyas.forEach((d,i)=>{d.g.style.opacity=sc==="H"||sc==="O"?1:0; setLit(d,sc==="O"?clamp((t-c.O-0.1-i*0.25)/0.3):sc==="H"?1:0,t)});
+    if(sc==="H"||sc==="O") floorDiyas.forEach(d=>setLit(d,1,t));
+  }
+  // ---------- shot A: hook + Pinky's question ----------
+  if(sc==="A"){
+    gp.vis=1; Object.assign(gp,{x:270,y:1490,s:0.92});
+    restArms(C.gopi);
+    if(t<S(0)){gp.look=0.6;gp.lookY=-0.6; C.gopi.aimLocal("R",150,-200,120)}          // admires the diyas
+    else if(t<S(0)+0.8){wave(C.gopi,"R",0); gp.item="palm"; gp.brow="u"; gp.hop=Math.max(0,Math.sin(clamp((t-S(0))/0.35)*Math.PI))*36}
+    else if(t<E(0)){C.gopi.aimLocal("R",190,-310,130); gp.item="palm"; gp.brow="a"}
+    else if(t<E(1)){C.gopi.aimLocal("R",180,-430,130); C.gopi.aimLocal("L",-180,-430,130); gp.brow="u"}   // arms open: lights everywhere
+    else {gp.look=1; gp.lookY=-0.2; C.gopi.aimLocal("R",95,-200,112)}
+    const sp=S(2)-0.45; pi.vis=t>sp?1:0; Object.assign(pi,{x:830,y:1500,s:0.74*Math.max(0.001,back((t-sp)/0.42)),flip:-1,look:1,lookY:-0.3});
+    if(t>sp){pi.brow="q"; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-90,-200); if(t<E(2)){pi.brow="u";pi.hop=Math.abs(Math.sin(t*6))*8}}
+    if(t>sp){gp.look=1;gp.lookY=0}
+  }
+  // ---------- shot B: Lakshmi Amma lights the doorstep diya ----------
+  const [a3,b3]=seg(3,0,2), [a3b,b3b]=seg(3,1,2);
+  if(sc==="B"){
+    am.vis=1; Object.assign(am,{x:400,y:1470,s:0.86,look:1,lookY:0.6,brow:"n"});
+    const tl=lerp(a3b,b3b,0.55);            // the flame catches mid "వెలిగిస్తారు"
+    const reach=ease((t-a3b+0.4)/0.5);
+    am.item=t<tl+0.3?"match":""; C.amma.aim("R",lerp(am.x+90,600,reach),lerp(1330,1262,reach),lerp(105,140,reach)); am.itemRot=lerp(0,30,reach);
+    C.amma.aimLocal("L",-80,-200,112); am.rot=reach*4;
+    setLit(dB,clamp((t-tl)/0.3),t); setLit(dB2,clamp((t-tl-0.5)/0.3),t);
+    kolLines.forEach((k,i)=>k.style.opacity=1);
+    gp.vis=1; Object.assign(gp,{x:930,y:1500,s:0.74,flip:-1,look:-1,lookY:0.3});
+    restArms(C.gopi); if(t<b3) {C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.brow="u"} else {gp.look=1; gp.lookY=0.2}
+  }
+  // ---------- shot C: sunrise bath at the ghat ----------
+  if(sc==="C"){
+    gp.vis=1; Object.assign(gp,{x:260,y:1460,s:0.84,look:0.5,towel:1});
+    ch.vis=1; Object.assign(ch,{x:620,y:1475,s:0.68,flip:-1,look:-1,lookY:-0.2,grin:1});
+    C.gopi.aimLocal("L",-20,-300,100); C.gopi.aimLocal("R",95,-170,112);            // hand on the towel
+    C.chinna.aimLocal("R",-20,-300,100); C.chinna.aimLocal("L",-150,-430,125);       // Chinna waves at the sun
+    ch.shut=Math.sin(t*1.3)>0.6?1:0; ch.hop=Math.abs(Math.sin(t*5))*6;
+    if(t>S(4)+0.2&&t<E(4)){gp.brow="u"; C.gopi.aimLocal("R",170,-440,128)}         // arm up: fresh morning!
+    const k=clamp(ts/(c.D-c.C)); sun.setAttribute("cy",lerp(960,880,k)); sunG.setAttribute("cy",lerp(960,880,k));
+    ripples.forEach((r,i)=>{const x=((i*173+t*30)%1300)-120, y=1000+(i%6)*55, w=40+(i%4)*20; r.setAttribute("d",`M${x} ${y} q${w/2} -8 ${w} 0`); r.style.opacity=0.35+0.25*Math.sin(t*3+i)});
+    mist.forEach((m,i)=>{m.setAttribute("cx",((i*260+t*25)%1700)-300); m.setAttribute("cy",980+(i%3)*80)});
+    mistF.forEach((m,i)=>{m.setAttribute("cx",((i*500-t*20)%1700+1700)%1700-300); m.setAttribute("cy",1320+i*60)});
+    birdsC.forEach((b,i)=>{const x=((t*(50+i*10)+i*300)%1500)-200, y=700+i*40+Math.sin(t*2+i)*10; b.setAttribute("transform",`translate(${x},${y}) scale(${1+0.3*Math.sin(t*10+i)},1)`)});
+  }
+  // ---------- shot D: temple on the hill, bell ----------
+  const [a5,b5]=seg(5,0,3), [a5b]=seg(5,1,3), [a5c]=seg(5,2,3);
+  const tBell=a5b+0.1;
+  if(sc==="D"){
+    gp.vis=1; Object.assign(gp,{x:230,y:1480,s:0.86,look:1,lookY:-0.8,smile:1});
+    C.gopi.aimLocal("R",8,-300,95); C.gopi.aimLocal("L",-8,-300,95);          // hands joined (namaste)
+    if(t<S(5)+0.6){C.gopi.aimLocal("R",175,-340,128); gp.item="point"; C.gopi.aimLocal("L",-95,-165,112)}
+    const bk=t-tBell; const sw=bk>0?Math.exp(-bk*1.6)*Math.sin(bk*9)*22:0;
+    bell.setAttribute("transform",`translate(-140,-143) rotate(${sw})`);
+    ringD.forEach((r,j)=>{const life=bk>0?((bk*1.4+j/3)%1):0, rr=30+life*60; r.setAttribute("d",`M${-140+rr*.8} ${-100-rr*.5} A${rr} ${rr} 0 0 1 ${-140+rr*.8} ${-100+rr*.5}`); r.style.opacity=bk>0&&bk<2.2?(1-life)*0.9:0});
+    const pl=path.getTotalLength();
+    devs.forEach((g,i)=>{const k=clamp(((ts*0.06+i*0.15)%1)); const p=path.getPointAtLength(pl*k); g.setAttribute("transform",`translate(${p.x},${p.y+Math.abs(Math.sin(t*6+i))*-4}) scale(${lerp(1.15,0.6,k)})`)});
+    flagD.setAttribute("d",`M0 -340 Q25 ${-338+Math.sin(t*6)*5} 50 -326 L0 -312 Z`);
+    lampD.forEach(d=>setLit(d,1,t));
+  }
+  // ---------- shot E: vanabhojanam ----------
+  if(sc==="E"){
+    gp.vis=1; Object.assign(gp,{x:190,y:1480,s:0.84});
+    restArms(C.gopi); if(t<seg(6,1,2)[0]){C.gopi.aimLocal("R",175,-340,128); gp.item="point"} else {C.gopi.aimLocal("R",170,-440,128); C.gopi.aimLocal("L",-170,-440,128); gp.brow="u"; gp.hop=Math.abs(Math.sin(t*6))*10}
+    am.vis=1; Object.assign(am,{x:1000,y:1290,s:0.6,sit:1,flip:-1,look:-1,item:""}); C.amma.aimLocal("R",90,-170,110); C.amma.aimLocal("L",-60,-240,100);
+    ch.vis=1; Object.assign(ch,{x:760,y:1290,s:0.56,sit:1,grin:1,look:1}); C.chinna.aimLocal("R",100+Math.sin(t*8)*20,-260+Math.abs(Math.sin(t*8))*-50,110); C.chinna.aimLocal("L",-90,-170,110);   // eating
+    pi.vis=1; Object.assign(pi,{x:470,y:1290,s:0.54,sit:1,grin:1,look:-1}); C.pinky.aimLocal("R",80,-170,110); C.pinky.aimLocal("L",-90-Math.sin(t*7)*20,-260-Math.abs(Math.sin(t*7))*40,110);
+    canopy.setAttribute("transform",`rotate(${Math.sin(t*1.2)*0.8} 700 1300)`);
+  }
+  // ---------- shot F: follow aside (colony) ----------
+  const tTapF=lerp(S(7),E(7),0.55), tTapS=lerp(S(7),E(7),0.85);
+  if(sc==="F"){
+    gp.vis=1; Object.assign(gp,{x:300,y:1490,s:0.92,look:1,lookY:-1}); C.gopi.aimLocal("R",160,-470,128); gp.item="point"; gp.itemRot=-70; C.gopi.aimLocal("L",-95,-165,112);
+    pi.vis=1; Object.assign(pi,{x:830,y:1500,s:0.74,flip:-1,look:-1,lookY:-1}); C.pinky.aimLocal("R",90,-170); C.pinky.aimLocal("L",-90,-170); if(t>tTapF) {pi.hop=Math.abs(Math.sin(t*7))*14; pi.grin=1}
+  }
+  // ---------- shots G/CD/R: Karthika Pournami quiz ----------
+  const [a10]=seg(10,0,2), [a11,b11]=seg(11,0,2), [a11b]=seg(11,1,2);
+  const cdk=t-c.CD0, sec=Math.floor(cdk), fr=cdk-sec;
+  const tC0=S(11)+0.05, nC=Math.round(lerp(1,365,ease((t-tC0)/1.6)));   // 1 -> 365 counter
+  if(bg==="G"){
+    gp.vis=1; Object.assign(gp,{x:180,y:1480,s:0.84,look:1,lookY:-0.3});
+    pi.vis=1; Object.assign(pi,{x:900,y:1500,s:0.72,flip:-1,look:1,lookY:-0.3});
+    restArms(C.gopi); restArms(C.pinky);
+    starsG.forEach((s,i)=>s.style.opacity=0.5+0.5*Math.sin(t*2.5+i*1.7));
+    moonG.setAttribute("transform",`translate(800,${640-Math.min(1,ts/6)*10})`);
+    const lit=sc==="R"?Math.min(wicks.length,Math.round(wicks.length*(nC/365))*(t>tC0?1:0)):1;
+    wickOrder.forEach((wi,j)=>{const f=wicks[wi]; const on=j<lit||(sc!=="R"&&WICK[wi][0]===0&&WICK[wi][1]===1062); f.style.opacity=on?1:0;
+      f.setAttribute("transform",`scale(${1+0.12*Math.sin(t*17+wi)},${1-0.08*Math.sin(t*17+wi)})`)});
+    lampGlow.style.opacity=sc==="R"?clamp(lit/wicks.length)*0.95:0.15;
+    if(sc==="G"){
+      if(t<S(8)+0.5){C.gopi.aimLocal("R",170,-440,128); gp.item="point"; gp.itemRot=-40; gp.brow="u"}
+      else if(t<E(8)){C.gopi.aim("R",540,1080,135); gp.item="point"; gp.itemRot=C.gopi.st.armR-90; gp.brow="q"}
+      if(t>S(9)-0.3&&t<a10){pi.brow="q"; pi.hmm=0; C.pinky.aimLocal("R",30,-345,105); pi.headRot=-6}
+      if(t>=a10){pi.brow="s"; pi.smile=0; pi.hmm=1; pi.headRot=-8;
+        if(t<a10+0.9){const w=Math.sin(t*22); C.gopi.aimLocal("R",95+w*30,-470,120); gp.item=""; gp.headRot=w*7; gp.brow="a"; gp.grin=1}
+        else {C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.brow="u"; gp.lookY=0; gp.look=0}}
+    }
+    if(sc==="CD"){gp.look=1; gp.brow="q"; C.gopi.aimLocal("L",45,-232,96); C.gopi.aimLocal("R",-45,-214,96);
+      gp.walk=Math.asin(0.45*Math.max(0,Math.sin(t*Math.PI*2))); gp.headRot=Math.sin(t*Math.PI*2)*3;
+      pi.brow="q"; pi.hmm=1; pi.smile=0; pi.look=-0.6; pi.lookY=-1; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-60,-240);
+      pi.headRot=Math.sin(t*1.6)*8; if(sec>=3){pi.look=Math.sin(t*5); pi.brow="s"}}
+    if(sc==="R"){
+      if(t<S(11)+1.2){C.gopi.aimLocal("R",170,-460,125); C.gopi.aimLocal("L",-170,-460,125); gp.brow="u"; gp.hop=Math.max(0,Math.sin(clamp((t-S(11))/0.45)*Math.PI))*34}
+      else {C.gopi.aim("R",540,1060,135); gp.item="palm"; gp.brow="n"}
+      pi.brow="u"; pi.jaw=t<S(11)+1.5?0.45:0; pi.look=-1; pi.lookY=-0.4; C.pinky.aimLocal("R",80,-450); C.pinky.aimLocal("L",-80,-450);
+      pi.hop=Math.abs(Math.sin(clamp((t-S(11))/2.4)*Math.PI*4))*26;
+    }
+  }
+  // ---------- shots H/O: glowing colony, CTA + outro ----------
+  if(sc==="H"||sc==="O"){
+    gp.vis=1; Object.assign(gp,{x:260,y:1490,s:0.9});
+    pi.vis=1; Object.assign(pi,{x:840,y:1500,s:0.74,flip:-1,look:-1});
+    restArms(C.gopi); C.pinky.aimLocal("R",90,-170); C.pinky.aimLocal("L",-90,-170);
+    if(t<S(13)-0.1){C.gopi.aimLocal("R",120,-330,110); gp.grin=t>E(12)?1:0; gp.brow="u"}                          // thumbs-up energy
+    else if(t<S(14)-0.1){C.gopi.aimLocal("R",150,-120,125); gp.item="point"; gp.itemRot=60; gp.lookY=0.8}     // points down at comments
+    else if(t<c.O){C.gopi.aimLocal("R",175,-340,128); gp.item="point"; gp.brow="u"}
+    if(sc==="O"){
+      wave(C.gopi,"R",0); gp.item="palm"; gp.hop=Math.abs(Math.sin(t*5))*10;
+      wave(C.pinky,"R",1); pi.hop=Math.abs(Math.sin(t*5+0.5))*12;
+      am.vis=1; Object.assign(am,{x:540,y:1470,s:0.8*Math.max(0.001,back((ts-0.3)/0.45)),item:""}); C.amma.aimLocal("L",-80,-200,112); wave(C.amma,"R",2);
+      ch.vis=ts>0.6?1:0; Object.assign(ch,{x:960,y:1500,s:0.6*Math.max(0.001,back((ts-0.6)/0.45)),flip:-1,grin:1}); wave(C.chinna,"L",3); C.chinna.aimLocal("R",90,-170);
+      Object.assign(pi,{x:755}); Object.assign(gp,{x:230});
+    }
+  }
+  for(const k in C)C[k].draw();
+
+  // ---------------- props ----------------
+  const qk=sc==="A"&&t>S(2)-0.2?back((t-S(2)+0.2)/0.35):0;
+  qbub.style.opacity=qk>0?1:0; qbub.setAttribute("transform",`translate(${830-60},${1500-0.74*540-130+Math.sin(t*3)*5}) scale(${Math.max(0.001,qk)})`);
+  const bk=sc==="G"&&t>S(9)-0.1?back((t-S(9)+0.1)/0.35):0;
+  bub.style.opacity=bk>0?1:0; bub.setAttribute("transform",`translate(${900-110},${1500-0.72*540-150+Math.sin(t*3)*5}) scale(${Math.max(0.001,bk)})`);
+  const xk=t>a10-0.05; cross.style.opacity=xk?1:0; cross.setAttribute("transform",`scale(${Math.max(0.001,lerp(2.2,1,clamp((t-a10+0.05)/0.2)))}) rotate(${(1-clamp((t-a10)/0.2))*-15})`);
+  thought.style.opacity=sc==="CD"?clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.2):0;
+  thought.setAttribute("transform",`translate(${900-70},${1500-0.72*540}) scale(${0.95+0.08*Math.sin(t*6)})`);
+  sparks.forEach((s,i)=>{const life=((t*1.1+i/10)%1), a=i/10*Math.PI*2+t*0.6; const on=sc==="O"||(sc==="R"&&t>S(11)+0.2&&t<E(11)+1);
+    const cx=sc==="O"?540:540, cy=sc==="O"?1150:1040, R=sc==="O"?360:240;
+    s.setAttribute("x",cx+Math.cos(a)*(R+life*80)); s.setAttribute("y",cy+Math.sin(a)*(R*0.6+life*60)-life*40); s.style.opacity=on?(1-life):0});
+
+  // ---------------- camera (gentle push per shot) ----------------
+  let z=1, fx=540, fy=1000;
+  if(sc==="A"){z=lerp(1.08,1.0,ease(t/3))+0.012*Math.max(0,t-3); fy=lerp(1100,1000,ease(t/3))}
+  if(sc==="B"){z=1.0+0.025*ts; fx=lerp(540,560,clamp(ts/3)); fy=1020}
+  if(sc==="C"){z=1.04-0.01*ts}
+  if(sc==="D"){z=1.0+0.02*ts; fx=lerp(540,600,clamp(ts/3)); fy=lerp(1000,960,clamp(ts/3))}
+  if(sc==="E"){z=1.05-0.012*ts}
+  if(sc==="F"){z=1.02}
+  if(sc==="G"){z=1.0+0.015*ts}
+  if(sc==="CD"){const k=ease(cdk/0.45); z=lerp(1.0,1.1,k)+0.01*cdk+Math.exp(-fr*6)*0.02; fy=lerp(1000,1060,k)}
+  if(sc==="R"){const k=out((t-c.CD1)/0.35); z=lerp(0.96,1.05,k)}
+  if(sc==="H"){z=1.0+0.01*ts}
+  if(sc==="O"){z=lerp(1.04,0.96,ease(ts/3))}
+  let sx=0,sy=0;
+  const shake=(t0,d,a)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
+  shake(a10,0.3,14); shake(c.CD1,0.35,18); shake(tBell,0.25,6);
+  stage.setAttribute("transform",`translate(${540+sx},${1000+sy}) scale(${z}) translate(${-fx},${-fy})`);
+
+  // ---------------- overlays ----------------
+  const cutList=[c.B,c.C,c.D,c.E,c.F,c.G,c.H,c.O];
+  let wp=0; cutList.forEach(ct=>{const d=t-ct; if(d>-0.12&&d<0.22) wp=Math.max(wp,d<0?1+d/0.12:1-d/0.22)});
+  document.getElementById("wipe").style.opacity=0.85*Math.max(0,wp)**0.8;
+  // ANSWER AT THE END: big sticker on line 1, then a small badge until the countdown
+  const at=document.getElementById("atend"), atk=back((t-S(1)+0.1)/0.4), atS=ease((t-E(1)-0.2)/0.4);
+  at.style.opacity=t>S(1)-0.1&&t<c.B?clamp((c.B-t)/0.25):0;
+  at.style.transform=`translateY(${-90*atS}px) scale(${Math.max(0.01,atk)*lerp(1,0.6,atS)*(1+(atS<1?0.03*Math.sin(t*8):0))}) rotate(${lerp(-3,0,atS)}deg)`;
+  // list badges
+  const B_={B:[1,"కార్తీక దీపం 🪔"],C:[2,"కార్తీక స్నానం 🌅"],D:[3,"సోమవారం శివాలయ దర్శనం 🔔"],E:[4,"వనభోజనాలు 🌳"]}[sc];
+  const bd=document.getElementById("badge");
+  if(B_){const st0={B:S(3),C:S(4),D:S(5),E:S(6)}[sc]-0.05; bd.style.opacity=1; document.getElementById("bN").textContent=B_[0]; document.getElementById("bL").textContent=B_[1];
+    document.getElementById("bN").style.transform=`scale(${Math.max(0.01,back((t-t0-0.05)/0.4))}) rotate(${Math.sin(t*3)*3}deg)`;
+    document.getElementById("bL").style.transform=`scale(${Math.max(0.01,back((t-st0-0.3)/0.4))})`;
+  } else bd.style.opacity=0;
+  // quiz tag
+  const qt=document.getElementById("qtag"); qt.style.opacity=sc==="G"?clamp((t-S(8)-0.2)/0.2):0; qt.style.transform=`scale(${Math.max(0.01,back((t-S(8)-0.2)/0.4))}) rotate(${Math.sin(t*3)*1.5}deg)`;
+  // follow / subscribe buttons
+  const fol=document.getElementById("fol"), bF=document.getElementById("bF"), bS=document.getElementById("bS"), hand=document.getElementById("tapHand"), ring=document.getElementById("ring");
+  const fOn=sc==="F"; fol.style.opacity=fOn?clamp(Math.min((t-c.F)/0.2,(c.G-t)/0.2)):0;
+  fol.style.transform=`scale(${Math.max(0.01,back((t-c.F)/0.4))})`;
+  bF.textContent=t<tTapF?"+ FOLLOW":"FOLLOWING ✓"; bF.className="btn"+(t<tTapF?"":" done");
+  bS.textContent=t<tTapS?"▶ SUBSCRIBE":"SUBSCRIBED 🔔"; bS.className="btn"+(t<tTapS?"":" done");
+  const press=(t0)=>{const d=t-t0; return d>-0.08&&d<0.12?0.9:1};
+  bF.style.transform=`scale(${press(tTapF)})`; bS.style.transform=`scale(${press(tTapS)})`;
+  const yF=300+60, yS=300+60+150;
+  let hxp=860,hyp=820; const mv=(a,b,k)=>[lerp(a[0],b[0],ease(k)),lerp(a[1],b[1],ease(k))];
+  if(t<tTapF){[hxp,hyp]=mv([860,820],[560,yF],(t-c.F-0.1)/Math.max(0.3,tTapF-c.F-0.25))}
+  else if(t<tTapS){[hxp,hyp]=mv([560,yF],[560,yS],(t-tTapF-0.25)/Math.max(0.3,tTapS-tTapF-0.4))}
+  else {[hxp,hyp]=mv([560,yS],[880,820],(t-tTapS-0.3)/0.4)}
+  const dip=Math.max(0,1-Math.abs(t-tTapF)/0.1)+Math.max(0,1-Math.abs(t-tTapS)/0.1);
+  hand.style.opacity=fOn?clamp(Math.min((t-c.F-0.05)/0.15,(c.G-t)/0.15)):0;
+  hand.style.transform=`translate(${hxp-50}px,${hyp-8+dip*10}px) scale(${1-0.1*dip}) rotate(${-8+dip*6}deg)`;
+  const rT=t>=tTapS?tTapS:tTapF, rk=(t-rT)/0.45; ring.style.opacity=fOn&&rk>0&&rk<1?1-rk:0;
+  ring.style.left=(t>=tTapS?560:560)+"px"; ring.style.top=(t>=tTapS?yS:yF)+"px"; ring.style.transform=`scale(${1+rk*4})`;
+  // countdown overlay
+  const clock=document.getElementById("clock"), dig=document.getElementById("digit"), th=document.getElementById("think"), cn=document.getElementById("cnow");
+  const cOn=sc==="CD"; const cIn=clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.25);
+  clock.style.opacity=cOn?cIn:0; th.style.opacity=cOn?cIn:0; cn.style.opacity=cOn?cIn:0;
+  cn.style.transform=`scale(${cOn?Math.max(0.01,back(cdk/0.35))*(1+0.04*Math.sin(t*10)):1})`;
+  if(cOn){const handC=document.getElementById("hand"), tick=Math.min(1,fr/0.08);
+    handC.setAttribute("transform",`rotate(${(sec+tick)*72})`);
+    document.getElementById("arc").setAttribute("stroke-dasharray",`${389.6*(1-cdk/TL.countdown)} 389.6`);
+    document.getElementById("clockBody").setAttribute("transform",`rotate(${Math.exp(-fr*7)*Math.sin(fr*60)*9}) scale(${1+Math.exp(-fr*8)*0.08})`);
+    const n=Math.max(1,5-sec); dig.textContent=n; dig.style.opacity=fr<0.82?1:clamp(1-(fr-0.82)/0.18);
+    dig.style.transform=`scale(${lerp(1.5,1,out(fr/0.22))})`; dig.style.color=n<=2?"#FF5252":"#F5B700";
+    th.style.transform=`translateY(${Math.sin(t*3)*5}px)`;
+  } else dig.style.opacity=0;
+  vigR.style.opacity=sc==="CD"?clamp(cdk/1.5)*0.8:0;
+  // reveal: confetti, embers, flash, answer banner with the 1->365 counter
+  conf.forEach((cf,i)=>{const t0_=c.CD1+0.05, k=t-t0_; const on=k>0&&k<3.2; const x0=(i*97)%1080, vx=((i*53)%11-5)*14;
+    cf.setAttribute("x",x0+vx*k+Math.sin(k*4+i)*30); cf.setAttribute("y",-60+k*(420+(i%7)*60)-(i%5)*40); cf.setAttribute("transform",`rotate(${k*200+i*30} ${x0+vx*k} ${-60+k*(420+(i%7)*60)})`); cf.style.opacity=on?Math.min(1,(3.2-k)/0.6):0});
+  embers.forEach((e,i)=>{const life=((t*0.25+i/26)%1); const on=sc==="O"||sc==="H"; e.setAttribute("cx",(i*83)%1080+Math.sin(t+i)*20); e.setAttribute("cy",1300-life*900); e.setAttribute("r",3+(i%3)*2); e.style.opacity=on?(1-life)*0.8*(sc==="O"?1:0.5):0});
+  document.getElementById("flash").style.opacity=(t>c.CD1&&t<c.CD1+0.25?0.85*(1-(t-c.CD1)/0.25):0);
+  const an=document.getElementById("ans"), aOn=sc==="R"&&t>S(11)-0.1; an.style.opacity=aOn?clamp(Math.min((t-S(11)+0.1)/0.15,(c.H-t)/0.25)):0;
+  an.style.transform=`scale(${Math.max(0.01,back((t-S(11)+0.1)/0.4))})`;
+  document.getElementById("cnt").textContent=t<tC0?1:nC;
+  const ae=document.getElementById("ansE"); ae.style.opacity=t>a11b-0.1?1:0; ae.style.transform=`scale(${Math.max(0.01,back((t-a11b+0.1)/0.35))})`;
+  // check / comment / share stickers
+  const tk=document.getElementById("tick"), tkOn=sc==="H"&&t<S(13)-0.15; tk.style.opacity=tkOn?clamp((S(13)-0.15-t)/0.2):0;
+  tk.style.transform=`scale(${Math.max(0.01,back((t-S(12)-0.6)/0.4))}) rotate(${Math.sin(t*4)*6}deg)`;
+  const cb=document.getElementById("cbub"), cbOn=sc==="H"&&t>S(13)-0.15&&t<S(14)-0.15; cb.style.opacity=cbOn?clamp(Math.min((t-S(13)+0.15)/0.2,(S(14)-0.15-t)/0.2)):0;
+  cb.style.transform=`scale(${Math.max(0.01,back((t-S(13)+0.15)/0.4))})`;
+  document.querySelectorAll("#cbub .d").forEach((d,i)=>d.style.transform=`translateY(${-14*Math.max(0,Math.sin(t*9-i*0.9))}px)`);
+  const hr=document.getElementById("heart"), th0=S(13)+0.9; hr.style.transform=`scale(${t>th0?Math.max(0.01,back((t-th0)/0.35))*(1+0.1*Math.sin(t*10)):0.01})`;
+  const shr=document.getElementById("share"), shOn=sc==="H"&&t>S(14)-0.15; shr.style.opacity=shOn?clamp(Math.min((t-S(14)+0.15)/0.2,(c.O-t)/0.25)):0;
+  shr.style.transform=`scale(${Math.max(0.01,back((t-S(14)+0.15)/0.4))})`;
+  const arr=document.getElementById("arr"), ak=ease((t-S(14)-0.2)/0.9); arr.style.transform=`translate(${lerp(60,780,ak)}px,${lerp(520,60,ak)-Math.sin(ak*Math.PI)*120}px) rotate(${lerp(10,-20,ak)}deg) scale(${1-0.3*ak})`;
+  arr.style.opacity=ak>0&&ak<1?1:0;
+  // title + end card
+  const ti=document.getElementById("title"); ti.style.opacity=t<0.1?0:t<S(1)-0.3?1:clamp(1-(t-S(1)+0.3)/0.3); ti.style.transform=`scale(${Math.max(0.01,back((t-0.1)/0.5))}) rotate(${Math.sin(t*2.5)*1.2}deg)`;
+  const en=document.getElementById("end"); en.style.opacity=sc==="O"?clamp(ts/0.4):0; en.style.transform=`translateY(${(1-out(ts/0.5))*40}px) scale(${1+0.015*Math.sin(t*3)})`;
+  const ef=document.getElementById("endF"); ef.style.opacity=sc==="O"&&ts>1.4?1:0; ef.style.transform=`scale(${Math.max(0.01,back((ts-1.4)/0.4))})`;
+  // subtitles
+  const sub=document.getElementById("sub"), L=curLine(t);
+  if(L){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+};
+</script>
+</body></html>
