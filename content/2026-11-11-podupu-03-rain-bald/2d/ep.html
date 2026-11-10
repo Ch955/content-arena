@@ -220,8 +220,8 @@ function makeChar(o){
   return {st,draw,g,aim,aimLocal};
 }
 
-// ---------- the uncle (side view, walking; his head is always behind the sack on his shoulder) ----------
-const UY=1305, US=0.92, UX0=965, UX1=690, SKS=0.86;   // SKS: sack size
+// ---------- the uncle (side view, walking; no head is drawn in side view -- the letterbox crops at his shoulders) ----------
+const UY=1305, US=0.92, UX0=965, UX1=690;
 const KUR="#90CAF9";
 const uSide=el("g",{},cam), uA=el("g",{},uSide);
 const uFarArm=el("line",{stroke:"#9C6A3C","stroke-width":24,"stroke-linecap":"round"},uA);
@@ -233,22 +233,11 @@ const uWetSpots=el("g",{opacity:0},uA);[[-40,-250,10,60],[-6,-200,9,70],[30,-230
 el("path",{d:"M50 -322 L66 -238",stroke:"#3D6E99","stroke-width":5},uA);[[54,-306],[59,-284],[63,-262]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:5,fill:"#F5F5F5"},uA));
 el("rect",{x:-10,y:-352,width:26,height:30,rx:8,fill:"#B57A48"},uA);   // neck stub (the head itself is never drawn in side view)
 const uDrips=[...Array(7)].map((_,i)=>({x:[-52,-12,28,62,-40,48,8][i],y:[-100,-98,-98,-100,-104,-104,-99][i],ph:hash(i+40),e:el("path",{d:"M0 -9 Q6 2 0 7 Q-6 2 0 -9Z",fill:"#CFE3F2",stroke:"#5E7FA0","stroke-width":2,opacity:0},uA)}));
-// the sack (vegetable bag) -- its own group so it can be set down at the reveal
-const SACKP="M-108 -6 Q-128 -120 -98 -200 Q-72 -252 -22 -246 L-12 -262 Q8 -276 28 -262 L34 -246 Q92 -250 114 -192 Q134 -110 110 -6 Q0 14 -108 -6 Z";
-const sack=el("g",{},cam), sackIn=el("g",{},sack);
-el("path",{d:SACKP,fill:"#C8A165",stroke:"#6B4F28","stroke-width":5},sackIn);
-for(let i=0;i<6;i++)el("line",{x1:-95+i*38,y1:-215,x2:-105+i*40,y2:-12,stroke:"#9C7A45","stroke-width":2.5,opacity:.55},sackIn);
-for(let i=0;i<5;i++)el("path",{d:`M-110 ${-40-i*40} Q0 ${-30-i*40} 112 ${-40-i*40}`,stroke:"#9C7A45","stroke-width":2.5,fill:"none",opacity:.45},sackIn);
-el("path",{d:"M-24 -246 Q8 -236 36 -246",stroke:"#6B4F28","stroke-width":6,fill:"none"},sackIn);
-el("ellipse",{cx:-6,cy:-282,rx:13,ry:26,fill:"#43A047",stroke:"#1B5E20","stroke-width":3,transform:"rotate(-24 -6 -282)"},sackIn);
-el("ellipse",{cx:22,cy:-280,rx:11,ry:24,fill:"#66BB6A",stroke:"#1B5E20","stroke-width":3,transform:"rotate(22 22 -280)"},sackIn);
-el("rect",{x:40,y:-140,width:46,height:40,rx:6,fill:"#B08850",stroke:"#6B4F28","stroke-width":3},sackIn);   // patch
-const sackWet=el("path",{d:SACKP,fill:"#4E3A1E",opacity:0},sackIn);
-const uB=el("g",{},cam);   // near arm over the sack
-const uNearArm=el("polyline",{fill:"none",stroke:"#B57A48","stroke-width":25,"stroke-linecap":"round","stroke-linejoin":"round"},uB);
+const uB=el("g",{},cam);   // near arm (swings; empty hand)
+const uNearArm=el("line",{stroke:"#B57A48","stroke-width":25,"stroke-linecap":"round"},uB);
+const uSleeve=el("line",{stroke:KUR,"stroke-width":34,"stroke-linecap":"round"},uB);
+const uSleeveWet=el("line",{stroke:"#24496E","stroke-width":34,"stroke-linecap":"round",opacity:0},uB);
 const uHand=el("circle",{r:17,fill:"#B57A48"},uB);
-const uSleeve=el("path",{d:"M-6 -330 Q30 -340 52 -318 L44 -286 Q20 -300 -2 -296 Z",fill:KUR,stroke:"#0E0E12","stroke-width":3},uB);
-const uSleeveWet=el("path",{d:"M-6 -330 Q30 -340 52 -318 L44 -286 Q20 -300 -2 -296 Z",fill:"#24496E",opacity:0},uB);
 // splashes at the feet
 const splash=[...Array(8)].map(()=>el("circle",{r:6,fill:"#DDEBF5",stroke:"#7E98AE","stroke-width":2,opacity:0},cam));
 const splashRing=el("ellipse",{fill:"none",stroke:"#E8F0F7","stroke-width":4,opacity:0},cam);
@@ -350,52 +339,55 @@ window.render=function(t){
   const pointStick=(wx,wy)=>{C.gopi.aim("R",wx,wy,135); gp.itemRot=gp.armR};
 
   // ---------------- the uncle ----------------
+  // Before the reveal his head is NEVER in frame: in the story shots letterbox bars crop the picture at his shoulders
+  // (the side view has no head drawn at all), and he is out of the scene for the follow / guess / countdown shots.
+  // Reveal: chest-down front view under the bars, then the camera tilts up as the bars open on "ఆ అంకుల్ కి".
   const walking=t>tW0&&t<tW1;
   const ux=lerp(UX0,UX1,clamp((t-tW0)/(tW1-tW0)));
   const phi=walking?(t-tW0)*Math.PI*2*0.95:0, sw=walking?24*Math.sin(phi):0, bob=walking?Math.abs(Math.cos(phi))*6:0;
   const wet=clamp((t-tW0)/(S(4)+0.3-tW0));
-  const sideK=t<tTurn-0.18?1:t<tTurn?1-(t-tTurn+0.18)/0.18:0;           // cartoon turn: squash the side view, then open the front view
-  const frontK=t<tTurn?0:clamp((t-tTurn)/0.18);
+  const sideOn=t>=sh2&&t<sh3, frontOn=t>=CD1, open_=t>tTurn;
   const SX=-1;   // walks to the left (towards Gopi)
-  uSide.style.opacity=sideK>0?1:0; uB.style.opacity=sideK>0?1:0;
-  const uT=`translate(${ux},${UY-bob}) scale(${SX*US*Math.max(0.001,sideK)},${US})`;
+  uSide.style.opacity=sideOn?1:0; uB.style.opacity=sideOn?1:0;
+  const uT=`translate(${ux},${UY-bob}) scale(${SX*US},${US})`;
   uSide.setAttribute("transform",uT); uB.setAttribute("transform",uT);
-  const fa=(180+18*Math.sin(phi+Math.PI))*Math.PI/180;
+  const fa=(180+18*Math.sin(phi+Math.PI))*Math.PI/180, na=(180+20*Math.sin(phi))*Math.PI/180;
   uFarArm.setAttribute("x1",-4);uFarArm.setAttribute("y1",-300);uFarArm.setAttribute("x2",-4+Math.sin(fa)*122);uFarArm.setAttribute("y2",-300-Math.cos(fa)*122);
+  const nhx=12+Math.sin(na)*125, nhy=-302-Math.cos(na)*125;
+  [uNearArm].forEach(e=>{e.setAttribute("x1",12);e.setAttribute("y1",-302);e.setAttribute("x2",nhx);e.setAttribute("y2",nhy)});
+  [uSleeve,uSleeveWet].forEach(e=>{e.setAttribute("x1",12);e.setAttribute("y1",-310);e.setAttribute("x2",12+Math.sin(na)*78);e.setAttribute("y2",-302-Math.cos(na)*78)});
+  uHand.setAttribute("cx",nhx); uHand.setAttribute("cy",nhy+4);
   uLegs.forEach((L,i)=>{const a=(i?sw:-sw)*Math.PI/180, hx=i?6:-6, fx=hx+Math.sin(a)*150, fy=-150+Math.cos(a)*150;
     L.l.setAttribute("x1",hx);L.l.setAttribute("y1",-150);L.l.setAttribute("x2",fx);L.l.setAttribute("y2",fy);L.f.setAttribute("cx",fx+12);L.f.setAttribute("cy",fy);
     L.l.setAttribute("stroke",wet>0.5?(i?"#DDE3E6":"#C5CCD0"):(i?"#F5F5F5":"#DADDE0"))});
-  uWet.style.opacity=0.38*wet; uWetSpots.style.opacity=wet; uSleeveWet.style.opacity=0.38*wet; sackWet.style.opacity=0.3*wet;
-  uNearArm.setAttribute("points","10,-304 66,-330 70,-392"); uHand.setAttribute("cx",70); uHand.setAttribute("cy",-398);
-  uDrips.forEach((d,i)=>{const k=fract(t*1.5+d.ph), on=wet>0.45&&sideK>0; d.e.setAttribute("transform",`translate(${d.x},${d.y+k*k*110})`); d.e.style.opacity=on?(1-k)*(t>S(4)-0.2&&t<E(4)?1:0.75):0});
-  // sack: on the shoulder (covering the head from our side) until he sets it down to turn round
-  const sDrop=clamp((t-(tTurn-0.25))/0.35);
-  if(t<tTurn-0.25){sack.setAttribute("transform",`translate(${ux+SX*US*8},${UY-bob-US*312}) scale(${SX*US*SKS*Math.max(0.001,sideK)},${US*SKS})`)}
-  else{const x=lerp(ux+SX*US*8,ux+140,ease(sDrop)), y=lerp(UY-US*312,UY+6,sDrop*sDrop), sq=sDrop>=1?1+0.12*Math.exp(-(t-tTurn-0.1)*12)*Math.sin((t-tTurn)*40):1;
-    sack.setAttribute("transform",`translate(${x},${y}) scale(${-US*0.82*sq},${US*0.82/sq})`)}
+  uWet.style.opacity=0.38*wet; uWetSpots.style.opacity=wet; uSleeveWet.style.opacity=0.38*wet;
+  uDrips.forEach((d,i)=>{const k=fract(t*1.5+d.ph), on=wet>0.45&&sideOn; d.e.setAttribute("transform",`translate(${d.x},${d.y+k*k*110})`); d.e.style.opacity=on?(1-k)*(t>S(4)-0.2&&t<E(4)?1:0.75):0});
   // footsteps: splash on each footfall
   const step=Math.floor(phi/Math.PI), sk_=fract(phi/Math.PI);
   const footX=ux+SX*US*(step%2?1:-1)*20+SX*US*40;
   splash.forEach((p,j)=>{const a=(-160+j*20)*Math.PI/180, r=20+sk_*70; p.setAttribute("cx",footX+Math.cos(a)*r); p.setAttribute("cy",UY+6+Math.sin(a)*r*0.9+sk_*sk_*60); p.setAttribute("r",6*(1-sk_*0.5));
-    p.style.opacity=walking&&step>0&&sk_<0.55?1-sk_/0.55:0});
+    p.style.opacity=sideOn&&walking&&step>0&&sk_<0.55?1-sk_/0.55:0});
   splashRing.setAttribute("cx",footX);splashRing.setAttribute("cy",UY+8);splashRing.setAttribute("rx",30+sk_*80);splashRing.setAttribute("ry",(30+sk_*80)*0.22);
-  splashRing.style.opacity=walking&&step>0&&sk_<0.7?0.8*(1-sk_/0.7):0;
-  const qk=t>tClue+0.25&&t<tTurn-0.25?back((t-tClue-0.25)/0.35):0;
-  qU.style.opacity=qk>0?clamp((tTurn-0.25-t)/0.15):0;
-  qU.setAttribute("transform",`translate(${ux-US*8},${UY-US*445}) scale(${Math.max(0.001,qk)*(1+0.05*Math.sin(t*7))}) rotate(${Math.sin(t*3)*6})`);
-  // front view (after the turn): friendly laugh + thumbs-up
-  Object.assign(un,{x:UX1,y:UY,s:US*1.0,vis:frontK>0?1:0,sx:Math.max(0.001,frontK),smile:1});
-  if(frontK>0){
-    const laugh=t>tTurn+0.1; un.grin=laugh?1:0; un.shut=laugh?1:0; un.brow="u";
+  splashRing.style.opacity=sideOn&&walking&&step>0&&sk_<0.7?0.8*(1-sk_/0.7):0;
+  qU.style.opacity=0;
+  // front view (reveal): standing in the rain, then a friendly laugh + thumbs-up
+  Object.assign(un,{x:UX1,y:UY,s:US,vis:frontOn?1:0,smile:open_?1:0,hmm:open_?0:1});
+  if(frontOn){
+    const laugh=t>tTurn+0.35; un.grin=laugh?1:0; un.shut=laugh?1:0; un.brow="u";
     un.hop=laugh?Math.abs(Math.sin(t*9))*10:0; un.headRot=laugh?Math.sin(t*9)*4:0;
-    if(t<tWhy-0.1){C.uncle.aimLocal("R",150,-330,112); un.item=t>tTurn+0.25?"thumb":""; C.uncle.aimLocal("L",-110,-190)}                       // thumbs-up
-    else if(t<E(9)+0.2){C.uncle.aimLocal("L",-100,-485,150); C.uncle.aimLocal("R",150,-330,112); un.item="thumb"; un.headRot+= -4}               // pats his shiny head
-    else {const w=Math.sin(t*10); C.uncle.aimLocal("R",150+w*12,-340,112); un.item="thumb"; C.uncle.aimLocal("L",-60,-215,100)}                  // hand on belly, laughing
+    if(t<tTurn+0.3){C.uncle.aimLocal("R",100,-185); C.uncle.aimLocal("L",-100,-185)}                                                         // arms down, dripping
+    else if(t<tWhy-0.1){C.uncle.aimLocal("R",150,-330,112); un.item=t>tTurn+0.45?"thumb":""; C.uncle.aimLocal("L",-110,-190)}               // thumbs-up
+    else if(t<E(9)+0.2){C.uncle.aimLocal("L",-100,-485,150); C.uncle.aimLocal("R",150,-330,112); un.item="thumb"; un.headRot+= -4}          // pats his shiny head
+    else {const w=Math.sin(t*10); C.uncle.aimLocal("R",150+w*12,-340,112); un.item="thumb"; C.uncle.aimLocal("L",-60,-215,100)}             // hand on belly, laughing
   }
   hdrops.forEach((d,i)=>{const k=fract(t*0.9+i*0.27), s=i%2?1:-1, th=lerp(0.15,1.45,Math.min(1,k/0.7)); let x=s*Math.sin(th)*112, y=-400-Math.cos(th)*112;
-    if(k>0.7){y+=(k-0.7)*(k-0.7)*900} d.setAttribute("transform",`translate(${x},${y}) rotate(${-s*th*50})`); d.style.opacity=frontK>0.5?(k<0.9?1:(1-k)/0.1):0});
+    if(k>0.7){y+=(k-0.7)*(k-0.7)*900} d.setAttribute("transform",`translate(${x},${y}) rotate(${-s*th*50})`); d.style.opacity=frontOn&&open_?(k<0.9?1:(1-k)/0.1):0});
   pings.forEach((p,j)=>{const k=fract(t*2.2+j*0.33), x=(j-1)*44, y=-508-Math.abs(j-1)*-10; const r=8+k*26;
-    p.setAttribute("d",`M${x-r} ${y-r*0.4} L${x-r*1.6} ${y-r*0.9} M${x} ${y-r} L${x} ${y-r*1.7} M${x+r} ${y-r*0.4} L${x+r*1.6} ${y-r*0.9}`); p.style.opacity=frontK>0.5?(1-k)*0.9:0});
+    p.setAttribute("d",`M${x-r} ${y-r*0.4} L${x-r*1.6} ${y-r*0.9} M${x} ${y-r} L${x} ${y-r*1.7} M${x+r} ${y-r*0.4} L${x+r*1.6} ${y-r*0.9}`); p.style.opacity=frontOn&&open_?(1-k)*0.9:0});
+  // letterbox bars: story shots + the start of the reveal (they crop the frame at his shoulders)
+  const barOn=Math.max(win(t,sh2,sh3,0.12), t>=CD1?1-clamp((t-tTurn+0.05)/0.55):0);
+  const BT=600, BB=400;
+  document.getElementById("barT").style.height=(BT*ease(barOn))+"px"; document.getElementById("barB").style.height=(BB*ease(barOn))+"px";
 
   // ---------------- shot 1: hook + hold ----------------
   if(shot===1){
@@ -476,22 +468,22 @@ window.render=function(t){
   // sparkle on the bald head ("తలపై వెంట్రుకలే లేవు!")
   headSpark.forEach((s,i)=>{const k=pop(t,tWhy+i*0.14,0.3), hx=UX1+[-50,30,70][i]*US, hy=UY-US*[480,520,440][i]-un.hop;
     s.setAttribute("transform",`translate(${hx},${hy}) scale(${Math.max(0.001,k)*(1+0.25*Math.sin(t*10+i*2))}) rotate(${t*90+i*40})`); s.style.opacity=t>tWhy+i*0.14&&t<sh7?1:0});
-  laughFx.forEach((l,i)=>{const on=frontK>0.5&&t>tBan+0.2&&t<sh7, k=fract(t*0.8+i*0.5);
+  laughFx.forEach((l,i)=>{const on=t>tBan+0.2&&t<sh7, k=fract(t*0.8+i*0.5);
     l.setAttribute("x",UX1+(i?150:-150)*US); l.setAttribute("y",UY-US*560-k*60); l.style.opacity=on?Math.sin(k*Math.PI):0; l.setAttribute("transform",`rotate(${i?12:-12} ${UX1+(i?150:-150)*US} ${UY-US*560})`)});
 
   // ---------------- camera ----------------
   const gopiClose=(z,sy)=>focus(z,GX,GY-GS*300,470,sy);
   const KEYS=[
     [0,0,t=>{const z=lerp(1.75,1.5,out(t/1.2))+0.02*Math.sin(t*2)+(t>S(1)?0.06*ease((t-S(1))/1.5):0); return focus(z,GX+lerp(-20,40,ease(t/3.5)),GY-GS*300,470,1100)}],
-    [sh2,0.7,t=>focus(1.35+0.01*(t-sh2),ux-20,UY-US*260,540,1000)],
-    [S(4)-0.15,0.55,t=>focus(2.05+0.015*(t-S(4)),ux,UY-US*200,540,985)],
-    [tClue-0.1,0.5,t=>focus(1.6,ux,UY-US*280,540,1050)],
+    [sh2,0,t=>focus(1.6+0.01*(t-sh2),ux,UY-US*342,540,612)],
+    [S(4)-0.15,0.55,t=>focus(2.25+0.015*(t-S(4)),ux,UY-US*342,540,612)],
+    [tClue-0.1,0.5,t=>focus(1.85,ux,UY-US*342,540,612)],
     [sh3,0.45,t=>gopiClose(1.45+0.01*(t-sh3),1180)],
     [sh4,0.45,t=>focus(1.2,PX,PY-PS*300,770,1150)],
     [a7-0.05,0.3,t=>focus(0.92,650,1080,540,1060)],
     [tCm-0.1,0.5,t=>gopiClose(1.35+0.02*(t-tCm),1080)],
     [CD0,0.45,t=>{const c=t-CD0, p=Math.exp(-fract(c)*6)*0.02; return focus(0.9+0.012*c+p,630,1090,540,1250)}],
-    [CD1,0.35,t=>focus(1.18,UX1,UY-US*260,540,1080)],
+    [CD1,0,t=>focus(1.6+0.02*(t-CD1),UX1,UY-US*270,540,612)],
     [tTurn-0.1,0.7,t=>focus(1.42+0.01*(t-tTurn),UX1,UY-US*360,560,980)],
     [S(10)-0.3,0.45,t=>focus(1.12,880,1080,540,1090)],
     [sh7,0.6,t=>focus(0.92+0.006*(t-sh7),645,1080,540,1150)],

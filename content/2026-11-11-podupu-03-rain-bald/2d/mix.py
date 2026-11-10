@@ -2,7 +2,7 @@
 a thunder clap on the hook, a light marimba-ish bed for the hook/story, a ticking-clock tension bed for the 5 s
 countdown (rising drone + heartbeat), a ta-da at time-up, a brighter bed for the answer/CTA, and SFX synced to
 ep.html (puddle splashes on every step, "no" buzzes for umbrella/cap/raincoat, drips, "?" boing, button taps,
-wrong buzzer, turn whoosh + sack thump, answer fanfare, head-shine tings, sticker stamp, share whooshes, sparkles).
+wrong buzzer, tilt-up whoosh, answer fanfare, head-shine tings, sticker stamp, share whooshes, sparkles).
 Voices on top with ducking."""
 import json, wave
 import numpy as np
@@ -118,7 +118,7 @@ pop_(0.15, 0.25)                                                       # title p
 put(sfx, band(noise(0.25, 12), 2000, 12000), 0.25, 0.5)                # thunder crack
 put(sfx, band(noise(2.6, 1.3), 30, 260), 0.3, 1.6)                     # thunder rumble
 put(sfx, sweep(600, 1400, 0.2, 8), S(1) - 0.1, 0.22)                   # ANSWER AT THE END sticker
-put(sfx, band(noise(0.45, 5), 300, 3000), sh2 - 0.1, 0.4)              # whoosh to the street
+put(sfx, band(noise(0.45, 5), 300, 3000), sh2 - 0.1, 0.4)              # whoosh: cut to the letterboxed street shot
 k = 1
 while tW0 + k / 1.9 < tW1: splash(tW0 + k / 1.9, 0.28 if k % 2 else 0.22); k += 1   # puddle steps (2 per stride)
 for t_ in tN: pop_(t_ - 0.05, 0.2, 400, 1000); nope(t_ + 0.3)          # no umbrella / no cap / no raincoat
@@ -133,8 +133,8 @@ put(sfx, sweep(250, 900, 0.3, 6), sh4, 0.25)                            # Pinky 
 for j in range(2):                                                      # wrong buzzer on "ఉహూ!"
     x = np.arange(int(0.22 * SR)) / SR
     put(sfx, np.sign(np.sin(2 * np.pi * (150 - j * 25) * x)) * np.exp(-x * 4) * 0.5, a7 + j * 0.24, 0.22)
-put(sfx, band(noise(0.3, 9), 400, 4000), tTurn - 0.2, 0.35)             # turn-round whoosh
-put(sfx, add(band(noise(0.12, 30), 60, 600), tone(90, 0.18, 22)), tTurn + 0.12, 0.6)   # sack set down: thump
+put(sfx, band(noise(0.6, 5), 400, 4000), tTurn - 0.1, 0.35)             # camera tilts up: whoosh
+put(sfx, sweep(300, 1200, 0.5, 4), tTurn - 0.05, 0.14)                  # rising reveal swish
 for j, m in enumerate([67, 72, 76, 79, 84]): put(sfx, mallet(midi(m + 5), 0.5), tBan + j * 0.07, 0.2)   # answer fanfare
 put(sfx, band(noise(0.8, 4), 4000, 14000), tBan, 0.25)                  # confetti shimmer
 for j in range(3): put(sfx, tone(2637 + j * 420, 0.35, 9), tWhy + j * 0.14, 0.12)   # head-shine tings
