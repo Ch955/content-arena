@@ -1,0 +1,28 @@
+{"lines": [
+ {"who": "gopi", "text": "Hey! ఆగండి… ఈ riddle 90% మంది solve చేయలేరు!", "act": "bright, challenging hook", "beat": "hook"},
+ {"who": "gopi", "text": "Answer చివర్లో ఉంది… చివరి వరకు చూడండి!", "act": "teasing, secretive", "beat": "hold"},
+ {"who": "gopi", "text": "ఒక అంకుల్… జోరు వర్షంలో ఇంటికి నడిచి వెళ్ళాడు.", "act": "storyteller, rain atmosphere", "beat": "story"},
+ {"who": "gopi", "text": "గొడుగు లేదు… టోపీ లేదు… raincoat కూడా లేదు!", "act": "counting off on fingers, building suspense", "beat": "story"},
+ {"who": "gopi", "text": "బట్టలన్నీ తడిసిపోయాయి… కానీ తలపై ఒక్క వెంట్రుక కూడా తడవలేదు!", "act": "amazed, mysterious", "beat": "clue"},
+ {"who": "gopi", "text": "ఇలాంటివి రోజూ కావాలంటే… follow చేయండి, YouTube లో subscribe!", "act": "quick friendly aside", "beat": "follow"},
+ {"who": "pinky", "text": "అన్నయ్యా… raincoat వేసుకున్నాడా?", "act": "unsure, hopeful guess", "beat": "guess"},
+ {"who": "gopi", "text": "ఉహూ! Raincoat లేదని చెప్పాను కదా! Answer reveal అయ్యే ముందే… comment లో చెప్పండి!", "act": "playful no, then urgent quiz-host energy", "beat": "comment-countdown"},
+ {"who": "gopi", "text": "Answer… ఆ అంకుల్ కి బట్టతల!", "act": "dramatic pause, then a big laughing reveal", "beat": "reveal"},
+ {"who": "gopi", "text": "తడవడానికి… తలపై వెంట్రుకలే లేవు!", "act": "laughing, delighted explanation", "beat": "why"},
+ {"who": "pinky", "text": "హహ! భలే riddle!", "act": "giggling, amazed", "beat": "react"},
+ {"who": "gopi", "text": "మీ answer correct ఆ? Comment లో ✅ పెట్టండి!", "say": "మీ answer correct ఆ? Comment లో tick పెట్టండి!", "act": "warm, inviting", "beat": "check"},
+ {"who": "gopi", "text": "ఈ riddle మీ friend కి share చేసి… వాళ్ళ brain test చేయండి! Follow… subscribe… రేపు ఇంకో twist!", "act": "energetic, smiling sign-off", "beat": "share-close"}
+],
+"visual_plan": [
+ "hook: title 'పొడుపు కథ #3 🌧️' + 'ఒక్క వెంట్రుక కూడా తడవలేదు!' pill; grey rainy sky over the colony, Gopi under the building shade",
+ "hold: 'ANSWER AT THE END 👀' tag",
+ "story: a friendly uncle (new simple drawn character: kurta, umbrella-less, his head always hidden — seen from behind or with a newspaper/bag held near his head so the answer isn't shown) walking in heavy animated rain with puddle splashes",
+ "story: three crossed-out icons pop: 🌂 ✗, 🧢 ✗, 🧥 ✗",
+ "clue: close-up of the uncle's soaked clothes dripping, then a big '❓ ఒక్క వెంట్రుక కూడా తడవలేదు?' tag (head still not visible)",
+ "follow: animated FOLLOW + SUBSCRIBE button taps",
+ "guess: Pinky bubble 'Raincoat?' → red ✗ + buzzer",
+ "comment-countdown: '💬 COMMENT NOW' + 5-second countdown clock (no voice during the 5 s)",
+ "reveal: confetti, 'ANSWER ✅ బట్టతల!' banner; the uncle turns around, shiny bald head with raindrops sliding off, he laughs good-naturedly and gives a thumbs-up (friendly, not mocking)",
+ "why/react: Pinky giggles, sparkle on the bald head",
+ "check/share: ✅ sticker, share-arrow animation, end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM"
+]}
