@@ -1,4 +1,4 @@
-# తోకలేని పిట్ట… తొంభై ఆమడలు పోతుంది! 🐦 Telugu Riddle | పొడుపు కథ #4 | Reel Rasam
+# తోకలేని పిట్ట… తొంభై ఆమడలు పోతుంది! 🐦 Telugu Riddle | పొడుపు కథ No. 4 | Reel Rasam
 
 తోక లేదు, రెక్కలు లేవు… కానీ ఊర్లు దాటుతుంది! ఈ పిట్ట ఏంటది? A traditional Telugu riddle (పొడుపు కథ).
 Comment your answer before it's revealed at the end — and share it with a friend to check their knowledge!
