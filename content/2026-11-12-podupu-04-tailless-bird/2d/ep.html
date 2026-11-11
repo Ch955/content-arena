@@ -1,0 +1,780 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Podupu Katha #4 (2D animated, NEON skin): the tailless bird that flies 90 ఆమడలు = a letter (ఉత్తరం).
+     Adapted from tools/anim2d/ep.html + Podupu #3. World = glowing (skins.js neon filter); camT = world-anchored crisp layer. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#05060F}
+svg{display:block}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:56px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 18px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:radial-gradient(ellipse at center,rgba(3,4,14,.7) 0%,rgba(3,4,14,.45) 55%,rgba(3,4,14,0) 75%)}
+.who{display:inline-block;font-family:Anton;font-size:34px;letter-spacing:2px;padding:4px 16px;border-radius:10px;margin-bottom:10px;text-shadow:none;color:#0E0E12}
+.top{position:absolute;top:70px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000,0 0 14px rgba(0,229,255,.6);display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B700;color:#0E0E12;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;box-shadow:0 0 14px #F5B700}
+.tag{font-family:Anton;font-size:28px;letter-spacing:2px;background:#0E0E1A;color:#00E5FF;padding:6px 16px;border-radius:8px;border:3px solid #00E5FF;box-shadow:0 0 14px rgba(0,229,255,.8)}
+.title{position:absolute;top:165px;left:60px;right:60px;text-align:center;opacity:0}
+.title .t{font-family:Rama,NotoTe;font-size:104px;line-height:1.15;color:#FFE066;text-shadow:0 6px 0 #000,0 0 26px #FFB300,0 0 50px rgba(255,179,0,.6)}
+.title small{display:block;font-family:Anton;font-size:38px;color:#fff;letter-spacing:4px;text-shadow:0 4px 0 #000,0 0 14px #00E5FF}
+.title .hook{display:inline-block;margin-top:16px;font-family:Rama,NotoTe;font-size:54px;color:#0E0E12;background:#fff;padding:6px 26px;border-radius:14px;border:5px solid #0E0E12;box-shadow:0 0 26px #00E5FF}
+#atend{position:absolute;top:215px;left:0;right:0;text-align:center;opacity:0}
+#atend span{display:inline-block;font-family:Anton;font-size:62px;letter-spacing:2px;color:#0E0E12;background:#FFE066;padding:8px 30px;border-radius:16px;border:6px solid #0E0E12;box-shadow:0 0 30px #FFB300,0 8px 0 #0E0E12}
+#rid{position:absolute;top:190px;left:50px;right:50px;text-align:center;font-family:Rama,NotoTe;font-size:72px;line-height:1.3;color:#FFF59D;
+  text-shadow:0 0 18px #FFC400,0 0 38px rgba(255,196,0,.7),0 5px 0 #000;opacity:0}
+#rid b{font-weight:normal;display:inline-block;opacity:0}
+#dist{position:absolute;top:440px;left:0;right:0;text-align:center;opacity:0}
+#dist span{display:inline-block;font-family:Anton;font-size:96px;line-height:1.1;color:#fff;background:rgba(8,10,30,.78);border:5px solid #00E5FF;border-radius:24px;padding:4px 34px 10px;
+  box-shadow:0 0 30px #00E5FF;text-shadow:0 0 16px #00E5FF}
+#dist span em{font-style:normal;font-family:Rama,NotoTe;font-size:66px;margin-left:16px}
+#amada{position:absolute;top:220px;left:60px;right:60px;text-align:center;opacity:0}
+#amada span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;line-height:1.3;color:#0E0E12;background:#fff;padding:8px 30px;border-radius:18px;border:6px solid #0E0E12;box-shadow:0 0 28px #B388FF}
+#clue{position:absolute;top:290px;left:0;right:0;text-align:center;opacity:0}
+#clue span{display:inline-block;font-family:Anton;font-size:72px;letter-spacing:3px;color:#fff;background:rgba(8,10,30,.85);padding:6px 36px 10px;border-radius:18px;border:5px solid #FF4081;box-shadow:0 0 30px #FF4081}
+#fol{position:absolute;top:300px;left:0;right:0;text-align:center;opacity:0}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #0E0E12;box-shadow:0 0 30px rgba(255,64,129,.9),0 9px 0 #0E0E12;margin-bottom:34px}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+#bS{background:#FF0000;box-shadow:0 0 30px rgba(255,0,0,.9),0 9px 0 #0E0E12}
+.btn.done{background:#4A4A55 !important;box-shadow:0 0 14px rgba(255,255,255,.4),0 9px 0 #0E0E12 !important}
+#tapHand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45))}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;box-shadow:0 0 18px #00E5FF}
+.bar{position:absolute;left:0;right:0;height:0;background:#000}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+#clock{position:absolute;top:135px;left:50%;width:250px;height:270px;margin-left:-125px;opacity:0;filter:drop-shadow(0 0 18px #FF4081)}
+#digit{position:absolute;top:400px;left:0;right:0;text-align:center;font-family:Anton;font-size:290px;line-height:1;color:#F5B700;
+  -webkit-text-stroke:11px #0E0E12;paint-order:stroke fill;text-shadow:0 12px 0 #0E0E12,0 0 40px #FFB300;opacity:0}
+#cnow{position:absolute;bottom:250px;left:0;right:0;text-align:center;opacity:0}
+#cnow span{display:inline-block;font-family:Anton;font-size:76px;letter-spacing:3px;color:#0E0E12;background:#fff;padding:8px 34px;border-radius:18px;border:6px solid #0E0E12;box-shadow:0 0 30px #00E5FF,0 9px 0 #0E0E12}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #0E0E12;border-radius:26px;padding:8px 22px 10px;box-shadow:0 0 22px rgba(0,229,255,.85);max-width:360px}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #0E0E12}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe;font-size:46px;line-height:1.2;color:#0E0E12}
+#ans{position:absolute;top:170px;left:60px;right:60px;text-align:center;opacity:0}
+#ans .k{display:inline-block;font-family:Anton;font-size:44px;letter-spacing:4px;color:#0E0E12;background:#7CDA6A;padding:4px 22px;border-radius:10px;border:4px solid #0E0E12;box-shadow:0 0 20px #7CDA6A}
+#ans .a{display:block;margin-top:6px;font-family:Rama,NotoTe;font-size:116px;line-height:1.2;color:#fff;text-shadow:0 7px 0 #0E0E12,0 0 30px #FFB300,0 0 60px rgba(255,179,0,.6)}
+.end{position:absolute;left:60px;right:60px;top:150px;text-align:center;opacity:0;background:rgba(6,8,24,.7);border-radius:28px;padding:22px 10px 26px;border:3px solid rgba(0,229,255,.7);box-shadow:0 0 30px rgba(0,229,255,.5)}
+.end .q{font-family:Rama,NotoTe;font-size:68px;color:#fff;text-shadow:0 5px 0 #000;line-height:1.25}
+.end .c{display:inline-block;margin-top:12px;font-family:Rama,NotoTe;font-size:46px;color:#0E0E12;background:#fff;border:5px solid #0E0E12;border-radius:16px;padding:4px 22px;opacity:0}
+.end .f{margin-top:16px;font-family:Anton;font-size:56px;letter-spacing:1px;color:#F5B700;text-shadow:0 5px 0 #000,0 0 18px #FFB300;line-height:1.2;opacity:0}
+.end .f span{color:#fff}
+#tick{position:absolute;top:640px;right:70px;width:150px;height:150px;border-radius:34px;background:#fff;border:7px solid #0E0E12;box-shadow:0 0 34px #7CDA6A,0 8px 0 #0E0E12;
+  display:grid;place-items:center;font-size:98px;opacity:0}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="bar" id="barT" style="top:0"></div><div class="bar" id="barB" style="bottom:0"></div>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">PODUPU KATHA</div></div>
+<div class="title" id="title"><div class="t">పొడుపు కథ #4 🐦</div><small>TELUGU RIDDLE</small><span class="hook">తోక లేదు... రెక్కలు లేవు!</span></div>
+<div id="atend"><span>ANSWER AT THE END 👀</span></div>
+<div id="rid"><b>తోకలేని</b> <b>పిట్ట...</b> <b>తొంభై</b> <b>ఆమడలు</b><br><b>పోతుంది...</b> <b>ఏంటది?</b></div>
+<div id="dist"><span id="distN">0<em>ఆమడలు</em></span></div>
+<div id="amada"><span>ఆమడ = పాత దూరం కొలత 📏</span></div>
+<div id="clue"><span id="clueT">CLUE 1 💬</span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div><br><div class="btn" id="bS">▶ SUBSCRIBE</div></div>
+<div class="ring" id="ring"></div>
+<div id="tapHand">👆</div>
+<div id="clock"><svg width="250" height="270" viewBox="-125 -145 250 270">
+  <g id="clockBody">
+  <path d="M-62 -98 A40 40 0 0 1 -112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <path d="M62 -98 A40 40 0 0 0 112 -48 Z" fill="#E63946" stroke="#0E0E12" stroke-width="7"/>
+  <line x1="-60" y1="92" x2="-82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <line x1="60" y1="92" x2="82" y2="118" stroke="#0E0E12" stroke-width="12" stroke-linecap="round"/>
+  <circle r="104" fill="#E63946" stroke="#0E0E12" stroke-width="8"/>
+  <circle r="86" fill="#FFFDF5" stroke="#0E0E12" stroke-width="5"/>
+  <circle id="arc" r="62" fill="none" stroke="#F5B700" stroke-width="40" transform="rotate(-90)" stroke-dasharray="389.6 389.6" opacity=".55"/>
+  <g id="ticks"></g>
+  <line id="hand" x1="0" y1="10" x2="0" y2="-70" stroke="#0E0E12" stroke-width="9" stroke-linecap="round"/>
+  <circle r="11" fill="#0E0E12"/>
+  </g></svg></div>
+<div id="digit">5</div>
+<div id="cbs"></div>
+<div id="cnow"><span>💬 COMMENT NOW</span></div>
+<div id="ans"><span class="k">ANSWER ✅</span><span class="a">ఉత్తరం! ✉️</span></div>
+<div class="end" id="end"><div class="q">మీ answer correct ఆ?</div><div class="c" id="endC">💬 Comment లో ✅ పెట్టండి!</div>
+  <div class="f" id="endF">FOLLOW <span>@_REELRASAM</span> ·<br>SUBSCRIBE <span>@REEL_RASAM</span></div></div>
+<div id="tick">✅</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "neon";  // art style for this reel: flat | neon | clay | paper | pixel (skins.js)</script>
+<script src="skins.js"></script>
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,k)=>a+(b-a)*k;
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const out=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=2.2;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};   // overshoot pop
+const txt=(s,attrs,parent)=>{const e=el("text",attrs,parent);e.textContent=s;return e};
+const fract=x=>x-Math.floor(x);
+const hash=i=>fract(Math.sin(i*127.1+311.7)*43758.5453);
+const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
+const win=(t,a,b,f=0.15)=>t<a||t>b?0:clamp(Math.min((t-a)/f,(b-t)/f));
+const show=(e,o)=>{e.style.opacity=o; e.style.display=o>0.001?"":"none"};
+// comment bubbles (generic names, no real handles; no one guesses the answer before the reveal)
+const CB=[["Ravi","✈️ Rocket?","#1E88E5",50,450],["Sita","🪁 గాలిపటం?","#D81B60",660,470],["Kiran","🕊️ పావురం!","#2E7D32",40,640],
+          ["Anu","🤔🤔🤔","#8E24AA",700,660],["Teja","☁️ మేఘం?","#EF6C00",60,830],["Divya","🎈 Balloon?","#00838F",650,850]];
+document.getElementById("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
+
+// ---------- defs ----------
+const defs=el("defs",{});
+const sky=el("linearGradient",{id:"sky",x1:0,y1:0,x2:0,y2:1},defs);
+el("stop",{offset:"0","stop-color":"#0A0F2C"},sky);el("stop",{offset:"0.6","stop-color":"#1B1446"},sky);el("stop",{offset:"1","stop-color":"#2A1B3D"},sky);
+const vig=el("radialGradient",{id:"vig",cx:.5,cy:.5,r:.75},defs);
+el("stop",{offset:".55","stop-color":"#000","stop-opacity":"0"},vig);el("stop",{offset:"1","stop-color":"#000","stop-opacity":".75"},vig);
+const mkGlow=(id,c)=>{const g=el("radialGradient",{id},defs);el("stop",{offset:"0","stop-color":c,"stop-opacity":".85"},g);el("stop",{offset:".35","stop-color":c,"stop-opacity":".35"},g);el("stop",{offset:"1","stop-color":c,"stop-opacity":"0"},g)};
+mkGlow("gCyan","#4DD0E1"); mkGlow("gGold","#FFC400"); mkGlow("gRed","#FF1744"); mkGlow("gWhite","#FFFFFF");
+
+// ---------- the drawn world (neon filter) ----------
+const cam=el("g",{});
+applySkin(cam, defs);
+el("rect",{x:-7000,y:-5000,width:17000,height:12000,fill:"url(#sky)"},cam);
+const stars=[...Array(210)].map((_,i)=>{const hi=i>=150, x=hi?-500+hash(i+1)*5200:-2700+hash(i+1)*7400, y=hi?-3200+hash(i+51)*2250:-950+hash(i+51)*1880, r=2+hash(i+99)*3.2;
+  return {e:el("circle",{cx:x,cy:y,r,fill:i%7?"#FFFFFF":"#FFF59D"},cam),ph:hash(i+7)*6.28,sp:1.5+hash(i+3)*2}});
+// crescent moon
+el("path",{d:"M1010 60 A95 95 0 1 0 1010 250 A75 75 0 1 1 1010 60 Z",fill:"#FFF3B0",stroke:"#FFE082","stroke-width":4},cam);
+
+// memory panorama (story/riddle): chalk-line village A, winding road with milestones, village B; draws itself on
+const memG=el("g",{opacity:0},cam), memDraw=[];
+const roadY=x=>700+38*Math.sin(x/260)+14*Math.sin(x/97);
+const ROADX0=120, ROADX1=4020;
+let rd=`M${ROADX0} ${roadY(ROADX0)}`; for(let x=ROADX0+20;x<=ROADX1;x+=20) rd+=` L${x} ${roadY(x).toFixed(1)}`;
+const hills=el("path",{d:`M-200 680 Q200 430 520 620 Q850 380 1250 610 Q1650 420 2050 620 Q2450 410 2850 610 Q3250 420 3650 600 Q3950 460 4300 640`,fill:"none",stroke:"#7E57C2","stroke-width":6,pathLength:1},memG);
+memDraw.push([hills,0]);
+const road=el("path",{d:rd,fill:"none",stroke:"#FFB74D","stroke-width":34,"stroke-linecap":"round",pathLength:1},memG); memDraw.push([road,1]);
+const roadMid=el("path",{d:rd,fill:"none",stroke:"#FFF3E0","stroke-width":4,"stroke-dasharray":"18 26",opacity:0},memG);
+function house(x,y,w,h,col,parent,lit){const g=el("g",{},parent);
+  const p=el("path",{d:`M${x} ${y} L${x} ${y-h} L${x+w/2} ${y-h-w*0.45} L${x+w} ${y-h} L${x+w} ${y} Z M${x+w*0.4} ${y} L${x+w*0.4} ${y-h*0.5} L${x+w*0.6} ${y-h*0.5} L${x+w*0.6} ${y}`,fill:"none",stroke:col,"stroke-width":5,"stroke-linejoin":"round",pathLength:1},g);
+  const w_=el("path",{d:`M${x+w*0.12} ${y-h*0.8} h${w*0.2} v${h*0.22} h${-w*0.2} Z M${x+w*0.68} ${y-h*0.8} h${w*0.2} v${h*0.22} h${-w*0.2} Z`,fill:lit?"#FFD54F":"none",stroke:"#FFD54F","stroke-width":4,pathLength:1},g);
+  return [p,w_]}
+const VA=[[170,640,120,80],[330,610,140,90],[520,650,110,70],[660,625,130,85],[3700,620,130,85],[3880,650,110,70],[4020,615,140,90]];
+VA.forEach(([x,y,w,h],i)=>{const [p,w_]=house(x,y,w,h,["#FFCC80","#80DEEA","#F48FB1","#C5E1A5"][i%4],memG,i%2===0); memDraw.push([p,i<4?2:3],[w_,i<4?2:3])});
+[[270,650],[610,660],[3800,650]].forEach(([x,y])=>{const p=el("path",{d:`M${x} ${y} L${x} ${y-60} M${x-30} ${y-80} a30 30 0 1 0 60 0 a30 30 0 1 0 -60 0`,fill:"none",stroke:"#A5D6A7","stroke-width":5,pathLength:1},memG); memDraw.push([p,2])});
+const MILE=[[1150,10],[1850,30],[2650,60],[3500,90]];
+const stones=MILE.map(([x,n],i)=>{const big=n===90, w=big?150:76, h=big?200:100, y=roadY(x)-12;
+  const p=el("path",{d:`M${x-w/2} ${y} L${x-w/2} ${y-h+w/2} A${w/2} ${w/2} 0 0 1 ${x+w/2} ${y-h+w/2} L${x+w/2} ${y} Z`,fill:"#E0E0E0",stroke:big?"#FFEA00":"#FFFFFF","stroke-width":big?8:5,pathLength:1},memG);
+  memDraw.push([p,1]); return {x,y,h,w,n,p}});
+// sleeping house + colony skyline (behind the street)
+const sky2=el("g",{},cam);
+for(let b=0;b<34;b++){const x=-2700+b*220+hash(b+3)*40, w=170+hash(b+11)*60, top=960+hash(b+21)*110;
+  if(x>1330&&x<1800) continue;
+  if(x>700&&x<1000) continue;
+  el("rect",{x,y:top,width:w,height:1300-top,fill:"#3A2E5C",stroke:"#7E57C2","stroke-width":3},sky2);
+  for(let r=top+34;r<1240;r+=70)for(let cx=x+24;cx<x+w-30;cx+=54){const lit=hash(b*31+r+cx)<0.33; if(lit) el("rect",{x:cx,y:r,width:26,height:32,fill:"#FFD54F",rx:3},sky2)}
+  if(hash(b+40)<0.45){el("rect",{x:x+w*0.3,y:top-46,width:56,height:46,fill:"#4A3B70",stroke:"#9575CD","stroke-width":3},sky2)}}
+// the sleeping house (clue 1): dark windows, sloped roof
+const SLX=780, SLW=210, SLT=1010;
+el("path",{d:`M${SLX} 1300 L${SLX} ${SLT} L${SLX+SLW/2} ${SLT-90} L${SLX+SLW} ${SLT} L${SLX+SLW} 1300 Z`,fill:"#3B3266",stroke:"#B39DDB","stroke-width":5},cam);
+el("rect",{x:SLX+40,y:SLT+50,width:52,height:58,fill:"#1A1438",stroke:"#9FA8DA","stroke-width":4},cam);
+el("rect",{x:SLX+SLW-92,y:SLT+50,width:52,height:58,fill:"#1A1438",stroke:"#9FA8DA","stroke-width":4},cam);
+// the family house (why): lit window with a smiling family
+const HX=1420, HW=320, HT=930, WX=1500, WY=1010, WW=160, WH=130;
+el("path",{d:`M${HX} 1300 L${HX} ${HT} L${HX+HW/2} ${HT-120} L${HX+HW} ${HT} L${HX+HW} 1300 Z`,fill:"#4A2F5E",stroke:"#F48FB1","stroke-width":6},cam);
+el("rect",{x:HX+120,y:1180,width:80,height:120,fill:"#2B1B3D",stroke:"#F48FB1","stroke-width":5},cam);
+const winR=el("rect",{x:WX,y:WY,width:WW,height:WH,fill:"#FFD54F",stroke:"#FFF59D","stroke-width":6},cam);
+const fam=el("g",{},cam);
+[[WX+38,WY+WH,22,1],[WX+82,WY+WH,26,1.15],[WX+124,WY+WH,17,.8]].forEach(([x,y,r,s])=>{
+  el("path",{d:`M${x-r*1.5} ${y} Q${x-r*1.5} ${y-r*2.2} ${x} ${y-r*2.2} Q${x+r*1.5} ${y-r*2.2} ${x+r*1.5} ${y} Z`,fill:"#5D2E46"},fam);
+  el("circle",{cx:x,cy:y-r*3.2,r:r,fill:"#5D2E46"},fam);
+  el("path",{d:`M${x-r*.45} ${y-r*3.0} Q${x} ${y-r*2.55} ${x+r*.45} ${y-r*3.0}`,stroke:"#FFF8E1","stroke-width":3.5,fill:"none","stroke-linecap":"round"},fam)});
+// street
+el("rect",{x:-7000,y:1290,width:17000,height:6000,fill:"#221C38"},cam);
+el("rect",{x:-7000,y:1284,width:17000,height:12,fill:"#00BFA5"},cam);
+[[-150,1290],[1290,1290],[2400,1290]].forEach(([x,y])=>{el("path",{d:`M${x} ${y} L${x} ${y-420} Q${x} ${y-460} ${x+50} ${y-460}`,fill:"none",stroke:"#90A4AE","stroke-width":10},cam);
+  el("path",{d:`M${x+30} ${y-462} h44 l-8 22 h-28 z`,fill:"#FFF59D",stroke:"#FFEB3B","stroke-width":4},cam)});
+// red post box (clue 2), a plain drawn pillar box: no logo or text
+const PBX=650;
+const postG=el("g",{},cam);
+el("rect",{x:PBX-62,y:1262,width:124,height:28,rx:6,fill:"#5D4037",stroke:"#BCAAA4","stroke-width":4},postG);
+const pbBody=el("rect",{x:PBX-52,y:1030,width:104,height:236,rx:12,fill:"#C62828",stroke:"#FF8A80","stroke-width":5},postG);
+const pbDome=el("path",{d:`M${PBX-60} 1040 Q${PBX-60} 975 ${PBX} 970 Q${PBX+60} 975 ${PBX+60} 1040 Z`,fill:"#C62828",stroke:"#FF8A80","stroke-width":5},postG);
+el("rect",{x:PBX-34,y:1068,width:68,height:12,rx:5,fill:"#1B1B1B",stroke:"#FFCDD2","stroke-width":3},postG);
+el("rect",{x:PBX-30,y:1110,width:60,height:42,rx:4,fill:"#FFF8E1",stroke:"#FFE082","stroke-width":3},postG);
+
+// twist panel (split screen, far left in the sky): phone with a generic chat icon (no app logo) | the envelope
+const TWX=-1850, TWY=0;
+const twG=el("g",{},cam);
+el("path",{d:`M${TWX} ${TWY-430} L${TWX} ${TWY+400}`,stroke:"#FFFFFF","stroke-width":6,"stroke-dasharray":"22 18"},twG);
+const PHX=TWX-270, PHY=TWY-30;
+el("rect",{x:PHX-140,y:PHY-260,width:280,height:520,rx:40,fill:"#263238",stroke:"#80DEEA","stroke-width":8},twG);
+el("rect",{x:PHX-116,y:PHY-208,width:232,height:410,rx:14,fill:"#102A30",stroke:"#4DD0E1","stroke-width":4},twG);
+el("circle",{cx:PHX,cy:PHY+232,r:12,fill:"none",stroke:"#80DEEA","stroke-width":4},twG);
+const chat=el("g",{},twG);
+el("path",{d:`M${PHX-80} ${PHY-120} h160 a24 24 0 0 1 24 24 v70 a24 24 0 0 1 -24 24 h-110 l-34 30 v-30 h-16 a24 24 0 0 1 -24 -24 v-70 a24 24 0 0 1 24 -24 z`,fill:"#00E676",stroke:"#B9F6CA","stroke-width":5},chat);
+[-40,0,40].forEach(dx=>el("circle",{cx:PHX+dx,cy:PHY-61,r:10,fill:"#0E0E12"},chat));
+[[PHX-90,PHY+40,150],[PHX-90,PHY+80,110],[PHX-90,PHY+120,170]].forEach(([x,y,w])=>el("rect",{x,y,width:w,height:18,rx:9,fill:"#4DD0E1"},twG));
+
+// ---------- the poll (world): ✈️ / 🕊️ / ❓ cards ----------
+const PCX=[375,640,905], PCY=710, PCW=230, PCH=200;
+const pollG=el("g",{},cam);
+const cards=PCX.map((x,i)=>{const g=el("g",{},pollG), inner=el("g",{},g);
+  const col=["#00E5FF","#FF4081","#FFEA00"][i];
+  const fr=el("rect",{x:-PCW/2,y:-PCH/2,width:PCW,height:PCH,rx:28,fill:"#140C2E",stroke:col,"stroke-width":7},inner);
+  const icon=el("g",{transform:"translate(0,-22)"},inner); let tail=null, alt=null;
+  if(i===0){ el("path",{d:"M-82 0 Q-82 -14 -62 -14 L58 -14 Q88 -12 94 0 Q88 12 58 12 L-62 12 Q-82 12 -82 0Z",fill:"#B3E5FC",stroke:"#E1F5FE","stroke-width":4},icon);
+    el("path",{d:"M-6 4 L-40 46 L-18 46 L24 4Z",fill:"#81D4FA",stroke:"#E1F5FE","stroke-width":4},icon);
+    el("path",{d:"M-2 -10 L-26 -38 L-12 -38 L18 -10Z",fill:"#81D4FA",stroke:"#E1F5FE","stroke-width":3},icon);
+    [-30,-10,10,30].forEach(x=>el("circle",{cx:x,cy:-3,r:3.5,fill:"#0E0E12"},icon));
+    tail=el("path",{d:"M-62 -12 L-82 -54 L-64 -54 L-42 -12Z",fill:"#81D4FA",stroke:"#E1F5FE","stroke-width":4},icon)}
+  if(i===1){ el("path",{d:"M-56 4 Q-40 -30 6 -28 Q22 -50 44 -44 Q60 -38 58 -26 L74 -22 L58 -17 Q62 8 30 18 Q-8 28 -40 16Z",fill:"#E1BEE7",stroke:"#FCE4EC","stroke-width":4},icon);
+    el("path",{d:"M-24 -6 Q8 -30 30 -2 Q0 8 -24 -6Z",fill:"#CE93D8",stroke:"#FCE4EC","stroke-width":3},icon);
+    el("circle",{cx:46,cy:-34,r:4,fill:"#0E0E12"},icon);
+    el("path",{d:"M0 22 L-6 44 M16 20 L14 44",stroke:"#FF8A65","stroke-width":5,"stroke-linecap":"round"},icon);
+    tail=el("path",{d:"M-50 6 L-96 -12 L-92 18 L-46 16Z",fill:"#CE93D8",stroke:"#FCE4EC","stroke-width":4},icon)}
+  if(i===2){ const q=txt("?",{x:0,y:46,"font-family":"Anton","font-size":140,"text-anchor":"middle",fill:"#FFEA00",stroke:"#FFF59D","stroke-width":3},icon);
+    alt=el("g",{opacity:0},icon);
+    el("rect",{x:-72,y:-44,width:144,height:92,rx:8,fill:"#FFF8E1",stroke:"#FFB300","stroke-width":6},alt);
+    el("path",{d:"M-72 -44 L0 8 L72 -44",fill:"none",stroke:"#FFB300","stroke-width":6},alt);
+    tail=q}
+  const xg=el("g",{opacity:0},g);
+  el("path",{d:"M-70 -70 L70 70 M70 -70 L-70 70",stroke:"#FF1744","stroke-width":18,"stroke-linecap":"round"},xg);
+  return {g,inner,fr,icon,tail,alt,xg,col}});
+
+// ---------- the bird (morphs into the envelope) ----------
+const NB=72;
+const birdPts=[...Array(NB)].map((_,i)=>{const th=i/NB*Math.PI*2, w=Math.atan2(Math.sin(th),Math.cos(th)), nose=Math.exp(-w*w/0.05);
+  return [46*Math.cos(th)+30*nose-6*Math.exp(-Math.pow(w-Math.PI,2)/0.3), 30*Math.sin(th)*(1-0.55*nose)-4*Math.exp(-Math.pow(w+1.3,2)/0.25)]});
+const envPts=[...Array(NB)].map((_,i)=>{const th=i/NB*Math.PI*2, c=Math.cos(th), s=Math.sin(th), k=Math.min(75/Math.max(1e-6,Math.abs(c)),48/Math.max(1e-6,Math.abs(s)));return [k*c,k*s]});
+const birdG=el("g",{},cam);
+const ghostTail=el("path",{d:"M-46 0 L-116 -32 L-102 0 L-116 32 Z",fill:"none",stroke:"#80DEEA","stroke-width":5,"stroke-dasharray":"10 9",opacity:0},birdG);
+const ghostWing=el("path",{d:"M-14 -24 Q-36 -108 40 -96 Q30 -56 14 -26",fill:"none",stroke:"#80DEEA","stroke-width":5,"stroke-dasharray":"10 9",opacity:0},birdG);
+const xT=el("path",{d:"M-112 -26 L-64 26 M-64 -26 L-112 26",stroke:"#FF1744","stroke-width":11,"stroke-linecap":"round",opacity:0},birdG);
+const xW=el("path",{d:"M-12 -100 L36 -48 M36 -100 L-12 -48",stroke:"#FF1744","stroke-width":11,"stroke-linecap":"round",opacity:0},birdG);
+const bBody=el("path",{fill:"#29B6F6",stroke:"#E1F5FE","stroke-width":5,"stroke-linejoin":"round"},birdG);
+const bFlap=el("path",{d:"M-75 -48 L0 8 L75 -48",fill:"none",stroke:"#FF8F00","stroke-width":7,"stroke-linejoin":"round",opacity:0},birdG);
+const bSeal=el("circle",{cx:0,cy:12,r:12,fill:"#E53935",stroke:"#FFCDD2","stroke-width":3,opacity:0},birdG);
+const bEye=el("g",{},birdG); el("circle",{cx:22,cy:-9,r:8,fill:"#FFFFFF"},bEye); el("circle",{cx:24,cy:-9,r:4,fill:"#0E0E12"},bEye);
+const bFace=el("g",{opacity:0},birdG);
+const fEyeL=el("ellipse",{cx:-26,cy:18,rx:7,ry:9,fill:"#0E0E12"},bFace), fEyeR=el("ellipse",{cx:26,cy:18,rx:7,ry:9,fill:"#0E0E12"},bFace);
+const fWink=el("path",{d:"M17 20 Q26 10 35 20",stroke:"#0E0E12","stroke-width":5,fill:"none","stroke-linecap":"round",opacity:0},bFace);
+el("path",{d:"M-14 32 Q0 42 14 32",stroke:"#0E0E12","stroke-width":5,fill:"none","stroke-linecap":"round"},bFace);
+// speech bubbles the bird carries (clue 1)
+const sbub=[...Array(8)].map(()=>{const g=el("g",{opacity:0},cam);
+  el("path",{d:"M-30 -20 h60 a10 10 0 0 1 10 10 v20 a10 10 0 0 1 -10 10 h-34 l-14 12 v-12 h-12 a10 10 0 0 1 -10 -10 v-20 a10 10 0 0 1 10 -10z",fill:"#FFFFFF",stroke:"#E1F5FE","stroke-width":3},g);
+  [-14,0,14].forEach(dx=>el("circle",{cx:dx,cy:0,r:3.6,fill:"#0E0E12"},g)); return g});
+
+// ---------- characters (front view) ----------
+function makeChar(o){
+  const g=el("g",{},o.parent||cam), body=el("g",{},g);
+  const legC=o.legCol||o.skin;
+  const legL=el("line",{stroke:legC,"stroke-width":30,"stroke-linecap":"round"},body),legR=el("line",{stroke:legC,"stroke-width":30,"stroke-linecap":"round"},body);
+  const shoeL=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body),shoeR=el("ellipse",{rx:24,ry:13,fill:o.shoe||"#333"},body);
+  if(o.dress) el("path",{d:"M-70 -150 L70 -150 L95 -40 L-95 -40 Z",fill:o.dress},body);
+  else el("rect",{x:-62,y:-175,width:124,height:60,rx:16,fill:o.shorts},body);
+  el("rect",{x:-62,y:-300,width:124,height:150,rx:36,fill:o.shirt},body);
+  if(o.dots) [[-30,-260],[20,-230],[-15,-190],[35,-280],[30,-175]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:7,fill:"#fff",opacity:.9},body));
+  const armL=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body),armR=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body);
+  const handItem=el("g",{},body), items={};
+  const head=el("g",{},body);
+  if(o.pigtails){el("circle",{cx:-112,cy:-430,r:38,fill:o.hair},head);el("circle",{cx:112,cy:-430,r:38,fill:o.hair},head);
+    [-1,1].forEach(s=>el("path",{d:`M${s*90} -470 l${s*30} -18 l${-s*4} 30 z`,fill:"#F06292"},head))}
+  if(o.curls) [[-90,-470],[-55,-505],[-15,-520],[25,-518],[62,-500],[92,-468],[-100,-430],[100,-430]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:30,fill:o.hair},head));
+  el("circle",{cx:0,cy:-400,r:105,fill:o.skin},head);
+  el("path",{d:o.hairPath||"M-105 -410 Q-100 -520 0 -515 Q100 -520 105 -410 Q60 -470 0 -455 Q-60 -470 -105 -410Z",fill:o.hair},head);
+  el("circle",{cx:-60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);el("circle",{cx:60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);
+  const eyeW=[-36,36].map(x=>el("ellipse",{cx:x,cy:-405,rx:21,ry:25,fill:"#fff"},head));
+  const pup=[-36,36].map(x=>el("circle",{cx:x,cy:-402,r:11,fill:"#1b1b1b"},head));
+  const lids=[-36,36].map(x=>el("path",{d:o.happyLids?`M${x-22} -398 Q${x} -426 ${x+22} -398`:`M${x-22} -404 Q${x} -390 ${x+22} -404`,stroke:"#3a2a1a","stroke-width":7,fill:"none","stroke-linecap":"round",opacity:0},head));
+  const brow=[-1,1].map(s=>el("line",{stroke:o.browCol||"#3a2a1a","stroke-width":9,"stroke-linecap":"round"},head));
+  const mouth=el("ellipse",{cx:0,cy:-345,rx:20,ry:4,fill:"#7A1F1F"},head);
+  const smile=el("path",{d:"M-34 -356 Q0 -318 34 -356",stroke:"#FFAB91","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  const grin=el("g",{opacity:0},head);el("path",{d:"M-48 -362 Q0 -296 48 -362 Z",fill:"#7A1F1F",stroke:"#FFAB91","stroke-width":3},grin);
+  el("rect",{x:-40,y:-362,width:34,height:13,fill:"#fff"},grin);el("rect",{x:6,y:-362,width:34,height:13,fill:"#fff"},grin);
+  el("path",{d:"M-24 -318 Q0 -306 24 -318 Q0 -326 -24 -318Z",fill:"#E57373"},grin);
+  const hmm=el("path",{d:"M-26 -342 Q-6 -350 24 -338",stroke:"#FFAB91","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  if(o.glasses==="round"){const gl=el("g",{},head);[-38,38].forEach(x=>el("circle",{cx:x,cy:-405,r:33,fill:"rgba(255,255,255,.12)",stroke:"#B0BEC5","stroke-width":9},gl));el("line",{x1:-6,y1:-410,x2:6,y2:-410,stroke:"#B0BEC5","stroke-width":7},gl)}
+  if(o.items){
+    if(o.items.includes("palm")){const it=items.palm=el("g",{},handItem);txt("✋",{x:0,y:-8,"font-size":78,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("point")){const it=items.point=el("g",{},handItem);txt("👉",{x:14,y:-6,"font-size":70,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("thumb")){const it=items.thumb=el("g",{},handItem);txt("👍",{x:6,y:-14,"font-size":86,"text-anchor":"middle","dominant-baseline":"central"},it)}
+    if(o.items.includes("stick")){const it=items.stick=el("g",{},handItem);el("line",{x1:0,y1:10,x2:0,y2:-150,stroke:"#BCAAA4","stroke-width":9,"stroke-linecap":"round"},it);el("circle",{cx:0,cy:-152,r:8,fill:"#FFF59D"},it)}
+  }
+  const st={x:0,y:0,s:1,flip:1,rot:0,walk:0,armL:200,armR:160,lenL:115,lenR:115,talk:0,brow:"n",look:0,lookY:0,blink:0,hop:0,item:"",itemRot:0,
+            smile:0,grin:0,hmm:0,shut:0,jaw:0,headRot:0,vis:1};
+  function draw(){
+    const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) rotate(${k.rot}) scale(${k.s*k.flip},${k.s})`); g.style.opacity=k.vis;
+    head.setAttribute("transform",`rotate(${k.headRot} 0 -300)`);
+    const sw=Math.sin(k.walk)*28, ll=150;
+    [[legL,shoeL,-28,sw],[legR,shoeR,28,-sw]].forEach(([l,sh,hx,a])=>{const r=a*Math.PI/180,x2=hx+Math.sin(r)*ll,y2=-150+Math.cos(r)*ll;
+      l.setAttribute("x1",hx);l.setAttribute("y1",-150);l.setAttribute("x2",x2);l.setAttribute("y2",y2);sh.setAttribute("cx",x2+8);sh.setAttribute("cy",y2)});
+    [[armL,-58,k.armL,k.lenL],[armR,58,k.armR,k.lenR]].forEach(([a,sx,deg,len])=>{const r=deg*Math.PI/180;a.setAttribute("x1",sx);a.setAttribute("y1",-280);
+      a.setAttribute("x2",sx+Math.sin(r)*len);a.setAttribute("y2",-280-Math.cos(r)*len)});
+    const r=k.armR*Math.PI/180; handItem.setAttribute("transform",`translate(${58+Math.sin(r)*(k.lenR+3)},${-280-Math.cos(r)*(k.lenR+3)}) rotate(${k.itemRot})`);
+    for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    const open=Math.max(k.talk,k.jaw), quiet=open<0.15;
+    mouth.setAttribute("ry",3+22*open+18*k.jaw); mouth.setAttribute("rx",18+6*open);
+    mouth.style.opacity=quiet&&(k.grin||k.smile||k.hmm)?0:1;
+    smile.style.opacity=k.smile&&quiet&&!k.grin?1:0; grin.style.opacity=k.grin&&quiet?1:0; hmm.style.opacity=k.hmm&&quiet&&!k.smile&&!k.grin?1:0;
+    const closed=k.blink||k.shut; eyeW.forEach(e=>e.setAttribute("ry",closed?2:25*(1+0.2*k.jaw))); lids.forEach(l=>l.style.opacity=closed?1:0);
+    pup.forEach((p,i)=>{p.setAttribute("cx",(i?36:-36)+k.look*8);p.setAttribute("cy",-402+k.lookY*8);p.style.opacity=closed?0:1});
+    brow.forEach((b,i)=>{const s=i?1:-1,B={a:[-424,-446],s:[-452,-432],u:[-462,-458],n:[-440,-440],q:i?[-468,-462]:[-436,-440]}[k.brow];
+      b.setAttribute("x1",s*14);b.setAttribute("y1",B[0]);b.setAttribute("x2",s*58);b.setAttribute("y2",B[1])});
+  }
+  function aimLocal(side,lx,ly,len){const sx=side==="L"?-58:58,dx=lx-sx,dy=ly+280,d=Math.hypot(dx,dy);const a=Math.atan2(dx,-dy)*180/Math.PI;
+    if(side==="L"){st.armL=a;st.lenL=len||Math.min(d,140)}else{st.armR=a;st.lenR=len||Math.min(d,140)}}
+  function aim(side,wx,wy,len){const lx=(wx-st.x)/(st.s*st.flip), ly=(wy-(st.y-st.hop))/st.s; aimLocal(side,lx,ly,len)}
+  return {st,draw,g,aim,aimLocal};
+}
+const C={
+  gopi:  makeChar({skin:"#C68A55",hair:"#3B2A20",shirt:"#FB8C00",shorts:"#1E88E5",curls:true,glasses:"round",items:["stick","palm","point","thumb"]}),
+  pinky: makeChar({skin:"#D9A06E",hair:"#4A2C1A",shirt:"#EC407A",dress:"#F48FB1",dots:true,pigtails:true,shoe:"#F06292"}),
+};
+// thought dots + "?" for the countdown, sparks, "!"
+const thought=el("g",{opacity:0},cam);
+[[0,0,10],[-26,-34,15],[-60,-78,22]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#fff",stroke:"#E1F5FE","stroke-width":4},thought));
+const tq=txt("?",{x:-96,y:-104,"font-family":"Anton","font-size":110,fill:"#FF4081",stroke:"#FF80AB","stroke-width":4,"text-anchor":"middle"},thought);
+const exclaim=txt("!",{"font-family":"Anton","font-size":120,fill:"#FFEA00",stroke:"#FFF59D","stroke-width":4,"text-anchor":"middle",opacity:0},cam);
+
+// ---------- world-anchored crisp layer (no filter): labels, halos, finger taps ----------
+const camT=el("g",{});
+const halo=el("circle",{r:120,fill:"url(#gCyan)",opacity:0},camT);
+const trail=[...Array(18)].map(()=>el("circle",{r:10,fill:"#80DEEA",opacity:0},camT));
+const mileT=MILE.map(([x,n],i)=>txt(String(n),{x,y:stones[i].y-stones[i].h*(n===90?0.55:0.36),"font-family":"Anton","font-size":n===90?84:44,"text-anchor":"middle","dominant-baseline":"central",fill:"#0E0E12",opacity:0},camT));
+const mileU=txt("ఆమడలు",{x:MILE[3][0],y:stones[3].y-24,"font-family":"Rama, NotoTe","font-size":30,"text-anchor":"middle",fill:"#0E0E12",opacity:0},camT);
+const qBird=txt("?",{"font-family":"Anton","font-size":150,"text-anchor":"middle",fill:"#FFEA00",stroke:"#0E0E12","stroke-width":8,"paint-order":"stroke",opacity:0},camT);
+const farG=el("g",{opacity:0},camT);   // "చాలా దూరం!" double arrow over the whole road (aside)
+const farLine=el("path",{d:`M${ROADX0+80} 340 L${ROADX1-80} 340`,stroke:"#FFFFFF","stroke-width":18,"stroke-linecap":"round",pathLength:1},farG);
+el("path",{d:`M${ROADX0+150} 290 L${ROADX0+70} 340 L${ROADX0+150} 390 M${ROADX1-150} 290 L${ROADX1-70} 340 L${ROADX1-150} 390`,stroke:"#FFFFFF","stroke-width":18,fill:"none","stroke-linecap":"round","stroke-linejoin":"round"},farG);
+const farTxt=txt("చాలా దూరం!",{x:(ROADX0+ROADX1)/2,y:260,"font-family":"Rama, NotoTe","font-size":230,"text-anchor":"middle",fill:"#FFF59D",stroke:"#0E0E12","stroke-width":14,"paint-order":"stroke"},farG);
+const zzz=[...Array(3)].map((_,i)=>txt(i===1?"Z":"z",{"font-family":"Anton","font-size":[44,60,40][i],"text-anchor":"middle",fill:"#B3E5FC",stroke:"#0E0E12","stroke-width":5,"paint-order":"stroke",opacity:0},camT));
+const pollT=el("g",{},camT);
+const pickHi=el("rect",{x:PCX[0]-PCW/2-12,y:PCY-PCH/2-12,width:PCW+24,height:PCH+24,rx:36,fill:"rgba(255,235,59,.12)",stroke:"#FFEB3B","stroke-width":8,opacity:0},pollT);
+const qGlow=el("circle",{cx:PCX[2],cy:PCY,r:170,fill:"url(#gGold)",opacity:0},pollT);
+const labels=["✈️ Aeroplane","🕊️ పావురం","❓"].map((s,i)=>txt(s,{x:PCX[i],y:PCY+PCH/2-26,"font-family":i===0?"Anton":"Rama, NotoTe","font-size":i===0?34:38,"text-anchor":"middle",fill:"#FFFFFF",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke",opacity:0},pollT));
+const pickChip=el("g",{opacity:0},pollT);
+el("rect",{x:PCX[0]-10,y:PCY-PCH/2-66,width:160,height:50,rx:14,fill:"#F48FB1",stroke:"#0E0E12","stroke-width":4},pickChip);
+txt("PINKY ✋",{x:PCX[0]+70,y:PCY-PCH/2-30,"font-family":"Anton","font-size":32,"text-anchor":"middle",fill:"#0E0E12"},pickChip);
+const tailTag=[0,1].map(i=>{const g=el("g",{opacity:0},pollT);
+  el("rect",{x:-56,y:-26,width:112,height:52,rx:14,fill:"#FFEA00",stroke:"#0E0E12","stroke-width":4},g);
+  txt("తోక ✓",{x:0,y:12,"font-family":"Rama, NotoTe","font-size":32,"text-anchor":"middle",fill:"#0E0E12"},g); return g});
+const finger=txt("👆",{"font-size":120,"text-anchor":"middle","dominant-baseline":"hanging",opacity:0},camT);
+const ripple=el("circle",{r:30,fill:"none",stroke:"#FFFFFF","stroke-width":8,opacity:0},camT);
+const pbGlow=el("circle",{cx:PBX,cy:1110,r:260,fill:"url(#gRed)",opacity:0},camT);
+const bell=txt("🔔",{"font-size":90,"text-anchor":"middle","dominant-baseline":"central",opacity:0},camT);
+const tring=txt("ట్రింగ్ ట్రింగ్!",{"font-family":"Rama, NotoTe","font-size":56,"text-anchor":"middle",fill:"#FFF59D",stroke:"#0E0E12","stroke-width":8,"paint-order":"stroke",opacity:0},camT);
+const envGlow=el("circle",{r:260,fill:"url(#gGold)",opacity:0},camT);
+const rays=el("g",{opacity:0},camT);
+for(let i=0;i<16;i++){const a=i/16*Math.PI*2; el("path",{d:`M${Math.cos(a)*120} ${Math.sin(a)*120} L${Math.cos(a+0.08)*330} ${Math.sin(a+0.08)*330} L${Math.cos(a-0.08)*330} ${Math.sin(a-0.08)*330} Z`,fill:i%2?"#FFE082":"#FFFFFF",opacity:.8},rays)}
+const floatL=["అ","మా","ట","❤️","ప్రే","మ"].map(s=>txt(s,{"font-family":"Rama, NotoTe","font-size":54,"text-anchor":"middle","dominant-baseline":"central",fill:"#FFF59D",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke",opacity:0},camT));
+const winGlow=el("circle",{cx:WX+WW/2,cy:WY+WH/2,r:230,fill:"url(#gGold)",opacity:0},camT);
+const twNow=txt("ఇప్పుడు",{x:PHX,y:TWY+330,"font-family":"Rama, NotoTe","font-size":96,"text-anchor":"middle",fill:"#B2FFFF",stroke:"#0E0E12","stroke-width":10,"paint-order":"stroke",opacity:0},camT);
+const twThen=txt("అప్పట్లో",{x:TWX+270,y:TWY+330,"font-family":"Rama, NotoTe","font-size":96,"text-anchor":"middle",fill:"#FFE082",stroke:"#0E0E12","stroke-width":10,"paint-order":"stroke",opacity:0},camT);
+const sparks=[...Array(8)].map(()=>txt("✨",{"font-size":56,"text-anchor":"middle","dominant-baseline":"central",opacity:0},camT));
+const hearts=[...Array(3)].map(()=>txt("💛",{"font-size":46,"text-anchor":"middle","dominant-baseline":"central",opacity:0},camT));
+
+// screen-space: confetti, vignette, streaks, share animation
+const conf=[...Array(46)].map((_,i)=>el("rect",{width:18,height:30,rx:4,fill:["#FF4081","#FFEA00","#00E676","#00E5FF","#B388FF","#fff"][i%6],opacity:0}));
+const vigR=el("rect",{x:0,y:0,width:1080,height:1920,fill:"url(#vig)",opacity:0});
+const streaks=[...Array(14)].map(()=>el("line",{stroke:"#B2FFFF","stroke-width":6,opacity:0}));
+const tickG=document.getElementById("ticks");
+for(let i=0;i<5;i++){const a=i*72*Math.PI/180;el("line",{x1:Math.sin(a)*70,y1:-Math.cos(a)*70,x2:Math.sin(a)*82,y2:-Math.cos(a)*82,stroke:"#0E0E12","stroke-width":8,"stroke-linecap":"round"},tickG)}
+const SHX=540, SHY=1178;
+const shareG=el("g",{opacity:0});
+const FR=[[340,1300],[540,1340],[740,1300]];
+const minis=FR.map(()=>{const g=el("g",{opacity:0},shareG);
+  el("rect",{x:-24,y:-16,width:48,height:32,rx:4,fill:"#FFF8E1",stroke:"#0E0E12","stroke-width":4},g);
+  el("path",{d:"M-24 -16 L0 4 L24 -16",fill:"none",stroke:"#0E0E12","stroke-width":4},g); return g});
+const trails=FR.map(()=>el("path",{stroke:"#FFE082","stroke-width":5,"stroke-dasharray":"4 12","stroke-linecap":"round",fill:"none",opacity:0},shareG));
+const friends=FR.map(([x,y],i)=>{const g=el("g",{opacity:0},shareG);
+  el("circle",{cx:0,cy:0,r:42,fill:["#FFE082","#B3E5FC","#F8BBD0"][i],stroke:"#0E0E12","stroke-width":5},g);
+  txt(["👦","👧","🧑"][i],{x:0,y:3,"font-size":54,"text-anchor":"middle","dominant-baseline":"central"},g);
+  const br=txt("💡",{x:34,y:-38,"font-size":40,"text-anchor":"middle","dominant-baseline":"central",opacity:0},g); return {g,br,x,y}});
+const shBtn=el("g",{},shareG);
+el("circle",{cx:0,cy:0,r:64,fill:"#fff",stroke:"#0E0E12","stroke-width":7},shBtn);
+el("path",{d:"M-30 -6 L30 -30 L8 30 L0 4 Z M0 4 L30 -30",fill:"none",stroke:"#0E0E12","stroke-width":7,"stroke-linejoin":"round","stroke-linecap":"round"},shBtn);
+txt("SHARE",{x:0,y:98,"font-family":"Anton","font-size":34,"letter-spacing":2,fill:"#fff",stroke:"#0E0E12","stroke-width":6,"paint-order":"stroke","text-anchor":"middle"},shareG);
+const shRing=el("circle",{cx:0,cy:0,r:64,fill:"none",stroke:"#fff","stroke-width":8,opacity:0},shareG);
+const shHand=txt("👆",{"font-size":96,"text-anchor":"middle","dominant-baseline":"hanging",opacity:0},shareG);
+
+// ---------- timeline ----------
+const COLORS={gopi:"#F5B700",pinky:"#F48FB1"}, NAMES={gopi:"GOPI",pinky:"PINKY"};
+let TL;
+function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
+function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
+const S=i=>TL.lines[i].start, E=i=>TL.lines[i].start+TL.lines[i].dur, D=i=>TL.lines[i].dur;
+const _segs={};
+function segsOf(i){if(!_segs[i]){const l=TL.lines[i],e=l.env.concat([0,0,0,0,0,0]);let segs=[],on=null,low=0;
+  e.forEach((v,f)=>{if(v>0.1){if(on===null)on=f;low=0}else{low++;if(on!==null&&low>=5){segs.push([l.start+on/30,l.start+(f-low+1)/30]);on=null}}}); _segs[i]=segs} return _segs[i]}
+// when a word is spoken: its character share of the line, mapped onto the voiced phrases (pauses skipped)
+function at(i,word){const tx=TL.lines[i].text, k=tx.indexOf(word); if(k<0) throw new Error("word "+word);
+  const segs=segsOf(i); if(!segs.length) return S(i)+D(i)*k/tx.length;
+  const tot=segs.reduce((a,[s,e])=>a+e-s,0); let tgt=tot*k/tx.length;
+  let est=segs[segs.length-1][1]; for(const [s,e] of segs){if(tgt<=e-s+1e-6){est=s+tgt;break} tgt-=e-s}
+  if(k===0||/[…,!?—.]\s*$/.test(tx.slice(0,k))){let best=est,bd=0.6; for(const [s] of segs){const d=Math.abs(s-est); if(d<bd){bd=d;best=s}} return best}   // phrase-initial word: snap to the phrase start
+  return est}
+
+let B=null;
+function beats(){ if(B) return B; B={};
+  B.sh2=S(2)-0.35; B.sh3=S(3)-0.3; B.sh4=S(4)-0.2; B.sh5=S(5)-0.35; B.sh6=S(6)-0.45; B.sh8=S(8)-0.3; B.sh9=S(9)-0.3; B.sh10=S(10)-0.3;
+  B.CD0=E(10)+0.35; B.CD1=B.CD0+TL.countdown; B.shR=S(12)-0.15; B.shW=S(13)-0.2; B.shT=S(14)-0.3; B.shK=S(15)-0.3; B.sh7=S(16)-0.3;
+  B.zip1=[0.25,1.25]; B.back0=at(0,"ఈ పిట్టకి")-0.15; B.back1=at(0,"తోక")-0.05;
+  B.tTail=at(0,"తోక"); B.tWing=at(0,"రెక్కలు"); B.tGo=at(0,"కానీ"); B.tGo1=E(0)+0.1;
+  B.tVil=S(2)+0.1; B.rid=["తోకలేని","పిట్ట","తొంభై","ఆమడలు","పోతుంది","ఏంటది"].map(w=>at(3,w));
+  B.fly0=S(3)-0.15; B.fly1=B.rid[4]+0.25;
+  B.tAm=S(4); B.tFar=at(4,"అంటే చాలా");
+  B.c1=S(5); B.tNoTalk=at(5,"ఇది"); B.tCarry=at(5,"కానీ");
+  B.tKnow=S(6); B.tTap=at(6,"Aeroplane"); B.tNo=S(7); B.tTail1=at(7,"తోక"); B.tPig=at(7,"పావురానికి");
+  B.c2=S(8); B.tPost=at(8,"postman"); B.tBell=B.tPost+0.3; B.tKnows=at(8,"బాగా");
+  B.tTapF=at(9,"follow")+0.1; B.tTapS=at(9,"subscribe")+0.15; B.tCm=at(10,"మీ answer");
+  B.walk0=B.CD1-0.9; B.walk1=B.CD1+0.3; B.tug1=at(11,"ఇంక");
+  B.tStop=S(12)+0.35; B.tM=at(12,"ఉత్తరం")-0.05; B.tBan=at(12,"ఉత్తరం"); B.tFlip=at(12,"Letter");
+  B.why2=at(13,"అయినా"); B.tDrop=E(13)-0.75;
+  B.tNow=S(14); B.tThen=at(14,"అప్పట్లో"); B.tWink=at(14,"పిట్టే");
+  B.tTick=at(16,"Comment"); B.tShTap=S(17)+0.35; B.tFol=at(17,"Follow");
+  B.cb=CB.map((_,i)=>B.CD0+0.35+i*0.72);
+  B.mile=MILE.map(([x])=>{let lo=B.fly0,hi=B.fly1; for(let k=0;k<40;k++){const m=(lo+hi)/2; if(birdRoadX(m)<x) lo=m; else hi=m} return lo});
+  return B}
+const birdRoadX=t=>lerp(400,MILE[3][0],ease((t-B.fly0)/(B.fly1-B.fly0)));
+
+// the bird's state at time t (pure function of t so the trail can sample the past)
+function birdAt(t){const b=B; let x=0,y=0,s=1.4,vis=0,m=0,face=0,dir=1,bob=Math.sin(t*5)*8;
+  if(t<b.zip1[1]+0.05){const k=(t-b.zip1[0])/(b.zip1[1]-b.zip1[0]); vis=k>0&&k<1.05?1:0; x=lerp(-260,1200,k); y=600-Math.sin(clamp(k)*Math.PI)*120; bob=0}
+  else if(t<b.tGo){const k=out((t-b.back0)/(b.back1-b.back0)); vis=t>b.back0?1:0; x=lerp(1250,560,k); y=lerp(500,595,k); dir=k<0.97?-1:1}
+  else if(t<b.tGo1+0.2){const k=ease((t-b.tGo)/(b.tGo1-b.tGo)); vis=1; x=lerp(560,1500,k); y=lerp(595,180,k)-Math.sin(k*Math.PI)*60; s=1.4*(1-0.65*k)}
+  else if(t<b.sh2+0.6){vis=0}
+  else if(t<b.fly0){const k=pop(t,b.tVil+0.5,0.5); vis=t>b.tVil+0.5?1:0; x=430; y=470; s=Math.max(0.001,1.1*k)}
+  else if(t<b.sh5){vis=1; x=birdRoadX(t); y=roadY(x)-200; s=1.1; if(t>b.fly1) bob=Math.sin(t*6)*10}
+  else if(t<b.sh6-0.1){const k=(t-(b.c1+0.1))/(E(5)+0.1-b.c1); vis=k>-0.02&&k<1.02?1:0; x=lerp(1280,-160,k); y=830+Math.sin(k*Math.PI*3)*24; dir=-1; s=1.2}
+  else if(t<b.sh8){const k=pop(t,b.sh6+0.2,0.5); vis=t>b.sh6+0.2?1:0; x=640+Math.sin(t*1.3)*60; y=330; s=Math.max(0.001,1.15*k); dir=Math.cos(t*1.3)>0?1:-1}
+  else if(t<b.shR){vis=0}
+  else if(t<b.shW){const k=out((t-b.shR)/(b.tStop-b.shR)); vis=1; x=lerp(1350,640,k); y=lerp(200,330,k); dir=k<1?-1:1;
+    m=ease((t-b.tM)/0.4); s=lerp(1.4,2.5,m); if(t>b.tStop) bob=Math.sin(t*5)*6*(1-m)+Math.sin(t*3)*4*m}
+  else if(t<b.shT){vis=1; m=1; const k=ease((t-b.why2)/(b.tDrop-b.why2)); x=lerp(640,WX+WW/2,k); y=lerp(330,WY+WH/2,k)-Math.sin(k*Math.PI)*260; s=lerp(2.5,0.9,k);
+    if(t>b.tDrop){const k2=clamp((t-b.tDrop)/0.35); s=0.9*(1-k2); vis=k2<1?1:0} bob=t<b.why2?Math.sin(t*14)*5:0}
+  else if(t<b.shK){vis=1; m=1; face=1; x=TWX+270; y=TWY-40; s=2.6; bob=Math.sin(t*3)*8}
+  else if(t<b.sh7){vis=1; m=1; face=1; x=830; y=740; s=2.0; bob=Math.sin(t*3)*10}
+  return {x,y:y+bob,s,vis,m,face,dir}}
+
+const GX=210,GY=1330,GS=0.95, PX=1060,PY=1350,PS=0.78, PXN=430;
+const focus=(z,wx,wy,sx,sy)=>({z,fx:wx-(sx-540)/z,fy:wy-(sy-1000)/z});
+
+window.render=function(t){
+  const b=beats(), gp=C.gopi.st, pi=C.pinky.st;
+  for(const k in C){const s=C[k].st;Object.assign(s,{talk:talkOf(k,t),blink:((t*0.7+k.length)%3.1)<0.12?1:0,hop:0,rot:0,brow:"n",look:0,lookY:0,
+    walk:0,smile:0,grin:0,hmm:0,shut:0,jaw:0,item:"",itemRot:0,armL:200,armR:160,lenL:115,lenR:115,flip:1,headRot:0,vis:1})}
+  Object.assign(gp,{x:GX,y:GY,s:GS,flip:1,look:1,lookY:-0.5,smile:1});
+  gp.headRot=Math.sin(t*2.1)*2.5+gp.talk*3*Math.sin(t*9);
+  const pointAt=(wx,wy)=>{C.gopi.aim("R",wx,wy,130); gp.item="point"; gp.itemRot=gp.armR-90};
+  const stickAt=(wx,wy)=>{C.gopi.aim("R",wx,wy,135); gp.item="stick"; gp.itemRot=gp.armR};
+  const bd=birdAt(t);
+
+  // ---------------- Gopi ----------------
+  if(t<b.sh2){                                                   // hook + hold
+    gp.look=0; gp.lookY=0; C.gopi.aimLocal("L",-95,-165,112);
+    gp.hop=t<1.0?Math.max(0,Math.sin(clamp((t-0.55)/0.35)*Math.PI))*40:0;
+    if(t<1.25){const w=Math.sin(t*16); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; gp.brow="u"; gp.jaw=t>0.55&&t<0.85?0.4:0}
+    else if(t<b.back0){C.gopi.aimLocal("R",190,-310,130); gp.item="palm"; gp.brow="a"; gp.smile=0}
+    else if(t<b.tGo1){const p=bd.vis?bd:{x:900,y:300}; pointAt(p.x,p.y); gp.brow="u"; gp.look=0.8; gp.lookY=-1}
+    else if(t<S(1)+0.1){C.gopi.aimLocal("R",150,-460,125); C.gopi.aimLocal("L",-150,-460,125); gp.brow="u"; gp.grin=1}
+    else {C.gopi.aimLocal("R",30,-360,100); gp.item="point"; gp.itemRot=-40; gp.brow="q"; gp.look=0.5; gp.lookY=-0.2}   // secretive: finger by mouth
+  } else if(t<b.sh3){                                            // story: presents the old village behind him
+    gp.look=0.6; gp.lookY=-0.8; gp.brow="u"; const k=ease((t-b.sh2)/0.6);
+    C.gopi.aimLocal("R",lerp(120,190,k),lerp(-200,-470,k),130); gp.item="palm"; gp.itemRot=-20; C.gopi.aimLocal("L",lerp(-120,-170,k),lerp(-200,-380,k),120);
+  } else if(t<b.sh5){                                            // riddle + aside (far away; arms wide on "చాలా దూరం")
+    C.gopi.aimLocal("R",170,-420,125); C.gopi.aimLocal("L",-170,-420,125); gp.brow="u"; gp.look=0.5; gp.lookY=-1;
+  } else if(t<b.sh6){                                            // clue 1: lowers the voice, follows the bird
+    gp.look=1; gp.lookY=-0.8; gp.smile=0; gp.hmm=1; gp.brow="q";
+    if(t<b.tNoTalk){C.gopi.aimLocal("L",-20,-350,88); C.gopi.aimLocal("R",110,-200)}                     // hand by his mouth
+    else if(t<b.tCarry){C.gopi.aimLocal("R",8,-352,96); gp.item="point"; gp.itemRot=-90; C.gopi.aimLocal("L",-110,-200)}   // finger on lips: it doesn't talk
+    else {const p=bd.vis?bd:{x:-100,y:830}; pointAt(p.x,p.y); gp.brow="u"; gp.smile=1; gp.hmm=0; C.gopi.aimLocal("L",-110,-200)}
+  } else if(t<b.sh8){                                            // guess + "no"
+    gp.look=1; gp.lookY=-0.3;
+    if(t<b.tNo){C.gopi.aimLocal("L",-120,-210); C.gopi.aimLocal("R",100,-200)}
+    else if(t<b.tTail1-0.1){const w=Math.sin(t*22); C.gopi.aimLocal("R",95+w*30,-470,120); gp.headRot=w*7; gp.brow="a"; gp.grin=1; C.gopi.aimLocal("L",-120,-210)}  // "కాదు!" finger wag
+    else if(t<b.tPig-0.05){stickAt(PCX[0]-50,PCY-40); gp.brow="u"; gp.look=0.6; gp.lookY=-1; C.gopi.aimLocal("L",-110,-200)}
+    else {stickAt(PCX[1]-60,PCY-10); gp.brow="u"; gp.look=1; gp.lookY=-1; C.gopi.aimLocal("L",-110,-200)}
+  } else if(t<b.sh9){                                            // clue 2: the post box
+    gp.look=1; gp.lookY=0;
+    if(t<b.tKnows){stickAt(PBX-30,1070); gp.brow="u"; C.gopi.aimLocal("L",-110,-200)}
+    else {C.gopi.aimLocal("R",150,-330,112); gp.item="thumb"; gp.grin=1; gp.shut=t>b.tKnows+0.2&&t<b.tKnows+0.6?1:0; C.gopi.aimLocal("L",-110,-200); gp.look=0}
+  } else if(t<b.sh10){                                           // follow aside
+    gp.look=0; gp.lookY=-0.4; gp.brow="u";
+    C.gopi.aimLocal("R",130,-540,130); gp.item="point"; gp.itemRot=-90; C.gopi.aimLocal("L",-95,-165,112);
+    gp.hop=Math.max(0,Math.sin(clamp((t-b.tTapF)/0.3)*Math.PI))*18+Math.max(0,Math.sin(clamp((t-b.tTapS)/0.3)*Math.PI))*18;
+  } else if(t<b.CD0){                                            // comment!
+    gp.look=0; gp.lookY=0.6; gp.brow="u";
+    if(t<b.tCm-0.1){C.gopi.aimLocal("R",175,-340,128); gp.item="point"; C.gopi.aimLocal("L",-95,-165,112); gp.brow="q"; gp.lookY=0}
+    else {C.gopi.aimLocal("R",150,-120,125); gp.item="point"; gp.itemRot=60; C.gopi.aimLocal("L",-95,-165,112)}
+  } else if(t<b.CD1){                                            // countdown: arms folded, tapping a foot
+    gp.look=1; gp.lookY=0; gp.smile=1; gp.brow="q"; C.gopi.aimLocal("L",45,-232,96); C.gopi.aimLocal("R",-45,-214,96);
+    gp.walk=Math.asin(0.45*Math.max(0,Math.sin(t*Math.PI*2))); gp.headRot=Math.sin(t*Math.PI*2)*3;
+  } else if(t<b.shR){                                            // Pinky begs: Gopi laughs, then "okay!"
+    gp.look=1; gp.lookY=0.3; gp.grin=1; gp.brow="u"; gp.rot=t<b.tug1?Math.sin(t*12)*2.5:0;
+    if(t<E(11)){C.gopi.aimLocal("L",-60,-215,100); C.gopi.aimLocal("R",100,-190)}
+    else {C.gopi.aimLocal("R",140,-480,125); gp.item="point"; gp.itemRot=-90; gp.look=0; C.gopi.aimLocal("L",-60,-215,100)}
+  } else if(t<b.shT){                                            // reveal + why
+    gp.look=1; gp.lookY=-0.8;
+    if(t<b.tBan){C.gopi.aimLocal("R",150,-330,120); C.gopi.aimLocal("L",-110,-200); gp.brow="u"}
+    else if(t<b.why2){C.gopi.aimLocal("R",150,-460,125); C.gopi.aimLocal("L",-150,-460,125); gp.brow="u"; gp.grin=1; gp.hop=Math.max(0,Math.sin(clamp((t-b.tBan)/0.4)*Math.PI))*30}
+    else {pointAt(bd.x,bd.y); gp.brow="u"; C.gopi.aimLocal("L",-110,-200)}
+  } else if(t<b.sh7){                                            // twist / react (Gopi off screen): laughing
+    gp.grin=1; gp.shut=1; C.gopi.aimLocal("L",-60,-215,100); C.gopi.aimLocal("R",120,-200,110); gp.hop=Math.abs(Math.sin(t*8))*10;
+  } else {                                                       // check / share / close
+    gp.look=0; gp.lookY=0; gp.smile=1;
+    if(t<S(17)){C.gopi.aimLocal("R",175,-340,128); gp.item="point"; C.gopi.aimLocal("L",-95,-165,112); gp.brow="q"}
+    else if(t<b.tFol){C.gopi.aimLocal("R",190,-150,130); gp.item="point"; gp.itemRot=40; C.gopi.aimLocal("L",-95,-165,112); gp.brow="u"; gp.lookY=0.5}
+    else {const w=Math.sin(t*12); C.gopi.aimLocal("R",205+w*35,-455,130); gp.item="palm"; C.gopi.aimLocal("L",-95,-165,112); gp.hop=t>b.tFol+1.2?Math.abs(Math.sin(t*6))*12:0}
+  }
+
+  // ---------------- Pinky ----------------
+  let px=PX; if(t>b.walk0&&t<b.shT+0.4) px=lerp(PX,PXN,ease((t-b.walk0)/(b.walk1-b.walk0)));
+  if(t>=b.shT+0.4&&t<b.shK) px=lerp(PXN,PX,ease((t-b.shT-0.4)/1.2));
+  Object.assign(pi,{x:px,y:PY,s:PS,flip:-1,look:1,lookY:-0.3});
+  const pk=back((t-b.sh6)/0.42); pi.vis=t>b.sh6?1:0; pi.s=PS*Math.max(0.001,pk); pi.rot=t<b.sh6+0.5?(1-clamp((t-b.sh6)/0.5))*-20:0;
+  pi.headRot=Math.sin(t*1.7+1)*3;
+  if((t>b.walk0&&t<b.walk1)||(t>b.shT+0.4&&t<b.shT+1.6)) pi.walk=t*14;
+  if(t<b.sh8){
+    if(t<b.tTap-0.1){pi.brow="u"; pi.jaw=0.3; C.pinky.aimLocal("R",150,-460,120); C.pinky.aimLocal("L",-120,-200)}          // hand up: "I know!"
+    else if(t<b.tNo){pi.brow="u"; pi.grin=1; C.pinky.aimLocal("R",170,-380,125); C.pinky.aimLocal("L",-120,-200); pi.hop=Math.max(0,Math.sin(clamp((t-b.tTap)/0.35)*Math.PI))*24}
+    else {pi.brow="s"; pi.hmm=1; pi.look=1; pi.lookY=-0.8; C.pinky.aimLocal("R",90,-170); C.pinky.aimLocal("L",-90,-170); pi.headRot=-6}   // deflated
+  } else if(t<b.sh9){pi.brow="q"; pi.hmm=1; pi.look=1; pi.lookY=0.2; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-90,-200)}   // finger on chin
+  else if(t<b.CD0){pi.smile=1; pi.look=1; pi.lookY=-0.4; const w=Math.sin(t*10); C.pinky.aimLocal("R",90+w*30,-460,115); C.pinky.aimLocal("L",-60,-190)}
+  else if(t<b.CD1){const cdk=t-b.CD0; pi.brow="q"; pi.hmm=1; pi.look=-0.6; pi.lookY=-1; C.pinky.aimLocal("R",30,-345,105); C.pinky.aimLocal("L",-60,-240);
+    pi.headRot=Math.sin(t*1.6)*8; if(cdk>=3){pi.look=Math.sin(t*5); pi.brow="s"}}
+  else if(t<b.shR){pi.look=0; pi.lookY=-1; pi.brow="s"; pi.headRot=Math.sin(t*7)*6;
+    if(t<b.tug1+0.2){const pull=Math.sin(t*12); C.pinky.aimLocal("R",175+pull*14,-250,140); C.pinky.aimLocal("L",-90,-200); pi.rot=pull*4; pi.jaw=0.2}   // tugs his sleeve
+    else {C.pinky.aimLocal("R",26,-300,72); C.pinky.aimLocal("L",-26,-300,72); pi.hop=Math.abs(Math.sin(t*9))*12; pi.shut=t>E(11)-0.6?1:0}}   // hands together, please!
+  else if(t<b.shT){
+    if(t<b.tBan+0.6){pi.brow="u"; pi.jaw=t>b.tBan?0.5:0; pi.look=0.3; pi.lookY=-1; C.pinky.aimLocal("R",80,-450); C.pinky.aimLocal("L",-80,-450); pi.hop=Math.max(0,Math.sin(clamp((t-b.tBan)/0.4)*Math.PI))*35}
+    else {pi.brow="u"; pi.smile=1; pi.look=0.6; pi.lookY=-1; C.pinky.aimLocal("R",40,-240); C.pinky.aimLocal("L",-40,-240)}
+  } else if(t<b.sh7){const c=Math.abs(Math.sin(t*15)); pi.smile=1; pi.grin=t<E(15)+0.2?1:0; pi.brow="u"; pi.shut=t>S(15)&&t<E(15)?1:0; pi.look=1; pi.lookY=-1;
+    C.pinky.aimLocal("R",12+c*45,-285,110); C.pinky.aimLocal("L",-12-c*45,-285,110); pi.hop=Math.abs(Math.sin(t*7.5))*22}   // claps, giggling
+  else {pi.smile=1; pi.look=t<b.tFol?-1:0; pi.lookY=0; const w=Math.sin(t*11+1); C.pinky.aimLocal("R",90+w*35,-460,115); C.pinky.aimLocal("L",-60,-190); if(t>b.tFol) pi.hop=Math.abs(Math.sin(t*6+0.5))*16}
+  if(t>b.shR&&t<b.shT) {gp.look=1}
+  for(const k in C)C[k].draw();
+
+  // ---------------- the bird / envelope ----------------
+  birdG.style.opacity=bd.vis;
+  if(bd.vis){
+    const m=bd.m, pts=birdPts.map((p,i)=>[lerp(p[0],envPts[i][0],m),lerp(p[1],envPts[i][1],m)]);
+    bBody.setAttribute("d","M"+pts.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L")+" Z");
+    const col=m<0.5?"#29B6F6":"#FFF3D6"; bBody.setAttribute("fill",col); bBody.setAttribute("stroke",m<0.5?"#E1F5FE":"#FFB300");
+    bFlap.style.opacity=clamp((m-0.5)*2); bSeal.style.opacity=clamp((m-0.7)*3.3); bEye.style.opacity=1-clamp(m*3);
+    bFace.style.opacity=bd.face; const wink=bd.face&&t>b.tWink&&t<b.tWink+0.45; fEyeR.style.opacity=wink?0:1; fWink.style.opacity=wink?1:0;
+    const sx=bd.dir<0&&m<0.5?-1:1;
+    birdG.setAttribute("transform",`translate(${bd.x},${bd.y}) rotate(${m<0.5?Math.sin(t*9)*4:Math.sin(t*2.5)*5}) scale(${bd.s*sx},${bd.s})`);
+  }
+  // ghost tail / wings + crosses (hook)
+  ghostTail.style.opacity=win(t,b.tTail-0.05,b.tWing+0.2,0.1); xT.style.opacity=t>b.tTail+0.3&&t<b.tWing+0.2?1:0;
+  ghostWing.style.opacity=win(t,b.tWing-0.05,b.tGo,0.1); xW.style.opacity=t>b.tWing+0.3&&t<b.tGo?1:0;
+  // glow halo + trail (crisp layer)
+  halo.style.opacity=bd.vis?(bd.m>0.5?0:0.75):0; halo.setAttribute("cx",bd.x); halo.setAttribute("cy",bd.y); halo.setAttribute("r",110*bd.s);
+  trail.forEach((c,i)=>{const p=birdAt(t-(i+1)*0.035); const ok=p.vis&&bd.vis&&p.m<0.5&&Math.hypot(p.x-bd.x,p.y-bd.y)>20*(i+1)*0.2;
+    c.setAttribute("cx",p.x); c.setAttribute("cy",p.y); c.setAttribute("r",(16-i*0.8)*p.s); c.style.opacity=ok?0.55*(1-i/18):0});
+  envGlow.style.opacity=bd.vis&&bd.m>0.3?0.55*bd.m*(t<b.shT?1:0.7):0; envGlow.setAttribute("cx",bd.x); envGlow.setAttribute("cy",bd.y); envGlow.setAttribute("r",110*bd.s+40);
+  const rk=(t-b.tM)/0.9; rays.style.opacity=rk>0&&rk<1?1-rk:0; rays.setAttribute("transform",`translate(${bd.x},${bd.y}) scale(${0.6+rk*1.4}) rotate(${t*40})`);
+  qBird.style.opacity=t>b.rid[5]-0.05&&t<b.sh4+0.3?1:0; qBird.setAttribute("x",bd.x); qBird.setAttribute("y",bd.y-90); qBird.setAttribute("transform",`rotate(${Math.sin(t*5)*10} ${bd.x} ${bd.y-140}) `);
+
+  // ---------------- memory panorama: draws itself on ----------------
+  const memOn=t>b.sh2-0.1&&t<b.sh5+0.05; memG.setAttribute("opacity",memOn?clamp((t-b.sh2+0.1)/0.3):0);
+  const dK=[ease((t-b.sh2)/1.6), ease((t-S(2)-0.6)/1.8), ease((t-b.tVil)/1.2), ease((t-S(2)-1.4)/1.4)];
+  memDraw.forEach(([e,g])=>{e.setAttribute("stroke-dasharray","1 1"); e.setAttribute("stroke-dashoffset",1-dK[g])});
+  roadMid.setAttribute("opacity",dK[1]>0.98?0.8:0);
+  mileT.forEach((m,i)=>{m.style.opacity=memOn&&dK[1]>0.98?1:0; if(i===3) m.setAttribute("fill",t>b.mile[3]?"#C51162":"#0E0E12")});
+  mileU.style.opacity=memOn&&dK[1]>0.98?1:0;
+  stones.forEach((s,i)=>{const lit=t>b.mile[i]; s.p.setAttribute("stroke",lit?"#FFEA00":(i===3?"#FFEA00":"#FFFFFF")); s.p.setAttribute("fill",lit?"#FFF59D":"#E0E0E0")});
+  farG.style.opacity=t>b.tFar-0.1&&t<b.sh5?1:0; farLine.setAttribute("stroke-dasharray","1 1"); farLine.setAttribute("stroke-dashoffset",1-out((t-b.tFar+0.1)/0.6));
+  farTxt.setAttribute("transform",`translate(${(ROADX0+ROADX1)/2},260) scale(${Math.max(0.001,pop(t,b.tFar+0.2,0.4))}) translate(${-(ROADX0+ROADX1)/2},-260)`);
+  // sleeping house z's + speech bubbles the bird carries
+  zzz.forEach((z,i)=>{const k=fract(t*0.45+i/3); z.setAttribute("x",SLX+SLW/2+20+k*60+i*10); z.setAttribute("y",SLT-40-k*120); z.style.opacity=t>b.sh5&&t<b.sh6?Math.sin(k*Math.PI):0});
+  sbub.forEach((g,i)=>{const tb=b.tCarry-0.2+i*0.17, k=(t-tb)/1.3; if(k<0||k>1||t>b.sh6){g.style.opacity=0;return}
+    const p=birdAt(tb); g.style.opacity=k<0.15?k/0.15:1-(k-0.15)/0.85; g.setAttribute("transform",`translate(${p.x+30},${p.y-20-k*90}) scale(${0.8+0.5*out(k/0.3)})`)});
+
+  // ---------------- poll ----------------
+  const pollA=t>b.sh6+0.15&&t<b.sh8, pollB=t>b.tBan+0.15&&t<b.why2+0.2;
+  const pin=pollA?back((t-b.sh6-0.15)/0.5)*clamp((b.sh8-t)/0.25):pollB?back((t-b.tBan-0.15)/0.5)*clamp((b.why2+0.2-t)/0.25):0;
+  pollG.style.opacity=pin>0?clamp(pin*1.5):0; pollT.style.opacity=pollG.style.opacity;
+  pollG.setAttribute("transform",`translate(0,${(1-Math.min(1,pin))*240})`); pollT.setAttribute("transform",pollG.getAttribute("transform"));
+  cards.forEach((c,i)=>{let sc=1, sxF=1;
+    if(i===0&&t>b.tTap&&t<b.tTap+0.3) sc=1-0.08*Math.sin((t-b.tTap)/0.3*Math.PI);
+    if(i===2){const fk=(t-b.tFlip)/0.4; if(fk>0&&fk<1) sxF=Math.abs(Math.cos(fk*Math.PI)); c.alt.setAttribute("opacity",fk>=0.5?1:0); c.tail.setAttribute("opacity",fk>=0.5?0:1);
+      if(t>b.tPig+0.5&&t<b.sh8) sc=1+0.05*Math.sin(t*8)}
+    const dead=(i===0&&t>b.tNo+0.25)||(i===1&&t>b.tPig+0.25);
+    c.fr.setAttribute("stroke",dead?"#5C5470":c.col);
+    c.g.setAttribute("transform",`translate(${PCX[i]},${PCY}) scale(${sc*sxF},${sc})`);
+    const xt=i===0?b.tNo:b.tPig; const xk=t>xt?Math.max(0.001,lerp(2.2,1,clamp((t-xt)/0.2))):0;
+    c.xg.setAttribute("opacity",i<2&&t>xt?1:0); c.xg.setAttribute("transform",`scale(${xk}) rotate(${(1-clamp((t-xt)/0.2))*-15})`);
+    if(i<2){const tt=i===0?b.tTail1:b.tPig+0.25; const fl=t>tt&&t<b.sh8; c.tail.setAttribute("stroke",fl&&Math.sin((t-tt)*18)>-0.3?"#FFEA00":(i===0?"#E1F5FE":"#FCE4EC"));
+      c.tail.setAttribute("stroke-width",fl?8:4)}
+    labels[i].style.opacity=1; if(i===2) labels[2].textContent=t>b.tFlip+0.2&&t<b.sh7?"✉️ ఉత్తరం":"❓";
+    labels[i].setAttribute("transform",`translate(${PCX[i]},${PCY}) scale(${sc*sxF},${sc}) translate(${-PCX[i]},${-PCY})`)});
+  pickHi.style.opacity=t>b.tTap&&t<b.tNo?1:0; pickChip.style.opacity=t>b.tTap&&t<b.sh8?1:0;
+  pickChip.setAttribute("transform",`translate(${PCX[0]+70},${PCY-PCH/2-40}) scale(${Math.max(0.001,pop(t,b.tTap,0.3))}) translate(${-PCX[0]-70},${-(PCY-PCH/2-40)})`);
+  qGlow.style.opacity=(t>b.tPig+0.5&&t<b.sh8)?0.6+0.3*Math.sin(t*6):(t>b.tFlip&&t<b.why2+0.2?0.8:0);
+  tailTag.forEach((g,i)=>{const tt=i===0?b.tTail1:b.tPig+0.25, k=pop(t,tt+0.1,0.3); g.style.opacity=t>tt+0.1&&t<b.sh8?1:0;
+    g.setAttribute("transform",`translate(${PCX[i]-75},${PCY-132}) scale(${Math.max(0.001,k)})`)});
+  // Pinky's finger taps the Aeroplane card
+  const fk=clamp((t-(b.tKnow+0.3))/(b.tTap-b.tKnow-0.38)); const fOn=t>b.tKnow+0.2&&t<b.tTap+0.5;
+  const fxp=lerp(px-150,PCX[0]+10,ease(fk)), fyp=lerp(PY-PS*520,PCY+10,ease(fk))-Math.sin(ease(fk)*Math.PI)*80;
+  const fdip=Math.max(0,1-Math.abs(t-b.tTap)/0.1);
+  finger.style.opacity=fOn?clamp(Math.min((t-b.tKnow-0.2)/0.15,(b.tTap+0.5-t)/0.15)):0;
+  finger.setAttribute("x",fxp); finger.setAttribute("y",fyp+fdip*12);
+  const rpk=(t-b.tTap)/0.5; ripple.style.opacity=rpk>0&&rpk<1?1-rpk:0; ripple.setAttribute("cx",PCX[0]+10); ripple.setAttribute("cy",PCY+10); ripple.setAttribute("r",30+rpk*140);
+
+  // ---------------- post box + bell (clue 2) ----------------
+  const lit=t>b.tPost&&t<b.sh9+0.2;
+  pbBody.setAttribute("fill",lit?"#FF5252":"#C62828"); pbDome.setAttribute("fill",lit?"#FF5252":"#C62828");
+  pbBody.setAttribute("stroke",lit?"#FFFFFF":"#FF8A80"); pbDome.setAttribute("stroke",lit?"#FFFFFF":"#FF8A80");
+  pbGlow.style.opacity=lit?0.7+0.2*Math.sin(t*7):0;
+  const bk=pop(t,b.tBell,0.3), bOn=t>b.tBell&&t<b.sh9;
+  bell.style.opacity=bOn?1:0; bell.setAttribute("transform",`translate(${PBX+150},${960}) scale(${Math.max(0.001,bk)}) rotate(${Math.sin(t*40)*18*Math.exp(-Math.max(0,t-b.tBell)*1.2)})`);
+  tring.style.opacity=bOn&&t<b.tBell+1.6?1:0; tring.setAttribute("transform",`translate(${PBX+150},${870}) scale(${Math.max(0.001,pop(t,b.tBell+0.1,0.35))})`);
+
+  // ---------------- why: letters float out to the family ----------------
+  const wOn=t>b.tDrop+0.1&&t<b.shT+0.1;
+  winGlow.style.opacity=wOn?0.45:0; winR.setAttribute("fill",wOn?"#FFF59D":"#FFD54F");
+  floatL.forEach((L,i)=>{const t0=b.tDrop+0.15+i*0.13, k=clamp((t-t0)/1.1); const on=t>t0&&t<b.shT+0.1;
+    L.style.opacity=on?(k<0.8?1:(1-k)/0.2):0; L.setAttribute("x",WX+WW/2+Math.cos(i*1.1)*(40+k*130)); L.setAttribute("y",WY+30-k*170+Math.sin(i*2)*20)});
+  hearts.forEach((h,i)=>{const t0=b.tDrop+0.5+i*0.2, k=fract((t-t0)*0.7); h.style.opacity=t>t0&&t<b.shT+0.1?Math.sin(k*Math.PI):0;
+    h.setAttribute("x",WX+WW/2+(i-1)*60); h.setAttribute("y",WY-20-k*90)});
+  // twist labels
+  twNow.style.opacity=t>b.tNow-0.05&&t<b.shK?1:0; twNow.setAttribute("transform",`translate(${PHX},${TWY+330}) scale(${Math.max(0.001,pop(t,b.tNow-0.05,0.35))}) translate(${-PHX},${-(TWY+330)})`);
+  twThen.style.opacity=t>b.tThen-0.05&&t<b.shK?1:0; twThen.setAttribute("transform",`translate(${TWX+270},${TWY+330}) scale(${Math.max(0.001,pop(t,b.tThen-0.05,0.35))}) translate(${-(TWX+270)},${-(TWY+330)})`);
+  chat.setAttribute("transform",`translate(0,${Math.sin(t*4)*6})`);
+  // sparkles around the envelope (react) and on the end card
+  sparks.forEach((s,i)=>{const life=((t*1.1+i/8)%1), a=i/8*Math.PI*2+t*0.6; const on=t>b.shK&&t<b.sh7;
+    s.setAttribute("x",bd.x+Math.cos(a)*(170+life*90)); s.setAttribute("y",bd.y+Math.sin(a)*(150+life*80)-life*30); s.style.opacity=on?(1-life):0});
+  // thought + "!"
+  const cdk=t-b.CD0, sec=Math.floor(cdk), fr=cdk-sec;
+  thought.style.opacity=t>b.CD0&&t<b.walk0?clamp(cdk/0.3)*clamp((b.walk0-t)/0.2):0;
+  thought.setAttribute("transform",`translate(${px-70},${PY-PS*540}) scale(${0.95+0.08*Math.sin(t*6)})`);
+  tq.setAttribute("transform",`rotate(${Math.sin(t*4)*10} -96 -140)`);
+  exclaim.style.opacity=t>b.tBan&&t<b.tBan+0.9?1:0; exclaim.setAttribute("x",px+10); exclaim.setAttribute("y",PY-PS*560-pi.hop); exclaim.setAttribute("transform",`rotate(-12 ${px+10} ${PY-PS*600})`);
+
+  // ---------------- stars ----------------
+  stars.forEach(s=>s.e.setAttribute("opacity",0.55+0.45*Math.sin(t*s.sp+s.ph)));
+
+  // ---------------- camera ----------------
+  const gopiClose=(z,sy)=>focus(z,GX,GY-GS*300,470,sy);
+  const wide=z=>focus(z,640,1290,540,1480);
+  const punch=(t0,a=0.12)=>t>t0?a*Math.exp(-(t-t0)*3.5)*clamp((t-t0)/0.08):0;
+  const KEYS=[
+    [0,0,t=>{const z=lerp(1.3,1.15,out(t/1.2))+punch(b.tTail)+punch(b.tWing)+0.01*Math.sin(t*2); return focus(z,GX,GY-GS*300,300,1240)}],
+    [S(1)-0.2,0.6,t=>gopiClose(1.5+0.02*(t-S(1)),1180)],
+    [b.sh2,0.7,t=>focus(0.92+0.01*(t-b.sh2),560,900,540,1040)],
+    [b.sh3,0.5,t=>{const x=birdRoadX(t); return focus(1.0+punch(b.rid[2],0.08)+punch(b.rid[5],0.1),x+60,roadY(x)-150,540,900)}],
+    [b.sh4,0.8,t=>focus(0.29+0.004*(t-b.sh4)+punch(b.tFar,0.02),2070,640,540,980)],
+    [b.sh5,0,t=>focus(1.05+0.012*(t-b.sh5),560,950,540,1000)],
+    [b.sh6,0.5,t=>wide(0.9+0.01*(t-b.sh6))],
+    [b.tNo-0.05,0.25,t=>focus(1.45+punch(b.tNo,0.06),PCX[0],PCY,540,820)],
+    [b.tPig-0.1,0.35,t=>focus(1.45,PCX[1],PCY,540,820)],
+    [E(7)-0.15,0.4,t=>wide(0.95)],
+    [b.sh8,0.5,t=>focus(1.15+0.01*(t-b.sh8),520,1150,540,1130)],
+    [b.tPost-0.1,0.4,t=>focus(1.3+0.01*(t-b.tPost),470,1100,540,1000)],
+    [b.sh9,0.45,t=>gopiClose(1.45+0.01*(t-b.sh9),1180)],
+    [b.sh10,0.4,t=>gopiClose(1.3+0.02*(t-b.sh10),1080)],
+    [b.CD0,0.45,t=>{const c=t-b.CD0, p=Math.exp(-fract(c)*6)*0.02; return focus(0.9+0.012*c+p,630,1090,540,1250)}],
+    [b.CD1,0,t=>focus(1.3+0.02*(t-b.CD1),330,1050,540,1150)],
+    [b.shR,0.35,t=>{const p=birdAt(t); return focus(1.3,p.x,p.y,540,760)}],
+    [b.tM-0.05,0.4,t=>wide(0.9+0.008*(t-b.tM))],
+    [b.why2-0.1,0.5,t=>{const p=birdAt(Math.min(t,b.tDrop)); return focus(1.0,lerp(640,p.x,0.85),lerp(900,p.y,0.6),540,lerp(900,800,0.5))}],
+    [b.tDrop-0.25,0.5,t=>focus(1.3+0.02*(t-b.tDrop),WX+WW/2,WY+WH/2-40,540,880)],
+    [b.shT,0,t=>focus(1.0+0.01*(t-b.shT)+punch(b.tThen,0.06),TWX,TWY,540,880)],
+    [b.shK,0,t=>focus(1.15+0.01*(t-b.shK),940,980,540,1000)],
+    [b.sh7,0.6,t=>focus(0.92+0.006*(t-b.sh7),645,1080,540,1150)],
+  ];
+  let ki=0; for(let i=0;i<KEYS.length;i++) if(t>=KEYS[i][0]) ki=i;
+  let cm=KEYS[ki][2](t);
+  if(ki>0&&KEYS[ki][1]>0){const k=ease((t-KEYS[ki][0])/KEYS[ki][1]); if(k<1){const p=KEYS[ki-1][2](t); cm={z:lerp(p.z,cm.z,k),fx:lerp(p.fx,cm.fx,k),fy:lerp(p.fy,cm.fy,k)}}}
+  let sx=0,sy=0;
+  const shake=(t0,d,a)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
+  shake(b.tNo,0.3,16); shake(b.CD1,0.35,18); shake(b.sh6+0.05,0.2,8); shake(b.tBan,0.3,12); shake(b.tPig,0.25,10); shake(0.3,0.25,8);
+  const camTr=`translate(${540+sx},${1000+sy}) scale(${cm.z}) translate(${-cm.fx},${-cm.fy})`;
+  cam.setAttribute("transform",camTr); camT.setAttribute("transform",camTr);
+
+  // ---------------- HTML overlays ----------------
+  const ti=document.getElementById("title"); ti.style.opacity=t<0.15?0:t<S(1)-0.3?1:clamp(1-(t-S(1)+0.3)/0.3); ti.style.transform=`scale(${Math.max(0.01,back((t-0.15)/0.5))}) rotate(${Math.sin(t*2.5)*1.2}deg)`;
+  // ANSWER AT THE END: neon flicker on, then a small badge until the countdown
+  const at_=document.getElementById("atend"), atk=back((t-S(1)+0.1)/0.4), atS=ease((t-E(1)-0.2)/0.4);
+  const fl=t-S(1)+0.1, flick=fl<0?0:fl<0.5?([1,0.15,1,0.3,1,0.6,1][Math.floor(fl/0.07)]??1):1;
+  at_.style.opacity=t>S(1)-0.1&&t<b.CD0?clamp((b.CD0-t)/0.25)*flick*(t>b.sh3&&t<b.sh5?0:1):0;
+  at_.style.transform=`translateY(${-88*atS}px) scale(${Math.max(0.01,atk)*lerp(1,0.55,atS)*(1+(atS<1?0.03*Math.sin(t*8):0))}) rotate(${lerp(-3,0,atS)}deg)`;
+  // riddle words + distance counter
+  const rid=document.getElementById("rid"); rid.style.opacity=t>b.sh3&&t<b.sh4+0.1?clamp(Math.min((t-b.sh3)/0.2,(b.sh4+0.1-t)/0.2)):0;
+  [...rid.querySelectorAll("b")].forEach((w,i)=>{const k=pop(t,b.rid[i]-0.05,0.35); w.style.opacity=t>b.rid[i]-0.05?1:0; w.style.transform=`scale(${Math.max(0.01,k)})`});
+  const dist=document.getElementById("dist"), dOn=t>b.fly0+0.1&&t<b.sh5;
+  dist.style.opacity=dOn?clamp(Math.min((t-b.fly0-0.1)/0.2,(b.sh5-t)/0.2)):0;
+  if(dOn){const x=birdRoadX(Math.min(t,b.fly1)), XS=[400,...MILE.map(m=>m[0])], NV=[0,...MILE.map(m=>m[1])]; let n=0;
+    for(let j=0;j<4;j++) if(x>=XS[j]) n=lerp(NV[j],NV[j+1],clamp((x-XS[j])/(XS[j+1]-XS[j])));
+    const nn=Math.round(n); document.getElementById("distN").innerHTML=`${nn}<em>ఆమడలు</em>`;
+    let bump=0; b.mile.forEach(tm=>{if(t>tm&&t<tm+0.25) bump=Math.max(bump,Math.sin((t-tm)/0.25*Math.PI))});
+    const fin=t>b.mile[3]; dist.style.transform=`scale(${1+0.14*bump+(fin?0.1*Math.exp(-(t-b.mile[3])*3):0)})`;
+    const sp=document.getElementById("distN"); sp.style.borderColor=fin?"#FFEA00":"#00E5FF"; sp.style.boxShadow=fin?"0 0 40px #FFEA00":"0 0 30px #00E5FF"; sp.style.color=fin?"#FFF59D":"#fff"}
+  const am=document.getElementById("amada"), amk=pop(t,b.tAm-0.05,0.4); am.style.opacity=t>b.tAm-0.05&&t<b.sh5?clamp((b.sh5-t)/0.2):0;
+  am.style.transform=`translateY(${(t>b.sh4?0:0)}px) scale(${Math.max(0.01,amk)})`;
+  // clue tags
+  const cl=document.getElementById("clue"), c1=t>b.c1-0.1&&t<b.sh6, c2=t>b.c2-0.1&&t<b.sh9; document.getElementById("clueT").textContent=c2?"CLUE 2 📮":"CLUE 1 💬";
+  const clk=c2?pop(t,b.c2-0.1,0.4):pop(t,b.c1-0.1,0.4); cl.style.opacity=c1?clamp((b.sh6-t)/0.2):c2?clamp((b.sh9-t)/0.2):0;
+  cl.style.transform=`scale(${Math.max(0.01,clk)*(1+0.025*Math.sin(t*6))})`;
+  // follow / subscribe buttons get tapped
+  const fol=document.getElementById("fol"), bF=document.getElementById("bF"), bS=document.getElementById("bS"), hand=document.getElementById("tapHand"), ring=document.getElementById("ring");
+  const fOn2=t>b.sh9&&t<b.sh10; fol.style.opacity=fOn2?clamp(Math.min((t-b.sh9)/0.2,(b.sh10-t)/0.2)):0;
+  fol.style.transform=`scale(${Math.max(0.01,back((t-b.sh9)/0.4))})`;
+  bF.textContent=t<b.tTapF?"+ FOLLOW":"FOLLOWING ✓"; bF.className="btn"+(t<b.tTapF?"":" done");
+  bS.textContent=t<b.tTapS?"▶ SUBSCRIBE":"SUBSCRIBED 🔔"; bS.className="btn"+(t<b.tTapS?"":" done");
+  const press=t0=>{const d=t-t0; return d>-0.08&&d<0.12?0.9:1};
+  bF.style.transform=`scale(${press(b.tTapF)*(t>b.tTapF&&t<b.tTapF+0.35?1+0.08*Math.sin((t-b.tTapF)/0.35*Math.PI):1)})`;
+  bS.style.transform=`scale(${press(b.tTapS)*(t>b.tTapS&&t<b.tTapS+0.35?1+0.08*Math.sin((t-b.tTapS)/0.35*Math.PI):1)})`;
+  const yF=360, yS=510;
+  let hxp=860,hyp=820; const mv=(a,c,k)=>[lerp(a[0],c[0],ease(k)),lerp(a[1],c[1],ease(k))];
+  if(t<b.tTapF){[hxp,hyp]=mv([860,820],[560,yF],(t-b.sh9-0.1)/Math.max(0.3,b.tTapF-b.sh9-0.25))}
+  else if(t<b.tTapS){[hxp,hyp]=mv([560,yF],[560,yS],(t-b.tTapF-0.25)/Math.max(0.3,b.tTapS-b.tTapF-0.4))}
+  else {[hxp,hyp]=mv([560,yS],[880,820],(t-b.tTapS-0.3)/0.4)}
+  const dip=Math.max(0,1-Math.abs(t-b.tTapF)/0.1)+Math.max(0,1-Math.abs(t-b.tTapS)/0.1);
+  hand.style.opacity=fOn2?clamp(Math.min((t-b.sh9-0.05)/0.15,(b.sh10-t)/0.15)):0;
+  hand.style.transform=`translate(${hxp-50}px,${hyp-8+dip*10}px) scale(${1-0.1*dip}) rotate(${-8+dip*6}deg)`;
+  const rT=t>=b.tTapS?b.tTapS:b.tTapF, rk2=(t-rT)/0.45; ring.style.opacity=fOn2&&rk2>0&&rk2<1?1-rk2:0;
+  ring.style.left="560px"; ring.style.top=(rT===b.tTapS?yS:yF)+"px"; ring.style.transform=`scale(${1+rk2*5})`;
+  // countdown overlay + comment bubbles
+  const clock=document.getElementById("clock"), dig=document.getElementById("digit"), cn=document.getElementById("cnow");
+  const cOn=t>=b.CD0&&t<b.CD1; const cIn=clamp(cdk/0.3)*clamp((TL.countdown-cdk)/0.25);
+  clock.style.opacity=cOn?cIn:0;
+  cn.style.opacity=cOn?cIn:0;
+  cn.style.transform=`scale(${Math.max(0.01,pop(t,b.CD0,0.35))*(1+0.05*Math.sin(t*Math.PI*4))})`;
+  if(cOn){const hnd=document.getElementById("hand"), tick=Math.min(1,fr/0.08);
+    hnd.setAttribute("transform",`rotate(${(sec+tick)*72})`);
+    document.getElementById("arc").setAttribute("stroke-dasharray",`${389.6*(1-cdk/TL.countdown)} 389.6`);
+    document.getElementById("clockBody").setAttribute("transform",`rotate(${Math.exp(-fr*7)*Math.sin(fr*60)*9}) scale(${1+Math.exp(-fr*8)*0.08})`);
+    const n=Math.max(1,5-sec); dig.textContent=n; dig.style.opacity=fr<0.82?1:clamp(1-(fr-0.82)/0.18);
+    dig.style.transform=`scale(${lerp(1.5,1,out(fr/0.22))})`; dig.style.color=n<=2?"#FF5252":"#F5B700";
+  } else dig.style.opacity=0;
+  CB.forEach((_,i)=>{const e=document.getElementById("cb"+i), k=pop(t,b.cb[i],0.35); e.style.opacity=t>b.cb[i]&&t<b.CD1?clamp((b.CD1-t)/0.2):0;
+    e.style.transform=`scale(${Math.max(0.01,k)}) translateY(${Math.sin(t*2+i)*4}px) rotate(${(i%2?3:-3)}deg)`});
+  vigR.style.opacity=cOn?clamp(cdk/1.5)*0.8:0;
+  streaks.forEach((ln,i)=>{const on=t>b.CD1&&t<b.CD1+0.4; const a=i/14*Math.PI*2, r0_=260+((t*900+i*37)%300);
+    ln.setAttribute("x1",540+Math.cos(a)*r0_);ln.setAttribute("y1",760+Math.sin(a)*r0_);ln.setAttribute("x2",540+Math.cos(a)*(r0_+180));ln.setAttribute("y2",760+Math.sin(a)*(r0_+180));ln.style.opacity=on?0.75:0});
+  conf.forEach((c,i)=>{const t0=b.tBan+0.05, k=t-t0; const on=k>0&&k<3.2; const x0=(i*97)%1080, vx=((i*53)%11-5)*14;
+    c.setAttribute("x",x0+vx*k+Math.sin(k*4+i)*30); c.setAttribute("y",-60+k*(420+(i%7)*60)-(i%5)*40); c.setAttribute("transform",`rotate(${k*200+i*30} ${x0+vx*k} ${-60+k*(420+(i%7)*60)})`); c.style.opacity=on?Math.min(1,(3.2-k)/0.6):0});
+  document.getElementById("flash").style.opacity=(t>b.CD1&&t<b.CD1+0.25?0.85*(1-(t-b.CD1)/0.25):0)+(t>b.tM+0.1&&t<b.tM+0.25?0.5*(1-(t-b.tM-0.1)/0.15):0);
+  // share animation: mini envelopes fly to three friends
+  const shOn=t>S(17)-0.1&&t<b.tFol+0.5;
+  shareG.style.opacity=shOn?clamp(Math.min((t-S(17)+0.1)/0.2,(b.tFol+0.5-t)/0.3)):0;
+  shareG.setAttribute("transform",`translate(${SHX},${SHY})`);
+  const sdip=Math.max(0,1-Math.abs(t-b.tShTap)/0.1);
+  shBtn.setAttribute("transform",`scale(${Math.max(0.01,back((t-S(17)+0.1)/0.35))*(1-0.1*sdip)})`);
+  const shk=(t-b.tShTap)/0.45; shRing.style.opacity=shk>0&&shk<1?1-shk:0; shRing.setAttribute("r",64+shk*70);
+  const hIn=ease((t-S(17)+0.1)/Math.max(0.2,b.tShTap-S(17)));
+  shHand.style.opacity=t<b.tShTap+0.4?1:clamp(1-(t-b.tShTap-0.4)/0.2);
+  shHand.setAttribute("transform",`translate(${lerp(240,24,hIn)},${lerp(200,0,hIn)+sdip*10}) rotate(-10)`);
+  FR.forEach(([x,y],i)=>{const t0=b.tShTap+0.15+i*0.18, k=clamp((t-t0)/0.5), fx_=x-SHX, fy_=y-SHY;
+    const cx=fx_*k, cy=fy_*k-Math.sin(k*Math.PI)*120;
+    minis[i].style.opacity=k>0&&k<1?1:0; minis[i].setAttribute("transform",`translate(${cx},${cy}) rotate(${Math.sin(k*Math.PI*2)*12})`);
+    trails[i].setAttribute("d",`M0 0 Q${fx_/2} ${fy_/2-120} ${cx} ${cy}`); trails[i].style.opacity=k>0?0.6:0;
+    const fk2=pop(t,S(17)+0.2+i*0.1,0.35); friends[i].g.style.opacity=fk2>0?1:0; friends[i].g.setAttribute("transform",`translate(${fx_},${fy_}) scale(${Math.max(0.001,fk2)})`);
+    const bk2=pop(t,t0+0.5,0.35); friends[i].br.style.opacity=bk2>0?1:0; friends[i].br.setAttribute("transform",`scale(${Math.max(0.001,bk2)*(1+0.08*Math.sin(t*9+i))})`)});
+  // answer banner, end card, ✅ sticker
+  const an=document.getElementById("ans");
+  an.style.transform=`scale(${Math.max(0.01,back((t-b.tBan+0.05)/0.4))})`;
+  an.style.opacity=t>b.tBan-0.05&&t<b.why2+0.3?clamp(Math.min((t-b.tBan+0.05)/0.15,(b.why2+0.3-t)/0.25)):0;
+  const en=document.getElementById("end"); en.style.opacity=t>b.sh7?clamp((t-b.sh7)/0.3):0; en.style.transform=`translateY(${(1-out((t-b.sh7)/0.5))*40}px)`;
+  const ec=document.getElementById("endC"); ec.style.opacity=t>b.tTick-0.1?1:0; ec.style.display=t>b.tTick-0.1?"inline-block":"none"; ec.style.transform=`scale(${Math.max(0.01,back((t-b.tTick+0.1)/0.35))})`;
+  const ef=document.getElementById("endF"); ef.style.opacity=t>b.tFol-0.1?1:0; ef.style.display=t>b.tFol-0.1?"block":"none"; ef.style.transform=`scale(${Math.max(0.01,back((t-b.tFol+0.1)/0.4))*(1+(t>b.tFol+0.5?0.03*Math.sin(t*6):0))})`;
+  const tc=document.getElementById("tick"), tck=back((t-b.tTick)/0.4); tc.style.opacity=t>b.tTick&&t>b.sh7?1:0;
+  tc.style.transform=`scale(${Math.max(0.01,lerp(2.2,1,clamp((t-b.tTick)/0.25)))*Math.max(0.01,tck)}) rotate(${lerp(-30,12,clamp((t-b.tTick)/0.3))+Math.sin(t*3)*3}deg)`;
+  // subtitles (the riddle line is written in the sky instead)
+  const sub=document.getElementById("sub"), L=curLine(t);
+  if(L&&L.i!==3){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+};
+</script>
+</body></html>
