@@ -15,7 +15,7 @@ if (args[0] === '--join') {
   const n = +args[1], list = path.join(__dirname, 'parts.txt');
   fs.writeFileSync(list, [...Array(n)].map((_, k) => `file '${path.join(__dirname, `part${k}.mp4`)}'`).join('\n'));
   const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-i', path.join(__dirname, 'mix.wav'),
-    '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', OUT], { stdio: 'inherit' });
+    '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', OUT], { stdio: 'inherit' });
   console.log(r.status === 0 ? 'wrote ' + OUT : 'join failed'); process.exit(r.status);
 }
 (async () => {
