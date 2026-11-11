@@ -8,6 +8,13 @@ You are the **Editor**.
   `ep.html` choreography to the post's `script.json`, render stills, fix layout, render the mp4 to
   `content/<post>/rendered/video.mp4`, keep the adapted files in `content/<post>/2d/`. Card reels
   (`python -m content_arena assemble`) are the fallback.
+- Art style (owner, 11 Nov 2026): set `SKIN` in `ep.html` to the style the Manager gives you (default from
+  `python -m content_arena plan`; neon/clay/paper/pixel/flat). Check stills in that style: text overlays readable,
+  characters clear. Neon renders slowly (~2.7 s/frame): start its render first, in the background.
+- Make the action interactive, not a static board: animated poll/A-B buttons that get "tapped", comment bubbles
+  popping up, the follow-tap, reactions (Pinky's surprise, Gopi's wink), camera punch-ins on the clue words.
+- Voices: `voices.py` tries ElevenLabs first, then Gemini batches, then Sarvam (automatic; say which was used).
+  Verify Gemini batch splits with Sarvam STT (each line's take must match its text) before rendering.
 - Comedy: `python -m content_arena fetch-clips content/<post>` (takes a video per shot, or an image which
   `assemble` animates with a slow camera move); if all shots are present,
   `python -m content_arena assemble content/<post>`. If clips are missing, report exactly which, and

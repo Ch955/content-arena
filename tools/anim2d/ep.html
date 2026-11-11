@@ -58,6 +58,8 @@ svg{display:block}
   <div class="f" id="endF">FOLLOW <span>@_REELRASAM</span> ·<br>SUBSCRIBE <span>@REEL_RASAM</span></div></div>
 <div class="flash" id="flash"></div>
 <div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style for this reel: flat | neon | clay | paper | pixel (skins.js)</script>
+<script src="skins.js"></script>
 <script>
 const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s");
 function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
@@ -77,6 +79,7 @@ const slate=el("radialGradient",{id:"slate",cx:.45,cy:.4,r:.8},defs);
 el("stop",{offset:"0","stop-color":"#3C8A55"},slate);el("stop",{offset:"1","stop-color":"#245A37"},slate);
 
 const cam=el("g",{});
+applySkin(cam, defs);   // wraps the world in this reel's art-style filter
 el("rect",{x:-800,y:-600,width:3400,height:2400,fill:"url(#sky)"},cam);
 el("circle",{cx:820,cy:520,r:95,fill:"#FFE082",opacity:.95},cam);
 el("circle",{cx:820,cy:520,r:150,fill:"#FFE082",opacity:.25},cam);

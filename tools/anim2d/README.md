@@ -13,3 +13,11 @@ The free tier allows only ~10 TTS requests a day per model, so `voices.py` voice
 8 lines per request as a two-voice conversation (`src/content_arena/scenevoice.py`) and cuts it back into lines
 at the pauses — about 2 requests per reel. Lines that can't be split are voiced one by one; if Gemini refuses
 (quota), they fall back to Sarvam automatically (`VOICE=sarvam` forces Sarvam). The soundtrack in `mix.py` is synthesized (no film music).
+
+Art styles (owner, 11 Nov 2026): set `const SKIN = "neon"` at the top of `ep.html` (or `?skin=` in the URL) —
+`flat | neon | clay | paper | pixel` (`skins.js`, an SVG filter on the drawn world; text overlays stay crisp).
+`python -m content_arena plan` prints the default style per reel. Render cost per frame: flat ~0.1 s, pixel ~0.5 s,
+paper/clay ~0.6 s, neon ~2.7 s (a 50 s neon reel renders in ~70 min — start it early, run reels in parallel).
+
+Voices order (11 Nov 2026): ElevenLabs (`content_arena.elevenvoice`, while the key has credits) → Gemini batches →
+Sarvam. `VOICE=gemini` skips ElevenLabs.

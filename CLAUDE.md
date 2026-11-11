@@ -36,7 +36,8 @@ premium life lessons — **2 posts a day, every post interactive** (a question t
 
 **Owner's rule (9 Nov 2026): every answer is revealed in the same reel — never held for a later reel.**
 
-**Format (owner-approved 9 Nov 2026): 2D animated reels** made with `tools/anim2d/` (our drawn cast — Gopi hosts,
+**Format (owner-approved 9 Nov 2026): 2D animated reels** made with `tools/anim2d/`; **from 12 Nov each reel gets its own art
+style** (neon / clay / paper / pixel / flat via `tools/anim2d/skins.js`, default rotation in `plan`, the two reels of a day differ) (our drawn cast — Gopi hosts,
 Pinky guesses — lip-synced Gemini voices, synthesized music/SFX, Telugu subtitles). Card reels (`shots.json` with
 `card`s → `python -m content_arena assemble`) are the quick fallback. No owner uploads are needed.
 
@@ -72,7 +73,9 @@ questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్ప�
 28 Oct 2026): **Gemini TTS** — since 9 Nov via the **Gemini API / AI Studio key** (network secret for
 `generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
 `assemble.py`); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
-$300 trial credit). Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
+$300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up; key = network secret
+for `api.elevenlabs.io`, header `xi-api-key`) while the key has credits, then Gemini, then Sarvam — automatic
+(`src/content_arena/elevenvoice.py`). Owner's choice; note the ElevenLabs free plan is non-commercial. Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
 direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.
 
 ## Pipeline and status flow

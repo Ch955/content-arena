@@ -3,7 +3,9 @@ Gopi=Puck + Pinky=Leda. Writes vo/L*.wav and timeline.json (line timings + 30fps
 The whole reel is voiced in a few requests (content_arena.scenevoice: up to 8 lines per call as a two-voice
 conversation, cut back into lines at the pauses) because the free tier allows only ~10 TTS requests a day.
 Lines it can't split cleanly are voiced one by one; if Gemini refuses, those lines fall back to Sarvam.
-Re-take lines with `python voices.py 3 4`; `VOICE=sarvam python voices.py` voices everything with Sarvam."""
+Re-take lines with `python voices.py 3 4`; `VOICE=sarvam python voices.py` voices everything with Sarvam.
+From 11 Nov 2026 ElevenLabs (eleven_v3, Gopi=Liam, Pinky=Jessica) goes first while the key has credits
+(content_arena.elevenvoice); `VOICE=gemini` skips it."""
 import base64, json, os, subprocess, sys, wave
 import numpy as np, requests
 
@@ -104,9 +106,21 @@ def tts_sarvam(text, who):
 only = {int(a) for a in sys.argv[1:]}   # re-take only these line numbers (keeps the other takes)
 os.makedirs("vo", exist_ok=True)
 todo = [i for i in range(len(LINES)) if not os.path.exists(f"vo/L{i}_raw.wav") or i in only]
-sarvam_lines = set()
-if todo and os.environ.get("VOICE") != "sarvam":   # 1) whole-reel batches (2–3 requests per reel)
-    sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
+sarvam_lines, eleven_lines = set(), set()
+ELEVEN_PITCH = {"pinky": 1.15}   # Jessica pitched up for a 6-year-old; others as they are
+sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
+if todo and os.environ.get("VOICE") not in ("gemini", "sarvam"):   # 0) ElevenLabs while the key has credits
+    from content_arena import elevenvoice
+    for i in list(todo):
+        who, text, gap, act, *say = LINES[i]
+        try:
+            elevenvoice.voice_line(say[0] if say else text, who, act, f"vo/L{i}_raw.wav")
+        except elevenvoice.ElevenUnavailable as e:
+            print(f"  ElevenLabs unavailable from line {i} ({e}); the rest falls back to Gemini", flush=True); break
+        eleven_lines.add(i); todo.remove(i)
+        open(f"vo/L{i}_model.txt", "w").write("elevenlabs:" + elevenvoice.MODEL)
+    if eleven_lines: print("  ElevenLabs voiced lines:", sorted(eleven_lines), flush=True)
+if todo and os.environ.get("VOICE") != "sarvam":   # 1) Gemini whole-reel batches (2–3 requests per reel)
     from content_arena import scenevoice
     batch = [{"who": LINES[i][0], "text": LINES[i][1], "act": LINES[i][3], "say": (LINES[i][4] if len(LINES[i]) > 4 else None)}
              for i in todo]
@@ -121,6 +135,8 @@ t, out = 0.0, []
 for i, (who, text, gap, act, *say) in enumerate(LINES):
     spk, pitch = CAST[who]
     raw, dst = f"vo/L{i}_raw.wav", f"vo/L{i}.wav"
+    if i in eleven_lines or (i not in todo and open(f"vo/L{i}_model.txt").read().startswith("elevenlabs") if os.path.exists(f"vo/L{i}_model.txt") else False):
+        pitch = ELEVEN_PITCH.get(who, 1.0)
     if i in todo:
         parts = [text]
         if i in sarvam_lines:

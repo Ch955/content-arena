@@ -438,3 +438,29 @@ class SceneVoiceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StyleRotationTests(unittest.TestCase):
+    def test_two_reels_a_day_never_share_a_style(self):
+        from datetime import date, timedelta
+        from content_arena import schedule
+        for k in range(30):
+            d = schedule.STYLE_START + timedelta(days=k)
+            self.assertNotEqual(schedule.style_for(d, 0), schedule.style_for(d, 1))
+        self.assertEqual(schedule.style_for(date(2026, 11, 12), 0), "neon")
+
+
+class ElevenVoiceTests(unittest.TestCase):
+    def test_tag_from_acting_note(self):
+        from content_arena import elevenvoice
+        self.assertEqual(elevenvoice.tag_for("urgent quiz-host energy, fast"), "[urgent quiz-host energy] ")
+        self.assertEqual(elevenvoice.tag_for(None), "")
+        self.assertEqual(elevenvoice.clean("మీ answer ✅…"), "మీ answer ...")
+
+    def test_quota_error_means_fallback(self):
+        from unittest import mock
+        from content_arena import elevenvoice
+        resp = mock.Mock(status_code=401, text='{"detail":{"code":"quota_exceeded"}}')
+        with mock.patch.object(elevenvoice.requests, "post", return_value=resp), tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(elevenvoice.ElevenUnavailable):
+                elevenvoice.voice_line("Hey!", "gopi", "excited", Path(d) / "a.wav")

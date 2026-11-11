@@ -46,5 +46,16 @@ def pillars_for(day: date, anchor: date | None = None) -> list[str]:
     return ["comedy", second]
 
 
+# Owner, 11 Nov 2026: a different art style per reel (tools/anim2d/skins.js), not only flat 2D. The two reels of
+# a day never share a style. The Editor may swap to a style that suits the script better.
+STYLES = ["neon", "clay", "paper", "pixel", "flat"]
+STYLE_START = date(2026, 11, 12)
+
+
+def style_for(day: date, slot: int) -> str:
+    """Default art style for slot 0 (riddle) or 1 (story/lesson) on `day`."""
+    return STYLES[((day - STYLE_START).days * 2 + slot) % len(STYLES)]
+
+
 def plan(start: date, days: int = 7, anchor: date | None = None) -> list[tuple[date, list[str]]]:
     return [(start + timedelta(days=i), pillars_for(start + timedelta(days=i), anchor)) for i in range(days)]

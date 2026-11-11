@@ -22,7 +22,9 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
 2. Pick strong material: riddles that make people stop (lateral-thinking story-riddles, fair classic podupu kathalu,
    our own originals) and stories with a hook in the first line. **The answer is always revealed in the same reel.**
 3. Researcher (sources for any story/quote) → scriptwriter (script with the 7 interaction beats in CLAUDE.md,
-   acting notes per line) → editor (2D animation with `tools/anim2d/`, Gemini voices; card reel only as a fallback)
+   acting notes per line) → editor (2D animation with `tools/anim2d/` in the day's art style from `plan` —
+   neon/clay/paper/pixel/flat, the two reels differ; voices ElevenLabs → Gemini → Sarvam automatically; make the
+   on-screen action interactive: tap/poll buttons, comment bubbles, countdown, reactions; card reel only as a fallback)
    → quality-checker → `python -m content_arena sync content/<post>` → rows `rendered`.
 4. Commit + push the new `content/` folders (never `rendered/`, `clips/` or `work/`).
 5. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 7 AM (they post at ~7:30 AM and ~6:30 PM)" (+ anything to check).
@@ -35,4 +37,4 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
 3. Push-notify only if something needs the owner (missing approval, a problem).
 
 ## Never
-Approve rows, run `publish --live`, touch tokens, or spend money beyond the approved voices (Gemini TTS, Sarvam fallback) without the owner.
+Approve rows, run `publish --live`, touch tokens, or spend money beyond the approved voices (ElevenLabs credits, Gemini TTS, Sarvam fallback) without the owner.

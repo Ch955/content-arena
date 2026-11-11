@@ -69,7 +69,9 @@ def main(argv: list[str] | None = None) -> int:
         from . import schedule
         start = date.fromisoformat(args.start) if args.start else datetime.now(ZoneInfo("Asia/Kolkata")).date()
         for day, pillars in schedule.plan(start, args.days):
-            print(f"{day:%a %d %b}: {' + '.join(pillars)}")
+            styles = [schedule.style_for(day, k) for k in range(len(pillars))] if day >= schedule.STYLE_START else []
+            looks = f"   (styles: {' / '.join(styles)})" if styles else ""
+            print(f"{day:%a %d %b}: {' + '.join(pillars)}{looks}")
         return 0
 
     if args.cmd == "youtube-auth":
