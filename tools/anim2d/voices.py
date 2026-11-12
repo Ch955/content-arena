@@ -114,6 +114,8 @@ ELEVEN_PITCH = {"pinky": 1.15}   # Jessica pitched up for a 6-year-old; others a
 # Telugu voice per character by temperament (owner, 12 Nov 2026): aggressive/fearful -> Telangana, smooth/emotional/
 # cool -> Andhra. e.g. PROFILE = {"inspector": elevenvoice.profile_for("male", "middle", "aggressive")}
 PROFILE = {}
+# Speed-up per engine (owner: 9 Nov 5% faster; 12 Nov "Gemini should be 10% more faster" -> Gemini 1.15)
+SPEED = {"gemini": 1.15, "eleven": 1.05, "sarvam": 1.05}
 sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
 if todo and os.environ.get("VOICE") not in ("gemini", "sarvam"):   # 0) ElevenLabs while the key has credits
     from content_arena import elevenvoice
@@ -167,7 +169,10 @@ for i, (who, text, gap, act, *say) in enumerate(LINES):
             with wave.open(raw, "wb") as w: w.setnchannels(1); w.setsampwidth(2); w.setframerate(44100); w.writeframes(pcm.tobytes())
     # trim leading/trailing silence, then pitch the kid voice up (same length)
     af = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
-    af += f",asetrate=44100*{pitch},aresample=44100,atempo={1.05/pitch:.4f}"  # owner: 5% faster
+    mfile = f"vo/L{i}_model.txt"
+    engine = ("eleven" if i in eleven_lines or (os.path.exists(mfile) and open(mfile).read().startswith("elevenlabs"))
+              else "sarvam" if i in sarvam_lines else "gemini")
+    af += f",asetrate=44100*{pitch},aresample=44100,atempo={SPEED[engine]/pitch:.4f}"
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-af", af, "-ac", "1", "-ar", "44100", dst], check=True)
     with wave.open(dst) as w:
         a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float) / 32768

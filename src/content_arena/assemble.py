@@ -26,7 +26,7 @@ SR = 44100
 W, H = 1080, 1920
 TTS_MODEL = "gemini-2.5-flash-preview-tts"   # Gemini API (AI Studio key, free tier) — Cloud billing is off
 CHECK_MODEL = "gemini-2.5-flash"   # listens to each take and confirms it says only the line
-SPEED = 1.05                             # owner: Gemini's acting is ~5% too slow
+SPEED = 1.15                             # owner: Gemini 5% faster (9 Nov), then 10% more (12 Nov)
 # character -> (Gemini voice, pitch factor, persona). Kids are pitched up.
 CAST = {
     "gopi": ("Puck", 1.0, "Gopi, a lively young Telugu storyteller talking straight to the viewer, playful and punchy"),

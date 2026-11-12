@@ -103,8 +103,8 @@ hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), 
 questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్పగలరా?"), reactions and countdowns
 ("Number one —"), and a direct CTA ("follow కొట్టండి, bell నొక్కండి!"). Voices (owner-approved
 28 Oct 2026): **Gemini TTS** — since 9 Nov via the **Gemini API / AI Studio key** (network secret for
-`generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
-`assemble.py`); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
+`generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 15% (owner 12 Nov: 10% more than the earlier 5%; `SPEED` in
+`assemble.py` and `tools/anim2d/voices.py`; ElevenLabs/Sarvam stay at +5%); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
 $300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up, Nikhil=Kaka "natural Telangana
 Telugu" and Ananya=Vandana — library voices, need a paid ElevenLabs plan, else built-in Liam/Jessica automatically; key = network secret
 for `api.elevenlabs.io`, header `xi-api-key`) while the key has credits, then Gemini, then Sarvam — automatic
