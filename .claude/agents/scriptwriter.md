@@ -54,3 +54,5 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
     characters per story (give each `who` a lowercase name + age/persona in brief.md so the Editor can draw and
     voice them; voices: young men → gopi/chinna/pandu voices, women → amma voice, elders → ammamma/thatha).
   - Pitch 3 premise options in brief.md, pick the strongest by the "would I send this to a friend?" test.
+  - Freshness (owner, 12 Nov 2026): the premise/facts must be new to ~70% of viewers — never a story everyone
+    already knows (Koh-i-Noor, Taj Mahal, famous Tenali tales). Surprising local angles first.

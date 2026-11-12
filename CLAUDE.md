@@ -45,6 +45,10 @@ Cast for adult stories: Gopi (host/narrator, late 20s, talks to the viewer) plus
 (e.g. Ravi 29 software engineer, Swathi 27, a manager, parents/in-laws); Pinky only as a cameo. Retired pillars
 (podupu, book-story, life-lesson, 9–12 Nov) keep their rules for festival or special reels.
 
+**Freshness rule (owner, 12 Nov 2026):** pick stories and facts that at least ~70% of the audience does *not* already
+know — no "everyone knows this" topics (Koh-i-Noor, Taj Mahal, Tenali Rama's famous tales, viral WhatsApp facts).
+Prefer surprising local angles ("this happened in Secunderabad"). If the premise wouldn't surprise you, pick another.
+
 **Micro-doc and dilemma facts:** every fact, number, date and name in a micro-doc needs a source in `Facts to verify`
 (rule 2); no true crime or gore (family-friendly); real people only with sourced facts, never invented quotes.
 Dilemmas are fiction — say so in the caption when a story could look real ("a fictional situation").

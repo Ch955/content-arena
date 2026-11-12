@@ -10,3 +10,6 @@ Input: a pillar and date. Output (return as your final message): 3 ranked topic 
 - anything unverifiable marked `UNVERIFIED`; arithmetic shown and checked.
 Signals: `python -m content_arena trends`, web search. Skip rumours, gossip, personal lives, politics.
 Don't repeat topics used in `content/` in the last 30 days.
+
+- Micro-docs (owner, 12 Nov 2026): look for stories ~70% of Telugu viewers don't know (surprising, true, local angles
+  like "a Nobel discovery made in Secunderabad"); skip famous, over-told topics. Every fact needs a reliable source.
