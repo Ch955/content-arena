@@ -1,0 +1,119 @@
+{
+ "lines": [
+  {
+   "who": "gopi",
+   "text": "20 August 1897, Begumpet. 40 ఏళ్ల army doctor దగ్గర… మిగిలింది రెండే దోమలు.",
+   "say": "[whispers] August twenty, eighteen ninety-seven… Begumpet. [dramatic pause] Forty ఏళ్ల army doctor దగ్గర… మిగిలింది రెండే దోమలు.",
+   "act": "a tense, low storyteller's whisper, like opening a secret case file; slow on the last three words",
+   "beat": "hook"
+  },
+  {
+   "who": "gopi",
+   "text": "ఇది నిజంగా జరిగింది… మన Hyderabad లో. ఆ building ఇప్పటికీ ఉంది — ఏంటో చివర్లో!",
+   "say": "[excited] ఇది నిజంగా జరిగింది… మన Hyderabad లో! [mischievously] ఆ building ఇప్పటికీ ఉంది… ఏంటో చివర్లో!",
+   "act": "bright and proud of the city, then a sly tease to the viewer",
+   "beat": "hold"
+  },
+  {
+   "who": "gopi",
+   "text": "ఆయన Ronald Ross. Writer అవ్వాలనుకున్నారు… నాన్న medicine లో పెట్టారు. Relatable కదా?",
+   "say": "[warmly] ఆయన Ronald Ross. Writer అవ్వాలనుకున్నారు… [laughs] నాన్న medicine లో పెట్టారు. Relatable కదా?",
+   "act": "warm and conversational, a knowing laugh shared with the viewer on the father part",
+   "beat": "context"
+  },
+  {
+   "who": "gopi",
+   "text": "నాలుగు రోజుల ముందు… ఆ దోమలు ఒక malaria patient రక్తం తాగాయి.",
+   "say": "[whispers] నాలుగు రోజుల ముందు… ఆ దోమలు ఒక malaria patient రక్తం… తాగాయి.",
+   "act": "quiet, building suspense, a small pause before the last word",
+   "beat": "clue"
+  },
+  {
+   "who": "gopi",
+   "text": "రెండిట్లో ఒకదాన్ని open చేశారు… microscope లో, కడుపు గోడ మీద — malaria parasite!",
+   "say": "[whispers] రెండిట్లో ఒకదాన్ని open చేశారు… microscope లో… [gasps] కడుపు గోడ మీద — [excited] malaria parasite!",
+   "act": "a hushed lean-in that bursts into a thrilled discovery on the last two words",
+   "beat": "clue"
+  },
+  {
+   "who": "gopi",
+   "text": "వెంటనే లోపలి writer బయటికొచ్చాడు… malaria ని 'million-murdering Death' అని poem రాశారు.",
+   "say": "[warmly] వెంటనే… లోపలి writer బయటికొచ్చాడు. [dramatic pause] Malaria ని… 'million-murdering Death' అని poem రాశారు.",
+   "act": "admiring and a little poetic, slowing right down for the quoted English phrase",
+   "beat": "clue"
+  },
+  {
+   "who": "gopi",
+   "text": "1898 లో Calcutta లో పక్షులతో proof పూర్తి… 1902 లో — Nobel Prize!",
+   "say": "Eighteen ninety-eight… Calcutta లో పక్షులతో proof పూర్తి. [excited] Nineteen oh-two లో — Nobel Prize!",
+   "act": "brisk montage rhythm, then a triumphant lift on Nobel",
+   "beat": "clue"
+  },
+  {
+   "who": "gopi",
+   "text": "Twist ఏంటంటే… Ross British, కానీ పుట్టింది India లో — Almora లో.",
+   "say": "[mischievously] Twist ఏంటంటే… Ross British. [dramatic pause] కానీ పుట్టింది India లో — Almora లో.",
+   "act": "playful set-up, then a clear, deliberate reveal",
+   "beat": "twist"
+  },
+  {
+   "who": "gopi",
+   "text": "అంటే India లో పుట్టిన first Nobel winner… Tagore కంటే 11 years ముందు!",
+   "say": "అంటే India లో పుట్టిన… first Nobel winner! [excited] Tagore కంటే… eleven years ముందు!",
+   "act": "an amazed fact-drop, stressing 'eleven'",
+   "beat": "twist"
+  },
+  {
+   "who": "gopi",
+   "text": "ఇలాంటి మన ఊరి true stories కావాలంటే… follow చేయండి, YouTube లో subscribe!",
+   "say": "[warmly] ఇలాంటి మన ఊరి true stories కావాలంటే… follow చేయండి, YouTube లో subscribe!",
+   "act": "a quick friendly aside, light and fast",
+   "beat": "follow"
+  },
+  {
+   "who": "gopi",
+   "text": "Ross కోరిక: ఈ రోజు ప్రతి ఏడాది గుర్తుండాలి. ప్రపంచం Aug 20 ని ఏమంటుంది? Comment చేయండి!",
+   "say": "Ross కోరిక… ఈ రోజు ప్రతి ఏడాది గుర్తుండాలి. [dramatic pause] ప్రపంచం August twenty ని ఏమంటుంది? [excited] Answer ముందే comment చేయండి!",
+   "act": "a slow, intriguing quiz question, then urgent quiz-host energy before a 5-second countdown",
+   "beat": "quiz-countdown"
+  },
+  {
+   "who": "gopi",
+   "text": "World Mosquito Day! 🦟 మీ answer correct ఆ? Comment లో ✅ పెట్టండి!",
+   "say": "[excited] World Mosquito Day! [laughs] మీ answer correct ఆ? Comment లో tick పెట్టండి!",
+   "act": "a big celebratory reveal, then a cheeky check-in with the viewer",
+   "beat": "reveal"
+  },
+  {
+   "who": "gopi",
+   "text": "ఆ building ఇప్పటికీ Begumpet లోనే… Osmania University 'Sir Ronald Ross Institute of Parasitology'!",
+   "say": "[warmly] ఆ building… ఇప్పటికీ Begumpet లోనే! [excited] Osmania University 'Sir Ronald Ross Institute of Parasitology'!",
+   "act": "proud and local, the final answer to the opening tease, clear on the institute name",
+   "beat": "reveal"
+  },
+  {
+   "who": "gopi",
+   "text": "ఈ fact మీ Hyderabad friends కి పంపండి… follow చేయండి. ఇంకోసారి చూడండి — ఏ దోమ history రాసిందో!",
+   "say": "ఈ fact మీ Hyderabad friends కి పంపండి… follow చేయండి. [mischievously] ఇంకోసారి చూడండి… [whispers] ఏ దోమ history రాసిందో!",
+   "act": "friendly sign-off, dropping to a teasing whisper that loops back to the start",
+   "beat": "share-close-loop"
+  }
+ ],
+ "visual_plan": [
+  "style: PIXEL skin for the reel (retro, chunky pixels, a 'HISTORY FILE' feel: sepia-green CRT palette, scanlines, a file-folder frame 'CASE FILE #1897' in a corner). setSkin('paper') for the 1897 lab scenes (L1, L4–L6: warm aged-paper sketchbook look, lamp light), back to pixel from L7. Ross = a generic cartoon Victorian army doctor (khaki tunic, pith helmet on the desk, thick moustache, round spectacles) — no likeness to real photos. Ross never speaks; Gopi narrates every line (small corner cut-out). No real photos, no logos, no university crest.",
+  "L1 hook (0 s, open on the action, paper skin): night, a lamp-lit lab bench in a small colonial hospital room; Ross leans over a brass microscope. TWO small glass tubes with a mosquito each sit in a wooden rack — rewatch clue: the LEFT tube has a tiny faint glow (that is the one he opens). Date stamp thumps on: '20 AUG 1897'. Title 'ఇది నిజంగా జరిగింది 📜' appears a beat later (~1.5 s).",
+  "L2 hold (pixel): zoom out to a pixel map of Hyderabad–Secunderabad; a red map pin drops on 'BEGUMPET' with a bounce; a pixel building silhouette under a '?' — tag 'ANSWER AT THE END 👀' stamps on.",
+  "L3 context (pixel): split frame — young Ross at a desk with a quill and a stack of 'NOVEL' pages on the left; a father figure's pointing hand (no face) slides a 'MEDICINE' book over them on the right; a pixel 'relatable 😅' sticker pops.",
+  "L4 clue (paper): a small calendar ticks back 16 → 20 AUG; '4 DAYS' counter; the two tubes in the rack, a red-drop icon above them (no blood shown, no needle, no patient drawn — just a bed silhouette in soft focus).",
+  "L5 clue (paper): microscope zoom — circular eyepiece view into a stylised mosquito stomach (soft pastel shapes, NOT gross); small round cells on the 'stomach wall' start to GLOW gold one by one; label 'malaria parasite' with a pixel arrow; a sparkle + discovery SFX.",
+  "L6 clue (paper → typewriter card): a typewriter clacks out a card: '\"O million-murdering Death\" — Ronald Ross, 1897' (only this short attributed line; no other poem text). Small subtitle: 'he wrote a poem that night'.",
+  "L7 clue (setSkin('pixel')): quick pixel montage — a train from 'SECUNDERABAD' to 'CALCUTTA 1898', pixel sparrows in a cage with '✔ PROOF'; then a gold NOBEL medal spins into frame with '1902 · Physiology or Medicine' (our own drawn medal, no real medal design or logo).",
+  "L8 twist (pixel): a passport-style ID card slides in: 'RONALD ROSS · British · Born: Almora, India · 13 May 1857'; a pixel pin pops on Almora on a small India map.",
+  "L9 twist (pixel): timeline bar: '1902 — Ross (British, born in India)' → '1913 — Tagore (first Indian laureate)'; a big card '11 YEARS BEFORE TAGORE' slams in; a tiny '+11' counter animates along the bar.",
+  "L10 follow (pixel): animated FOLLOW button pressed by a pixel finger (8-bit click + pop SFX), then a SUBSCRIBE bell wiggles.",
+  "L11 quiz-countdown: a pixel calendar flips to 'AUG 20' with '❓ ____ DAY'; big text 'COMMENT NOW 💬' + 5 s countdown 5-4-3-2-1 (no voice during the 5 s, 8-bit tick SFX); pixel comment bubbles float up: 'Malaria Day?', 'Doctors Day?', 'Science Day?', 'Mosquito Day 🦟', '🤔'.",
+  "L12 reveal: the blank fills in letter by letter: 'WORLD MOSQUITO DAY 🦟'; confetti pixels; a big '✅' bubble pops.",
+  "L13 reveal (pixel): back to the Begumpet map pin; the '?' building resolves into a stylised pixel colonial building (arched verandah, sloped roof — our own drawing, no photo); sign-board text: 'Sir Ronald Ross Institute of Parasitology · Osmania University'; small card '1897 → 2026 = 129 years'.",
+  "L14 share-close-loop: share-arrow animation flying to a 'Hyderabad friends 👥' chat; end card 'FOLLOW @_reelrasam · SUBSCRIBE @reel_rasam · రేపు ఇంకో true story'; on the whisper the frame cuts back to the two tubes from L1, the left one glowing — loop to frame 1."
+ ]
+}
