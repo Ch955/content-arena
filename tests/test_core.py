@@ -518,8 +518,16 @@ class LeadCastVoiceTests(unittest.TestCase):
              mock.patch.object(elevenvoice.subprocess, "run"), tempfile.TemporaryDirectory() as d:
             elevenvoice.voice_line("ఏంది రా?", "nikhil", "calm", Path(d) / "a.wav")
         urls = [c.args[0] for c in post.call_args_list]
-        self.assertIn(elevenvoice.VOICES["nikhil"], urls[0])
+        self.assertIn(elevenvoice.VOICE_BANK["andhra-male-young"], urls[0])   # Nikhil: cool -> Andhra
         self.assertIn(elevenvoice.FALLBACK["nikhil"], urls[1])
+
+    def test_casting_by_temperament(self):
+        from content_arena import elevenvoice as e
+        self.assertEqual(e.profile_for("male", "young", "aggressive"), "telangana-male-young")
+        self.assertEqual(e.profile_for("female", "young", "fearful"), "telangana-female-young")
+        self.assertEqual(e.profile_for("female", "middle", "emotional"), "andhra-female-middle")
+        self.assertEqual(e.profile_for("male", "young", "cool"), "andhra-male-young")
+        self.assertEqual(e.profile_for("female", "middle", "angry"), "telangana-female-young")  # region beats age
 
 
 class SeriesWeekTests(unittest.TestCase):

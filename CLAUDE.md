@@ -44,7 +44,10 @@ end with a **loop** line that sends people back to the start when it fits.
 **Recurring leads (owner, 12 Nov 2026): Nikhil (28, Hyderabad software engineer, thoughtful, a little introverted)
 and Ananya (27, his close friend, confident, curious, empathetic)** star in the what-if, moral-dilemma, modern-dilemma
 and series reels — same look in every reel (Nikhil: charcoal shirt, short hair, light stubble; Ananya: teal kurta,
-shoulder-length hair), our own drawings. They speak **natural Telangana Telugu** (owner reviews the dialect).
+shoulder-length hair), our own drawings. **Voices by temperament (owner, 12 Nov 2026):** aggressive and fearful characters get **Telangana Telugu** voices;
+smooth, emotional and cool characters get **Andhra (standard coastal) Telugu** voices — ElevenLabs library voices
+(`VOICE_BANK`/`profile_for` in `elevenvoice.py`; Nikhil = cool → Andhra, Ananya = emotional → Andhra by default). One
+voice per character per reel; the dialect of the *lines* follows the voice (owner reviews it).
 Gopi stays the narrator/host (micro-docs, festivals); Pinky only as a cameo; parents/colleagues made per story.
 **Series (owner, 12 Nov 2026):** a longer story can run as a 6-reel series (Mon–Sat, 18:30; `SERIES_WEEKS` in
 `schedule.py`; first one 16–21 Nov), under a series name inside Reel Rasam (the channel name stays). Every episode

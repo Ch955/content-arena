@@ -28,3 +28,5 @@ You are the **Editor**.
   every reel (reuse the previous reel's makeChar options; first time: save them in tools/anim2d/cast.md).
 - Voices: "nikhil"/"ananya" use ElevenLabs Telangana library voices (paid plan) and fall back to built-in voices
   automatically on the free plan — say which was used.
+- Voices by temperament: fill `PROFILE` in voices.py from the brief's cast list with
+  `elevenvoice.profile_for(gender, age, temper)` (aggressive/fearful → Telangana voices, others → Andhra).

@@ -111,13 +111,16 @@ os.makedirs("vo", exist_ok=True)
 todo = [i for i in range(len(LINES)) if not os.path.exists(f"vo/L{i}_raw.wav") or i in only]
 sarvam_lines, eleven_lines = set(), set()
 ELEVEN_PITCH = {"pinky": 1.15}   # Jessica pitched up for a 6-year-old; others as they are
+# Telugu voice per character by temperament (owner, 12 Nov 2026): aggressive/fearful -> Telangana, smooth/emotional/
+# cool -> Andhra. e.g. PROFILE = {"inspector": elevenvoice.profile_for("male", "middle", "aggressive")}
+PROFILE = {}
 sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
 if todo and os.environ.get("VOICE") not in ("gemini", "sarvam"):   # 0) ElevenLabs while the key has credits
     from content_arena import elevenvoice
     for i in list(todo):
         who, text, gap, act, *say = LINES[i]
         try:
-            elevenvoice.voice_line(say[0] if say else text, who, act, f"vo/L{i}_raw.wav")
+            elevenvoice.voice_line(say[0] if say else text, who, act, f"vo/L{i}_raw.wav", profile=PROFILE.get(who))
         except elevenvoice.ElevenUnavailable as e:
             print(f"  ElevenLabs unavailable from line {i} ({e}); the rest falls back to Gemini", flush=True); break
         eleven_lines.add(i); todo.remove(i)

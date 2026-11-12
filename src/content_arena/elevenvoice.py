@@ -39,7 +39,34 @@ VOICES = {  # built-in voices (no Voices permission needed)
     "nikhil": "9ebvxK9znS3l7PfpMK9l",  # Kaka — "natural Telangana Telugu pronunciation", warm young male
     "ananya": "eh5YJlyB5bmWfcmcEsLN",  # Vandana — young, warm, relatable Telugu conversation
 }
-FALLBACK = {"nikhil": "TX3LPaxmHKxFdv7VOQHJ", "ananya": "cgSgspJ2msm6clMCkdW9"}  # Liam / Jessica
+# Casting by temperament (owner, 12 Nov 2026): aggressive / fearful characters get Telangana Telugu voices; smooth,
+# emotional and cool characters get Andhra (standard coastal) Telugu voices. A character keeps one voice per reel.
+# Only "Kaka" is labelled Telangana in the library; the other Telangana picks are the closest intense voices (owner
+# confirms by ear). All are library voices: paid ElevenLabs plan, else the built-in fallback by gender.
+VOICE_BANK = {
+    "telangana-male-young": "9ebvxK9znS3l7PfpMK9l",    # Kaka — natural Telangana pronunciation
+    "telangana-male-middle": "f4UZfBDD7d4QR1DcXAMf",   # Sai Datta — dramatic, intense, deep
+    "telangana-female-young": "oyjIr5XAhIyRjfNq6spl",  # Chaitra G — expressive & lively (closest; not labelled)
+    "andhra-male-young": "gN6WMEkeqrXso0vK32BR",       # Darsh M — calm & natural conversation
+    "andhra-female-young": "iXgGPIAkOpf9Wt4aQpsy",     # Nithya A — soft, emotional
+    "andhra-male-middle": "g2tKE8zoQNVS5flc4PQY",      # Sai Datta — warm-toned
+    "andhra-female-middle": "QKyvRuehpb8zB3cRkzIn",    # Seeta — rich, warm storyteller
+}
+TELANGANA_TEMPERS = {"aggressive", "angry", "fearful", "scared", "fear", "rough", "mass"}
+# default profiles of the recurring cast (Nikhil: thoughtful/cool; Ananya: warm/emotional)
+PROFILES = {"nikhil": "andhra-male-young", "ananya": "andhra-female-young"}
+BUILTIN = {"male": "TX3LPaxmHKxFdv7VOQHJ", "female": "cgSgspJ2msm6clMCkdW9"}  # Liam / Jessica (free plan)
+FALLBACK = {"nikhil": BUILTIN["male"], "ananya": BUILTIN["female"]}
+
+
+def profile_for(gender: str, age: str = "young", temper: str = "cool") -> str:
+    """'telangana-male-young' etc. from a character's gender, age (young|middle) and temperament."""
+    region = "telangana" if temper.lower() in TELANGANA_TEMPERS else "andhra"
+    g, a = gender.lower(), "middle" if age.lower().startswith("mid") else "young"
+    for key in (f"{region}-{g}-{a}", f"{region}-{g}-young", f"andhra-{g}-{a}", f"andhra-{g}-young"):
+        if key in VOICE_BANK:   # keep the region first (temperament), then the age
+            return key
+    return "andhra-male-young"
 STABILITY = {"pinky": 0.0, "chinna": 0.0, "pandu": 0.0, "gopi": 0.5, "host": 0.5, "amma": 0.5,
              "nikhil": 0.5, "ananya": 0.5,
              "ammamma": 1.0, "thatha": 1.0}
@@ -73,16 +100,19 @@ def clean(text: str) -> str:
     return text.replace("…", "...").replace("✅", "").strip()
 
 
-def voice_line(text: str, who: str, act: str | None, dest: Path, sr: int = 44100) -> Path:
-    """Voice one line to `dest` (wav, mono). Raises ElevenUnavailable when the fallback should be used."""
-    voice = VOICES.get(who, VOICES["gopi"])
+def voice_line(text: str, who: str, act: str | None, dest: Path, sr: int = 44100, profile: str | None = None) -> Path:
+    """Voice one line to `dest` (wav, mono). `profile` (e.g. 'telangana-male-young', see profile_for) picks a Telugu
+    library voice by temperament. Raises ElevenUnavailable when the fallback should be used."""
+    profile = profile or PROFILES.get(who)
+    voice = VOICE_BANK[profile] if profile in VOICE_BANK else VOICES.get(who, VOICES["gopi"])
+    fallback = BUILTIN["female" if profile and "-female-" in profile else "male"] if profile else FALLBACK.get(who)
     spoken = clean(text) if has_tags(text) else tag_for(act) + clean(text)
     body = {"text": spoken, "model_id": MODEL, "language_code": "te",
             "voice_settings": {"stability": STABILITY.get(who, 0.5)}}
     try:
         r = requests.post(f"{API}/text-to-speech/{voice}?output_format=mp3_44100_128", headers=HEADERS, json=body, timeout=120)
-        if r.status_code == 402 and "paid_plan_required" in r.text and who in FALLBACK:  # library voice on free plan
-            r = requests.post(f"{API}/text-to-speech/{FALLBACK[who]}?output_format=mp3_44100_128", headers=HEADERS,
+        if r.status_code == 402 and "paid_plan_required" in r.text and fallback:  # library voice on free plan
+            r = requests.post(f"{API}/text-to-speech/{fallback}?output_format=mp3_44100_128", headers=HEADERS,
                               json=body, timeout=120)
     except requests.RequestException as e:
         raise ElevenUnavailable(f"network: {e}") from e
