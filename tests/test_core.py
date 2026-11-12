@@ -464,3 +464,22 @@ class ElevenVoiceTests(unittest.TestCase):
         with mock.patch.object(elevenvoice.requests, "post", return_value=resp), tempfile.TemporaryDirectory() as d:
             with self.assertRaises(elevenvoice.ElevenUnavailable):
                 elevenvoice.voice_line("Hey!", "gopi", "excited", Path(d) / "a.wav")
+
+
+class ElevenModulationTests(unittest.TestCase):
+    def test_inline_tags_sent_as_written_and_stability_per_age(self):
+        from unittest import mock
+        from content_arena import elevenvoice
+        resp = mock.Mock(status_code=200, content=b"x", text="")
+        with mock.patch.object(elevenvoice.requests, "post", return_value=resp) as post, \
+             mock.patch.object(elevenvoice.subprocess, "run"), tempfile.TemporaryDirectory() as d:
+            elevenvoice.voice_line("[giggles] నేనైతే… B!", "pinky", "confident", Path(d) / "a.wav")
+            body = post.call_args.kwargs["json"]
+        self.assertEqual(body["text"], "[giggles] నేనైతే... B!")
+        self.assertEqual(body["voice_settings"]["stability"], 0.0)
+
+    def test_tags_never_reach_gemini(self):
+        from content_arena import elevenvoice, scenevoice
+        self.assertEqual(elevenvoice.strip_tags("[gasps] Hey! [whispers] ఆగండి"), "Hey! ఆగండి")
+        body = scenevoice._chunk_body([{"who": "gopi", "text": "Hey!", "say": "[gasps] Hey!", "act": "x"}], {"Gopi": "Puck"})
+        self.assertNotIn("[gasps]", body["contents"][0]["parts"][0]["text"])

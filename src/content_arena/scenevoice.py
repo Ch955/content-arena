@@ -7,6 +7,7 @@ is cut back into one take per line at the pauses that best match each line's exp
 from __future__ import annotations
 
 import base64
+import re
 import subprocess
 import time
 import wave
@@ -19,11 +20,14 @@ API = "https://generativelanguage.googleapis.com/v1beta/models"
 MODELS = ["gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"]  # both support two speakers in one call
 CHUNK = 8
 SR_IN = 24000
-NAMES = {"gopi": "Gopi", "host": "Gopi", "pinky": "Pinky", "chinna": "Chinna", "pandu": "Pandu", "amma": "Amma"}
+NAMES = {"gopi": "Gopi", "host": "Gopi", "pinky": "Pinky", "chinna": "Chinna", "pandu": "Pandu", "amma": "Amma",
+         "ammamma": "Ammamma", "thatha": "Thatha"}
 PERSONA = {"gopi": "a lively young Telugu storyteller talking straight to the viewer like a close friend",
            "host": "a lively young Telugu storyteller talking straight to the viewer like a close friend",
            "pinky": "a sweet, curious 6-year-old Telugu girl", "chinna": "a cheeky 8-year-old boy",
-           "pandu": "a mischievous 9-year-old boy", "amma": "a warm but fierce Telugu mother"}
+           "pandu": "a mischievous 9-year-old boy", "amma": "a warm but fierce Telugu mother",
+           "ammamma": "a loving 70-year-old Telugu grandmother telling a story slowly, with a gentle, slightly aged voice",
+           "thatha": "a kind 75-year-old Telugu grandfather with a deep, slow, wise voice"}
 
 
 def split_by_pauses(audio: np.ndarray, sr: int, weights: list[float], min_pause: float = 0.28,
@@ -115,11 +119,16 @@ def _call(body: dict) -> dict:
     return r.json()
 
 
+def _untag(text: str) -> str:
+    """Drop ElevenLabs audio tags like [giggles] so Gemini doesn't read them aloud."""
+    return re.sub(r"\[[^\]]{1,40}\]\s*", "", text).strip()
+
+
 def _chunk_body(chunk: list[dict], voices: dict[str, str]) -> dict:
     speakers = sorted({NAMES[l["who"]] for l in chunk})
     notes = "\n".join(f"{i + 1}. {NAMES[l['who']]} ({PERSONA[l['who']]}): {l.get('act') or 'natural, expressive'}"
                       for i, l in enumerate(chunk))
-    script = "\n".join(f"{NAMES[l['who']]}: {l.get('say') or l['text']}" for l in chunk)
+    script = "\n".join(f"{NAMES[l['who']]}: {_untag(l.get('say') or l['text'])}" for l in chunk)
     prompt = ("Perform this short Telugu reel script as natural, expressive, human speech (Tenglish: English words as "
               "Indians say them), with real pauses at '…'. Leave about one second of silence between lines. "
               "Director's notes, one per line, NEVER read them aloud:\n" + notes + "\n\nScript:\n" + script)
@@ -151,7 +160,7 @@ def voice_batch(lines: list[dict], out_dir: Path, voices: dict[str, str], sr_out
     done: dict[int, Path] = {}
     for idx in _chunks(lines):
         chunk = [lines[i] for i in idx]
-        weights = [max(4, len(l.get("say") or l["text"])) for l in chunk]
+        weights = [max(4, len(_untag(l.get("say") or l["text"]))) for l in chunk]
         parts = None
         for attempt in range(2):  # a second take if the first runs lines together
             try:

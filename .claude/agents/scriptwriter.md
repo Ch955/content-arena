@@ -31,3 +31,11 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
   (Instagram: the 5 biggest relevant tags; YouTube: 15).
 - Files go in `content/<YYYY-MM-DD>-<slug>/`. Brief front matter needs `pillar`, `format: reel`, `topic`.
 - Flag any Telugu you're unsure of for the owner.
+- Voice modulation (owner, 12 Nov 2026: "excellent modulation according to the age"): every line gets a `say`
+  with ElevenLabs v3 audio tags placed *where the emotion changes*, e.g.
+  `"say": "[gasps] Hey! ఆగండి… [whispers] ఈ పిట్టకి తోక లేదు… [excited] కానీ ఊర్లు దాటుతుంది!"`.
+  Use tags that suit the speaker's age: Pinky (6) — [giggles], [gasps], [whiny], [excited], [pouting], [squeals];
+  Gopi (young host) — [excited], [whispers], [mischievously], [dramatic pause], [laughs], [warmly];
+  elders (ammamma ~70, thatha ~75) — [softly], [slowly], [warmly], [chuckles], [sighs], [nostalgic].
+  Max ~3 tags per line, English only inside the brackets, never other text in brackets (they are stripped for
+  Gemini/Sarvam automatically). Vary rhythm: short lines, pauses with "…", one word stressed per line.

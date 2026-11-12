@@ -75,7 +75,9 @@ def heard_ok(expected, wav):
 def dur_of(path):
     with wave.open(path) as w: return w.getnframes() / w.getframerate()
 
+TAGS = re.compile(r"\[[^\]]{1,40}\]\s*")   # ElevenLabs audio tags: never sent to Gemini/Sarvam
 def tts(text, voice, who, act, tries=3):
+    text = TAGS.sub("", text).strip()
     body = {"contents": [{"parts": [{"text": f"{PERSONA[who]} Speak natural Telugu (English words as Indians say them), "
                                              f"expressive and human, with natural pauses at '…'. The tone should be {act}. "
                                              f"Say only this line, nothing else:\n{text}"}]}],
@@ -96,6 +98,7 @@ def tts(text, voice, who, act, tries=3):
 
 SARVAM = {"gopi": ("shubh", 1.0), "pinky": ("priya", 1.22)}
 def tts_sarvam(text, who):
+    text = TAGS.sub("", text).strip()
     r = requests.post("https://api.sarvam.ai/text-to-speech", timeout=60,
                       headers={"api-subscription-key": os.environ["SARVAM_API_KEY"]},
                       json={"text": text, "target_language_code": "te-IN", "model": "bulbul:v3", "speaker": SARVAM[who][0],

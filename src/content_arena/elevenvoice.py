@@ -6,6 +6,13 @@ the proxy injects it, so the code sends a placeholder. When the key's credits ru
 
 Model eleven_v3 (supports Telugu, takes [audio tags] for acting). Cast: Gopi=Liam, Pinky=Jessica (pitched up by
 the caller), others map to the closest built-in voice.
+
+Modulation (owner, 12 Nov 2026: "excellent modulation, according to the age"):
+- Scripts may put v3 audio tags *inside* the spoken text where they belong, e.g. `say: "[gasps] Hey! [whispers] ఆగండి…"`.
+  Then the text is sent as written; otherwise one tag is made from the line's acting note.
+- Each character has a delivery setting (`stability`: 0.0 creative/most expressive, 0.5 natural, 1.0 steady):
+  kids are the most expressive, the host natural, elders steady and warm.
+- Gemini/Sarvam never see the tags (`strip_tags`).
 """
 from __future__ import annotations
 
@@ -25,7 +32,12 @@ VOICES = {  # built-in voices (no Voices permission needed)
     "pandu": "iP95p4xoKVk53GoZ742B",   # Chris
     "pinky": "cgSgspJ2msm6clMCkdW9",   # Jessica — playful female (caller pitches it up for a 6-year-old)
     "amma": "EXAVITQu4vr4xnSDxMaL",    # Sarah — warm female
+    "ammamma": "XrExE9yKIg1WjnnlVkGX", # Matilda — warm, mature female (grandmother; caller may pitch down a little)
+    "thatha": "JBFqnCBsd6RMkjVDRZzb",  # George — warm, older male storyteller (grandfather)
 }
+STABILITY = {"pinky": 0.0, "chinna": 0.0, "pandu": 0.0, "gopi": 0.5, "host": 0.5, "amma": 0.5,
+             "ammamma": 1.0, "thatha": 1.0}
+TAG_RE = re.compile(r"\[[^\]]{1,40}\]\s*")
 HEADERS = {"xi-api-key": os.environ.get("ELEVEN_PLACEHOLDER", "proxy-injected")}
 
 
@@ -42,6 +54,15 @@ def tag_for(act: str | None) -> str:
     return f"[{' '.join(words)}] " if words else ""
 
 
+def strip_tags(text: str) -> str:
+    """Remove v3 audio tags like [giggles] (for engines that would read them aloud)."""
+    return TAG_RE.sub("", text).strip()
+
+
+def has_tags(text: str) -> bool:
+    return bool(TAG_RE.search(text))
+
+
 def clean(text: str) -> str:
     return text.replace("…", "...").replace("✅", "").strip()
 
@@ -49,7 +70,9 @@ def clean(text: str) -> str:
 def voice_line(text: str, who: str, act: str | None, dest: Path, sr: int = 44100) -> Path:
     """Voice one line to `dest` (wav, mono). Raises ElevenUnavailable when the fallback should be used."""
     voice = VOICES.get(who, VOICES["gopi"])
-    body = {"text": tag_for(act) + clean(text), "model_id": MODEL, "language_code": "te"}
+    spoken = clean(text) if has_tags(text) else tag_for(act) + clean(text)
+    body = {"text": spoken, "model_id": MODEL, "language_code": "te",
+            "voice_settings": {"stability": STABILITY.get(who, 0.5)}}
     try:
         r = requests.post(f"{API}/text-to-speech/{voice}?output_format=mp3_44100_128", headers=HEADERS, json=body, timeout=120)
     except requests.RequestException as e:
