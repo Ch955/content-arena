@@ -55,7 +55,8 @@ VOICE_BANK = {
 TELANGANA_TEMPERS = {"aggressive", "angry", "fearful", "scared", "fear", "rough", "mass"}
 # default profiles of the recurring cast (Nikhil: thoughtful/cool; Ananya: warm/emotional)
 PROFILES = {"nikhil": "andhra-male-young", "ananya": "andhra-female-young"}
-BUILTIN = {"male": "TX3LPaxmHKxFdv7VOQHJ", "female": "cgSgspJ2msm6clMCkdW9"}  # Liam / Jessica (free plan)
+BUILTIN = {"male": "TX3LPaxmHKxFdv7VOQHJ", "female": "cgSgspJ2msm6clMCkdW9",           # Liam / Jessica (free plan)
+           "male-middle": "JBFqnCBsd6RMkjVDRZzb", "female-middle": "XrExE9yKIg1WjnnlVkGX"}  # George / Matilda
 FALLBACK = {"nikhil": BUILTIN["male"], "ananya": BUILTIN["female"]}
 
 
@@ -105,7 +106,11 @@ def voice_line(text: str, who: str, act: str | None, dest: Path, sr: int = 44100
     library voice by temperament. Raises ElevenUnavailable when the fallback should be used."""
     profile = profile or PROFILES.get(who)
     voice = VOICE_BANK[profile] if profile in VOICE_BANK else VOICES.get(who, VOICES["gopi"])
-    fallback = BUILTIN["female" if profile and "-female-" in profile else "male"] if profile else FALLBACK.get(who)
+    if profile:
+        g = "female" if "-female-" in profile else "male"
+        fallback = BUILTIN[f"{g}-middle"] if profile.endswith("-middle") else BUILTIN[g]
+    else:
+        fallback = FALLBACK.get(who)
     spoken = clean(text) if has_tags(text) else tag_for(act) + clean(text)
     body = {"text": spoken, "model_id": MODEL, "language_code": "te",
             "voice_settings": {"stability": STABILITY.get(who, 0.5)}}
