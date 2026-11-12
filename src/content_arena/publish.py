@@ -77,6 +77,12 @@ class MetaClient:
         self._wait_ready(cid, attempts=self.poll_attempts * 5)  # video processing takes minutes
         return self._call("POST", f"{ig_user_id}/media_publish", creation_id=cid)["id"]
 
+    def instagram_story(self, ig_user_id: str, video_url: str) -> str:
+        """Share a video to the Instagram story (owner, 12 Nov 2026: festival greetings go to the story too)."""
+        cid = self._call("POST", f"{ig_user_id}/media", media_type="STORIES", video_url=video_url)["id"]
+        self._wait_ready(cid, attempts=self.poll_attempts * 5)
+        return self._call("POST", f"{ig_user_id}/media_publish", creation_id=cid)["id"]
+
     def instagram_user_id(self) -> str:
         """The account the token belongs to (Instagram Login tokens only)."""
         me = self._call("GET", "me", fields="user_id,username")
@@ -163,6 +169,11 @@ def post_youtube(row: dict, url: str, description: str, uploader=None) -> str:
                                               row["hashtags"].split(), privacy=privacy)
 
 
+def wants_story(row: dict) -> bool:
+    """Instagram reels that also go to the story: festival greetings (row id contains '-festival-')."""
+    return row["platform"] == "instagram" and (row["format"] or "") == "reel" and "-festival-" in row["id"]
+
+
 def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uploader=None) -> dict:
     urls, caption = check_row(row)
     fmt = row["format"] or "carousel"
@@ -185,6 +196,12 @@ def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uplo
     done = table.update(row["id"], status="posted", platform_post_id=post_id,
                         posted_at=datetime.now(timezone.utc).replace(microsecond=0).isoformat())
     log(f"POSTED: {row['id']} → {post_id}")
+    if wants_story(row):  # a failed story never undoes the posted reel
+        try:
+            story_id = client.instagram_story(ig_user_id(client), urls[0])
+            log(f"STORY: {row['id']} → {story_id}")
+        except Exception as exc:
+            log(f"STORY FAILED (reel is posted): {row['id']}: {exc}")
     return done
 
 

@@ -223,6 +223,17 @@ class ReelTests(TmpCase):
         self.assertEqual(posts[1], {"creation_id": "id1"})
         self.assertEqual(media_id, "id2")
 
+    def test_instagram_story_call_sequence_and_festival_rule(self):
+        client = publish.MetaClient("T", "v23.0", session=FakeSession(), poll_interval=0)
+        client.instagram_story("IG1", "https://x/video.mp4")
+        posts = [c[2] for c in client.http.calls if c[0] == "POST"]
+        self.assertEqual(posts[0]["media_type"], "STORIES")
+        self.assertNotIn("caption", posts[0])
+        row = {"platform": "instagram", "format": "reel", "id": "2026-11-12-festival-nagula-panchami-instagram"}
+        self.assertTrue(publish.wants_story(row))
+        self.assertFalse(publish.wants_story({**row, "id": "2026-11-12-podupu-04-x-instagram"}))
+        self.assertFalse(publish.wants_story({**row, "platform": "youtube"}))
+
     def test_youtube_row_publishes_via_uploader(self):
         from unittest import mock
         post = self.copy_intro()
