@@ -39,3 +39,18 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
   elders (ammamma ~70, thatha ~75) — [softly], [slowly], [warmly], [chuckles], [sighs], [nostalgic].
   Max ~3 tags per line, English only inside the brackets, never other text in brackets (they are stripped for
   Gemini/Sarvam automatically). Vary rhythm: short lines, pauses with "…", one word stressed per line.
+- **Adult storylines from 13 Nov 2026 (owner: "not small-children storylines… very good stories, not low level")** —
+  pillars what-if, moral-dilemma, micro-doc, modern-dilemma (see CLAUDE.md table). Write for Telugu 25–34s:
+  - Line 1 drops the viewer into the action/stakes ("₹50,000 ఉన్న wallet… దాంట్లో ఒక పిల్లాడి hospital bill!").
+    No "Hey ఆగండి" filler when the situation itself is the hook.
+  - A turn or twist in the middle; specific, lived details (Hitech City traffic, EMI date, appraisal, in-laws'
+    visit, Sankranti bus tickets, WhatsApp family group); smart, a little funny, never preachy or childish.
+  - The question to the viewer is genuinely hard (both A and B defensible); the reveal is how *our* story ends or
+    the sharpest take (a sourced classic line — Vemana, Thirukkural, Seneca, a real study — is welcome), never a
+    made-up statistic. Micro-docs: only facts from the Researcher, each in Facts to verify; a quiz before the answer.
+  - Keep the CLAUDE.md interaction beats but word them naturally for adults (follow tap, comment + countdown,
+    ✅/A-B in comments, "ఈ dilemma మీ friend కి పంపండి… వాళ్ళు ఏం choose చేస్తారో చూడండి!", close).
+  - 12–14 lines, slot 1 35–45 s, slot 2 45–60 s; end with a loop line when it fits. Cast: Gopi narrates; adult
+    characters per story (give each `who` a lowercase name + age/persona in brief.md so the Editor can draw and
+    voice them; voices: young men → gopi/chinna/pandu voices, women → amma voice, elders → ammamma/thatha).
+  - Pitch 3 premise options in brief.md, pick the strongest by the "would I send this to a friend?" test.

@@ -6,6 +6,10 @@ Slot 2 (rotating):    book-story   — Mon/Wed/Fri/Sun: a story from a great boo
                                      Tenali Rama, big ideas from good non-fiction), ending with a question
                       life-lesson  — Tue/Thu/Sat: a premium, sourced life lesson with an A-or-B question
 
+From 13 Nov 2026 (STORY_PLAN_START, owner: adult storylines, not small-children stories) the two daily slots are:
+Slot 1 (07:30): what-if (Mon/Wed/Fri/Sun) or moral-dilemma (Tue/Thu/Sat) — short, comment-driving
+Slot 2 (18:30): micro-doc (Mon/Wed/Fri) or modern-dilemma (Tue/Thu/Sat/Sun)
+
 Before that date (28 Oct – 8 Nov 2026): comedy daily + ott-weekly Fridays / tfi-fact every 3rd day / quiz.
 """
 from __future__ import annotations
@@ -18,6 +22,8 @@ FRIDAY = 4
 DEFAULT_FACT_ANCHOR = "2026-10-29"
 NEW_PLAN_START = date(2026, 11, 9)
 LESSON_DAYS = {1, 3, 5}  # Tue, Thu, Sat
+STORY_PLAN_START = date(2026, 11, 13)
+DILEMMA_DAYS = {1, 3, 5}  # Tue, Thu, Sat: moral-dilemma + modern-dilemma
 
 
 def fact_anchor() -> date:
@@ -35,6 +41,11 @@ def is_fact_day(day: date, anchor: date | None = None) -> bool:
 
 
 def pillars_for(day: date, anchor: date | None = None) -> list[str]:
+    if day >= STORY_PLAN_START:
+        wd = day.weekday()
+        if wd in DILEMMA_DAYS:
+            return ["moral-dilemma", "modern-dilemma"]
+        return ["what-if", "modern-dilemma" if wd == 6 else "micro-doc"]
     if day >= NEW_PLAN_START:
         return ["podupu", "life-lesson" if day.weekday() in LESSON_DAYS else "book-story"]
     if day.weekday() == FRIDAY:

@@ -79,10 +79,10 @@ class ScheduleTests(unittest.TestCase):
         from content_arena import schedule
         got = {d.isoformat(): p for d, p in schedule.plan(date(2026, 11, 8), 8)}
         self.assertEqual(got["2026-11-08"][0], "comedy")             # old plan up to 8 Nov
-        self.assertTrue(all(p[0] == "podupu" for k, p in got.items() if k >= "2026-11-09"))
+        self.assertTrue(all(p[0] == "podupu" for k, p in got.items() if "2026-11-09" <= k < "2026-11-13"))
         self.assertEqual(got["2026-11-09"][1], "book-story")         # Monday
         self.assertEqual(got["2026-11-10"][1], "life-lesson")        # Tuesday
-        self.assertEqual(got["2026-11-15"][1], "book-story")         # Sunday
+        self.assertEqual(got["2026-11-15"][1], "modern-dilemma")     # Sunday (adult storylines from 13 Nov)
 
 
 class ServiceAccountTests(unittest.TestCase):
@@ -494,3 +494,15 @@ class ElevenModulationTests(unittest.TestCase):
         self.assertEqual(elevenvoice.strip_tags("[gasps] Hey! [whispers] ఆగండి"), "Hey! ఆగండి")
         body = scenevoice._chunk_body([{"who": "gopi", "text": "Hey!", "say": "[gasps] Hey!", "act": "x"}], {"Gopi": "Puck"})
         self.assertNotIn("[gasps]", body["contents"][0]["parts"][0]["text"])
+
+
+class StoryPlanTests(unittest.TestCase):
+    def test_adult_storyline_rotation_from_13_nov(self):
+        from datetime import date
+        from content_arena import schedule, pipeline
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 13)), ["what-if", "micro-doc"])        # Fri
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 14)), ["moral-dilemma", "modern-dilemma"])  # Sat
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 15)), ["what-if", "modern-dilemma"])   # Sun
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 12)), ["podupu", "life-lesson"])       # before the switch
+        self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 07:30")
+        self.assertEqual(pipeline.slot_time("2026-11-13-doc-x", "micro-doc"), "2026-11-13 18:30")

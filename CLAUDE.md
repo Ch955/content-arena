@@ -24,17 +24,33 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 
 ## Content pillars
 
-**Owner's plan from 9 Nov 2026: the channel moved off cinema** to riddles, stories from great books and
-premium life lessons — **2 posts a day, every post interactive** (a question the viewer answers in the comments).
+**Owner's plan from 13 Nov 2026: adult storylines** (owner: "not small-children storylines… very good stories,
+not low level"). Audience: Telugu adults, mainly 25–34 (young professionals and parents). Still **2 animated,
+interactive posts a day**, Telugu/Tenglish, every answer revealed in the same reel.
 `python -m content_arena plan` prints what to make (`src/content_arena/schedule.py`).
 
 | Pillar | When | Format |
 |---|---|---|
-| `podupu` — పొడుపు కథ / story-riddle (lateral-thinking mysteries welcome) | **every day** (slot 1) | animated reel, ~35–50 s: hook → riddle/clues → comment-before-reveal + countdown → **answer in the same reel** → why → share/follow |
-| `book-story` — a story from a great book: Betala Kathalu, Panchatantra, Tenali Rama, Jataka/Aesop-style fables, big ideas from good non-fiction | **Mon/Wed/Fri/Sun** (slot 2) | animated reel, ~60–75 s, ends with a question → countdown → answer/reasoning → "మీరు agree ఆ?" |
-| `life-lesson` — premium, non-cliché lessons (Vemana, Sumathi Satakam, Thirukkural, Marcus Aurelius/Seneca, ideas like second-order thinking) | **Tue/Thu/Sat** (slot 2) | animated reel, ~45 s, a dilemma the viewer answers ("A or B? comment చేయండి") |
+| `what-if` — a surreal or philosophical thought experiment grounded in Telugu life ("మీ 20s లో ఒక్క రోజు redo చేయగలిగితే?", "What if salary రోజూ వస్తే?", "What if Tenali Rama Hyderabad IT company లో పని చేస్తే?") | Mon/Wed/Fri/Sun 07:30 | 35–45 s: hook in the middle of the action → the premise plays out with a twist → "మీరైతే ఏం చేస్తారు?" + countdown → the twist/ending → loop line |
+| `moral-dilemma` — a sharp choice with no easy answer (found wallet with ₹50,000 and a sick child's photo; friend's resume lie; whistle-blowing on a kind boss) | Tue/Thu/Sat 07:30 | 35–45 s: situation in 3 lines → A or B → comment + countdown → what happened / a thoughtful take (classic wisdom welcome, sourced) |
+| `micro-doc` — a tight, true, sourced 60-s story: hidden history, science, business, Indian/Telugu history, unusual inventions | Mon/Wed/Fri 18:30 | 45–60 s: "ఇది నిజంగా జరిగింది" hook → 3 beats with real facts → a quiz ("ఏ year?", "ఏమైంది తర్వాత?") + countdown → answer → loop |
+| `modern-dilemma` — relatable 25–34 life: work-life balance, office politics, EMIs, in-laws, career switch, friends' weddings, dating/arranged-marriage talks, WFH | Tue/Thu/Sat/Sun 18:30 | 45–60 s: a funny-real situation → the dilemma → A/B + countdown → a smart resolution or the sharpest comment-worthy take |
 
-**Owner's rule (9 Nov 2026): every answer is revealed in the same reel — never held for a later reel.**
+**Quality bar (owner, 13 Nov 2026): premium, adult, clever — never childish or low-level.** Each script needs a
+real hook (conflict, stakes or a surprising fact in line 1), a turn/twist, a payoff that makes people comment or
+rewatch, and specific details (places, money, situations Telugu viewers live). No preaching; let the viewer decide.
+Length caps: 35–45 s (slot 1), 45–60 s (slot 2), ~12–14 lines. Open on the action (title appears a beat later);
+end with a **loop** line that sends people back to the start when it fits.
+Cast for adult stories: Gopi (host/narrator, late 20s, talks to the viewer) plus adult characters made per story
+(e.g. Ravi 29 software engineer, Swathi 27, a manager, parents/in-laws); Pinky only as a cameo. Retired pillars
+(podupu, book-story, life-lesson, 9–12 Nov) keep their rules for festival or special reels.
+
+**Micro-doc and dilemma facts:** every fact, number, date and name in a micro-doc needs a source in `Facts to verify`
+(rule 2); no true crime or gore (family-friendly); real people only with sourced facts, never invented quotes.
+Dilemmas are fiction — say so in the caption when a story could look real ("a fictional situation").
+
+**Owner's rule (9 Nov 2026): every answer is revealed in the same reel — never held for a later reel.** (Dilemmas: the
+reveal is how the story ends / the smart take — never an invented "most people chose…" number.)
 
 **Format (owner-approved 9 Nov 2026): 2D animated reels** made with `tools/anim2d/`; **from 12 Nov each reel gets its own art
 style** (neon / clay / paper / pixel / flat via `tools/anim2d/skins.js`, default rotation in `plan`, the two reels of a day differ) (our drawn cast — Gopi hosts,
@@ -91,7 +107,9 @@ publish (Actions) →  Instagram / Facebook                            row: post
 - One table row per **platform post** (`<post-slug>-instagram`, `-youtube` for reels; `-facebook` once a Page exists).
 - **Hashtags (owner, 9 Nov 2026: use the high-reach ones):** Instagram allows only **5** (its cap since Dec 2025),
   so pick the biggest *relevant* tags — e.g. riddle reel: `#telugu #telugureels #riddles #podupukathalu #reelrasam`;
-  story: `#telugu #telugureels #telugustories #moralstories #reelrasam`. YouTube: up to **15** — `#shorts` + 2 big
+  story: `#telugu #telugureels #telugustories #moralstories #reelrasam`. From 13 Nov: what-if `#telugu #telugureels #whatif
+  #telugustories #reelrasam`; moral-dilemma `#telugu #telugureels #moraldilemma #whatwouldyoudo #reelrasam`; micro-doc
+  `#telugu #telugureels #history #facts #reelrasam`; modern-dilemma `#telugu #telugureels #relatable #lifelessons #reelrasam`. YouTube: up to **15** — `#shorts` + 2 big
   ones first (shown above the title), then e.g. `#telugu #telugushorts #riddles #riddle #brainteaser #puzzle
   #iqtest #teluguriddles #podupukathalu #kathalu #telugustories #reelrasam`. Tags must match the reel (unrelated
   trending tags get a video ignored); YouTube drops all tags if a video has more than 60.

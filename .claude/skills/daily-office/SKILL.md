@@ -18,9 +18,11 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    If any is missing, notify the owner and stop.
 
 ## Evening mode — make TOMORROW's two reels (date = today + 1, IST)
-1. `python -m content_arena plan --start <tomorrow> --days 1` → `podupu` + `book-story` or `life-lesson`.
-2. Pick strong material: riddles that make people stop (lateral-thinking story-riddles, fair classic podupu kathalu,
-   our own originals) and stories with a hook in the first line. **The answer is always revealed in the same reel.**
+1. `python -m content_arena plan --start <tomorrow> --days 1` → from 13 Nov: slot 1 `what-if` or `moral-dilemma`,
+   slot 2 `micro-doc` or `modern-dilemma` (owner: adult storylines, premium, never childish; CLAUDE.md quality bar).
+2. Pick strong premises (pitch 3, keep the one you'd send to a friend): real stakes in line 1, a twist, a hard A/B
+   question, specific Telugu 25–34 life details. Micro-docs: Researcher first, true facts only. **The answer / ending
+   is always revealed in the same reel.**
 3. Researcher (sources for any story/quote) → scriptwriter (script with the 7 interaction beats in CLAUDE.md,
    acting notes per line) → editor (2D animation with `tools/anim2d/` in the day's art style from `plan` —
    neon/clay/paper/pixel/flat, the two reels differ; voices ElevenLabs → Gemini → Sarvam automatically; make the
