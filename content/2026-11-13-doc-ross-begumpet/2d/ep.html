@@ -177,7 +177,7 @@ const hash=i=>fract(Math.sin(i*127.1+311.7)*43758.5453);
 const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
 const show=(e,on)=>{e.style.display=on?"":"none"};
 const INK="#1B140A";
-const CB=[["Kiran","Malaria Day?","#1E88E5",40,985],["Sneha","Doctors Day?","#D81B60",720,1000],["Arjun","Science Day?","#2E7D32",36,1105],["Divya","Ross Day? 🤔","#8E24AA",700,1135],["Teja","🤔🤔","#E65100",760,1265]];
+const CB=[["Kiran","Malaria Day?","#1E88E5",40,985],["Sneha","Doctors Day?","#D81B60",720,1000],["Arjun","Science Day?","#2E7D32",36,1105],["Divya","Ross Day? 🤔","#8E24AA",700,1135],["Teja","🤔🤔","#E65100",770,1400]];
 document.getElementById("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 
 // ---------- defs ----------
@@ -558,7 +558,7 @@ function beats(){ if(B) return B; B={};
   B.T3=S(3)-0.15; B.tRew=S(3)+0.05; B.tDrop=at(3,"రక్తం")-0.1;
   B.T4=S(4)-0.15; B.tZoom1=B.T4+0.45; B.tWall=at(4,"కడుపు"); B.tPara=at(4,"parasite");
   B.glow=GLOWING.map((_,j)=>lerp(B.tWall+0.2,B.tPara,j/(GLOWING.length-1)));
-  B.T5=S(5)-0.15; B.tType0=S(5)+0.15; B.tType1=at(5,"Death")+0.35; B.tBy=E(5)-0.2;
+  B.T5=S(5)-0.15; B.tType0=S(5)+0.15; B.tType1=at(5,"Death")+0.1; B.tBy=B.tType0+0.25;
   B.T6=S(6)-0.15; B.tCage=at(6,"పక్షులతో")-0.1; B.tProof=at(6,"proof"); B.tMedal=at(6,"Nineteen")-0.15; B.tNobel=at(6,"Nobel");
   B.T7=S(7)-0.15; B.tBrit=at(7,"British"); B.tBorn=at(7,"పుట్టింది"); B.tAlm=at(7,"Almora");
   B.T8=S(8)-0.15; B.tTag=at(8,"Tagore"); B.tEleven=at(8,"eleven");
@@ -745,7 +745,7 @@ window.render=function(t){
   {const k=clamp((t-b.tRew)/0.6), d=Math.round(20-4*k); $("cal4n").textContent=d; $("cal4l").textContent=t>b.tDrop?"🦟 + 🩸 MALARIA PATIENT":"4 DAYS BEFORE"}
   const sl=$("scopeLab"); sl.style.opacity=sc==="scope"&&t>b.tPara-0.1?1:0; sl.style.transform=`scale(${Math.max(0.01,pop(t,b.tPara-0.1,0.35))})`;
   const cd=$("card"); cd.style.opacity=sc==="type"&&t>b.tType0-0.1?1:0; cd.style.top=(470-clamp((t-b.tType0)/(b.tType1-b.tType0))*60)+"px";
-  $("cardBy").style.opacity=t>b.tType1?1:0; $("cardN").style.opacity=t>b.tType1+0.3?1:0;
+  $("cardBy").style.opacity=t>b.tBy?1:0; $("cardN").style.opacity=t>b.tBy+0.3?1:0;   // the credit comes in with the quote (readable ~3 s)
   const idc=$("idc"); idc.style.opacity=sc==="id"?1:0; idc.style.transform=`translateX(${lerp(-1100,0,out((t-b.T7)/0.4))}px) rotate(-1.5deg)`;
   [[0,b.T7+0.2],[1,b.tBrit-0.05],[2,b.tBorn],[3,b.tAlm+0.2]].forEach(([i,t0])=>{const r=$("r"+i); r.style.opacity=t>t0?1:0.2; r.className="r"+((i===1&&t>t0&&t<b.tBorn)||(i===2&&t>t0)?" hi":"")});
   const tt=$("tlTop"); tt.style.opacity=sc==="tl"?1:0; tt.style.transform=`scale(${Math.max(0.01,pop(t,b.T8+0.1,0.35))})`;
