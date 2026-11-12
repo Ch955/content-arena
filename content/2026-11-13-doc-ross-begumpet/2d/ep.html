@@ -177,7 +177,7 @@ const hash=i=>fract(Math.sin(i*127.1+311.7)*43758.5453);
 const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
 const show=(e,on)=>{e.style.display=on?"":"none"};
 const INK="#1B140A";
-const CB=[["Kiran","Malaria Day?","#1E88E5",40,985],["Sneha","Doctors Day?","#D81B60",720,1000],["Arjun","Science Day?","#2E7D32",36,1105],["Divya","Mosquito Day 🦟","#8E24AA",700,1135],["Teja","🤔🤔","#E65100",760,1265]];
+const CB=[["Kiran","Malaria Day?","#1E88E5",40,985],["Sneha","Doctors Day?","#D81B60",720,1000],["Arjun","Science Day?","#2E7D32",36,1105],["Divya","Ross Day? 🤔","#8E24AA",700,1135],["Teja","🤔🤔","#E65100",760,1265]];
 document.getElementById("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 
 // ---------- defs ----------
