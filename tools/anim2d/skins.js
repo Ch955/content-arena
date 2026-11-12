@@ -7,10 +7,11 @@
 //   pixel : chunky pixel blocks (retro game look)
 // Use: set `const SKIN = "neon"` (or ?skin=neon in the URL) before the main script, and call applySkin(cam, defs)
 // right after the camera group is created. "flat" (or unset) keeps the original look.
+// Per scene: call setSkin("paper") etc. inside render(t) (owner, 12 Nov 2026: the style that suits each scene).
 function applySkin(cam, defs) {
   const q = new URLSearchParams(location.search).get("skin");
   const skin = q || (typeof SKIN !== "undefined" ? SKIN : "flat");
-  if (!skin || skin === "flat") return skin;
+  const flat = !skin || skin === "flat";
   const NS = "http://www.w3.org/2000/svg";
   const f = document.createElementNS(NS, "filter");
   f.setAttribute("id", "skin-" + skin);
@@ -58,22 +59,31 @@ function applySkin(cam, defs) {
       <feMorphology operator="dilate" radius="7" result="px"/>
       <feComponentTransfer in="px"><feFuncR type="discrete" tableValues="0 .25 .5 .75 1"/><feFuncG type="discrete" tableValues="0 .25 .5 .75 1"/><feFuncB type="discrete" tableValues="0 .25 .5 .75 1"/></feComponentTransfer>`,
   };
-  if (!FX[skin]) { console.log("unknown skin", skin); return "flat"; }
-  f.innerHTML = FX[skin];
-  defs.appendChild(f);
+  if (!flat && !FX[skin]) { console.log("unknown skin", skin); return "flat"; }
+  // every style gets its filter, so a reel can switch style per scene with setSkin(name) inside render(t)
+  for (const k in FX) {
+    const fk = k === skin ? f : f.cloneNode(false);
+    fk.setAttribute("id", "skin-" + k); fk.innerHTML = FX[k]; defs.appendChild(fk);
+  }
   // filter on a wrapper so the camera transform (zoom/pan) stays on the inner group
   const wrap = document.createElementNS(NS, "g");
   cam.parentNode.insertBefore(wrap, cam); wrap.appendChild(cam);
-  wrap.setAttribute("filter", `url(#skin-${skin})`);
-  document.body.dataset.skin = skin;
-  if (skin === "paper") {   // paper fibre texture: drawn once, sits over the world but under the text overlays
+  if (!flat) wrap.setAttribute("filter", `url(#skin-${skin})`);
+  document.body.dataset.skin = flat ? "flat" : skin;
+  window.setSkin = name => {   // e.g. setSkin(t > 20 && t < 30 ? "paper" : "neon") for a flashback
+    if (!name || name === "flat") wrap.removeAttribute("filter"); else wrap.setAttribute("filter", `url(#skin-${name})`);
+    const g = document.getElementById("paper-grain"); if (g) g.style.display = name === "paper" ? "block" : "none";
+    document.body.dataset.skin = name || "flat";
+  };
+  {   // paper fibre texture (shown only while the paper style is on): drawn once, sits over the world but under the text overlays
     const c = document.createElement("canvas"); c.width = 540; c.height = 960; const x = c.getContext("2d"), im = x.createImageData(540, 960);
     let seed = 7; const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
     for (let i = 0; i < im.data.length; i += 4) { const v = 200 + r() * 55; im.data[i] = v; im.data[i + 1] = v * .97; im.data[i + 2] = v * .9; im.data[i + 3] = 255; }
     x.putImageData(im, 0, 0);
-    const d = document.createElement("div");
+    const d = document.createElement("div"); d.id = "paper-grain";
     d.style.cssText = `position:absolute;inset:0;background:url(${c.toDataURL()}) 0 0/1080px 1920px;mix-blend-mode:multiply;opacity:.55;pointer-events:none`;
     const svgEl = document.getElementById("s"); svgEl.parentNode.insertBefore(d, svgEl.nextSibling);
+    d.style.display = skin === "paper" ? "block" : "none";
   }
   return skin;
 }

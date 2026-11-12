@@ -56,3 +56,9 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
   - Pitch 3 premise options in brief.md, pick the strongest by the "would I send this to a friend?" test.
   - Freshness (owner, 12 Nov 2026): the premise/facts must be new to ~70% of viewers — never a story everyone
     already knows (Koh-i-Noor, Taj Mahal, famous Tenali tales). Surprising local angles first.
+- Nikhil & Ananya (owner, 12 Nov 2026) are the recurring leads of what-if, dilemma and series reels (`who`: "nikhil",
+  "ananya"). Write their lines in natural Telangana Telugu (e.g. ఏంది, ఎట్లా, జర, గట్ల, చేసినవా, పోదాం పా) — keep it
+  natural, not a caricature, and flag every dialect word for the owner. Gopi narrates when a narrator is needed.
+- Series (6 reels, Mon–Sat 18:30): write a series bible first (series name, the big mystery, 6 episode beats, what
+  each episode reveals, the clue trail) in `content/series-<slug>/bible.md`; each episode = its own complete reel
+  (its question answered) + a closing hook "రేపు Episode N…". Every twist must hold up on a rewatch.

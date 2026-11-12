@@ -34,8 +34,14 @@ VOICES = {  # built-in voices (no Voices permission needed)
     "amma": "EXAVITQu4vr4xnSDxMaL",    # Sarah — warm female
     "ammamma": "XrExE9yKIg1WjnnlVkGX", # Matilda — warm, mature female (grandmother; caller may pitch down a little)
     "thatha": "JBFqnCBsd6RMkjVDRZzb",  # George — warm, older male storyteller (grandfather)
+    # Recurring adult leads (owner, 12 Nov 2026: Telangana Telugu voices from ElevenLabs). Library voices need a
+    # paid ElevenLabs plan; on the free plan the call falls back to FALLBACK (built-in) automatically.
+    "nikhil": "9ebvxK9znS3l7PfpMK9l",  # Kaka — "natural Telangana Telugu pronunciation", warm young male
+    "ananya": "eh5YJlyB5bmWfcmcEsLN",  # Vandana — young, warm, relatable Telugu conversation
 }
+FALLBACK = {"nikhil": "TX3LPaxmHKxFdv7VOQHJ", "ananya": "cgSgspJ2msm6clMCkdW9"}  # Liam / Jessica
 STABILITY = {"pinky": 0.0, "chinna": 0.0, "pandu": 0.0, "gopi": 0.5, "host": 0.5, "amma": 0.5,
+             "nikhil": 0.5, "ananya": 0.5,
              "ammamma": 1.0, "thatha": 1.0}
 TAG_RE = re.compile(r"\[[^\]]{1,40}\]\s*")
 HEADERS = {"xi-api-key": os.environ.get("ELEVEN_PLACEHOLDER", "proxy-injected")}
@@ -75,6 +81,9 @@ def voice_line(text: str, who: str, act: str | None, dest: Path, sr: int = 44100
             "voice_settings": {"stability": STABILITY.get(who, 0.5)}}
     try:
         r = requests.post(f"{API}/text-to-speech/{voice}?output_format=mp3_44100_128", headers=HEADERS, json=body, timeout=120)
+        if r.status_code == 402 and "paid_plan_required" in r.text and who in FALLBACK:  # library voice on free plan
+            r = requests.post(f"{API}/text-to-speech/{FALLBACK[who]}?output_format=mp3_44100_128", headers=HEADERS,
+                              json=body, timeout=120)
     except requests.RequestException as e:
         raise ElevenUnavailable(f"network: {e}") from e
     if r.status_code in (401, 402, 403, 429) or "quota" in r.text[:400].lower():

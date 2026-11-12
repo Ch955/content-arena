@@ -23,3 +23,8 @@ You are the **Editor**.
   lookalikes or off-cast photoreal people (use the shot's image instead) and tell the Manager.
 - Check the result: extract 3 frames with ffmpeg and look at them (faces, subtitles readable, no stray text).
 - Never upload or publish — the Manager runs `sync` after the Quality Checker passes.
+- Style per scene (owner, 12 Nov 2026): pick the skin that suits the story; inside render(t) call `setSkin("paper")`
+  etc. to switch for a flashback/dream/phone screen. Keep the recurring leads Nikhil and Ananya drawn the same in
+  every reel (reuse the previous reel's makeChar options; first time: save them in tools/anim2d/cast.md).
+- Voices: "nikhil"/"ananya" use ElevenLabs Telangana library voices (paid plan) and fall back to built-in voices
+  automatically on the free plan — say which was used.

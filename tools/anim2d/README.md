@@ -21,3 +21,5 @@ paper/clay ~0.6 s, neon ~2.7 s (a 50 s neon reel renders in ~70 min — start it
 
 Voices order (11 Nov 2026): ElevenLabs (`content_arena.elevenvoice`, while the key has credits) → Gemini batches →
 Sarvam. `VOICE=gemini` skips ElevenLabs.
+
+Per-scene styles: after applySkin, `setSkin("neon"|"clay"|"paper"|"pixel"|"flat")` inside render(t) switches the look (e.g. a flashback).

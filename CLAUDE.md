@@ -41,8 +41,16 @@ real hook (conflict, stakes or a surprising fact in line 1), a turn/twist, a pay
 rewatch, and specific details (places, money, situations Telugu viewers live). No preaching; let the viewer decide.
 Length caps: 35–45 s (slot 1), 45–60 s (slot 2), ~12–14 lines. Open on the action (title appears a beat later);
 end with a **loop** line that sends people back to the start when it fits.
-Cast for adult stories: Gopi (host/narrator, late 20s, talks to the viewer) plus adult characters made per story
-(e.g. Ravi 29 software engineer, Swathi 27, a manager, parents/in-laws); Pinky only as a cameo. Retired pillars
+**Recurring leads (owner, 12 Nov 2026): Nikhil (28, Hyderabad software engineer, thoughtful, a little introverted)
+and Ananya (27, his close friend, confident, curious, empathetic)** star in the what-if, moral-dilemma, modern-dilemma
+and series reels — same look in every reel (Nikhil: charcoal shirt, short hair, light stubble; Ananya: teal kurta,
+shoulder-length hair), our own drawings. They speak **natural Telangana Telugu** (owner reviews the dialect).
+Gopi stays the narrator/host (micro-docs, festivals); Pinky only as a cameo; parents/colleagues made per story.
+**Series (owner, 12 Nov 2026):** a longer story can run as a 6-reel series (Mon–Sat, 18:30; `SERIES_WEEKS` in
+`schedule.py`; first one 16–21 Nov), under a series name inside Reel Rasam (the channel name stays). Every episode
+answers its own question in the same reel (our rule) and ends on a hook into tomorrow's episode; episode 6 resolves
+the big mystery. Inspiration: the owner's "KATHA TWIST" packs (hook 3 s → relatable problem → clues → emotional or
+unexpected twist → a question) — written fresh by us, every twist must survive a rewatch (no plot holes). Retired pillars
 (podupu, book-story, life-lesson, 9–12 Nov) keep their rules for festival or special reels.
 
 **Freshness rule (owner, 12 Nov 2026):** pick stories and facts that at least ~70% of the audience does *not* already
@@ -57,7 +65,8 @@ Dilemmas are fiction — say so in the caption when a story could look real ("a 
 reveal is how the story ends / the smart take — never an invented "most people chose…" number.)
 
 **Format (owner-approved 9 Nov 2026): 2D animated reels** made with `tools/anim2d/`; **from 12 Nov each reel gets its own art
-style** (neon / clay / paper / pixel / flat via `tools/anim2d/skins.js`, default rotation in `plan`, the two reels of a day differ) (our drawn cast — Gopi hosts,
+style** (neon / clay / paper / pixel / flat via `tools/anim2d/skins.js`; `plan` gives a default, but the Editor picks the style
+that suits the story and may switch per scene with `setSkin()` — e.g. neon for a 2 AM thriller, paper for a flashback) (our drawn cast — Gopi hosts,
 Pinky guesses — lip-synced Gemini voices, synthesized music/SFX, Telugu subtitles). Card reels (`shots.json` with
 `card`s → `python -m content_arena assemble`) are the quick fallback. No owner uploads are needed.
 
@@ -93,7 +102,8 @@ questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్ప�
 28 Oct 2026): **Gemini TTS** — since 9 Nov via the **Gemini API / AI Studio key** (network secret for
 `generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 5% (`SPEED` in
 `assemble.py`); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
-$300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up; key = network secret
+$300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up, Nikhil=Kaka "natural Telangana
+Telugu" and Ananya=Vandana — library voices, need a paid ElevenLabs plan, else built-in Liam/Jessica automatically; key = network secret
 for `api.elevenlabs.io`, header `xi-api-key`) while the key has credits, then Gemini, then Sarvam — automatic
 (`src/content_arena/elevenvoice.py`). Owner's choice; note the ElevenLabs free plan is non-commercial. Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
 direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.

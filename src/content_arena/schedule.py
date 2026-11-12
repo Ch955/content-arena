@@ -24,6 +24,15 @@ NEW_PLAN_START = date(2026, 11, 9)
 LESSON_DAYS = {1, 3, 5}  # Tue, Thu, Sat
 STORY_PLAN_START = date(2026, 11, 13)
 DILEMMA_DAYS = {1, 3, 5}  # Tue, Thu, Sat: moral-dilemma + modern-dilemma
+# Series weeks (owner, 12 Nov 2026): one story told over 6 reels, Mon–Sat in the 18:30 slot; each episode answers its
+# own question, the big mystery resolves in episode 6. Add a week's Monday here to schedule a series.
+SERIES_WEEKS = {date(2026, 11, 16)}
+
+
+def series_episode(day: date) -> int | None:
+    """1–6 if `day` is a series day (Mon–Sat of a series week), else None."""
+    monday = day - timedelta(days=day.weekday())
+    return day.weekday() + 1 if monday in SERIES_WEEKS and day.weekday() < 6 else None
 
 
 def fact_anchor() -> date:
@@ -43,6 +52,8 @@ def is_fact_day(day: date, anchor: date | None = None) -> bool:
 def pillars_for(day: date, anchor: date | None = None) -> list[str]:
     if day >= STORY_PLAN_START:
         wd = day.weekday()
+        if series_episode(day):
+            return ["moral-dilemma" if wd in DILEMMA_DAYS else "what-if", "series"]
         if wd in DILEMMA_DAYS:
             return ["moral-dilemma", "modern-dilemma"]
         return ["what-if", "modern-dilemma" if wd == 6 else "micro-doc"]

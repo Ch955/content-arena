@@ -21,13 +21,17 @@ MODELS = ["gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"]  # both 
 CHUNK = 8
 SR_IN = 24000
 NAMES = {"gopi": "Gopi", "host": "Gopi", "pinky": "Pinky", "chinna": "Chinna", "pandu": "Pandu", "amma": "Amma",
-         "ammamma": "Ammamma", "thatha": "Thatha"}
+         "ammamma": "Ammamma", "thatha": "Thatha", "nikhil": "Nikhil", "ananya": "Ananya"}
 PERSONA = {"gopi": "a lively young Telugu storyteller talking straight to the viewer like a close friend",
            "host": "a lively young Telugu storyteller talking straight to the viewer like a close friend",
            "pinky": "a sweet, curious 6-year-old Telugu girl", "chinna": "a cheeky 8-year-old boy",
            "pandu": "a mischievous 9-year-old boy", "amma": "a warm but fierce Telugu mother",
            "ammamma": "a loving 70-year-old Telugu grandmother telling a story slowly, with a gentle, slightly aged voice",
-           "thatha": "a kind 75-year-old Telugu grandfather with a deep, slow, wise voice"}
+           "thatha": "a kind 75-year-old Telugu grandfather with a deep, slow, wise voice",
+           "nikhil": "Nikhil, a 28-year-old Hyderabad software engineer, thoughtful and a little introverted, "
+                     "speaking natural Telangana Telugu with a medium-low voice",
+           "ananya": "Ananya, a confident, curious 27-year-old woman from Hyderabad speaking natural Telangana Telugu, "
+                     "warm and clear"}
 
 
 def split_by_pauses(audio: np.ndarray, sr: int, weights: list[float], min_pause: float = 0.28,

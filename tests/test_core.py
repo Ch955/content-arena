@@ -506,3 +506,26 @@ class StoryPlanTests(unittest.TestCase):
         self.assertEqual(schedule.pillars_for(date(2026, 11, 12)), ["podupu", "life-lesson"])       # before the switch
         self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 07:30")
         self.assertEqual(pipeline.slot_time("2026-11-13-doc-x", "micro-doc"), "2026-11-13 18:30")
+
+
+class LeadCastVoiceTests(unittest.TestCase):
+    def test_library_voice_falls_back_to_builtin_on_free_plan(self):
+        from unittest import mock
+        from content_arena import elevenvoice
+        paid = mock.Mock(status_code=402, text='{"detail":{"code":"paid_plan_required"}}', content=b"")
+        ok = mock.Mock(status_code=200, text="", content=b"x")
+        with mock.patch.object(elevenvoice.requests, "post", side_effect=[paid, ok]) as post, \
+             mock.patch.object(elevenvoice.subprocess, "run"), tempfile.TemporaryDirectory() as d:
+            elevenvoice.voice_line("ఏంది రా?", "nikhil", "calm", Path(d) / "a.wav")
+        urls = [c.args[0] for c in post.call_args_list]
+        self.assertIn(elevenvoice.VOICES["nikhil"], urls[0])
+        self.assertIn(elevenvoice.FALLBACK["nikhil"], urls[1])
+
+
+class SeriesWeekTests(unittest.TestCase):
+    def test_six_episode_series_mon_to_sat(self):
+        from datetime import date
+        from content_arena import schedule
+        self.assertEqual([schedule.series_episode(date(2026, 11, d)) for d in range(15, 23)], [None, 1, 2, 3, 4, 5, 6, None])
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 16)), ["what-if", "series"])
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 22)), ["what-if", "modern-dilemma"])  # Sunday after
