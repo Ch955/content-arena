@@ -1,0 +1,694 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- What-if #1 "redo one day from your 20s" (2D animated, PAPER skin; the replayed memory L9–L10 switches to CLAY with a
+     warm glow). Hitech City office pantry at 11:59 PM: the "REDO 1 DAY" notification, Ananya's guess (the startup
+     offer), the calendar of his 20s (2019 offer, a 6-frame "Tue · 9:40 PM 📞" rewatch clue, Karthik's Vizag wedding
+     MISSED), follow tap, "మీరైతే ఏ రోజు?" fan of day-cards + 5 s countdown + comment bubbles, the turn (2022, a
+     Tuesday 9:40 PM), the faded WFH flashback (cut the father's call → missed call), the clay replay (he closes the
+     laptop, picks up → connected 00:01…), share to Nanna / a friend, a short end card and the notification pinging
+     again (loop to frame 1). Nanna is never drawn: only a paper-cut contact avatar on the phone.
+     Adult leads Nikhil + Ananya: makeAdult() — options saved in tools/anim2d/cast.md. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1F1F75}
+svg{display:block}
+#s{position:absolute;left:0;top:0}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,12,40,.62)}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#1A1020}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#1A1020;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #1A1020}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#F5B347;color:#1A1020;padding:6px 16px;border-radius:8px;border:4px solid #1A1020}
+#clk{position:absolute;top:140px;right:56px;font-family:Anton;font-size:40px;letter-spacing:2px;color:#FFE9B8;background:rgba(16,12,40,.75);border:4px solid #F5B347;border-radius:14px;padding:2px 16px;opacity:0;transform-origin:100% 0}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#1A1020;background:#F6EBD6;border:6px solid #1A1020;border-radius:20px;box-shadow:0 9px 0 #1A1020}
+.title{position:absolute;top:215px;left:40px;right:40px;text-align:center;opacity:0}
+.title .t{font-family:Anton;font-size:128px;line-height:1.05;letter-spacing:4px;color:#F5B347;-webkit-text-stroke:12px #1A1020;paint-order:stroke fill;text-shadow:0 9px 0 #1A1020}
+.title .hook{display:block;width:max-content;margin:12px auto 0;font-size:60px;padding:2px 30px 8px}
+/* phone notification banner */
+#notif{position:absolute;left:70px;right:70px;top:520px;opacity:0;background:rgba(24,20,56,.94);border-radius:40px;border:4px solid rgba(255,255,255,.22);
+  box-shadow:0 16px 40px rgba(0,0,0,.55);padding:22px 30px 26px;color:#fff}
+#notif .row{display:flex;align-items:center;gap:20px}
+#notif .ic{width:74px;height:74px;border-radius:20px;background:#F5B347;display:grid;place-items:center;font-size:44px;border:3px solid #1A1020}
+#notif .ap{font-family:Anton;font-size:44px;letter-spacing:2px}
+#notif .ap small{display:block;font-family:InterB;font-size:26px;letter-spacing:0;color:#BFB8E8;font-weight:600}
+#notif .nw{margin-left:auto;font-family:InterB;font-size:28px;color:#BFB8E8}
+#notif .bd{margin-top:14px;font-family:Rama,NotoTe;font-size:50px;line-height:1.25}
+#hold{position:absolute;top:330px;left:0;right:0;text-align:center;opacity:0}
+#hold span{display:inline-block;font-family:Anton;font-size:62px;letter-spacing:2px;color:#1A1020;background:#F5B347;padding:8px 30px;border-radius:16px;border:6px solid #1A1020;box-shadow:0 9px 0 #1A1020}
+#bub{position:absolute;opacity:0;transform-origin:20% 100%}
+#bub div{font-family:Rama,NotoTe;font-size:50px;line-height:1.2;color:#1A1020;background:#F6EBD6;border:6px solid #1A1020;border-radius:30px;padding:10px 26px 14px;box-shadow:0 9px 0 #1A1020;white-space:nowrap}
+#bub div:after{content:"";position:absolute;left:60px;bottom:-30px;border:16px solid transparent;border-top:20px solid #1A1020}
+/* calendar of his 20s */
+#cal{position:absolute;top:300px;left:200px;width:680px;height:620px;opacity:0;perspective:1400px}
+.pg{position:absolute;inset:0;background:#F6EBD6;border:7px solid #1A1020;border-radius:26px;box-shadow:0 14px 0 #1A1020;overflow:hidden;transform-origin:50% 0;backface-visibility:hidden;text-align:center}
+.pg b{display:block;font-family:Anton;font-size:50px;letter-spacing:6px;font-weight:normal;color:#fff;background:#C0392B;padding:10px 0 6px;border-bottom:6px solid #1A1020}
+.pg .holes{position:absolute;top:-2px;left:0;right:0;display:flex;justify-content:space-around;padding:0 80px}
+.pg .holes i{width:26px;height:26px;border-radius:50%;background:#1F1F75;border:5px solid #1A1020;margin-top:16px}
+.pg big{display:block;font-family:Anton;font-size:160px;line-height:1.1;color:#1A1020;margin-top:40px}
+.pg .ln{display:block;font-family:Anton;font-size:56px;letter-spacing:2px;color:#1A1020;margin-top:26px}
+.pg .tl{display:block;font-family:Rama,NotoTe;font-size:52px;color:#5D2A86;margin-top:10px}
+.pg .em{font-size:92px;display:block;margin-top:26px}
+#rupee{position:absolute;left:470px;top:380px;width:170px;height:200px}
+#rupee i{position:absolute;left:10px;width:150px;height:34px;border-radius:50%;background:#F5B347;border:5px solid #1A1020;font-style:normal;font-family:Anton;font-size:24px;text-align:center;line-height:26px;color:#1A1020;opacity:0}
+#crore{position:absolute;left:430px;top:300px;font-family:Rama,NotoTe;font-size:54px;color:#fff;background:#2E7D32;border:5px solid #1A1020;border-radius:14px;padding:0 16px 6px;transform:rotate(-8deg);opacity:0}
+#tkt{position:absolute;left:60px;top:420px;width:400px;height:130px;background:#fff;border:5px dashed #1A1020;border-radius:16px;font-family:Anton;font-size:46px;line-height:120px;color:#1A1020;letter-spacing:2px}
+#stamp{position:absolute;left:400px;top:430px;font-family:Anton;font-size:70px;letter-spacing:4px;color:#D32F2F;border:8px solid #D32F2F;border-radius:14px;padding:0 18px;transform:rotate(-14deg);opacity:0;background:rgba(255,255,255,.4)}
+#leave{position:absolute;left:0;right:0;top:318px;font-family:Rama,NotoTe;font-size:48px;color:#5D2A86}
+.pg.clue{background:#FFF3C4}
+.pg.clue big{font-size:120px;margin-top:70px}
+/* follow */
+#fol{position:absolute;top:1000px;left:0;width:640px;text-align:center;opacity:0}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #1A1020;box-shadow:0 9px 0 #1A1020}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45))}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0}
+/* question + fan + countdown */
+#q{position:absolute;top:165px;left:40px;right:40px;text-align:center;opacity:0}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:72px;line-height:1.2;color:#1A1020;background:#F6EBD6;border:7px solid #1A1020;border-radius:26px;padding:6px 30px 14px;box-shadow:0 10px 0 #1A1020}
+#fan{position:absolute;top:330px;left:0;right:0;height:420px}
+.dc{position:absolute;top:0;left:50%;width:220px;height:290px;margin-left:-110px;background:#F6EBD6;border:7px solid #1A1020;border-radius:24px;box-shadow:0 10px 0 #1A1020;text-align:center;opacity:0;transform-origin:50% 160%}
+.dc i{display:block;font-style:normal;font-size:96px;margin-top:34px}
+.dc b{display:block;font-family:Anton;font-weight:normal;font-size:40px;letter-spacing:1px;color:#1A1020;margin-top:16px}
+.dc.qm{background:#FFF3C4}
+#big{position:absolute;top:300px;left:110px;right:110px;height:560px;opacity:0;perspective:1400px}
+#big .f,#big .k{position:absolute;inset:0;border:8px solid #1A1020;border-radius:30px;box-shadow:0 14px 0 #1A1020;backface-visibility:hidden;text-align:center}
+#big .f{background:#FFF3C4;font-size:220px;line-height:540px}
+#big .k{background:#F6EBD6;transform:rotateY(180deg)}
+#big .k b{display:block;font-family:Anton;font-weight:normal;font-size:60px;letter-spacing:6px;color:#fff;background:#C0392B;padding:12px 0 8px;border-bottom:7px solid #1A1020;border-radius:22px 22px 0 0}
+#big .k .d1{display:block;font-family:Rama,NotoTe;font-size:96px;color:#1A1020;margin-top:46px}
+#big .k .d2{display:block;font-family:Anton;font-size:150px;line-height:1.1;color:#C0392B;margin-top:14px}
+#cnow{position:absolute;top:660px;left:0;right:0;text-align:center;opacity:0}
+#cnow span{display:inline-block;font-family:Anton;font-size:66px;letter-spacing:3px;color:#1A1020;background:#F5B347;padding:6px 34px;border-radius:18px;border:6px solid #1A1020;box-shadow:0 9px 0 #1A1020}
+#cdw{position:absolute;top:770px;left:50%;width:260px;height:260px;margin-left:-130px;opacity:0}
+#digit{position:absolute;top:0;left:0;right:0;height:260px;line-height:260px;text-align:center;font-family:Anton;font-size:150px;color:#F5B347;
+  -webkit-text-stroke:11px #1A1020;paint-order:stroke fill;text-shadow:0 10px 0 #1A1020}
+.cb{position:absolute;opacity:0;background:#F6EBD6;border:5px solid #1A1020;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(26,16,32,.85);white-space:nowrap}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #1A1020}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:46px;line-height:1.2;color:#1A1020}
+#sweep{position:absolute;left:0;top:0;font-size:170px;opacity:0;filter:drop-shadow(0 8px 0 rgba(0,0,0,.45))}
+/* phone */
+#phone{position:absolute;left:640px;top:360px;width:380px;height:780px;border-radius:60px;background:#111;border:10px solid #2B2B33;box-shadow:0 0 0 6px #1A1020,0 24px 40px rgba(0,0,0,.6);opacity:0;overflow:hidden}
+#phone .scr{position:absolute;inset:14px;border-radius:44px;background:linear-gradient(#2C2A6E,#14123A);overflow:hidden;text-align:center;color:#fff}
+#phone .av{width:190px;height:190px;margin:110px auto 0;border-radius:50%;background:#F6EBD6;border:6px solid #F5B347;overflow:hidden}
+#phone .nm{font-family:Rama,NotoTe;font-size:66px;margin-top:22px}
+#phone .st{font-family:InterB;font-size:32px;font-weight:600;color:#C9C3F2;margin-top:4px}
+#phone .bt{position:absolute;bottom:70px;width:120px;height:120px;border-radius:50%;display:grid;place-items:center;font-size:58px;border:5px solid #1A1020}
+#phone .rd{left:40px;background:#E53935}
+#phone .gr{right:40px;background:#43A047}
+#phone .miss{position:absolute;left:20px;right:20px;top:470px;font-family:Rama,NotoTe;font-size:48px;line-height:1.25;color:#FF8A80;opacity:0}
+#phone .tm{font-family:Anton;font-size:54px;letter-spacing:2px;color:#9CFF9C;margin-top:10px;opacity:0}
+#phone .ht{position:absolute;left:0;right:0;top:600px;font-size:96px;opacity:0}
+#phone .pr{position:absolute;width:120px;height:120px;border-radius:50%;border:6px solid #9CFF9C;bottom:70px;right:40px;opacity:0}
+/* replay chip + glow */
+#rp{position:absolute;top:150px;left:56px;font-family:Anton;font-size:44px;letter-spacing:3px;color:#1A1020;background:#FFD27A;border:5px solid #1A1020;border-radius:14px;padding:2px 18px;opacity:0}
+#fbchip{position:absolute;top:150px;left:56px;font-family:Anton;font-size:44px;letter-spacing:3px;color:#fff;background:#6D6875;border:5px solid #1A1020;border-radius:14px;padding:2px 18px;opacity:0}
+#glow{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 45% 50%,rgba(255,200,100,.5),rgba(255,160,60,.15) 60%,rgba(0,0,0,0) 100%);mix-blend-mode:screen}
+#vig{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(ellipse 75% 62% at 50% 50%,rgba(0,0,0,0) 55%,rgba(40,16,0,.6) 100%)}
+/* share */
+#share{position:absolute;inset:0;opacity:0}
+#share .dim{position:absolute;inset:0;background:rgba(16,12,40,.62)}
+#sq{position:absolute;top:170px;left:40px;right:40px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:66px;color:#1A1020;background:#F5B347;border:7px solid #1A1020;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #1A1020}
+#mini{position:absolute;left:110px;top:520px;width:340px;height:600px;border-radius:36px;border:9px solid #F6EBD6;box-shadow:0 0 0 6px #1A1020,0 16px 0 6px #1A1020;background:linear-gradient(#1F1F75,#3A2A80);overflow:hidden;text-align:center}
+#mini .n{margin:150px 24px 0;background:rgba(255,255,255,.12);border-radius:22px;padding:14px 8px;font-family:Anton;font-size:40px;color:#F5B347;letter-spacing:2px}
+#mini .w{font-family:Anton;font-size:64px;color:#fff;margin-top:40px}
+#mini .r{position:absolute;bottom:22px;left:0;right:0;font-family:Anton;font-size:28px;color:#fff;letter-spacing:2px}
+.ct{position:absolute;left:620px;width:360px;font-family:InterB;font-weight:700;font-size:46px;color:#1A1020;background:#F6EBD6;border:6px solid #1A1020;border-radius:40px;padding:14px 0 16px;text-align:center;box-shadow:0 8px 0 #1A1020;opacity:0}
+#ctN{top:560px} #ctF{top:900px}
+.sent{display:block;font-size:28px;color:#2E7D32;opacity:0}
+#shArrow{position:absolute;left:0;top:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,12,40,.8)}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #1A1020;box-shadow:0 9px 0 #1A1020;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+#nar{position:absolute;left:0;top:0;pointer-events:none}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="glow"></div><div id="vig"></div>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">WHAT IF? 🤔</div></div>
+<div id="clk">⏳ 00:59</div>
+<div id="fbchip">2022 · FLASHBACK</div>
+<div id="rp">⟲ REDO · 2022</div>
+<div class="title" id="title"><div class="t">WHAT IF?</div><span class="pill hook">ఒక్క రోజు redo... ఏది? ⏳</span></div>
+<div id="notif"><div class="row"><div class="ic">⏳</div><div class="ap">REDO 1 DAY<small>choose wisely</small></div><div class="nw">11:59 PM</div></div>
+  <div class="bd">మీ 20s లో ఒక్క రోజు redo చేయండి. ఒక్కసారే.</div></div>
+<div id="bub"><div>📄 ఆ startup offer?</div></div>
+<div id="hold"><span>HIS CHOICE AT THE END 👀</span></div>
+<div id="cal">
+  <div class="pg" id="pg0"><b>2018</b><big>JAN</big><span class="tl">మొదటి job 💼</span></div>
+  <div class="pg" id="pg1"><b>2019</b><span class="em">📄🚀</span><span class="ln">OFFER LETTER</span><span class="tl">startup · ESOPs</span><div id="rupee"></div><div id="crore">₹ కోట్లు!</div></div>
+  <div class="pg" id="pg2"><b>2020</b><big>MAR</big></div>
+  <div class="pg" id="pg3"><b>2021</b><big>AUG</big></div>
+  <div class="pg clue" id="pg4"><b>2022</b><big>TUE · 9:40 PM 📞</big></div>
+  <div class="pg" id="pg5"><b>2023</b><span class="em">💍</span><span class="ln">KARTHIK WEDS · VIZAG</span><span id="leave">'Leave లేదు' 😔</span><div id="tkt">✈️ HYD → VTZ</div><div id="stamp">MISSED</div></div>
+</div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div class="hand" id="tapHand">👆</div>
+<div id="q"><span>మీరైతే ఏ రోజు? 💬</span></div>
+<div id="fan">
+  <div class="dc" id="dc0"><i>📄</i><b>OFFER</b></div>
+  <div class="dc" id="dc1"><i>💍</i><b>WEDDING</b></div>
+  <div class="dc" id="dc2"><i>✈️</i><b>THAT TRIP</b></div>
+  <div class="dc qm" id="dc3"><i>❓</i><b>...</b></div>
+</div>
+<div id="big"><div class="f" id="bigF">❓</div><div class="k" id="bigK"><b>2022</b><span class="d1" id="d1">మంగళవారం</span><span class="d2" id="d2">9:40 PM</span></div></div>
+<div id="cnow"><span>💬 COMMENT NOW</span></div>
+<div id="cdw"><svg width="260" height="260" viewBox="-130 -130 260 260">
+  <circle r="112" fill="#F6EBD6" stroke="#1A1020" stroke-width="10"/>
+  <circle id="arc" r="94" fill="none" stroke="#C0392B" stroke-width="20" transform="rotate(-90)" stroke-dasharray="590.6 590.6" stroke-linecap="round"/>
+  </svg><div id="digit">5</div></div>
+<div id="cbs"></div>
+<div id="sweep">✋</div>
+<div id="phone"><div class="scr">
+  <div class="av"><svg width="190" height="190" viewBox="0 0 190 190"><rect width="190" height="190" fill="#F2C57C"/><circle cx="95" cy="78" r="40" fill="#8D5A3B"/><path d="M20 190 Q30 120 95 118 Q160 120 170 190 Z" fill="#8D5A3B"/></svg></div>
+  <div class="nm">నాన్న</div><div class="st" id="pst">mobile · calling…</div><div class="tm" id="ptm">connected 00:01</div>
+  <div class="miss" id="pmiss">↙ missed call<br><span style="font-family:InterB;font-size:32px;color:#C9C3F2">Tue · 9:40 PM</span></div>
+  <div class="ht" id="pht">❤️</div>
+  <div class="bt rd" id="pR">📞</div><div class="bt gr" id="pG">📞</div><div class="pr" id="pRing"></div>
+</div></div>
+<div class="hand" id="pHand">👆</div>
+<div id="share"><div class="dim"></div>
+  <div id="sq"><span>మీ రోజు comment లో రాయండి 💬</span></div>
+  <div id="mini"><div class="n">⏳ REDO 1 DAY</div><div class="w">WHAT IF?</div><div class="r">REEL RASAM</div></div>
+  <svg id="shArrow" width="1080" height="1920"><path id="sp1" d="" fill="none" stroke="#F6EBD6" stroke-width="14" stroke-linecap="round" stroke-dasharray="1 1" pathLength="1"/>
+    <path id="sp2" d="" fill="none" stroke="#F6EBD6" stroke-width="14" stroke-linecap="round" stroke-dasharray="1 1" pathLength="1"/></svg>
+  <div class="ct" id="ctN">Nanna ❤️<span class="sent" id="snN">✓ sent</span></div>
+  <div class="ct" id="ctF">Friend 🤝<span class="sent" id="snF">✓ sent</span></div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · WHAT IF?</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span></div></div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "paper";  // art style for this reel: flat | neon | clay | paper | pixel (skins.js); the replay switches to clay</script>
+<script src="skins.js"></script>
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("s"), nar=document.getElementById("nar");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,k)=>a+(b-a)*k;
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const out=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=2.2;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const txt=(s,attrs,parent)=>{const e=el("text",attrs,parent);e.textContent=s;return e};
+const fract=x=>x-Math.floor(x);
+const hash=i=>fract(Math.sin(i*127.1+311.7)*43758.5453);
+const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
+const INK="#1A1020";
+const $=id=>document.getElementById(id);
+// comment bubbles during the countdown (generic names; other people's days)
+const CB=[["Ravi","Job offer!","#1E88E5",30,1080],["Swathi","College last day","#D81B60",600,1290],["Kiran","First salary day 🥹","#2E7D32",30,1450],["Anu","Breakup day 😅","#8E24AA",640,1520],["Teja","🤔","#E65100",300,1010]];
+$("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
+$("rupee").innerHTML=[...Array(7)].map((_,i)=>`<i id="co${i}" style="top:${160-i*24}px">₹</i>`).join("");
+
+// ---------- defs ----------
+const defs=el("defs",{});
+const lg=(id,stops,x2=0,y2=1,parent=defs)=>{const g=el("linearGradient",{id,x1:0,y1:0,x2,y2},parent);stops.forEach(([o,c])=>el("stop",{offset:o,"stop-color":c},g));return g};
+const rg=(id,c,a=0.9,parent=defs)=>{const g=el("radialGradient",{id},parent);el("stop",{offset:"0","stop-color":c,"stop-opacity":a},g);el("stop",{offset:".45","stop-color":c,"stop-opacity":a*0.4},g);el("stop",{offset:"1","stop-color":c,"stop-opacity":0},g);return g};
+lg("nightSky",[["0","#14125A"],["0.6","#2A2470"],["1","#4A3A8A"]]);
+rg("gLamp","#F5B347",0.55); rg("gScr","#BFE6FF",0.85); rg("gDesk","#FFC060",0.6);
+
+// ---------- the drawn world ----------
+const cam=el("g",{});
+applySkin(cam, defs);
+// ===== PANTRY (x 0..1080): Hitech City office pantry at night =====
+el("rect",{x:-700,y:-700,width:2500,height:2100,fill:"#1F1F75"},cam);
+// big window with the paper-cut skyline
+el("rect",{x:40,y:250,width:1000,height:680,rx:12,fill:"url(#nightSky)",stroke:"#120F3A","stroke-width":16},cam);
+const moon=el("circle",{cx:880,cy:350,r:44,fill:"#FFF3C4"},cam);
+el("circle",{cx:898,cy:338,r:40,fill:"#2A2470"},cam);
+const SKY=[];
+function tower(x,w,h,col,lit,parent,seed){const y=930-h; const g=el("g",{},parent);
+  el("path",{d:`M${x} 930 L${x} ${y+16} Q${x} ${y} ${x+16} ${y} L${x+w-16} ${y} Q${x+w} ${y} ${x+w} ${y+16} L${x+w} 930 Z`,fill:col,stroke:"#120F3A","stroke-width":4},g);
+  for(let r=0;r<Math.floor((h-40)/34);r++) for(let c=0;c<Math.floor((w-16)/26);c++){const k=hash(seed*31+r*7+c); if(k<lit){const wnd=el("rect",{x:x+10+c*26,y:y+24+r*34,width:14,height:18,rx:2,fill:k<lit*0.5?"#F5B347":"#FFE29A"},g); SKY.push({wnd,k})}}
+  return g}
+const farG=el("g",{},cam), midG=el("g",{},cam), nearG=el("g",{},cam);
+[[60,90,360],[170,70,300],[260,110,420],[400,80,330],[500,120,470],[640,90,380],[750,130,520],[900,100,410]].forEach(([x,w,h],i)=>tower(x,w,h,"#2E2A88",0.18,farG,i+1));
+// one curved-top glass tower (our own shape)
+el("path",{d:"M560 930 L560 420 Q610 330 670 420 L670 930 Z",fill:"#3A3496",stroke:"#120F3A","stroke-width":4},midG);
+for(let r=0;r<14;r++) el("line",{x1:568,y1:450+r*34,x2:662,y2:450+r*34,stroke:"#5A54C0","stroke-width":5},midG);
+[[90,130,240],[300,150,280],[700,140,250],[880,140,300]].forEach(([x,w,h],i)=>tower(x,w,h,"#25226E",0.3,midG,i+20));
+[[40,220,140],[430,240,120],[820,220,160]].forEach(([x,w,h],i)=>tower(x,w,h,"#1A1858",0.25,nearG,i+40));
+[300,700].forEach(x=>el("rect",{x:x-8,y:250,width:16,height:680,fill:"#120F3A"},cam));
+el("rect",{x:40,y:590,width:1000,height:10,fill:"#120F3A",opacity:.7},cam);
+// pendant lamp + glow
+el("line",{x1:520,y1:-700,x2:520,y2:150,stroke:"#120F3A","stroke-width":6},cam);
+const lampGlow=el("path",{d:"M470 210 L570 210 L900 1180 L140 1180 Z",fill:"#F5B347",opacity:.13},cam);
+el("path",{d:"M450 210 L590 210 L560 150 L480 150 Z",fill:"#F5B347",stroke:INK,"stroke-width":6},cam);
+// side counter + coffee machine (left, behind)
+el("rect",{x:-200,y:960,width:360,height:340,fill:"#2E2A88",stroke:INK,"stroke-width":6},cam);
+el("rect",{x:-210,y:940,width:380,height:30,rx:6,fill:"#C9C3F2",stroke:INK,"stroke-width":6},cam);
+el("rect",{x:20,y:820,width:110,height:122,rx:12,fill:"#45454D",stroke:INK,"stroke-width":6},cam);
+el("rect",{x:40,y:850,width:70,height:26,rx:4,fill:"#F5B347"},cam);
+el("rect",{x:60,y:900,width:30,height:38,rx:4,fill:"#F6EBD6",stroke:INK,"stroke-width":4},cam);
+// floor
+el("rect",{x:-700,y:1300,width:2500,height:900,fill:"#2E2A88"},cam);
+const pantry={}; // parts that only exist in the pantry
+// ===== WFH ROOM (x FO..FO+1080): 2022, home desk at night =====
+const FO=3000;
+el("rect",{x:FO-700,y:-700,width:2500,height:2100,fill:"#2A2470"},cam);
+el("rect",{x:FO+600,y:330,width:400,height:420,rx:10,fill:"url(#nightSky)",stroke:"#120F3A","stroke-width":14},cam);
+el("line",{x1:FO+800,y1:330,x2:FO+800,y2:750,stroke:"#120F3A","stroke-width":10},cam);
+[[FO+620,80,180],[FO+710,70,240],[FO+880,100,200]].forEach(([x,w,h],i)=>{const y=750-h; el("rect",{x,y,width:w,height:h,fill:"#25226E"},cam); for(let r=0;r<4;r++) if(hash(i*9+r)<0.6) el("rect",{x:x+14,y:y+20+r*40,width:14,height:16,fill:"#F5B347"},cam)});
+// wall calendar (2022, TUE) - a quiet rewatch detail
+el("rect",{x:FO+150,y:440,width:170,height:200,rx:10,fill:"#F6EBD6",stroke:INK,"stroke-width":6},cam);
+el("rect",{x:FO+150,y:440,width:170,height:52,rx:10,fill:"#C0392B",stroke:INK,"stroke-width":6},cam);
+txt("2022",{x:FO+235,y:483,"font-family":"Anton","font-size":38,"text-anchor":"middle",fill:"#fff"},cam);
+txt("TUE",{x:FO+235,y:590,"font-family":"Anton","font-size":70,"text-anchor":"middle",fill:INK},cam);
+// shelf with books
+el("rect",{x:FO+360,y:560,width:200,height:16,fill:"#8D6E63",stroke:INK,"stroke-width":4},cam);
+[["#C0392B",30,80],["#F5B347",24,70],["#1FB3A3",34,86],["#C9C3F2",22,64]].reduce((x,[c,w,h])=>{el("rect",{x:FO+x,y:560-h,width:w,height:h,fill:c,stroke:INK,"stroke-width":4},cam);return x+w+4},375);
+// desk lamp
+const deskGlow=el("path",{d:`M${FO+830} 985 L${FO+915} 935 L${FO+1080} 1180 L${FO+600} 1180 Z`,fill:"#FFC060",opacity:.2},cam);
+el("path",{d:`M${FO+930} 1180 L${FO+930} 1010 L${FO+870} 950`,stroke:"#45454D","stroke-width":12,fill:"none","stroke-linecap":"round"},cam);
+el("path",{d:`M${FO+820} 990 L${FO+900} 920 L${FO+930} 960 Z`,fill:"#F5B347",stroke:INK,"stroke-width":6},cam);
+el("rect",{x:FO-700,y:1300,width:2500,height:900,fill:"#1F1F75"},cam);
+
+// ---------- adult characters (front view; local y=0 at the hip, seated or standing behind a table) ----------
+function ik(sx,sy,tx,ty,a,b,side){let dx=tx-sx,dy=ty-sy,d=Math.hypot(dx,dy)||1; const dd=Math.min(d,a+b-1); dx/=d; dy/=d;
+  const base=Math.atan2(dy,dx), cA=clamp((a*a+dd*dd-b*b)/(2*a*dd),-1,1), al=Math.acos(cA);
+  const c1=[sx+Math.cos(base+al)*a,sy+Math.sin(base+al)*a], c2=[sx+Math.cos(base-al)*a,sy+Math.sin(base-al)*a];
+  const sc=p=>p[1]+side*p[0]*0.6; const e=sc(c1)>sc(c2)?c1:c2; return [e,[sx+dx*dd,sy+dy*dd]]}
+function makeAdult(o){
+  const g=el("g",{},o.parent||cam), body=el("g",{},g);
+  const hairBack=el("g",{},body);
+  if(o.longHair) el("path",{d:"M-72 -40 Q-80 -100 0 -102 Q80 -100 72 -40 L80 72 Q74 98 46 94 L-46 94 Q-74 98 -80 72 Z",fill:o.hair},hairBack);
+  // torso
+  if(o.kurta){
+    el("path",{d:"M-84 -268 Q-88 -286 -62 -290 L-24 -298 L24 -298 L62 -290 Q88 -286 84 -268 L70 -60 L104 220 L-104 220 L-70 -60 Z",fill:o.shirt,stroke:INK,"stroke-width":5},body);
+    el("path",{d:"M-30 -298 Q0 -250 30 -298",fill:o.skin,stroke:o.trim,"stroke-width":8},body);
+    el("path",{d:"M0 -258 L0 -120",stroke:o.trim,"stroke-width":7,"stroke-dasharray":"10 8"},body);
+    [-150,-130,-110].forEach(y=>el("circle",{cx:0,cy:y,r:0},body));
+  } else {
+    el("path",{d:"M-94 -268 Q-98 -288 -70 -292 L-26 -300 L26 -300 L70 -292 Q98 -288 94 -268 L82 -10 Q80 0 66 0 L-66 0 Q-80 0 -82 -10 Z",fill:o.shirt,stroke:INK,"stroke-width":5},body);
+    el("path",{d:"M-24 -300 L0 -268 L24 -300",fill:o.skin},body);
+    el("path",{d:"M-28 -302 L-4 -260 L-40 -276 Z",fill:o.collar||o.shirt,stroke:INK,"stroke-width":4,"stroke-linejoin":"round"},body);
+    el("path",{d:"M28 -302 L4 -260 L40 -276 Z",fill:o.collar||o.shirt,stroke:INK,"stroke-width":4,"stroke-linejoin":"round"},body);
+    el("line",{x1:0,y1:-262,x2:0,y2:0,stroke:INK,"stroke-width":3,opacity:.55},body);
+    [-225,-170,-115,-60].forEach(y=>el("circle",{cx:6,cy:y,r:4,fill:"#9A9AA6"},body));
+    el("path",{d:"M-60 -200 L-30 -200 L-30 -170 L-60 -170 Z",fill:"none",stroke:INK,"stroke-width":3,opacity:.45},body);   // pocket
+  }
+  el("rect",{x:-19,y:-334,width:38,height:44,fill:o.skin},body);
+  // arms (2-bone)
+  const arm=s=>({up:el("line",{stroke:o.sleeve||o.shirt,"stroke-width":32,"stroke-linecap":"round"},body),
+                 lo:el("line",{stroke:o.fore||o.sleeve||o.shirt,"stroke-width":28,"stroke-linecap":"round"},body),
+                 cuff:o.cuff?el("circle",{r:15,fill:o.cuff},body):null,
+                 hand:el("circle",{r:17,fill:o.skin,stroke:INK,"stroke-width":3},body)});
+  const AL=arm(-1), AR=arm(1);
+  const itemG=el("g",{},body), items={};
+  items.chai=el("g",{},itemG); el("path",{d:"M-18 -36 L18 -36 L14 8 L-14 8 Z",fill:"#F6EBD6",stroke:INK,"stroke-width":4},items.chai); el("rect",{x:-15,y:-24,width:30,height:20,fill:"#B7703A"},items.chai);
+  [-6,6].forEach((x,i)=>el("path",{d:`M${x} -44 q-8 -14 0 -28`,stroke:"#F6EBD6","stroke-width":4,fill:"none",opacity:.7,"stroke-linecap":"round"},items.chai));
+  items.phone=el("g",{},itemG); el("rect",{x:-16,y:-34,width:32,height:62,rx:8,fill:"#222",stroke:INK,"stroke-width":3},items.phone);
+  // head
+  const head=el("g",{},body);
+  el("ellipse",{cx:-55,cy:2,rx:10,ry:17,fill:o.skin,stroke:INK,"stroke-width":3},head); el("ellipse",{cx:55,cy:2,rx:10,ry:17,fill:o.skin,stroke:INK,"stroke-width":3},head);
+  if(o.earrings) [-55,55].forEach(x=>el("circle",{cx:x,cy:24,r:6,fill:"#F5B347",stroke:INK,"stroke-width":2},head));
+  el("path",{d:"M-54 -22 Q-56 -72 0 -74 Q56 -72 54 -22 Q54 30 30 56 Q0 74 -30 56 Q-54 30 -54 -22 Z",fill:o.skin,stroke:INK,"stroke-width":4},head);
+  const face=el("g",{},head);
+  if(o.stubble){el("path",{d:"M-52 8 Q-50 42 -28 58 Q0 76 28 58 Q50 42 52 8 Q42 30 22 33 Q0 29 -22 33 Q-42 30 -52 8 Z",fill:o.stubble,opacity:.34},face);
+    el("path",{d:"M-20 31 Q0 24 20 31 Q0 35 -20 31 Z",fill:o.stubble,opacity:.4},face);
+    for(let k=0;k<26;k++){const a=hash(k+3)*Math.PI, r=40+hash(k+7)*12; el("circle",{cx:Math.cos(a)*r*1.05,cy:22+Math.sin(a)*r*0.82,r:1.6,fill:o.stubble,opacity:.5},face)}}
+  el("circle",{cx:-34,cy:20,r:11,fill:"#E57373",opacity:o.blush||0.18},face); el("circle",{cx:34,cy:20,r:11,fill:"#E57373",opacity:o.blush||0.18},face);
+  const eyes=[-21,21].map(x=>{const e=el("g",{transform:`translate(${x},-8)`},face);
+    const w=el("ellipse",{rx:12,ry:8,fill:"#fff",stroke:INK,"stroke-width":2},e);
+    const ir=el("circle",{r:6.5,fill:"#3B2414"},e); const pu=el("circle",{r:3,fill:"#000"},e); const hl=el("circle",{r:2,fill:"#fff"},e);
+    const lid=el("path",{d:"M-13 -3 Q0 -11 13 -3",stroke:INK,"stroke-width":o.lash||3.5,fill:"none","stroke-linecap":"round"},e);
+    const cover=el("ellipse",{rx:13,ry:9,fill:o.skin,opacity:0},e); const shut=el("path",{d:"M-12 1 Q0 6 12 1",stroke:INK,"stroke-width":3.5,fill:"none","stroke-linecap":"round",opacity:0},e);
+    const glint=el("ellipse",{cx:0,cy:8,rx:11,ry:3,fill:"#CFEFFF",opacity:0},e);
+    return {e,w,ir,pu,hl,lid,cover,shut,glint}});
+  const brows=[-1,1].map(s=>el("path",{stroke:o.browCol||"#1C1410","stroke-width":o.brow||6,fill:"none","stroke-linecap":"round"},face));
+  el("path",{d:"M3 0 Q-5 20 -2 26 Q4 29 10 25",stroke:"#8A5A3A","stroke-width":3,fill:"none","stroke-linecap":"round"},face);
+  const mouthO=el("ellipse",{cx:0,cy:44,rx:12,ry:3,fill:"#5A1E1E"},face);
+  const lips=el("path",{d:"M-14 43 Q0 47 14 43",stroke:o.lip||"#8A3A3A","stroke-width":4,fill:"none","stroke-linecap":"round"},face);
+  const smile=el("path",{d:"M-18 39 Q0 56 18 39",stroke:o.lip||"#8A3A3A","stroke-width":4.5,fill:"none","stroke-linecap":"round",opacity:0},face);
+  const sad=el("path",{d:"M-14 48 Q0 39 14 48",stroke:o.lip||"#8A3A3A","stroke-width":4.5,fill:"none","stroke-linecap":"round",opacity:0},face);
+  const smirk=el("path",{d:"M-14 44 Q4 49 19 37",stroke:o.lip||"#8A3A3A","stroke-width":4.5,fill:"none","stroke-linecap":"round",opacity:0},face);
+  const tears=[-1,1].map(s=>el("path",{d:"M0 -7 Q6 2 0 6 Q-6 2 0 -7 Z",fill:"#9FDcFF",stroke:INK,"stroke-width":1.5,opacity:0},face));
+  // hair (front)
+  if(o.longHair){el("path",{d:"M-60 -6 Q-68 -88 4 -88 Q64 -86 62 -14 Q50 -62 12 -64 Q-12 -46 -40 -44 Q-56 -30 -60 -6 Z",fill:o.hair,stroke:INK,"stroke-width":3},head);
+    el("path",{d:"M-62 -20 Q-74 30 -64 80",stroke:o.hair,"stroke-width":18,fill:"none","stroke-linecap":"round"},head); el("path",{d:"M62 -20 Q74 30 64 80",stroke:o.hair,"stroke-width":18,fill:"none","stroke-linecap":"round"},head)}
+  else el("path",{d:"M-58 -10 Q-66 -84 -6 -90 Q56 -94 62 -28 L58 -8 Q54 -48 30 -56 Q2 -62 -26 -54 Q-50 -46 -54 -8 Z",fill:o.hair,stroke:INK,"stroke-width":3},head);
+  const lit=el("ellipse",{cx:0,cy:0,rx:58,ry:76,fill:"#BFE6FF",opacity:0},head);
+  const st={x:0,y:0,s:1,flip:1,rot:0,hop:0,vis:1,talk:0,blink:0,shut:0,look:0,lookY:0,brow:"n",smile:0,sad:0,smirk:0,tear:0,tearRun:0,lit:0,headRot:0,headY:0,
+            hL:[-60,-130],hR:[60,-130],item:"",itemRot:0,wink:0};
+  const SH=[[-82,-270],[82,-270]];
+  function draw(){
+    const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) rotate(${k.rot}) scale(${k.s*k.flip},${k.s})`); g.style.opacity=k.vis;
+    const ht=`translate(${k.look*3},${-392+k.headY}) rotate(${k.headRot})`; head.setAttribute("transform",ht); hairBack.setAttribute("transform",ht);
+    face.setAttribute("transform",`translate(${k.look*7},${k.lookY*3})`);
+    [[AL,SH[0],k.hL,-1],[AR,SH[1],k.hR,1]].forEach(([A,S,T,side])=>{const [e,h]=ik(S[0],S[1],T[0],T[1],118,112,side);
+      A.up.setAttribute("x1",S[0]);A.up.setAttribute("y1",S[1]);A.up.setAttribute("x2",e[0]);A.up.setAttribute("y2",e[1]);
+      A.lo.setAttribute("x1",e[0]);A.lo.setAttribute("y1",e[1]);A.lo.setAttribute("x2",h[0]);A.lo.setAttribute("y2",h[1]);
+      if(A.cuff){const m=[lerp(e[0],h[0],0.25),lerp(e[1],h[1],0.25)]; A.cuff.setAttribute("cx",m[0]);A.cuff.setAttribute("cy",m[1])}
+      A.hand.setAttribute("cx",h[0]);A.hand.setAttribute("cy",h[1]); A.h=h});
+    itemG.setAttribute("transform",`translate(${AR.h[0]},${AR.h[1]}) rotate(${k.itemRot})`); for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    const o_=k.talk, quiet=o_<0.12;
+    mouthO.setAttribute("ry",2+12*o_); mouthO.setAttribute("rx",11+5*o_); mouthO.style.opacity=quiet?0:1;
+    lips.style.opacity=quiet&&!k.smile&&!k.sad&&!k.smirk?1:0; smile.style.opacity=quiet&&k.smile?1:0; sad.style.opacity=quiet&&k.sad&&!k.smile?1:0; smirk.style.opacity=quiet&&k.smirk&&!k.smile?1:0;
+    eyes.forEach((E,i)=>{const closed=k.blink||k.shut||(k.wink&&i===1); E.cover.style.opacity=closed?1:0; E.shut.style.opacity=closed?1:0; E.lid.style.opacity=closed?0:1;
+      E.w.setAttribute("ry",closed?1:8+(k.brow==="u"?1.5:0)); [E.ir,E.pu].forEach(p=>{p.setAttribute("cx",k.look*4.5);p.setAttribute("cy",k.lookY*3)}); E.hl.setAttribute("cx",k.look*4.5-2.5);E.hl.setAttribute("cy",k.lookY*3-2.5);
+      [E.ir,E.pu,E.hl].forEach(p=>p.style.opacity=closed?0:1); E.glint.style.opacity=closed?0:k.tear*0.9;
+      E.lid.setAttribute("d",k.sad||k.tear>0.5?"M-13 -1 Q0 -9 13 -4":"M-13 -3 Q0 -11 13 -3")});
+    brows.forEach((b,i)=>{const s=i?1:-1; const B={n:[-27,-29],u:[-34,-36],s:[-24,-30],a:[-30,-22],q:i?[-36,-34]:[-26,-27],w:[-27,-33]}[k.brow]||[-27,-29];
+      b.setAttribute("d",`M${s*8} ${B[0]} Q${s*20} ${(B[0]+B[1])/2-4} ${s*33} ${B[1]}`)});
+    tears.forEach((d,i)=>{const s=i?1:-1; const ph=k.tearRun; d.style.opacity=k.tearRun>0&&k.tearRun<1?1:0; d.setAttribute("transform",`translate(${s*24+s*ph*4},${2+ph*44}) scale(${1+ph*0.3})`)});
+    lit.setAttribute("opacity",k.lit*0.1);
+  }
+  function aim(side,wx,wy){const lx=(wx-st.x)/(st.s*st.flip), ly=(wy-(st.y-st.hop))/st.s; if(side==="L") st.hL=[lx,ly]; else st.hR=[lx,ly]}
+  return {st,draw,g,aim};
+}
+const NIKHIL_OPT={skin:"#C98B5E",hair:"#1C1410",shirt:"#45454D",collar:"#3A3A42",stubble:"#5A3A28",brow:6.5,lip:"#7A3A30"};
+const ANANYA_OPT={skin:"#D9A47A",hair:"#2A1A14",shirt:"#1E8C8C",trim:"#F5B347",kurta:true,longHair:true,fore:"#D9A47A",sleeve:"#1E8C8C",cuff:"#F5B347",earrings:true,brow:4.5,lash:4,blush:0.3,lip:"#A0404A"};
+const AN=makeAdult(ANANYA_OPT), NK=makeAdult(NIKHIL_OPT);
+
+// ===== foreground: pantry table + laptop + phone =====
+const ptab=el("g",{},cam);
+el("rect",{x:-200,y:1180,width:1600,height:40,rx:10,fill:"#E8D8C0",stroke:INK,"stroke-width":6},ptab);
+el("rect",{x:-200,y:1216,width:1600,height:400,fill:"#8D6E63",stroke:INK,"stroke-width":6},ptab);
+const plap=el("g",{},cam);
+el("path",{d:"M300 1180 L330 1010 L560 1010 L590 1180 Z",fill:"#B0B4C0",stroke:INK,"stroke-width":6},plap);
+el("rect",{x:280,y:1176,width:330,height:12,rx:4,fill:"#8A8E9A",stroke:INK,"stroke-width":4},plap);
+const sticky=el("g",{transform:"translate(470,1080) rotate(7)"},plap);
+el("rect",{x:-70,y:-52,width:140,height:104,fill:"#FFE066",stroke:INK,"stroke-width":4},sticky);
+txt("PROD",{x:0,y:-10,"font-family":"Anton","font-size":34,"text-anchor":"middle",fill:INK},sticky);
+txt("DEPLOY ✅",{x:0,y:32,"font-family":"Anton","font-size":30,"text-anchor":"middle",fill:INK},sticky);
+const pcup=el("g",{transform:"translate(200,1180)"},cam); el("path",{d:"M-26 -60 L26 -60 L20 0 L-20 0 Z",fill:"#F6EBD6",stroke:INK,"stroke-width":5},pcup); el("rect",{x:-22,y:-44,width:44,height:30,fill:"#B7703A"},pcup);
+const pphone=el("g",{},cam);
+const pphGlow=el("path",{d:"M770 1176 L870 1176 L800 820 L620 860 Z",fill:"#BFE6FF",opacity:0},pphone);
+el("rect",{x:760,y:1172,width:120,height:16,rx:6,fill:"#222",stroke:INK,"stroke-width":4},pphone);
+const pphScr=el("rect",{x:768,y:1174,width:104,height:8,rx:3,fill:"#333"},pphone);
+// ===== WFH foreground: desk, laptop (screen facing us), phone =====
+const wdesk=el("g",{},cam);
+el("rect",{x:FO-200,y:1180,width:1600,height:40,rx:10,fill:"#A1887F",stroke:INK,"stroke-width":6},wdesk);
+el("rect",{x:FO-200,y:1216,width:1600,height:400,fill:"#6D4C41",stroke:INK,"stroke-width":6},wdesk);
+const wlap=el("g",{},cam);
+el("path",{d:`M${FO+70} 1180 L${FO+400} 1180 L${FO+420} 1196 L${FO+50} 1196 Z`,fill:"#8A8E9A",stroke:INK,"stroke-width":5},wlap);
+const wlid=el("g",{},wlap);   // the screen: scaleY -> 0 at the hinge when he closes the laptop
+el("rect",{x:FO+80,y:930,width:310,height:250,rx:12,fill:"#B0B4C0",stroke:INK,"stroke-width":6},wlid);
+const wscr=el("g",{},wlid);
+el("rect",{x:FO+94,y:944,width:282,height:222,rx:6,fill:"#F6EBD6"},wscr);
+el("rect",{x:FO+94,y:944,width:282,height:46,fill:"#C0392B"},wscr);
+txt("SPRINT DUE TONIGHT",{x:FO+235,y:978,"font-family":"Anton","font-size":28,"text-anchor":"middle",fill:"#fff"},wscr);
+["TO DO","DOING","DONE"].forEach((h,c)=>{txt(h,{x:FO+142+c*94,y:1016,"font-family":"Anton","font-size":20,"text-anchor":"middle",fill:INK},wscr);
+  for(let r=0;r<[3,2,1][c];r++) el("rect",{x:FO+106+c*94,y:1028+r*42,width:72,height:32,rx:5,fill:["#FFE066","#9FD8FF","#A5D6A7"][c],stroke:INK,"stroke-width":3},wscr)});
+const wDark=el("rect",{x:FO+94,y:944,width:282,height:222,rx:6,fill:"#111",opacity:0},wlid);
+const wphone=el("g",{},cam);
+const wphGlow=el("path",{d:`M${FO+670} 1176 L${FO+770} 1176 L${FO+760} 860 L${FO+560} 900 Z`,fill:"#BFE6FF",opacity:0},wphone);
+const wphBody=el("g",{},wphone);
+el("rect",{x:FO+660,y:1172,width:120,height:16,rx:6,fill:"#222",stroke:INK,"stroke-width":4},wphBody);
+const wcup=el("g",{transform:`translate(${FO+560},1180)`},cam); el("path",{d:"M-24 -56 L24 -56 L19 0 L-19 0 Z",fill:"#F6EBD6",stroke:INK,"stroke-width":5},wcup);
+// table/desk must sit in front of the characters
+cam.appendChild(ptab); cam.appendChild(plap); cam.appendChild(pcup); cam.appendChild(pphone);
+cam.appendChild(wdesk); cam.appendChild(wlap); cam.appendChild(wphone); cam.appendChild(wcup);
+
+// ---------- narrator Gopi: house look (makeChar) in a paper cut-out badge, screen space ----------
+const ndefs=el("defs",{},nar);
+const clip=el("clipPath",{id:"badgeClip"},ndefs); el("circle",{cx:165,cy:1385,r:122},clip);
+const badge=el("g",{},nar);
+const badgeIn=el("g",{filter:"url(#skin-paper)"},badge);
+el("circle",{cx:165,cy:1385,r:134,fill:"#F5B347",stroke:INK,"stroke-width":7},badgeIn);
+el("circle",{cx:165,cy:1385,r:122,fill:"#3A3496"},badgeIn);
+const gopiG=el("g",{"clip-path":"url(#badgeClip)"},badgeIn);
+function makeChar(o){
+  const g=el("g",{},o.parent), body=el("g",{},g);
+  el("rect",{x:-62,y:-175,width:124,height:60,rx:16,fill:o.shorts},body);
+  el("rect",{x:-62,y:-300,width:124,height:150,rx:36,fill:o.shirt},body);
+  const armL=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body),armR=el("line",{stroke:o.skin,"stroke-width":26,"stroke-linecap":"round"},body);
+  const handItem=el("g",{},body), items={};
+  const head=el("g",{},body);
+  [[-90,-470],[-55,-505],[-15,-520],[25,-518],[62,-500],[92,-468],[-100,-430],[100,-430]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:30,fill:o.hair},head));
+  el("circle",{cx:0,cy:-400,r:105,fill:o.skin},head);
+  el("path",{d:"M-105 -410 Q-100 -520 0 -515 Q100 -520 105 -410 Q60 -470 0 -455 Q-60 -470 -105 -410Z",fill:o.hair},head);
+  el("circle",{cx:-60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);el("circle",{cx:60,cy:-365,r:16,fill:"#FF8A80",opacity:.45},head);
+  const eyeW=[-36,36].map(x=>el("ellipse",{cx:x,cy:-405,rx:21,ry:25,fill:"#fff"},head));
+  const pup=[-36,36].map(x=>el("circle",{cx:x,cy:-402,r:11,fill:"#1b1b1b"},head));
+  const lids=[-36,36].map(x=>el("path",{d:`M${x-22} -404 Q${x} -390 ${x+22} -404`,stroke:"#3a2a1a","stroke-width":7,fill:"none","stroke-linecap":"round",opacity:0},head));
+  const brow=[-1,1].map(s=>el("line",{stroke:"#3a2a1a","stroke-width":9,"stroke-linecap":"round"},head));
+  const mouth=el("ellipse",{cx:0,cy:-345,rx:20,ry:4,fill:"#7A1F1F"},head);
+  const smile=el("path",{d:"M-34 -356 Q0 -318 34 -356",stroke:"#B23A3A","stroke-width":8,fill:"none","stroke-linecap":"round",opacity:0},head);
+  const gl=el("g",{},head);[-38,38].forEach(x=>el("circle",{cx:x,cy:-405,r:33,fill:"rgba(255,255,255,.12)",stroke:"#455A64","stroke-width":9},gl));el("line",{x1:-6,y1:-410,x2:6,y2:-410,stroke:"#455A64","stroke-width":7},gl);
+  items.point=el("g",{},handItem);txt("👉",{x:14,y:-6,"font-size":70,"text-anchor":"middle","dominant-baseline":"central"},items.point);
+  items.wave=el("g",{},handItem);txt("👋",{x:0,y:-8,"font-size":78,"text-anchor":"middle","dominant-baseline":"central"},items.wave);
+  const st={x:0,y:0,s:1,armL:200,armR:160,lenL:115,lenR:115,talk:0,brow:"n",look:0,lookY:0,blink:0,wink:0,hop:0,item:"",itemRot:0,smile:0,headRot:0};
+  function draw(){const k=st; g.setAttribute("transform",`translate(${k.x},${k.y-k.hop}) scale(${k.s})`);
+    head.setAttribute("transform",`rotate(${k.headRot} 0 -300)`);
+    [[armL,-58,k.armL,k.lenL],[armR,58,k.armR,k.lenR]].forEach(([a,sx,deg,len])=>{const r=deg*Math.PI/180;a.setAttribute("x1",sx);a.setAttribute("y1",-280);a.setAttribute("x2",sx+Math.sin(r)*len);a.setAttribute("y2",-280-Math.cos(r)*len)});
+    const r=k.armR*Math.PI/180; handItem.setAttribute("transform",`translate(${58+Math.sin(r)*(k.lenR+3)},${-280-Math.cos(r)*(k.lenR+3)}) rotate(${k.itemRot})`);
+    for(const n in items) items[n].style.opacity=k.item===n?1:0;
+    const open=k.talk, quiet=open<0.15;
+    mouth.setAttribute("ry",3+22*open); mouth.setAttribute("rx",18+6*open); mouth.style.opacity=quiet&&k.smile?0:1; smile.style.opacity=k.smile&&quiet?1:0;
+    eyeW.forEach((e,i)=>{const c=k.blink||(k.wink&&i===1); e.setAttribute("ry",c?2:25); lids[i].style.opacity=c?1:0; pup[i].style.opacity=c?0:1; pup[i].setAttribute("cx",(i?36:-36)+k.look*8); pup[i].setAttribute("cy",-402+k.lookY*8)});
+    brow.forEach((b,i)=>{const s=i?1:-1,B={u:[-470,-462],n:[-440,-440],q:i?[-468,-462]:[-436,-440]}[k.brow];b.setAttribute("x1",s*14);b.setAttribute("y1",B[0]);b.setAttribute("x2",s*58);b.setAttribute("y2",B[1])});
+  }
+  return {st,draw};
+}
+const GOPI=makeChar({parent:gopiG,skin:"#C68A55",hair:"#3B2A20",shirt:"#FB8C00",shorts:"#1E88E5"});
+
+// ---------- timeline ----------
+const COLORS={gopi:"#F5B347",nikhil:"#C9C3F2",ananya:"#7FE0D0",nanna:"#FFD27A"}, NAMES={gopi:"GOPI",nikhil:"NIKHIL",ananya:"ANANYA",nanna:"NANNA 📞"};
+let TL;
+function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
+function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
+const S=i=>TL.lines[i].start, E=i=>TL.lines[i].start+TL.lines[i].dur, D=i=>TL.lines[i].dur;
+const _segs={};
+function segsOf(i){if(!_segs[i]){const l=TL.lines[i],e=l.env.concat([0,0,0,0,0,0]);let segs=[],on=null,low=0;
+  e.forEach((v,f)=>{if(v>0.1){if(on===null)on=f;low=0}else{low++;if(on!==null&&low>=4){segs.push([l.start+on/30,l.start+(f-low+1)/30]);on=null}}}); _segs[i]=segs} return _segs[i]}
+function at(i,word,nth=0){const tx=TL.lines[i].spoken||TL.lines[i].text; let k=-1; for(let n=0;n<=nth;n++){k=tx.indexOf(word,k+1); if(k<0) throw new Error("word "+word+" in "+i)}
+  const segs=segsOf(i); if(!segs.length) return S(i)+D(i)*k/tx.length;
+  const tot=segs.reduce((a,[s,e])=>a+e-s,0); let tgt=tot*k/tx.length;
+  let est=segs[segs.length-1][1]; for(const [s,e] of segs){if(tgt<=e-s+1e-6){est=s+tgt;break} tgt-=e-s}
+  if(k===0||/[…,!?—.'\s]\s*$/.test(tx.slice(0,k))){let best=est,bd=0.5; for(const [s] of segs){const d=Math.abs(s-est); if(d<bd){bd=d;best=s}} return best}
+  return est}
+
+let B=null;
+function beats(){ if(B) return B; B={};
+  B.ping0=0.06; B.ban0=0.12; B.titleIn=1.45; B.tOnce=at(0,"ఒక్కసారే");
+  B.anIn0=S(1)-0.7; B.anIn1=S(1)+0.05; B.tOffer=at(1,"startup");
+  B.narIn2=S(2)-0.15; B.tHold=at(2,"Nikhil"); B.tWink=at(2,"చివర్లో");
+  B.cal0=S(3)-0.2; B.f1=at(3,"Twenty")+0.05; B.tOfferW=at(3,"offer"); B.tEsop=at(3,"ESOPs"); B.tCrore=at(3,"కోట్లు");
+  B.f2=E(3)-0.12; B.f3=B.f2+0.12; B.f4=B.f3+0.12; B.f5=B.f4+0.2; B.tStamp=B.f5+0.45;   // f4: the 6-frame "Tue · 9:40 PM" clue
+  B.narIn4=S(4)-0.15; B.tFol=at(4,"follow")+0.08;
+  B.fan0=S(5)-0.1; B.tCm=at(5,"comment"); B.CD0=E(5)+0.1; B.CD1=B.CD0+TL.countdown; B.cb=CB.map((_,i)=>B.CD0+0.35+i*0.8);
+  B.turn=S(6); B.sweep=S(6)+0.05; B.tFlip=Math.max(at(6,"Twenty")-0.05,S(6)+0.5); B.tDay=at(6,"మంగళవారం"); B.tTime=at(6,"nine");
+  B.fb0=S(7)-0.1; B.tScreen=at(7,"Screen"); B.tCut=at(7,"Cut"); B.tMiss=B.tCut+0.3;
+  B.back8=S(8)-0.1; B.tLater=at(8,"ఆ 'తర్వాత'"); B.tStill=at(8,"ఇప్పటికీ"); B.tear=B.tLater-0.1;
+  B.rp0=E(8)+0.05; B.lidC=B.rp0+0.05; B.ring1=B.rp0+0.12; B.swipe=S(9)-0.12; B.conn=S(9)-0.02;
+  B.tAnnam=at(10,"అన్నం");
+  B.sh0=S(11)-0.1; B.tNan=at(11,"నాన్నకో"); B.tFr=at(11,"friend");
+  B.end0=S(12)-0.1; B.tEF=at(12,"Follow")+0.25; B.tAdigo=at(12,"అదిగో")-0.05; B.ping1=B.tAdigo+0.1;
+  return B}
+
+const NX=640, NY=1240, AX=880, AY=1085;
+const focus=(z,wx,wy,sx=540,sy=1000)=>({z,fx:wx-(sx-540)/z,fy:wy-(sy-1000)/z});
+const clockVal=t=>{const b=beats(); if(t>=b.tAdigo) return 59; if(t<b.tStill) return Math.max(1,59-Math.floor(t/b.tStill*58)); return 1};
+
+window.render=function(t){
+  const b=beats(), n=NK.st, a=AN.st, g=GOPI.st;
+  const wfh=(t>=b.fb0&&t<b.back8)||(t>=b.rp0&&t<b.sh0);
+  const flash=t>=b.fb0&&t<b.back8, replay=t>=b.rp0&&t<b.sh0;
+  const loop=t>=b.tAdigo;
+  setSkin(replay?"clay":"paper");
+  svg.style.filter=flash?"sepia(.55) saturate(.6) brightness(1.02) contrast(.95)":replay?"sepia(.5) saturate(1.7) brightness(1.08) contrast(1.05)":"none";
+  for(const [C,who] of [[NK,"nikhil"],[AN,"ananya"]]) Object.assign(C.st,{talk:talkOf(who,t),blink:((t*0.6+who.length*0.37)%3.3)<0.11?1:0,shut:0,look:0,lookY:0,brow:"n",smile:0,sad:0,smirk:0,tear:0,tearRun:0,lit:0,
+    headRot:0,headY:0,hop:0,rot:0,item:"",itemRot:0,vis:1,s:1,flip:1,wink:0});
+
+  // ---------------- Nikhil ----------------
+  Object.assign(n,{x:wfh?FO+430:NX,y:NY});
+  n.headRot=Math.sin(t*1.3)*1.5; n.hL=[-62,-66]; n.hR=[62,-66];   // hands rest on the table top (local y -60)
+  if(loop||t<S(1)-0.3){                                   // reads the notification on the phone (right)
+    n.look=0.7; n.lookY=0.9; n.lit=1; n.brow=t>b.tOnce-0.1&&!loop?"u":"q"; n.headRot=6; n.headY=4; n.hR=[178,-68]}
+  else if(t<S(2)-0.1){ n.look=0.9; n.lookY=-0.4; n.brow="q"; n.smirk=t>E(1)?1:0; n.headRot=8; n.hR=[178,-68]}   // looks up at Ananya
+  else if(t<b.cal0){ n.look=0.6; n.lookY=0.8; n.lit=0.6; n.hR=[178,-68]}
+  else if(t<S(4)-0.1){ n.look=-0.3; n.lookY=-0.6; n.brow=t<b.tEsop?"q":"w"; n.smirk=t<b.tEsop?1:0; n.sad=t>=b.tEsop?1:0;   // looking up at the memories
+    n.headRot=-5+Math.sin(t*2)*2; if(t>b.tEsop) n.headY=6}
+  else if(t<b.turn){ n.look=-0.2; n.lookY=-0.3; n.brow="q"; n.hR=[24,-336]; n.headRot=-6;       // chin on his hand, thinking
+    if(t>b.CD0) n.headRot=-6+Math.sin(t*1.4)*3}
+  else if(t<b.fb0){ n.look=0; n.lookY=0; n.brow="s";                                                 // quiet, certain; pushes the cards aside
+    const k=t<b.sweep+0.5?out((t-b.sweep+0.1)/0.35):0; n.hR=[lerp(62,300,k),lerp(-66,-300,Math.sin(k*Math.PI))]}
+  else if(flash){ n.look=-0.9; n.lookY=0.5; n.lit=0.4;                                              // 2022: typing, glances at the phone, cuts it
+    const typ=Math.sin(t*26)*8; n.hL=[-200+typ,-68]; n.hR=[-90-typ,-68];
+    if(t>b.tScreen-0.3){n.look=0.8; n.lookY=0.9; n.brow="a"}
+    if(t>b.tCut-0.35&&t<b.tCut+0.45){n.hR=[lerp(-90,282,out((t-b.tCut+0.35)/0.3)),-64]}
+    if(t>b.tCut+0.45){n.look=-0.9; n.lookY=0.5; n.brow="s"; n.sad=1}}
+  else if(t<b.rp0){ n.lookY=0.2; n.brow="w"; n.sad=1; n.tear=clamp((t-b.back8)/0.5); n.tearRun=t>b.tear?clamp((t-b.tear)/1.6):0; n.headY=6;   // eyes glisten
+    if(t>b.tStill) n.shut=t<b.tStill+0.5?1:0}
+  else if(replay){                                                                                    // replay: closes the laptop, picks up
+    n.brow="w"; n.look=-0.6; n.lookY=0.3;
+    if(t<b.swipe-0.2){ const k=out((t-b.rp0+0.05)/0.12), k2=out((t-b.lidC)/0.28); n.hL=[lerp(-150,-235,k),lerp(lerp(-68,-310,k),-90,k2)]; n.look=-0.8; n.lookY=0.6}
+    else if(t<b.conn+0.25){ n.hR=[lerp(62,282,out((t-b.swipe+0.2)/0.18)),-64]; n.look=0.8; n.lookY=0.9}
+    else { n.hR=[72,-382]; n.item="phone"; n.itemRot=-8; n.look=-0.2; n.lookY=0.1; n.headRot=8;            // phone at his ear
+      n.tear=1; n.smile=t>E(9)?1:0; n.brow=t>E(9)?"u":"w"; if(t>b.tAnnam+0.3) n.shut=t<b.tAnnam+1.2?1:0}}
+  else { n.lookY=0.3; n.smile=1; n.hR=[178,-68]}   // share / end
+
+  // ---------------- Ananya ----------------
+  Object.assign(a,{x:AX,y:AY,vis:0,rot:-6});
+  a.headRot=Math.sin(t*1.1+1)*2; a.hL=[-70,-140]; a.hR=[20,-210]; a.item="chai";
+  if(!wfh&&t>b.anIn0&&!loop){ a.vis=1;
+    if(t<b.anIn1){const k=ease((t-b.anIn0)/(b.anIn1-b.anIn0)); a.x=lerp(1260,AX,k); a.hop=Math.abs(Math.sin(k*Math.PI*3))*10}
+    if(t<S(2)){a.look=-0.9; a.lookY=0.7; a.brow="q"; a.rot=-12; a.smirk=t>b.tOffer?1:0; a.hR=[-10,-250]; a.headRot=-10}         // peeks over his shoulder
+    else if(t<b.cal0){a.look=-0.8; a.lookY=0.8; a.smile=0.6; a.hR=[0,-300]; a.itemRot=-10; a.headRot=-6}                       // sips chai
+    else if(t<b.turn){a.look=-0.4; a.lookY=-0.6; a.brow="u"; a.hR=[20,-210]; if(t>S(5)-0.1){a.look=-0.9; a.lookY=0.6; a.brow="q"}}
+    else if(t<b.fb0){a.look=-0.9; a.lookY=0.6; a.brow="u"; a.hR=[20,-210]}
+    else if(t<b.rp0){a.look=-0.9; a.lookY=0.8; a.brow="w"; a.sad=1; a.rot=-12; a.item="";                                       // hand on his shoulder
+      const k=out((t-b.back8-0.3)/0.5); AN.aim("R",lerp(AX+20,736,k),lerp(AY-210,976,k)); a.hL=[-70,-140]}
+    else {a.look=-0.6; a.lookY=0.4; a.smile=1; a.hR=[20,-210]}
+  }
+  AN.draw(); NK.draw();
+
+  // ---------------- Gopi (narrator badge) ----------------
+  const narOn=(t>b.narIn2&&t<E(2)+0.25)||(t>b.narIn4&&t<b.CD0+0.2)||(t>S(11)-0.15&&t<b.tAdigo);
+  const narK=narOn?1:0, narT=t>b.narIn4&&t<b.CD0+0.2?b.narIn4:t>S(11)-0.15?S(11)-0.15:b.narIn2;
+  Object.assign(g,{x:165,y:1385+400*0.55+12,s:0.55,talk:talkOf("gopi",t),blink:((t*0.7)%3.1)<0.12?1:0,wink:0,look:0.5,lookY:0,brow:"n",smile:0,headRot:Math.sin(t*2.2)*3,item:"",armL:200,armR:160,lenL:115,lenR:115,hop:0,itemRot:0});
+  if(t>b.tWink-0.05&&t<b.tWink+0.55){g.wink=1; g.smile=1; g.brow="q"}
+  if(t>b.tFol-0.4&&t<E(4)){g.armR=40; g.item="point"; g.itemRot=-30}
+  if(t>S(5)-0.1&&t<E(5)){g.brow="u"; g.look=0}
+  if(t>b.end0) {g.smile=1; g.armR=200+Math.sin(t*11)*30-40; g.lenR=130; g.item="wave"}
+  GOPI.draw();
+  const bs=narOn?Math.max(0.001,back((t-narT)/0.35)):0;
+  badge.setAttribute("transform",`translate(165,1385) scale(${bs}) rotate(${Math.sin(t*2)*2}) translate(-165,-1385)`); badge.style.opacity=narOn?1:0;
+
+  // ---------------- props ----------------
+  const phLit=(t<S(2)-0.1)||(t>b.cal0-1.6&&t<b.cal0-0.3)||loop;
+  pphGlow.setAttribute("opacity",phLit?0.22:0); pphScr.setAttribute("fill",phLit?"#BFE6FF":"#333");
+  SKY.forEach(({wnd,k})=>wnd.setAttribute("opacity",(Math.sin(t*0.5+k*40)>-0.85)?1:0.35));
+  // WFH phone: rings (flashback, replay)
+  const ringing=(flash&&t<b.tCut)||(replay&&t>b.ring1&&t<b.swipe);
+  wphBody.setAttribute("transform",ringing?`translate(${Math.sin(t*70)*4},0)`:""); wphGlow.setAttribute("opacity",ringing||(replay&&t<b.conn+0.3)?0.24:(flash&&t<b.tMiss+0.6?0.14:0));
+  // laptop lid closes in the replay
+  const lk=replay?out((t-b.lidC)/0.28):0; wlid.setAttribute("transform",`translate(0,1180) scale(1,${Math.max(0.04,1-lk)}) translate(0,-1180)`); wDark.setAttribute("opacity",lk>0.5?1:0);
+  deskGlow.setAttribute("opacity",replay?0.3:0.18);
+
+  // ---------------- camera ----------------
+  const punch=(t0,a_=0.1)=>t>t0?a_*Math.exp(-(t-t0)*4)*clamp((t-t0)/0.06):0;
+  const KEYS=[
+    [0,0,t=>focus(1.32+0.012*t+punch(b.tOnce,0.07),705,975)],
+    [b.anIn0,0.6,t=>focus(1.12+punch(b.tOffer,0.06),760,905,540,1060)],
+    [S(2)-0.1,0.5,t=>focus(1.0,640,900,540,1060)],
+    [b.cal0,0.4,t=>focus(1.0+punch(b.tCrore,0.04),700,610)],
+    [b.turn,0.35,t=>focus(1.1+punch(b.tTime,0.08),690,700)],
+    [b.fb0,0,t=>focus(1.05+0.02*(t-b.fb0)+punch(b.tCut,0.08),FO+420,960)],
+    [b.back8,0,t=>focus(1.6+0.03*(t-b.back8)+punch(b.tStill,0.05),690,890,540,960)],
+    [b.rp0,0,t=>focus(1.08+0.06*(t-b.rp0),FO+420,960)],
+    [b.sh0,0,t=>focus(1.0,600,900)],
+    [b.tAdigo,0,t=>focus(1.32+0.012*(t-b.tAdigo)*0,705,975)],
+  ];
+  let ki=0; for(let i=0;i<KEYS.length;i++) if(t>=KEYS[i][0]) ki=i;
+  let cm=KEYS[ki][2](t);
+  if(ki>0&&KEYS[ki][1]>0){const k=ease((t-KEYS[ki][0])/KEYS[ki][1]); if(k<1){const p=KEYS[ki-1][2](t); cm={z:lerp(p.z,cm.z,k),fx:lerp(p.fx,cm.fx,k),fy:lerp(p.fy,cm.fy,k)}}}
+  let sx=0,sy=0;
+  const shake=(t0,d,a_)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a_; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
+  shake(b.tCut,0.25,8); shake(b.CD1,0.25,8);
+  cam.setAttribute("transform",`translate(${540+sx},${1000+sy}) scale(${cm.z}) translate(${-cm.fx},${-cm.fy})`);
+  const scr=(wx,wy)=>[540+(wx-cm.fx)*cm.z, 1000+(wy-cm.fy)*cm.z];
+
+  // ---------------- HTML overlays ----------------
+  const show=(id,on,s=1,extra="")=>{const e=$(id); e.style.opacity=on?1:0; if(on) e.style.transform=`scale(${Math.max(0.01,s)}) ${extra}`};
+  // corner clock: 00:59 -> 00:01 by the end of the turn (time running out), 00:00 when the replay starts, 00:59 again at the loop
+  const ck=$("clk"); const cOn=(t>0.25&&t<b.rp0+0.8)||loop; ck.style.opacity=cOn?1:0;
+  const cv=t>=b.rp0&&!loop?0:clockVal(t); ck.textContent=`⏳ 00:${String(cv).padStart(2,"0")}`;
+  const tickK=fract(t>=b.tStill?0:t/b.tStill*58); ck.style.transform=`scale(${(t>b.tStill-0.05&&t<b.rp0+0.6?1.5:1)*(1+0.06*Math.exp(-tickK*10))})`;
+  ck.style.color=cv<=5?"#FF8A80":"#FFE9B8"; ck.style.borderColor=cv<=5?"#FF5252":"#F5B347";
+  // notification banner (open + loop)
+  const nb=$("notif"); const bt0=loop?b.ping1-0.05:b.ban0; const nbOn=(t>bt0&&t<S(1)-0.1)||loop;
+  nb.style.opacity=nbOn?(loop?1:clamp((S(1)-0.1-t)/0.2)):0; nb.style.transform=`translateY(${lerp(-620,0,out((t-bt0)/0.35))}px)`;
+  if(!loop) nb.style.top=(t>b.titleIn?560:520)+"px"; else nb.style.top="520px";
+  const ti=$("title"); ti.style.opacity=t>b.titleIn&&t<S(1)-0.1?clamp((S(1)-0.1-t)/0.2):0; ti.style.transform=`scale(${Math.max(0.01,back((t-b.titleIn)/0.45))})`;
+  // Ananya's guess bubble, positioned near her head
+  {const [hx,hy]=scr(AX-40,AY-520); const bu=$("bub"); bu.style.left=(hx-60)+"px"; bu.style.top=(hy-90)+"px";
+   bu.style.opacity=t>b.tOffer-0.1&&t<S(2)+0.6?clamp((S(2)+0.6-t)/0.2):0; bu.style.transform=`scale(${Math.max(0.01,pop(t,b.tOffer-0.1,0.35))}) rotate(-3deg)`}
+  show("hold",t>b.tHold-0.05&&t<b.cal0,lerp(1.8,1,out((t-b.tHold+0.05)/0.2)),`rotate(${-4+Math.sin(t*5)*1.5}deg)`);
+  // calendar flips
+  const calOn=t>b.cal0&&t<b.fan0; const cal=$("cal"); cal.style.opacity=calOn?clamp(Math.min((t-b.cal0)/0.2,(b.fan0-t)/0.15)):0;
+  cal.style.transform=`scale(${t>S(4)-0.1?lerp(1,0.86,out((t-S(4)+0.1)/0.3)):1}) translateY(${t>S(4)-0.1?-40:0}px)`;
+  const FL=[b.cal0,b.f1,b.f2,b.f3,b.f4,b.f5];
+  FL.forEach((f0,i)=>{const e=$("pg"+i), nx=FL[i+1]; const on=t>=f0-0.02&&(nx===undefined||t<nx+0.12);
+    let rx=0; if(i>0) rx=lerp(-95,0,out((t-f0)/(i>=2&&i<=4?0.05:0.14))); if(nx!==undefined&&t>nx) rx=lerp(0,-100,clamp((t-nx)/0.12));
+    if(i===5&&t>S(4)-0.1&&t<b.fan0) rx=-14*Math.sin(clamp((t-S(4)+0.1)/0.3)*Math.PI/2);   // paused mid-flip during the follow aside
+    e.style.opacity=on?1:0; e.style.transform=`rotateX(${rx}deg)`; e.style.zIndex=i});
+  for(let i=0;i<7;i++){const c=$("co"+i), t0=lerp(b.tEsop,b.tCrore,i/6); c.style.opacity=t>t0?1:0; c.style.transform=`translateY(${t>t0?lerp(-60,0,out((t-t0)/0.15)):0}px)`}
+  {const cr=$("crore"); cr.style.opacity=t>b.tCrore-0.05?1:0; cr.style.transform=`rotate(-8deg) scale(${Math.max(0.01,pop(t,b.tCrore-0.05,0.3))})`}
+  {const s_=$("stamp"); s_.style.opacity=t>b.tStamp?1:0; s_.style.transform=`rotate(-14deg) scale(${lerp(2.2,1,out((t-b.tStamp)/0.15))})`}
+  // follow tap
+  const fA=S(4)-0.1, fB=b.fan0; const fOn=t>fA&&t<fB; const fol=$("fol"); fol.style.opacity=fOn?clamp(Math.min((t-fA)/0.2,(fB-t)/0.12)):0;
+  fol.style.transform=`scale(${Math.max(0.01,back((t-fA)/0.4))*(Math.abs(t-b.tFol)<0.1?0.9:1)})`;
+  const bF=$("bF"); bF.textContent=t<b.tFol?"+ FOLLOW":"FOLLOWING ✓"; bF.className="btn"+(t<b.tFol?"":" done");
+  const hand=$("tapHand"); const hk=ease((t-fA-0.1)/Math.max(0.3,b.tFol-fA-0.2)); const dip=Math.max(0,1-Math.abs(t-b.tFol)/0.1);
+  hand.style.opacity=fOn?clamp(Math.min((t-fA-0.05)/0.15,(fB-t)/0.12)):0; hand.style.transform=`translate(${lerp(620,330,hk)-50}px,${lerp(1450,1050,hk)+dip*12}px) rotate(${-8+dip*6}deg)`;
+  const rg_=$("ring"), rk=(t-b.tFol)/0.45; rg_.style.opacity=fOn&&rk>0&&rk<1?1-rk:0; rg_.style.left="320px"; rg_.style.top="1050px"; rg_.style.transform=`scale(${1+rk*6})`;
+  // question + fan of day-cards + countdown + bubbles
+  const qOn=t>b.fan0&&t<b.turn+0.15; show("q",qOn,pop(t,b.fan0,0.4)*(t>b.turn?1-clamp((t-b.turn)/0.15):1));
+  const FANX=[-300,-100,100,300], FANR=[-10,-4,4,10];
+  [0,1,2,3].forEach(i=>{const e=$("dc"+i), t0=b.fan0+0.15+i*0.18, k=pop(t,t0,0.4);
+    let x=FANX[i], r=FANR[i], o=t>t0&&t<b.tFlip+0.05?1:0, y=0;
+    if(t>b.CD0&&t<b.turn) y=Math.sin(t*2.4+i)*8;
+    if(t>b.sweep&&i<3){const sk=out((t-b.sweep-i*0.06)/0.35); x+=sk*(i<2?-900:900)*(i===2?1:1); r+=sk*(i<2?-50:50); }
+    if(i===3&&t>b.sweep){const sk=out((t-b.sweep)/0.35); x=lerp(FANX[3],0,sk); r=lerp(FANR[3],0,sk); y=lerp(0,40,sk)}
+    e.style.opacity=o; e.style.transform=`translateX(${x}px) translateY(${y}px) rotate(${r}deg) scale(${Math.max(0.01,k)*(i===3&&t>b.sweep?lerp(1,1.4,out((t-b.sweep)/0.35)):1)})`});
+  const bg=$("big"); const bOn=t>b.tFlip&&t<b.fb0; bg.style.opacity=bOn?1:0;
+  {const fk=out((t-b.tFlip)/0.4); $("bigF").style.transform=`rotateY(${fk*180}deg)`; $("bigK").style.transform=`rotateY(${180+fk*180}deg)`;
+   bg.style.transform=`scale(${lerp(0.75,1,out((t-b.tFlip)/0.3))*(1+punch(b.tTime,0.06))})`;
+   $("d1").style.opacity=t>b.tDay-0.1?1:0.15; $("d2").style.opacity=t>b.tTime-0.1?1:0.15; $("d2").style.transform=`scale(${t>b.tTime-0.1?lerp(1.4,1,out((t-b.tTime+0.1)/0.2)):1})`}
+  const sw=$("sweep"); const swk=(t-b.sweep+0.15)/0.5; sw.style.opacity=swk>0&&swk<1?1:0; sw.style.transform=`translate(${lerp(-150,1000,ease(swk))}px,${520+Math.sin(swk*Math.PI)*-60}px) rotate(${lerp(-20,10,swk)}deg)`;
+  const cdk=t-b.CD0, sec=Math.floor(cdk), fr=cdk-sec; const cdOn=t>=b.CD0&&t<b.CD1;
+  $("cdw").style.opacity=cdOn?clamp(cdk/0.15)*clamp((TL.countdown-cdk)/0.15):0;
+  show("cnow",(t>b.tCm-0.05&&t<b.CD1),Math.max(0.01,pop(t,b.tCm-0.05,0.35))*(1+0.05*Math.sin(t*Math.PI*4)));
+  if(cdOn){const nn=Math.max(1,TL.countdown-sec); $("digit").textContent=nn; $("digit").style.transform=`scale(${lerp(1.5,1,out(fr/0.2))})`; $("digit").style.color=nn<=1?"#FF5252":"#F5B347";
+    $("arc").setAttribute("stroke-dasharray",`${590.6*(1-cdk/TL.countdown)} 590.6`); $("cdw").style.transform=`scale(${1+Math.exp(-fr*8)*0.08})`}
+  CB.forEach((_,i)=>{const e=$("cb"+i), t0=b.cb[i], k=pop(t,t0,0.3); const on=t>t0&&t<b.CD1+0.15; e.style.opacity=on?clamp((b.CD1+0.15-t)/0.15):0;
+    e.style.transform=`translateY(${-(t-t0)*28}px) scale(${Math.max(0.01,k)}) rotate(${(i%2?3:-3)}deg)`});
+  // flashback chip / replay chip + warm glow
+  $("fbchip").style.opacity=flash?1:0;
+  $("rp").style.opacity=replay?1:0; $("rp").style.transform=`scale(${replay?Math.max(0.01,pop(t,b.rp0,0.35)):1})`;
+  const gw=replay?clamp((t-b.rp0)/0.4)*(0.4+0.25*clamp((t-S(10))/1.2)):0; $("glow").style.opacity=gw; $("vig").style.opacity=replay?0.9:(t>b.back8&&t<b.rp0?0.6:0);
+  // the phone (flashback: calling -> cut -> missed call; replay: calling -> swipe green -> connected 00:01…)
+  const ph=$("phone"); const phOn=(flash&&t>b.fb0+0.15)||(replay&&t>b.ring1-0.05);
+  ph.style.opacity=phOn?1:0;
+  let phS=1, phX=0, phY=0;
+  if(flash) phS=Math.max(0.01,back((t-b.fb0-0.15)/0.35));
+  if(replay){phS=Math.max(0.01,back((t-b.ring1+0.05)/0.3)); if(t>b.conn+0.5){const k=out((t-b.conn-0.5)/0.4); phS=lerp(1,0.62,k); phX=lerp(0,40,k); phY=lerp(0,-150,k)}}
+  ph.style.transform=`translate(${phX}px,${phY}px) scale(${phS}) rotate(${4+(ringing?Math.sin(t*60)*1.5:0)}deg)`;
+  const conn=replay&&t>b.conn, missed=flash&&t>b.tMiss;
+  $("pst").style.opacity=conn?0:1; $("pst").style.display=conn?"none":"block"; $("pst").textContent=missed?"":"mobile · calling…";
+  $("ptm").style.opacity=conn?1:0; if(conn) $("ptm").textContent=`connected 00:${String(1+Math.floor((t-b.conn)*1.0)).padStart(2,"0")}`;
+  $("pmiss").style.opacity=missed?1:0;
+  $("pR").style.opacity=(flash&&!missed)||(replay&&!conn)?1:0; $("pG").style.opacity=(flash&&!missed)||(replay&&!conn)?1:0;
+  $("pR").style.transform=`scale(${flash&&Math.abs(t-b.tCut)<0.1?0.85:1})`;
+  $("pG").style.transform=`scale(${replay&&Math.abs(t-b.swipe)<0.1?0.85:1})`;
+  {const rr=fract(t*1.4); $("pRing").style.opacity=ringing&&replay?(1-rr)*0.9:0; $("pRing").style.transform=`scale(${1+rr*0.8})`}
+  $("pht").style.opacity=conn&&t>b.tAnnam-0.1?1:0; $("pht").style.transform=`scale(${conn?1+0.25*Math.exp(-((t-b.tAnnam)%1.2)*5)*(t>b.tAnnam?1:0):1})`;
+  // the thumb on the phone
+  const phd=$("pHand"); let hOn=false, hx=0, hy=0, hd=0;
+  if(flash&&t>b.tCut-0.5&&t<b.tCut+0.35){hOn=true; const k=ease((t-b.tCut+0.5)/0.45); hx=lerp(900,700,k); hy=lerp(1400,1035,k); hd=Math.max(0,1-Math.abs(t-b.tCut)/0.1)}
+  if(replay&&t>b.swipe-0.4&&t<b.conn+0.3){hOn=true; const k=ease((t-b.swipe+0.4)/0.3); hx=lerp(1000,950,k); hy=lerp(1400,1035,k); hd=Math.max(0,1-Math.abs(t-b.swipe)/0.1)}
+  phd.style.opacity=hOn?1:0; phd.style.transform=`translate(${hx-50}px,${hy-8+hd*10}px) scale(${1-0.1*hd}) rotate(-8deg)`;
+  // share to Nanna / a friend
+  const shOn=t>b.sh0&&t<b.end0+0.1; const sh=$("share"); sh.style.opacity=shOn?clamp(Math.min((t-b.sh0)/0.2,(b.end0+0.1-t)/0.15)):0;
+  $("mini").style.transform=`scale(${Math.max(0.01,back((t-b.sh0)/0.4))}) rotate(${-3+Math.sin(t*2)}deg)`;
+  [["ctN","sp1","snN",b.tNan,600],["ctF","sp2","snF",b.tFr,940]].forEach(([c,p,s_,t0,y])=>{
+    $(c).style.opacity=t>t0-0.35?1:0; $(c).style.transform=`scale(${Math.max(0.01,pop(t,t0-0.35,0.35))*(t>t0+0.25&&t<t0+0.5?1.06:1)})`;
+    const ak=out((t-t0+0.1)/0.35); const x0=450,y0=820,x1=612,y1=y+40, qx=560, qy=(y0+y1)/2-60;
+    $(p).setAttribute("d",`M${x0} ${y0} Q${qx} ${qy} ${x1} ${y1}`); $(p).setAttribute("stroke-dashoffset",1-ak); $(p).style.opacity=t>t0-0.1?1:0;
+    $(s_).style.opacity=t>t0+0.25?1:0});
+  // end card (short) -> loop
+  const ec=$("endc"), eOn=t>b.end0&&t<b.tAdigo; ec.style.opacity=eOn?clamp(Math.min((t-b.end0)/0.15,(b.tAdigo-t)/0.08)):0;
+  $("eF").textContent=t<b.tEF?"FOLLOW @_REELRASAM":"FOLLOWING ✓  @_REELRASAM"; $("eF").style.transform=`scale(${Math.abs(t-b.tEF)<0.1?0.92:1})`;
+  $("eF").style.background=t<b.tEF?"":"#6D6875";
+  const eh=$("eHand"), ek=ease((t-b.end0)/Math.max(0.2,b.tEF-b.end0-0.05)), edip=Math.max(0,1-Math.abs(t-b.tEF)/0.1);
+  eh.style.opacity=eOn?1:0; eh.style.transform=`translate(${lerp(900,250,ek)-50}px,${lerp(1300,690,ek)+edip*12}px) scale(${1-0.1*edip}) rotate(-8deg)`;
+  $("flash").style.opacity=(t>b.fb0&&t<b.fb0+0.18?0.7*(1-(t-b.fb0)/0.18):0)+(t>b.rp0&&t<b.rp0+0.25?0.85*(1-(t-b.rp0)/0.25):0)+(t>b.back8&&t<b.back8+0.12?0.4*(1-(t-b.back8)/0.12):0);
+  // subtitles
+  const sub=$("sub"), L=curLine(t);
+  if(L&&!(eOn&&L.i===12&&false)){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+};
+</script>
+</body></html>
