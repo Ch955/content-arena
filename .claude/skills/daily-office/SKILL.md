@@ -1,6 +1,6 @@
 ---
 name: daily-office
-description: Reel Rasam Manager — runs the office. "evening" mode (≈6 PM IST) makes TOMORROW's two card reels (podupu katha + book story / life lesson) and puts them in the Sheet; "morning" mode (≈6:45 AM IST) checks today's posts are ready for approval. Use when a scheduled run or the owner says "run the office", "evening run" or "morning run".
+description: Reel Rasam Manager — runs the office. "evening" mode (≈6 PM IST) makes TOMORROW's one entertainment reel (what-if / moral-dilemma / modern-dilemma / twist-story in rotation) and puts it in the Sheet; "morning" mode (≈6:45 AM IST) checks today's reel is ready for approval. Use when a scheduled run or the owner says "run the office", "evening run" or "morning run".
 ---
 
 # Reel Rasam office — Manager
@@ -17,7 +17,7 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    Comedy voices are Gemini TTS through the same service account (needs its Vertex AI / "Agent Platform" User role).
    If any is missing, notify the owner and stop.
 
-## Evening mode — make TOMORROW's two reels (date = today + 1, IST)
+## Evening mode — make TOMORROW's one reel (date = today + 1, IST; owner 12 Nov 2026: one entertainment reel a day, no fact videos)
 1. `python -m content_arena plan --start <tomorrow> --days 1` → from 13 Nov: slot 1 `what-if` or `moral-dilemma`,
    slot 2 `micro-doc` or `modern-dilemma` (owner: adult storylines, premium, never childish; CLAUDE.md quality bar).
 2. Pick strong premises (pitch 3, keep the one you'd send to a friend): real stakes in line 1, a twist, a hard A/B

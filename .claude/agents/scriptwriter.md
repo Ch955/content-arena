@@ -64,3 +64,9 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
 - Series (6 reels, Mon–Sat 18:30): write a series bible first (series name, the big mystery, 6 episode beats, what
   each episode reveals, the clue trail) in `content/series-<slug>/bible.md`; each episode = its own complete reel
   (its question answered) + a closing hook "రేపు Episode N…". Every twist must hold up on a rewatch.
+- From 13 Nov 2026: ONE entertainment reel a day, no fact videos. Types rotate: what-if, moral-dilemma,
+  modern-dilemma, twist-story. Twist-story = an original Katha Twist-style emotional/mystery story with Nikhil &
+  Ananya: 3-s hook → relatable problem → 2–3 fair clues → emotional or unexpected twist explained in the same reel →
+  a question for the comments ("మీ theory?", "మీరైతే?"). Every clue must be visible on a rewatch; no plot holes, no
+  horror gore, no ghosts-as-fact (keep supernatural twists explainable or clearly fictional). Keep scripts short
+  enough that the voice never needs speeding up (≈ 12 lines × ≤ 10 words).

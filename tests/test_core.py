@@ -82,7 +82,7 @@ class ScheduleTests(unittest.TestCase):
         self.assertTrue(all(p[0] == "podupu" for k, p in got.items() if "2026-11-09" <= k < "2026-11-13"))
         self.assertEqual(got["2026-11-09"][1], "book-story")         # Monday
         self.assertEqual(got["2026-11-10"][1], "life-lesson")        # Tuesday
-        self.assertEqual(got["2026-11-15"][1], "modern-dilemma")     # Sunday (adult storylines from 13 Nov)
+        self.assertEqual(got["2026-11-15"], ["modern-dilemma"])       # one entertainment reel a day from 13 Nov
 
 
 class ServiceAccountTests(unittest.TestCase):
@@ -497,16 +497,15 @@ class ElevenModulationTests(unittest.TestCase):
 
 
 class StoryPlanTests(unittest.TestCase):
-    def test_adult_storyline_rotation_from_13_nov(self):
+    def test_one_entertainment_reel_a_day_from_13_nov(self):
         from datetime import date
         from content_arena import schedule, pipeline
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 13)), ["what-if", "micro-doc"])        # Fri
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 14)), ["moral-dilemma", "modern-dilemma"])  # Sat
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 15)), ["what-if", "modern-dilemma"])   # Sun
+        got = [schedule.pillars_for(date(2026, 11, d)) for d in range(13, 18)]
+        self.assertEqual(got, [["what-if"], ["moral-dilemma"], ["modern-dilemma"], ["twist-story"], ["what-if"]])
         self.assertEqual(schedule.pillars_for(date(2026, 11, 12)), ["podupu", "life-lesson"])       # before the switch
-        self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 07:30")
-        self.assertEqual(pipeline.slot_time("2026-11-13-doc-x", "micro-doc"), "2026-11-13 18:30")
-
+        self.assertNotIn("micro-doc", sum((schedule.pillars_for(date(2026, 11, d)) for d in range(13, 30)), []))
+        self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 18:30")
+        self.assertEqual(pipeline.slot_time("2026-11-16-twist-x", "twist-story"), "2026-11-16 18:30")
 
 class LeadCastVoiceTests(unittest.TestCase):
     def test_library_voice_falls_back_to_builtin_on_free_plan(self):
@@ -531,9 +530,11 @@ class LeadCastVoiceTests(unittest.TestCase):
 
 
 class SeriesWeekTests(unittest.TestCase):
-    def test_six_episode_series_mon_to_sat(self):
+    def test_series_week_takes_the_day_when_scheduled(self):
         from datetime import date
+        from unittest import mock
         from content_arena import schedule
-        self.assertEqual([schedule.series_episode(date(2026, 11, d)) for d in range(15, 23)], [None, 1, 2, 3, 4, 5, 6, None])
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 16)), ["what-if", "series"])
-        self.assertEqual(schedule.pillars_for(date(2026, 11, 22)), ["what-if", "modern-dilemma"])  # Sunday after
+        self.assertIsNone(schedule.series_episode(date(2026, 11, 16)))     # paused by default
+        with mock.patch.object(schedule, "SERIES_WEEKS", {date(2026, 11, 23)}):
+            self.assertEqual([schedule.series_episode(date(2026, 11, d)) for d in range(22, 30)], [None, 1, 2, 3, 4, 5, 6, None])
+            self.assertEqual(schedule.pillars_for(date(2026, 11, 23)), ["series"])

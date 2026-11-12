@@ -24,22 +24,26 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 
 ## Content pillars
 
-**Owner's plan from 13 Nov 2026: adult storylines** (owner: "not small-children storylines… very good stories,
-not low level"). Audience: Telugu adults, mainly 25–34 (young professionals and parents). Still **2 animated,
-interactive posts a day**, Telugu/Tenglish, every answer revealed in the same reel.
-`python -m content_arena plan` prints what to make (`src/content_arena/schedule.py`).
+**Owner's plan from 13 Nov 2026: adult entertainment storylines, ONE reel a day** (owner: "not small-children
+storylines… very good stories"; 12 Nov: "one video per day is more than enough… only entertainment videos, no fact
+videos"). Audience: Telugu adults, mainly 25–34. One animated, interactive reel a day at **~6:30 PM IST**; a festival or
+special-day reel is added only when the owner asks. The four types repeat in order (`ROTATION` in
+`src/content_arena/schedule.py`; `python -m content_arena plan` prints what to make):
 
-| Pillar | When | Format |
+| # | Pillar | Format |
 |---|---|---|
-| `what-if` — a surreal or philosophical thought experiment grounded in Telugu life ("మీ 20s లో ఒక్క రోజు redo చేయగలిగితే?", "What if salary రోజూ వస్తే?", "What if Tenali Rama Hyderabad IT company లో పని చేస్తే?") | Mon/Wed/Fri/Sun 07:30 | 35–45 s: hook in the middle of the action → the premise plays out with a twist → "మీరైతే ఏం చేస్తారు?" + countdown → the twist/ending → loop line |
-| `moral-dilemma` — a sharp choice with no easy answer (found wallet with ₹50,000 and a sick child's photo; friend's resume lie; whistle-blowing on a kind boss) | Tue/Thu/Sat 07:30 | 35–45 s: situation in 3 lines → A or B → comment + countdown → what happened / a thoughtful take (classic wisdom welcome, sourced) |
-| `micro-doc` — a tight, true, sourced 60-s story: hidden history, science, business, Indian/Telugu history, unusual inventions | Mon/Wed/Fri 18:30 | 45–60 s: "ఇది నిజంగా జరిగింది" hook → 3 beats with real facts → a quiz ("ఏ year?", "ఏమైంది తర్వాత?") + countdown → answer → loop |
-| `modern-dilemma` — relatable 25–34 life: work-life balance, office politics, EMIs, in-laws, career switch, friends' weddings, dating/arranged-marriage talks, WFH | Tue/Thu/Sat/Sun 18:30 | 45–60 s: a funny-real situation → the dilemma → A/B + countdown → a smart resolution or the sharpest comment-worthy take |
+| 1 | `what-if` — a surreal or philosophical thought experiment grounded in Telugu life ("మీ 20s లో ఒక్క రోజు redo చేయగలిగితే?", "What if salary రోజూ వస్తే?") | 35–45 s: hook in the action → the premise plays out with a twist → "మీరైతే ఏం చేస్తారు?" + countdown → the twist/ending → loop line |
+| 2 | `moral-dilemma` — a sharp choice with no easy answer (found wallet with ₹50,000 and a sick child's photo; friend's resume lie) | 35–45 s: situation in 3 lines → A or B → comment + countdown → how our story ends / a thoughtful take |
+| 3 | `modern-dilemma` — relatable 25–34 life: work-life balance, office politics, EMIs, in-laws, career switch, weddings, WFH | 45–60 s: a funny-real situation → the dilemma → A/B + countdown → a smart resolution |
+| 4 | `twist-story` — Katha Twist-style emotional or mystery story with Nikhil & Ananya (hook 3 s → relatable problem → clues → emotional/unexpected twist → a question) | 45–60 s: the twist is explained in the same reel; a theory/feeling question for the comments |
+
+No fact videos (micro-docs retired 12 Nov 2026). Stories are fiction — say "a fictional situation/story" in the caption.
 
 **Quality bar (owner, 13 Nov 2026): premium, adult, clever — never childish or low-level.** Each script needs a
 real hook (conflict, stakes or a surprising fact in line 1), a turn/twist, a payoff that makes people comment or
 rewatch, and specific details (places, money, situations Telugu viewers live). No preaching; let the viewer decide.
-Length caps: 35–45 s (slot 1), 45–60 s (slot 2), ~12–14 lines. Open on the action (title appears a beat later);
+Length caps: 35–45 s (what-if, moral-dilemma), 45–60 s (modern-dilemma, twist-story), ~12–14 lines; write short so
+the voice never needs rushing. Open on the action (title appears a beat later);
 end with a **loop** line that sends people back to the start when it fits.
 **Recurring leads (owner, 12 Nov 2026): Nikhil (28, Hyderabad software engineer, thoughtful, a little introverted)
 and Ananya (27, his close friend, confident, curious, empathetic)** star in the what-if, moral-dilemma, modern-dilemma
@@ -130,8 +134,8 @@ publish (Actions) →  Instagram / Facebook                            row: post
   ones first (shown above the title), then e.g. `#telugu #telugushorts #riddles #riddle #brainteaser #puzzle
   #iqtest #teluguriddles #podupukathalu #kathalu #telugustories #reelrasam`. Tags must match the reel (unrelated
   trending tags get a video ignored); YouTube drops all tags if a video has more than 60.
-- **Publish times (owner, 9 Nov 2026):** ~7:30 AM and ~6:30 PM IST (`.github/workflows/publish.yml`); the owner
-  approves the next day's reels by 7 AM.
+- **Publish time (owner, 12 Nov 2026: one reel a day):** ~6:30 PM IST (`.github/workflows/publish.yml`); the owner
+  approves the next day's reel by the afternoon.
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.

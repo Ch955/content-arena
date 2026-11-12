@@ -6,6 +6,8 @@ Slot 2 (rotating):    book-story   — Mon/Wed/Fri/Sun: a story from a great boo
                                      Tenali Rama, big ideas from good non-fiction), ending with a question
                       life-lesson  — Tue/Thu/Sat: a premium, sourced life lesson with an A-or-B question
 
+From 13 Nov 2026 the owner switched to ONE entertainment reel a day (ONE_A_DAY_START, ROTATION below: what-if →
+moral-dilemma → modern-dilemma → twist-story, repeating; no fact videos). The two-slot plan below was never used:
 From 13 Nov 2026 (STORY_PLAN_START, owner: adult storylines, not small-children stories) the two daily slots are:
 Slot 1 (07:30): what-if (Mon/Wed/Fri/Sun) or moral-dilemma (Tue/Thu/Sat) — short, comment-driving
 Slot 2 (18:30): micro-doc (Mon/Wed/Fri) or modern-dilemma (Tue/Thu/Sat/Sun)
@@ -26,7 +28,11 @@ STORY_PLAN_START = date(2026, 11, 13)
 DILEMMA_DAYS = {1, 3, 5}  # Tue, Thu, Sat: moral-dilemma + modern-dilemma
 # Series weeks (owner, 12 Nov 2026): one story told over 6 reels, Mon–Sat in the 18:30 slot; each episode answers its
 # own question, the big mystery resolves in episode 6. Add a week's Monday here to schedule a series.
-SERIES_WEEKS = {date(2026, 11, 16)}
+SERIES_WEEKS: set[date] = set()   # paused (owner, 12 Nov 2026: one reel a day); add a Monday to run a series week
+# One entertainment reel a day from 13 Nov 2026 (owner, 12 Nov: "one video per day is more than enough… only
+# entertainment, no fact videos"): the four types repeat in this order. Festivals/special days add a reel on request.
+ONE_A_DAY_START = date(2026, 11, 13)
+ROTATION = ["what-if", "moral-dilemma", "modern-dilemma", "twist-story"]
 
 
 def series_episode(day: date) -> int | None:
@@ -50,6 +56,10 @@ def is_fact_day(day: date, anchor: date | None = None) -> bool:
 
 
 def pillars_for(day: date, anchor: date | None = None) -> list[str]:
+    if day >= ONE_A_DAY_START:
+        if series_episode(day):
+            return ["series"]
+        return [ROTATION[(day - ONE_A_DAY_START).days % len(ROTATION)]]
     if day >= STORY_PLAN_START:
         wd = day.weekday()
         if series_episode(day):
