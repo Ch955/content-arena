@@ -6,4 +6,4 @@ True story; facts from CDC, nobelprize.org, Osmania University and others (sourc
 
 Subscribe for Telugu true stories, what-ifs and dilemmas 🍲 | Instagram: @_reelrasam
 
-#shorts #telugu #history #telugushorts #facts #hyderabad #secunderabad #begumpet #ronaldross #malaria #nobelprize #worldmosquitoday #telugufacts #hyderabadhistory #reelrasam
+#shorts #telugu #history #telugushorts #facts #hyderabad #secunderabad #begumpet #ronaldross #malaria #nobelprize #sciencehistory #telugufacts #hyderabadhistory #reelrasam

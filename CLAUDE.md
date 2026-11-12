@@ -105,8 +105,8 @@ questions to the viewer ("Ready ఆ?", "మీరు ఈ కథ విప్ప�
 28 Oct 2026): **Gemini TTS** — since 9 Nov via the **Gemini API / AI Studio key** (network secret for
 `generativelanguage.googleapis.com`, free tier; the Cloud project's billing account is inactive), each line acted from a per-line `act` direction, sped up 15% (owner 12 Nov: 10% more than the earlier 5%; `SPEED` in
 `assemble.py` and `tools/anim2d/voices.py`; ElevenLabs/Sarvam stay at +5%); host=Puck, cast voices Gopi=Puck, Chinna=Fenrir, Pandu=Algenib, Pinky=Leda, Amma=Kore (~₹2 per reel,
-$300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up, Nikhil=Kaka "natural Telangana
-Telugu" and Ananya=Vandana — library voices, need a paid ElevenLabs plan, else built-in Liam/Jessica automatically; key = network secret
+$300 trial credit). **From 11 Nov 2026 ElevenLabs goes first** (`eleven_v3`, Gopi=Liam, Pinky=Jessica pitched up; story characters cast by
+temperament from Telugu library voices — see "Voices by temperament" above — paid plan, else built-ins automatically; key = network secret
 for `api.elevenlabs.io`, header `xi-api-key`) while the key has credits, then Gemini, then Sarvam — automatic
 (`src/content_arena/elevenvoice.py`). Owner's choice; note the ElevenLabs free plan is non-commercial. Every take is auto-checked (length + a Gemini listener) and re-taken if it reads the
 direction aloud or drags. Old house voice (fallback only): Sarvam bulbul:v3 `shubh`, pace 1.18, temp 0.9.
