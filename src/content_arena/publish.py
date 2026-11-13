@@ -170,9 +170,11 @@ def post_youtube(row: dict, url: str, description: str, uploader=None) -> str:
 
 
 def wants_story(row: dict) -> bool:
-    """Every Instagram reel also goes to the story (owner, 13 Nov 2026: "every day add it to the story as well as a
-    new post"). The story is the video itself (media_type=STORIES), not a shared-post card linking to the reel."""
-    return row["platform"] == "instagram" and (row["format"] or "") == "reel"
+    """Off by default (owner, 13 Nov 2026: the story must be the shared-reel *card* with a link to the post, not the
+    video itself — the Instagram API can only post plain photo/video stories, so the owner shares the reel to the
+    story from the app). Set INSTAGRAM_VIDEO_STORY=on to post the video as a story again."""
+    return (config.get("INSTAGRAM_VIDEO_STORY", "off").lower() == "on"
+            and row["platform"] == "instagram" and (row["format"] or "") == "reel")
 
 
 def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uploader=None) -> dict:

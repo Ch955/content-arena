@@ -139,8 +139,9 @@ publish (Actions) →  Instagram / Facebook                            row: post
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.
-- **Instagram story (owner, 13 Nov 2026):** every Instagram reel is also posted to the story as the video itself
-  (not a shared-post card); a failed story never undoes the posted reel.
+- **Instagram story (owner, 13 Nov 2026):** the owner wants the shared-reel *card* (with the link to the post) in the
+  story, which the Instagram API cannot create — so no automatic story; after each post the backup run reminds the
+  owner to share it (reel → Share → Add to story). `INSTAGRAM_VIDEO_STORY=on` would post the plain video instead.
 - `publish` posts **at most one row per platform** per run, oldest `approved` first, and
   defaults to dry run; `--live` is required to actually post.
 
