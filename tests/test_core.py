@@ -231,7 +231,8 @@ class ReelTests(TmpCase):
         self.assertNotIn("caption", posts[0])
         row = {"platform": "instagram", "format": "reel", "id": "2026-11-12-festival-nagula-panchami-instagram"}
         self.assertTrue(publish.wants_story(row))
-        self.assertFalse(publish.wants_story({**row, "id": "2026-11-12-podupu-04-x-instagram"}))
+        self.assertTrue(publish.wants_story({**row, "id": "2026-11-13-whatif-x-instagram"}))   # every reel, daily
+        self.assertFalse(publish.wants_story({**row, "format": "carousel"}))
         self.assertFalse(publish.wants_story({**row, "platform": "youtube"}))
 
     def test_youtube_row_publishes_via_uploader(self):

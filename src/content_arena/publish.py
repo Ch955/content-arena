@@ -170,8 +170,9 @@ def post_youtube(row: dict, url: str, description: str, uploader=None) -> str:
 
 
 def wants_story(row: dict) -> bool:
-    """Instagram reels that also go to the story: festival greetings (row id contains '-festival-')."""
-    return row["platform"] == "instagram" and (row["format"] or "") == "reel" and "-festival-" in row["id"]
+    """Every Instagram reel also goes to the story (owner, 13 Nov 2026: "every day add it to the story as well as a
+    new post"). The story is the video itself (media_type=STORIES), not a shared-post card linking to the reel."""
+    return row["platform"] == "instagram" and (row["format"] or "") == "reel"
 
 
 def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uploader=None) -> dict:
