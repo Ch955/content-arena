@@ -1,0 +1,62 @@
+{
+ "0": {
+  "expected": "[tense] Ameerpet metro, ఒక wallet. యాభై వేలు cash, ఒక పాప surgery bill.",
+  "heard": "అమీర్పేట్ మెట్రో ఒక వాలెట్, యాభై వేలు క్యాష్, ఒక పాప్ సర్జరీ బిల్.",
+  "sim": 0.44
+ },
+ "1": {
+  "expected": "[mischievously] Nikhil కి EMI రేపే. సరిగ్గా యాభై వేలు short! Choice చివర్లో.",
+  "heard": "నిఖిల్ కి ఈఎంఐ రేపే సరిగ్గా యాభై వేలు షార్ట్ ఛాయిస్ చివర్లో",
+  "sim": 0.72
+ },
+ "2": {
+  "expected": "[worried] Police booth లో ఇచ్చేయ్ Nikhil, [firm] eleven కి నీ promotion demo!",
+  "heard": "పోలీస్ బూత్లో ఇచ్చేయ్ నిఖిల్, ఇలెవెన్ కి నీ ప్రమోషన్ డెమో.",
+  "sim": 0.43
+ },
+ "3": {
+  "expected": "[tense] Surgery రేపే, టైంకి చేరుతుందా?",
+  "heard": "సర్జరీ రేపే టైం చేరుతుందా?",
+  "sim": 0.8
+ },
+ "4": {
+  "expected": "[warmly] ఇలాంటి dilemmas రోజూ కావాలంటే… [excited] follow చేయండి!",
+  "heard": "ఇలాంటి డిలమాస్ రోజు కావాలంటే ఫాలో చేయండి.",
+  "sim": 0.78
+ },
+ "5": {
+  "expected": "మీరైతే? A, Medchal. B, police booth. Comment చేయండి!",
+  "heard": "మీరైతే ఏ మెడ్చల్, బి పోలీస్ బూత్ కామెంట్ చేయండి.",
+  "sim": 0.47
+ },
+ "6": {
+  "expected": "[calmly] Medchal వెళ్ళాను. [sighs] Demo, miss అయ్యాను.",
+  "heard": "మెడ్చల్ వెళ్ళాను, డెమో మిస్ అయ్యాను.",
+  "sim": 0.67
+ },
+ "7": {
+  "expected": "[gasps] Nikhil సారు?! మీరా? [voice breaking] పైసలు లేకుంటే… రేపు పాప ఆపరేషన్…",
+  "heard": "నిఖిల్ సార్, మీరా పైసలు లేకుంటే రేపు పాప ఆపరేషన్.",
+  "sim": 0.89
+ },
+ "8": {
+  "expected": "[stunned] మా office night guard. రోజూ నాకు salute చేసే మనిషి.",
+  "heard": "మా ఆఫీస్ నైట్ గార్డ్ రోజు నాకు సెల్యూట్ చేసే మనిషి.",
+  "sim": 0.59
+ },
+ "9": {
+  "expected": "[quietly] తనకి నా పేరు తెలుసు. నాకు తన పేరు తెలీదు.",
+  "heard": "తనకి నా పేరు తెలుసు, నాకు తన పేరు తెలియదు.",
+  "sim": 0.95
+ },
+ "10": {
+  "expected": "[warmly] మీ choice comment లో. ఈ dilemma friend కి పంపండి!",
+  "heard": "మీ ఛాయిస్ కామెంట్లో ఈ డెలిమా ఫ్రెండ్కి పంపండి.",
+  "sim": 0.5
+ },
+ "11": {
+  "expected": "[warmly] Follow చేయండి. [whispers] మీరూ ఆ ID మీద పేరు చూడలేదు కదా?",
+  "heard": "ఫాలో చేయండి. మీరు ఐడి మీద పేరు చూడలేదు కదా.",
+  "sim": 0.84
+ }
+}

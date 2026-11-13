@@ -32,3 +32,9 @@ const ANANYA_OPT={skin:"#D9A47A",hair:"#2A1A14",shirt:"#1E8C8C",trim:"#F5B347",k
   falls back to built-in Liam = Gopi's voice, so What-if #1 pitched him to 0.94 (`ELEVEN_PITCH`) to tell them apart.
   Gemini fallback: Charon. Sarvam fallback: rahul.
 - Ananya: `PROFILE "andhra-female-young"` (free plan → Jessica). Gemini: Kore. Sarvam: kavya.
+
+## Standing scenes (from Moral dilemma #1, `content/2026-11-14-dilemma-wallet-emi/2d/ep.html`, 14 Nov 2026)
+`makeAdult()` there adds optional `legs:{pant,shoe}` (trousers + shoes, `st.walk` swings them), `badge:[line1,line2]`
+(office lanyard + ID badge), `itemL` (left-hand phone), the `wallet`/`walletOpen` props, and for one-off characters
+`moustache`, `grey`, `bags`, `eyeWhite`, `uniform` (plain shirt with flap pockets + shoulder flaps, no logo) and a cap
+(`st.cap`). Nikhil in that reel: `{...NIKHIL_OPT, badge:["NIKHIL R","TOWER B"], legs:{pant:"#2B3240",shoe:"#1A1A1A"}}`.
