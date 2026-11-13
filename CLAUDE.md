@@ -26,7 +26,7 @@ Slides and captions use the Instagram handle; the brand hashtag stays `#reelrasa
 
 **Owner's plan from 13 Nov 2026: adult entertainment storylines, ONE reel a day** (owner: "not small-children
 storylines… very good stories"; 12 Nov: "one video per day is more than enough… only entertainment videos, no fact
-videos"). Audience: Telugu adults, mainly 25–34. One animated, interactive reel a day at **~6:30 PM IST**; a festival or
+videos"). Audience: Telugu adults, mainly 25–34. One animated, interactive reel a day at **~7:30 AM IST** (owner, 13 Nov 2026: "post in the morning"); a festival or
 special-day reel is added only when the owner asks. The four types repeat in order (`ROTATION` in
 `src/content_arena/schedule.py`; `python -m content_arena plan` prints what to make):
 
@@ -134,13 +134,13 @@ publish (Actions) →  Instagram / Facebook                            row: post
   ones first (shown above the title), then e.g. `#telugu #telugushorts #riddles #riddle #brainteaser #puzzle
   #iqtest #teluguriddles #podupukathalu #kathalu #telugustories #reelrasam`. Tags must match the reel (unrelated
   trending tags get a video ignored); YouTube drops all tags if a video has more than 60.
-- **Publish time (owner, 12 Nov 2026: one reel a day):** ~6:30 PM IST (`.github/workflows/publish.yml`); the owner
-  approves the next day's reel by the afternoon.
+- **Publish time (owner, 13 Nov 2026: one reel a day, in the morning):** ~7:30 AM IST (`.github/workflows/publish.yml`;
+  backup check 7:32 AM); the evening run makes it the night before and the owner approves it by 7 AM.
 - Allowed transitions are enforced in `src/content_arena/table.py`. Scripts
   never move a row into `approved` except via the owner's explicit
   `approve` command, and never touch `approved`/`posted` rows when syncing.
 - **Instagram story (owner, 13 Nov 2026):** the owner wants the shared-reel *card* (with the link to the post) in the
-  story, which the Instagram API cannot create — so no automatic story; after each post the backup run reminds the
+  story, which the Instagram API cannot create — so no automatic story; after each post the 7:32 AM backup run reminds the
   owner to share it (reel → Share → Add to story). `INSTAGRAM_VIDEO_STORY=on` would post the plain video instead.
 - `publish` posts **at most one row per platform** per run, oldest `approved` first, and
   defaults to dry run; `--live` is required to actually post.

@@ -507,8 +507,8 @@ class StoryPlanTests(unittest.TestCase):
         self.assertEqual(got, [["what-if"], ["moral-dilemma"], ["modern-dilemma"], ["twist-story"], ["what-if"]])
         self.assertEqual(schedule.pillars_for(date(2026, 11, 12)), ["podupu", "life-lesson"])       # before the switch
         self.assertNotIn("micro-doc", sum((schedule.pillars_for(date(2026, 11, d)) for d in range(13, 30)), []))
-        self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 18:30")
-        self.assertEqual(pipeline.slot_time("2026-11-16-twist-x", "twist-story"), "2026-11-16 18:30")
+        self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 07:30")
+        self.assertEqual(pipeline.slot_time("2026-11-16-twist-x", "twist-story"), "2026-11-16 07:30")
 
 class LeadCastVoiceTests(unittest.TestCase):
     def test_library_voice_falls_back_to_builtin_on_free_plan(self):

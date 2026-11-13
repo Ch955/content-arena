@@ -29,7 +29,7 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    on-screen action interactive: tap/poll buttons, comment bubbles, countdown, reactions; card reel only as a fallback)
    → quality-checker → `python -m content_arena sync content/<post>` → rows `rendered`.
 4. Commit + push the new `content/` folders (never `rendered/`, `clips/` or `work/`).
-5. Push-notify the owner: "Tomorrow's 2 reels are in the Sheet — approve before 7 AM (they post at ~7:30 AM and ~6:30 PM)" (+ anything to check).
+5. Push-notify the owner: "Tomorrow's reel is in the Sheet — approve before 7 AM (it posts at ~7:30 AM)" (+ anything to check).
 
 ## Morning mode — check TODAY
 1. Make sure today's two reels are in the Sheet as `rendered`/`approved`; if the evening run failed, make them now
