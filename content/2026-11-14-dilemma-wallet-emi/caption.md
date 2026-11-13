@@ -6,6 +6,6 @@ At Ameerpet metro, Nikhil finds a wallet with ₹50,000 in cash and a child's su
 
 A fictional situation. Animation and voices are AI-generated.
 
-Follow @_reelrasam for a new dilemma every week 🍲 | YouTube: @reel_rasam
+Follow @_reelrasam for a new story every morning 🍲 | YouTube: @reel_rasam
 
 #telugu #telugureels #moraldilemma #whatwouldyoudo #reelrasam
