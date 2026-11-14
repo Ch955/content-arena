@@ -1,0 +1,211 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Modern dilemma #1 "the 10-minute Sunday call" (2D animated, CLAY skin for the family home in Kukatpally; setSkin("neon")
+     only for the office side: Suresh's call (L2, L10) and the A half of the split). Sunday 1:02 PM, Amma & Nanna's 30th
+     anniversary lunch: the "30 ❤️" cake, Amma's pulihora, Nikhil's phone buzzing against the tumbler ("Suresh (TL) calling…").
+     Office: P1 ESCALATION dashboard + the rewatch clue roster card "On-call today: Kiran (new)". The "10 mins" chip cracks
+     into "2 hrs", the pulihora plate slides over, the car boot pops open on the laptop, the family group chat (generic UI,
+     no app logo) with Nikhil's misplaced runbook message + Mavayya's "Printed 👍", follow tap (phone frozen mid-buzz),
+     A/B split cold neon vs warm clay + ticking clock + 5-s countdown + comment bubbles, the split snaps shut: a 24-second call,
+     Kiran's runbook screen (step 4), RESOLVED, "10 mins ✅", Nanna's take, the cake cut, share gag crossing out "Team Lead",
+     end card, the phone buzzes again -> hard cut to frame 1 (loop).
+     Adult cast: makeAdult() — Nikhil from tools/anim2d/cast.md; new: Saroja (saree, bun, specs on a chain), Prasad (white
+     shirt, grey moustache, reading glasses), Suresh (rolled sleeves, headset), Mavayya + Pinni (silent relatives). -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#3A2A22}
+svg{display:block}
+#s,#ab,#nar{position:absolute;left:0;top:0}
+#nar{z-index:2} .sub{z-index:3}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(14,18,30,.66)}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#D7263D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#fff;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;background:#0E1220;opacity:0}
+.title{position:absolute;top:190px;left:40px;right:40px;text-align:center;opacity:0}
+.title .t{font-family:Anton;font-size:124px;line-height:1.05;letter-spacing:4px;color:#F5B347;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 9px 0 #10141E}
+.title .hook{display:block;width:max-content;margin:10px auto 0;font-size:54px;padding:2px 30px 8px}
+/* incoming call card (anchored next to the phone) */
+#call{position:absolute;left:0;top:0;width:470px;opacity:0;transform-origin:50% 100%;background:rgba(18,22,34,.94);border:5px solid #10141E;border-radius:36px;box-shadow:0 12px 0 #10141E;padding:18px 22px 20px;color:#fff;box-sizing:border-box}
+#call .r1{display:flex;align-items:center;gap:16px}
+#call .av{width:76px;height:76px;border-radius:50%;background:#2D6CDF;display:grid;place-items:center;font-family:Anton;font-size:40px;color:#fff;border:4px solid #9FC3FF;flex:none}
+#call b{display:block;font-family:Anton;font-weight:normal;font-size:46px;letter-spacing:1px;line-height:1.05}
+#call small{display:block;font-family:InterB;font-weight:700;font-size:26px;color:#AEB6C6;margin-top:4px}
+#call .bt{display:flex;justify-content:space-around;margin-top:16px}
+#call .bt i{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:38px;border:4px solid #10141E}
+#call .bt .no{background:#E53935} #call .bt .ok{background:#43A047}
+#call:after{content:"";position:absolute;left:50%;bottom:-28px;margin-left:-16px;border:16px solid transparent;border-top:16px solid #10141E}
+/* "10 mins" chip */
+#chip{position:absolute;left:0;top:0;opacity:0;transform-origin:50% 50%}
+#chip span{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:2px;color:#10141E;background:#FFD54F;border:7px solid #10141E;border-radius:22px;padding:2px 28px 4px;box-shadow:0 9px 0 #10141E;position:relative;white-space:nowrap}
+#chip.red span{background:#FF5A4E;color:#fff}
+#chip.ok span{background:#5BD16A}
+#crk{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+#hold{position:absolute;top:330px;left:0;right:0;text-align:center;opacity:0}
+#hold span{display:inline-block;font-family:Rama,NotoTe;font-size:52px;letter-spacing:1px;color:#10141E;background:#F5B347;padding:6px 28px 12px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* appraisal calendar card */
+.cal{position:absolute;width:250px;opacity:0;transform-origin:50% 0;text-align:center;background:#fff;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E;overflow:hidden}
+.cal b{display:block;background:#D7263D;color:#fff;font-family:Anton;font-weight:normal;font-size:34px;letter-spacing:2px;padding:4px 0}
+.cal em{display:block;font-style:normal;font-family:Anton;font-size:66px;color:#10141E;line-height:1.1;padding:4px 0 8px}
+#halo{position:absolute;left:0;top:0;opacity:0;font-family:Anton;font-size:46px;letter-spacing:2px;color:#10141E;background:#FFF3B0;border:5px solid #10141E;border-radius:18px;padding:2px 20px;box-shadow:0 7px 0 #10141E;white-space:nowrap}
+/* family group chat (generic chat UI, no app logo) */
+#chat{position:absolute;left:70px;right:70px;top:230px;opacity:0;transform-origin:15% 100%;background:#EFE7DC;border:7px solid #10141E;border-radius:40px;box-shadow:0 14px 0 #10141E;overflow:hidden}
+#chat .hd{display:flex;align-items:center;gap:18px;background:#2F5D50;color:#fff;padding:18px 26px}
+#chat .hd .gi{width:74px;height:74px;border-radius:50%;background:#F5B347;display:grid;place-items:center;font-size:40px;border:4px solid #10141E}
+#chat .hd b{display:block;font-family:InterB;font-weight:800;font-size:40px}
+#chat .hd small{display:block;font-family:InterB;font-weight:600;font-size:24px;color:#CFE3DB}
+#chat .bd{padding:18px 22px 24px;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:86%;background:#fff;border-radius:22px;padding:10px 20px 12px;border:3px solid rgba(16,20,30,.25);opacity:0;transform-origin:0 50%}
+.msg .n{font-family:InterB;font-weight:800;font-size:26px}
+.msg .x{font-family:InterB,Rama,NotoTe;font-weight:600;font-size:34px;color:#1A1A1A;line-height:1.3}
+.msg .tm{font-family:InterB;font-size:20px;color:#888;text-align:right}
+.msg.me{align-self:flex-end;background:#D7F5C9}
+.doc{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.06);border-radius:10px;padding:2px 10px;margin-top:4px;font-family:InterB;font-weight:700;font-size:26px;color:#444}
+#flashMsg{position:absolute;left:120px;right:120px;top:520px;opacity:0;z-index:2}
+#flashMsg .msg{opacity:1;max-width:100%;box-shadow:0 10px 0 #10141E;border:5px solid #10141E}
+/* office overlays (on the monitors) */
+.mon{position:absolute;left:0;top:0;width:430px;height:290px;opacity:0;transform-origin:0 0;box-sizing:border-box;border-radius:10px;overflow:hidden;font-family:InterB;color:#fff}
+#dash{background:#120A14;border:4px solid #FF4D5E;box-shadow:0 0 30px rgba(255,60,80,.7)}
+#dash .h{font-family:Anton;font-size:52px;letter-spacing:2px;color:#FF5A6A;text-shadow:0 0 14px #FF2D46;padding:12px 18px 0}
+#dash .h.ok{color:#5BFF8A;text-shadow:0 0 14px #2BFF6A}
+#dash .s{font-weight:800;font-size:26px;color:#FFC2C8;padding:0 18px}
+#dash .s.ok{color:#BFFFD0}
+#dash .bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding:10px 18px}
+#dash .bars i{display:block;width:30px;background:#FF4D5E;border-radius:4px 4px 0 0}
+#roster{background:#071420;border:4px solid #3FD6FF;box-shadow:0 0 26px rgba(60,200,255,.6);padding:16px 20px}
+#roster .h{font-family:Anton;font-size:30px;letter-spacing:3px;color:#7FE7FF}
+#roster .r{display:flex;justify-content:space-between;font-weight:700;font-size:28px;color:#BFEFFF;border-bottom:2px solid rgba(127,231,255,.25);padding:8px 0}
+#roster .r.on{font-size:36px;color:#fff}
+#roster .r.on b{color:#7DFFB0}
+#vcall{position:absolute;top:150px;left:56px;font-family:Anton;font-size:40px;letter-spacing:2px;color:#BFE6FF;background:rgba(6,10,24,.85);border:4px solid #3FD6FF;border-radius:14px;padding:2px 18px;opacity:0;box-shadow:0 0 18px rgba(60,200,255,.6)}
+#ctimer{position:absolute;left:0;top:0;font-family:Anton;font-size:44px;letter-spacing:2px;color:#fff;background:#43A047;border:5px solid #10141E;border-radius:16px;padding:2px 18px;box-shadow:0 7px 0 #10141E;opacity:0;white-space:nowrap}
+/* Kiran's on-call screen (runbook) */
+#kir{position:absolute;left:80px;right:80px;top:330px;opacity:0;background:#F7F8FA;border:8px solid #10141E;border-radius:26px;box-shadow:0 14px 0 #10141E;overflow:hidden}
+#kir .hd{background:#263238;color:#fff;padding:14px 24px;font-family:InterB;font-weight:800;font-size:30px;display:flex;justify-content:space-between}
+#kir .hd span{color:#7DFFB0}
+#kir .st{display:flex;gap:16px;align-items:center;padding:10px 26px;font-family:InterB;font-weight:700;font-size:32px;color:#37474F;border-bottom:2px solid #E3E7EB}
+#kir .st i{font-style:normal;width:46px;height:46px;border-radius:50%;background:#CFD8DC;display:grid;place-items:center;font-family:Anton;font-size:28px;color:#10141E;flex:none}
+#kir .st.hi{background:#FFF59D;color:#10141E}
+#kir .st.hi i{background:#F5B347}
+#kir .st .dn{margin-left:auto;font-family:Anton;font-size:32px;color:#2E7D32;opacity:0}
+#kcur{position:absolute;left:0;top:0;font-size:70px;opacity:0;z-index:2;filter:drop-shadow(0 4px 0 rgba(0,0,0,.4))}
+/* follow */
+#fol{position:absolute;top:1180px;left:440px;width:620px;text-align:center;opacity:0}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45))}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0}
+#frz{position:absolute;top:150px;right:56px;font-family:Anton;font-size:40px;letter-spacing:2px;color:#BFE6FF;background:rgba(14,18,30,.8);border:4px solid #BFE6FF;border-radius:14px;padding:2px 16px;opacity:0}
+/* A/B split */
+#q{position:absolute;top:165px;left:40px;right:40px;text-align:center;opacity:0}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:72px;line-height:1.2;color:#10141E;background:#fff;border:7px solid #10141E;border-radius:26px;padding:6px 30px 14px;box-shadow:0 10px 0 #10141E}
+.abl{position:absolute;top:310px;width:500px;opacity:0;text-align:center}
+.abl span{display:inline-block;font-family:Rama,NotoTe;font-size:44px;line-height:1.25;color:#fff;border:6px solid #10141E;border-radius:22px;padding:6px 22px 12px;box-shadow:0 8px 0 #10141E}
+.abl b{font-family:Anton;font-weight:normal;font-size:60px;margin-right:10px}
+#aL{left:20px} #aL span{background:#2D6CDF} #bL{left:560px} #bL span{background:#E07A1F}
+#cdw{position:absolute;top:640px;left:50%;width:260px;height:260px;margin-left:-130px;opacity:0}
+#digit{position:absolute;top:0;left:0;right:0;height:260px;line-height:260px;text-align:center;font-family:Anton;font-size:140px;color:#F5B347;
+  -webkit-text-stroke:11px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:42px;line-height:1.2;color:#10141E}
+#cnow{position:absolute;top:1480px;left:0;right:0;text-align:center;opacity:0}
+#cnow span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:18px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#chipA{position:absolute;left:50px;top:560px;opacity:0}
+#chipA span{display:inline-block;font-family:Anton;font-size:46px;letter-spacing:1px;color:#10141E;background:#FFD54F;border:5px solid #10141E;border-radius:16px;padding:0 16px;box-shadow:0 6px 0 #10141E;white-space:nowrap}
+#chipA.red span{background:#FF5A4E;color:#fff}
+#calB{left:810px;top:520px;width:220px}
+#calB em{font-size:56px}
+/* share */
+#share{position:absolute;inset:0;opacity:0}
+#share .dim2{position:absolute;inset:0;background:rgba(14,18,30,.7)}
+#sq{position:absolute;top:170px;left:40px;right:40px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#mini{position:absolute;left:100px;top:470px;width:340px;height:600px;border-radius:36px;border:9px solid #fff;box-shadow:0 0 0 6px #10141E,0 16px 0 6px #10141E;background:linear-gradient(#5B3A2A,#8A5A3A);overflow:hidden;text-align:center}
+#mini .n{margin:120px 24px 0;background:rgba(255,255,255,.14);border-radius:22px;padding:14px 8px;font-family:Anton;font-size:40px;color:#F5B347;letter-spacing:2px}
+#mini .w{font-family:Anton;font-size:76px;color:#fff;margin-top:40px}
+#mini .r{position:absolute;bottom:22px;left:0;right:0;font-family:Anton;font-size:28px;color:#fff;letter-spacing:2px}
+.ct{position:absolute;left:600px;width:400px;font-family:InterB;font-weight:700;font-size:44px;color:#10141E;background:#fff;border:6px solid #10141E;border-radius:40px;padding:14px 0 16px;text-align:center;box-shadow:0 8px 0 #10141E;opacity:0}
+#ctF{top:640px} #ctT{top:900px}
+.sent{display:block;font-size:28px;color:#2E7D32;opacity:0}
+#xT{position:absolute;left:0;top:0;width:400px;height:110px;opacity:0;pointer-events:none}
+#shArrow{position:absolute;left:0;top:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(14,18,30,.82)}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="ab" width="1080" height="1920" viewBox="0 0 1080 1920" style="opacity:0"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">REAL LIFE DILEMMA</div></div>
+<div id="vcall">📞 SURESH (TL) · <span id="vct">00:03</span></div>
+<div id="frz">⏸ 1:02 PM</div>
+<div class="title" id="title"><div class="t">A or B? 🤔</div><span class="pill hook">Anniversary lunch... TL calling! 📞</span></div>
+<div id="call"><div class="r1"><div class="av">S</div><div><b>Suresh (TL)</b><small>calling... · Sun 1:02 PM</small></div></div>
+  <div class="bt"><i class="no">✆</i><i class="ok">✆</i></div></div>
+<div class="mon" id="dash"><div class="h" id="dashH">P1 ESCALATION</div><div class="s" id="dashS">Payments module · client down</div><div class="bars" id="bars"></div></div>
+<div class="mon" id="roster"><div class="h">ON-CALL ROSTER · SUN</div>
+  <div class="r on"><span>On-call today:</span><b>Kiran (new)</b></div><div class="r"><span>Sat</span><span>Ravi</span></div><div class="r"><span>Mon</span><span>Swathi</span></div></div>
+<div id="chip"><span id="chipT">10 mins</span><svg id="crk" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="crkP" d="M48 0 L54 30 L42 46 L58 64 L50 100 M54 30 L76 22 M42 46 L22 54 M58 64 L82 74" stroke="#10141E" stroke-width="2.4" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="1 1" pathLength="1"/></svg></div>
+<div id="hold"><span>NIKHIL ఏం చేశాడో... చివర్లో 👀</span></div>
+<div class="cal" id="calA"><b>APPRAISAL</b><em>DEC</em></div>
+<div id="halo">✨ just in case</div>
+<div id="chat"><div class="hd"><div class="gi">👨‍👩‍👧</div><div><b>Family ❤️ (47)</b><small>Amma, Nanna, Mavayya, Pinni, +43</small></div></div>
+  <div class="bd">
+    <div class="msg me" id="m1"><div class="n" style="color:#2E7D32">Nikhil · Fri 6:42 PM</div><div class="x">Kiran — payments module runbook, step 1–7</div><div class="doc">📄 runbook.pdf</div></div>
+    <div class="msg" id="m2"><div class="n" style="color:#8E24AA">Mavayya</div><div class="x">Printed 👍 ఏంటి బాబు ఇది?</div></div>
+    <div class="msg" id="m3"><div class="n" style="color:#E65100">Pinni</div><div class="x">😂😂</div></div>
+  </div></div>
+<div id="flashMsg"><div class="msg me"><div class="n" style="color:#2E7D32">Nikhil · Fri 6:42 PM</div><div class="x">Kiran — payments module runbook, step 1–7</div><div class="doc">📄 runbook.pdf</div></div></div>
+<div id="ctimer">📞 00:00</div>
+<div id="kir"><div class="hd">RUNBOOK · Payments module<span>Kiran · on call ●</span></div>
+  <div class="st"><i>1</i>Check the alert dashboard</div><div class="st"><i>2</i>Confirm which client is failing</div><div class="st"><i>3</i>Check the retry queue size</div>
+  <div class="st hi" id="st4"><i>4</i>Restart the payment-retry queue<span class="dn" id="dn4">✓ DONE</span></div>
+  <div class="st"><i>5</i>Watch success rate 5 mins</div><div class="st"><i>6</i>Update the client</div><div class="st"><i>7</i>Close the ticket</div></div>
+<div id="kcur"><svg width="60" height="80" viewBox="0 0 60 80"><path d="M4 4 L4 64 L18 50 L28 74 L38 70 L28 46 L48 46 Z" fill="#fff" stroke="#10141E" stroke-width="5" stroke-linejoin="round"/></svg></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div class="hand" id="tapHand">👆</div>
+<div id="q"><span>మీరైతే A or B? 💬</span></div>
+<div class="abl" id="aL"><span><b>A</b>Call తీయాలి</span></div>
+<div class="abl" id="bL"><span><b>B</b>Switch off</span></div>
+<div id="chipA"><span id="chipAT">10 mins</span></div>
+<div class="cal" id="calB"><b>APPRAISAL</b><em>DEC</em></div>
+<div id="cnow"><span>💬 COMMENT NOW</span></div>
+<div id="cdw"><svg width="260" height="260" viewBox="-130 -130 260 260">
+  <circle r="112" fill="#fff" stroke="#10141E" stroke-width="10"/>
+  <circle id="arc" r="94" fill="none" stroke="#D7263D" stroke-width="20" transform="rotate(-90)" stroke-dasharray="590.6 590.6" stroke-linecap="round"/>
+  <line id="chand" x1="0" y1="0" x2="0" y2="-80" stroke="#10141E" stroke-width="8" stroke-linecap="round" opacity=".25"/>
+  </svg><div id="digit">5</div></div>
+<div id="cbs"></div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>మీ office లో ఇలా జరిగిందా? 💬</span></div>
+  <div id="mini"><div class="n">📞 "10 mins"</div><div class="w">A or B?</div><div class="r">REEL RASAM</div></div>
+  <svg id="shArrow" width="1080" height="1920"><path id="sp1" d="" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-dasharray="1 1" pathLength="1"/></svg>
+  <div class="ct" id="ctF">Office bestie ☕<span class="sent" id="snF">✓ sent</span></div>
+  <div class="ct" id="ctT">Team Lead 👔</div>
+  <svg id="xT" viewBox="0 0 400 110"><path id="xP" d="M40 10 L360 100 M360 10 L40 100" stroke="#E53935" stroke-width="9" opacity=".9" stroke-linecap="round" fill="none" stroke-dasharray="1 1" pathLength="1"/></svg>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · REAL LIFE DILEMMA</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span></div></div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "clay";  // art style: clay for the family home; render(t) switches to neon for the office side</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

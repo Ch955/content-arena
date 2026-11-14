@@ -1,0 +1,67 @@
+{
+ "0": {
+  "expected": "[excited] Amma Nanna thirtieth anniversary… [dramatic pause] cake cut చేయబోతుంటే — [whispers] TL call!",
+  "heard": "అమ్మ నాన్న 30వ యానివర్సరీ కేక్ కట్ చేయబోతుంటే టీఎల్ కాల్.",
+  "sim": 0.36
+ },
+ "1": {
+  "expected": "[hurried] Nikhil, జర పది నిమిషాలే… [insistent] client escalation. ఆ module నీకే తెల్సు!",
+  "heard": "నిఖిల్ చెర 10 నిమిషాలే క్లయింట్ ఎస్కలేషన్ ఆ మోడ్యూల్ నీకే తెలుసు.",
+  "sim": 0.49
+ },
+ "2": {
+  "expected": "[laughs] పది నిమిషాలు… ఎప్పుడూ పది కాదు. [mischievously] Nikhil ఏం చేశాడో… [whispers] చివర్లో!",
+  "heard": "10 నిమిషాలు ఎప్పుడు 10 కాదు నిఖిల్ ఏం చేశాడో చివర్లో",
+  "sim": 0.82
+ },
+ "3": {
+  "expected": "[warmly] నీకిష్టమని pulihora చేశా… [annoyed] ఆ phone కింద పెట్టు!",
+  "heard": "నీకు ఇష్టమని పులిహోర చేశా, ఆ ఫోన్ కింద పెట్టు.",
+  "sim": 0.77
+ },
+ "4": {
+  "expected": "[thoughtful] Appraisal… వచ్చే నెల. [quietly] boot లో laptop… [sighs] just in case.",
+  "heard": "అప్రైజల్ వచ్చే నెల బూట్లో ల్యాప్టాప్ జస్ట్ ఇన్ కేస్",
+  "sim": 0.37
+ },
+ "5": {
+  "expected": "[sighs] Office గోల… [annoyed] Friday family group లో కూడా runbook పంపావ్!",
+  "heard": "ఆఫీస్ గోల, ఫ్రైడే ఫ్యామిలీ గ్రూప్ లో కూడా రన్ బుక్ పంపావు.",
+  "sim": 0.45
+ },
+ "6": {
+  "expected": "[warmly] ఇలాంటి office dilemmas కావాలంటే… [excited] follow చేయండి!",
+  "heard": "ఇలాంటి ఆఫీస్ డిలమాస్ కావాలంటే ఫాలో చేయండి.",
+  "sim": 0.71
+ },
+ "7": {
+  "expected": "[dramatic pause] మీరైతే? A… call తీస్తారు. B… switch off. [excited] Comment చేయండి!",
+  "heard": "మీరైతే ఏ కాల్ తీస్తారు బి స్విచ్ ఆఫ్ కామెంట్ చేయండి",
+  "sim": 0.63
+ },
+ "8": {
+  "expected": "[calmly] Sir, Friday నే Kiran కి runbook ఇచ్చా… [confidently] step four!",
+  "heard": "సార్, ఫ్రైడే నేను కిరణ్ కి రన్ బుక్ ఇచ్చా. స్టెప్ ఫోర్.",
+  "sim": 0.35
+ },
+ "9": {
+  "expected": "[surprised] అరె… Kiran fix చేసిండు! [laughs] నిజంగా పది నిమిషాలే!",
+  "heard": "అరే కిరణ్ ఫిక్స్ చేసిండు నిజంగా పది నిమిషాలే",
+  "sim": 0.8
+ },
+ "10": {
+  "expected": "[chuckles] పని ఒక్కడికే తెలిస్తే… [slowly] వాడికి Sunday ఉండదు రా.",
+  "heard": "పని ఒక్కడికే తెలిస్తే వాడికి సండే ఉండదురా.",
+  "sim": 0.94
+ },
+ "11": {
+  "expected": "[mischievously] మీ office లో ఇలా జరిగిందా? Comment… [excited] office friend కి పంపండి!",
+  "heard": "మీ ఆఫీస్లో ఇలా జరిగిందా? కామెంట్ ఆఫీస్ ఫ్రెడ్కి పంపండి.",
+  "sim": 0.67
+ },
+ "12": {
+  "expected": "[laughs] Team lead కి మాత్రం కాదు! [warmly] Follow… [gasps] అరె, మళ్ళీ phone!",
+  "heard": "టీం లీడ్ కి మాత్రం కాదు ఫాలో అరె మళ్ళీ ఫోన్",
+  "sim": 0.73
+ }
+}
