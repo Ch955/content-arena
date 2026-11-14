@@ -12,8 +12,8 @@ const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
 const INK="#10141E";
 const $=id=>document.getElementById(id);
 // comment bubbles during the countdown (generic names; none hints at the runbook or Kiran)
-const CB=[["Ravi","A — appraisal ముఖ్యం bro","#1E88E5",40,1150],["Swathi","B — Sunday is Sunday!","#D81B60",560,1230],["Teja","10 mins అంటే 3 hrs 😂","#2E7D32",60,1320],
-          ["Anu","Boot లో laptop... too real 💀","#8E24AA",400,1660],["Karthik","A, client wait చేయడు","#E65100",30,1760],["Divya","🤔","#00897B",880,1400]];
+const CB=[["Anil","A — appraisal ముఖ్యం bro","#1E88E5",40,1150],["Divya","B — Sunday is Sunday!","#D81B60",560,1230],["Teja","10 mins అంటే 3 hrs 😂","#2E7D32",60,1320],
+          ["Anu","Boot లో laptop... too real 💀","#8E24AA",400,1660],["Karthik","A, client wait చేయడు","#E65100",30,1760],["Sneha","🤔","#00897B",880,1400]];
 $("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 $("bars").innerHTML=[...Array(10)].map((_,i)=>`<i id="bar${i}"></i>`).join("");
 
@@ -407,7 +407,7 @@ function beats(){ if(B) return B; B={}; const sg=i=>segsOf(i), sv=(i,k)=>{const 
   B.off2=sv(9,1)+0.02; B.tRes=sv(9,1)+0.35; B.tTen=sv(9,2); B.off3=E(9)+0.15;
   B.tChuck=S(10)-0.1; B.tCut=sv(10,2)+0.35; B.tSunday=sv(10,2)+0.3; B.boot0=E(10)-0.15; B.boot1=E(10)+0.45;
   B.sh0=Math.max(S(11)-0.1,B.boot1); B.tShare=sv(11,2)+0.3; B.tTL2=S(12)-0.05; B.tX=at(12,"మాత్రం");
-  B.end0=sv(12,1)-0.3; B.tEF=sv(12,1)+0.12; B.loop0=sv(12,2)-0.05;
+  B.end0=Math.min(sv(12,1)-0.3,B.tX+0.45); B.tEF=sv(12,1)+0.12; B.loop0=sv(12,2)-0.05;
   return B}
 
 const NKX=880, NKY=1240, PRX=200, PRY=1085, SAX=600, SAY=1085, MVX=10, MVY=1020, PNX=1040, PNY=1020;
@@ -643,6 +643,7 @@ function frame(t){
    eh.style.opacity=eOn?1:0; eh.style.transform=`translate(${lerp(900,250,ek)-50}px,${lerp(1300,690,ek)+edip*12}px) scale(${1-0.1*edip}) rotate(-8deg)`}
   // flashes: hard cuts to/from the office (cold), the split snapping shut, the loop cut
   const fl=(t0,d,a_)=>t>t0&&t<t0+d?a_*(1-(t-t0)/d):0;
+  {const st_=$("strip"), on=t>=b.loop0; st_.style.opacity=on?1:0; st_.style.transform=`translateX(-50%) scale(${Math.max(0.01,out((t-b.loop0)/0.2))})`}
   const f=$("flash"); f.style.background=(t>=b.off3-0.05&&t<b.off3+0.3)?"#FFB74D":"#fff";
   f.style.opacity=fl(b.off0,0.12,0.5)+fl(b.off1,0.12,0.4)+fl(b.rev,0.15,0.6)+fl(b.off2,0.12,0.4)+fl(b.off3,0.3,0.55)+fl(b.loop0,0.1,0.5)+fl(b.car0,0.1,0.3);
   // subtitles

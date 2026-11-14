@@ -1,11 +1,13 @@
 """Modern dilemma #1 'the 10-minute Sunday call' (2D animated, CLAY skin; the office side switches to NEON) voices:
 Gopi (narrator/host), Nikhil (28, cool -> Andhra), Suresh (~40, TL, aggressive -> Telangana), Saroja (Amma ~55,
 emotional -> Andhra), Prasad (Nanna ~60, cool -> Andhra).
-One engine per character for the whole reel (ENGINE; recorded in vo/engine.json): ElevenLabs only had ~1,150 credits
-left (the reel is 1,050 chars), and on the free plan Suresh and Prasad would both fall back to the same built-in George,
-so ElevenLabs voices Gopi (Liam) + Nikhil (Liam x0.94) and Gemini voices Suresh=Algenib, Saroja=Kore, Prasad=Orus.
-If ElevenLabs runs out part-way, ALL lines of that character are re-voiced with Gemini (Gopi=Puck, Nikhil=Charon),
-so nobody switches voice mid-reel. Sarvam (shubh/rahul/...) is the last resort.
+One engine per character for the whole reel (ENGINE; recorded in vo/engine.json). Planned: ElevenLabs for Gopi + Nikhil,
+Gemini for the rest. Actually used (14 Nov 2026): ALL 13 LINES ARE GEMINI (batches; Gopi=Puck, Nikhil=Charon,
+Suresh=Algenib, Saroja=Kore, Prasad=Orus; speed 1.15) -- the ElevenLabs API key's own cap had only ~157 credits left and
+refused at line 2, so every Gopi/Nikhil line (incl. the one ElevenLabs take) was re-voiced with Gemini; nobody switches
+voice mid-reel. Batch splits fixed with recut.py (L1|L2, L7|L8, L9|L10 at the right pauses), L9 re-taken (Gemini had
+laughed over 'పది నిమిషాలే'), long pauses tightened (MAXP=.30 KEEP=.22 tighten.py); every take verified with Sarvam STT.
+Sarvam (shubh/rahul/...) is the last resort.
 Writes vo/L*.wav and timeline.json (line timings + 30fps loudness envelope for lip sync).
 Re-take lines with `python voices.py 3 4`; `VOICE=gemini` skips ElevenLabs, `VOICE=sarvam` forces Sarvam."""
 import base64, json, os, subprocess, sys, wave
