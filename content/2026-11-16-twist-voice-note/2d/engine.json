@@ -1,0 +1,89 @@
+{
+ "characters": {
+  "gopi": "gemini:Puck",
+  "nikhil": "gemini:Charon (L1 + phone-speaker band-pass)",
+  "ananya": "gemini:Kore"
+ },
+ "requests": "2 Gemini TTS batch requests (content_arena.scenevoice; lines 1,2,3,4,5,10 = Nikhil+Gopi; lines 6,7,8,9,11,12,13 = Ananya+Gopi); 0 retakes",
+ "speed": "gemini 1.15 (atempo)",
+ "lines": {
+  "1": {
+   "who": "nikhil",
+   "engine": "gemini-batch",
+   "start": 0.4,
+   "dur": 2.568
+  },
+  "2": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 3.168,
+   "dur": 4.456
+  },
+  "3": {
+   "who": "nikhil",
+   "engine": "gemini-batch",
+   "start": 7.824,
+   "dur": 2.943
+  },
+  "4": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 10.918,
+   "dur": 3.814
+  },
+  "5": {
+   "who": "nikhil",
+   "engine": "gemini-batch",
+   "start": 14.932,
+   "dur": 2.618
+  },
+  "6": {
+   "who": "ananya",
+   "engine": "gemini-batch",
+   "start": 17.7,
+   "dur": 2.055
+  },
+  "7": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 19.954,
+   "dur": 2.552
+  },
+  "8": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 22.656,
+   "dur": 3.51
+  },
+  "9": {
+   "who": "ananya",
+   "engine": "gemini-batch",
+   "start": 31.366,
+   "dur": 2.231
+  },
+  "10": {
+   "who": "nikhil",
+   "engine": "gemini-batch",
+   "start": 33.798,
+   "dur": 3.55
+  },
+  "11": {
+   "who": "ananya",
+   "engine": "gemini-batch",
+   "start": 37.597,
+   "dur": 3.143
+  },
+  "12": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 40.99,
+   "dur": 3.495
+  },
+  "13": {
+   "who": "gopi",
+   "engine": "gemini-batch",
+   "start": 44.686,
+   "dur": 4.45
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "0": {
+  "expected": "[whispers] రేపు eight fifteen… [seriously] ఆ bus ఎక్కకు.",
+  "heard": "రేపు ఎయిట్ ఫిఫ్టీన్ ఆ బస్ ఎక్కకు.",
+  "sim": 0.58
+ },
+ "1": {
+  "expected": "[whispers] రాత్రి eleven fifty-eight. [dramatic pause] Sender — Nikhil number. [excited] Voice — Nikhil దే!",
+  "heard": "రాత్రి ఇలెవెన్ ఫిఫ్టీ ఎయిట్ సెండర్ నిఖిల్ నంబర్ వాయిస్ నిఖిల్ దే",
+  "sim": 0.25
+ },
+ "2": {
+  "expected": "[confused] నేను ఎప్పుడు అన్నా ఇది? [slowly] eight fifteen… [nervously] నా office bus!",
+  "heard": "నేను ఎప్పుడన్నా ఇది 8:15 నా ఆఫీస్ బస్.",
+  "sim": 0.79
+ },
+ "3": {
+  "expected": "[mischievously] ఎవరు పంపారు? ఎందుకు? [whispers] Answer చివర్లో… clues మిస్ అవ్వకండి!",
+  "heard": "ఎవరు పంపారు? ఎందుకు? ఆన్సర్ చివర్లో క్లోజ్ మిస్ అవ్వకండి.",
+  "sim": 0.85
+ },
+ "4": {
+  "expected": "[thoughtful] Lunch లో Ananya నా phone తీసుకుంది… [slowly] battery dead అని.",
+  "heard": "లంచ్లో అనన్య నా ఫోన్ తీసుకుంది బ్యాటరీ డెడ్ అని",
+  "sim": 0.57
+ },
+ "5": {
+  "expected": "[sweetly] ఒక్క నిమిషం… [quickly] Amma కి ఒక message, అంతే!",
+  "heard": "ఒక్క నిమిషం అమ్మకి ఒక మెసేజ్ అంతే",
+  "sim": 0.78
+ },
+ "6": {
+  "expected": "[warmly] ఇలాంటి twist stories రోజూ కావాలంటే… [excited] follow చేయండి!",
+  "heard": "ఇలాంటి ట్విస్ట్ స్టోరీస్ రోజు కావాలంటే ఫాలో చేయండి.",
+  "sim": 0.68
+ },
+ "7": {
+  "expected": "[dramatic pause] Calendar చూశారా? మీ theory ఏంటి? [excited] Comment చేయండి… five seconds!",
+  "heard": "క్యాలెండర్ చూశారా? మీ థియరీ ఏంటి? కామెంట్ చేయండి. ఫైవ్ సెకండ్స్.",
+  "sim": 0.51
+ },
+ "8": {
+  "expected": "[softly] Last year… నువ్వే నాకు పంపావ్. [warmly] గుర్తుందా?",
+  "heard": "లాస్ట్ ఇయర్ నువ్వే నాకు పంపావు గుర్తుందా?",
+  "sim": 0.8
+ },
+ "9": {
+  "expected": "[sighs] Amma birthday రోజు… bus ఎక్కేశా. [softly] Amma ఒక్కతే tiffin చేసింది.",
+  "heard": "అమ్మ బర్త్డే రోజు బస్సు ఎక్కేసా, అమ్మ ఒక్కతే టిఫిన్ చేసింది.",
+  "sim": 0.62
+ },
+ "10": {
+  "expected": "[warmly] అందుకే నీ మాట… నీకే పంపా. [excited] twelve అయింది — Amma కి wish!",
+  "heard": "అందుకే నీ మాట నీకే పంపా, 12 అయింది అమ్మకి విష్.",
+  "sim": 0.87
+ },
+ "11": {
+  "expected": "[warmly] Future నుంచి కాదు… [dramatic pause] last year Nikhil నుంచి! [excited] Correct ఆ?",
+  "heard": "ఫ్యూచర్ నుంచి కాదు లాస్ట్ ఇయర్ నిఖిల్ నుంచి కరెక్టా",
+  "sim": 0.47
+ },
+ "12": {
+  "expected": "[warmly] ఇలాంటి friend ఉన్నారా? Tag చేయండి! [laughs] Follow… [gasps] అరె, మళ్ళీ eleven fifty-eight!",
+  "heard": "ఇలాంటి ఫ్రెండ్ ఉన్నారా? ట్యాగ్ చేయండి, ఫాలో. అరే మళ్ళీ 11:58.",
+  "sim": 0.73
+ }
+}

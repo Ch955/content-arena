@@ -57,3 +57,14 @@ shirt, khaki shorts), Thatayya (70, white kurta + dhoti, kanduva, round glasses,
 (45, plum suit jacket, gold chain, sunglasses on his hair), 2 henchmen with axes, 3 villagers, Vriksha Devata (a
 guardian spirit of leaves and golden light; no idol or religious symbols), a deer and a bird. The drawing options live in
 `tools/anim2d/story16x9/cast.js` (`MEERA_OPT`, `CHINTU_OPT`, ...). Reuse them with `makeMeera()` etc. so the cast looks the same in every part.
+
+## Nikhil at night + Ananya's dead phone (from Twist story #1, `content/2026-11-16-twist-voice-note/2d/world.js`, 16 Nov 2026)
+Neon bedroom / paper flashbacks / clay morning in Nikhil's Dilsukhnagar flat (he lives with Amma; Amma = `SAROJA_OPT`).
+`makeAdult()` there merges the earlier rigs (saree/bun/specChain, kurta/longHair, `legs` + `st.walk`, `badge`) and adds
+`tee` (plain round-neck T-shirt), `bag` (shoulder bag), `st.laugh` (open laugh), `st.scr` (phone screen on/off), the
+items `bite` (cake piece), `dosa`, and the left-hand `dead` phone (black screen, red battery "0%").
+```js
+const NIGHT_OPT={...NIKHIL_OPT,tee:true,shirt:"#8A8F98",collar:"#6B7079"};   // same Nikhil, grey T-shirt at night
+```
+Voices in that reel (all Gemini — the ElevenLabs key is out of credits): Gopi=Puck, Nikhil=Charon, Ananya=Kore; Nikhil's
+own voice note = Charon + a phone-speaker band-pass (`PHONE_AF` in voices.py).

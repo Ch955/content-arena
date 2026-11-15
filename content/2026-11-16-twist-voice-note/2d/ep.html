@@ -1,0 +1,271 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Twist story #1 "the voice note from my own number" (KATHA TWIST). 2D animated, per-scene skins:
+     NEON for the 11:58 PM bedroom in Nikhil's Dilsukhnagar flat (and the loop), PAPER (sepia + torn edges) for the two
+     flashbacks (today's canteen lunch; last year's birthday morning + that night's message), CLAY for the 8:15 AM
+     birthday breakfast (the office bus leaves without him). Generic phone UI as crisp HTML overlays (no app names/logos):
+     lock screen (clock + calendar widget "Tomorrow · Amma's birthday / Office bus · 8:15 AM" + voice-note notification),
+     self-chat "Nikhil (You)" with the tiny "↪ Forwarded · recorded 16 Nov 2025" label, the Schedule-send sheet at lunch,
+     Ananya's call, last year's chat. Three clue slots fill as the clues appear; follow tap; 5-s countdown + comments;
+     reveal flash; clock flip to 12:00; knock; bus leaves; ✅; tag-a-friend; end card; hard cut back to frame 1 (loop).
+     Cast: makeAdult() — Nikhil + Ananya from tools/anim2d/cast.md; Amma = SAROJA_OPT (cast.md). -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0A0E1E}
+svg{display:block}
+#s,#ab,#nar{position:absolute;left:0;top:0}
+#nar{z-index:2} .sub{z-index:3}
+#sepia{position:absolute;inset:0;background:#C9A46A;mix-blend-mode:multiply;opacity:0;pointer-events:none}
+#torn{position:absolute;left:0;top:0;opacity:0;pointer-events:none}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(14,18,30,.70)}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#7B2FF7;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#fff;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;background:#0E1220;opacity:0}
+.title{position:absolute;top:180px;left:40px;right:40px;text-align:center;opacity:0;z-index:2}
+.title .t{font-family:Anton;font-size:120px;line-height:1.05;letter-spacing:4px;color:#7FE7FF;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 9px 0 #10141E}
+.title .hook{display:block;width:max-content;margin:10px auto 0;font-size:54px;padding:2px 30px 8px}
+/* ---------- the phone (generic UI, no app name / logo) ---------- */
+#phone{position:absolute;left:0;top:0;width:560px;height:1040px;border-radius:74px;background:#05060A;border:6px solid #2E3442;opacity:0;transform-origin:50% 50%;
+  box-shadow:0 0 70px rgba(90,170,255,.55),0 0 0 3px #0B0D14,0 18px 0 6px rgba(0,0,0,.35)}
+#phone .scr{position:absolute;left:14px;top:14px;right:14px;bottom:14px;border-radius:60px;overflow:hidden}
+#phone .pane{position:absolute;inset:0;opacity:0}
+#phone .notch{position:absolute;left:50%;top:22px;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:5}
+#phDim{position:absolute;inset:0;background:#000;opacity:0;z-index:6}
+.sb{position:absolute;top:26px;left:40px;right:40px;display:flex;justify-content:space-between;font-family:InterB;font-weight:700;font-size:24px;color:#DDE6FF}
+/* lock */
+#lock{background:linear-gradient(170deg,#0E1E48 0%,#1B1150 60%,#2A0F45 100%)}
+#lock .date{position:absolute;top:96px;left:0;right:0;text-align:center;font-family:InterB;font-weight:700;font-size:32px;color:#CFE0FF}
+#lock .clock{position:absolute;top:138px;left:0;right:0;text-align:center;font-family:Anton;font-size:190px;line-height:1;color:#fff;letter-spacing:2px;text-shadow:0 0 30px rgba(120,180,255,.6)}
+#lock .clock small{font-size:52px;letter-spacing:1px;margin-left:8px}
+.widget{position:absolute;top:380px;left:30px;right:30px;background:rgba(255,255,255,.13);border:2px solid rgba(255,255,255,.18);border-radius:34px;padding:16px 24px 18px}
+.widget .h{font-family:InterB;font-weight:800;font-size:24px;letter-spacing:2px;color:#9FC3FF}
+.widget .r1{font-family:InterB;font-weight:800;font-size:38px;color:#fff;margin-top:6px}
+.widget .r2{font-family:InterB;font-weight:700;font-size:31px;color:#FFD180;margin-top:6px}
+.notif{position:absolute;top:620px;left:24px;right:24px;background:rgba(246,248,255,.95);border-radius:34px;padding:18px 22px 20px;color:#10141E}
+.notif .r{display:flex;align-items:center;gap:16px}
+.av{width:70px;height:70px;border-radius:50%;background:#2D6CDF;display:grid;place-items:center;font-family:Anton;font-size:38px;color:#fff;flex:none}
+.notif b{display:block;font-family:InterB;font-weight:800;font-size:33px}
+.notif small{display:block;font-family:InterB;font-weight:600;font-size:27px;color:#3A4152}
+.notif .now{margin-left:auto;align-self:flex-start;font-family:InterB;font-weight:600;font-size:22px;color:#6A7184}
+.vrow{display:flex;align-items:center;gap:12px;margin-top:14px}
+.play{width:58px;height:58px;border-radius:50%;background:#2D6CDF;color:#fff;display:grid;place-items:center;font-size:26px;flex:none;font-family:InterB}
+.wf{display:flex;align-items:center;gap:3px;height:60px;flex:1}
+.wf i{display:block;width:7px;border-radius:4px;background:#9AA3B5}
+.wf i.on{background:#2D6CDF}
+.vlen{font-family:InterB;font-weight:700;font-size:24px;color:#4A5163}
+/* chat (night, self-chat) */
+#chat{background:#0F1620}
+.chd{position:absolute;top:0;left:0;right:0;height:170px;background:#1E2836;display:flex;align-items:flex-end;gap:16px;padding:0 24px 22px}
+.chd .bk{font-family:InterB;font-size:46px;color:#9FC3FF;line-height:1}
+.chd b{display:block;font-family:InterB;font-weight:800;font-size:34px;color:#fff}
+.chd small{display:block;font-family:InterB;font-weight:600;font-size:22px;color:#9FB0C6}
+.daychip{position:absolute;left:0;right:0;text-align:center}
+.daychip span{display:inline-block;font-family:InterB;font-weight:700;font-size:22px;color:#BFC9D8;background:#253244;border-radius:12px;padding:4px 14px}
+.vb{position:absolute;right:16px;width:490px;background:#2E6B4F;border-radius:26px 26px 6px 26px;padding:12px 18px 10px;color:#fff}
+.vb .fw{font-family:InterB;font-style:italic;font-weight:600;font-size:21px;color:#BFE3D2}
+.vb .wf i{background:#A9D6C0} .vb .wf i.on{background:#fff}
+.vb .play{background:#fff;color:#2E6B4F}
+.vb .vlen{color:#D6F0E3}
+.vb .meta{display:flex;justify-content:space-between;font-family:InterB;font-weight:600;font-size:19px;color:#BFE3D2;margin-top:4px}
+/* schedule sheet (day) */
+#sched{background:#EEF1F5}
+#sched .chd{background:#33475B}
+#sched .vb{top:300px}
+#sched .fwd{position:absolute;top:240px;right:22px;font-family:InterB;font-weight:700;font-size:22px;color:#55657A}
+.sheet{position:absolute;left:0;right:0;bottom:0;height:480px;background:#fff;border-radius:44px 44px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.25);padding:20px 34px}
+.sheet .grab{width:90px;height:10px;border-radius:6px;background:#C9D0DA;margin:0 auto 22px}
+.sheet b{display:block;font-family:InterB;font-weight:800;font-size:42px;color:#10141E}
+.sheet small{display:block;font-family:InterB;font-weight:600;font-size:24px;color:#5A6577;margin-top:4px}
+.srow{display:flex;align-items:center;justify-content:space-between;margin-top:30px;padding:20px 22px;border-radius:24px;background:#F1F4F9;border:3px solid #DCE3EE}
+.srow span{font-family:InterB;font-weight:800;font-size:36px;color:#10141E}
+.tg{width:116px;height:62px;border-radius:31px;background:#B8C2D0;position:relative}
+.tg i{position:absolute;top:6px;left:6px;width:50px;height:50px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.sbtn{margin-top:28px;text-align:center;font-family:InterB;font-weight:800;font-size:34px;color:#fff;background:#2D6CDF;border-radius:24px;padding:16px 0}
+/* call card */
+#call{position:absolute;left:290px;top:1090px;width:500px;opacity:0;transform-origin:50% 50%;background:rgba(18,22,34,.95);border:5px solid #10141E;border-radius:36px;box-shadow:0 0 40px rgba(60,220,200,.55),0 12px 0 #10141E;padding:18px 22px 20px;color:#fff;z-index:2}
+#call .r1{display:flex;align-items:center;gap:16px}
+#call .av{background:#1E8C8C;border:4px solid #7FE0D0;width:80px;height:80px}
+#call b{display:block;font-family:Anton;font-weight:normal;font-size:50px;letter-spacing:1px;line-height:1.05}
+#call small{display:block;font-family:InterB;font-weight:700;font-size:28px;color:#AEE6DD;margin-top:4px}
+#call .bt{display:flex;justify-content:space-around;margin-top:16px}
+#call .bt i{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:38px;border:4px solid #10141E}
+#call .bt .no{background:#E53935} #call .bt .ok{background:#43A047}
+/* last year's chat (paper flashback, night 16 Nov 2025) */
+#lastchat{position:absolute;left:70px;right:70px;top:440px;opacity:0;transform-origin:50% 0;background:#FBF3E4;border:7px solid #3B2A1A;border-radius:36px;box-shadow:0 14px 0 #3B2A1A;overflow:hidden;z-index:1}
+#lastchat .hd{display:flex;align-items:center;gap:16px;background:#5B4636;color:#fff;padding:16px 24px}
+#lastchat .hd .av{background:#1E8C8C;width:64px;height:64px;font-size:34px}
+#lastchat .hd b{font-family:InterB;font-weight:800;font-size:36px}
+#lastchat .bd{padding:16px 22px 22px;display:flex;flex-direction:column;gap:14px}
+#lastchat .dc{align-self:center;font-family:InterB;font-weight:700;font-size:22px;color:#6B5A48;background:#EADBC2;border-radius:12px;padding:4px 14px}
+.lm{align-self:flex-end;max-width:92%;background:#D7EBC9;border:3px solid rgba(59,42,26,.25);border-radius:24px 24px 6px 24px;padding:12px 20px 10px;opacity:0;transform-origin:100% 50%}
+.lm .x{font-family:Rama,NotoTe,InterB;font-size:38px;line-height:1.35;color:#1A1A1A}
+.lm .tm{font-family:InterB;font-weight:600;font-size:20px;color:#6B7A62;text-align:right}
+.lm .wf i{background:#8FA58A} .lm .play{background:#5B7F55}
+.lm.vn{width:520px}
+/* chips + labels */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:Anton,Rama,NotoTe;font-size:46px;letter-spacing:1.5px;color:#10141E;background:#FFD54F;border:6px solid #10141E;border-radius:18px;padding:2px 22px 4px;box-shadow:0 8px 0 #10141E;z-index:2}
+.chip.red{background:#FF4D5E;color:#fff}
+.chip.cy{background:#7FE7FF}
+.chip.pa{background:#F6E7C8;color:#3B2A1A;border-color:#3B2A1A;box-shadow:0 7px 0 #3B2A1A;font-size:40px}
+.chip.wa{background:#FFB74D}
+#hold{position:absolute;top:470px;left:0;right:0;text-align:center;opacity:0;z-index:2}
+#hold span{display:inline-block;font-family:Rama,NotoTe;font-size:52px;color:#10141E;background:#F5B347;padding:6px 28px 12px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* clue slots */
+#slots{position:absolute;top:150px;left:30px;right:30px;display:flex;gap:18px;opacity:0;z-index:2}
+.slot{flex:1;height:150px;border-radius:22px;border:5px dashed rgba(255,255,255,.75);background:rgba(14,18,30,.88);position:relative;overflow:hidden}
+.slot .l{position:absolute;top:8px;left:0;right:0;text-align:center;font-family:Anton;font-size:26px;letter-spacing:2px;color:#FFD54F}
+.slot .q{position:absolute;top:46px;left:0;right:0;text-align:center;font-family:Anton;font-size:64px;color:rgba(255,255,255,.55)}
+.slot .c{position:absolute;top:42px;left:6px;right:6px;text-align:center;opacity:0}
+.slot .c b{display:block;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:29px;line-height:1.2;color:#fff}
+.slot .c small{display:block;font-family:InterB,Rama,NotoTe;font-weight:700;font-size:23px;color:#FFD180;margin-top:4px}
+.slot.full{border-style:solid;border-color:#FFD54F;background:rgba(40,30,90,.92);box-shadow:0 0 22px rgba(255,213,79,.55)}
+/* big calendar widget card (L8) */
+#bigcal{position:absolute;left:150px;top:560px;width:780px;opacity:0;transform-origin:0 0;background:linear-gradient(170deg,#0E1E48,#2A0F45);border:6px solid #9FC3FF;border-radius:40px;box-shadow:0 0 40px rgba(120,180,255,.6);padding:20px 30px 24px;z-index:2}
+#bigcal .h{font-family:InterB;font-weight:800;font-size:32px;letter-spacing:3px;color:#9FC3FF}
+#bigcal .r1{font-family:InterB;font-weight:800;font-size:54px;color:#fff;margin-top:8px}
+#bigcal .r2{font-family:InterB;font-weight:700;font-size:44px;color:#FFD180;margin-top:8px}
+/* reveal flash label */
+#recBig{position:absolute;left:60px;right:60px;top:820px;text-align:center;opacity:0;z-index:3}
+#recBig span{display:inline-block;font-family:InterB;font-style:italic;font-weight:800;font-size:64px;color:#10141E;background:#FFF3B0;border:7px solid #10141E;border-radius:24px;padding:10px 30px;box-shadow:0 10px 0 #10141E}
+/* follow */
+#fol{position:absolute;top:1180px;left:230px;width:620px;text-align:center;opacity:0;z-index:2}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:3}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:3}
+/* theory question + countdown */
+#q{position:absolute;top:330px;left:40px;right:40px;text-align:center;opacity:0;z-index:2}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:84px;line-height:1.2;color:#10141E;background:#fff;border:7px solid #10141E;border-radius:26px;padding:6px 34px 14px;box-shadow:0 10px 0 #10141E}
+#cdw{position:absolute;top:560px;left:50%;width:260px;height:260px;margin-left:-130px;opacity:0;z-index:2}
+#digit{position:absolute;top:0;left:0;right:0;height:260px;line-height:260px;text-align:center;font-family:Anton;font-size:140px;color:#F5B347;
+  -webkit-text-stroke:11px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+#cclk{position:absolute;top:840px;left:0;right:0;text-align:center;opacity:0;z-index:2}
+#cclk span{display:inline-block;font-family:Anton;font-size:52px;letter-spacing:2px;color:#fff;background:rgba(14,18,40,.9);border:5px solid #7FE7FF;border-radius:18px;padding:2px 24px;box-shadow:0 0 24px rgba(127,231,255,.6)}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:2}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:42px;line-height:1.2;color:#10141E}
+#cnow{position:absolute;top:1000px;left:0;right:0;text-align:center;opacity:0;z-index:2}
+#cnow span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:18px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* clock flip card (12:00) */
+#flip{position:absolute;left:560px;top:330px;width:470px;opacity:0;transform-origin:50% 0;background:linear-gradient(170deg,#0E1E48,#2A0F45);border:6px solid #9FC3FF;border-radius:40px;box-shadow:0 0 40px rgba(120,180,255,.6);padding:16px 22px 22px;text-align:center;z-index:2}
+#flip .fc{font-family:Anton;font-size:150px;line-height:1.05;color:#fff;display:inline-block}
+#flip .fc small{font-size:44px;margin-left:6px}
+#flip .fw{font-family:InterB;font-weight:800;font-size:30px;color:#FFD180;margin-top:4px}
+#flip .fh{font-family:InterB;font-weight:800;font-size:24px;letter-spacing:2px;color:#9FC3FF}
+#check{position:absolute;right:60px;top:300px;width:200px;height:200px;border-radius:50%;background:#43A047;border:9px solid #10141E;box-shadow:0 10px 0 #10141E;opacity:0;display:grid;place-items:center;font-family:Anton;font-size:120px;color:#fff;z-index:2}
+/* share: tag a friend */
+#share{position:absolute;inset:0;opacity:0;z-index:2}
+#share .dim2{position:absolute;inset:0;background:rgba(14,18,30,.72)}
+#sq{position:absolute;top:200px;left:40px;right:40px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:62px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cbox{position:absolute;left:90px;right:90px;top:480px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:44px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;font-size:32px}
+#ct1{top:700px} #ct2{top:830px} #ct3{top:960px}
+#ct1 .av{background:#E91E63} #ct2 .av{background:#FB8C00} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(14,18,30,.86);z-index:2}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:50px;color:#fff;margin-top:10px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:2}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="sepia"></div>
+<svg id="torn" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="tornP" fill="#F3E6CC" fill-rule="evenodd"/><path id="tornS" fill="none" stroke="#8A6A44" stroke-width="3" opacity=".6"/></svg>
+<div id="dim"></div>
+<svg id="ab" width="1080" height="1920" viewBox="0 0 1080 1920" style="opacity:0"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">KATHA TWIST 🌀</div></div>
+<div class="title" id="title"><div class="t">TWIST STORY 🌀</div><span class="pill hook">నా number నుంచే voice note?</span></div>
+<div id="slots">
+  <div class="slot" id="sl0"><div class="l">CLUE 1</div><div class="q">?</div><div class="c"><b>🪫 Ananya 0%</b><small>→ నా phone తీసుకుంది</small></div></div>
+  <div class="slot" id="sl1"><div class="l">CLUE 2</div><div class="q">?</div><div class="c"><b>⏱ Schedule send</b><small>Today · 11:58 PM</small></div></div>
+  <div class="slot" id="sl2"><div class="l">CLUE 3</div><div class="q">?</div><div class="c"><b>🎂 Amma's birthday</b><small>🚌 Bus · 8:15 AM</small></div></div>
+</div>
+<div id="phone"><div class="scr">
+  <div class="pane" id="lock"><div class="sb"><span></span><span>▂▄▆ 64%</span></div>
+    <div class="date" id="lkDate">Sun, 15 Nov</div>
+    <div class="clock" id="lkClock">11:58</div>
+    <div class="widget"><div class="h" id="wgH">📅 TOMORROW · MON 16</div><div class="r1">🎂 Amma's birthday</div><div class="r2">🚌 Office bus · 8:15 AM ↻</div></div>
+    <div class="notif" id="notif"><div class="r"><div class="av">N</div><div><b>Nikhil (You)</b><small>🎤 Voice note · 0:04</small></div><div class="now">now</div></div>
+      <div class="vrow"><div class="play" id="nPlay">▶</div><div class="wf" id="wf0"></div><div class="vlen" id="nLen">0:04</div></div></div>
+  </div>
+  <div class="pane" id="chat"><div class="chd"><span class="bk">‹</span><div class="av">N</div><div><b>Nikhil (You)</b><small>Message yourself</small></div></div>
+    <div class="daychip" style="top:220px"><span>Today</span></div>
+    <div class="vb" style="top:290px"><div class="fw">↪ Forwarded</div><div class="vrow" style="margin-top:6px"><div class="play">▶</div><div class="wf" id="wf1"></div><div class="vlen">0:04</div></div>
+      <div class="meta"><span>recorded 16 Nov 2025</span><span>11:58 PM</span></div></div>
+  </div>
+  <div class="pane" id="sched"><div class="chd"><span class="bk">‹</span><div class="av">N</div><div><b>Nikhil (You)</b><small>Message yourself</small></div></div>
+    <div class="fwd">↪ Forwarding 1 voice note</div>
+    <div class="vb"><div class="fw">↪ Forwarded</div><div class="vrow" style="margin-top:6px"><div class="play">▶</div><div class="wf" id="wf2"></div><div class="vlen">0:04</div></div>
+      <div class="meta"><span>recorded 16 Nov 2025</span><span></span></div></div>
+    <div class="sheet"><div class="grab"></div><b>Schedule send ⏱</b><small>Send this message later</small>
+      <div class="srow"><span>Today · 11:58 PM</span><div class="tg" id="tg"><i id="tgK"></i></div></div>
+      <div class="sbtn" id="sBtn">Schedule</div></div>
+  </div>
+  <div id="phDim"></div>
+</div><div class="notch"></div></div>
+<div id="call"><div class="r1"><div class="av">A</div><div><b>Ananya</b><small>calling... · 11:59 PM</small></div></div>
+  <div class="bt"><i class="no">✆</i><i class="ok">✆</i></div></div>
+<div id="lastchat"><div class="hd"><div class="av">A</div><b>Ananya</b></div>
+  <div class="bd"><div class="dc">16 Nov 2025</div>
+    <div class="lm" id="lm1"><div class="x">Next year, Amma birthday ముందు రోజు రాత్రి... ఇది నాకు పంపు 🙏</div><div class="tm">11:40 PM ✓✓</div></div>
+    <div class="lm vn" id="lm2"><div class="vrow" style="margin-top:0"><div class="play">▶</div><div class="wf" id="wf3"></div><div class="vlen">0:04</div></div><div class="tm">11:40 PM ✓✓</div></div>
+  </div></div>
+<div class="chip red" id="c815">🚌 8:15 AM — OFFICE BUS!</div>
+<div class="chip cy" id="cSender">SENDER: Nikhil (You) 📱</div>
+<div class="chip" id="cVoice">VOICE: Nikhil 😨</div>
+<div class="chip pa" id="dchip">🕐 TODAY · 1:20 PM · CANTEEN</div>
+<div class="chip red" id="cBatt">🪫 0%</div>
+<div class="chip wa" id="cMorn">☀️ MON 16 NOV · 8:15 AM</div>
+<div class="chip" id="cBusGo">🚌 bus వెళ్ళిపోయింది 👋</div>
+<div id="hold"><span>ఎవరు? ఎందుకు? ANSWER చివర్లో 👀</span></div>
+<div id="bigcal"><div class="h">📅 TOMORROW · MON 16</div><div class="r1">🎂 Amma's birthday</div><div class="r2">🚌 Office bus · 8:15 AM ↻</div></div>
+<div id="recBig"><span>↪ recorded 16 Nov 2025</span></div>
+<div id="flip"><div class="fh" id="flH">📅 TOMORROW · MON 16</div><div class="fc" id="flC">11:59</div><div class="fw">🎂 Amma's birthday</div></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div class="hand" id="tapHand">👆</div>
+<div id="q"><span>🤔 మీ theory?</span></div>
+<div id="cdw"><svg width="260" height="260" viewBox="-130 -130 260 260">
+  <circle r="112" fill="#fff" stroke="#10141E" stroke-width="10"/>
+  <circle id="arc" r="94" fill="none" stroke="#7B2FF7" stroke-width="20" transform="rotate(-90)" stroke-dasharray="590.6 590.6" stroke-linecap="round"/>
+  <line id="chand" x1="0" y1="0" x2="0" y2="-80" stroke="#10141E" stroke-width="8" stroke-linecap="round" opacity=".25"/>
+  </svg><div id="digit">5</div></div>
+<div id="cclk"><span>🕛 11:59 PM</span></div>
+<div id="cnow"><span>💬 COMMENT NOW</span></div>
+<div id="cbs"></div>
+<div id="check">✓</div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>ఇలాంటి friend ఉన్నారా?<br>TAG చేయండి 💬</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">B</div>Best friend 💛<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">O</div>Office gang ☕</div>
+  <div class="ct" id="ct3"><div class="av">C</div>College batch 🎓</div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · KATHA TWIST</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో twist! 🌀</div></div></div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "neon";  // art style: neon night; render(t) switches to paper (flashbacks) and clay (the morning)</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>
