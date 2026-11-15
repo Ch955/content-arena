@@ -1,0 +1,196 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- చివరి చెట్టు రహస్యం — scene 1: cold open, title, green Anandapuram, Veerendra, the cutting, drought, the last banyan. TL = work/voices/scene1/timeline.json -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/skins.js"></script>
+<script src="world.js"></script>
+<script>
+KIT.useSkins();
+// ---------- cast + props ----------
+const MEn = makeMeeraNight(), ROCK = makeRock();
+const GL = [0, 1, 2, 3, 4, 5].map(() => makeLeaf("#FFE27A"));
+const VE = makeVeerendraS(), H1 = makeHench(1), H2 = makeHench(2), HX = makeHench(1, { item: "axeR" });
+const VA = makeVillager(0, { item: "pot" }), VB = makeVillager(1), VC = makeVillager(2), VA2 = makeVillager(0), VB2 = makeVillager(1);
+const K0 = makeKid(0), K1 = makeKid(1), K2 = makeKid(2), K0b = makeKid(0), K1b = makeKid(1);
+const SW1 = makeSwing(330), SW2 = makeSwing(330);
+const DEER = makeDeer(), PEA = makePeacock(), RB1 = makeRabbit(), RB2 = makeRabbit("#C9B8A0");
+const JEEP = makeJeep(), COINS = makeCoins(), CRACKS = makeCracks(22, 1300);
+const BIRDS = [0, 1, 2].map(() => makeBird()), FLY = [0, 1, 2, 3].map(() => makeBird());
+// extra layers: morning mist + lotuses (village), sunset (banyan), an empty swing on the dry branch (forest foreground)
+const MIST = addLayer("village", .6, "village", g => { const m = [];
+  for (let i = 0; i < 7; i++) m.push(el("ellipse", { cx: -400 + i * 480, cy: 700 + hash(i) * 40, rx: 420, ry: 46, fill: "#FFFFFF", opacity: .5 }, g)); return m; });
+const LOTUS = addLayer("village", 1, "actors", g => { const lg = el("g", { transform: "translate(1820 905) scale(.55)" }, g); drawLotus(lg, 9, 2); return lg; });
+const SUNSET = addLayer("banyan", .04, "far land", g => { const o = {};
+  o.sky = el("rect", { x: -1400, y: -900, width: 4720, height: 2600, fill: KIT.lgrad([[0, "#6A3A6A"], [.45, "#E0703A"], [.75, "#F6B04A"], [1, "#FFE0A0"]]) }, g);
+  o.sun = el("circle", { cx: 1240, cy: 690, r: 120, fill: KIT.rgrad([[0, "#FFF4C0"], [.6, "#FFD26A"], [1, "#FFB040"]]) }, g);
+  o.halo = el("circle", { cx: 1240, cy: 690, r: 360, fill: KIT.rgrad([[0, "#FFE6A0", .6], [1, "#FFB040", 0]]) }, g); return o; });
+const FSW = addLayer("forest", 1.4, null, g => { const sw = el("g", {}, g);
+  el("line", { x1: -34, y1: 0, x2: -34, y2: 520, stroke: "#B8925A", "stroke-width": 5 }, sw); el("line", { x1: 34, y1: 0, x2: 34, y2: 520, stroke: "#B8925A", "stroke-width": 5 }, sw);
+  el("rect", { x: -52, y: 514, width: 104, height: 16, rx: 5, fill: "#7A5A3A", stroke: INK, "stroke-width": 3 }, sw); return sw; });
+function setSunset(k) { SUNSET.sky.style.opacity = k * .92; SUNSET.sun.style.opacity = k; SUNSET.halo.style.opacity = k; }
+function setMist(k, t) { MIST.forEach((m, i) => { m.setAttribute("opacity", k * (.35 + .15 * Math.sin(t * .5 + i))); m.setAttribute("transform", `translate(${Math.sin(t * .1 + i) * 80 + t * 6} 0)`); }); }
+// the shot list
+const HIT0 = 83.6, HITP = 1.25;               // axe chops
+const FALLS = [88.9, 89.5, 90.15, 90.8, 91.5, 92.1, 89.9, 91.1];
+
+function coldOpen(t, op) {
+  const night = 1, cam = t < 3.95 ? KIT.camPath(t, [[0, { x: 960, y: 430, z: .94 }], [3.95, { x: 980, y: 520, z: 1.12 }]])
+    : t < 7.34 ? KIT.camPath(t, [[3.95, { x: 1440, y: 700, z: 2.05 }], [7.34, { x: 1445, y: 705, z: 2.2 }]])
+    : KIT.camPath(t, [[7.34, { x: 1445, y: 705, z: 2.2 }], [11.8, { x: 1080, y: 520, z: 1.0 }], [17.5, { x: 975, y: 560, z: 1.45 }]]);
+  const glow = clamp(rng(t, .4, 4.6) + rng(t, 13, 17) * .3);
+  const S = KIT.show("banyan", { night, glow: Math.min(1, glow), voice: KIT.talk("tree", t) + rng(t, 15.5, 17.4) * .8, wind: t > 1 && t < 6.5 ? .5 : .1, cam, opacity: op });
+  // the whisper carries gold leaves toward Meera
+  GL.forEach((L, i) => { const t0 = 1.0 + i * .5; if (t > t0 && t < t0 + 3.6) { leafPath(L, t, t0, t0 + 3.6, 820 + hash(i) * 400, 300 + hash(i * 2) * 140, 1420 + hash(i * 3) * 120, 660 + hash(i * 4) * 120); KIT.put(L, S, { s: 1.2, vis: pulse(t, t0, t0 + 3.6, .5) }); } });
+  const scared = t < 9;
+  KIT.put(MEn, S, { x: 1480, y: 900, s: .62, flip: -1, turn: -.2, mood: t > 1.2 && t < 3.9 ? "awe" : (scared ? "scared" : "awe"), look: .5, lookY: -.6,
+    item: "lantern", hR: [26, -10], headRot: t < 4 ? 0 : Math.sin(t * 1.3) * 2, hop: t > 4.1 && t < 4.4 ? 4 : 0 });
+  KIT.put(ROCK, S, { x: 1440, y: 905, s: .82 });
+  const [lx, ly] = KIT.toScreen(S, 1462, 690); KIT.glow(.35 * (op || 1), lx, ly, 260 * cam.z);
+  if (t > 6.2 && t < 16) KIT.motes(pulse(t, 6.2, 16, 1.2), ...KIT.toScreen(S, 1200, 560), 500 * cam.z);
+  if (t > 16.2) KIT.glow(rng(t, 16.2, 17.5) * .95, ...KIT.toScreen(S, 962, 640), 300 + 900 * rng(t, 16.2, 17.5));
+  KIT.vignette(.8);
+  KIT.fade(Math.max(1 - rng(t, 0, 1.6), rng(t, 17.05, 17.54)));
+}
+function titleCard(t, op) {
+  KIT.show("titleBg", { seedGlow: 2 + .8 * Math.sin(t * 2), cam: { x: 960, y: 540, z: 1 + .04 * rng(t, 17.5, 22) } , opacity: op });
+  KIT.motes(1, 960, 700, 800, "255,214,110", 50);
+  KIT.title(pulse(t, 17.75, 21.75, .55), "చివరి చెట్టు రహస్యం", "ఒక మాయా చెట్టు కథ");
+  KIT.fade(1 - rng(t, 17.54, 18.2));
+  KIT.vignette(1);
+}
+// the green village: crane down, people, forest, lotus pond
+function village(t, op) {
+  const cam = KIT.camPath(t, [[22.04, { x: 900, y: 150, z: 1.3 }], [29.0, { x: 960, y: 600, z: 1.0 }], [31.2, { x: 1440, y: 745, z: 1.65 }], [33.8, { x: 1460, y: 745, z: 1.72 }],
+    [35.4, { x: 380, y: 470, z: 1.45 }], [38.5, { x: 1100, y: 480, z: 1.45 }], [40.2, { x: 1850, y: 875, z: 2.3 }], [41.8, { x: 1860, y: 880, z: 2.4 }]]);
+  const S = KIT.show("village", { green: 1, birds: 1, cam, opacity: op });
+  setMist(1 - rng(t, 24, 34) * .6, t);
+  LOTUS.style.opacity = 1; LOTUS.setAttribute("transform", `translate(1820 905) scale(.55) translate(0 ${Math.sin(t * 1.5) * 3})`);
+  // a woman brings water from the well, the others chat and laugh; kids run along the path
+  KIT.walk(VA, t, 22.5, 30.2, 1750, 1470); KIT.put(VA, S, { y: 930, s: .62, pose: t < 30.2 ? "walk" : "carry", item: "pot", mood: "happy", turn: .3, flip: t < 30.2 ? -1 : -1 });
+  KIT.put(VC, S, { x: 1590, y: 925, s: .6, flip: -1, mood: t > 30 && t < 33.6 ? "happy" : "neutral", turn: -.3, talk: t > 30.4 && t < 33.4 ? .5 + .5 * Math.sin(t * 14) : 0 });
+  KIT.put(VB, S, { x: 1290, y: 935, s: .64, mood: "happy", turn: .4, pose: t > 30.2 && t < 33.5 ? "wave" : "stand", phase: t * 6, item: "" });
+  KIT.walk(K0, t, 24, 34, 120, 2300, { run: true, ease: false }); KIT.put(K0, S, { y: 965, s: .52, mood: "happy" });
+  KIT.walk(K1, t, 24.6, 34.6, 20, 2200, { run: true, ease: false }); KIT.put(K1, S, { y: 975, s: .5, mood: "happy" });
+  BIRDS.forEach((B, i) => { const k = rng(t, 34.4 + i * .3, 39 + i * .3); KIT.put(B, S, { x: lerp(-100, 1700, k), y: 420 + i * 40 + Math.sin(t * 3 + i) * 12, s: .8, pose: "fly" }); });
+  KIT.vignette(.35);
+}
+function soilRain(t, op) {
+  KIT.show("soil", { wet: rng(t, 42.3, 44), sprout: 0, seedGlow: 0, seedY: -400, cam: { x: 960, y: 760 - 20 * rng(t, 42.3, 45), z: 1.5 }, opacity: op });
+  KIT.rain(op * .85, 8);
+}
+function villageRain(t, op) {
+  const S = KIT.show("village", { green: 1, birds: .3, cam: KIT.camPath(t, [[44.8, { x: 980, y: 620, z: 1.25 }], [47.6, { x: 960, y: 600, z: 1.15 }]]), opacity: op });
+  setMist(.3, t); LOTUS.style.opacity = 1;
+  KIT.put(VA2, S, { x: 820, y: 940, s: .7, pose: "armsUp", mood: "happy", turn: .3, hop: Math.abs(Math.sin(t * 5)) * 8 });
+  KIT.put(VB2, S, { x: 1100, y: 945, s: .72, pose: "spread", mood: "happy", turn: -.3, flip: -1 });
+  KIT.walk(K0b, t, 44.8, 47.8, 500, 700, { run: true }); KIT.put(K0b, S, { y: 960, s: .55, mood: "happy", pose: "run" });
+  KIT.rain(.75, 10);
+}
+function swings(t, op) {
+  const S = KIT.show("banyan", { green: 1, cam: KIT.camPath(t, [[47.2, { x: 960, y: 600, z: 1.04 }], [51.8, { x: 960, y: 610, z: 1.14 }]]), opacity: op });
+  [[SW1, K0, 560, 0], [SW2, K1, 1360, 1.4]].forEach(([SW, K, px, ph]) => { const a = 20 * Math.sin(t * 2.3 + ph), tr = `rotate(${a} ${px} 470)`;
+    putWrapped(SW, S, { x: px, y: 470 }, tr); putWrapped(K, S, { x: px, y: 800 + 48, s: .55, pose: "sit", mood: "happy", turn: .2, flip: 1 }, tr); });
+  KIT.put(K2, S, { x: 700, y: 905, s: .55, pose: Math.sin(t * 2.3) > 0 ? "reach" : "stand", mood: "happy", flip: -1, turn: -.3 });
+  KIT.motes(.6, 960, 600, 700, "255,255,220", 25);
+}
+function animals(t, op) {
+  const S = KIT.show("forest", { green: 1, dusk: 0, cave: 0, cam: KIT.camPath(t, [[50.6, { x: 760, y: 620, z: 1.22 }], [57.2, { x: 1180, y: 625, z: 1.25 }]]), opacity: op });
+  KIT.put(DEER, S, { x: 700, y: 905, s: 1.15, pose: "stand", mood: "calm", headRot: t > 51.2 ? 18 + 8 * Math.sin(t * 1.5) : 0, flip: 1 });
+  KIT.put(PEA, S, { x: 1230, y: 900, s: 1.2, flip: -1, k: rng(t, 52.5, 53.6) });
+  KIT.put(RB1, S, { x: lerp(380, 520, rng(t, 53.4, 56)), y: 935, s: 1, t0: 0, k: t > 53.4 ? 1 : 0 });
+  KIT.put(RB2, S, { x: lerp(1580, 1460, rng(t, 53.6, 56)), y: 925, s: .9, flip: -1, t0: .4, k: t > 53.6 ? 1 : 0 });
+  KIT.put(FLY[0], S, { x: lerp(-200, 2000, rng(t, 51, 57)), y: 300 + Math.sin(t * 2) * 20, s: .7, pose: "fly" });
+}
+// the wide green village where the jeep arrives; Veerendra's close-up and speech
+const JX = 420;
+function arrival(t, op) {
+  const close = t >= 66.3 && t < 72.45, med = t >= 72.45;
+  const cam = close ? KIT.camPath(t, [[66.3, { x: 690, y: 590, z: 3.0 }], [72.4, { x: 692, y: 585, z: 3.45 }]])
+    : med ? KIT.camPath(t, [[72.45, { x: 640, y: 765, z: 1.62 }], [83.4, { x: 660, y: 760, z: 1.7 }]])
+    : KIT.camPath(t, [[56.5, { x: 960, y: 600, z: 1.0 }], [59.6, { x: 900, y: 605, z: 1.0 }], [64.2, { x: 640, y: 690, z: 1.35 }], [66.3, { x: 660, y: 700, z: 1.4 }]]);
+  const punch = KIT.punch(t, 79.3, .12) + KIT.punch(t, 81.1, .08);
+  cam.z += punch;
+  const S = KIT.show("village", { green: 1, birds: med ? .2 : .8, cam, opacity: op, shake: t > 79.3 && t < 79.6 ? 4 : 0 });
+  setMist(.25, t); LOTUS.style.opacity = 1;
+  // jeep
+  const jk = ease(rng(t, 59.6, 63.4)), jx = lerp(-420, JX, jk), moving = t > 59.6 && t < 63.4;
+  // villagers by the well notice
+  const alarmed = t > 61;
+  KIT.put(VA, S, { x: 1470, y: 930, s: .62, flip: -1, pose: alarmed ? "hold" : "carry", item: "pot", mood: alarmed ? "scared" : "happy", turn: -.4 });
+  KIT.put(VC, S, { x: 1590, y: 925, s: .6, flip: -1, mood: alarmed ? "scared" : "neutral", turn: -.3 });
+  KIT.put(VB, S, { x: 1290, y: 935, s: .64, flip: -1, mood: alarmed ? "sad" : "happy", turn: -.4 });
+  // henchmen get out of the back
+  const hv = 1;
+  if (t > 66.3) { KIT.put(H2, S, { x: 900, y: 945, s: .72, flip: -1, turn: .2, mood: "smug", vis: hv, itemRot: 0,
+      hR: t > 81.1 ? [50, -150 + Math.sin(t * 9) * 10] : null, mood: t > 79.3 ? "angry" : "smug" }); }
+  KIT.put(JEEP, S, { x: jx, y: 948, s: .92, k: jx, speed: moving ? 1 : 0, dust: clamp(1 - rng(t, 63.4, 65)) * (t > 59.6 ? 1 : 0), k2: rng(t, 63.6, 64.1) * (1 - rng(t, 65, 65.6)) });
+  if (t > 66.3) KIT.put(H1, S, { x: 470, y: 955, s: .7, flip: 1, turn: .3, vis: hv,
+      hR: t > 81.1 ? [40, -150 + Math.sin(t * 9 + 1) * 10] : null, itemRot: t > 81.1 ? -20 : 0, mood: t > 79.3 ? "angry" : "smug" });
+  // Veerendra
+  if (t > 63.9) { const vx = lerp(JX + 20, 690, ease(rng(t, 64.2, 65.6)));
+    let pose = "stand", mood = "smug", look = 0, lookY = 0, turn = .25, lean = 0, flip = 1;
+    if (t > 64.2 && t < 65.6) pose = "walk";
+    if (t > 65.6 && t < 72.45) { pose = "handsHips"; look = .7; lookY = -.4; }
+    if (med) { turn = .3;
+      if (t < 74.0) { pose = "handsHips"; mood = "smug"; }
+      else if (t < 76.0) { pose = "spread"; mood = "awe"; }
+      else if (t < 77.6) { pose = "point"; mood = "smug"; }
+      else if (t < 79.2) { pose = "hold"; mood = "happy"; lean = -3; }
+      else if (t < 81.0) { pose = "point"; mood = "angry"; lean = 4; }
+      else { pose = "armsUp"; mood = "angry"; } }
+    KIT.put(VE, S, { x: vx, y: 950, s: .76, flip, pose, phase: (t - 64.2) * 8.5, mood, look, lookY, turn, lean, vis: rng(t, 63.9, 64.2), hop: t > 63.9 && t < 64.2 ? 20 * (1 - rng(t, 63.9, 64.2)) : 0 });
+    if (close) KIT.put(COINS, S, { x: 692, y: 520, s: .62, k: pulse(t, 69.8, 72.3, .3) }); }
+  KIT.vignette(close ? .7 : .4);
+}
+function axeClose(t, op) {
+  const c = (t - HIT0) / HITP, ph = fract(c), n = Math.floor(c), lastHit = HIT0 + (n) * HITP + .78 * HITP;
+  const hitT = t >= HIT0 + n * HITP + .78 * HITP ? lastHit : lastHit - HITP;
+  const sinceHit = t - hitT;
+  const S = KIT.show("axeClose", { notch: clamp((n + (ph > .78 ? 1 : 0)) / 4), lastHit: hitT, notchY: 505, cam: { x: 900 + 40 * rng(t, 83.3, 88.6), y: 560, z: 1.5 }, shake: sinceHit >= 0 && sinceHit < .18 ? 10 : 0, opacity: op });
+  // raise (0–.55), swing (.55–.78), stuck (.78–.95), pull back (.95–1)
+  let hR, rot;
+  const RA = [-40, -150], ST = [175, 26];
+  if (ph < .55) { const k = ease(ph / .55); hR = [lerp(ST[0], RA[0], k), lerp(ST[1], RA[1], k)]; rot = lerp(95, -70, k); }
+  else if (ph < .78) { const k = Math.pow((ph - .55) / .23, 2); hR = [lerp(RA[0], ST[0], k), lerp(RA[1], ST[1], k)]; rot = lerp(-70, 95, k); }
+  else { hR = ST.slice(); rot = 95; }
+  KIT.put(HX, S, { x: 800, y: 930, s: 1.1, flip: 1, turn: .35, mood: "angry", hR, hL: [hR[0] * .8, hR[1] + 30], itemRot: rot, lean: ph > .55 && ph < .9 ? 6 : -2 });
+}
+function silhouettes(t, op) {
+  KIT.show("fallSil", { falls: FALLS, col: 0, sky: 0, cam: { x: 960, y: 560 - 20 * rng(t, 88.6, 93.4), z: 1.02 + .06 * rng(t, 88.6, 93.4) }, opacity: op,
+    shake: FALLS.some(f => t - f > 1.25 && t - f < 1.45) ? 7 : 0 });
+  KIT.motes(.5, 960, 700, 900, "255,200,150", 25);
+}
+function timelapse(t, op) {
+  const k = rng(t, 93.2, 100.0);
+  const S = KIT.show("village", { green: 1 - k, trees: 1 - rng(t, 93.2, 97.5), pond: 1 - rng(t, 94.6, 96.6), birds: 1 - rng(t, 96.5, 98.5),
+    cam: KIT.camPath(t, [[93.0, { x: 960, y: 560, z: 1.0 }], [100.5, { x: 1500, y: 640, z: 1.35 }]]), opacity: op });
+  setMist(0, t); LOTUS.style.opacity = 1 - rng(t, 94.6, 96);
+  // a bird family flies away from the pond
+  FLY.forEach((B, i) => { const kk = rng(t, 96.9 + i * .25, 100.3 + i * .25); KIT.put(B, S, { x: lerp(1780 + i * 30, 2600, kk), y: lerp(870 - i * 20, 200, kk) + Math.sin(t * 4 + i) * 10, s: i ? .55 : .75, pose: kk > 0 ? "fly" : "stand", flip: 1 }); });
+  KIT.motes(k * .6, 960, 700, 900, "255,226,170", 30);
+}
+function emptySwing(t, op) {
+  KIT.show("forest", { dusk: .55, green: 0, cave: 0, cam: { x: 960, y: 540, z: 1 }, opacity: op });
+  FSW.style.display = ""; FSW.setAttribute("transform", `translate(466 92) rotate(${8 * Math.sin(t * 1.4)})`);
+  KIT.motes(.5, 900, 700, 800, "255,226,170", 20);
+}
+function dryVillage(t, op) {
+  const S = KIT.show("village", { green: .9 * (1 - rng(t, 104.6, 107.6)), trees: .9 * (1 - rng(t, 104.6, 107.6)), pond: .9 * (1 - rng(t, 104.6, 107.6)), birds: 0,
+    cam: KIT.camPath(t, [[103.08, { x: 960, y: 520, z: 1.08 }], [110.6, { x: 1450, y: 600, z: 1.3 }]]), opacity: op });
+  setMist(0, t); LOTUS.style.opacity = .9 * (1 - rng(t, 104.6, 106.5));
+  KIT.motes(.5, 960, 700, 900, "255,226,170", 30);
+}
+function lastTree(t, op) {
+  const S = KIT.show("banyan", { night: 0, wind: .2, cam: KIT.camPath(t, [[110.3, { x: 960, y: 1010, z: 3.0 }], [111.2, { x: 960, y: 1000, z: 2.8 }], [115.6, { x: 960, y: 475, z: .9 }], [119.62, { x: 960, y: 470, z: .87 }]]), opacity: op });
+  setSunset(rng(t, 110.3, 114));
+  KIT.put(CRACKS, S, { x: 960, y: 1010, s: 1.2, k: 1, k2: 0 });
+  KIT.motes(.5, 960, 800, 900, "255,226,170", 30);
+  KIT.vignette(.6);
+  KIT.fade(rng(t, 118.7, 119.62));
+}
+const SHOTS = [[0, 17.54, coldOpen], [17.54, 22.04, titleCard, 0], [22.04, 42.32, village, .9], [42.32, 44.4, soilRain, .6], [44.4, 47.2, villageRain, .5],
+  [47.2, 51.0, swings, .6], [51.0, 56.5, animals, .6], [56.5, 83.35, arrival, .7], [83.35, 88.6, axeClose, .4], [88.6, 93.0, silhouettes, .5],
+  [93.0, 100.08, timelapse, .6], [100.08, 103.08, emptySwing, .6], [103.08, 110.3, dryVillage, .7], [110.3, 119.62, lastTree, .7]];
+function scene(t) { FSW.style.display = "none"; setSunset(0); shots(t, SHOTS); }
+</script></body></html>

@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- Scene 4 · మొదటి పరీక్ష — ధైర్యం (104.52 s). Timeline: work/voices/scene4/timeline.json (do not retime). -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="lib456.js"></script>
+<script>
+"use strict";
+const DUR = 104.52;
+const ME = castPair(makeMeera), CH = castPair(makeChintu), DEER = castPair(makeDeer);
+const DOSA = pair(makeDosaFall), DRIP = pair(makeDrip), PEB = pair(() => makePebbles(30, 150, 1850, 60, 900)), WIND = pair(makeWindEcho);
+const BEAM = pair(() => makeBeam(40, -200, 160, 260, 960, 460)), METER = pair(makeSeedMeter);
+// stumps along the forest path (scene-local addition to the forest set)
+{ const F = KIT.get("forest"), L = F.layers.find(l => l.name === "path").g; [[60, 900, 1.2], [520, 830, .9], [1300, 830, .8], [1660, 900, 1.1], [2100, 860, 1]].forEach(([x, y, s]) => stump(L, x, y, s)); }
+// beats (s)
+const T = { roar: 51.42, free: 83.9, ring1: 100.9, courage: 101.45, drops: [46.0, 46.95, 48.2], tap: 9.25, dosaDrop: 23.7, dosaLand: 25.9 };
+window.CUES = [
+  [0.3, "morning ambience (village birds, light breeze)"], [0.8, "footsteps (Meera running, light, until 5.6)"], [8.4, "footsteps (Meera tiptoes in)"], [T.tap, "comic boing / startle (Chintu jumps)"],
+  [19.9, "cloth rustle (hanky unfolds)"], [20.6, "seed chime (soft shimmer)"], [T.dosaDrop, "comic slow-mo whoosh (dosa falls)"], [T.dosaLand, "soft plop (dosa lands)"],
+  [30.0, "comic gulp"], [31.6, "cot creak / Chintu stands"], [36.9, "footsteps (two kids on dry leaves, until 44.8)"], [42.6, "cold wind (low, from the cave)"],
+  [T.drops[0], "cave drip"], [T.drops[1], "cave drip"], [T.drops[2], "cave drip"], [48.4, "cave room tone + lantern creak"], [T.roar, "wind roar (big, echoing; pebbles fall)"],
+  [51.6, "pebbles + dust falling"], [53.4, "footsteps (Chintu runs out, fading)"], [59.0, "lantern creak (raised)"], [60.6, "deer cry (frightened fawn bleat)"], [62.0, "thorns rustle"],
+  [66.2, "deer cry (softer)"], [72.8, "kneel on gravel"], [75.7, "thorns snap (small) + Meera wince"], [77.9, "thorns snap"], [80.3, "thorns snap"], [82.5, "thorns snap (big)"],
+  [T.free, "deer hooves leaping out"], [85.4, "warm sunbeam shimmer"], [88.0, "wind whoosh through the crack + soft echo"], [89.5, "footsteps (Chintu creeps back)"],
+  [96.2, "seed chime (hanky glows)"], [T.ring1, "seed chime + ring light-up (flame)"], [T.courage, "light swell (triumphant sting)"] ];
+
+function camSeq(t, ks) { let i = 0; while (i < ks.length - 1 && ks[i + 1][0] <= t) i++; const a = ks[i], b = ks[i + 1];
+  if (!b || b[2] === "cut" || t < a[0]) return a[1]; return KIT.camLerp(a[1], b[1], ease(rng(t, a[0], b[0]))); }
+
+const shots = [
+  // 0 · the village, morning: Meera runs to Chintu's
+  [0, (t, C, op) => { const S = KIT.show("village", { green: 0, birds: .4, opacity: op, cam: { x: lerp(620, 1300, ease(rng(t, 0, 6.2))), y: 600, z: 1.08 } });
+    const m = ME[C]; KIT.walk(m, t, .4, 6.4, 220, 1650, { run: true, ease: false }); KIT.put(m, S, { y: 960, s: .62, mood: "happy", turn: .2 }); }],
+  // 1 · Chintu's doorstep: dosa, Meera's news, the glowing seed, the dosa drops, the bargain
+  [5.4, (t, C, op) => {
+    const cam = camSeq(t, [[5.4, { x: 1000, y: 640, z: 1.18 }], [8.3, { x: 960, y: 690, z: 1.36 }], [9.0, { x: 860, y: 690, z: 1.3 }], [13.5, { x: 860, y: 690, z: 1.3 }],
+      [14.3, { x: 980, y: 680, z: 1.75 }], [17.2, { x: 990, y: 690, z: 1.82 }], [18.9, { x: 860, y: 690, z: 1.32 }],
+      [19.6, { x: 860, y: 700, z: 1.32 }], [20.8, { x: 720, y: 760, z: 2.3 }], [22.9, { x: 720, y: 765, z: 2.4 }],
+      [23.05, { x: 985, y: 690, z: 2.5 }, "cut"], [24.4, { x: 990, y: 700, z: 2.3 }], [25.4, { x: 1010, y: 860, z: 1.9 }], [26.3, { x: 990, y: 700, z: 2.4 }],
+      [28.8, { x: 985, y: 695, z: 2.55 }], [29.3, { x: 860, y: 690, z: 1.3, rot: 0 }, "cut"], [36.6, { x: 900, y: 680, z: 1.36 }]]);
+    const S = KIT.show("chintuHome", { opacity: op, cam: Object.assign({}, cam, { z: cam.z + KIT.punch(t, T.tap, .06) + KIT.punch(t, 29.4, .05) }) });
+    const c = CH[C], m = ME[C];
+    // Chintu: sits on the doorstep eating a dosa; jumps when Meera taps him; laughs; light on his face; dosa falls; stands up to bargain
+    const standK = ease(rng(t, 31.5, 32.4)), jump = t > T.tap && t < T.tap + .55 ? Math.sin((t - T.tap) / .55 * Math.PI) * 70 : 0;
+    const chew = t < 9.1 ? (.45 + .45 * Math.sin(t * 9)) * (t > 6.4 && t < 7.9 ? 0 : 1) : 0;
+    let cm = "happy"; if (t > T.tap - .05 && t < 10.4) cm = "scared"; else if (t > 10.4 && t < 13.6) cm = "neutral"; else if (t > 20.4 && t < 29.4) cm = "awe"; else if (t > 29.3 && t < 31.3) cm = "scared"; else if (t > 33.0 && t < 35.4) cm = "scared";
+    const laughing = (t > 6.4 && t < 7.9) || (t > 13.6 && t < 19.2);
+    KIT.put(c, S, { x: 980, y: 945, s: .9, pose: "sit", seat: 84, pose2: "stand", poseK: standK, mood: cm, hop: jump + (laughing ? Math.abs(Math.sin(t * 9)) * 7 : 0),
+      lean: laughing ? Math.sin(t * 13) * 3 : 0, turn: t > 9.3 && t < 20 ? -.45 : (t > 29.3 ? -.35 : 0), look: t > 9.3 && t < 20 ? -.7 : (t > 20 && t < 29 ? -.5 : 0), lookY: t > 20.2 && t < 29 ? .4 : 0,
+      item: t < T.dosaDrop ? "dosa" : "", talk: talkOr("chintu", t, chew + (t > 26.2 && t < 29.4 ? 1 : 0) + (t > 6.4 && t < 7.9 ? .6 + .3 * Math.sin(t * 20) : 0)),
+      hR: t > 15.6 && t < 18.8 ? [40 + Math.sin(t * 8) * 18, 30] : (t > 9.15 && t < 9.8 ? [20, -90] : null), blink: t > 26.2 && t < 29.3 ? 0 : null });
+    if (t > 33.1 && t < 35.4) { c.st.pose = "cower"; c.st.pose2 = null; c.st.hop = Math.abs(Math.sin(t * 16)) * 4; }
+    if (t > 35.4) { c.st.pose = "point"; c.st.pose2 = null; c.st.mood = "happy"; c.st.flip = -1; c.st.turn = .3; }
+    // Meera: tiptoes in, taps him, bursts with the news, pouts at the teasing, shows the seed, laughs at the bargain
+    const mx = t < 8.1 ? -300 : lerp(-300, 690, ease(rng(t, 8.1, 9.1)));
+    let mm = "happy"; if (t > 14.4 && t < 19.4) mm = "angry"; if (t > 19.4 && t < 23) mm = "neutral"; if (t > 29.3 && t < 33) mm = "happy";
+    KIT.put(m, S, { x: mx, y: 965, s: .9, flip: 1, turn: .35, mood: mm, look: .4, itemL: t > 36 ? "lantern" : "" });
+    if (t > 8.1 && t < 9.1) { m.st.pose = "walk"; m.st.phase = t * 7; }
+    if (t > 9.0 && t < 9.7) { m.st.pose = "reach"; }
+    if (t > 10.25 && t < 13.3) { m.st.pose = t < 11.6 ? "spread" : "armsUp"; m.st.hop = Math.abs(Math.sin(t * 6)) * 10; m.st.lean = 4; }
+    if (t > 14.4 && t < 19.4) { m.st.pose = "handsHips"; m.st.headRot = -4; }
+    if (t > 19.4 && t < 29.4) { m.st.pose = "hold"; m.st.item = "hanky"; m.st.glow = .4 + .5 * rng(t, 20.2, 21.5); m.st.lookY = .7; m.st.look = .2; }
+    if (t > 22.9 && t < 29.4) { m.st.lookY = 0; m.st.look = .8; m.st.mood = "happy"; }
+    if (t > 29.4 && t < 31.6) { m.st.pose = "hold"; m.st.item = "hanky"; m.st.glow = .9; }
+    if (t > 33 && t < 36.8) { m.st.mood = "happy"; m.st.talk = .2 + .2 * Math.abs(Math.sin(t * 8)); m.st.hop = Math.abs(Math.sin(t * 7)) * 4; }
+    // the falling dosa (comic slow-mo) and where it lands
+    if (t >= T.dosaDrop) { const k = rng(t, T.dosaDrop, T.dosaLand), d = DOSA[C];
+      KIT.put(d, S, { x: lerp(1022, 1060, k), y: lerp(828, 952, k * k) - (t > T.dosaLand ? Math.max(0, Math.sin((t - T.dosaLand) * 9) * 10 * Math.exp(-(t - T.dosaLand) * 4)) : 0), rot: lerp(0, 160, k), s: .9 }); }
+    // the seed's light on both faces
+    const gk = clamp(rng(t, 20.0, 21.4) - rng(t, 31.0, 32.5)), [gx, gy] = KIT.toScreen(S, 710, 780);
+    if (gk > 0) KIT.glow(gk * (.6 + .08 * Math.sin(t * 5)), gx, gy, 520);
+    if (t > 23 && t < 29.3) { const [fx, fy] = KIT.toScreen(S, 980, 700); KIT.glow(.55 + .05 * Math.sin(t * 4), fx - 260, fy + 120, 620); }
+  }, .7],
+  // 2 · forest edge: walk-and-talk, Chintu hiding behind Meera, dead stumps
+  [36.6, (t, C, op) => { const S = KIT.show("forest", { dusk: .08, opacity: op, cam: { x: lerp(560, 1080, ease(rng(t, 36.6, 43.2))), y: 600, z: 1.12 } });
+    const m = ME[C], c = CH[C]; KIT.walk(m, t, 36.4, 43.4, 260, 1180, { ease: false }); KIT.walk(c, t, 36.4, 43.4, 140, 1060, { ease: false, cadence: 1.1 });
+    KIT.put(c, S, { y: 950, s: .62, mood: "scared", pose2: "cower", poseK: .45, turn: Math.sin(t * 1.3) > .3 ? -.6 : .4, look: Math.sin(t * 1.3) > .3 ? -.9 : .6, lean: -4 });
+    KIT.put(m, S, { y: 945, s: .62, mood: "neutral", turn: .3, itemL: "lantern", look: .5 }); }, .8],
+  // 3 · the cave mouth: cold mist
+  [42.5, (t, C, op) => { const S = KIT.show("caveMouth", { mist: .5 + .5 * rng(t, 42.6, 44.5), opacity: op, cam: KIT.camPath(t, [[42.5, { x: 900, y: 600, z: 1.0 }], [45.6, { x: 930, y: 640, z: 1.18 }]]) });
+    const m = ME[C], c = CH[C]; KIT.walk(m, t, 42.0, 44.2, 260, 640); KIT.walk(c, t, 42.0, 44.6, 100, 500);
+    KIT.put(c, S, { y: 935, s: .62, mood: "scared", pose2: "cower", poseK: t > 44.6 ? 1 : .4, hop: t > 44.6 ? Math.abs(Math.sin(t * 22)) * 3 : 0 });
+    KIT.put(m, S, { y: 930, s: .62, mood: t > 43.6 ? "awe" : "neutral", turn: .4, itemL: "lantern", lookY: -.3 }); }, .8],
+  // 4 · inside the cave (one continuous set): drips, the roar, the fawn, the rescue, the echo explained, the hanky glows
+  [45.1, (t, C, op) => {
+    const cam = camSeq(t, [[45.1, { x: 2000, y: 720, z: 1.6 }], [48.35, { x: 2000, y: 760, z: 1.66 }],
+      [48.4, { x: 820, y: 640, z: 1.12 }, "cut"], [51.3, { x: 780, y: 650, z: 1.3 }], [52.6, { x: 760, y: 640, z: 1.2 }], [56.3, { x: 720, y: 650, z: 1.22 }],
+      [57.6, { x: 760, y: 640, z: 1.55 }], [58.3, { x: 760, y: 640, z: 1.55 }], [61.2, { x: 1160, y: 700, z: 1.3 }], [61.6, { x: 1160, y: 700, z: 1.3 }],
+      [63.6, { x: 1250, y: 820, z: 1.85 }], [63.9, { x: 1330, y: 690, z: 2.35 }, "cut"], [68.2, { x: 1330, y: 700, z: 2.5 }],
+      [68.3, { x: 900, y: 640, z: 1.75 }, "cut"], [72.3, { x: 920, y: 650, z: 1.85 }],
+      [72.5, { x: 1060, y: 690, z: 1.35 }, "cut"], [74.3, { x: 1080, y: 720, z: 1.5 }],
+      [74.5, { x: 1110, y: 790, z: 2.0 }, "cut"], [83.6, { x: 1130, y: 780, z: 2.1 }],
+      [83.8, { x: 860, y: 650, z: 1.1 }, "cut"], [85.2, { x: 520, y: 650, z: 1.2 }], [87.6, { x: 560, y: 650, z: 1.28 }],
+      [87.7, { x: 960, y: 560, z: .98 }, "cut"], [92.4, { x: 900, y: 600, z: 1.08 }], [95.8, { x: 860, y: 640, z: 1.22 }], [97.0, { x: 830, y: 700, z: 1.7 }], [98.6, { x: 830, y: 710, z: 1.85 }]]);
+    const roarK = t > T.roar ? Math.exp(-(t - T.roar) / .9) : 0;
+    const S = KIT.show("cave", { opacity: op, thorns: keys(t, [[75.9, 1], [76.3, .82], [77.9, .82], [78.3, .6], [80.2, .6], [80.7, .36], [82.4, .36], [83.85, 0]]),
+      shakeThorns: t > 58.6 && t < 84 ? (t > 74.5 ? .7 : 1) : 0, light: .55, shake: roarK * 26 + (t > T.free && t < T.free + .4 ? 4 : 0),
+      cam: Object.assign({}, cam, { z: cam.z + KIT.punch(t, T.roar, .1, .6) + KIT.punch(t, 63.9, .04) }) });
+    const m = ME[C], c = CH[C], d = DEER[C];
+    // the drip close-up (right side of the cave)
+    KIT.put(DRIP[C], S, { x: 2000, y: 850, hits: T.drops });
+    // the sunbeam at the entrance (when the fawn escapes)
+    KIT.put(BEAM[C], S, { k: rng(t, 84.2, 85.4) * (1 - rng(t, 88.5, 90)) });
+    // the fawn, tangled in the thorns -> free -> stops in the sunbeam and looks back
+    if (t < 89) { let dx = 1262, dflip = 1, dpose = "struggle", dmood = "scared", dhop = 0, dhr = 0, dph = 0;
+      if (t > 64.5 && t < 68.3) dpose = "stand";  // the close-up: trembling, big eyes
+      if (t > T.free) { const k = rng(t, T.free, 85.15); dx = lerp(1262, 250, k); dflip = -1; dpose = k < 1 ? "run" : "stand"; dph = (t - T.free) * 11; dmood = "calm";
+        if (k < 1) dhop = Math.abs(Math.sin(k * Math.PI)) * 60; if (t > 85.9) { dflip = 1; dhr = -10 + Math.sin(t * 2) * 4; } }
+      KIT.put(d, S, { x: dx + (t > 64.5 && t < 68.3 ? Math.sin(t * 40) * 1.5 : 0), y: 932, s: 1, flip: dflip, pose: dpose, mood: dmood, hop: dhop, phase: dph, headRot: dhr + (t > 64 && t < 68.3 ? -8 : 0), vis: rng(t, 58.6, 60.2) * (1 - rng(t, 88.2, 89)) }); }
+    // Chintu: at the entrance; leaps at the roar and runs; creeps back sheepishly for the explanation
+    let cx = 560, cflip = 1, cpose = "stand", cmood = "scared", chop = 0, cph = 0, cturn = .3;
+    if (t > T.roar && t < 52.4) { cpose = "armsUp"; chop = Math.sin(rng(t, T.roar, 52.3) * Math.PI) * 110; }
+    if (t > 52.4 && t < 53.6) { cpose = "run"; cph = t * 14; cflip = -1; cturn = -.4; }
+    if (t > 53.6) { const k = rng(t, 53.6, 55.6); cx = lerp(560, -360, k); cpose = "run"; cph = t * 14; cflip = -1; }
+    if (t > 88.6) { const k = rng(t, 88.8, 92.6); cx = lerp(-260, 560, ease(k)); cflip = 1; cpose = k < 1 ? "walk" : "think"; cph = (t - 88.8) * 6; cmood = k < 1 ? "scared" : "happy"; cturn = .4; }
+    if (t > 95.9) { cpose = "stand"; cmood = "awe"; cturn = .6; }
+    if (cx > -300) KIT.put(c, S, { x: cx, y: 950, s: .78, flip: cflip, pose: cpose, mood: cmood, hop: chop, phase: cph, turn: cturn, lean: cpose === "stand" && t < 51 ? -5 : 0,
+      look: t > 95.9 ? .8 : .3, lookY: t > 95.9 ? .6 : 0, pose2: t < T.roar ? "cower" : null, poseK: t < T.roar ? .5 : 0, hR: t > 92.6 && t < 95.9 ? [-30, -150] : null });
+    // Meera: lantern raised; stays at the roar; finds the fawn; walks to it; kneels; parts the thorns; smiles; the hanky glows
+    let mx = 720, mpose = "stand", mmood = "awe", mph = 0, mturn = .45, mItemL = "lantern", mItem = "", hL = [100, -30], hR = null, mhead = 0, mlook = .5, mlookY = 0;
+    if (t > T.roar && t < 52.6) { mpose = "cower"; mmood = "scared"; hL = null; }
+    if (t > 52.6 && t < 56.4) { mmood = "scared"; mturn = -.3; mlook = -.6; hL = [100, -30]; }
+    if (t > 56.4) { mmood = "neutral"; hL = [112, -50]; mlook = .7; }
+    if (t > 61.3) mmood = "sad";
+    if (t > 64.5 && t < 68.3) { const k = rng(t, 64.6, 67.8); mx = lerp(720, 900, ease(k)); if (k > 0 && k < 1) { mpose = "walk"; mph = (t - 64.6) * 7; } hL = [50, -70]; }
+    if (t > 68.3) { mx = 900; mmood = "neutral"; mturn = .25; hL = [10, 100]; mlook = .6; }
+    if (t > 72.5) { mx = lerp(900, 950, rng(t, 72.6, 73.6)); }
+    let mposeK = 0, mpose2 = null;
+    if (t > 72.6) { mpose = "stand"; mpose2 = "kneel"; mposeK = ease(rng(t, 72.7, 73.8)); mlookY = .6; mlook = .8; hL = [80, 40]; }
+    if (t > 74.4 && t < T.free) { mpose = "kneel"; mpose2 = "reach"; mposeK = .75; const pull = Math.max(0, Math.sin((t - 74.4) * 2.1)); hR = [92 + pull * 22, 30 - pull * 30]; mmood = "sad"; }
+    if (t > 75.7 && t < 76.5) { mmood = "scared"; mhead = -7; hR = [60, 40]; }   // a thorn pricks: a wince
+    if (t > T.free) { mpose = "kneel"; mmood = "happy"; mturn = -.3; mlook = -.9; mlookY = 0; hR = null; hL = [70, 40]; }
+    if (t > 87.7) { mpose = "stand"; mpose2 = "kneel"; mposeK = 1 - ease(rng(t, 88.2, 89.2)); mmood = "happy"; mturn = t > 90 ? -.4 : .3; mlook = t > 90 ? -.8 : .4; mx = lerp(950, 820, ease(rng(t, 89.4, 91.6))); hL = [60, 40];
+      if (t > 89.4 && t < 91.6) { mpose = "walk"; mpose2 = null; mph = (t - 89.4) * 7; } }
+    if (t > 95.9) { mpose = "hold"; mpose2 = null; mItem = "hanky"; mItemL = ""; mturn = .1; mlook = 0; mlookY = .8; mmood = "awe"; hL = null; }
+    KIT.put(m, S, { x: mx, y: 945, s: .8, flip: t < 88.6 ? 1 : (t > 89.4 && t < 91.6 ? -1 : 1), pose: mpose, pose2: mpose2, poseK: mposeK, phase: mph, mood: mmood, turn: mturn,
+      itemL: mItemL, item: mItem, hL: mpose === "kneel" || mpose2 === "kneel" ? null : hL, hR, headRot: mhead, look: mlook, lookY: mlookY, glow: .5 + .5 * rng(t, 96.0, 97.6) });
+    if (mpose === "kneel" || mpose2 === "kneel") m.st.hL = hL;
+    // pebbles + dust at the roar; the wind/echo diagram
+    KIT.put(PEB[C], S, { t0: T.roar });
+    KIT.put(WIND[C], S, { k: rng(t, 88.2, 89.4) * (1 - rng(t, 95.4, 96.4)) });
+    // light: lantern light everywhere in the cave; sunlight at the entrance later
+    const [lx, ly] = KIT.toScreen(S, mx + 70, 945 - .8 * 220);
+    let tx = lx, ty = ly, tr = 560;
+    if (t < 48.4) { const [a, b] = KIT.toScreen(S, 1990, 620); tx = a; ty = b; tr = 640; } else if (t < 57.8) tr = 470;
+    if (t > 57.8 && t < 64) { const [a, b] = KIT.toScreen(S, 1260, 800); const k = ease(rng(t, 58.4, 61.0)); tx = lerp(lx, a, k); ty = lerp(ly, b, k); tr = lerp(520, 720, k); }
+    if (t > 63.9 && t < 68.3) { tx = 960; ty = 470; tr = 820; }
+    if (t > 68.3 && t < 87.7) { const [a, b] = KIT.toScreen(S, 1080, 780); tx = a; ty = b; tr = 760; }
+    if (t > T.free && t < 87.7) { const [a, b] = KIT.toScreen(S, 700, 780); tx = a; ty = b; tr = 900; }
+    if (t > 87.7) { tx = 960; ty = 520; tr = 1100; }
+    KIT.torch(1, tx, ty, tr * (1 + .02 * Math.sin(t * 11)), t > 87.7 ? .72 : (t > 48.4 && t < 58.4 ? .96 : .9));
+    if (t > 84.3 && t < 89) { const [a, b] = KIT.toScreen(S, 220, 760); KIT.glow(.35 * rng(t, 84.3, 85.4) * (1 - rng(t, 88, 89)), a, b, 420, "255,214,120"); }
+    if (t > 95.9) { const [a, b] = KIT.toScreen(S, 820, 760); KIT.glow(rng(t, 96, 97.4) * (.7 + .06 * Math.sin(t * 6)), a, b, 520); }
+    KIT.vignette(.8);
+  }, .5],
+  // 5 · insert: the seed's first ring lights (flame) — courage
+  [98.1, (t, C, op) => { const S = KIT.show("insert", { opacity: op, bright: .35 * rng(t, T.ring1, T.ring1 + .6), cam: { x: 960, y: 520 - 30 * rng(t, 98, 104), z: 1 + .08 * rng(t, 98, 104.5) + KIT.punch(t, T.ring1, .07) } });
+    KIT.put(METER[C], S, { x: 960, y: 470, s: .95, glow: lerp(.8, 1.4, rng(t, T.ring1, T.ring1 + .6)), lit: [rng(t, T.ring1, T.ring1 + .45), 0, 0], pop: [T.ring1, null, null], hands: 1 });
+    const [gx, gy] = KIT.toScreen(S, 960, 460); KIT.glow(.35 + .4 * rng(t, T.ring1, T.ring1 + .6), gx, gy, 600);
+    KIT.motes(rng(t, T.ring1, T.ring1 + 1), 960, 520, 520); KIT.flash(.35 * Math.exp(-Math.max(0, t - T.courage) / .25) * (t > T.courage ? 1 : 0)); KIT.vignette(.7); }, .5],
+];
+function scene(t) {
+  resetTints(); runShots(t, shots);
+  KIT.title(pulse(t, .5, 3.9, .45), "మొదటి పరీక్ష", "ధైర్యం");
+  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .8, DUR)));
+}
+</script></body></html>
