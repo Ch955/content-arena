@@ -70,19 +70,20 @@ el("rect",{x:870,y:990,width:40,height:90,rx:10,fill:"#80DEEA",opacity:.85},W); 
 el("rect",{x:950,y:1040,width:70,height:40,rx:8,fill:"#FF80AB"},W);   // book
 const NIGHT_LAMP=el("circle",{cx:1000,cy:1010,r:0},W);
 
-// ===== CANTEEN (x CO.., PAPER): today's office lunch =====
+// ===== CAFÉ (x CO.., PAPER): today's Sunday lunch (a neighbourhood café; no office look) =====
 const CO=3000;
 el("rect",{x:CO-900,y:-700,width:2800,height:2000,fill:"#E9DCC0"},W);
 el("rect",{x:CO-900,y:1300,width:2800,height:900,fill:"#BFA27A"},W);
 const board=el("g",{transform:`translate(${CO+60},300)`},W);
 el("rect",{x:0,y:0,width:470,height:330,rx:12,fill:"#2E3B2F",stroke:"#6D4C41","stroke-width":12},board);
-txt("TODAY'S LUNCH",{x:235,y:70,"font-family":"Anton","font-size":46,"text-anchor":"middle",fill:"#F5F0DC","letter-spacing":2},board);
-txt("Veg Biryani  ₹120",{x:235,y:150,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#FFE082"},board);
-txt("Curd rice  ₹60",{x:235,y:210,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#F5F0DC"},board);
-txt("Chai  ₹15",{x:235,y:270,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#F5F0DC"},board);
+txt("☕ CAFÉ MENU",{x:235,y:70,"font-family":"Anton","font-size":46,"text-anchor":"middle",fill:"#F5F0DC","letter-spacing":2},board);
+txt("Veg Biryani  ₹180",{x:235,y:150,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#FFE082"},board);
+txt("Cold coffee  ₹90",{x:235,y:210,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#F5F0DC"},board);
+txt("Masala chai  ₹30",{x:235,y:270,"font-family":"InterB","font-weight":800,"font-size":36,"text-anchor":"middle",fill:"#F5F0DC"},board);
 el("rect",{x:CO+650,y:300,width:400,height:360,fill:"url(#daysky)",stroke:"#6D4C41","stroke-width":10},W);
 [[CO+740,600,90],[CO+900,580,110],[CO+1010,620,70]].forEach(([x,y,r])=>el("circle",{cx:x,cy:y,r,fill:"#7CB342"},W));
 el("line",{x1:CO+850,y1:300,x2:CO+850,y2:660,stroke:"#6D4C41","stroke-width":8},W);
+for(let i=0;i<12;i++) el("circle",{cx:CO-120+i*110,cy:250+Math.sin(i/11*Math.PI)*40,r:11,fill:i%2?"#FFD54F":"#FFAB91",stroke:"#8D6E63","stroke-width":2},W);
 el("rect",{x:CO-200,y:760,width:90,height:200,rx:10,fill:"#8D6E63"},W); el("circle",{cx:CO-155,cy:720,r:80,fill:"#558B2F"},W);   // potted plant
 
 // ===== KITCHEN / DINING (x KO.., PAPER last year, CLAY this year): the same Dilsukhnagar flat, morning =====
@@ -302,7 +303,7 @@ el("path",{d:"M300 1175 Q560 1140 860 1190 L1100 1220 L1100 1340 L20 1340 L20 12
 for(let k=0;k<5;k++) el("path",{d:`M${380+k*130} 1200 Q${400+k*130} 1260 ${370+k*130} 1330`,stroke:"#4DB6AC","stroke-width":5,fill:"none"},blanket);
 el("rect",{x:20,y:1330,width:1080,height:60,rx:10,fill:"#311B92",stroke:"#7C4DFF","stroke-width":5},W);
 const NKH=makeAdult({...NIGHT_OPT,legs:{pant:"#3E4A61",shoe:"#C98B5E"}});
-const AN=makeAdult(ANANYA_OPT), NKC=makeAdult({...NIKHIL_OPT,badge:["NIKHIL R","TOWER B"]});
+const AN=makeAdult(ANANYA_OPT), NKC=makeAdult(NIKHIL_OPT);   // Sunday lunch: no office lanyard
 const ctable=el("g",{},W);
 el("rect",{x:CO-400,y:1180,width:2000,height:44,rx:10,fill:"#E0C092",stroke:INK,"stroke-width":6},ctable);
 el("rect",{x:CO-400,y:1222,width:2000,height:700,fill:"#C9A577",stroke:INK,"stroke-width":6},ctable);
@@ -612,7 +613,7 @@ function frame(t){
   chipAt("cVoice",!loop&&t>b.tVoice&&t<b.chat0,540,440,pop(t,b.tVoice,0.3)*(1+(t>b.tVoice2&&t<b.tVoice2+0.3?0.12*Math.sin((t-b.tVoice2)*20):0)),3);
   chipAt("c815",t>b.t815&&t<b.chat1,600,1020,pop(t,b.t815,0.3)*(t>b.tBus&&t<b.tBus+0.3?1.12:1),-4);
   chipAt("dchip",(sc==="canteen")||(sc==="kitPast")||(sc==="bedPast"),540,330,pop(t,sc==="canteen"?b.fb1:sc==="kitPast"?b.fb2:b.fb3,0.3),-2);
-  $("dchip").textContent=sc==="kitPast"?"🕐 16 NOV 2025 · 8:15 AM":sc==="bedPast"?"🕐 16 NOV 2025 · 11:40 PM":"🕐 TODAY · 1:20 PM · CANTEEN";
+  $("dchip").textContent=sc==="kitPast"?"🕐 16 NOV 2025 · 8:15 AM":sc==="bedPast"?"🕐 16 NOV 2025 · 11:40 PM":"🕐 TODAY · 1:20 PM · CAFÉ";
   {const [px,py]=scr(CO+185,960); chipAt("cBatt",sc==="canteen"&&t>b.tDead+0.2&&t<b.sch0,Math.max(150,px-40),py-250,pop(t,b.tDead+0.2,0.3)*(t>b.tDead2&&t<b.tDead2+0.3?1.15:1),5)}
   chipAt("cMorn",sc==="kitNow"&&t<b.sh0,540,330,pop(t,b.kit0+0.1,0.3),-2);
   chipAt("cBusGo",sc==="kitNow"&&t>b.busGo2+0.3&&t<b.sh0,540,440,pop(t,b.busGo2+0.3,0.3),3);
