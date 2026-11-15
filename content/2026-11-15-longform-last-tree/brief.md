@@ -1,6 +1,7 @@
 ---
 pillar: longform
-format: reel   # an mp4 video; the publisher posts it as a normal long YouTube video (no #shorts), YouTube only
+format: reel
+format_note: an mp4; the publisher posts it as a normal long YouTube video (no #shorts), YouTube only
 platforms: youtube
 topic: "మాయా చెట్టు రహస్యం | చివరి చెట్టు — the owner's fantasy story: the last banyan of Anandapuram, three tests (courage, compassion, sacrifice) and the Vriksha Devata"
 date: 2026-11-15
