@@ -17,7 +17,8 @@ import numpy as np
 import requests
 
 API = "https://generativelanguage.googleapis.com/v1beta/models"
-MODELS = ["gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"]  # both support two speakers in one call
+# Flash first (owner's preference); each model has its own free daily quota, so the next one is used when one runs out.
+MODELS = ["gemini-2.5-flash-preview-tts", "gemini-3.1-flash-tts-preview", "gemini-2.5-pro-preview-tts"]
 CHUNK = 8
 SR_IN = 24000
 NAMES = {"gopi": "Gopi", "host": "Gopi", "pinky": "Pinky", "chinna": "Chinna", "pandu": "Pandu", "amma": "Amma",

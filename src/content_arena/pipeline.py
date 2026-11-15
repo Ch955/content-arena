@@ -108,22 +108,27 @@ def sync(post_dir: Path, table: Table, upload=None, platforms_: list[str] | None
     if slot_time(slug, common.get("pillar")):
         common["scheduled_for"] = slot_time(slug, common.get("pillar"))
 
+    # brief front matter `platforms: youtube` limits a post to those platforms (e.g. a long YouTube-only video)
+    only = [p.strip() for p in (front_matter(brief, "platforms") or "").split(",") if p.strip()]
+    youtube_only = only == ["youtube"]
     caption_md = post_dir / "caption.md"
-    drafted = caption_md.exists() and (fmt == "reel" or (post_dir / "slides.json").exists())
+    drafted = (caption_md.exists() and (fmt == "reel" or (post_dir / "slides.json").exists())) or \
+        (youtube_only and fmt == "reel" and (post_dir / "youtube.md").exists())
     media = sorted((post_dir / "rendered").glob("*.jpg")) if fmt == "carousel" \
         else [p for p in [post_dir / "rendered" / "video.mp4"] if p.exists()]
     status = "idea"
     if drafted:
-        caption, tags = parse_caption(caption_md.read_text(encoding="utf-8"))
-        validate_caption(caption, tags)
-        common.update(caption=caption, hashtags=" ".join(tags))
+        if caption_md.exists():
+            caption, tags = parse_caption(caption_md.read_text(encoding="utf-8"))
+            validate_caption(caption, tags)
+            common.update(caption=caption, hashtags=" ".join(tags))
         status = "drafted"
         if media and upload is not None:
             common["media_urls"] = "\n".join(upload(slug, media))
             status = "rendered"
 
     rows = []
-    for platform in platforms_ or platforms():
+    for platform in platforms_ or only or platforms():
         if platform == "youtube" and fmt != "reel":
             continue  # YouTube gets videos only
         fields = dict(common)

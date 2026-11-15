@@ -549,3 +549,17 @@ class StrayRowTests(TmpCase):
         self.assertTrue(any(not r.get("id") for r in rows))
         self.assertIsNone(publish.pick_next(self.table))
         self.assertEqual(publish.run(self.table, live=False, log=lambda *_: None), [])
+
+
+class YouTubeOnlyLongVideoTests(TmpCase):
+    def test_platforms_front_matter_makes_a_youtube_only_row(self):
+        post = self.tmp / "2026-11-15-longform-x"
+        (post / "rendered").mkdir(parents=True)
+        (post / "rendered" / "video.mp4").write_bytes(b"MP4")
+        (post / "brief.md").write_text("---\npillar: longform\nformat: reel\nplatforms: youtube\n---\n# x\n", encoding="utf-8")
+        (post / "youtube.md").write_text("# A long story\n\nDescription line.\n\n#telugu #telugustories #reelrasam\n",
+                                         encoding="utf-8")
+        rows = pipeline.sync(post, self.table, upload=lambda slug, paths: ["https://x/video.mp4"])
+        self.assertEqual([r["id"] for r in rows], ["2026-11-15-longform-x-youtube"])
+        self.assertEqual(rows[0]["status"], "rendered")
+        self.assertEqual(rows[0]["title"], "A long story")
