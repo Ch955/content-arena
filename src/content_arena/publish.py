@@ -133,7 +133,8 @@ def pick_next(table: Table, now: datetime | None = None, platform: str | None = 
     """Oldest approved row (optionally for one platform) whose scheduled_for (if any) has passed."""
     now = now or datetime.now(timezone.utc)
     due = [r for r in table.by_status("approved")
-           if (platform is None or r["platform"] == platform)
+           if r.get("id")   # ignore stray cells: a blank Sheet row with only a status (owner typo, 15 Nov 2026)
+           and (platform is None or r["platform"] == platform)
            and (not r["scheduled_for"] or parse_when(r["scheduled_for"]) <= now)]
     return min(due, key=lambda r: r["approved_at"] or r["created_at"], default=None)
 
@@ -211,7 +212,7 @@ def publish_row(table: Table, row: dict, client: MetaClient | None, log, yt_uplo
 def run(table: Table, live: bool = False, client: MetaClient | None = None, log=print,
         yt_uploader=None) -> list[dict]:
     """Publish at most ONE approved row per platform (oldest first). Returns the rows handled."""
-    due = [r for p in sorted({r["platform"] for r in table.by_status("approved")})
+    due = [r for p in sorted({r["platform"] for r in table.by_status("approved") if r.get("id")})
            if (r := pick_next(table, platform=p))]
     if not due:
         log("No approved rows are due. Nothing to publish.")

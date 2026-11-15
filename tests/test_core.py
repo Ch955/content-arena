@@ -541,3 +541,11 @@ class SeriesWeekTests(unittest.TestCase):
         with mock.patch.object(schedule, "SERIES_WEEKS", {date(2026, 11, 23)}):
             self.assertEqual([schedule.series_episode(date(2026, 11, d)) for d in range(22, 30)], [None, 1, 2, 3, 4, 5, 6, None])
             self.assertEqual(schedule.pillars_for(date(2026, 11, 23)), ["series"])
+
+class StrayRowTests(TmpCase):
+    def test_blank_approved_row_is_ignored(self):
+        self.table.insert({"id": "", "status": "approved"})   # a blank Sheet row with only a status
+        rows = [r for r in self.table.by_status("approved")]
+        self.assertTrue(any(not r.get("id") for r in rows))
+        self.assertIsNone(publish.pick_next(self.table))
+        self.assertEqual(publish.run(self.table, live=False, log=lambda *_: None), [])
