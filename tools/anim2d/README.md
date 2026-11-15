@@ -23,3 +23,6 @@ Voices order (11 Nov 2026): ElevenLabs (`content_arena.elevenvoice`, while the k
 Sarvam. `VOICE=gemini` skips ElevenLabs.
 
 Per-scene styles: after applySkin, `setSkin("neon"|"clay"|"paper"|"pixel"|"flat")` inside render(t) switches the look (e.g. a flashback).
+
+16:9 long-form stories (15 Nov 2026): `story16x9/` is a 1920×1080 storybook kit (camera, parallax sets, lip-sync +
+auto subtitles, title cards, parallel rendering). See `story16x9/README.md`; contact sheet `story16x9/sheet.png`.

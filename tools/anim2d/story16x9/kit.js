@@ -41,8 +41,8 @@ html,body{width:${W}px;height:${H}px;overflow:hidden;background:#1b1410}
   text-shadow:0 8px 0 #2A1604,0 0 40px rgba(255,190,60,.55);text-align:center;padding:0 80px}
 #k-title .ts{margin-top:18px;font-family:Rama,NotoTe;font-size:52px;color:#FFF6E0;text-shadow:0 3px 0 #2A1604,0 0 18px rgba(0,0,0,.8);text-align:center}
 #k-title svg{margin:10px 0}
-#k-sub{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);max-width:1560px;min-width:300px;padding:14px 40px 20px;text-align:center;
-  font-family:Rama,NotoTe;font-size:50px;line-height:1.42;color:#fff;background:rgba(24,14,8,.62);border-radius:30px;
+#k-sub{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);max-width:1600px;min-width:300px;padding:10px 38px 16px;text-align:center;
+  font-family:Rama,NotoTe;font-size:46px;line-height:1.4;color:#fff;background:rgba(24,14,8,.6);border-radius:30px;
   text-shadow:0 3px 0 #000,0 0 12px rgba(0,0,0,.85);opacity:0;white-space:normal}
 #k-chip{position:absolute;left:50%;transform:translateX(-50%);display:inline-block;font-family:Rama,NotoTe;font-size:34px;line-height:1.3;padding:2px 22px 6px;
   border-radius:16px;color:#1d120a;border:3px solid #2A1A10;box-shadow:0 4px 0 rgba(0,0,0,.45);opacity:0;white-space:nowrap}
@@ -147,7 +147,7 @@ html,body{width:${W}px;height:${H}px;overflow:hidden;background:#1b1410}
     const tx = clean(s.text); if (sub._t !== tx) { sub.textContent = tx; sub._t = tx; } sub.style.opacity = k;
     const nm = K.chipOn && K.names[s.who];
     if (nm) { if (chip._w !== s.who) { chip.textContent = nm[0]; chip.style.background = nm[1]; chip._w = s.who; }
-      chip.style.bottom = (54 + sub.offsetHeight - 6) + "px"; chip.style.opacity = k; } else chip.style.opacity = 0; }
+      chip.style.bottom = (30 + sub.offsetHeight - 6) + "px"; chip.style.opacity = k; } else chip.style.opacity = 0; }
 
   // ---------------- overlays (screen space, crisp) ----------------
   const FX = { glow: 0, torch: 0, vig: 0, grain: 0, flash: 0, fade: 0, rain: 0, motes: 0 };

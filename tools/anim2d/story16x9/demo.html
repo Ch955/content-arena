@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- story16x9 demo / contact sheet. ?view=N shows one sheet panel (sheet.js renders them all into sheet.png);
+     no view = a short animated demo scene (render(t)) used to time frames: node render.js demo.html --dur 20 -->
+<style>#lab{position:absolute;left:24px;top:20px;z-index:9;font:700 30px InterB,sans-serif;color:#fff;background:rgba(20,12,6,.72);padding:6px 16px;border-radius:12px}</style>
+</head><body>
+<script src="kit.js"></script>
+<script src="cast.js"></script>
+<script src="sets.js"></script>
+<script src="../skins.js"></script>
+<script>
+KIT.useSkins();
+KIT.autoSubs = false;   // the sheet panels set subtitles by hand; the animated demo turns them on                          // enables setSkin("paper") etc. (flat by default)
+const q = new URLSearchParams(location.search), VIEW = q.get("view");
+const lab = document.createElement("div"); lab.id = "lab"; document.body.appendChild(lab);
+// ---- cast ----
+const ME = makeMeera(), CH = makeChintu(), TH = makeThatayya(), VE = makeVeerendra(), H1 = makeHench(1), H2 = makeHench(2);
+const DV = makeDevata(), DEER = makeDeer(), BIRD = makeBird(), VA = makeVillager(0), VB = makeVillager(1), VC = makeVillager(2);
+const MOODS = ["neutral", "happy", "sad", "scared", "angry", "awe"];
+const MEm = MOODS.map(() => makeMeera()), CHm = MOODS.map(() => makeChintu()), THm = ["neutral", "happy", "sad"].map(() => makeThatayya()), VEm = ["smug", "angry", "scared"].map(() => makeVeerendra());
+const POSES = ["walk", "run", "kneel", "point", "armsUp", "spread", "cower", "hold"];
+const MEp = POSES.map(() => makeMeera()), CHp = ["walk", "run", "cower", "kneel"].map(() => makeChintu()), THp = ["walk", "sit", "point"].map(() => makeThatayya());
+// a fake timeline so lip-sync + subtitles can be seen
+const env = (n, f = 1) => [...Array(n)].map((_, i) => +(Math.abs(Math.sin(i * .55 * f)) * (i % 17 < 13 ? 1 : .05)).toFixed(3));
+window.TL = { fps: 30, lines: [
+  { who: "tree", text: "మీరా... మీరా... భయపడకు బిడ్డా. నేను ఈ అడవికి కాపలాదారుని.", start: 1, dur: 4.2, env: env(126, .8) },
+  { who: "meera", text: "నేను ఈ అడవిని మళ్లీ పచ్చగా మారుస్తాను. నాకు సహాయం చేస్తావా?", start: 6, dur: 3.6, env: env(108) },
+  { who: "chintu", text: "ఏంటి? చెట్టు మాట్లాడిందా? నువ్వు రాత్రి కల కన్నావేమో!", start: 10.5, dur: 3.2, env: env(96, 1.2) },
+  { who: "narrator", text: "ప్రకృతి మనకు ఇచ్చే ప్రతి బహుమతిని కాపాడటం మన బాధ్యత. చెట్లు లేకపోతే జీవితం లేదు. మనం ప్రకృతిని కాపాడితే ప్రకృతి మనల్ని కాపాడుతుంది.", start: 14.5, dur: 7, env: env(210) } ] };
+function row(list, set, x0, x1, y, s, f) { list.forEach((a, i) => { KIT.put(a, set, { x: lerp(x0, x1, list.length > 1 ? i / (list.length - 1) : .5), y, s }); if (f) f(a, i); }); }
+const V = [
+  ["cast · leads + villain + henchmen", t => { KIT.show("village", { green: 1, cam: { x: 960, y: 560, z: 1 } });
+    row([ME, CH, TH, VE, H1, H2], "village", 230, 1700, 1000, .95, (a, i) => { a.st.mood = ["happy", "scared", "happy", "smug", "angry", "angry"][i]; a.st.turn = [.3, .2, -.2, -.3, -.3, -.4][i];
+      if (i === 3) a.st.pose = "handsHips"; if (i === 4) { a.st.hR = [40, 40]; a.st.itemRot = 10; } if (i === 5) { a.st.hR = [60, 30]; a.st.itemRot = -20; } }); }],
+  ["cast · Vriksha Devata, deer, bird, villagers", t => { KIT.show("banyan", { night: .8, glow: .9, cam: { x: 960, y: 560, z: 1 } });
+    KIT.put(DV, "banyan", { x: 980, y: 620, s: .95, talk: .4 }); row([VA, VB, VC], "banyan", 160, 560, 1010, .85, (a, i) => { a.st.mood = ["awe", "scared", "happy"][i]; a.st.turn = .4; });
+    KIT.put(DEER, "banyan", { x: 1450, y: 1010, s: 1.2 }); KIT.put(BIRD, "banyan", { x: 1780, y: 1000, s: 1.4, flip: -1 }); KIT.glow(.5, 980, 420, 700); }],
+  ["expressions · neutral happy sad scared angry awe", t => { KIT.show("porch", { cam: { x: 960, y: 900, z: 1.0 } });
+    row(MEm, "porch", 200, 1720, 1010, 1.0, (a, i) => { a.st.mood = MOODS[i]; if (i === 2) { a.st.tear = 1; a.st.tearRun = .5; } });
+    row(CHm, "porch", 200, 1720, 1480, 1.0, (a, i) => { a.st.mood = MOODS[i]; a.st.turn = -.25; }); }],
+  ["expressions · Thatayya + Veerendra, talking mouth, blink", t => { KIT.show("porch", { evening: .6, cam: { x: 960, y: 560, z: 1 } });
+    row(THm, "porch", 170, 760, 1000, .9, (a, i) => { a.st.mood = ["neutral", "happy", "sad"][i]; if (i === 0) a.st.talk = .8; });
+    row(VEm, "porch", 1110, 1750, 1000, .9, (a, i) => { a.st.mood = ["smug", "angry", "scared"][i]; if (i === 1) { a.st.talk = .9; a.st.pose = "point"; } if (i === 2) a.st.pose = "cower"; if (i === 0) a.st.blink = 1; }); }],
+  ["poses · walk run kneel point armsUp spread cower hold", t => { KIT.show("forest", { cam: { x: 960, y: 560, z: 1 } });
+    row(MEp, "forest", 140, 1780, 1000, .9, (a, i) => { a.st.pose = POSES[i]; a.st.phase = 1.2; a.st.mood = ["happy", "neutral", "sad", "angry", "happy", "angry", "scared", "awe"][i]; if (i === 7) { a.st.item = "seed"; a.st.glow = 2; } }); }],
+  ["poses · Chintu + Thatayya (walk, run, cower, kneel / walk, sit, point)", t => { KIT.show("porch", { cam: { x: 960, y: 560, z: 1 } });
+    row(CHp, "porch", 130, 820, 1000, .9, (a, i) => { a.st.pose = ["walk", "run", "cower", "kneel"][i]; a.st.phase = .9; a.st.mood = ["happy", "scared", "scared", "sad"][i]; if (i === 0) a.st.item = "bottle"; if (i === 1) a.st.itemL = "torch"; });
+    row(THp, "porch", 1060, 1720, 1000, .9, (a, i) => { a.st.pose = ["walk", "sit", "point"][i]; a.st.phase = .8; if (i === 1) { a.st.seat = 180; a.st.item = ""; a.st.mood = "happy"; a.st.talk = .5; } if (i === 2) { a.st.item = ""; a.st.mood = "sad"; } }); }],
+  ["set · village · green past (green=1)", t => { KIT.show("village", { green: 1, birds: 1 }); }],
+  ["set · village · dry present (green=0)", t => { KIT.show("village", { green: 0 }); KIT.put(ME, "village", { x: 1000, y: 960, s: .7, mood: "sad", flip: -1 }); }],
+  ["set · the last banyan · day", t => { KIT.show("banyan", { night: 0 }); KIT.put(ME, "banyan", { x: 700, y: 980, s: .55, mood: "happy", turn: .4 }); KIT.put(TH, "banyan", { x: 520, y: 990, s: .55, turn: .3 }); }],
+  ["set · banyan · night, leaves glow + voice-glow", t => { KIT.show("banyan", { night: 1, glow: 1, voice: .9 }); KIT.put(ME, "banyan", { x: 760, y: 990, s: .6, mood: "awe", look: .5, lookY: -1, turn: .5 });
+    KIT.glow(.45, 960, 380, 800); KIT.motes(1, 960, 500, 700); }],
+  ["set · Thatayya's porch · evening", t => { KIT.show("porch", { evening: 1 }); KIT.put(TH, "porch", { x: 900, y: 960, s: .9, pose: "sit", seat: 180, item: "", talk: .6, turn: .3 });
+    KIT.put(ME, "porch", { x: 1350, y: 1000, s: .9, mood: "sad", flip: -1, turn: -.4, pose: "think" }); }],
+  ["set · forest path (cave on the far hill)", t => { KIT.show("forest", { dusk: .35 }); KIT.put(ME, "forest", { x: 900, y: 930, s: .6, pose: "walk", phase: 1, flip: 1, item: "torch" }); KIT.put(CH, "forest", { x: 760, y: 950, s: .6, pose: "walk", phase: 2.4, mood: "scared" }); }],
+  ["set · dark cave + torch-light, deer in thorns", t => { const S = KIT.show("cave", { eyes: .0, thorns: 1 }); KIT.put(DEER, "cave", { x: 1260, y: 930, s: 1, pose: "struggle", mood: "scared" });
+    KIT.put(CH, "cave", { x: 520, y: 960, s: .85, pose: "cower", mood: "scared", turn: .4 }); KIT.put(ME, "cave", { x: 720, y: 960, s: .85, pose: "point", item: "", itemL: "torch", mood: "awe", turn: .5 });
+    const [x, y] = KIT.toScreen(S, 1000, 760); KIT.torch(1, x, y, 620, .88); }],
+  ["set · the dry cracked pond, tired bird", t => { KIT.show("pond", { water: 0 }); KIT.put(BIRD, "pond", { x: 1040, y: 930, s: 1.6, pose: "tired" });
+    KIT.put(ME, "pond", { x: 820, y: 960, s: .85, pose: "kneel", item: "bottle", hR: [90, 50], mood: "sad", turn: .4 }); KIT.put(CH, "pond", { x: 600, y: 960, s: .85, mood: "sad", turn: .4 }); }],
+  ["set · stormy sky over the banyan (lightning + rain)", t => { KIT.show("banyan", { storm: 1, lightning: .9, cam: { x: 960, y: 520, z: 1.05 } }); KIT.flash(.18); KIT.rain(.7, 14);
+    KIT.put(VE, "banyan", { x: 1300, y: 1000, s: .62, mood: "scared", pose: "cower", flip: -1 }); KIT.put(ME, "banyan", { x: 900, y: 1000, s: .55, pose: "spread", mood: "angry" }); }],
+  ["set · rain + regrowth (sprouts, pond filling, birds)", t => { KIT.show("village", { green: .45, trees: .35, sprouts: .8, pond: .6, birds: .8 }); KIT.rain(.55, 8);
+    KIT.put(VA, "village", { x: 300, y: 960, s: .7, pose: "kneel", item: "sapling", hR: [120, 60], mood: "happy", turn: .3 }); KIT.put(VE, "village", { x: 620, y: 960, s: .72, pose: "carry", item: "sapling", mood: "happy" }); }],
+  ["set · rainbow ending", t => { KIT.show("banyan", { green: 1, rainbow: 1, cam: { x: 960, y: 540, z: 1 } });
+    row([VB, TH, ME, CH, VA], "banyan", 520, 1400, 1010, .55, (a, i) => { a.st.mood = "happy"; a.st.pose = i === 2 ? "armsUp" : "stand"; a.st.item = i === 1 ? "stick" : ""; });
+    KIT.put(BIRD, "banyan", { x: 1150, y: 560, s: 1, pose: "fly" }); KIT.put(DEER, "banyan", { x: 1600, y: 1010, s: .8, flip: -1 }); }],
+  ["set · soil close-up: the seed lands and sprouts (sprout=.75)", t => { KIT.show("soil", { sprout: .75, wet: .6, seedGlow: 3 }); KIT.rain(.35, 6); }],
+  ["props · seed glow 0 1 2 3 · locket · axe · sign · torch · bottle · sapling", t => { const S = KIT.show("porch", { cam: { x: 960, y: 540, z: 1 } });
+    if (!window._props) { const g = window._props = el("g", {}, null); [0, 1, 2, 3].forEach(i => { const sd = makeSeed(el("g", { transform: `translate(${200 + i * 210} 330)` }, g), 1.25); sd.set(i, 1.3); g["s" + i] = sd; });
+      drawLocket(el("g", { transform: "translate(1080 330)" }, g), 3); const ax = el("g", { transform: "translate(1300 420) rotate(-20)" }, g); PROPS.axe(ax);
+      makeSign(g, 1560, 1000, .85); [["torch", 300], ["bottle", 520], ["sapling", 740], ["pot", 960]].forEach(([n, x]) => { const pg = el("g", { transform: `translate(${x} 820) scale(1.8)` }, g); PROPS[n](pg); if (pg._upd) pg._upd(1, { glow: 0 }); }); }
+    S.actors.appendChild(window._props); [0, 1, 2, 3].forEach(i => window._props["s" + i].set(i, t + 1.3)); }],
+  ["overlays · title card + subtitle + speaker chip", t => { KIT.show("banyan", { night: 1, glow: .5 }); KIT.title(1, "చివరి చెట్టు రహస్యం", "పరీక్ష 1 — ధైర్యం"); KIT.sub("మరి ఈ ఒక్క చెట్టునైనా మనం కాపాడుకోవచ్చుకదా తాతయ్య!", "meera"); }],
+  ["skin · setSkin(\"paper\") on the village + Meera", t => { setSkin("paper"); KIT.show("village", { green: 1 }); KIT.put(ME, "village", { x: 900, y: 980, s: .9, mood: "happy", turn: .3 }); KIT.put(CH, "village", { x: 1150, y: 990, s: .9, mood: "happy", turn: -.3 }); }],
+];
+// ---- animated demo (no ?view): 4 shots with cross-fades, used for timing ----
+function demo(t) {
+  const sh1 = 5.5, sh2 = 10.5, sh3 = 14.5, x = .8;
+  if (t < sh1 + x) { const S = KIT.show("banyan", { night: 1, glow: rng(t, .5, 3), voice: KIT.talk("tree", t), cam: KIT.camPath(t, [[0, { x: 960, y: 420, z: 1 }], [5, { x: 900, y: 640, z: 1.35 }]]) });
+    KIT.put(ME, S, { x: 820, y: 990, s: .6, mood: t > 2 ? "awe" : "scared", lookY: -1, look: .6, turn: .5 }); KIT.motes(rng(t, 1, 3), 960, 450, 700); }
+  if (t > sh1 && t < sh2 + x) { const S = KIT.show("porch", { evening: .7, opacity: t < sh1 + x ? rng(t, sh1, sh1 + x) : 1, cam: { x: 1000, y: 600, z: 1.15 + .05 * rng(t, sh1, sh2) } });
+    KIT.put(TH, S, { x: 860, y: 960, s: .9, pose: "sit", seat: 180, item: "", mood: "happy", turn: .3 }); KIT.put(ME, S, { x: 1260, y: 1000, s: .9, flip: -1, turn: -.3, mood: "happy", pose: "point" }); }
+  if (t > sh2 && t < sh3 + x) { const S = KIT.show("forest", { dusk: .4, opacity: t < sh2 + x ? rng(t, sh2, sh2 + x) : 1, cam: { x: 960, y: 560, z: 1 } });
+    KIT.walk(ME, t, sh2, sh3 + 1, 500, 1300); KIT.walk(CH, t, sh2, sh3 + 1, 340, 1120); KIT.put(ME, S, { y: 940, s: .65, item: "torch" }); KIT.put(CH, S, { y: 960, s: .65, mood: "scared" }); }
+  if (t > sh3) { const S = KIT.show("village", { green: rng(t, sh3 + 1, 20), sprouts: rng(t, sh3, 18), birds: rng(t, 17, 20), opacity: rng(t, sh3, sh3 + x) }); KIT.rain(1 - rng(t, 17, 19));
+    KIT.put(ME, S, { x: 1000, y: 960, s: .7, pose: "armsUp", mood: "happy" }); }
+  KIT.title(pulse(t, .2, 2.8, .4), "చివరి చెట్టు రహస్యం", "ఒక మాయా చెట్టు కథ");
+}
+function scene(t) { KIT.autoSubs = VIEW == null; if (VIEW != null) { const v = V[+VIEW]; lab.textContent = (+VIEW + 1) + " · " + v[0]; v[1](t); } else { lab.style.display = "none"; demo(t); } }
+window.VIEWS = V.length;
+</script></body></html>

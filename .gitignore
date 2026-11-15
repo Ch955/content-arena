@@ -29,3 +29,6 @@ content/*/clips_stills/
 content/*/clips_flow/
 content/*/rendered_alt/
 content/*/assets/*.wav
+tools/anim2d/story16x9/stills/
+tools/anim2d/story16x9/sheet.png
+tools/anim2d/story16x9/*.mp4

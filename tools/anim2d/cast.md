@@ -50,3 +50,10 @@ const PRASAD_OPT={skin:"#B87D55",hair:"#A8A8A8",shirt:"#F4F4EE",collar:"#E4E4DA"
 const SURESH_OPT={skin:"#B5774E",hair:"#1A1410",grey:true,shirt:"#7FA7D9",collar:"#6B93C6",sleeve:"#7FA7D9",fore:"#B5774E",cuff:"#6B93C6",moustache:"#1E1612",headset:true,bags:true,brow:7,lip:"#6A3028"};   // TL, ~40
 ```
 Voices in that reel (all Gemini — the ElevenLabs key ran out): Gopi=Puck, Nikhil=Charon, Suresh=Algenib, Saroja=Kore, Prasad=Orus.
+
+## Long-form storybook cast (16:9, from "చివరి చెట్టు రహస్యం", 15 Nov 2026)
+Meera (12, two braids, yellow blouse + green langa voni with a gold border, silver locket), Chintu (12, chubby, red
+shirt, khaki shorts), Thatayya (70, white kurta + dhoti, kanduva, round glasses, white moustache, stick), Veerendra
+(45, plum suit jacket, gold chain, sunglasses on his hair), 2 henchmen with axes, 3 villagers, Vriksha Devata (a
+guardian spirit of leaves and golden light; no idol or religious symbols), a deer and a bird. The drawing options live in
+`tools/anim2d/story16x9/cast.js` (`MEERA_OPT`, `CHINTU_OPT`, ...). Reuse them with `makeMeera()` etc. so the cast looks the same in every part.
