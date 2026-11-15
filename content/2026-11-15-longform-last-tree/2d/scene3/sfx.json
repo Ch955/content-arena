@@ -1,0 +1,245 @@
+{
+ "scene": 3,
+ "dur": 89.8,
+ "note": "Scene-local seconds (t=0 = scene start; add film.json start for the whole film). No music here; score + these SFX are mixed later over the whole film. level: soft | mid | loud.",
+ "cues": [
+  {
+   "t": 0.0,
+   "dur": 11.2,
+   "effect": "magical night: crickets, soft hum of the glowing tree",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 2.2,
+   "dur": 0.3,
+   "effect": "eye blink twinkle",
+   "level": "soft",
+   "note": "also 5.6, 9.0, 14.4, 20.2, 34.0, 38.4"
+  },
+  {
+   "t": 11.15,
+   "dur": 0.9,
+   "effect": "paper whoosh / page flip into the flashback",
+   "level": "mid",
+   "note": "dip to cream"
+  },
+  {
+   "t": 11.6,
+   "dur": 5.0,
+   "effect": "ancient forest: birds, wind through a big canopy",
+   "level": "soft",
+   "note": "paper-cut flashback"
+  },
+  {
+   "t": 15.4,
+   "dur": 1.6,
+   "effect": "light dims toward sunset, distant axe chops begin",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 16.6,
+   "dur": 1.3,
+   "effect": "wood creak, tree 1 starts to fall",
+   "level": "mid",
+   "note": "each tree creaks at fall start, crashes 1.3 s later"
+  },
+  {
+   "t": 17.9,
+   "dur": 0.8,
+   "effect": "tree crash (silhouette)",
+   "level": "loud",
+   "note": "crashes at 17.9, 18.7, 19.5, 20.3, 21.1, 21.9"
+  },
+  {
+   "t": 18.7,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 19.5,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 20.3,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 21.1,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 21.9,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 22.1,
+   "dur": 0.9,
+   "effect": "paper whoosh back to the night",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 22.5,
+   "dur": 4.4,
+   "effect": "lonely night wind",
+   "level": "soft",
+   "note": "Meera's tear runs 24.4–26.4"
+  },
+  {
+   "t": 27.0,
+   "dur": 0.6,
+   "effect": "two small steps forward",
+   "level": "soft",
+   "note": "Meera's vow"
+  },
+  {
+   "t": 29.8,
+   "dur": 2.7,
+   "effect": "leaves rustle in reply (wind gust)",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 39.1,
+   "dur": 1.8,
+   "effect": "three soft chimes (three lights appear)",
+   "level": "mid",
+   "note": "~39.1, 39.7, 40.3"
+  },
+  {
+   "t": 41.6,
+   "dur": 1.9,
+   "effect": "earth cracking open between the roots + rising light hum",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 44.0,
+   "dur": 4.6,
+   "effect": "seed floats up: rising shimmer",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 46.5,
+   "dur": 2.0,
+   "effect": "star sparkle 'ting'",
+   "level": "mid",
+   "note": "shining like a star"
+  },
+  {
+   "t": 53.6,
+   "dur": 7.0,
+   "effect": "seed hum, soft magical bed",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 60.9,
+   "dur": 0.8,
+   "effect": "flame symbol: soft fire whoosh + chime",
+   "level": "mid",
+   "note": "ధైర్యం"
+  },
+  {
+   "t": 62.3,
+   "dur": 0.8,
+   "effect": "water-drop symbol: plink + chime",
+   "level": "mid",
+   "note": "కరుణ"
+  },
+  {
+   "t": 63.7,
+   "dur": 0.8,
+   "effect": "heart-leaf symbol: leaf rustle + chime",
+   "level": "mid",
+   "note": "త్యాగం"
+  },
+  {
+   "t": 64.4,
+   "dur": 1.2,
+   "effect": "symbols fly into the seed: whoosh",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 65.6,
+   "dur": 0.8,
+   "effect": "three dim rings settle: low triple 'ting'",
+   "level": "mid",
+   "note": "the progress meter (glow state 0)"
+  },
+  {
+   "t": 69.0,
+   "dur": 2.0,
+   "effect": "seed settles into Meera's hands: soft shimmer",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 71.1,
+   "dur": 0.6,
+   "effect": "warm promise hit",
+   "level": "mid",
+   "note": "'మాటిస్తున్నాను!'"
+  },
+  {
+   "t": 72.6,
+   "dur": 3.4,
+   "effect": "cotton cloth rustle (folding the handkerchief)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 75.8,
+   "dur": 0.5,
+   "effect": "small knot tightened",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 76.8,
+   "dur": 6.4,
+   "effect": "dream: a green forest grows (magical swell, dreamy birds)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 81.2,
+   "dur": 3.3,
+   "effect": "morning: birds, distant rooster at ~82",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 84.0,
+   "dur": 4.9,
+   "effect": "faint pulsing hum of the three dim rings",
+   "level": "soft",
+   "note": "hold on the seed (teaser)"
+  },
+  {
+   "t": 88.9,
+   "dur": 0.9,
+   "effect": "fade to black",
+   "level": "soft",
+   "note": ""
+  }
+ ]
+}

@@ -1,0 +1,144 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- చివరి చెట్టు రహస్యం — scene 2: Meera, the water, Thatayya's porch, the night call. TL = work/voices/scene2/timeline.json -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/skins.js"></script>
+<script src="../scene1/world.js"></script>
+<script>
+KIT.useSkins();
+const ME = makeMeera(), ME2 = makeMeera(), MEn = makeMeeraNight(), MEn2 = makeMeeraNight(), TH = makeThatayya();
+const WATER = makeWater(), LEAF = makeLeaf("#5FA53A"), EYES = makeBarkEyes();
+const GL = [0, 1, 2, 3, 4].map(() => makeLeaf("#FFE27A"));
+const SPROUT = makeProp("sprout", g => { const s = makeSapling(g, 1); s.set(.55); return { s }; }, (t, st, P) => P.s.g.setAttribute("transform", `rotate(${Math.sin(t * 2) * 4})`));
+const BOWL = makeProp("bowl", g => { el("path", { d: "M-60 -30 Q-56 10 0 14 Q56 10 60 -30 Z", fill: KIT.lgrad([[0, "#C9A46A"], [1, "#8A6A3A"]]), stroke: INK, "stroke-width": 3 }, g);
+  for (let i = 0; i < 4; i++) el("path", { d: `M-56 ${-24 + i * 9} Q0 ${-14 + i * 9} 56 ${-24 + i * 9}`, stroke: "#7A5A2A", "stroke-width": 2, fill: "none", opacity: .6 }, g);
+  for (let i = 0; i < 11; i++) el("ellipse", { cx: -44 + i * 9, cy: -32 - hash(i) * 8, rx: 9, ry: 5, fill: "#D9B888", stroke: "#7A5A2A", "stroke-width": 1.5, transform: `rotate(${hash(i * 3) * 60 - 30} ${-44 + i * 9} ${-32})` }, g); });
+const SHELLS = makeProp("shells", g => { for (let i = 0; i < 9; i++) el("path", { d: "M0 0 q8 -6 16 0 q-8 6 -16 0 Z", fill: "#C9A070", stroke: "#7A5A2A", "stroke-width": 1.2, transform: `translate(${hash(i) * 120 - 60} ${hash(i * 2) * 14}) rotate(${hash(i * 5) * 90})` }, g); });
+const BLANKET = makeProp("blanket", g => { el("path", { d: "M0 -40 L300 -46 Q318 -10 300 30 L0 34 Q-12 0 0 -40 Z", fill: KIT.lgrad([[0, "#C0503A"], [1, "#8A2E2A"]]), stroke: INK, "stroke-width": 3 }, g);
+  for (let i = 0; i < 6; i++) el("path", { d: `M${30 + i * 46} -40 L${30 + i * 46} 32`, stroke: "#F2C230", "stroke-width": 4, opacity: .7 }, g); });
+const SHADOW = makeProp("longShadow", g => { el("ellipse", { cx: -260, cy: 0, rx: 280, ry: 22, fill: "#05070F", opacity: .45 }, g); });
+// the faded photo of the green village on Thatayya's wall
+const PHOTO = addLayer("porch", 1, "actors", g => { const pg = el("g", { transform: "translate(1040 430)" }, g);
+  el("rect", { x: -92, y: -70, width: 184, height: 140, fill: "#7A4A26", stroke: INK, "stroke-width": 4 }, pg);
+  const inner = el("g", {}, pg); const cid = KIT.uid("ph"); const cp = el("clipPath", { id: cid }, KIT.defs); el("rect", { x: -78, y: -56, width: 156, height: 112 }, cp); inner.setAttribute("clip-path", `url(#${cid})`);
+  el("rect", { x: -80, y: -60, width: 160, height: 120, fill: "#A8D4E6" }, inner);
+  el("path", { d: hillPath(-90, 90, 10, 16, 3, 6, 60), fill: "#7DB46A" }, inner);
+  for (let i = 0; i < 7; i++) roundTree(inner, -76 + i * 26, 22 + hash(i) * 6, .32, "#5FA85A", "#3E8A48");
+  el("path", { d: "M-80 40 Q0 30 80 40 L80 60 L-80 60 Z", fill: "#8CC46A" }, inner);
+  const hut = el("g", { transform: "translate(-30 44) scale(.18)" }, inner); el("rect", { x: -120, y: -120, width: 240, height: 120, fill: "#E6C08A", stroke: INK, "stroke-width": 8 }, hut); el("path", { d: "M-150 -110 L0 -210 L150 -110 Z", fill: "#D4AE52", stroke: INK, "stroke-width": 8 }, hut);
+  el("ellipse", { cx: 40, cy: 48, rx: 30, ry: 6, fill: "#6AB0E0" }, inner);
+  el("rect", { x: -80, y: -60, width: 160, height: 120, fill: "#C9A060", opacity: .38 }, inner);   // faded sepia
+  el("path", { d: "M-78 -56 L-60 -56 L-78 -40 Z M78 56 L60 56 L78 40 Z", fill: "#F2E6C8", opacity: .7 }, pg);
+  el("line", { x1: 0, y1: -70, x2: 0, y2: -92, stroke: "#3A2A1E", "stroke-width": 3 }, pg); el("circle", { cx: 0, cy: -94, r: 5, fill: "#8A6A4A", stroke: INK, "stroke-width": 2 }, pg); return pg; });
+
+// ---------- shots ----------
+function introVillage(t, op) {   // 0 – 13.0: Meera in the dry village, then runs toward the far banyan
+  const cam = KIT.camPath(t, [[0, { x: 900, y: 640, z: 1.15 }], [2.4, { x: 940, y: 728, z: 1.55 }], [7.6, { x: 960, y: 735, z: 1.6 }], [9.0, { x: 700, y: 620, z: 1.2 }], [13.0, { x: 1300, y: 600, z: 1.15 }]]);
+  const S = KIT.show("village", { green: 0, birds: 0, cam, opacity: op });
+  KIT.put(SPROUT, S, { x: 1060, y: 940, s: 1.1 });
+  let o = { x: 960, y: 935, s: .72, mood: "happy", turn: .3, itemL: "bag", flip: 1 };
+  if (t < 2.1) Object.assign(o, { pose: "stand", look: .3 });
+  else if (t < 5.0) Object.assign(o, { pose: "wave", phase: t * 5, turn: .5 });
+  else if (t < 6.4) Object.assign(o, { pose: "handsHips", turn: .4 });
+  else if (t < 8.6) Object.assign(o, { pose: "kneel", mood: "happy", look: .6, lookY: .5, hR: [70, 70], turn: .3 });
+  KIT.put(ME, S, o);
+  if (t >= 8.6) { KIT.walk(ME, t, 8.6, 13.3, 960, 2000, { run: true, ease: false }); ME.st.hop = Math.abs(Math.sin((t - 8.6) * 6.5)) * 6; }
+  KIT.motes(.5, 960, 600, 900, "255,230,180", 25);
+  KIT.fade(1 - rng(t, 0, .9));
+}
+function waterTree(t, op) {      // 13.0 – 27.0: at the banyan: greeting, watering the roots, sitting and chatting
+  const cam = KIT.camPath(t, [[13.0, { x: 560, y: 690, z: 1.3 }], [15.0, { x: 720, y: 700, z: 1.5 }], [18.3, { x: 740, y: 700, z: 1.55 }], [19.4, { x: 800, y: 820, z: 2.3 }], [21.0, { x: 800, y: 825, z: 2.35 }],
+    [22.2, { x: 760, y: 720, z: 1.6 }], [27.0, { x: 790, y: 735, z: 1.75 }]]);
+  const S = KIT.show("banyan", { night: 0, wind: .15, cam, opacity: op });
+  let o = { y: 935, s: .78, flip: 1, mood: "happy", turn: .4, itemL: "bag", item: "brasspot" };
+  if (t < 14.6) { KIT.walk(ME2, t, 13.0, 14.6, 260, 640, { run: true }); }
+  else { o.x = 640;
+    if (t < 16.2) Object.assign(o, { pose: "wave", phase: t * 6, item: "brasspot", itemL: "", turn: .5 });
+    else if (t < 18.4) Object.assign(o, { pose: "think", item: "", itemL: "", lookY: -.8, look: -.3, mood: "neutral", hR: [-10, -86], turn: .3 });
+    else if (t < 21.0) Object.assign(o, { pose: "kneel", x: 690, item: "brasspot", itemL: "", hR: [118, 22], itemRot: lerp(0, 95, ease(rng(t, 18.4, 19.2))), mood: "happy", look: .5, lookY: .7 });
+    else Object.assign(o, { pose: "sit", seat: 30, x: 640, item: "", itemL: "", mood: "happy", turn: .5, flip: 1,
+        hR: t > 22.4 && t < 25.6 ? [60 + Math.sin(t * 3) * 30, -30 + Math.cos(t * 4) * 30] : null, talk: t > 22.4 && t < 26 ? .5 + .5 * Math.sin(t * 15) * Math.sin(t * 4.1) : 0, look: .4, lookY: -.3 }); }
+  KIT.put(ME2, S, o);
+  if (t > 18.6 && t < 21.4) KIT.put(WATER, S, { x: 840, y: 940, s: 1, k: pulse(t, 18.9, 21.0, .2), k2: rng(t, 19.0, 21.2), h: 95 });
+  else if (t >= 21.4) KIT.put(WATER, S, { x: 840, y: 940, s: 1, k: 0, k2: 1 });
+  if (t > 22.8) { leafPath(LEAF, t, 22.8, 26.4, 760, 380, 664, 800); KIT.put(LEAF, S, { s: 1.0 }); }
+  KIT.motes(.5, 900, 520, 900, "255,240,200", 25);
+}
+function porch(t, op) {          // 27.0 – 55.55: dusk at Thatayya's: the question, the answer, the photo, the promise
+  let cam;
+  if (t < 44.3) cam = KIT.camPath(t, [[27.0, { x: 1080, y: 690, z: 1.25 }], [30.5, { x: 990, y: 730, z: 1.45 }], [37.6, { x: 1000, y: 730, z: 1.5 }], [43.8, { x: 900, y: 640, z: 2.3 }]]);
+  else if (t < 47.5) cam = KIT.camPath(t, [[44.3, { x: 1040, y: 412, z: 3.4 }], [47.5, { x: 1040, y: 408, z: 3.75 }]]);
+  else if (t < 50.6) cam = KIT.camPath(t, [[47.5, { x: 900, y: 640, z: 2.35 }], [50.6, { x: 905, y: 645, z: 2.45 }]]);
+  else if (t < 54.0) cam = KIT.camPath(t, [[50.6, { x: 1080, y: 650, z: 2.5 }], [54.0, { x: 1080, y: 655, z: 2.7 }]]);
+  else cam = KIT.camPath(t, [[54.0, { x: 990, y: 700, z: 1.7 }], [55.55, { x: 990, y: 705, z: 1.75 }]]);
+  const S = KIT.show("porch", { evening: .45 + .55 * rng(t, 27, 40), cam, opacity: op });
+  PHOTO.style.opacity = 1;
+  const shelling = t < 38 || t > 54;
+  KIT.put(BOWL, S, { x: 800, y: 885, s: .9 }); KIT.put(SHELLS, S, { x: 700, y: 950, s: 1 });
+  const thTalk = t > 38 && t < 50.5;
+  KIT.put(TH, S, { x: 875, y: 960, s: .9, pose: "sit", seat: 180, item: "", flip: 1, turn: .35,
+    mood: t > 44.3 && t < 50.5 ? "sad" : (t > 53.5 ? "happy" : "neutral"), look: t > 30.5 ? .6 : 0, lookY: thTalk ? 0 : .3,
+    hR: t > 54.1 ? [172, 6 + Math.sin(t * 8) * 6] : (shelling ? [70 + Math.sin(t * 6) * 8, 40] : [90, 10 + Math.sin(t * 2) * 10]),
+    hL: shelling ? [60, 40 + Math.cos(t * 6) * 8] : [40, 90], headRot: thTalk ? Math.sin(t * .8) * 3 : 0 });
+  const mo = { y: 960, s: .9, flip: -1, turn: -.35, mood: "neutral", look: .6 };
+  if (t < 29.4) { KIT.walk(ME, t, 27.2, 29.4, 1560, 1110); }
+  else Object.assign(mo, { x: 1110, pose: "sit", seat: 85 });
+  if (t > 29.4 && t < 30.0) { mo.pose = "walk"; mo.pose2 = "sit"; mo.poseK = rng(t, 29.4, 30.0); mo.phase = 0; mo.seat = 85; }
+  if (t > 31 && t < 38) Object.assign(mo, { mood: t < 34.8 ? "neutral" : "sad", hR: [50 + Math.sin(t * 3) * 14, 20], lookY: -.2 });
+  if (t > 38 && t < 50.5) Object.assign(mo, { mood: t > 44 ? "sad" : "neutral", lookY: -.1 });
+  if (t > 50.6 && t < 54.1) Object.assign(mo, { mood: "happy", hR: [60, -10], hL: [40, 20], lean: -4, lookY: -.3, look: .7 });
+  if (t > 54.1) Object.assign(mo, { mood: "happy", headRot: -4 + Math.sin(t * 8) * 2, blink: 1 });
+  KIT.put(ME, S, mo);
+  if (t > 50.6 && t < 54.1) { const [x, y] = KIT.toScreen(S, 1075, 615); KIT.glow(.45, x, y, 260); }
+  KIT.motes(.45, 960, 500, 900, "255,200,120", 20);
+  KIT.vignette(.5);
+}
+function room(t, op) {           // 55.55 – 72.33: night, can't sleep, the window, the call
+  const sit = t >= 60.3;
+  let cam;
+  if (!sit) cam = KIT.camPath(t, [[55.55, { x: 640, y: 760, z: 1.35 }], [60.3, { x: 470, y: 880, z: 1.9 }]]);
+  else if (t < 67.0) cam = KIT.camPath(t, [[60.3, { x: 850, y: 800, z: 1.3 }], [62.0, { x: 880, y: 780, z: 1.3 }], [66.3, { x: 1500, y: 430, z: 2.05 }]]);
+  else cam = KIT.camPath(t, [[67.0, { x: 1500, y: 430, z: 2.05 }], [69.5, { x: 1100, y: 650, z: 1.45 }], [72.33, { x: 660, y: 790, z: 1.9 }]]);
+  const S = KIT.show("room", { glow: rng(t, 61, 64.5), cam, opacity: op });
+  if (!sit) {
+    putWrapped(MEn, S, { x: 560, y: 978, s: .7, pose: "stand", turn: 0, mood: t > 58.3 ? "sad" : "neutral", look: Math.sin(t * .9) * .8, lookY: -.3,
+      blink: t > 56 && t < 57.5 ? 1 : null, headRot: Math.sin(t * .7) * 8 }, "rotate(-90 560 978)");
+    KIT.put(BLANKET, S, { x: 350, y: 985, s: 1 });
+  } else {
+    const looking = t > 60.9;
+    KIT.put(MEn, S, { x: 520, y: 1010, s: .78, pose: "sit", seat: 22, flip: 1, turn: looking ? .6 : .2, mood: t > 62 ? "awe" : "neutral", look: looking ? 1 : 0, lookY: -.4, headRot: looking ? -6 : 0,
+      hL: [40, 70], hR: [50, 64] });
+    KIT.put(BLANKET, S, { x: 560, y: 1004, s: .62 });
+  }
+  // the call: golden motes and leaves drift in through the window to her
+  if (t > 66.8) { const k = pulse(t, 66.8, 72.4, .8); KIT.motes(k, ...KIT.toScreen(S, lerp(1500, 700, rng(t, 66.8, 71.5)), lerp(420, 700, rng(t, 66.8, 71.5))), 260 * cam.z, "255,214,110", 45);
+    GL.forEach((L, i) => { const t0 = 67 + i * .7; if (t > t0 && t < t0 + 3.6) { leafPath(L, t, t0, t0 + 3.6, 1400 + hash(i) * 200, 300 + hash(i * 2) * 200, 640 + hash(i * 3) * 120, 640 + hash(i * 4) * 120); KIT.put(L, S, { s: 1.0, vis: pulse(t, t0, t0 + 3.6, .5) }); } }); }
+  if (sit && t > 62) { const [x, y] = KIT.toScreen(S, 1500, 400); KIT.glow(.35 * rng(t, 62, 65), x, y, 420 * cam.z); }
+  KIT.vignette(.75);
+}
+function walkNight(t, op) {      // 72.33 – 84.14: lantern walk across the field
+  const mx = lerp(-560, 600, rng(t, 72.33, 83.6));
+  const cam = KIT.camPath(t, [[72.33, { x: -320, y: 700, z: 1.45 }], [83.6, { x: 760, y: 640, z: 1.25 }]]);
+  cam.x = lerp(mx + 230, 860, rng(t, 81.5, 84.1)); cam.z += .012 * Math.max(0, Math.sin(t * 7.5)) * rng(t, 82, 84);
+  const S = KIT.show("banyan", { night: 1, glow: .55, wind: t > 79 && t < 82 ? 1.1 : .35, voice: .15 + .1 * Math.sin(t * 2), cam, opacity: op });
+  KIT.put(SHADOW, S, { x: mx, y: 935, s: .9 });
+  KIT.put(MEn2, S, { x: mx, y: 935, s: .7, flip: 1, pose: t < 83.6 ? "walk" : "stand", phase: (t - 72.33) * 5.2, mood: t > 81 ? "scared" : "awe", lookY: -.4, look: .5, turn: .3,
+    item: "lantern", hR: [34, -14], headRot: t > 79 && t < 81 ? Math.sin(t * 4) * 10 : 0 });
+  const [lx, ly] = KIT.toScreen(S, mx + 30, 760); KIT.glow(.4, lx, ly, 300 * cam.z);
+  KIT.vignette(.8);
+}
+function trunk(t, op) {          // 84.14 – 95.15: low angle up the trunk; the bark breathes; eyes of light
+  const cam = KIT.camPath(t, [[84.14, { x: 900, y: 640, z: 1.55, rot: -2 }], [87.7, { x: 930, y: 610, z: 1.7, rot: -1 }], [95.15, { x: 940, y: 590, z: 1.95, rot: 0 }]]);
+  const breathe = .5 + .5 * Math.sin(t * 2.2);
+  const S = KIT.show("banyan", { night: 1, glow: .7, wind: .3, voice: Math.max(KIT.talk("tree", t), .12 + .25 * breathe * rng(t, 84.2, 86)), cam, opacity: op });
+  KIT.put(EYES, S, { x: 962, y: 548, s: 1, k: rng(t, 86.9, 88.0), k2: (t > 90.6 && t < 90.85) || (t > 93.6 && t < 93.85) ? 1 : 0, k3: rng(t, 91.5, 93) });
+  KIT.put(MEn2, S, { x: 700, y: 935, s: .78, flip: 1, mood: t < 89.5 ? "scared" : "awe", lookY: -1, look: .6, turn: .45, item: "lantern", hR: [36, -10],
+    pose: t < 86.9 ? "stand" : "stand", lean: t < 89 ? -4 : 0, hop: t > 86.9 && t < 87.2 ? 6 : 0 });
+  const [rx, ry] = KIT.toScreen(S, 962, 880); KIT.glow(.25 + .2 * breathe, rx, ry, 380);
+  KIT.motes(.8, ...KIT.toScreen(S, 962, 560), 420, "255,214,110", 40);
+  KIT.vignette(.8);
+}
+const SHOTS = [[0, 13.0, introVillage], [13.0, 27.0, waterTree, .6], [27.0, 55.55, porch, .8], [55.55, 72.33, room, 1.0], [72.33, 84.14, walkNight, .8], [84.14, 95.15, trunk, .5]];
+function scene(t) { PHOTO.style.opacity = 0; shots(t, SHOTS); }
+</script></body></html>

@@ -1,0 +1,124 @@
+{
+ "scene": 6,
+ "video": "work/render/scene6.mp4",
+ "dur": 79.52,
+ "film_start": 500.09,
+ "note": "Times are seconds from the start of this scene's mp4 (add film_start for the film timeline). Effects only, no music; level them under the voice. Scene 6: keep 41.1-52.8 near-silent (owner's 'the wind stopped' beat).",
+ "cues": [
+  {
+   "t": 0.2,
+   "film_t": 500.29,
+   "effect": "evening ambience (soft wind, distant birds)"
+  },
+  {
+   "t": 1.2,
+   "film_t": 501.29,
+   "effect": "footsteps on dry leaves (until 8)"
+  },
+  {
+   "t": 7.8,
+   "film_t": 507.89,
+   "effect": "leaves shimmer (soft magical rustle)"
+  },
+  {
+   "t": 11,
+   "film_t": 511.09,
+   "effect": "tree eyes open (soft breath of light)"
+  },
+  {
+   "t": 12.6,
+   "film_t": 512.69,
+   "effect": "seed chime (seed floats up)"
+  },
+  {
+   "t": 13.3,
+   "film_t": 513.39,
+   "effect": "soft chime (ring 1 pulse)"
+  },
+  {
+   "t": 15,
+   "film_t": 515.09,
+   "effect": "soft chime (ring 2 pulse)"
+  },
+  {
+   "t": 23.6,
+   "film_t": 523.69,
+   "effect": "cloth rustle (hand to the locket)"
+  },
+  {
+   "t": 28,
+   "film_t": 528.09,
+   "effect": "locket chain clink (lifted)"
+  },
+  {
+   "t": 32.5,
+   "film_t": 532.59,
+   "effect": "locket clink (opens)"
+  },
+  {
+   "t": 32.9,
+   "film_t": 532.99,
+   "effect": "light swell (soft, the portrait)"
+  },
+  {
+   "t": 36.3,
+   "film_t": 536.39,
+   "effect": "footstep (Chintu reaches)"
+  },
+  {
+   "t": 41.1,
+   "film_t": 541.19,
+   "effect": "ambience drops out (silence until 52.8)"
+  },
+  {
+   "t": 46,
+   "film_t": 546.09,
+   "effect": "cloth rustle (locket to the heart)"
+  },
+  {
+   "t": 60.2,
+   "film_t": 560.29,
+   "effect": "kneel on dry leaves"
+  },
+  {
+   "t": 61.4,
+   "film_t": 561.49,
+   "effect": "locket clink (placed on the roots)"
+  },
+  {
+   "t": 65.4,
+   "film_t": 565.49,
+   "effect": "rising shimmer (anticipation)"
+  },
+  {
+   "t": 67.05,
+   "film_t": 567.14,
+   "effect": "light swell (big burst) + wind gust"
+  },
+  {
+   "t": 69,
+   "film_t": 569.09,
+   "effect": "light swell (column rises, whoosh up)"
+  },
+  {
+   "t": 75.45,
+   "film_t": 575.54,
+   "effect": "seed chime + ring light-up (heart-leaf)"
+  },
+  {
+   "t": 76,
+   "film_t": 576.09,
+   "effect": "light swell (triumphant)"
+  },
+  {
+   "t": 76.6,
+   "film_t": 576.69,
+   "effect": "evening wind over the village"
+  },
+  {
+   "t": 77.3,
+   "film_t": 577.39,
+   "effect": "distant jeep engine (turning toward the light)"
+  }
+ ]
+}

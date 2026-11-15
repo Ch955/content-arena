@@ -1,0 +1,130 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- Scene 5 · రెండో పరీక్ష — కరుణ (91.0 s). Timeline: work/voices/scene5/timeline.json (do not retime). -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="../scene4/lib456.js"></script>
+<script>
+"use strict";
+const DUR = 91.0;
+const ME = castPair(makeMeera), CH = castPair(makeChintu), BIRD = castPair(makeBird);
+const BOAT = pair(makeBoat), HAZE = pair(() => makeHaze(-300, 2200, 720, 1080)), PUFF = pair(makePuff), PALMS = pair(makePalms), BOTTLE = pair(makeBigBottle);
+const CHIRP = pair(makeChirps), METER = pair(makeSeedMeter);
+// hide the pond set's log: our boat lies there instead
+{ const P = KIT.get("pond"); const lg = P.g.querySelector('[transform="translate(1460 880) rotate(-6)"]'); if (lg) lg.style.display = "none"; }
+const T = { flop: 17.55, puffs: [27.4, 28.5], sips: [57.95, 58.95, 60.05, 61.05], shake: 62.2, toShoulder: 63.9, chirp: 65.4, takeoff: 66.95, ring2: 81.85, karuna: 82.6 };
+window.CUES = [
+  [0.2, "noon heat ambience (cicadas, hot wind)"], [3.6, "footsteps on dry earth (two kids, until 9)"], [9.1, "memory shimmer (soft)"], [9.4, "gentle water lapping + oar creak (memory)"],
+  [13.1, "memory ends (reverse shimmer); dry wind"], [13.4, "footsteps on cracked mud (until 17.3)"], [T.flop, "comic flop + wooden boat creak"], [18.4, "leaf fanning whoosh (repeats, until 24)"],
+  [24.9, "bottle cap unscrew"], [25.9, "little water slosh"], [T.puffs[0], "tiny rustle in the cracks"], [T.puffs[1], "tiny rustle"], [29.6, "weak bird breathing / faint cheep"],
+  [37.0, "kneel on dry mud"], [51.8, "water pour (into cupped palm, until 56.6)"], [T.sips[0], "drop sip"], [T.sips[1], "drop sip"], [T.sips[2], "drop sip"], [T.sips[3], "drop sip"],
+  [T.shake, "feather ruffle / wing flaps (small)"], [T.toShoulder, "wing flaps (short hop-flight)"], [T.chirp, "sparrow chirp 'kich kich'"], [T.takeoff, "wing flaps (take-off, fading up)"],
+  [71.0, "Chintu chuckle"], [76.0, "seed chime (hanky glows)"], [T.ring2, "seed chime + ring light-up (water drop)"], [T.karuna, "light swell (warm sting)"], [85.4, "low suspense tone (one ring still dark)"] ];
+
+function camSeq(t, ks) { let i = 0; while (i < ks.length - 1 && ks[i + 1][0] <= t) i++; const a = ks[i], b = ks[i + 1];
+  if (!b || b[2] === "cut" || t < a[0]) return a[1]; return KIT.camLerp(a[1], b[1], ease(rng(t, a[0], b[0]))); }
+const breathe = t => 1 + .05 * Math.sin(t * 7);
+
+const shots = [
+  // 0 · noon, heat haze over the dry pond; two small figures walk in along the far bank
+  [0, (t, C, op) => { const S = KIT.show("pond", { heat: 1, opacity: op, cam: { x: lerp(900, 1060, ease(rng(t, 0, 9.6))), y: 540, z: lerp(1.0, 1.08, rng(t, 0, 9.6)) } });
+    KIT.put(BOAT[C], S, { x: 1420, y: 905, s: .8, tilt: -9, old: 1 });
+    const m = ME[C], c = CH[C]; KIT.walk(m, t, 2.4, 9.8, -120, 640, { ease: false }); KIT.walk(c, t, 2.4, 9.8, -230, 530, { ease: false, cadence: .9 });
+    KIT.put(c, S, { y: 742, s: .3, mood: "sad", lean: 6 }); KIT.put(m, S, { y: 738, s: .3, mood: "neutral", item: "bottle" });
+    KIT.put(HAZE[C], S, { k: 1 }); const [sx, sy] = KIT.toScreen(S, 420, 170); KIT.glow(.35 + .05 * Math.sin(t * 2), 420, 170, 520, "255,236,180"); }],
+  // 1 · memory: the pond full of water, a boat afloat (sepia)
+  [9.1, (t, C, op) => { const S = KIT.show("pond", { water: 1, green: .85, heat: 0, opacity: op, cam: { x: lerp(1080, 1180, rng(t, 9, 14)), y: 600, z: 1.12 } });
+    KIT.put(BOAT[C], S, { x: 1250 + Math.sin(t * .5) * 30, y: 935, s: .8, tilt: 0, bob: 7, old: 0 });
+    tint(op * .55, "linear-gradient(#E8C890,#D8B080)"); KIT.vignette(.9 * op); KIT.grain(.32); }, .9],
+  // 2 · back to now: cracked mud, the old boat; the kids walk in; Chintu flops; the bottle; the bird; the choice
+  [13.0, (t, C, op) => {
+    const cam = camSeq(t, [[13.0, { x: 1080, y: 600, z: 1.12 }], [17.2, { x: 1120, y: 640, z: 1.22 }], [18.2, { x: 1160, y: 700, z: 1.5 }], [24.5, { x: 1140, y: 700, z: 1.52 }],
+      [24.7, { x: 1010, y: 760, z: 2.3 }, "cut"], [26.6, { x: 1000, y: 770, z: 2.4 }], [27.2, { x: 800, y: 860, z: 2.0 }], [29.2, { x: 780, y: 870, z: 2.1 }],
+      [29.4, { x: 740, y: 870, z: 2.75 }, "cut"], [36.4, { x: 745, y: 870, z: 3.0 }],
+      [36.6, { x: 860, y: 760, z: 1.65 }, "cut"], [41.8, { x: 880, y: 760, z: 1.7 }], [41.9, { x: 980, y: 720, z: 1.5 }, "cut"], [44.3, { x: 990, y: 720, z: 1.55 }],
+      [44.4, { x: 900, y: 740, z: 1.75 }, "cut"], [49.2, { x: 900, y: 740, z: 1.85 }], [51.2, { x: 960, y: 720, z: 1.55 }]]);
+    const S = KIT.show("pond", { heat: 1, opacity: op, cam: Object.assign({}, cam, { z: cam.z + KIT.punch(t, T.flop + .2, .05) }) });
+    KIT.put(BOAT[C], S, { x: 1420, y: 905, s: .8, tilt: -9, old: 1 });
+    const m = ME[C], c = CH[C], b = BIRD[C];
+    // Chintu: walks to the boat, flops, fans himself with a leaf; stands to worry; nods
+    let cx = 1360, cpose = "sit", cmood = "sad", cturn = -.3, chop = 0, cph = 0, cseat = 96, hL = null, cItemL = "leaf", chead = 0, clook = -.5;
+    if (t < T.flop) { const k = rng(t, 13.2, 17.3); cx = lerp(300, 1300, k); cpose = k < 1 ? "walk" : "stand"; cph = (t - 13.2) * 7; cItemL = ""; }
+    if (t >= T.flop - .3 && t < T.flop + .45) { const k = rng(t, T.flop - .3, T.flop + .45); cx = lerp(1300, 1360, k); chop = Math.sin(k * Math.PI) * 40; cpose = k < .5 ? "armsUp" : "sit"; }
+    if (t > 18.0 && t < 24.6) hL = [-55, -85 + Math.sin(t * 13) * 24];   // fanning
+    if (t > 41.0 && t < 51.3) { cpose = "stand"; cx = lerp(1360, 1110, ease(rng(t, 39.2, 41.0))); cmood = "sad"; cturn = -.45; clook = -.8; cItemL = ""; }
+    else if (t > 39.2 && t < 41.0) { cpose = "walk"; cx = lerp(1360, 1110, ease(rng(t, 39.2, 41.0))); cph = t * 7; cItemL = ""; }
+    if (t > 48.8 && t < 51.3) { cmood = "happy"; chead = Math.sin((t - 48.8) * 6) * 5; }
+    KIT.put(c, S, { x: cx, y: 958, s: .9, flip: t < T.flop - .3 ? 1 : -1, pose: cpose, seat: cseat, mood: cmood, turn: cturn, hop: chop, phase: cph, itemL: cItemL, hL, headRot: chead, look: clook,
+      talk: talkOr("chintu", t, t > 18.0 && t < 18.25 ? .7 : (t > 23.6 && t < 24.6 ? .5 : 0)), lean: t > 18 && t < 24.6 ? -6 : 0 });
+    // Meera: walks in with the bottle; amused at Chintu; opens the bottle; sees the bird; kneels by it
+    let mx = 1050, mpose = "stand", mmood = "happy", mturn = .35, mph = 0, mflip = 1, mItem = "bottle", hR = null, mlook = .5, mlookY = 0, mItemL = "";
+    if (t < 17.6) { const k = rng(t, 13.0, 17.6); mx = lerp(150, 1050, k); if (k < 1) { mpose = "walk"; mph = (t - 13) * 7; } }
+    if (t > 24.6 && t < 29.4) { mpose = "hold"; mmood = "neutral"; mlookY = .7; mlook = 0; mItemL = t > 25.4 ? "cap" : ""; }
+    if (t > 26.6 && t < 29.4) { mlook = -.9; mlookY = .5; mmood = "awe"; }
+    if (t > 29.4 && t < 36.6) { mx = 1170; mmood = "sad"; mflip = -1; mlook = -.6; mlookY = .5; }
+    if (t > 36.6) { mx = 900; mflip = -1; mpose = "kneel"; mmood = "sad"; mturn = -.3; mlook = -.4; mlookY = .6; mItem = "bottle"; }
+    if (t > 36.6 && t < 38.6) { mpose = "kneel"; hR = null; mlook = .9; mlookY = 0; }
+    if (t > 38.6 && t < 41.5) { mlook = -.5; mlookY = .6; }
+    if (t > 41.9 && t < 44.4) { mmood = "sad"; mlook = .9; mlookY = -.2; }
+    if (t > 44.4) { mmood = "happy"; mlook = t < 48.5 ? .9 : -.4; mlookY = t < 48.5 ? -.2 : .5; mturn = t < 48.5 ? .3 : -.3; }
+    KIT.put(m, S, { x: mx, y: 962, s: .9, flip: mflip, pose: mpose, mood: mmood, turn: mturn, phase: mph, item: mItem, itemL: mItemL, look: mlook, lookY: mlookY, itemRot: t > 24.6 && t < 29.4 ? -10 : 0,
+      hL: t > 24.6 && t < 29.4 ? [30 + Math.sin(t * 9) * 8, 40] : null, talk: talkOr("meera", t, t > 18.4 && t < 24 ? (Math.sin(t * 3) > .6 ? .25 : 0) : 0) });
+    // the cracks move: puffs; the tired sparrow
+    KIT.put(PUFF[C], S, { x: 760, y: 966, t0: t < T.puffs[1] ? T.puffs[0] : T.puffs[1] });
+    if (t > 26.8) KIT.put(b, S, { x: 762, y: 966, s: 1.5 * breathe(t), flip: 1, pose: t < 28.8 ? "stand" : "drink", vis: rng(t, 26.9, 27.6), blink: t > 28.8 ? (Math.sin(t * 1.3) > -.2 ? 1 : 0) : null });
+    if (t > 26.8 && t < 28.8) b.st.y = 966 + (1 - rng(t, 26.9, 28.6)) * 20;
+    KIT.put(HAZE[C], S, { k: .6 }); KIT.vignette(.35);
+  }, .9],
+  // 3 · macro: water poured into the cupped palm; the sparrow sips drop by drop; it shakes its feathers
+  [51.35, (t, C, op) => { const S = KIT.show("insert", { day: 1, opacity: op, cam: { x: 960, y: 520 + 20 * rng(t, 51, 63), z: 1.02 + .08 * rng(t, 51, 63) + KIT.punch(t, T.shake, .03) } });
+    const pour = clamp(rng(t, 51.7, 52.3) - rng(t, 56.3, 56.8));
+    KIT.put(BOTTLE[C], S, { x: lerp(1500, 1300, ease(rng(t, 51.4, 52.2))) + 200 * rng(t, 56.6, 57.6), y: lerp(60, 180, ease(rng(t, 51.4, 52.2))) - 260 * rng(t, 56.6, 57.6), s: 3.6, rot: lerp(70, 125, ease(rng(t, 51.6, 52.4))) });
+    let sip = null; for (const s_ of T.sips) if (s_ <= t) sip = s_;
+    KIT.put(PALMS[C], S, { x: 960, y: 600, s: 1, fill: .12 + .88 * ease(rng(t, 52.0, 56.6)) - .25 * rng(t, 57.6, 61.6), pour, sip });
+    // bird: hops onto the fingers at 56.9, drinks on each sip, shakes its feathers
+    const b = BIRD[C]; const near = T.sips.some(s_ => t > s_ - .35 && t < s_ + .25);
+    const bx = lerp(1460, 1250, ease(rng(t, 56.6, 57.3))), shakeK = t > T.shake && t < T.shake + 1.2;
+    KIT.put(b, S, { x: bx + (shakeK ? Math.sin(t * 60) * 4 : 0), y: 560 - (t > 56.6 && t < 57.3 ? Math.sin(rng(t, 56.6, 57.3) * Math.PI) * 60 : 0), s: 3.4, flip: -1,
+      pose: t < 57.3 ? (t > 56.6 ? "hop" : "tired") : (near ? "drink" : "stand"), flap: shakeK ? Math.sin(t * 30) * .6 : null, vis: rng(t, 56.4, 56.8) });
+    if (t < 56.6) b.st.y = 600;
+    KIT.glow(.25 + .1 * Math.sin(t * 3), 960, 560, 520, "255,250,220"); KIT.vignette(.4); }, .6],
+  // 4 · the sparrow on Meera's shoulder; chirps; flies up — camera follows into the sky
+  [63.65, (t, C, op) => {
+    const up = ease(rng(t, 66.9, 69.6));
+    const S = KIT.show("pond", { heat: .6, opacity: op, cam: { x: lerp(880, 760, up), y: lerp(720, 120, up), z: lerp(1.75, 1.05, up) } });
+    KIT.put(BOAT[C], S, { x: 1420, y: 905, s: .8, tilt: -9, old: 1 });
+    const m = ME[C], b = BIRD[C], c = CH[C];
+    KIT.put(c, S, { x: 1110, y: 958, s: .9, flip: -1, mood: "awe", turn: -.4, look: -.7, lookY: -.3 - up });
+    KIT.put(m, S, { x: 900, y: 962, s: .9, flip: -1, pose: "kneel", mood: "happy", turn: t > 64.6 ? .45 : -.2, look: t > 64.6 ? .7 : -.3, lookY: t > 66.9 ? -1 : .3, item: "", hL: t < 64 ? [-60, 50] : null });
+    // flight: hands (840, 860) -> shoulder (868, 772) -> sky
+    let bx, by, bp = "stand", bfl = 1;
+    if (t < T.toShoulder) { bx = 830; by = 860; }
+    else if (t < T.toShoulder + .9) { const k = ease(rng(t, T.toShoulder, T.toShoulder + .9)); bx = lerp(830, 968, k) + Math.sin(k * Math.PI) * 110; by = lerp(860, 792, k) - Math.sin(k * Math.PI) * 30; bp = "fly"; }
+    else if (t < T.takeoff) { bx = 968; by = 792; bp = t > T.chirp && t < T.chirp + 1.2 ? "hop" : "stand"; bfl = -1; }
+    else { const k = rng(t, T.takeoff, 70.4); bx = 968 - k * 620 + Math.sin(k * 7) * 40; by = 792 - k * 920; bp = "fly"; bfl = -1; }
+    KIT.put(b, S, { x: bx, y: by, s: 1.25 * (t > T.takeoff ? 1 - .3 * rng(t, T.takeoff, 70.4) : 1), flip: bfl, pose: bp });
+    KIT.put(CHIRP[C], S, { x: 990, y: 730, s: 1.2, t0: T.chirp }); }, .5],
+  // 5 · Chintu grins; the seed glows again
+  [70.3, (t, C, op) => { const cam = camSeq(t, [[70.3, { x: 1000, y: 720, z: 1.5 }], [75.5, { x: 1000, y: 720, z: 1.58 }], [77.0, { x: 940, y: 760, z: 1.85 }], [80.0, { x: 930, y: 770, z: 1.95 }]]);
+    const S = KIT.show("pond", { heat: .6, opacity: op, cam });
+    KIT.put(BOAT[C], S, { x: 1420, y: 905, s: .8, tilt: -9, old: 1 });
+    const m = ME[C], c = CH[C];
+    KIT.put(c, S, { x: 1110, y: 958, s: .9, flip: -1, mood: t > 75.6 ? "awe" : "happy", turn: -.4, look: -.6, lookY: t > 75.6 ? .5 : 0, hR: t > 70.4 && t < 72.6 ? [-30 + Math.sin(t * 5) * 20, -150] : null,
+      hop: t > 72.6 && t < 75 ? Math.abs(Math.sin(t * 8)) * 5 : 0, talk: talkOr("chintu", t, 0) });
+    KIT.put(m, S, { x: 900, y: 962, s: .9, flip: 1, pose: t > 75.7 ? "hold" : "kneel", mood: t > 75.7 ? "awe" : "happy", turn: .4, look: t > 75.7 ? 0 : .7, lookY: t > 75.7 ? .8 : 0,
+      item: t > 75.7 ? "hanky" : "", glow: lerp(1, 1.6, rng(t, 76, 78)), talk: t > 71 && t < 75 ? .25 + .25 * Math.abs(Math.sin(t * 9)) : null });
+    if (t > 75.7) { const [gx, gy] = KIT.toScreen(S, 905, 770); KIT.glow(rng(t, 75.9, 77.4) * (.75 + .06 * Math.sin(t * 6)), gx, gy, 560); } }, .4],
+  // 6 · insert: the second ring lights (drop) — compassion; the third ring stays dark
+  [79.8, (t, C, op) => { const push = ease(rng(t, 85.2, 89.5));
+    const S = KIT.show("insert", { opacity: op, bright: .4 * rng(t, T.ring2, T.ring2 + .6) * (1 - push * .9), cam: { x: lerp(960, 1120, push), y: lerp(510, 230, push), z: 1 + .05 * rng(t, 79.8, 85) + push * .65 + KIT.punch(t, T.ring2, .07) } });
+    KIT.put(METER[C], S, { x: 960, y: 430, s: 1.3, glow: lerp(1.4, 2.2, rng(t, T.ring2, T.ring2 + .6)), lit: [1, rng(t, T.ring2, T.ring2 + .45), 0], pop: [null, T.ring2, null], hands: 1 });
+    const [gx, gy] = KIT.toScreen(S, 960, 420); KIT.glow((.4 + .4 * rng(t, T.ring2, T.ring2 + .6)) * (1 - push * .5), gx, gy, 600);
+    KIT.motes(rng(t, T.ring2, T.ring2 + 1) * (1 - push), 960, 520, 520);
+    KIT.flash(t > T.karuna ? .3 * Math.exp(-(t - T.karuna) / .25) : 0); KIT.vignette(.7 + .3 * push); }, .5],
+];
+function scene(t) {
+  resetTints(); runShots(t, shots);
+  KIT.title(pulse(t, .5, 4.2, .45), "రెండో పరీక్ష", "కరుణ");
+  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .8, DUR)));
+}
+</script></body></html>

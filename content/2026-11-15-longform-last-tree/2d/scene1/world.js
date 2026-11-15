@@ -122,10 +122,10 @@ const makeSeedProp = (s = 1) => makeProp("seedProp", g => { const P = {};
   P.star = el("g", {}, g); for (let i = 0; i < 4; i++) el("path", { d: "M0 -150 L10 -20 L0 0 L-10 -20 Z", fill: "#FFF2C0", opacity: .7, transform: `rotate(${i * 90})` }, P.star);
   P.starHalo = el("circle", { r: 120, fill: KIT.rgrad([[0, "#FFF6D0", .9], [.4, "#FFD86A", .45], [1, "#FFB020", 0]]) }, g);
   P.spin = el("g", {}, g); P.seed = makeSeed(P.spin, 1);
-  P.rings = [0, 1, 2].map(i => el("circle", { r: 44 + i * 14, fill: "none", stroke: "#E8C878", "stroke-width": 3, "stroke-dasharray": "6 6", opacity: 0 }, g));
+  P.rings = [0, 1, 2].map(i => el("circle", { r: 44 + i * 14, fill: "none", stroke: "#E8C878", "stroke-width": 4.5, "stroke-dasharray": "7 5", opacity: 0 }, g));
   return P; }, (t, st, P) => { P.seed.set(st.k, t); P.spin.setAttribute("transform", `rotate(${Math.sin(t * 1.3) * 18}) scale(${st.s2 || 1})`);
   const sh = clamp(st.k3); P.star.setAttribute("transform", `rotate(${t * 20}) scale(${.6 + .4 * Math.sin(t * 3)})`); P.star.style.opacity = sh; P.starHalo.style.opacity = sh * (.8 + .2 * Math.sin(t * 4));
-  P.rings.forEach((r, i) => { r.style.opacity = clamp(st.k2) * (.45 + .15 * Math.sin(t * 2 + i)); r.setAttribute("transform", `rotate(${t * (8 + i * 4) * (i % 2 ? -1 : 1)})`); }); }, { k: 0, s2: 1 });
+  P.rings.forEach((r, i) => { r.style.opacity = clamp(st.k2) * (.7 + .15 * Math.sin(t * 2 + i)); r.setAttribute("transform", `rotate(${t * (8 + i * 4) * (i % 2 ? -1 : 1)})`); }); }, { k: 0, s2: 1 });
 
 // three symbols: flame (courage), water drop (compassion), heart-shaped leaf (sacrifice); k,k2,k3 = each visible; st.merge 0..1 flies them into the seed
 const makeSymbols = () => makeProp("symbols", g => { const P = { sy: [] };
@@ -276,6 +276,7 @@ KIT.defineSet("fallSil", S => {
   const Lb = S.layer(.25, "banyan"); const banG = el("g", { transform: "translate(960 760) scale(.62)" }, Lb);
   const banP = palette(); drawBanyanMini(banG, banP);
   const Lh = S.layer(.4, "hills"); const hills = el("path", { d: hillPath(-1200, 3200, 760, 40, 6, 16) }, Lh);
+  const farT = []; for (let i = 0; i < 26; i++) { const x = -700 + i * 125 + hash(i * 7) * 50; if (Math.abs(x - 960) < 170) continue; farT.push(roundTree(Lh, x, 790 + hash(i * 3) * 30, 1.1 + hash(i * 5) * .5, "#5FA85A", "#3E8A48").g); }
   const L1 = S.layer(1, "trees"); const ground = el("path", { d: "M-900 860 Q600 840 1000 850 Q1500 860 2900 840 L2900 1600 L-900 1600 Z" }, L1);
   const TR = []; [[-60, 870, 1.9], [230, 862, 2.2], [520, 866, 1.7], [1420, 862, 1.8], [1700, 870, 2.2], [1990, 866, 1.9]].forEach(([x, y, s], i) => {
     const g = el("g", { transform: `translate(${x} ${y})` }, L1), rt = roundTree(g, 0, 0, s, "#5FA85A", "#3E8A48"); TR.push({ g, rt, x, y, s, dir: x < 960 ? -1 : 1, paths: [...rt.g.querySelectorAll("path,circle")] });
@@ -286,12 +287,12 @@ KIT.defineSet("fallSil", S => {
   S.update = (t, o) => { const col = clamp(o.col || 0), sk = clamp(o.sky || 0), falls = o.falls || [];
     sky.set([mixc("#3A1E3A", "#7EC6EE", sk), mixc("#C8503A", "#BFE6F6", sk), mixc("#F6A23A", "#EAF7FB", sk)]); sun.style.opacity = 1 - sk;
     const silC = "#1E1218"; banP.apply(1); banG.querySelectorAll("path").forEach(p => { if (!p.dataset.f) p.dataset.f = p.getAttribute("fill") || "none"; p.setAttribute("fill", p.dataset.f === "none" ? "none" : mixc(silC, p.dataset.f, col)); p.setAttribute("stroke", col > .5 ? INK : silC); });
-    hills.setAttribute("fill", mixc("#2A1820", "#7DB46A", col)); ground.setAttribute("fill", mixc("#1A1014", "#6FA85C", col));
+    hills.setAttribute("fill", mixc("#2A1820", "#7DB46A", col)); const fr = o.far || 0; farT.forEach((g, i) => { const k = clamp(fr * 1.5 - hash(i * 13) * .5); g.style.display = k > .01 ? "" : "none"; g.style.opacity = k; }); ground.setAttribute("fill", mixc("#1A1014", "#6FA85C", col));
     TR.forEach((T, i) => { const tf = falls[i]; let a = 0; if (tf != null && t > tf) { const k = clamp((t - tf) / 1.3); a = T.dir * 88 * k * k; if (k >= 1) a = T.dir * (88 + Math.sin((t - tf - 1.3) * 18) * 3 * Math.exp(-(t - tf - 1.3) * 5)); }
       T.g.setAttribute("transform", `translate(${T.x} ${T.y}) rotate(${a})`);
-      T.paths.forEach(p => { if (p.dataset.f === "#fff") p.style.opacity = col; else if (p.dataset.f !== "none") p.setAttribute("fill", mixc(silC, p.dataset.f, col)); p.setAttribute("stroke", col > .5 ? INK : silC); }); });
+      T.paths.forEach(p => { if (p.dataset.f === "#fff") p.style.opacity = col * .14; else if (p.dataset.f !== "none") p.setAttribute("fill", mixc(silC, p.dataset.f, col)); p.setAttribute("stroke", col > .5 ? INK : silC); }); });
     dust.forEach((d, i) => { const T = TR[i % TR.length], tf = falls[i % TR.length]; const dt = tf == null ? -1 : t - tf - 1.25;
-      d.setAttribute("cx", T.x + T.dir * (150 + i * 20) * T.s / 2 + dt * T.dir * 60); d.setAttribute("cy", T.y - 20 - dt * 30); d.setAttribute("rx", 60 + dt * 140); d.setAttribute("ry", 20 + dt * 40);
+      d.setAttribute("cx", T.x + T.dir * (150 + i * 20) * T.s / 2 + dt * T.dir * 60); d.setAttribute("cy", T.y - 20 - dt * 30); d.setAttribute("rx", Math.max(1, 60 + dt * 140)); d.setAttribute("ry", Math.max(1, 20 + dt * 40));
       d.style.opacity = dt > 0 && dt < 1.5 ? (1 - dt / 1.5) * .7 : 0; d.setAttribute("fill", mixc("#5A3A30", "#E8D0A8", col)); }); };
 });
 
@@ -353,15 +354,15 @@ KIT.defineSet("hanky", S => {
   const knot = el("g", { transform: "translate(960 600)" }, L); el("ellipse", { rx: 40, ry: 30, fill: "#F6F2EA", stroke: INK, "stroke-width": 3.5 }, knot);
   [-1, 1].forEach(s => el("path", { d: `M${s * 30} -10 Q${s * 90} -60 ${s * 110} -20 Q${s * 80} 0 ${s * 30} 10 Z`, fill: "#F2ECE0", stroke: INK, "stroke-width": 3 }, knot));
   const hands = [-1, 1].map(s => { const hg = el("g", {}, L);
-    el("path", { d: `M${s * 520} 420 Q${s * 420} 300 ${s * 330} 230 L${s * 250} 300 Q${s * 330} 380 ${s * 380} 520 Z`, fill: "#F4C23A", stroke: INK, "stroke-width": 4 }, hg);   // sleeve
+    el("path", { d: `M${s * 520} 420 Q${s * 420} 300 ${s * 330} 230 L${s * 250} 300 Q${s * 330} 380 ${s * 380} 520 Z`, fill: "#E6DAF2", stroke: INK, "stroke-width": 4 }, hg);   // sleeve
     el("ellipse", { cx: s * 280, cy: 230, rx: 120, ry: 90, fill: KIT.lgrad([[0, shade(skin, .1)], [1, shade(skin, -.12)]]), stroke: INK, "stroke-width": 4 }, hg);
-    for (let i = 0; i < 4; i++) el("path", { d: `M${s * (190 - i * 6)} ${170 + i * 34} q${-s * 60} 4 ${-s * 70} 22`, stroke: INK, "stroke-width": 3, fill: "none" }, hg);
-    el("path", { d: `M${s * 200} 150 q${-s * 50} -30 ${-s * 70} 10`, fill: "none", stroke: INK, "stroke-width": 3 }, hg); return hg; });
+    for (let i = 0; i < 4; i++) el("path", { d: `M${s * 222} ${178 + i * 26} q${-s * 30} 4 ${-s * 44} 14`, stroke: INK, "stroke-width": 3, fill: "none" }, hg);
+    el("path", { d: `M${s * 300} 150 q${-s * 60} -24 ${-s * 96} 6 q${s * 30} 14 ${s * 60} 4`, fill: shade(skin, .05), stroke: INK, "stroke-width": 3 }, hg); return hg; });
   S.update = (t, o) => { const f = clamp(o.fold || 0), h = clamp(o.open == null ? 1 : o.open);
     seed.set(o.seedGlow || 0, t); sd.style.opacity = f < .8 ? 1 : 1 - clamp((f - .8) * 5);
     flaps.forEach((fg, i) => { const k = clamp(f * 4 - i * .75); const [x, y, r] = [[0, -170, 0], [260, 0, 90], [0, 170, 180], [-260, 0, 270]][i];
       fg.setAttribute("transform", `translate(${x} ${y}) rotate(${r}) scale(1 ${Math.max(.001, ease(k))})`); fg.style.display = k > .02 ? "" : "none"; });
     const sc = 1 - .45 * clamp((f - .75) * 4); sq.parentNode.setAttribute("transform", `translate(960 600) scale(${sc})`);
     knot.style.opacity = clamp((f - .85) * 7); knot.setAttribute("transform", `translate(960 ${600 - 120 * (1 - sc)}) scale(${.8 + .2 * clamp((f - .85) * 7)})`);
-    hands.forEach((hg, i) => { const s = i ? 1 : -1, dx = s * (1 - h) * 500 + s * Math.sin(t * 1.6 + i) * 6 - s * 40 * Math.sin(f * Math.PI); hg.setAttribute("transform", `translate(${960 + dx} ${600 + (1 - h) * 200})`); }); };
+    hands.forEach((hg, i) => { const s = i ? 1 : -1, dx = s * (1 - h) * 500 + s * Math.sin(t * 1.6 + i) * 6 - s * 40 * Math.sin(f * Math.PI); hg.setAttribute("transform", `translate(${960 + dx} ${445 + (1 - h) * 200})`); }); };
 });

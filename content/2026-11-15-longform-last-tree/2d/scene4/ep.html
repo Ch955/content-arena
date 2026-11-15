@@ -33,7 +33,7 @@ const shots = [
     const m = ME[C]; KIT.walk(m, t, .4, 6.4, 220, 1650, { run: true, ease: false }); KIT.put(m, S, { y: 960, s: .62, mood: "happy", turn: .2 }); }],
   // 1 · Chintu's doorstep: dosa, Meera's news, the glowing seed, the dosa drops, the bargain
   [5.4, (t, C, op) => {
-    const cam = camSeq(t, [[5.4, { x: 1000, y: 640, z: 1.18 }], [8.3, { x: 960, y: 690, z: 1.36 }], [9.0, { x: 860, y: 690, z: 1.3 }], [13.5, { x: 860, y: 690, z: 1.3 }],
+    const cam = camSeq(t, [[5.4, { x: 1000, y: 690, z: 1.18 }], [8.3, { x: 960, y: 710, z: 1.36 }], [9.0, { x: 860, y: 690, z: 1.3 }], [13.5, { x: 860, y: 690, z: 1.3 }],
       [14.3, { x: 980, y: 680, z: 1.75 }], [17.2, { x: 990, y: 690, z: 1.82 }], [18.9, { x: 860, y: 690, z: 1.32 }],
       [19.6, { x: 860, y: 700, z: 1.32 }], [20.8, { x: 720, y: 760, z: 2.3 }], [22.9, { x: 720, y: 765, z: 2.4 }],
       [23.05, { x: 985, y: 690, z: 2.5 }, "cut"], [24.4, { x: 990, y: 700, z: 2.3 }], [25.4, { x: 1010, y: 860, z: 1.9 }], [26.3, { x: 990, y: 700, z: 2.4 }],
@@ -127,7 +127,7 @@ const shots = [
     if (t > 72.5) { mx = lerp(900, 950, rng(t, 72.6, 73.6)); }
     let mposeK = 0, mpose2 = null;
     if (t > 72.6) { mpose = "stand"; mpose2 = "kneel"; mposeK = ease(rng(t, 72.7, 73.8)); mlookY = .6; mlook = .8; hL = [80, 40]; }
-    if (t > 74.4 && t < T.free) { mpose = "kneel"; mpose2 = "reach"; mposeK = .75; const pull = Math.max(0, Math.sin((t - 74.4) * 2.1)); hR = [92 + pull * 22, 30 - pull * 30]; mmood = "sad"; }
+    if (t > 74.4 && t < T.free) { mpose = "kneel"; mpose2 = null; mposeK = 0; const pull = Math.max(0, Math.sin((t - 74.4) * 2.1)); hR = [92 + pull * 22, 30 - pull * 30]; mmood = "sad"; }
     if (t > 75.7 && t < 76.5) { mmood = "scared"; mhead = -7; hR = [60, 40]; }   // a thorn pricks: a wince
     if (t > T.free) { mpose = "kneel"; mmood = "happy"; mturn = -.3; mlook = -.9; mlookY = 0; hR = null; hL = [70, 40]; }
     if (t > 87.7) { mpose = "stand"; mpose2 = "kneel"; mposeK = 1 - ease(rng(t, 88.2, 89.2)); mmood = "happy"; mturn = t > 90 ? -.4 : .3; mlook = t > 90 ? -.8 : .4; mx = lerp(950, 820, ease(rng(t, 89.4, 91.6))); hL = [60, 40];
@@ -155,8 +155,8 @@ const shots = [
   }, .5],
   // 5 · insert: the seed's first ring lights (flame) — courage
   [98.1, (t, C, op) => { const S = KIT.show("insert", { opacity: op, bright: .35 * rng(t, T.ring1, T.ring1 + .6), cam: { x: 960, y: 520 - 30 * rng(t, 98, 104), z: 1 + .08 * rng(t, 98, 104.5) + KIT.punch(t, T.ring1, .07) } });
-    KIT.put(METER[C], S, { x: 960, y: 470, s: .95, glow: lerp(.8, 1.4, rng(t, T.ring1, T.ring1 + .6)), lit: [rng(t, T.ring1, T.ring1 + .45), 0, 0], pop: [T.ring1, null, null], hands: 1 });
-    const [gx, gy] = KIT.toScreen(S, 960, 460); KIT.glow(.35 + .4 * rng(t, T.ring1, T.ring1 + .6), gx, gy, 600);
+    KIT.put(METER[C], S, { x: 960, y: 430, s: 1.3, glow: lerp(.8, 1.4, rng(t, T.ring1, T.ring1 + .6)), lit: [rng(t, T.ring1, T.ring1 + .45), 0, 0], pop: [T.ring1, null, null], hands: 1 });
+    const [gx, gy] = KIT.toScreen(S, 960, 420); KIT.glow(.35 + .4 * rng(t, T.ring1, T.ring1 + .6), gx, gy, 600);
     KIT.motes(rng(t, T.ring1, T.ring1 + 1), 960, 520, 520); KIT.flash(.35 * Math.exp(-Math.max(0, t - T.courage) / .25) * (t > T.courage ? 1 : 0)); KIT.vignette(.7); }, .5],
 ];
 function scene(t) {

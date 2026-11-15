@@ -1,0 +1,184 @@
+{
+ "scene": 4,
+ "video": "work/render/scene4.mp4",
+ "dur": 104.52,
+ "film_start": 304.57,
+ "note": "Times are seconds from the start of this scene's mp4 (add film_start for the film timeline). Effects only, no music; level them under the voice. Scene 6: keep 41.1-52.8 near-silent (owner's 'the wind stopped' beat).",
+ "cues": [
+  {
+   "t": 0.3,
+   "film_t": 304.87,
+   "effect": "morning ambience (village birds, light breeze)"
+  },
+  {
+   "t": 0.8,
+   "film_t": 305.37,
+   "effect": "footsteps (Meera running, light, until 5.6)"
+  },
+  {
+   "t": 8.4,
+   "film_t": 312.97,
+   "effect": "footsteps (Meera tiptoes in)"
+  },
+  {
+   "t": 9.25,
+   "film_t": 313.82,
+   "effect": "comic boing / startle (Chintu jumps)"
+  },
+  {
+   "t": 19.9,
+   "film_t": 324.47,
+   "effect": "cloth rustle (hanky unfolds)"
+  },
+  {
+   "t": 20.6,
+   "film_t": 325.17,
+   "effect": "seed chime (soft shimmer)"
+  },
+  {
+   "t": 23.7,
+   "film_t": 328.27,
+   "effect": "comic slow-mo whoosh (dosa falls)"
+  },
+  {
+   "t": 25.9,
+   "film_t": 330.47,
+   "effect": "soft plop (dosa lands)"
+  },
+  {
+   "t": 30,
+   "film_t": 334.57,
+   "effect": "comic gulp"
+  },
+  {
+   "t": 31.6,
+   "film_t": 336.17,
+   "effect": "cot creak / Chintu stands"
+  },
+  {
+   "t": 36.9,
+   "film_t": 341.47,
+   "effect": "footsteps (two kids on dry leaves, until 44.8)"
+  },
+  {
+   "t": 42.6,
+   "film_t": 347.17,
+   "effect": "cold wind (low, from the cave)"
+  },
+  {
+   "t": 46,
+   "film_t": 350.57,
+   "effect": "cave drip"
+  },
+  {
+   "t": 46.95,
+   "film_t": 351.52,
+   "effect": "cave drip"
+  },
+  {
+   "t": 48.2,
+   "film_t": 352.77,
+   "effect": "cave drip"
+  },
+  {
+   "t": 48.4,
+   "film_t": 352.97,
+   "effect": "cave room tone + lantern creak"
+  },
+  {
+   "t": 51.42,
+   "film_t": 355.99,
+   "effect": "wind roar (big, echoing; pebbles fall)"
+  },
+  {
+   "t": 51.6,
+   "film_t": 356.17,
+   "effect": "pebbles + dust falling"
+  },
+  {
+   "t": 53.4,
+   "film_t": 357.97,
+   "effect": "footsteps (Chintu runs out, fading)"
+  },
+  {
+   "t": 59,
+   "film_t": 363.57,
+   "effect": "lantern creak (raised)"
+  },
+  {
+   "t": 60.6,
+   "film_t": 365.17,
+   "effect": "deer cry (frightened fawn bleat)"
+  },
+  {
+   "t": 62,
+   "film_t": 366.57,
+   "effect": "thorns rustle"
+  },
+  {
+   "t": 66.2,
+   "film_t": 370.77,
+   "effect": "deer cry (softer)"
+  },
+  {
+   "t": 72.8,
+   "film_t": 377.37,
+   "effect": "kneel on gravel"
+  },
+  {
+   "t": 75.7,
+   "film_t": 380.27,
+   "effect": "thorns snap (small) + Meera wince"
+  },
+  {
+   "t": 77.9,
+   "film_t": 382.47,
+   "effect": "thorns snap"
+  },
+  {
+   "t": 80.3,
+   "film_t": 384.87,
+   "effect": "thorns snap"
+  },
+  {
+   "t": 82.5,
+   "film_t": 387.07,
+   "effect": "thorns snap (big)"
+  },
+  {
+   "t": 83.9,
+   "film_t": 388.47,
+   "effect": "deer hooves leaping out"
+  },
+  {
+   "t": 85.4,
+   "film_t": 389.97,
+   "effect": "warm sunbeam shimmer"
+  },
+  {
+   "t": 88,
+   "film_t": 392.57,
+   "effect": "wind whoosh through the crack + soft echo"
+  },
+  {
+   "t": 89.5,
+   "film_t": 394.07,
+   "effect": "footsteps (Chintu creeps back)"
+  },
+  {
+   "t": 96.2,
+   "film_t": 400.77,
+   "effect": "seed chime (hanky glows)"
+  },
+  {
+   "t": 100.9,
+   "film_t": 405.47,
+   "effect": "seed chime + ring light-up (flame)"
+  },
+  {
+   "t": 101.45,
+   "film_t": 406.02,
+   "effect": "light swell (triumphant sting)"
+  }
+ ]
+}

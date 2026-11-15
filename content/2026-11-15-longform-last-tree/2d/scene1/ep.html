@@ -150,11 +150,11 @@ function axeClose(t, op) {
   const S = KIT.show("axeClose", { notch: clamp((n + (ph > .78 ? 1 : 0)) / 4), lastHit: hitT, notchY: 505, cam: { x: 900 + 40 * rng(t, 83.3, 88.6), y: 560, z: 1.5 }, shake: sinceHit >= 0 && sinceHit < .18 ? 10 : 0, opacity: op });
   // raise (0–.55), swing (.55–.78), stuck (.78–.95), pull back (.95–1)
   let hR, rot;
-  const RA = [-40, -150], ST = [175, 26];
+  const RA = [6, -172], ST = [175, 26];
   if (ph < .55) { const k = ease(ph / .55); hR = [lerp(ST[0], RA[0], k), lerp(ST[1], RA[1], k)]; rot = lerp(95, -70, k); }
   else if (ph < .78) { const k = Math.pow((ph - .55) / .23, 2); hR = [lerp(RA[0], ST[0], k), lerp(RA[1], ST[1], k)]; rot = lerp(-70, 95, k); }
   else { hR = ST.slice(); rot = 95; }
-  KIT.put(HX, S, { x: 800, y: 930, s: 1.1, flip: 1, turn: .35, mood: "angry", hR, hL: [hR[0] * .8, hR[1] + 30], itemRot: rot, lean: ph > .55 && ph < .9 ? 6 : -2 });
+  KIT.put(HX, S, { x: 800, y: 930, s: 1.1, flip: 1, turn: .35, mood: "angry", hR, hL: [hR[0] * .7 - 10, hR[1] + 46], itemRot: rot, lean: ph > .55 && ph < .9 ? 6 : -2 });
 }
 function silhouettes(t, op) {
   KIT.show("fallSil", { falls: FALLS, col: 0, sky: 0, cam: { x: 960, y: 560 - 20 * rng(t, 88.6, 93.4), z: 1.02 + .06 * rng(t, 88.6, 93.4) }, opacity: op,
@@ -182,7 +182,7 @@ function dryVillage(t, op) {
   KIT.motes(.5, 960, 700, 900, "255,226,170", 30);
 }
 function lastTree(t, op) {
-  const S = KIT.show("banyan", { night: 0, wind: .2, cam: KIT.camPath(t, [[110.3, { x: 960, y: 1010, z: 3.0 }], [111.2, { x: 960, y: 1000, z: 2.8 }], [115.6, { x: 960, y: 475, z: .9 }], [119.62, { x: 960, y: 470, z: .87 }]]), opacity: op });
+  const S = KIT.show("banyan", { night: 0, wind: .2, cam: KIT.camPath(t, [[110.3, { x: 960, y: 1000, z: 2.5 }], [111.2, { x: 960, y: 990, z: 2.35 }], [115.6, { x: 960, y: 475, z: .9 }], [119.62, { x: 960, y: 470, z: .87 }]]), opacity: op });
   setSunset(rng(t, 110.3, 114));
   KIT.put(CRACKS, S, { x: 960, y: 1010, s: 1.2, k: 1, k2: 0 });
   KIT.motes(.5, 960, 800, 900, "255,226,170", 30);

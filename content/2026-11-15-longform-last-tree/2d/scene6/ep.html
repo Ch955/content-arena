@@ -1,0 +1,125 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- Scene 6 · మూడో పరీక్ష — త్యాగం (79.52 s). Timeline: work/voices/scene6/timeline.json (do not retime). -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="../scene4/lib456.js"></script>
+<script>
+"use strict";
+const DUR = 79.52;
+const ME = castPair(makeMeera), CH = castPair(makeChintu);
+const SEED = pair(() => makeFloatSeed(.9)), EYES = pair(makeTreeEyes), LOCKET = pair(makeLocketBig), COL = pair(() => makeLightColumn(2600)), COLV = pair(() => makeLightColumn(900));
+const SHA = pair(makeShadow), SHB = pair(makeShadow), METER = pair(makeSeedMeter), JEEP = pair(makeJeep);
+const GLOCK = pair(() => makeThing(g => { el("path", { d: "M-6 -14 Q-40 -10 -44 8 Q-30 22 0 14 M6 -14 Q40 -6 46 10 Q30 24 4 16", fill: "none", stroke: "#D9DEE6", "stroke-width": 2.5 }, g); drawLocket(g, 1.15); return {}; }));
+// sunset sky for the banyan set (scene-local addition): an orange gradient + a low sun behind the tree
+const SUN = (() => { const B = KIT.get("banyan"), L0 = B.layers[0].g, sunD = L0.children[3];
+  const g = el("g", {}, null); L0.insertBefore(g, L0.children[1]);
+  el("rect", { x: -1400, y: -900, width: 4720, height: 2600, fill: KIT.lgrad([[0, "#5A3A6A"], [.35, "#D8705A"], [.62, "#F6A65A"], [.8, "#FFD08A"], [1, "#FFE2A8"]]) }, g);
+  el("circle", { cx: 1420, cy: 700, r: 260, fill: "#FFE7A8", opacity: .25 }, g); el("circle", { cx: 1420, cy: 700, r: 96, fill: "#FFF0C8" }, g);
+  const tint = B.layers.find(l => l.name === "tint").g.firstChild;
+  return { g, sunD, tint }; })();
+function sunset(k) { SUN.g.style.opacity = k; SUN.sunD.style.opacity = 1 - k; SUN.tint.setAttribute("fill", "#6A2A10"); SUN.tint.setAttribute("opacity", .16 * k); }
+const T = { seedUp: 12.6, courage: 13.3, compassion: 15.0, open: 32.5, burst: 67.05, column: 69.0, ring3: 75.45, tyagam: 76.0, place: 61.4, letGo: 64.4 };
+window.CUES = [
+  [0.2, "evening ambience (soft wind, distant birds)"], [1.2, "footsteps on dry leaves (until 8)"], [7.8, "leaves shimmer (soft magical rustle)"], [11.0, "tree eyes open (soft breath of light)"],
+  [T.seedUp, "seed chime (seed floats up)"], [T.courage, "soft chime (ring 1 pulse)"], [T.compassion, "soft chime (ring 2 pulse)"], [23.6, "cloth rustle (hand to the locket)"],
+  [28.0, "locket chain clink (lifted)"], [T.open, "locket clink (opens)"], [32.9, "light swell (soft, the portrait)"], [36.3, "footstep (Chintu reaches)"],
+  [41.1, "ambience drops out (silence until 52.8)"], [46.0, "cloth rustle (locket to the heart)"], [60.2, "kneel on dry leaves"], [T.place, "locket clink (placed on the roots)"],
+  [65.4, "rising shimmer (anticipation)"], [T.burst, "light swell (big burst) + wind gust"], [T.column, "light swell (column rises, whoosh up)"], [T.ring3, "seed chime + ring light-up (heart-leaf)"],
+  [T.tyagam, "light swell (triumphant)"], [76.6, "evening wind over the village"], [77.3, "distant jeep engine (turning toward the light)"] ];
+
+function camSeq(t, ks) { let i = 0; while (i < ks.length - 1 && ks[i + 1][0] <= t) i++; const a = ks[i], b = ks[i + 1];
+  if (!b || b[2] === "cut" || t < a[0]) return a[1]; return KIT.camLerp(a[1], b[1], ease(rng(t, a[0], b[0]))); }
+
+const shots = [
+  // 0 · sunset: the banyan in silhouette; two kids walk toward it with long shadows; the leaves start to shimmer
+  [0, (t, C, op) => { const S = KIT.show("banyan", { glow: .55 * rng(t, 7.6, 11.4), wind: .2, opacity: op, cam: KIT.camPath(t, [[0, { x: 1000, y: 470, z: 1.0 }], [11.5, { x: 1040, y: 560, z: 1.12 }]]) });
+    sunset(1); const m = ME[C], c = CH[C];
+    KIT.walk(m, t, .6, 8.0, 1760, 1150); KIT.walk(c, t, .3, 8.2, 1900, 1270, { cadence: .95 });
+    KIT.put(SHA[C], S, { x: m.st.x, y: 990, rot: -16, s: .6 }); KIT.put(SHB[C], S, { x: c.st.x, y: 996, rot: -16, s: .65 });
+    KIT.put(c, S, { y: 996, s: .52, mood: t > 8 ? "awe" : "neutral", lookY: t > 8.2 ? -1 : 0, turn: -.2 });
+    KIT.put(m, S, { y: 990, s: .52, mood: t > 7.8 ? "awe" : "neutral", lookY: t > 8 ? -1 : 0, turn: -.3 });
+    tint(.45, "linear-gradient(#FFB070,#E89060 60%,#B86A48)"); KIT.motes(rng(t, 7.6, 11), 960, 300, 760, "255,220,140", 30); KIT.vignette(.7); }],
+  // 1 · the tree speaks: eyes of light, the seed floats out and hovers; the last test; push in on Meera; her hand goes to the locket
+  [10.8, (t, C, op) => {
+    const cam = camSeq(t, [[10.8, { x: 1020, y: 600, z: 1.2 }], [13.2, { x: 1070, y: 690, z: 1.45 }], [17.8, { x: 1090, y: 700, z: 1.5 }], [22.6, { x: 1125, y: 790, z: 2.5 }],
+      [23.3, { x: 1130, y: 805, z: 3.5 }, "cut"], [32.2, { x: 1130, y: 812, z: 3.85 }]]);
+    const S = KIT.show("banyan", { glow: .55 + .25 * rng(t, 11, 13), voice: KIT.talk("tree", t), wind: .15, opacity: op, cam });
+    sunset(1); const m = ME[C], c = CH[C];
+    KIT.put(EYES[C], S, { k: rng(t, 10.9, 12.2), blinkT: 19.2 });
+    KIT.put(c, S, { x: 1270, y: 996, s: .62, flip: -1, mood: t > 18.3 ? "sad" : "awe", lookY: -1, look: -.3, turn: -.25 });
+    // the seed: rises out of the hanky, hovers between Meera and the tree
+    const up = ease(rng(t, T.seedUp, T.seedUp + 1.6));
+    KIT.put(SEED[C], S, { x: lerp(1128, 1050, up), y: lerp(845, 700, up) + Math.sin(t * 1.7) * 8 * up, glow: 2 + .4 * Math.exp(-Math.abs(t - T.courage - .3) * 3) + .4 * Math.exp(-Math.abs(t - T.compassion - .3) * 3), s: .9 });
+    const mHold = t > 11.6 && t < T.seedUp + 1.8;
+    KIT.put(m, S, { x: 1150, y: 990, s: .62, flip: -1, mood: t > 18.3 ? "sad" : (t > 13 ? "happy" : "awe"), lookY: t > 23.3 ? .7 : (mHold && t < T.seedUp + .5 ? .5 : -1), look: -.3, turn: -.3,
+      pose: mHold ? "hold" : "stand", item: mHold ? (t < T.seedUp ? "hanky" : "cloth") : "", glow: 2 });
+    if (t > 23.3) { const k = ease(rng(t, 23.6, 26.0)); m.st.hR = [lerp(12, -30, k), lerp(116, 24, k)]; m.st.headRot = -4 * k; }
+    if (t > 27.7) { m.st.hR = [-26, 40]; m.st.tear = 1; m.st.lookY = .9; m.st.locket = false; m.st.item = "locketHand"; m.st.tearRun = fract((t - 29) / 2.8) * (t > 29 ? 1 : 0); }
+    const [gx, gy] = KIT.toScreen(S, 1050, 700); KIT.glow((.45 + .25 * Math.exp(-Math.abs(t - T.courage - .3) * 2) + .25 * Math.exp(-Math.abs(t - T.compassion - .3) * 2)) * up, gx, gy, 380);
+    tint(.4, "linear-gradient(#FFB070,#E89060 60%,#B86A48)"); KIT.motes(.7, 1000, 520, 600, "255,220,140", 26); KIT.vignette(.75); }, .8],
+  // 2 · insert: the locket opens — a small painted portrait of her mother, smiling
+  [32.1, (t, C, op) => { const S = KIT.show("insert", { warm: .55, bright: .3 * rng(t, 32.6, 33.6), opacity: op, cam: { x: 960, y: 560, z: .92 + .1 * rng(t, 32, 36.3) } });
+    KIT.put(LOCKET[C], S, { x: 960, y: 600, s: 1.25, open: rng(t, T.open, T.open + 1.1), shine: rng(t, 33, 34), rot: Math.sin(t * .8) * 2 });
+    KIT.glow(.35 * rng(t, 32.6, 33.6), 960, 560, 620, "255,214,150"); KIT.vignette(.9); }, .5],
+  // 3 · Chintu reaches to stop her; the tear; locket to her heart; silence; her answer; she places the locket by the roots
+  [35.95, (t, C, op) => {
+    const cam = camSeq(t, [[35.95, { x: 1190, y: 790, z: 1.9 }], [40.9, { x: 1200, y: 790, z: 1.95 }],
+      [41.0, { x: 1140, y: 770, z: 4.0 }, "cut"], [45.6, { x: 1140, y: 772, z: 4.4 }], [46.4, { x: 1140, y: 815, z: 3.0 }], [48.5, { x: 1140, y: 815, z: 3.1 }],
+      [48.6, { x: 1020, y: 640, z: 1.2 }, "cut"], [52.7, { x: 1030, y: 650, z: 1.24 }],
+      [52.8, { x: 1135, y: 790, z: 3.0 }, "cut"], [59.7, { x: 1135, y: 800, z: 3.15 }], [60.0, { x: 1110, y: 760, z: 1.6 }, "cut"], [61.3, { x: 1110, y: 770, z: 1.7 }],
+      [61.4, { x: 1110, y: 870, z: 3.3 }, "cut"], [65.2, { x: 1110, y: 862, z: 3.45 }],
+      [65.3, { x: 1060, y: 740, z: 1.4 }, "cut"], [67.0, { x: 1060, y: 730, z: 1.45 }], [69.1, { x: 1050, y: 660, z: 1.2 }], [72.5, { x: 1040, y: 80, z: .78 }], [73.9, { x: 1040, y: 40, z: .76 }]]);
+    const burst = t > T.burst ? Math.exp(-(t - T.burst) / 1.4) : 0, still = t > 48.6 && t < 52.8;
+    const S = KIT.show("banyan", { glow: .6 + .4 * rng(t, T.burst, T.burst + 1), voice: 0, wind: still ? 0 : (.15 + burst * 2.2), opacity: op,
+      cam: Object.assign({}, cam, { z: cam.z + KIT.punch(t, T.burst, .08, .7) }), shake: burst * 6 });
+    sunset(1); const m = ME[C], c = CH[C];
+    KIT.put(EYES[C], S, { k: 1 - .5 * rng(t, 41, 43) + .5 * rng(t, 60, 62) });
+    // locket on the roots (from the moment it is placed)
+    if (t > T.place) KIT.put(GLOCK[C], S, { x: 1086, y: 903, s: .75, rot: -8 });
+    // the seed hovers, then sinks to the locket and bursts; the column of light
+    const sink = ease(rng(t, 65.3, 67.0));
+    KIT.put(SEED[C], S, { x: lerp(1050, 1086, sink), y: lerp(700, 860, sink) + Math.sin(t * 1.7) * 8 * (1 - sink), s: .9 + .3 * rng(t, T.burst, T.burst + .8), glow: Math.min(3, 2 + rng(t, 65.3, T.burst) * .6 + rng(t, T.burst, T.burst + .5)) });
+    if (t > T.burst) KIT.put(COL[C], S, { x: 1086, y: 880, k: rng(t, T.column - .4, T.column + 3.2), w: .7 + .3 * rng(t, T.burst, T.column) });
+    // Chintu
+    let cpose = "stand", ck = 0, cmood = "sad", clean = 0;
+    if (t > 36.1 && t < 41) { cpose = "stand"; ck = ease(rng(t, 36.2, 37.0)) * (1 - ease(rng(t, 39.6, 40.8))); }
+    if (t > T.burst) { cmood = "awe"; clean = -10 * burst; }
+    KIT.put(c, S, { x: 1262, y: 996, s: .62, flip: -1, pose: cpose, pose2: "reach", poseK: ck, mood: cmood, lookY: t > 65 ? (t > T.burst ? -.6 : .3) : 0, look: -.6, turn: -.35, lean: clean, hop: t > T.burst && t < T.burst + .5 ? Math.sin(rng(t, T.burst, T.burst + .5) * Math.PI) * 8 : 0 });
+    // Meera
+    let mpose = "stand", mpose2 = null, mk = 0, mood = "sad", hR = [-26, 40], item = "locketHand", tearRun = 0, look = -.3, lookY = .9, mx = 1150, lean = 0, turn = -.3;
+    if (t > 36.1 && t < 41) { look = .7; lookY = 0; turn = .3; }
+    if (t > 41) { tearRun = fract((t - 41.2) / 2.6); }
+    if (t > 45.7 && t < 52.8) { mpose = "hold"; hR = null; lookY = .6; }
+    if (t > 52.8) { mood = "happy"; lookY = t > 56.3 ? -.8 : .3; look = -.2; tearRun = fract((t - 52.8) / 3.4); }
+    if (t > 59.9) { mpose = "stand"; mpose2 = "kneel"; mk = ease(rng(t, 60.0, 61.0)); mx = lerp(1150, 1165, mk); hR = [lerp(-26, 92, mk), lerp(40, 55, mk)]; lean = 8 * mk; lookY = .8; mood = "sad"; tearRun = 0; }
+    if (t > T.place) { const lift = ease(rng(t, T.letGo, T.letGo + 1.0)); hR = [92 - lift * 40, 55 - lift * 70]; lean = 8 * (1 - lift); item = t < T.letGo ? "" : ""; mood = t > 63 ? "happy" : "sad"; }
+    if (t > 65.3) { mpose = "kneel"; mpose2 = null; hR = null; item = ""; mood = "awe"; lookY = t > T.burst ? -.7 : .4; }
+    if (t > T.burst) { lean = -12 * burst; }
+    KIT.put(m, S, { x: mx, y: 990, s: .62, flip: -1, pose: mpose, pose2: mpose2, poseK: mk, mood, hR, item: t > 59.9 && t < T.place ? "locketHand" : (t < 59.9 ? item : ""), locket: false,
+      tear: t > 41 && t < 61 ? 1 : 0, tearRun, look, lookY, turn, lean, hL: mpose === "hold" ? null : null });
+    if (t > 61.3 && t < T.place) m.st.item = "locketHand";
+    // light: warm gold on the tear; the burst
+    if (t > 41 && t < 45.7) { const [a, b] = KIT.toScreen(S, 1130, 760); KIT.glow(.35 + .05 * Math.sin(t * 3), a - 180, b - 120, 520, "255,206,120"); }
+    if (t > 65.3) { const [a, b] = KIT.toScreen(S, 1086, 860); KIT.glow(Math.min(1, .35 * rng(t, 65.3, T.burst) + 1.2 * rng(t, T.burst - .05, T.burst + .3)) * (t > T.burst + 2 ? .75 : 1), a, b, 520 + 500 * rng(t, T.burst, T.burst + 1.2)); }
+    KIT.flash(t > T.burst ? .55 * Math.exp(-(t - T.burst) / .3) : 0);
+    KIT.motes(still ? .25 : (.5 + rng(t, T.burst, T.burst + 1)), 1060, 600, 600, "255,220,140", still ? 12 : 34);
+    tint(still ? .55 : .4, still ? "linear-gradient(#E8A070,#C88060 60%,#A06048)" : "linear-gradient(#FFB070,#E89060 60%,#B86A48)"); KIT.vignette(still ? .95 : .75); }, .4],
+  // 4 · insert: the third ring lights (heart-leaf) — sacrifice
+  [73.8, (t, C, op) => { const S = KIT.show("insert", { warm: .7, bright: .55 * rng(t, T.ring3, T.ring3 + .6), opacity: op, cam: { x: 960, y: 500, z: 1.04 + .05 * rng(t, 73.8, 77) + KIT.punch(t, T.ring3, .07) } });
+    KIT.put(METER[C], S, { x: 960, y: 430, s: 1.3, glow: 3, lit: [1, 1, rng(t, T.ring3, T.ring3 + .45)], pop: [null, null, T.ring3], hands: 0 });
+    const [gx, gy] = KIT.toScreen(S, 960, 420); KIT.glow(.6 + .4 * rng(t, T.ring3, T.ring3 + .6), gx, gy, 640);
+    KIT.motes(rng(t, T.ring3, T.ring3 + 1), 960, 520, 560); KIT.flash(t > T.tyagam ? .4 * Math.exp(-(t - T.tyagam) / .3) : 0); KIT.vignette(.7); }, .4],
+  // 5 · wide: the beam seen from the whole village; far away, jeep headlights turn toward it (sets up scene 7)
+  [76.55, (t, C, op) => { const S = KIT.show("village", { green: 0, sunset: 1, banyanGlow: 1, opacity: op, cam: { x: 960, y: 540, z: 1 } });
+    KIT.put(COLV[C], S, { x: 1580, y: 560, s: .62, k: 1, w: .9 });
+    const k = rng(t, 76.6, 79.4); KIT.put(JEEP[C], S, { x: lerp(330, 470, k), y: 800, s: 1.3, turn: lerp(0, -9, ease(rng(t, 77.2, 78.6))) });
+    const [gx, gy] = KIT.toScreen(S, 1580, 400); KIT.glow(.45 + .05 * Math.sin(t * 4), gx, gy, 260);
+    tint(.6, "linear-gradient(#E8805A,#B86448 55%,#6A3A30)"); KIT.vignette(.9); }, .6],
+];
+function scene(t) {
+  resetTints(); sunset(0); runShots(t, shots);
+  KIT.title(pulse(t, .5, 4.4, .45), "మూడో పరీక్ష", "త్యాగం");
+  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .9, DUR)));
+}
+</script></body></html>

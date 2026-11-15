@@ -1,0 +1,103 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- చివరి చెట్టు రహస్యం — scene 3: the tree speaks, three tests, the magic seed (glow state 0 + three dim rings). TL = work/voices/scene3/timeline.json -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/skins.js"></script>
+<script src="../scene1/world.js"></script>
+<script>
+KIT.useSkins();
+const MEn = makeMeeraNight(), MEn2 = makeMeeraNight();
+const EYES = makeBarkEyes(), OPEN = makeRootOpening(), SEED = makeSeedProp(), SYM = makeSymbols(), SEED2 = makeSeedProp();
+const RLEAF = [0, 1, 2, 3].map(() => makeLeaf("#4E9446"));
+const BLANKET = makeProp("blanket", g => { el("path", { d: "M0 -40 L300 -46 Q318 -10 300 30 L0 34 Q-12 0 0 -40 Z", fill: KIT.lgrad([[0, "#C0503A"], [1, "#8A2E2A"]]), stroke: INK, "stroke-width": 3 }, g);
+  for (let i = 0; i < 6; i++) el("path", { d: `M${30 + i * 46} -40 L${30 + i * 46} 32`, stroke: "#F2C230", "stroke-width": 4, opacity: .7 }, g); });
+const CLOTH = makeProp("openHanky", g => { el("path", { d: "M-70 0 L70 0 L50 -14 L-50 -14 Z", fill: "#F6F2EA", stroke: INK, "stroke-width": 3 }, g);
+  el("path", { d: "M-60 -4 L60 -4", stroke: "#4A8AD0", "stroke-width": 3, "stroke-dasharray": "8 4" }, g); });
+const ORBS = makeProp("orbs", g => { const P = { o: [] };
+  for (let i = 0; i < 3; i++) { const og = el("g", {}, g); el("circle", { r: 34, fill: KIT.rgrad([[0, "#FFF2C0", .9], [1, "#FFC94A", 0]]) }, og); el("circle", { r: 9, fill: "#FFF6D0" }, og); P.o.push(og); }
+  return P; }, (t, st, P) => P.o.forEach((og, i) => { const v = clamp(st.k * 3 - i), a = t * .9 + i * 2.094;
+  og.setAttribute("transform", `translate(${Math.cos(a) * 120} ${Math.sin(a) * 34}) scale(${.4 + .6 * back(v)})`); og.style.opacity = v * clamp(1 - st.k2); }));
+
+const SYMT = [60.9, 62.3, 63.7];
+function treeNight(t, op) {      // 0 – 11.6 and 22.5 – 41.53: the tree speaks; Meera's vow
+  let cam;
+  if (t < 4.1) cam = KIT.camPath(t, [[0, { x: 760, y: 640, z: 2.7 }], [4.1, { x: 760, y: 645, z: 2.95 }]]);
+  else if (t < 7.4) cam = KIT.camPath(t, [[4.1, { x: 962, y: 590, z: 2.3 }], [7.4, { x: 962, y: 585, z: 2.5 }]]);
+  else if (t < 12) cam = KIT.camPath(t, [[7.4, { x: 900, y: 640, z: 1.45 }], [12, { x: 940, y: 600, z: 1.2 }]]);
+  else if (t < 26.9) cam = KIT.camPath(t, [[22.5, { x: 960, y: 560, z: 1.25 }], [26.9, { x: 960, y: 520, z: .98 }]]);
+  else if (t < 32.9) cam = KIT.camPath(t, [[26.9, { x: 790, y: 690, z: 1.9 }], [32.9, { x: 800, y: 690, z: 2.05 }]]);
+  else cam = KIT.camPath(t, [[32.9, { x: 880, y: 620, z: 1.4 }], [38.9, { x: 900, y: 610, z: 1.45 }], [41.53, { x: 900, y: 650, z: 1.55 }]]);
+  const vow = t > 26.9 && t < 32.9;
+  const S = KIT.show("banyan", { night: 1, glow: .75, voice: Math.max(KIT.talk("tree", t), .18), wind: vow && t > 29.8 ? 1.2 : .3, cam, opacity: op });
+  KIT.put(EYES, S, { x: 962, y: 548, k: 1, k2: [2.2, 5.6, 9.0, 14.4, 20.2, 34.0, 38.4].some(b => t > b && t < b + .35) ? 1 : 0, k3: t > 33 ? .8 : (t > 22.5 && t < 26.9 ? 0 : .4) });
+  let mood = "awe", tear = 0, tearRun = 0, pose = "stand", hL = null, hR = null, lean = 0, lookY = -.9, x = 760;
+  if (t > 22.5 && t < 26.9) { mood = "sad"; tear = 1; tearRun = rng(t, 24.4, 26.4); }
+  if (vow) { x = lerp(760, 800, ease(rng(t, 27.0, 27.6))); pose = t < 27.6 ? "walk" : "stand"; mood = t < 30.6 ? "angry" : "happy"; hL = [-20, 112]; hR = [20, 112]; lean = 3; lookY = -.7; }
+  if (t >= 32.9) { x = 800; mood = t < 36 ? "happy" : (t < 39 ? "neutral" : "awe"); }
+  KIT.put(MEn, S, { x, y: 935, s: .8, flip: 1, turn: .45, look: .5, lookY, mood, tear, tearRun, pose, phase: (t - 27) * 8, hL, hR, lean, item: "lantern", hR: hR || [36, -8] });
+  if (vow && t > 29.8) RLEAF.forEach((L, i) => { const t0 = 29.8 + i * .5; leafPath(L, t, t0, t0 + 3, 700 + i * 200, 350, 640 + i * 160, 900); KIT.put(L, S, { s: 1.1, vis: pulse(t, t0, t0 + 3, .4) }); });
+  if (t > 38.9) KIT.put(ORBS, S, { x: 900, y: 420, s: 1.7, k: rng(t, 39.1, 40.9), k2: rng(t, 41.0, 41.5) });
+  const [fx, fy] = KIT.toScreen(S, x + 10, 700); KIT.glow(.45, fx, fy, 260 * cam.z * .6);
+  KIT.motes(.7, ...KIT.toScreen(S, 962, 560), 520, "255,214,110", 40);
+  KIT.vignette(.8);
+  if (t > 11 && t < 12) KIT.fade(rng(t, 11.15, 11.6) * (1 - rng(t, 11.6, 12.0)), "#F2E6C8");
+  if (t > 22.1 && t < 23) KIT.fade(rng(t, 22.1, 22.5) * (1 - rng(t, 22.5, 22.95)), "#F2E6C8");
+}
+function flashback(t, op) {      // 11.6 – 22.5: paper-cut flashback: the green forest, then trees fall one by one as silhouettes
+  setSkin("paper");
+  const dk = rng(t, 15.4, 17.0);
+  KIT.show("fallSil", { falls: [16.6, 17.4, 18.2, 19.0, 19.8, 20.6], col: 1 - dk, sky: 1 - dk, far: 1 - rng(t, 16.4, 21.4), cam: KIT.camPath(t, [[11.6, { x: 760, y: 560, z: 1.15 }], [16, { x: 1100, y: 560, z: 1.1 }], [22.5, { x: 960, y: 600, z: 1.0 }]]), opacity: op,
+    shake: [16.6, 17.4, 18.2, 19.0, 19.8, 20.6].some(f => t - f > 1.25 && t - f < 1.4) ? 5 : 0 });
+  KIT.motes(.6, 960, 600, 900, "255,240,200", 25);
+  KIT.vignette(.7);
+  if (t < 12.0) KIT.fade(1 - rng(t, 11.6, 12.0), "#F2E6C8");
+  if (t > 22.1) KIT.fade(rng(t, 22.1, 22.5), "#F2E6C8");
+}
+function seedRise(t, op) {       // 41.53 – 72.6: the ground opens, the seed floats up, three symbols, Meera's promise
+  let cam;
+  if (t < 46.5) cam = KIT.camPath(t, [[41.53, { x: 930, y: 830, z: 2.0 }], [46.5, { x: 930, y: 800, z: 2.1 }]]);
+  else if (t < 53.6) cam = KIT.camPath(t, [[46.5, { x: 930, y: 800, z: 2.1 }], [50.0, { x: 920, y: 700, z: 1.75 }], [53.6, { x: 920, y: 700, z: 1.85 }]]);
+  else if (t < 65.27) cam = KIT.camPath(t, [[53.6, { x: 930, y: 680, z: 1.55 }], [60.5, { x: 950, y: 690, z: 1.75 }], [65.27, { x: 940, y: 700, z: 1.9 }]]);
+  else cam = KIT.camPath(t, [[65.27, { x: 880, y: 700, z: 2.0 }], [72.6, { x: 860, y: 720, z: 2.4 }]]);
+  cam.z += KIT.punch(t, SYMT[0], .05) + KIT.punch(t, SYMT[1], .05) + KIT.punch(t, SYMT[2], .05) + KIT.punch(t, 71.1, .06);
+  const S = KIT.show("banyan", { night: 1, glow: .8, voice: Math.max(KIT.talk("tree", t), .2), wind: .3, cam, opacity: op });
+  KIT.put(EYES, S, { x: 962, y: 548, k: 1, k2: [45.2, 51.6, 57.2, 68.6].some(b => t > b && t < b + .3) ? 1 : 0, k3: .8 });
+  KIT.put(OPEN, S, { x: 960, y: 912, s: 1, k: rng(t, 41.6, 43.4) * (1 - rng(t, 52, 55)) });
+  // Meera kneels to watch, stands for the symbols, then cups the seed
+  const take = rng(t, 69.0, 71.0);
+  const mo = { x: 760, y: 935, s: .85, flip: 1, turn: .45, look: .6, lookY: -.3, mood: "awe", item: "", hR: null };
+  if (t < 53.6) Object.assign(mo, { pose: "kneel", lookY: .2 + -.8 * rng(t, 44.5, 48.5) });
+  else if (t < 65.27) Object.assign(mo, { pose: "stand", lookY: -.5, mood: t > 60.5 ? "awe" : "happy" });
+  else Object.assign(mo, { x: lerp(760, 820, ease(rng(t, 66.0, 67.0))), pose: t < 68.8 ? "stand" : "hold", pose2: null, mood: t < 70.9 ? "neutral" : "happy", lookY: -.2, blink: t > 66.2 && t < 66.6 ? 1 : null });
+  if (t > 66 && t < 67) { mo.pose = "walk"; mo.phase = (t - 66) * 8; }
+  KIT.put(MEn, S, mo);
+  // seed: rises from the opening, floats in front of the trunk, then settles into Meera's hands
+  const rise = ease(rng(t, 44.0, 48.6)); let sx = 960, sy = lerp(905, 760, rise) + Math.sin(t * 1.6) * 6 * rise;
+  sx = lerp(sx, 842, ease(take)); sy = lerp(sy, 760, ease(take));
+  if (t > 43.8) KIT.put(SEED, S, { x: sx, y: sy, s: .8, k: 0, k2: rng(t, 64.6, 65.6), k3: clamp(rng(t, 46.5, 48.5) * (1 - .5 * rng(t, 64.4, 65.6))), s2: 1 });
+  if (t > 60.5 && t < 66) KIT.put(SYM, S, { x: sx, y: sy, s: .85, k: rng(t, SYMT[0], SYMT[0] + .5), k2: rng(t, SYMT[1], SYMT[1] + .5), k3: rng(t, SYMT[2], SYMT[2] + .5), merge: rng(t, 64.4, 65.6) });
+  const [gx, gy] = KIT.toScreen(S, sx, sy); KIT.glow(rng(t, 43.5, 48) * .5, gx, gy, 220 * cam.z);
+  KIT.motes(.6, ...KIT.toScreen(S, 962, 600), 480, "255,214,110", 30);
+  KIT.vignette(.85);
+}
+function hanky(t, op) {          // 72.6 – 76.8: hands wrap the seed in a cotton handkerchief
+  KIT.show("hanky", { fold: rng(t, 73.0, 76.0), seedGlow: 0, open: 1, cam: { x: 960, y: 590, z: 1.3 + .08 * rng(t, 72.6, 76.8) }, opacity: op });
+  KIT.motes(.4, 960, 600, 500, "255,214,110", 20);
+  KIT.vignette(.8);
+}
+function dream(t, op) {          // 76.8 – 89.8: she sleeps, a green forest grows over her; morning; the seed on the sill with three dim rings
+  const cam = KIT.camPath(t, [[76.8, { x: 520, y: 840, z: 1.75 }], [80.5, { x: 560, y: 760, z: 1.35 }], [83.2, { x: 1100, y: 620, z: 1.4 }], [87.0, { x: 1500, y: 600, z: 2.9 }], [89.8, { x: 1500, y: 605, z: 3.05 }]]);
+  const S = KIT.show("room", { glow: 0, dream: pulse(t, 77.2, 83.4, 2.6), morning: rng(t, 81.2, 84.5), cam, opacity: op });
+  putWrapped(MEn2, S, { x: 560, y: 978, s: .7, pose: "stand", mood: "happy", blink: 1 }, "rotate(-90 560 978)");
+  KIT.put(BLANKET, S, { x: 350, y: 985, s: 1 });
+  KIT.put(CLOTH, S, { x: 1500, y: 640, s: 1 });
+  KIT.put(SEED2, S, { x: 1500, y: 606, s: .72, k: 0, k2: 1, k3: 0 });
+  KIT.motes(.5 * pulse(t, 77, 84, 1.5), ...KIT.toScreen(S, 700, 760), 600, "200,255,180", 30);
+  KIT.motes(.5 * rng(t, 82, 85), ...KIT.toScreen(S, 1500, 560), 300, "255,236,190", 20);
+  KIT.vignette(.6);
+  KIT.fade(rng(t, 88.9, 89.8));
+}
+const SHOTS = [[0, 11.6, treeNight], [11.6, 22.5, flashback, 0], [22.5, 41.53, treeNight, 0], [41.53, 72.6, seedRise, .5], [72.6, 76.8, hanky, .5], [76.8, 89.8, dream, .7]];
+function scene(t) { setSkin("flat"); shots(t, SHOTS); }
+</script></body></html>

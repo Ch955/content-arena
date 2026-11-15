@@ -46,6 +46,7 @@ const ICONS = {
   flame: "M0 -30 Q18 -10 14 8 Q10 24 0 26 Q-10 24 -14 8 Q-16 -6 -6 -14 Q-4 -2 2 0 Q6 -14 0 -30 Z",
   drop: "M0 -30 Q20 -2 18 10 Q14 26 0 26 Q-14 26 -18 10 Q-20 -2 0 -30 Z",
   heart: "M0 24 Q-30 2 -24 -14 Q-16 -30 0 -16 Q16 -30 24 -14 Q30 2 0 24 Z" };
+const R_ANG = [];
 function makeSeedMeter() {
   return makeThing(g => {
     const P = {};
@@ -61,7 +62,7 @@ function makeSeedMeter() {
       const dim = el("circle", { r, fill: "none", stroke: "#8A6A44", "stroke-width": 5, "stroke-dasharray": "3 13", opacity: .75 }, rg);
       const wide = el("circle", { r, fill: "none", stroke: "#FFC94A", "stroke-width": 30, opacity: 0 }, rg);
       const lit = el("circle", { r, fill: "none", stroke: "#FFE48A", "stroke-width": 8, opacity: 0 }, rg);
-      const a = (-58 + i * 0) * Math.PI / 180, ix = Math.cos(a) * r, iy = Math.sin(a) * r;
+      const a = (-125 + i * 35) * Math.PI / 180, ix = Math.cos(a) * r, iy = Math.sin(a) * r; R_ANG[i] = a;
       const ic = el("g", { transform: `translate(${ix} ${iy})` }, rg);
       const disc = el("circle", { r: 34, fill: "#3A2A1C", stroke: "#8A6A44", "stroke-width": 4 }, ic);
       const icon = el("path", { d: ICONS[["flame", "drop", "heart"][i]], fill: "#7A6040", stroke: INK, "stroke-width": 2 }, ic);
@@ -78,7 +79,7 @@ function makeSeedMeter() {
       R.icon.setAttribute("fill", mixc("#7A6040", "#FFE48A", k)); R.disc.setAttribute("fill", mixc("#3A2A1C", "#C9861E", k)); R.disc.setAttribute("stroke", mixc("#8A6A44", "#FFF2B0", k));
       const pt = st.pop[i], ph = pt == null ? -1 : (t - pt) / .9;
       R.burst.style.opacity = ph > 0 && ph < 1 ? (1 - ph) : 0; R.burst.setAttribute("transform", `scale(${.6 + ph * 1.2}) rotate(${ph * 40})`);
-      R.ic.setAttribute("transform", `translate(${Math.cos(-58 * Math.PI / 180) * R.r} ${Math.sin(-58 * Math.PI / 180) * R.r}) scale(${1 + (ph > 0 && ph < 1 ? Math.sin(ph * Math.PI) * .5 : 0)})`); });
+      R.ic.setAttribute("transform", `translate(${Math.cos(R_ANG[i]) * R.r} ${Math.sin(R_ANG[i]) * R.r}) scale(${1 + (ph > 0 && ph < 1 ? Math.sin(ph * Math.PI) * .5 : 0)})`); });
   }, { lit: [0, 0, 0], pop: [null, null, null], glow: 0, hands: 1 });
 }
 
@@ -131,7 +132,12 @@ function makeLocketBig() {
 function makePalms() {
   return makeThing(g => { const P = {};
     const hf = KIT.lgrad([[0, shade(SKIN_M, .14)], [1, shade(SKIN_M, -.18)]], 0, 0, 0, 1);
+    [-1, 1].forEach(s => el("path", { d: `M${s * 40} 160 Q${s * 120} 300 ${s * 170} 520 L${s * 380} 520 Q${s * 330} 300 ${s * 300} 120 Z`, fill: hf, stroke: INK, "stroke-width": 5 }, g));   // forearms
+    [-1, 1].forEach(s => { [0, 1, 2, 3].forEach(i => el("rect", { x: -26, y: -80, width: 52, height: 150, rx: 26, fill: hf, stroke: INK, "stroke-width": 4,
+      transform: `translate(${s * (300 - i * 12)} ${-30 + i * 46}) rotate(${s * (12 + i * 14)})` }, g)); });   // fingers along the outer edge
     el("path", { d: "M-330 120 Q-360 -40 -250 -70 Q-120 -20 0 -20 Q120 -20 250 -70 Q360 -40 330 120 Q160 230 0 230 Q-160 230 -330 120 Z", fill: hf, stroke: INK, "stroke-width": 5 }, g);
+    el("path", { d: "M0 60 Q-6 150 0 228", fill: "none", stroke: INK, "stroke-width": 4 }, g);   // where the two palms meet
+    [-1, 1].forEach(s => el("rect", { x: -30, y: -90, width: 60, height: 150, rx: 30, fill: hf, stroke: INK, "stroke-width": 4, transform: `translate(${s * 215} -50) rotate(${s * 62})` }, g));   // thumbs
     P.bowl = el("ellipse", { cx: 0, cy: 10, rx: 250, ry: 70, fill: shade(SKIN_M, -.25), stroke: INK, "stroke-width": 3 }, g);
     P.water = el("ellipse", { cx: 0, cy: 14, rx: 0, ry: 0, fill: KIT.lgrad([[0, "#CFF0FF", .9], [1, "#5AAAD8", .9]]), stroke: "#3A88B8", "stroke-width": 3 }, g);
     P.rip = [0, 1].map(() => el("ellipse", { cx: 0, cy: 14, fill: "none", stroke: "#F2FBFF", "stroke-width": 3 }, g));
@@ -337,10 +343,10 @@ KIT.defineSet("insert", S => {
   el("rect", { x: -1400, y: -900, width: 4720, height: 2600, fill: bg.url }, S.layer(0, "bg"));
   const Lb = S.layer(.4, "bokeh"); S.bk = [...Array(18)].map((_, i) => el("circle", { r: 30 + hash(i * 3) * 70, fill: i % 3 ? "#FFD877" : "#FFB86A" }, Lb));
   S.actorLayer();
-  S.update = (t, o) => { const w = o.warm == null ? 1 : o.warm, b = o.bright || 0;
-    bg.set([mixc(mixc("#2A1A10", "#3A1A22", 1 - w), "#6A4A20", b), mixc(mixc("#4A2E16", "#5A2A2E", 1 - w), "#9A6A2A", b), mixc("#1E120A", "#3A2410", b)]);
+  S.update = (t, o) => { const w = o.warm == null ? 1 : o.warm, b = o.bright || 0, dy = o.day || 0;
+    bg.set([mixc(mixc(mixc("#2A1A10", "#3A1A22", 1 - w), "#6A4A20", b), "#E9C88E", dy), mixc(mixc(mixc("#4A2E16", "#5A2A2E", 1 - w), "#9A6A2A", b), "#D9A868", dy), mixc(mixc("#1E120A", "#3A2410", b), "#A87A48", dy)]);
     S.bk.forEach((c, i) => { c.setAttribute("cx", -100 + hash(i) * 2100 + Math.sin(t * .3 + i) * 40); c.setAttribute("cy", 60 + hash(i * 2) * 960 + Math.cos(t * .25 + i) * 30);
-      c.setAttribute("opacity", (.08 + .1 * hash(i * 5)) * (.7 + .3 * Math.sin(t * .8 + i * 2)) * (1 + b)); }); };
+      c.setAttribute("opacity", (.08 + .1 * hash(i * 5)) * (.7 + .3 * Math.sin(t * .8 + i * 2)) * (1 + b + dy * 1.5)); c.setAttribute("fill", dy > .5 ? (i % 3 ? "#FFF6DA" : "#F2E2B0") : (i % 3 ? "#FFD877" : "#FFB86A")); }); };
 });
 
 // ---------------- shot runner ----------------
@@ -364,3 +370,7 @@ const TINT2 = (() => { const d = document.createElement("div"); d.className = "f
 function tint(k, css) { TINT.style.opacity = k; if (k > 0) TINT.style.background = css; }
 function tint2(k, css) { TINT2.style.opacity = k; if (k > 0) TINT2.style.background = css; }
 function resetTints() { TINT.style.opacity = 0; TINT2.style.opacity = 0; }
+
+// a big steel bottle (pouring) for the macro shot
+function makeBigBottle() { return makeThing(g => { PROPS.bottle(el("g", {}, g)); return {}; }); }
+PROPS.cap = p => { el("rect", { x: -11, y: -10, width: 22, height: 18, rx: 4, fill: "#5A6B7E", stroke: INK, "stroke-width": 3 }, p); };

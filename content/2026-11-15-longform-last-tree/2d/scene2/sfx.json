@@ -1,0 +1,196 @@
+{
+ "scene": 2,
+ "dur": 95.15,
+ "note": "Scene-local seconds (t=0 = scene start; add film.json start for the whole film). No music here; score + these SFX are mixed later over the whole film. level: soft | mid | loud.",
+ "cues": [
+  {
+   "t": 0.0,
+   "dur": 13.0,
+   "effect": "hot dry village: cicadas, dry wind",
+   "level": "soft",
+   "note": "fade in from black 0–0.9"
+  },
+  {
+   "t": 2.1,
+   "dur": 2.8,
+   "effect": "school bag swish (Meera waves)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 8.6,
+   "dur": 6.0,
+   "effect": "running footsteps on dry earth + bag bouncing",
+   "level": "mid",
+   "note": "continues into the banyan shot until 14.6"
+  },
+  {
+   "t": 14.6,
+   "dur": 0.6,
+   "effect": "Meera catches her breath",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 13.0,
+   "dur": 14.0,
+   "effect": "banyan by day: gentle leaf rustle, a few birds",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 18.6,
+   "dur": 2.6,
+   "effect": "water pouring from a brass pot onto dry soil (gurgle, soak)",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 22.8,
+   "dur": 3.6,
+   "effect": "single leaf flutters down",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 26.4,
+   "dur": 0.5,
+   "effect": "tiny chime as the leaf lands on her shoulder",
+   "level": "soft",
+   "note": "the tree is listening"
+  },
+  {
+   "t": 27.0,
+   "dur": 28.5,
+   "effect": "dusk at Thatayya's: evening crickets, lantern flicker",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 27.0,
+   "dur": 11.0,
+   "effect": "groundnut shells cracking (every ~1 s)",
+   "level": "soft",
+   "note": "also 54.0–55.5"
+  },
+  {
+   "t": 27.2,
+   "dur": 2.2,
+   "effect": "footsteps on the stone verandah",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 29.6,
+   "dur": 0.6,
+   "effect": "rope cot creak as Meera sits",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 44.3,
+   "dur": 3.2,
+   "effect": "soft nostalgic chime (faded photo of the green village)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 54.1,
+   "dur": 1.4,
+   "effect": "gentle head pat / warm moment",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 55.5,
+   "dur": 16.8,
+   "effect": "night room: crickets outside, distant dog bark at ~58",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 56.5,
+   "dur": 3.0,
+   "effect": "mat rustle, Meera turning restlessly",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 60.3,
+   "dur": 0.6,
+   "effect": "sits up (cloth rustle)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 62.0,
+   "dur": 4.2,
+   "effect": "magic shimmer: far banyan glowing gold in the window",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 66.8,
+   "dur": 5.5,
+   "effect": "golden motes + leaves drifting in: airy sparkle",
+   "level": "soft",
+   "note": "under the tree's whisper"
+  },
+  {
+   "t": 72.3,
+   "dur": 11.8,
+   "effect": "night field: slow footsteps on dry earth (~0.6 s), lantern handle creak, crickets, fireflies",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 75.0,
+   "dur": 1.0,
+   "effect": "owl hoot (distant)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 79.0,
+   "dur": 2.5,
+   "effect": "cold wind gust + leaves rustling (గలగల)",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 82.0,
+   "dur": 6.0,
+   "effect": "heartbeat (slow, getting louder)",
+   "level": "mid",
+   "note": "continues under Meera's line"
+  },
+  {
+   "t": 84.1,
+   "dur": 11.0,
+   "effect": "bark breathing: low warm swell every ~2.9 s + roots hum",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 86.9,
+   "dur": 1.1,
+   "effect": "eyes of light open: warm magical chime",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 90.6,
+   "dur": 0.3,
+   "effect": "eye blink twinkle",
+   "level": "soft",
+   "note": "again at 93.6"
+  },
+  {
+   "t": 91.5,
+   "dur": 2.0,
+   "effect": "warm swell (the tree smiles)",
+   "level": "soft",
+   "note": ""
+  }
+ ]
+}

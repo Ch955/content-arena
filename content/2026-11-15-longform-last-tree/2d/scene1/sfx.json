@@ -1,0 +1,350 @@
+{
+ "scene": 1,
+ "dur": 119.62,
+ "note": "Scene-local seconds (t=0 = scene start; add film.json start for the whole film). No music here; score + these SFX are mixed later over the whole film. level: soft | mid | loud.",
+ "cues": [
+  {
+   "t": 0.0,
+   "dur": 17.5,
+   "effect": "night ambience: crickets, soft wind",
+   "level": "soft",
+   "note": "cold open at the banyan"
+  },
+  {
+   "t": 0.5,
+   "dur": 4.2,
+   "effect": "magic shimmer: leaves lighting gold one by one (tiny chimes)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 1.0,
+   "dur": 4.0,
+   "effect": "leaf rustle carried by the whisper, moving left to right",
+   "level": "soft",
+   "note": "under the tree's 'మీరా... మీరా...'"
+  },
+  {
+   "t": 4.1,
+   "dur": 0.3,
+   "effect": "small startle: Meera's lantern clinks",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 6.3,
+   "dur": 1.2,
+   "effect": "leaves swirl / soft whoosh toward Meera",
+   "level": "soft",
+   "note": "whisper hangs"
+  },
+  {
+   "t": 16.2,
+   "dur": 1.3,
+   "effect": "rising magical swell into a bright glow",
+   "level": "mid",
+   "note": "glow flash before the title"
+  },
+  {
+   "t": 17.54,
+   "dur": 0.6,
+   "effect": "soft low boom / reverse cymbal into black",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 17.8,
+   "dur": 3.8,
+   "effect": "title sting: gold chime + seed glow hum",
+   "level": "mid",
+   "note": "title card 'చివరి చెట్టు రహస్యం'"
+  },
+  {
+   "t": 21.7,
+   "dur": 0.6,
+   "effect": "airy whoosh into morning",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 22.0,
+   "dur": 20.3,
+   "effect": "morning village: birds chirping, distant rooster, breeze",
+   "level": "mid",
+   "note": "rooster ~22.6"
+  },
+  {
+   "t": 24.0,
+   "dur": 10.0,
+   "effect": "kids laughing and running past",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 30.2,
+   "dur": 3.4,
+   "effect": "villagers chatting and laughing by the well",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 34.4,
+   "dur": 4.0,
+   "effect": "flock of birds flying over the forest (wing flaps, chirps)",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 39.2,
+   "dur": 3.0,
+   "effect": "pond: frogs, gentle water lap",
+   "level": "soft",
+   "note": "lotus close-up"
+  },
+  {
+   "t": 42.3,
+   "dur": 4.9,
+   "effect": "rain on soil (heavy drops, splashes)",
+   "level": "mid",
+   "note": "distant thunder rumble at 42.6"
+  },
+  {
+   "t": 44.6,
+   "dur": 2.5,
+   "effect": "villagers cheering in the rain",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 47.2,
+   "dur": 3.8,
+   "effect": "rope swing creaks (period ~2.7 s) + kids giggling",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 51.0,
+   "dur": 5.5,
+   "effect": "forest edge: birds, leaves, deer hoof steps",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 52.6,
+   "dur": 1.0,
+   "effect": "peacock call + tail fan rustle",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 53.5,
+   "dur": 2.5,
+   "effect": "rabbits hopping in grass",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 56.5,
+   "dur": 3.1,
+   "effect": "village ambience continues (birds)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 59.6,
+   "dur": 3.8,
+   "effect": "jeep engine approaching + tyres on gravel + dust",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 63.3,
+   "dur": 0.6,
+   "effect": "jeep brakes / engine off",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 63.6,
+   "dur": 0.4,
+   "effect": "jeep door opens",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 64.2,
+   "dur": 1.4,
+   "effect": "heavy shoe footsteps on dry ground",
+   "level": "mid",
+   "note": "Veerendra steps out"
+  },
+  {
+   "t": 65.3,
+   "dur": 0.3,
+   "effect": "jeep door slam",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 66.3,
+   "dur": 6.1,
+   "effect": "ominous low drone (warmth drains away)",
+   "level": "soft",
+   "note": "close-up on Veerendra"
+  },
+  {
+   "t": 69.9,
+   "dur": 1.7,
+   "effect": "coin jingle + glint sparkle (x2)",
+   "level": "mid",
+   "note": "coins flash in his sunglasses"
+  },
+  {
+   "t": 79.3,
+   "dur": 0.4,
+   "effect": "punch-in whoosh / low hit on 'నరకండి'",
+   "level": "mid",
+   "note": "camera punch + shake"
+  },
+  {
+   "t": 81.1,
+   "dur": 0.6,
+   "effect": "axes raised: metal shing",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 84.58,
+   "dur": 0.3,
+   "effect": "axe chop into wood + wood chips",
+   "level": "loud",
+   "note": "repeat at 85.83, 87.08, 88.33; screen shake on each"
+  },
+  {
+   "t": 85.83,
+   "dur": 0.3,
+   "effect": "axe chop",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 87.08,
+   "dur": 0.3,
+   "effect": "axe chop",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 88.33,
+   "dur": 0.3,
+   "effect": "axe chop",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 88.9,
+   "dur": 1.3,
+   "effect": "wood creak as tree 1 starts to fall",
+   "level": "mid",
+   "note": "silhouettes; each tree creaks at fall start, crashes 1.3 s later"
+  },
+  {
+   "t": 90.2,
+   "dur": 0.8,
+   "effect": "tree crash (silhouette) + ground thud",
+   "level": "loud",
+   "note": "crashes at 90.2, 90.8, 91.45, 92.1, 92.8, 93.4"
+  },
+  {
+   "t": 90.8,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 91.45,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 92.1,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "loud",
+   "note": ""
+  },
+  {
+   "t": 92.8,
+   "dur": 0.8,
+   "effect": "tree crash",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 93.4,
+   "dur": 0.8,
+   "effect": "tree crash (distant, under the cross-fade)",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 93.0,
+   "dur": 7.1,
+   "effect": "time-lapse whoosh / years passing; wind turns dry",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 94.6,
+   "dur": 2.0,
+   "effect": "pond draining / water receding",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 96.9,
+   "dur": 3.4,
+   "effect": "bird family flapping away",
+   "level": "mid",
+   "note": ""
+  },
+  {
+   "t": 100.1,
+   "dur": 3.0,
+   "effect": "empty swing rope creak in dry wind",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 103.1,
+   "dur": 7.2,
+   "effect": "hot dry wind, distant crow",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 110.3,
+   "dur": 9.3,
+   "effect": "dry wind; soft leaf rustle of the old banyan",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 114.0,
+   "dur": 2.5,
+   "effect": "gentle hush / soft shimmer on 'ఒక పెద్ద, ముసలి మర్రి చెట్టు'",
+   "level": "soft",
+   "note": ""
+  },
+  {
+   "t": 118.7,
+   "dur": 0.9,
+   "effect": "fade to black (let ambience fade)",
+   "level": "soft",
+   "note": ""
+  }
+ ]
+}
