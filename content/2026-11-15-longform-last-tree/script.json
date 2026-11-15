@@ -1,0 +1,686 @@
+{
+ "title": "మాయా చెట్టు రహస్యం | చివరి చెట్టు",
+ "format": "longform 16:9, 12-14 min, 2D animated (tools/anim2d), Gemini voices",
+ "notes": "Owner's plot and dialogue kept (marked owner in brief.md). Do NOT apply the +15% reel speed-up to this long video; use natural pace (0-5% max) and leave 0.6-1.0 s of music/ambience between lines. The tree and the devata are the same spirit: same Gemini voice, the tree gets extra reverb/whisper.",
+ "scenes": [
+  {
+   "n": 1,
+   "title": "ఆనందపురం — చివరి చెట్టు",
+   "setting": "Cold open at night by the glowing banyan; then the once-green village Anandapuram, the forest being cut, the dry village with one old banyan left.",
+   "lines": [
+    {
+     "who": "tree",
+     "text": "మీరా... మీరా...",
+     "act": "ancient, echoing whisper, very slow, like wind moving through leaves",
+     "beat": "cold-open"
+    },
+    {
+     "who": "meera",
+     "text": "ఎవరు...? ఎవరు నన్ను పిలుస్తున్నారు?",
+     "act": "frightened, breathless little whisper",
+     "beat": "cold-open"
+    },
+    {
+     "who": "narrator",
+     "text": "ఒక చెట్టు... ఒక చిన్న అమ్మాయిని పేరు పెట్టి పిలిచింది. ఎందుకు? ఆ రహస్యం తెలియాలంటే... మనం మొదటి నుంచి మొదలుపెట్టాలి.",
+     "act": "mysterious, low and slow, a storyteller drawing you in",
+     "beat": "cold-open-hook"
+    },
+    {
+     "who": "narrator",
+     "text": "అనగనగా... కొండల మధ్య ఒక చిన్న ఊరు ఉండేది. దాని పేరు ఆనందపురం. పేరుకు తగ్గట్టే, అక్కడ అందరూ ఆనందంగా ఉండేవాళ్లు. ఊరి చుట్టూ దట్టమైన అడవి, పొద్దున్నే పక్షుల కిలకిలలు, చెరువుల నిండా తామరపూలు.",
+     "act": "warm, gentle grandparent storytelling, unhurried",
+     "beat": "setup"
+    },
+    {
+     "who": "narrator",
+     "text": "వర్షాకాలం వస్తే మట్టి వాసన ఊరంతా పరుచుకునేది. పిల్లలు చెట్ల కొమ్మలకు ఉయ్యాలలు కట్టి ఊగేవాళ్లు. అడవిలో జింకలు, నెమళ్లు, కుందేళ్లు... అందరికీ అక్కడ చోటు ఉండేది.",
+     "act": "dreamy, fond and smiling, slow",
+     "beat": "setup"
+    },
+    {
+     "who": "narrator",
+     "text": "కానీ ఒక రోజు, ఊరికి ఒక పెద్ద వ్యాపారి వచ్చాడు. అతని పేరు వీరేంద్ర. అతని కళ్ళకు ఆ అడవి అందంగా కనిపించలేదు... కేవలం డబ్బులా కనిపించింది.",
+     "act": "the warmth drains away, ominous, slower on the last words",
+     "beat": "turn"
+    },
+    {
+     "who": "veerendra",
+     "text": "ఇన్ని చెట్లా! ఇదంతా కలప... ఇదంతా డబ్బు! నరకండి... ఒక్కటి కూడా వదలకండి!",
+     "act": "greedy, harsh and loud, a smug laugh in the voice",
+     "beat": "villain-intro"
+    },
+    {
+     "who": "narrator",
+     "text": "రోజూ గొడ్డళ్ల చప్పుడు వినిపించేది. ఒక్కో చెట్టూ నేల కూలింది. సంవత్సరాలు గడిచాయి... వర్షాలు రావడం మానేశాయి. చెరువులు ఎండిపోయాయి. పక్షులు, జంతువులు ఊరు వదిలి వెళ్లిపోయాయి.",
+     "act": "heavy, sorrowful, slow, a pause after each short sentence",
+     "beat": "loss"
+    },
+    {
+     "who": "narrator",
+     "text": "ఒకప్పుడు పచ్చగా మెరిసిన ఆనందపురం... ఇప్పుడు ఎండిపోయిన గోధుమ రంగు నేలలా మారిపోయింది. ఆ నేల మధ్యలో, ఒకే ఒక్క చెట్టు మిగిలింది. ఒక పెద్ద, ముసలి మర్రి చెట్టు.",
+     "act": "quiet and sad, then a soft hush of wonder on the last line",
+     "beat": "the-last-tree"
+    }
+   ],
+   "visual_plan": [
+    "COLD OPEN (0:00-0:15): black screen, crickets; slow push-in on a giant banyan at night, its leaves glowing gold one by one",
+    "Meera (12) in a nightdress with a lantern, half-hidden behind a rock, eyes wide; the whisper 'మీరా...' moves the leaves toward her",
+    "Hard cut to TITLE CARD: 'మాయా చెట్టు రహస్యం' in leaf-gold letters over a pulsing seed glow, then 'చివరి చెట్టు' (4 s)",
+    "Wide establishing crane shot: Anandapuram between green hills, tiled-roof houses, lotus pond, morning mist, birds crossing the frame",
+    "Montage: kids on rope swings from banyan branches, a deer and peacock at the forest edge, rain on red soil",
+    "A shiny jeep rolls in raising dust; Veerendra steps out (white safari suit, gold chain, sunglasses, a small scar on his chin in close-up — the rewatch clue for scene 8), looks at the forest; coins flash in his sunglasses reflection",
+    "His men with axes and saws; close-ups of axe swings (no gore, no animals hurt); trees fall in silhouette",
+    "Time-lapse: green fades to brown, pond cracks, a bird family flies away, an empty swing rope swaying",
+    "Slow pull-back from the cracked ground to reveal one huge old banyan standing alone in the dry land, sunset behind it; hold 3 s"
+   ]
+  },
+  {
+   "n": 2,
+   "title": "మీరా ప్రశ్న — మెరిసే ఆకులు",
+   "setting": "The last banyan in the afternoon; Thatayya's house at dusk (verandah, oil lamp, rope cot); Meera's window and the banyan at night.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "ఆ ఊరిలో మీరా అనే పన్నెండేళ్ల అమ్మాయి ఉండేది. ధైర్యం ఎక్కువ, ప్రకృతి అంటే ప్రాణం. రోజూ స్కూల్ అయిపోగానే, నేరుగా ఆ మర్రి చెట్టు దగ్గరికి పరిగెత్తేది.",
+     "act": "warm and affectionate, a light smile, natural pace",
+     "beat": "hero-intro"
+    },
+    {
+     "who": "meera",
+     "text": "హాయ్ మర్రి చెట్టూ! ఈ రోజు కూడా నీకు నీళ్లు తెచ్చాను. చూడు, ఎంత ఎండగా ఉందో...",
+     "act": "cheerful and chatty, a little out of breath from running",
+     "beat": "character"
+    },
+    {
+     "who": "narrator",
+     "text": "చిన్న బిందెతో వేళ్ళకు నీళ్లు పోసి, చెట్టు నీడలో కూర్చుని, ఆ రోజు జరిగినవన్నీ దానికి చెప్పేది. ఆ సాయంత్రం ఇంటికి వచ్చాక, తాతయ్య పక్కన కూర్చుని... ఒక ప్రశ్న అడిగింది.",
+     "act": "gentle, flowing, slight pause before 'ఒక ప్రశ్న'",
+     "beat": "setup"
+    },
+    {
+     "who": "meera",
+     "text": "తాతయ్యా... మన ఊరిలో ఒకప్పుడు పెద్ద అడవి ఉండేదట కదా. మరి ఇప్పుడు ఒక్క చెట్టే ఎందుకు మిగిలింది?",
+     "act": "curious and a little sad, innocent question",
+     "beat": "question"
+    },
+    {
+     "who": "thatayya",
+     "text": "మనుషులు తమ అవసరాల కోసం ప్రకృతిని నాశనం చేశారు అమ్మా. ప్రకృతి మనకు ఎన్నో ఇచ్చింది. కానీ మనం దానికి తిరిగి ఏమీ ఇవ్వలేదు.",
+     "act": "old, wise and slow, a tired sigh of regret",
+     "beat": "wisdom"
+    },
+    {
+     "who": "meera",
+     "text": "మరి ఈ ఒక్క చెట్టునైనా మనం కాపాడుకోవచ్చు కదా తాతయ్యా!",
+     "act": "determined, hopeful, rising with conviction",
+     "beat": "want"
+    },
+    {
+     "who": "narrator",
+     "text": "ఆ రాత్రి ఊరంతా నిద్రపోయింది. కానీ మీరాకు నిద్ర పట్టలేదు. కిటికీలోంచి చూస్తే... దూరంగా ఆ మర్రి చెట్టు ఆకులు బంగారు రంగులో మెరుస్తున్నాయి!",
+     "act": "hushed suspense building to a whispered gasp of wonder",
+     "beat": "mystery"
+    },
+    {
+     "who": "tree",
+     "text": "మీరా... మీరా...",
+     "act": "ancient, echoing whisper, very slow, calling from far away",
+     "beat": "call"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా గుండె వేగంగా కొట్టుకుంది. లాంతరు పట్టుకుని, అడుగులో అడుగు వేస్తూ చెట్టు దగ్గరికి వెళ్ళింది. చల్లటి గాలి... ఆకుల గలగల... తన గుండె చప్పుడు తనకే వినిపిస్తోంది.",
+     "act": "tense, quiet and slow, like holding your breath",
+     "beat": "approach"
+    },
+    {
+     "who": "meera",
+     "text": "ఎ... ఎవరు? ఎవరు మాట్లాడుతున్నారు?",
+     "act": "trembling, brave but scared whisper",
+     "beat": "fear"
+    },
+    {
+     "who": "tree",
+     "text": "భయపడకు బిడ్డా. నేను ఈ అడవికి కాపలాదారుని.",
+     "act": "deep, calm and kind, ethereal, very slow",
+     "beat": "reveal"
+    }
+   ],
+   "visual_plan": [
+    "Meera intro: school bag bouncing, two plaits, yellow-green half-saree-style school uniform (our design), running across the dry field toward the banyan",
+    "She pours water from a small brass pot at the roots; close-up of water darkening the dry soil",
+    "She sits in the shade and talks animatedly; one leaf drifts down onto her shoulder as if the tree is listening",
+    "Dusk at Thatayya's house: tiled verandah, rope cot, oil lamp, Thatayya (white hair, spectacles, shawl, walking stick) shelling groundnuts",
+    "Two-shot as Meera asks; slow push-in on Thatayya's face during his answer; insert of an old faded photo of the green village on the wall",
+    "Meera's determined close-up, lamp-light in her eyes; Thatayya smiles and pats her head",
+    "Night: Meera on her mat, can't sleep; turns to the window; across the dark field the banyan glows gold",
+    "The whisper 'మీరా...' visualised as golden motes drifting through the window to her",
+    "Tracking shot behind Meera with a lantern across the field; long shadows; fireflies",
+    "Low angle up the huge trunk; the bark seems to breathe with light; roots glow faintly",
+    "On 'నేను ఈ అడవికి కాపలాదారుని' the glow forms two kind eyes of light in the bark (soft, friendly, not scary)"
+   ]
+  },
+  {
+   "n": 3,
+   "title": "మూడు పరీక్షలు — మాయా విత్తనం",
+   "setting": "Under the glowing banyan at night.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "మీరా కళ్ళార్పకుండా చూస్తూ ఉండిపోయింది. ఆ గొంతు చెట్టు లోపలి నుంచే వస్తోంది... మెత్తగా, ఎప్పుడో విన్న పాత పాటలా.",
+     "act": "awed whisper, slow",
+     "beat": "wonder"
+    },
+    {
+     "who": "tree",
+     "text": "కొన్ని వందల సంవత్సరాలుగా ఈ అడవిని నేను కాపాడుతున్నాను. నా కళ్ళ ముందే నా పిల్లల్లాంటి చెట్లు ఒక్కొక్కటిగా కూలిపోయాయి. ఇప్పుడు... నేను ఒక్కదాన్నే మిగిలాను.",
+     "act": "ancient, calm and sorrowful, slow, a heavy pause before the last words",
+     "beat": "backstory"
+    },
+    {
+     "who": "meera",
+     "text": "నేను ఈ అడవిని మళ్లీ పచ్చగా మారుస్తాను. నాకు సహాయం చేస్తావా?",
+     "act": "brave promise, steady and sincere, a child trying to sound grown-up",
+     "beat": "vow"
+    },
+    {
+     "who": "tree",
+     "text": "నీ మాటల్లో నిజాయితీ ఉంది బిడ్డా. కానీ ఇది సులభం కాదు. నువ్వు మూడు పరీక్షలు దాటాలి.",
+     "act": "kind but serious, measured and slow",
+     "beat": "challenge"
+    },
+    {
+     "who": "narrator",
+     "text": "అప్పుడే చెట్టు వేళ్ళ మధ్య నేల మెల్లగా విచ్చుకుంది. లోపల నుంచి ఒక చిన్న విత్తనం పైకి తేలి వచ్చింది. అది ఒక చిన్న నక్షత్రంలా మెరుస్తోంది.",
+     "act": "magical wonder, soft and slow, rising delight",
+     "beat": "magic"
+    },
+    {
+     "who": "tree",
+     "text": "ఇది మాయా విత్తనం. ఇది మొలకెత్తాలంటే మూడు శక్తులు కావాలి... ధైర్యం... కరుణ... త్యాగం.",
+     "act": "solemn and mystical, a pause before each of the three words",
+     "beat": "rules"
+    },
+    {
+     "who": "meera",
+     "text": "ధైర్యం... కరుణ... త్యాగం. నేను ప్రయత్నిస్తాను. మాటిస్తున్నాను!",
+     "act": "repeating softly to remember, then a firm, bright promise",
+     "beat": "accept"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా ఆ విత్తనాన్ని జాగ్రత్తగా తన చేతి రుమాలులో కట్టుకుంది. ఆ రాత్రి ఆమె కలలో కూడా... ఒక పచ్చని అడవి కనిపించింది. కానీ ఆమెకు తెలియదు... రేపు ఆమె కోసం ఎలాంటి పరీక్షలు ఎదురు చూస్తున్నాయో.",
+     "act": "tender, then a small teasing mystery on the last line",
+     "beat": "open-loop"
+    }
+   ],
+   "visual_plan": [
+    "Meera's face lit gold from below; the eyes of light in the bark blink slowly",
+    "Flashback in a 'paper' skin: centuries of the forest — a vast green canopy, then trees falling one by one as silhouettes against the banyan",
+    "Meera steps forward, fists clenched, saying her vow; leaves rustle as if in reply",
+    "The ground between the roots cracks open with a soft glow; a seed floats up, spinning slowly, shining like a star",
+    "Three glowing symbols appear around the seed as each word is spoken: a flame (ధైర్యం), a water drop (కరుణ), a heart-shaped leaf (త్యాగం); they fade into the seed as three dim rings",
+    "Meera cups the seed; close-up of her hands wrapping it in a cotton handkerchief",
+    "Dream sequence: Meera asleep, a translucent green forest grows over her bed; slow fade to morning light",
+    "Hold on the three dim rings on the seed (the progress meter for the next scenes)"
+   ]
+  },
+  {
+   "n": 4,
+   "title": "మొదటి పరీక్ష — ధైర్యం",
+   "setting": "Chintu's house in the morning; the forest edge; a dark cave under the hill with thorn bushes inside.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "మరుసటి రోజు పొద్దున్నే, మీరా తన బెస్ట్ ఫ్రెండ్ చింటూ దగ్గరికి పరిగెత్తింది. చింటూ అంటే నవ్వులే నవ్వులు... కానీ కొంచెం భయస్తుడు కూడా.",
+     "act": "light, playful, amused smile",
+     "beat": "sidekick-intro"
+    },
+    {
+     "who": "meera",
+     "text": "చింటూ! నిన్న రాత్రి మర్రి చెట్టు నాతో మాట్లాడింది!",
+     "act": "excited, rushed whisper-shout, can't contain the secret",
+     "beat": "news"
+    },
+    {
+     "who": "chintu",
+     "text": "ఏంటి? చెట్టు మాట్లాడిందా? నువ్వు రాత్రి కల కన్నావేమో!",
+     "act": "teasing disbelief, mouth half full, laughing",
+     "beat": "comic"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా రుమాలు విప్పి, మెరుస్తున్న విత్తనాన్ని చూపించింది. చింటూ చేతిలోని దోసె ముక్క కింద పడిపోయింది. నోరు తెరిచి అలాగే ఉండిపోయాడు.",
+     "act": "comic timing, a beat of pause before 'దోసె ముక్క'",
+     "beat": "proof"
+    },
+    {
+     "who": "chintu",
+     "text": "అమ్మో... ఇది నిజమే! సరే, నేనూ వస్తా. కానీ పులి గిలి ఎదురొస్తే... ముందు నువ్వే వెళ్ళాలి!",
+     "act": "nervous gulp, then a funny bargaining tone",
+     "beat": "comic"
+    },
+    {
+     "who": "narrator",
+     "text": "ఇద్దరూ అడవి అంచు దాటి, కొండ కింద ఉన్న ఒక చీకటి గుహ దగ్గరికి చేరుకున్నారు. లోపల నుంచి చల్లటి గాలి... నీటి చుక్కల టప్... టప్... చప్పుడు. అంతలోనే... గుహ లోపల నుంచి ఒక పెద్ద గర్జన!",
+     "act": "creeping suspense, slower and quieter, then sudden and loud on 'గర్జన'",
+     "beat": "danger"
+    },
+    {
+     "who": "chintu",
+     "text": "అమ్మో! పారిపోదాం మీరా! పరిగెత్తు, పరిగెత్తు!",
+     "act": "panicked, high-pitched, fast",
+     "beat": "fear"
+    },
+    {
+     "who": "narrator",
+     "text": "కానీ మీరా కదల్లేదు. లాంతరు వెలుగులో ఆమెకు ఒక చిన్న జింక పిల్ల కనిపించింది. ముళ్ళ పొదల్లో దాని కాలు చిక్కుకుంది. భయంతో వణుకుతూ, పెద్ద కళ్ళతో వాళ్ళ వైపే చూస్తోంది.",
+     "act": "the fear softens into tenderness, slow",
+     "beat": "discovery"
+    },
+    {
+     "who": "meera",
+     "text": "ఈ జింకను వదిలేసి ఎలా వెళ్లగలం? మనం దీన్ని కాపాడాలి.",
+     "act": "quiet but firm, brave decision",
+     "beat": "choice"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా మోకాళ్ళ మీద కూర్చుంది. ముళ్ళు చేతులకు గుచ్చుకుంటున్నా, ఒక్కొక్క కొమ్మనూ మెల్లగా తొలగించింది. చివరికి జింక పిల్ల కాలు విడిపడింది. అది ఒక్క గెంతులో బయటికి దూకి, వెనక్కి తిరిగి... ఆమెను ఒక్కసారి చూసింది.",
+     "act": "careful and tender, building to relief and a smile",
+     "beat": "rescue"
+    },
+    {
+     "who": "narrator",
+     "text": "మరి ఆ గర్జన? గుహలో దూరిన గాలి, గోడలకు తగిలి చేసిన ప్రతిధ్వని అది. భయం ఎప్పుడూ నిజం కంటే పెద్దగా వినిపిస్తుంది. అంతలో రుమాలులోంచి వెలుగు... విత్తనం మీద మొదటి వలయం మెరిసింది. ధైర్యం!",
+     "act": "knowing smile, then triumphant on 'ధైర్యం'",
+     "beat": "payoff"
+    }
+   ],
+   "visual_plan": [
+    "Morning at Chintu's house: round-faced boy (12) with messy hair, red T-shirt, eating a dosa on the doorstep",
+    "Meera bursts in; Chintu's laughing close-up; then the seed glow lights his face and the dosa piece drops (comic slow-mo)",
+    "Walk-and-talk along the brown forest edge, Chintu hiding behind Meera; dead stumps everywhere",
+    "The cave mouth under the hill: jagged dark opening, cold mist; switch skin to a darker 'neon/night' grade inside",
+    "Lantern beam sweeping the wet walls; water drops falling in close-up",
+    "THE ROAR: camera shake, dust falls from the ceiling, bats-free (just pebbles), Chintu leaps into the air and turns to run",
+    "Meera stays; her lantern finds a fawn tangled in a thorn bush, big frightened eyes",
+    "Close-ups of Meera's hands parting thorns, a small scratch on her hand (no blood shown, just a wince)",
+    "The fawn springs free, stops at the cave mouth, looks back at her in a beam of sunlight",
+    "Explain the roar: visual of wind rushing into a crack and echoing (sound waves drawn on the walls); Chintu sheepishly comes back",
+    "The handkerchief glows; the first ring on the seed lights up with a flame icon; small triumphant music sting"
+   ]
+  },
+  {
+   "n": 5,
+   "title": "రెండో పరీక్ష — కరుణ",
+   "setting": "Noon heat; the old dry village pond with cracked mud and an abandoned boat.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "మధ్యాహ్నం ఎండ మండిపోతోంది. ఇద్దరూ నడుస్తూ నడుస్తూ ఊరి చివర ఉన్న పాత చెరువు దగ్గరికి వచ్చారు. ఒకప్పుడు అక్కడ పడవలు తిరిగేవట. ఇప్పుడు... పగుళ్లు వచ్చిన నేల, ఒక పాత పడవ మాత్రమే మిగిలాయి.",
+     "act": "slow, hot and weary, a sad sigh",
+     "beat": "setting"
+    },
+    {
+     "who": "chintu",
+     "text": "అబ్బా... నా గొంతు ఎండిపోతోంది. మీరా, ఆ సీసాలో నీళ్లు కొంచెం ఇవ్వవా?",
+     "act": "dry-throated, dramatic whining, a little funny",
+     "beat": "need"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా సీసా మూత తీస్తుండగా, పగిలిన నేల మీద ఏదో కదిలింది. ఒక చిన్న పిచ్చుక. రెక్కలు వాల్చేసి, ముక్కు తెరిచి, ఊపిరి కోసం కష్టపడుతోంది.",
+     "act": "sudden concern, soft and slow",
+     "beat": "discovery"
+    },
+    {
+     "who": "meera",
+     "text": "అయ్యో... చూడు చింటూ! పాపం, దాహంతో అలసిపోయింది.",
+     "act": "heartbroken, gentle",
+     "beat": "empathy"
+    },
+    {
+     "who": "chintu",
+     "text": "మన దగ్గర ఉన్న నీళ్లు కొంచెమే...",
+     "act": "hesitant, worried, trailing off",
+     "beat": "dilemma"
+    },
+    {
+     "who": "meera",
+     "text": "మనకు దాహం వేస్తే మనం నీళ్లు వెతుక్కోగలం. కానీ ఈ చిన్న పక్షి మనలాగా వెతుక్కోలేదు కదా!",
+     "act": "kind but certain, gently convincing her friend",
+     "beat": "choice"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా అరచేతిని దోసిలిలా చేసి, సీసాలోని చివరి నీళ్లు అందులో పోసింది. పిచ్చుక మెల్లగా ఒక చుక్క... ఇంకో చుక్క... తాగింది. కొన్ని క్షణాల్లోనే రెక్కలు విదిలించి, ఆమె భుజం మీద వాలి, కిచ్ కిచ్ అంటూ ఎగిరిపోయింది.",
+     "act": "tender and slow, then light and joyful at the end",
+     "beat": "rescue"
+    },
+    {
+     "who": "chintu",
+     "text": "సరేలే... నీళ్లు పోయాయి కానీ, ఆ పాట విన్నాక నా దాహం కూడా తగ్గినట్టుంది!",
+     "act": "playful, warm, a small laugh",
+     "beat": "comic-heart"
+    },
+    {
+     "who": "narrator",
+     "text": "అప్పుడే విత్తనం మళ్లీ మెరిసింది. ఈసారి ఇంకా ప్రకాశవంతంగా. రెండో వలయం... కరుణ! ఇక మిగిలింది ఒక్కటే పరీక్ష. అదే అన్నిటికంటే కష్టమైనది.",
+     "act": "glowing pride, then a quiet, serious open loop",
+     "beat": "payoff-open-loop"
+    }
+   ],
+   "visual_plan": [
+    "Heat-haze shimmer over the dry pond; a cracked-mud pattern fills the frame; an abandoned wooden boat tilted in the mud",
+    "Two small figures walking in from the far edge, shadows short under the noon sun",
+    "Chintu flops on the boat, tongue out, fanning himself with a leaf (comic)",
+    "Meera unscrews a nearly empty steel bottle; close-up shows only a little water sloshing",
+    "Something moves in the cracks: a tiny sparrow, beak open, wings drooping",
+    "Two-shot: Chintu's worried face vs Meera's soft decision",
+    "Macro close-up: water in Meera's cupped palm, the sparrow sipping drop by drop, light glinting",
+    "The sparrow shakes its feathers, hops onto her shoulder, chirps, and takes off; camera follows it up into the sky",
+    "Chintu grins and wipes his forehead; the seed's second ring glows with a water-drop icon; one ring still dark"
+   ]
+  },
+  {
+   "n": 6,
+   "title": "మూడో పరీక్ష — త్యాగం",
+   "setting": "Back at the banyan at sunset; orange sky.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "సాయంత్రానికి ఇద్దరూ మళ్లీ మర్రి చెట్టు దగ్గరికి వచ్చారు. ఆకాశం నారింజ రంగులో ఉంది. చెట్టు ఆకులు మెల్లగా మెరవడం మొదలుపెట్టాయి.",
+     "act": "calm, golden-hour softness, slow",
+     "beat": "return"
+    },
+    {
+     "who": "tree",
+     "text": "శభాష్ బిడ్డా. నువ్వు ధైర్యం చూపించావు. కరుణ చూపించావు. ఇప్పుడు చివరి పరీక్ష... నీకు అన్నిటికంటే ఇష్టమైనదాన్ని వదులుకోవాలి.",
+     "act": "proud and warm, then grave and slow on the last sentence",
+     "beat": "final-test"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా చేయి తెలియకుండానే మెడలోని వెండి లాకెట్ మీదికి వెళ్ళింది. అది అమ్మ గుర్తుగా ఆమె దగ్గర మిగిలిన ఒకే ఒక్క వస్తువు. లోపల అమ్మ చిన్న ఫోటో ఉంది.",
+     "act": "very soft and tender, a lump in the throat",
+     "beat": "stakes"
+    },
+    {
+     "who": "chintu",
+     "text": "మీరా... అది మీ అమ్మ లాకెట్ కదా. వద్దు... ఇంకేదైనా ఇవ్వు.",
+     "act": "worried, quiet, the joker suddenly serious",
+     "beat": "doubt"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా కళ్ళలో నీళ్లు తిరిగాయి. లాకెట్‌ను గట్టిగా గుండెకు హత్తుకుంది. కొన్ని క్షణాలు ఏమీ మాట్లాడలేదు. గాలి కూడా ఆగిపోయినట్టు అనిపించింది.",
+     "act": "slow, near-silent, long pauses",
+     "beat": "struggle"
+    },
+    {
+     "who": "meera",
+     "text": "నా తల్లి నాకు ఎప్పుడూ ఇతరులకు సహాయం చేయాలని చెప్పేది. ఈ అడవి మళ్లీ బతికితే... అదే నాకు నిజమైన బహుమతి.",
+     "act": "tearful but steady, a brave smile through tears, slow",
+     "beat": "sacrifice"
+    },
+    {
+     "who": "narrator",
+     "text": "ఆమె లాకెట్‌ను మెల్లగా చెట్టు వేళ్ళ దగ్గర పెట్టింది. ఆ క్షణంలో... విత్తనం నుంచి ఒక పెద్ద వెలుగు! బంగారు కాంతి స్తంభంలా ఆకాశం వైపు ఎగిసింది. మూడో వలయం... త్యాగం!",
+     "act": "starts as a whisper, swells into awe and triumph",
+     "beat": "climax-light"
+    }
+   ],
+   "visual_plan": [
+    "Sunset silhouette of the banyan, two kids walking toward it, long shadows; leaves start to shimmer",
+    "The tree's eyes of light appear softly; the seed floats out of the handkerchief and hovers between them",
+    "Close-up: Meera's hand rises to a small silver locket on a thread around her neck",
+    "Insert: the locket opens, a tiny painted portrait of her mother smiling (our own drawing); soft piano",
+    "Chintu reaches out to stop her, then lowers his hand",
+    "Extreme close-up: a tear rolling down Meera's cheek, reflecting the gold light; all ambient sound drops out",
+    "She kneels and places the locket in a hollow between the roots; her fingers linger, then let go",
+    "The seed's third ring lights (heart-leaf icon); a column of gold light shoots up into the sky; wind blows the kids' hair back",
+    "Wide shot: the light beam visible from the whole village; far away, jeep headlights turn toward it (sets up scene 7)"
+   ]
+  },
+  {
+   "n": 7,
+   "title": "వీరేంద్ర వచ్చాడు",
+   "setting": "The banyan at dusk; Veerendra's jeeps and the factory crew with axes and saws; then the storm gathering.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "కానీ ఆ వెలుగును మీరా ఒక్కతే చూడలేదు. దూరం నుంచి జీపుల శబ్దం... గొడ్డళ్లు, రంపాలు పట్టుకున్న మనుషులు. అందరికంటే ముందు నడుస్తున్నది... వీరేంద్ర.",
+     "act": "sudden tension, low and urgent",
+     "beat": "threat"
+    },
+    {
+     "who": "veerendra",
+     "text": "ఈ చెట్టు కూడా నరికేయండి! ఇక్కడ ఒక పెద్ద ఫ్యాక్టరీ నిర్మించబోతున్నాను!",
+     "act": "arrogant, harsh, loud command",
+     "beat": "villain"
+    },
+    {
+     "who": "narrator",
+     "text": "ఒక మనిషి గొడ్డలి పైకి ఎత్తాడు. అంతలో... ఒక చిన్న ఆకారం చెట్టు ముందుకు పరిగెత్తి, రెండు చేతులూ చాపి నిలబడింది. మీరా!",
+     "act": "fast and tense, then a breath and a proud reveal on 'మీరా'",
+     "beat": "stand"
+    },
+    {
+     "who": "meera",
+     "text": "దయచేసి ఈ చెట్టును నరకకండి! ఇది మన గ్రామానికి చివరి ఆశ!",
+     "act": "pleading but fearless, loud, voice shaking a little",
+     "beat": "plea"
+    },
+    {
+     "who": "veerendra",
+     "text": "ఒక చిన్న అమ్మాయి నాకు బుద్ధి చెబుతుందా? పక్కకు జరుగు!",
+     "act": "mocking laugh turning into an angry bark",
+     "beat": "contempt"
+    },
+    {
+     "who": "chintu",
+     "text": "మీరా ఒక్కతే కాదు... నేను కూడా ఉన్నా!",
+     "act": "scared but brave, voice cracking, then firm",
+     "beat": "sidekick-courage"
+    },
+    {
+     "who": "narrator",
+     "text": "భయస్తుడైన చింటూ కూడా వణుకుతూనే మీరా పక్కన నిలబడ్డాడు. వీరేంద్ర ముఖం కోపంతో ఎర్రబడింది. కానీ అప్పుడే... ఆకాశం ఒక్కసారిగా చీకటి అయింది. గాలి హోరుమంది. నేల గడగడ వణికింది.",
+     "act": "proud on Chintu, then building storm suspense, faster and louder",
+     "beat": "storm"
+    },
+    {
+     "who": "narrator",
+     "text": "మర్రి చెట్టు ఆకులన్నీ ఒక్కసారిగా వెలిగిపోయాయి. ఆ వెలుగులోంచి... ఆకులతో, కాంతితో అల్లిన ఒక రూపం మెల్లగా బయటికి వచ్చింది. వృక్ష దేవత!",
+     "act": "awed whisper, slow, then reverent on 'వృక్ష దేవత'",
+     "beat": "appearance"
+    }
+   ],
+   "visual_plan": [
+    "Headlights cut through dusk; two jeeps skid to a stop; men jump out with axes, a chainsaw-like saw, ropes",
+    "Veerendra steps down in slow motion, sunglasses at night, points at the banyan",
+    "A henchman spits on his palms and raises the axe (back view); the blade catches the gold light",
+    "Meera sprints in and stands with arms spread before the trunk; low angle makes her look tall",
+    "Veerendra bends to her level, laughs in her face, then waves her aside",
+    "Chintu runs in, knees shaking (comic shake lines), and stands beside her; their hands clasp",
+    "STORM: clouds roll in at time-lapse speed, lightning (no strikes on people), dust devils, axes rattle in hands",
+    "Every leaf on the banyan ignites with light; the camera pushes into the canopy",
+    "The Devata emerges: a tall, gentle feminine figure woven from green leaves, vines and soft golden light, flowing hair of leaves, kind luminous eyes; NO idol, crown, temple, ritual items or religious symbols; she floats just above the roots",
+    "Everyone frozen: men drop to their knees out of awe, not injury"
+   ]
+  },
+  {
+   "n": 8,
+   "title": "వృక్ష దేవత",
+   "setting": "The banyan in the storm-light; the Devata hovering; then the storm calms.",
+   "lines": [
+    {
+     "who": "devata",
+     "text": "ఆగండి! ఈ అడవి ఎవరి సొంతం కాదు. ఇది సమస్త జీవరాశికి చెందినది.",
+     "act": "powerful and echoing yet calm, slow and commanding",
+     "beat": "declaration"
+    },
+    {
+     "who": "narrator",
+     "text": "వీరేంద్ర మనుషుల చేతుల్లోంచి గొడ్డళ్లు జారి కింద పడ్డాయి. వీరేంద్ర ఒక అడుగు వెనక్కి వేశాడు... కానీ అతని గర్వం ఇంకా తగ్గలేదు.",
+     "act": "tense, measured",
+     "beat": "reaction"
+    },
+    {
+     "who": "veerendra",
+     "text": "నువ్వెవరు?",
+     "act": "shaken but defiant, trying to sound tough",
+     "beat": "challenge"
+    },
+    {
+     "who": "devata",
+     "text": "ఈ అడవికి ప్రాణం పోసిన శక్తిని. మీరు చెట్లను నరికారు. జంతువుల నివాసాలను నాశనం చేశారు. ఇప్పుడు మీకు ప్రకృతి విలువ తెలియాలి.",
+     "act": "deep, sorrowful anger, slow and heavy, each sentence landing",
+     "beat": "judgment"
+    },
+    {
+     "who": "narrator",
+     "text": "దేవత చేయి ఎత్తగానే, తుఫాను గాలి వీరేంద్ర చుట్టూ గిర్రున తిరిగింది. ఎండిన ఆకులు, దుమ్ము... అతను కళ్ళు మూసుకుని మోకాళ్ళ మీద కూలబడ్డాడు.",
+     "act": "dramatic and fast, wind in the voice",
+     "beat": "storm-peak"
+    },
+    {
+     "who": "meera",
+     "text": "దేవతా! వీరిని శిక్షించకండి. వీరికి ప్రకృతి విలువ అర్థమయ్యేలా చేయండి.",
+     "act": "urgent, pleading, kind, shouting over the wind",
+     "beat": "mercy"
+    },
+    {
+     "who": "narrator",
+     "text": "ఒక్కసారిగా తుఫాను ఆగిపోయింది. దేవత మీరా వైపు తిరిగి చిరునవ్వు నవ్వింది. ఆ చిరునవ్వులో వెన్నెల లాంటి చల్లదనం ఉంది.",
+     "act": "sudden stillness, soft and slow, relief",
+     "beat": "calm"
+    },
+    {
+     "who": "devata",
+     "text": "నీ హృదయంలోని కరుణే ఈ అడవికి నిజమైన శక్తి.",
+     "act": "loving, gentle, ethereal, very slow",
+     "beat": "theme"
+    },
+    {
+     "who": "narrator",
+     "text": "దేవత ఒక ఆకుతో వీరేంద్ర నుదుటిని మెల్లగా తాకింది. ఆ క్షణంలో అతని కళ్ళ ముందు తన చిన్నతనం కనిపించింది. ఇదే అడవిలో పరిగెత్తిన రోజులు... ఇదే మర్రి కొమ్మల మీద ఊగిన సాయంత్రాలు.",
+     "act": "wistful and nostalgic, slow, a surprising tenderness",
+     "beat": "twist"
+    },
+    {
+     "who": "veerendra",
+     "text": "నేను... నేను ఏం చేశాను? నేను ఆడుకున్న అడవినే... నా చేతులతో నాశనం చేశాను.",
+     "act": "broken, regretful whisper, voice cracking",
+     "beat": "realisation"
+    }
+   ],
+   "visual_plan": [
+    "Low-angle hero shot of the Devata, leaves swirling around her, light pouring from her open palm",
+    "Axes slip from the men's hands in slow motion and thud into the dust",
+    "Veerendra stumbles back; his sunglasses fall; his face half-lit, still proud",
+    "On her judgment: ghostly translucent images of the lost forest and fleeing animals swirl around Veerendra (memory images, not attacks)",
+    "A spiral of wind and dry leaves circles Veerendra; he shields his eyes and kneels (no injury)",
+    "Meera runs between them, arms raised to the Devata",
+    "The storm stops mid-swirl; leaves hang in the air, then drift down gently; moonlight breaks through",
+    "The Devata kneels to Meera's height and smiles; a soft glow passes from her hand to Meera's heart",
+    "TWIST flashback in 'paper' skin: young Veerendra (8, same face shape, a small scar on the chin set up in scene 1 close-up) swinging from this same banyan, laughing",
+    "Back to present: Veerendra on his knees, tears in his eyes, touching the bark with an open palm"
+   ]
+  },
+  {
+   "n": 9,
+   "title": "వర్షం — పచ్చని ఆనందపురం",
+   "setting": "First rain in years; the regrowth montage; villagers planting; the green village; the banyan under a rainbow; end card.",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "అప్పుడే ఆకాశం నుంచి మొదటి చినుకు పడింది. తర్వాత ఇంకోటి... ఇంకోటి... ఎన్నో సంవత్సరాల తర్వాత ఆనందపురంలో వర్షం కురిసింది! మట్టి వాసన మళ్లీ ఊరంతా పరుచుకుంది.",
+     "act": "joyful wonder, building from a whisper to delight",
+     "beat": "rain"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా చేతిలోని మాయా విత్తనం జారి తడిసిన నేల మీద పడింది. చూస్తుండగానే అది మొలకెత్తింది. ఆ మొలక నుంచి పచ్చదనం అలలా నలువైపులా పరుగెత్తింది. ఎండిన చెరువులు నిండాయి... నేల నుంచి చిన్న చిన్న మొక్కలు తల ఎత్తాయి.",
+     "act": "magical, flowing, rising excitement",
+     "beat": "regrowth"
+    },
+    {
+     "who": "villagers",
+     "text": "వర్షం! వర్షం వచ్చింది! మన ఊరికి మళ్లీ వర్షం వచ్చింది!",
+     "act": "a joyful crowd cheering, overlapping, laughing",
+     "beat": "celebration"
+    },
+    {
+     "who": "narrator",
+     "text": "ఊరి జనమంతా బయటికి పరిగెత్తుకొచ్చారు. తాతయ్య కళ్ళు చెమర్చాయి. ఆ రోజు నుంచి ప్రతి ఇంటి వాళ్లూ మొక్కలు నాటడం మొదలుపెట్టారు. అందరికంటే ముందు గుంతలు తవ్వింది ఎవరో తెలుసా? ... వీరేంద్ర!",
+     "act": "warm and happy, a playful pause before the surprise name",
+     "beat": "change"
+    },
+    {
+     "who": "veerendra",
+     "text": "నేను నరికిన ప్రతి చెట్టుకీ బదులు... పది మొక్కలు నాటుతాను. ఇది నా మాట.",
+     "act": "humble, sincere, quietly determined, no harshness left",
+     "beat": "redemption"
+    },
+    {
+     "who": "thatayya",
+     "text": "చూశావా అమ్మా? ప్రకృతికి మనం కొంచెం ఇస్తే... అది మనకు వంద రెట్లు తిరిగి ఇస్తుంది.",
+     "act": "old, warm, chuckling softly, full of pride",
+     "beat": "wisdom-callback"
+    },
+    {
+     "who": "narrator",
+     "text": "నెలలు గడిచాయి. ఆనందపురం మళ్లీ పచ్చగా మారింది. జింకలు తిరిగొచ్చాయి, పక్షులు పాటలు పాడాయి. మీరా లాకెట్ పెట్టిన చోట ఒక చిన్న మొక్క మొలిచింది. మీరా దానికి 'అమ్మ' అని పేరు పెట్టింది.",
+     "act": "gentle and content, very tender on the last sentence",
+     "beat": "emotional-payoff"
+    },
+    {
+     "who": "tree",
+     "text": "మీరా... నువ్వు ఈ అడవిని కాపాడావు.",
+     "act": "warm, ancient whisper, proud and grateful, slow",
+     "beat": "thanks"
+    },
+    {
+     "who": "meera",
+     "text": "నేను ఒక్కదాన్నే కాదు. మనమందరం కలిసి కాపాడాం!",
+     "act": "bright, happy, humble, smiling",
+     "beat": "theme"
+    },
+    {
+     "who": "narrator",
+     "text": "అప్పుడే ఆకాశంలో ఒక పెద్ద ఇంద్రధనుస్సు విరిసింది. ఆనందపురం మళ్లీ తన పేరుకు తగ్గట్టు... ఆనందంగా మారింది.",
+     "act": "soaring and warm, slow, a happy ending",
+     "beat": "rainbow"
+    },
+    {
+     "who": "narrator",
+     "text": "ప్రకృతి మనకు ఇచ్చే ప్రతి బహుమతిని కాపాడటం మన బాధ్యత. చెట్లు లేకపోతే జీవితం లేదు. మనం ప్రకృతిని కాపాడితే, ప్రకృతి మనల్ని కాపాడుతుంది. ఒక చిన్న మంచి ప్రయత్నం కూడా ప్రపంచంలో పెద్ద మార్పు తీసుకురాగలదు. శుభం!",
+     "act": "heartfelt, slow and clear, like a grandparent's closing words, bright on 'శుభం'",
+     "beat": "moral"
+    },
+    {
+     "who": "narrator",
+     "text": "మీరా మూడు పరీక్షలు దాటింది... ధైర్యం, కరుణ, త్యాగం. మీరైతే ఏ పరీక్షలో ఎక్కువ కష్టపడేవారు? కామెంట్ చేయండి. ఇలాంటి కథల కోసం Reel Rasam ని subscribe చేయండి... మళ్లీ కలుద్దాం!",
+     "act": "friendly, direct to the viewer, warm smile, unhurried",
+     "beat": "cta"
+    }
+   ],
+   "visual_plan": [
+    "Macro: the first raindrop hits the cracked earth in slow motion, a puff of dust; then rain everywhere",
+    "The seed slips from Meera's hand into a puddle; a sprout bursts up; a green wave races outward across the land (top-down shot)",
+    "Montage: the dry pond fills and lotuses open; the abandoned boat floats; the fawn returns with its mother; the sparrow and a flock land on the banyan",
+    "Villagers run out cheering, kids dancing in the rain, Thatayya on the verandah wiping happy tears",
+    "Planting montage: families digging, saplings in hands; Veerendra in a plain kurta, sleeves rolled, digging first; his men carrying saplings instead of axes",
+    "Time-skip wipe through seasons: saplings become young trees; the village turns green again",
+    "Close-up: a small sapling growing where the locket was placed, a glint of silver among its roots; Meera kneels beside it smiling",
+    "Golden hour: Meera and Chintu sit on a root; the tree's soft eyes of light appear one last time",
+    "A huge rainbow arcs over the banyan and the green village; slow crane up and out",
+    "Moral card: the narrator's closing lines as soft on-screen Telugu text over the rainbow; 'శుభం' title in leaf-gold",
+    "End card (16:9): '@reel_rasam | Subscribe', a comment-bubble icon with 'ధైర్యం? కరుణ? త్యాగం?', two end-screen video slots; small text 'Animation & voices are AI-generated'"
+   ]
+  }
+ ]
+}
