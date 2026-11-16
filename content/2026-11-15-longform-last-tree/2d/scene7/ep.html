@@ -126,7 +126,7 @@ const shots = [
     const S = banyan(t, op, cam, { shake: q * 10 + (close ? 1.5 : 0) + (t > T.wind && t < 58 ? 2 : 0) });
     crew(t, S, C); const v = VE[C], m = ME[C], c = CH[C], sm = storm(t);
     KIT.put(v, S, { x: 640, y: G + 5, s: .85, flip: 1, turn: .35, mood: t > 49.5 ? "scared" : "angry", look: t > 49.5 ? 0 : .7, lookY: t > 49.5 ? -1 : 0, pose: t > 49.5 ? "cower" : "handsHips", lean: q * noise1(t * 8, 7) * 6 });
-    if (close) { const [hx, hy] = KIT.toScreen(S, 640, G + 5 - 440 * .85); tint2(0, ""); tint(.85 * rng(t, 45.9, 47.0), `radial-gradient(circle 230px at ${hx}px ${hy + 40}px,#FF3A2A 0%,#FF7A6A 40%,#FFFFFF 100%)`); }
+    if (close) { const [hx, hy] = KIT.toScreen(S, 640, G + 5 - 514 * .85); tint2(0, ""); tint(.85 * rng(t, 45.9, 47.0), `radial-gradient(circle 230px at ${hx}px ${hy + 10}px,#FF3A2A 0%,#FF7A6A 40%,#FFFFFF 100%)`); }
     KIT.put(m, S, { x: 1000, y: 945, s: .72, flip: 1, locket: false, pose: "stand", itemL: "seed", glow: 3, mood: t > 49.5 ? "awe" : "angry", turn: -.25, look: -.6, lookY: t > 49.5 ? -1 : 0, hR: [46, 96], lean: q * noise1(t * 8, 3) * 5 });
     KIT.put(c, S, { x: 1130 + (t < 45 ? Math.sin(t * 38) * 2 : 0), y: 945, s: .7, flip: 1, mood: t > 49.5 ? "scared" : (t < 44.8 ? "angry" : "neutral"), turn: -.25, look: -.6, lookY: t > 49.5 ? -1 : 0, hL: [-46, 96], lean: q * noise1(t * 8, 4) * 5 });
     KIT.put(SHK[C], S, { x: 1130, y: 945, s: .7, k: t < 44.8 ? .7 : (q ? 1 : 0) });

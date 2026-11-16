@@ -1,0 +1,169 @@
+{
+ "scene": 7,
+ "video": "work/render/scene7.mp4",
+ "dur": 72.16,
+ "film_start": 579.61,
+ "note": "Times are seconds from the start of this scene's mp4 (add film_start for the film timeline). Dusk -> storm -> the Devata appears. Effects only, no music; level them under the voice. Keep the storm loud only between lines (49.4-58.2 builds; duck under the narrator).",
+ "cues": [
+  {
+   "t": 0.0,
+   "film_t": 579.61,
+   "effect": "dusk ambience: evening crickets, soft wind (until 50)"
+  },
+  {
+   "t": 0.3,
+   "film_t": 579.91,
+   "effect": "magical swell tail: the light column fading (until 5)"
+  },
+  {
+   "t": 2.0,
+   "film_t": 581.61,
+   "effect": "gentle chimes: Meera picks up the glowing seed"
+  },
+  {
+   "t": 5.2,
+   "film_t": 584.81,
+   "effect": "jeep engines approaching from the left (rising)"
+  },
+  {
+   "t": 7.3,
+   "film_t": 586.91,
+   "effect": "jeeps: engines close + tyres on gravel"
+  },
+  {
+   "t": 8.4,
+   "film_t": 588.01,
+   "effect": "jeeps skid to a stop (brakes + gravel spray)"
+  },
+  {
+   "t": 9.1,
+   "film_t": 588.71,
+   "effect": "jeep doors open/slam x4 (9.1-10.2)"
+  },
+  {
+   "t": 9.4,
+   "film_t": 589.01,
+   "effect": "boots jumping down on dirt; axes and a saw clinking (9.4-12)"
+  },
+  {
+   "t": 11.4,
+   "film_t": 591.01,
+   "effect": "slow heavy footsteps (Veerendra, slow motion) until 14.4"
+  },
+  {
+   "t": 16.0,
+   "film_t": 595.61,
+   "effect": "axes: wooden sign post thumped into the ground (thud)"
+  },
+  {
+   "t": 18.95,
+   "film_t": 598.56,
+   "effect": "axe raised: blade whoosh + metallic glint ting (19.9)"
+  },
+  {
+   "t": 22.4,
+   "film_t": 602.01,
+   "effect": "small running footsteps on dry leaves (Meera) until 24.6"
+  },
+  {
+   "t": 25.6,
+   "film_t": 605.21,
+   "effect": "cloth whoosh: arms spread"
+  },
+  {
+   "t": 28.3,
+   "film_t": 607.91,
+   "effect": "soft magical swell on 'మీరా!'"
+  },
+  {
+   "t": 34.6,
+   "film_t": 614.21,
+   "effect": "mocking laugh bed under the line (optional, Veerendra)"
+  },
+  {
+   "t": 37.4,
+   "film_t": 617.01,
+   "effect": "running footsteps (Chintu) until 38.9"
+  },
+  {
+   "t": 39.0,
+   "film_t": 618.61,
+   "effect": "comic knee-knock rattle (39.0-40.6)"
+  },
+  {
+   "t": 40.0,
+   "film_t": 619.61,
+   "effect": "hands clasp: soft pat"
+  },
+  {
+   "t": 45.6,
+   "film_t": 625.21,
+   "effect": "low tense drone / heartbeat (Veerendra's red face) until 48.4"
+  },
+  {
+   "t": 48.5,
+   "film_t": 628.11,
+   "effect": "wind gust starts"
+  },
+  {
+   "t": 49.4,
+   "film_t": 629.01,
+   "effect": "rumble: the sky darkens (clouds rolling)"
+  },
+  {
+   "t": 51.6,
+   "film_t": 631.21,
+   "effect": "thunder crack (lightning far behind the tree, nobody hit)"
+  },
+  {
+   "t": 53.4,
+   "film_t": 633.01,
+   "effect": "howling wind + dry leaves whirling (dust devils) until 58"
+  },
+  {
+   "t": 53.6,
+   "film_t": 633.21,
+   "effect": "axes rattle in hands (metal clatter)"
+  },
+  {
+   "t": 55.2,
+   "film_t": 634.81,
+   "effect": "rumble: ground shaking, pebbles rattling (55.2-57.6)"
+  },
+  {
+   "t": 56.2,
+   "film_t": 635.81,
+   "effect": "thunder (second, rolling)"
+  },
+  {
+   "t": 58.2,
+   "film_t": 637.81,
+   "effect": "magical swell: every leaf lights up (shimmer)"
+  },
+  {
+   "t": 61.8,
+   "film_t": 641.41,
+   "effect": "deep warm hum from the trunk (light opening)"
+  },
+  {
+   "t": 63.2,
+   "film_t": 642.81,
+   "effect": "magical swell rising slowly: the Devata emerges (63.2-68.3)"
+  },
+  {
+   "t": 68.3,
+   "film_t": 647.91,
+   "effect": "magical swell peak + gentle chimes on 'వృక్ష దేవత!'"
+  },
+  {
+   "t": 69.3,
+   "film_t": 648.91,
+   "effect": "knees on dirt: the men kneel in awe (69.3-70.8)"
+  },
+  {
+   "t": 71.4,
+   "film_t": 651.01,
+   "effect": "wind settles; fade out"
+  }
+ ]
+}

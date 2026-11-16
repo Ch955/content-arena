@@ -1,0 +1,154 @@
+{
+ "scene": 8,
+ "video": "work/render/scene8.mp4",
+ "dur": 93.03,
+ "film_start": 651.77,
+ "note": "Times are seconds from the start of this scene's mp4 (add film_start for the film timeline). The Devata speaks; wind spiral; mercy; moonlight; the PAPER flashback (warm, nostalgic); regret. Effects only, no music. 72.4-82.0 is a memory: soften/filter the present-day ambience, add children's laughter.",
+ "cues": [
+  {
+   "t": 0.0,
+   "film_t": 651.77,
+   "effect": "storm ambience low (wind, distant thunder) until 51.3"
+  },
+  {
+   "t": 0.8,
+   "film_t": 652.57,
+   "effect": "magical swell + echo on 'ఆగండి!'"
+  },
+  {
+   "t": 1.0,
+   "film_t": 652.77,
+   "effect": "leaves swirling around the Devata (rustle) until 8"
+  },
+  {
+   "t": 9.4,
+   "film_t": 661.17,
+   "effect": "axe slips: thud into dust"
+  },
+  {
+   "t": 10.0,
+   "film_t": 661.77,
+   "effect": "axe thud (2)"
+  },
+  {
+   "t": 10.6,
+   "film_t": 662.37,
+   "effect": "saw drops: metallic clang"
+  },
+  {
+   "t": 11.1,
+   "film_t": 662.87,
+   "effect": "rope coil drops (soft thump)"
+  },
+  {
+   "t": 13.85,
+   "film_t": 665.62,
+   "effect": "stumbling footstep back (Veerendra)"
+  },
+  {
+   "t": 14.25,
+   "film_t": 666.02,
+   "effect": "sunglasses fall: small plastic clatter (14.95) + bounce"
+  },
+  {
+   "t": 20.9,
+   "film_t": 672.67,
+   "effect": "low magical drone under the Devata's judgment"
+  },
+  {
+   "t": 24.4,
+   "film_t": 676.17,
+   "effect": "ghostly whoosh: memory images of the forest swirl"
+  },
+  {
+   "t": 26.6,
+   "film_t": 678.37,
+   "effect": "deer hooves + birds fluttering away (ghostly, reverb)"
+  },
+  {
+   "t": 33.6,
+   "film_t": 685.37,
+   "effect": "magical swell: she raises her hand"
+  },
+  {
+   "t": 35.4,
+   "film_t": 687.17,
+   "effect": "howling wind spiral + dry leaves + dust (35.4-51.3)"
+  },
+  {
+   "t": 41.3,
+   "film_t": 693.07,
+   "effect": "knees thud on dirt (Veerendra kneels)"
+  },
+  {
+   "t": 44.5,
+   "film_t": 696.27,
+   "effect": "running footsteps (Meera) until 45.6"
+  },
+  {
+   "t": 51.3,
+   "film_t": 703.07,
+   "effect": "sudden silence: the storm stops (cut the wind dead)"
+  },
+  {
+   "t": 51.5,
+   "film_t": 703.27,
+   "effect": "leaves hanging, then soft drifting rustle (52.8-57.5)"
+  },
+  {
+   "t": 57.6,
+   "film_t": 709.37,
+   "effect": "gentle chimes: moonlight breaks through; night crickets return"
+  },
+  {
+   "t": 62.6,
+   "film_t": 714.37,
+   "effect": "gentle chimes: the glow passes to Meera's heart (62.6-64.2)"
+  },
+  {
+   "t": 67.4,
+   "film_t": 719.17,
+   "effect": "soft magical swell: the glowing leaf"
+  },
+  {
+   "t": 68.6,
+   "film_t": 720.37,
+   "effect": "gentle chime on the forehead touch"
+  },
+  {
+   "t": 71.9,
+   "film_t": 723.67,
+   "effect": "magical swell into a white flash (transition to the memory)"
+  },
+  {
+   "t": 72.4,
+   "film_t": 724.17,
+   "effect": "memory: warm daytime forest ambience, birds, children laughing, running feet (72.4-78.2)"
+  },
+  {
+   "t": 78.2,
+   "film_t": 729.97,
+   "effect": "rope swing creaking + children laughing (78.2-82)"
+  },
+  {
+   "t": 82.0,
+   "film_t": 733.77,
+   "effect": "swell release: back to the moonlit present (night crickets)"
+  },
+  {
+   "t": 82.4,
+   "film_t": 734.17,
+   "effect": "soft heartbeat under Veerendra's line (optional)"
+  },
+  {
+   "t": 88.4,
+   "film_t": 740.17,
+   "effect": "palm on bark: soft touch + faint warm chime"
+  },
+  {
+   "t": 92.4,
+   "film_t": 744.17,
+   "effect": "fade out"
+  }
+ ]
+}

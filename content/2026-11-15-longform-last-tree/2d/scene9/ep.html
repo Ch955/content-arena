@@ -1,0 +1,202 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- Scene 9 · వర్షం — పచ్చని ఆనందపురం (146.73 s). Timeline: work/voices/scene9/timeline.json (do not retime). Rain; the seed sprouts; the green
+     wave; montage; villagers; planting (Veerendra first); the 'అమ్మ' sapling; golden hour; rainbow; the moral; the comment/subscribe CTA; 10 s end card. -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="../scene4/lib456.js"></script>
+<script src="../scene7/lib789.js"></script>
+<script>
+"use strict";
+const DUR = 146.73, G = 940;
+const ME = castPair(makeMeera), CH = castPair(makeChintu), TH = castPair(makeThatayya), VE = castPair(() => makeVeerendraX()), VK = castPair(() => makeVeerendraX(true));
+const H1 = castPair(() => makeHench(1)), H2 = castPair(() => makeHench(2)), H3 = castPair(() => makeHench(1, { name: "hench3", item: "" })), H4 = castPair(() => makeHench(2, { name: "hench4", item: "" }));
+const VA = castPair(() => makeVillager(0)), VB = castPair(() => makeVillager(1)), VC = castPair(() => makeVillager(2)), VA2 = castPair(() => makeVillager(0, { name: "villagerA2", who: null })), VB2 = castPair(() => makeVillager(1, { name: "villagerB2", who: null }));
+const KD = [0, 1, 2].map(n => castPair(() => makeKid(n)));
+const DEV = pair(() => makeDevata()), LOCK = pair(makeLocketGround), CRK = pair(() => makeCrackPatch(1600)), DROPS = [0, 1, 2].map(() => pair(makeRaindrop)), FSEED = pair(() => makeFloatSeed(.8));
+const LOT = [pair(() => makeLotusProp(7, 0)), pair(() => makeLotusProp(6, 5)), pair(() => makeLotusProp(5, 9))], BOAT = pair(makeBoat);
+const DEERM = pair(makeDeer), DEERF = pair(makeDeer), BIRDS = [0, 1, 2, 3, 4, 5, 6].map(() => pair(makeBird)), NOTES = pair(makeNotes), NOTES2 = pair(makeNotes);
+const MOUND = pair(makeMound), FLICK = pair(makeFlick), WIPE = pair(makeLeafWipe), SAPL = pair(() => makeSaplingProp(1.6)), STAKE = pair(makeNameStake), EYES = pair(makeTreeEyes);
+const YT = [...Array(8)].map((_, i) => pair(() => makeYoungTree(i)));
+const T = { drop1: 4.4, drop2: 5.75, drop3: 6.75, rain: 7.4, slip: 17.4, land: 18.9, sprout: 19.6, wave: 23.3, pond: 29.3, sprouts: 30.8, lotus: 32.5, deer: 33.9, birds: 35.2,
+  cheer: 36.5, thatayya: 43.9, plant: 45.6, who: 50.0, ve: 53.55, vline: 55.1, thLine: 61.5, seasons: 69.9, green: 73.0, deerB: 76.4, sapling: 79.4, amma: 83.1, tree: 87.3,
+  meera: 92.6, rainbow: 97.0, moral: 106.85, shubham: 121.75, cta: 124.0, b1: 126.2, b2: 126.95, b3: 127.7, q: 128.4, cm: 131.4, sub: 132.4, tap: 134.3, end: 136.73 };
+const MORAL = [[106.85, 110.95, "ప్రకృతి మనకు ఇచ్చే ప్రతి బహుమతిని కాపాడటం మన బాధ్యత."], [110.95, 113.15, "చెట్లు లేకపోతే జీవితం లేదు."],
+  [113.15, 116.85, "మనం ప్రకృతిని కాపాడితే, ప్రకృతి మనల్ని కాపాడుతుంది."], [116.85, 121.7, "ఒక చిన్న మంచి ప్రయత్నం కూడా ప్రపంచంలో పెద్ద మార్పు తీసుకురాగలదు."]];
+const rainK = t => t < T.rain ? .35 * rng(t, 3.2, 4.3) : (t < 41.7 ? 1 : 1 - rng(t, 41.7, 45.6)) * (t > 23.2 && t < 36.5 ? .55 : 1);
+
+// a crowd of villagers + kids in the village set (cheering in the rain / planting)
+function crowd(t, S, C, mode) {
+  const cheer = mode === "cheer";
+  [[VA, 380, 880, .66, -1], [VB, 640, 870, .68, 1], [VC, 1240, 876, .64, -1], [VA2, 1480, 868, .62, 1], [VB2, 200, 872, .62, 1]].forEach(([A, x, y, s, f], i) => { const a = A[C];
+    if (cheer) { const t0 = T.cheer - .9 + i * .25; KIT.put(a, S, { y, s, mood: "happy", turn: .2 * f }); KIT.walk(a, t, t0, t0 + 1.4, x - 260 * f, x, { run: true });
+      if (t > t0 + 1.4) { a.st.flip = f; a.st.pose = i % 2 ? "armsUp" : "spread"; a.st.hop = Math.abs(Math.sin(t * 5 + i)) * 14; a.st.lookY = -.6; } }
+    else KIT.put(a, S, { x, y, s, flip: f, mood: "happy", pose: "kneel", item: i % 2 ? "spade" : "sapling", turn: .2 * f, lean: Math.sin(t * 2 + i) * 4 }); });
+  KD.forEach((K, i) => { const a = K[C]; KIT.put(a, S, { x: [820, 1000, 1110][i], y: 900 + i * 6, s: .5, mood: "happy", flip: i % 2 ? -1 : 1, turn: .2,
+    pose: cheer ? (fract(t * .8 + i * .3) < .5 ? "armsUp" : "spread") : "carry", item: cheer ? "" : "saplingPot", hop: cheer ? Math.abs(Math.sin(t * 6 + i * 2)) * 24 : 0, phase: t * 3 }); });
+}
+
+const shots = [
+  // 0 · macro: the first raindrop hits the cracked earth in slow motion; another; another
+  [0, (t, C, op) => { const S = KIT.show("soil", { wet: .15 * rng(t, 4.4, 7.4), seedY: -3000, sprout: 0, opacity: op, cam: KIT.camPath(t, [[0, { x: 960, y: 740, z: 1.9 }], [7.4, { x: 960, y: 760, z: 2.1 }]]) });
+    KIT.put(CRK[C], S, { x: 960, y: 830, wet: .5 * rng(t, 4.4, 7.4) });
+    [[T.drop1, 960, 840, 1.6], [T.drop2, 740, 852, 1.1], [T.drop3, 1190, 848, 1.1]].forEach(([t0, x, y, s], i) => KIT.put(DROPS[i][C], S, { x, y, s, t0, h: 700, fall: i ? .5 : .95 }));
+    tint(.35, "linear-gradient(#7080A0,#9098B0)"); KIT.rain(rainK(t) * .5, 8); KIT.vignette(.9); }],
+  // 1 · rain everywhere at the banyan: everyone looks up; Meera spins in the rain; the Devata smiles and melts back into the tree
+  [7.3, (t, C, op) => { const S = KIT.show("banyan", { night: .55 - .25 * rng(t, 7.3, 10.6), storm: .35, glow: .4 * (1 - rng(t, 7.5, 10.5)), wind: .4, opacity: op,
+      cam: KIT.camPath(t, [[7.3, { x: 960, y: 600, z: 1.0 }], [10.6, { x: 940, y: 630, z: 1.06 }]]) });
+    [[H4, 120, 900, .74], [H3, 260, 925, .78], [H2, 420, 905, .76], [H1, 560, 935, .8]].forEach(([H, x, y, s], i) => KIT.put(H[C], S, { x: x - 120, y, s, flip: 1, item: "", pose: "kneel", pose2: "stand", poseK: ease(rng(t, 8 + i * .3, 9.2 + i * .3)), mood: "happy", lookY: -1, turn: .3 }));
+    KIT.put(VE[C], S, { x: 760, y: 905, s: .85, flip: 1, turn: .3, noGlasses: 1, pose: "kneel", mood: t > 8.5 ? "awe" : "sad", lookY: -1, tear: 1, hR: [80, -60 - 20 * Math.sin(t * 2)] });
+    const m = ME[C]; KIT.put(m, S, { x: 1120, y: 945, s: .72, flip: Math.sin((t - 7.3) * 3) > 0 ? 1 : -1, locket: false, item: "seed", glow: 3, mood: "happy", pose: "armsUp", lookY: -1, hop: Math.abs(Math.sin(t * 4.5)) * 16 });
+    KIT.put(CH[C], S, { x: 1250, y: 945, s: .7, flip: -1, mood: "happy", pose: fract(t * .9) < .5 ? "armsUp" : "spread", hop: Math.abs(Math.sin(t * 5 + 1)) * 20, lookY: -1 });
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .5 });
+    const dv = 1 - rng(t, 8.2, 10.4); if (dv > 0) KIT.put(DEV[C], S, { x: 1010, y: 560 + 60 * (1 - dv), s: .6 * (.7 + .3 * dv), vis: dv, mood: "happy", arms: "bless" });
+    const [gx, gy] = KIT.toScreen(S, 1000, 560); KIT.glow(.45 * dv, gx, gy, 420);
+    tint(.3, "linear-gradient(#7080A0,#90A0B8 60%,#808AA0)"); KIT.rain(1, 10); KIT.vignette(.8); }, .4],
+  // 2 · the smell of wet earth across the whole village (rain, mist rising from the ground)
+  [10.4, (t, C, op) => { const S = KIT.show("village", { green: .05, trees: 0, pond: .08, birds: 0, opacity: op, cam: KIT.camPath(t, [[10.4, { x: 820, y: 520, z: 1.12 }], [16.6, { x: 1120, y: 540, z: 1.16 }]]) });
+    KIT.motes(.9, 960, 900, 900, "235,240,245", 50); KIT.motes(.7, 600, 860, 700, "225,232,240", 36);
+    tint(.28, "linear-gradient(#7888A8,#A0A8B8 55%,#8A7A6A)"); tint2(.12 * rng(t, 11, 14), "linear-gradient(rgba(0,0,0,0) 55%,#E8F0F8 100%)"); KIT.rain(1, 12); KIT.vignette(.75); }, .5],
+  // 3 · the seed slips from Meera's hand into the wet earth
+  [16.3, (t, C, op) => { const S = KIT.show("banyan", { night: .3, storm: .3, wind: .2, opacity: op, cam: KIT.camPath(t, [[16.3, { x: 1150, y: 760, z: 2.6 }], [18.8, { x: 1150, y: 820, z: 2.9 }]]) });
+    const m = ME[C], sl = t > T.slip;
+    KIT.put(m, S, { x: 1120, y: 945, s: .72, flip: -1, locket: false, item: sl ? "" : "seed", glow: 3, mood: sl ? "awe" : "happy", lookY: sl ? 1 : -.3, look: .2, hR: [60, 60] });
+    if (sl) { const k = rng(t, T.slip, T.slip + .9); KIT.put(FSEED[C], S, { x: 1120 + 60 * .72 + 40 * k, y: lerp(945 - 260 * .72, 960, k * k), glow: 3, rot: k * 200 }); }
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .4 });
+    tint(.3, "linear-gradient(#7080A0,#90A0B8 60%,#808AA0)"); KIT.rain(.8, 10); KIT.vignette(.85); }, .3],
+  // 4 · soil close-up: the seed lands in the puddle and sprouts; gold light
+  [18.7, (t, C, op) => { const S = KIT.show("soil", { wet: 1, seedY: 360 * (1 - ease(rng(t, 18.7, T.land))) , seedGlow: 3, sprout: ease(rng(t, T.sprout, 22.8)), opacity: op,
+      cam: KIT.camPath(t, [[18.7, { x: 960, y: 700, z: 1.5 }], [23.3, { x: 960, y: 560, z: 1.25 }]]) });
+    KIT.put(DROPS[0][C], S, { x: 960, y: 808, s: 1.3, t0: T.land, h: 0, fall: .01 });
+    const [gx, gy] = KIT.toScreen(S, 960, 780 - 200 * rng(t, T.sprout, 22.8)); KIT.glow(.4 + .4 * rng(t, T.sprout, 21), gx, gy, 380);
+    KIT.motes(rng(t, T.sprout, 21), 960, 600, 400, "255,226,140", 30); KIT.rain(.55, 8); KIT.vignette(.8); }, .3],
+  // 5 · top-down: a wave of green races out across the land from the banyan
+  [23.2, (t, C, op) => { KIT.show("topdown", { wave: rng(t, T.wave, T.pond), opacity: op, cam: { x: 960, y: 540, z: lerp(1.25, .92, ease(rng(t, 23.2, 29.4))), rot: lerp(-4, 3, rng(t, 23.2, 29.4)) } });
+    KIT.rain(.4, 6); KIT.vignette(.7); }, .5],
+  // 6 · the dry pond fills; little sprouts lift their heads in the fields
+  [29.2, (t, C, op) => { if (t < T.sprouts + .3) { const S = KIT.show("pond", { water: ease(rng(t, 29.2, 31.0)), green: .3 + .4 * rng(t, 29.2, 31), heat: 0, opacity: op, cam: { x: 960, y: 620, z: 1.08 } }); }
+    else { KIT.show("village", { green: .35, trees: .1, sprouts: ease(rng(t, T.sprouts + .2, 32.5)), pond: .6, opacity: t < T.sprouts + .6 ? rng(t, T.sprouts + .3, T.sprouts + .6) : 1, cam: KIT.camPath(t, [[T.sprouts, { x: 200, y: 760, z: 1.9 }], [32.6, { x: 260, y: 770, z: 2.0 }]]) }); }
+    KIT.rain(.5, 8); KIT.vignette(.7); }, .4],
+  // 7 · montage: lotuses open on the full pond, the old boat floats; the fawn returns with its mother; the sparrow and a flock land on the banyan
+  [32.5, (t, C, op) => {
+    if (t < T.deer + .4) { const S = KIT.show("pond", { water: 1, green: .9, heat: 0, opacity: op, cam: KIT.camPath(t, [[32.5, { x: 960, y: 700, z: 1.2 }], [34.3, { x: 1000, y: 700, z: 1.28 }]]) });
+      KIT.put(BOAT[C], S, { x: 1380, y: 930, s: .7, tilt: -2, bob: 5, old: 0 });
+      [[560, 880, 1.6], [960, 930, 1.4], [1700, 900, 1.3]].forEach(([x, y, s], i) => KIT.put(LOT[i][C], S, { x, y, s, k: ease(rng(t, 32.6 + i * .3, 33.6 + i * .3)) })); }
+    if (t > T.deer && t < T.birds + .4) { const S = KIT.show("forest", { green: 1, dusk: 0, cave: 0, opacity: rng(t, T.deer, T.deer + .4), cam: KIT.camPath(t, [[T.deer, { x: 900, y: 640, z: 1.2 }], [35.6, { x: 1060, y: 650, z: 1.25 }]]) });
+      const k = rng(t, T.deer, 35.6); KIT.put(DEERM[C], S, { x: lerp(420, 980, k), y: 870, s: 1.25, pose: "run", phase: t * 6, mood: "calm" }); KIT.put(DEERF[C], S, { x: lerp(260, 820, k), y: 880, s: .9, pose: "run", phase: t * 7 + 1, mood: "calm" }); }
+    if (t > T.birds) { const S = KIT.show("banyan", { green: .7, night: 0, storm: .1, wind: .2, opacity: rng(t, T.birds, T.birds + .4), cam: KIT.camPath(t, [[T.birds, { x: 960, y: 380, z: 1.1 }], [36.9, { x: 960, y: 400, z: 1.15 }]]) });
+      BIRDS.forEach((B, i) => { const k = ease(rng(t, T.birds + i * .1, T.birds + .9 + i * .1)), tx = 380 + i * 190, ty = [150, 110, 90, 70, 95, 120, 160][i];
+        KIT.put(B[C], S, { x: lerp(-200 - i * 80, tx, k), y: lerp(ty - 220, ty, k) + Math.sin(k * 6) * 20 * (1 - k), s: .9, pose: k < 1 ? "fly" : (i % 3 ? "stand" : "hop") }); }); }
+    KIT.rain(.3 * (1 - rng(t, 33, 36)), 6); KIT.vignette(.65); }, .4],
+  // 8 · "Rain! The rain has come!" villagers run out cheering; kids dance; then Thatayya on his porch wipes happy tears
+  [36.45, (t, C, op) => {
+    if (t < T.thatayya) { const S = KIT.show("village", { green: .35, trees: .1, sprouts: 1, pond: .6, birds: .4, opacity: op, cam: KIT.camPath(t, [[36.45, { x: 900, y: 600, z: 1.1 }], [41.7, { x: 820, y: 605, z: 1.18 }], [T.thatayya, { x: 1000, y: 600, z: 1.12 }]]) });
+      crowd(t, S, C, "cheer"); tint(.18, "linear-gradient(#8898B8,#A8B0C0)"); }
+    else { const S = KIT.show("porch", { evening: 0, dry: .3, opacity: rng(t, T.thatayya, T.thatayya + .35), cam: KIT.camPath(t, [[T.thatayya, { x: 900, y: 640, z: 2.0 }], [45.7, { x: 890, y: 620, z: 2.2 }]]) });
+      KIT.put(TH[C], S, { x: 875, y: 960, s: .9, pose: "sit", seat: 180, item: "", flip: 1, turn: .35, mood: "happy", tear: 1, tearRun: fract((t - 44) / 1.6), look: .6, lookY: -.2,
+        hR: [lerp(90, -30, ease(rng(t, 44.4, 45))), lerp(10, -95, ease(rng(t, 44.4, 45))) + Math.sin(t * 5) * 4], hL: [40, 90], headRot: 4 }); }
+    KIT.rain(rainK(t), 10); KIT.vignette(.7); }, .4],
+  // 9 · planting: every family digs and plants; who dug first? — a spade flicking earth behind a mound … Veerendra!
+  [45.55, (t, C, op) => { const cam = camSeq(t, [[45.55, { x: 780, y: 610, z: 1.12 }], [49.9, { x: 900, y: 615, z: 1.15 }], [50.0, { x: 1500, y: 680, z: 1.45 }, "cut"], [53.5, { x: 1540, y: 690, z: 1.55 }], [55.1, { x: 1560, y: 640, z: 1.7 }]]);
+    if (t > T.ve) cam.z += KIT.punch(t, T.ve, .12, .6);
+    const S = KIT.show("village", { green: .45, trees: .15, sprouts: 1, pond: .7, birds: .7, opacity: op, cam }); crowd(t, S, C, "plant");
+    YT.forEach((Y, i) => { if (i < 4) KIT.put(Y[C], S, { x: 300 + i * 260, y: 860, s: .55, k: .35 }); });
+    const v = VK[C], up = ease(rng(t, T.ve - .1, T.ve + .5));
+    KIT.put(v, S, { x: 1580, y: 900, s: .8, flip: -1, turn: -.2, mood: t > T.ve ? "happy" : "neutral", pose: "kneel", pose2: "stand", poseK: up, item: "spade", lookY: .5 * (1 - up), look: -.3, lean: 60 * (1 - up) + 8 * Math.sin(t * 5) * (1 - up),
+      hR: up < .5 ? [50 + 30 * Math.sin(t * 5), 60 + 40 * Math.sin(t * 5)] : null, hL: up > .5 ? [10, -100] : null, headRot: up > .5 ? -5 : 0 });
+    KIT.put(MOUND[C], S, { x: 1500, y: 905, s: 2.1 - .9 * up });
+    KIT.put(FLICK[C], S, { x: 1500, y: 800, t0s: [50.3, 51.2, 52.1, 53.0].filter(x => x < T.ve) });
+    KIT.vignette(.6); }, .4],
+  // 10 · "for every tree I cut, I'll plant ten": he sets a sapling; his men carry saplings instead of axes
+  [55.0, (t, C, op) => { const S = KIT.show("village", { green: .5, trees: .2, sprouts: 1, pond: .7, birds: .7, opacity: op, cam: KIT.camPath(t, [[55.0, { x: 1150, y: 655, z: 1.45 }], [61.6, { x: 1120, y: 660, z: 1.55 }]]) });
+    [[H1, 820, 880, .74], [H2, 950, 870, .72], [H3, 1460, 875, .72], [H4, 1580, 868, .7]].forEach(([H, x, y, s], i) => KIT.put(H[C], S, { x, y, s, flip: i < 2 ? 1 : -1, item: "saplingPot", pose: "carry", mood: "happy", turn: i < 2 ? .3 : -.3 }));
+    const v = VK[C], pl = ease(rng(t, 55.4, 56.6)), st_ = ease(rng(t, 58.4, 59.2));
+    KIT.put(YT[0][C], S, { x: 1240, y: 900, s: .55, k: .3 * rng(t, 56, 56.5) });
+    KIT.put(v, S, { x: 1160, y: 900, s: .82, flip: 1, turn: .2, mood: "happy", pose: "kneel", pose2: "stand", poseK: st_, item: pl < 1 && t < 56.1 ? "sapling" : "", lookY: st_ > .5 ? 0 : .5, look: st_ > .5 ? -.4 : .4,
+      hR: st_ < .5 ? [lerp(60, 90, pl), lerp(60, 110, pl)] : null });
+    if (t > 59.6) { v.st.hR = [-34, 22]; v.st.mood = "neutral"; v.st.lookY = 0; v.st.look = -.6; v.st.headRot = 3; }   // hand on the heart: "this is my word"
+    KIT.vignette(.6); }, .4],
+  // 11 · Thatayya and Meera watch the planting: "nature gives back a hundredfold"
+  [61.45, (t, C, op) => { const S = KIT.show("village", { green: .6, trees: .3, sprouts: 1, pond: .8, birds: .8, opacity: op, cam: KIT.camPath(t, [[61.45, { x: 920, y: 660, z: 1.5 }], [69.9, { x: 930, y: 665, z: 1.62 }]]) });
+    KIT.put(TH[C], S, { x: 860, y: 880, s: .82, flip: 1, turn: .3, mood: "happy", look: .7, lookY: .2, hL: t > 63 ? [110, 30] : null });
+    KIT.put(ME[C], S, { x: 1000, y: 880, s: .7, flip: -1, locket: false, turn: -.3, mood: "happy", look: -.6, lookY: -.6 });
+    YT.slice(4).forEach((Y, i) => KIT.put(Y[C], S, { x: 640 + i * 230, y: 830, s: .5, k: .3 })); KIT.vignette(.6); }, .4],
+  // 12 · seasons wipe: saplings become young trees, the whole village turns green
+  [69.8, (t, C, op) => { const g = ease(rng(t, 70.4, 72.6)); const S = KIT.show("village", { green: lerp(.6, 1, g), trees: lerp(.3, 1, g), sprouts: 1 - g, pond: lerp(.8, 1, g), birds: 1, opacity: op, cam: { x: 960, y: 540, z: lerp(1.15, 1.0, ease(rng(t, 69.8, 73))) } });
+    YT.forEach((Y, i) => KIT.put(Y[C], S, { x: 260 + i * 200, y: 860 + (i % 2) * 20, s: .7, k: lerp(.3, 1, g) }));
+    KIT.put(WIPE[C], S, { x: 0, y: 0, s: 1, k: rng(t, 70.6, 72.4) }); KIT.vignette(.5); }, .3],
+  // 13 · months later: green Anandapuram; deer return; birds sing
+  [72.95, (t, C, op) => {
+    if (t < T.deerB) { const S = KIT.show("village", { green: 1, trees: 1, pond: 1, birds: 1, opacity: op, cam: KIT.camPath(t, [[72.95, { x: 960, y: 540, z: 1.0 }], [T.deerB, { x: 1180, y: 520, z: 1.06 }]]) });
+      YT.forEach((Y, i) => KIT.put(Y[C], S, { x: 260 + i * 200, y: 860 + (i % 2) * 20, s: .7, k: 1 })); }
+    else { const S = KIT.show("banyan", { green: 1, night: 0, wind: .15, opacity: rng(t, T.deerB, T.deerB + .4), cam: KIT.camPath(t, [[T.deerB, { x: 760, y: 640, z: 1.2 }], [79.6, { x: 820, y: 640, z: 1.26 }]]) });
+      KIT.put(DEERM[C], S, { x: 520, y: 930, s: 1.1, pose: "stand", headRot: 20 + 10 * Math.sin(t * 1.2) }); KIT.put(DEERF[C], S, { x: 700, y: 940, s: .85, pose: "nuzzle", flip: -1 });
+      [[380, 330], [1250, 300], [1470, 360]].forEach(([x, y], i) => KIT.put(BIRDS[i][C], S, { x, y, s: .9, pose: "stand", flip: i ? -1 : 1 }));
+      KIT.put(NOTES[C], S, { x: 1270, y: 250, k: 1 }); KIT.put(NOTES2[C], S, { x: 400, y: 280, k: rng(t, 77.5, 78) }); }
+    KIT.vignette(.5); }, .4],
+  // 14 · where the locket was placed: a small sapling, a glint of silver among its roots; Meera names it 'అమ్మ'
+  [79.4, (t, C, op) => { const S = KIT.show("banyan", { green: 1, night: 0, wind: .1, opacity: op, cam: KIT.camPath(t, [[79.4, { x: 1110, y: 760, z: 2.4 }], [83.0, { x: 1100, y: 770, z: 2.55 }], [87.3, { x: 1110, y: 760, z: 2.3 }]]) });
+    KIT.put(LOCK[C], S, { x: 1090, y: 890, s: .7, rot: -8, glint: 1 });
+    KIT.put(SAPL[C], S, { x: 1070, y: 892, k: .45 + .55 * ease(rng(t, 79.6, 81.4)) });
+    if (t > T.amma - .2) KIT.put(STAKE[C], S, { x: 1010, y: 896 - 40 * (1 - ease(rng(t, T.amma - .2, T.amma + .5))), s: .62, vis: rng(t, T.amma - .2, T.amma + .1) });
+    const m = ME[C]; KIT.put(m, S, { x: 1175, y: 945, s: .72, flip: -1, locket: false, pose: "kneel", mood: "happy", lookY: .6, look: -.5, turn: -.2,
+      hR: t > 84.2 ? [lerp(60, 120, ease(rng(t, 84.2, 85))), lerp(40, 10, ease(rng(t, 84.2, 85)))] : null, tear: .4 });
+    KIT.motes(.4, 1080, 780, 200, "255,250,220", 14); KIT.vignette(.7); }, .5],
+  // 15 · golden hour: Meera and Chintu sit on a root; the tree's soft eyes of light one last time; "not me alone — all of us together!"
+  [87.2, (t, C, op) => { const out = ease(rng(t, 93.9, 96.6)), cam = KIT.camPath(t, [[87.2, { x: 1110, y: 720, z: 1.55 }], [92.4, { x: 1100, y: 720, z: 1.62 }], [93.9, { x: 1100, y: 720, z: 1.62 }], [96.8, { x: 960, y: 630, z: .95 }]]);
+    const S = KIT.show("banyan", { green: 1, night: 0, voice: KIT.talk("tree", t), glow: .25, wind: .1, opacity: op, cam });
+    KIT.put(EYES[C], S, { k: rng(t, 87.2, 88.2) * (1 - rng(t, 95, 96.5)), blinkT: 90.4 });
+    const stand = ease(rng(t, 93.6, 94.3));
+    if (out > 0) {   // everyone around the tree
+      KIT.put(TH[C], S, { x: 700, y: 930, s: .78, flip: 1, mood: "happy", turn: .3, lookY: -.3 });
+      KIT.put(VK[C], S, { x: 540, y: 920, s: .78, flip: 1, mood: "happy", turn: .3, item: "spade" });
+      [[H1, 380, 910], [H2, 250, 900]].forEach(([H, x, y]) => KIT.put(H[C], S, { x, y, s: .72, flip: 1, item: "saplingPot", pose: "carry", mood: "happy", turn: .3 }));
+      [[VA, 1420, 915], [VB, 1560, 905], [VC, 1700, 912]].forEach(([A, x, y]) => KIT.put(A[C], S, { x, y, s: .7, flip: -1, mood: "happy", turn: -.3, pose: "wave", phase: t * 3 }));
+      KIT.put(DEERM[C], S, { x: 1820, y: 940, s: .9, flip: -1, pose: "stand" }); KIT.put(DEERF[C], S, { x: 1700, y: 960, s: .7, flip: -1, pose: "stand" });
+      [[600, 330], [1300, 300]].forEach(([x, y], i) => KIT.put(BIRDS[i][C], S, { x, y, s: .9, pose: "stand", flip: i ? -1 : 1 })); }
+    KIT.put(CH[C], S, { x: 1310, y: 935, s: .66, flip: -1, pose: "sit", seat: 70, mood: "happy", turn: -.2, lookY: -.6, look: -.4 });
+    KIT.put(ME[C], S, { x: 1190, y: 935, s: .68, flip: 1, locket: false, pose: "sit", seat: 70, pose2: "spread", poseK: stand, mood: "happy", turn: .1, lookY: t > 93.6 ? 0 : -.6, look: t > 93.6 ? 0 : -.3 });
+    if (stand > 0) { ME[C].st.pose = "stand"; ME[C].st.poseK = stand; ME[C].st.hop = 0; }
+    KIT.put(SAPL[C], S, { x: 1070, y: 892, k: 1 }); KIT.put(STAKE[C], S, { x: 1010, y: 896, s: .62 });
+    dusk(.55); tint(.42, "linear-gradient(#FFC890,#F2A070 60%,#C88060)"); KIT.motes(.6, 960, 560, 700, "255,226,140", 30); KIT.vignette(.7); }, .5],
+  // 16 · a huge rainbow over the banyan and the green village; slow crane up and out
+  [96.9, (t, C, op) => { const S = KIT.show("village", { green: 1, trees: 1, pond: 1, birds: 1, rainbow: ease(rng(t, 97.3, 99.8)), banyanGlow: .3, opacity: op,
+      cam: KIT.camPath(t, [[96.9, { x: 1200, y: 640, z: 1.35 }], [106.8, { x: 980, y: 470, z: .98 }]]) });
+    YT.forEach((Y, i) => KIT.put(Y[C], S, { x: 260 + i * 200, y: 860 + (i % 2) * 20, s: .7, k: 1 }));
+    [[KD[0], 700, 880], [KD[1], 820, 884]].forEach(([K, x, y], i) => { KIT.put(K[C], S, { y, s: .45, mood: "happy" }); KIT.walk(K[C], t, 99 + i * .3, 105 + i * .3, x, x + 500, { run: true }); });
+    KIT.vignette(.5); }, .8],
+  // 17 · the moral as soft text over the rainbow; then 'శుభం'
+  [106.7, (t, C, op) => { const S = KIT.show("village", { green: 1, trees: 1, pond: 1, birds: 1, rainbow: 1, opacity: op, cam: { x: 980, y: 470 - 20 * rng(t, 106.7, 124), z: .98 + .04 * rng(t, 106.7, 124) } });
+    YT.forEach((Y, i) => KIT.put(Y[C], S, { x: 260 + i * 200, y: 860 + (i % 2) * 20, s: .7, k: 1 }));
+    for (const [a, b, s] of MORAL) if (t >= a - .2 && t < b) { OV.text(OV.moral, s); OV.moral.style.opacity = pulse(t, a - .2, b, .35); OV.moral.style.transform = `translateX(-50%) translateY(${(1 - ease(rng(t, a - .2, a + .4))) * 16}px)`; }
+    if (t > T.moral - .1 && t < 122.95) KIT.sub("");
+    KIT.title(pulse(t, T.shubham, 124.15, .4), "శుభం", "");
+    KIT.vignette(.55); }, .8],
+  // 18 · CTA: which test would be hardest for you? comment; subscribe (tap); 'see you again!'
+  [124.0, (t, C, op) => { const S = KIT.show("banyan", { green: 1, night: 0, wind: .1, rainbow: 1, opacity: op, cam: KIT.camPath(t, [[124, { x: 960, y: 560, z: 1.0 }], [136.8, { x: 960, y: 580, z: 1.05 }]]) });
+    const wave = t > 135.6;
+    KIT.put(ME[C], S, { x: 1460, y: 880, s: .7, flip: -1, locket: false, mood: "happy", turn: -.3, pose: wave ? "wave" : "stand", phase: t * 3 });
+    KIT.put(CH[C], S, { x: 1600, y: 885, s: .68, flip: -1, mood: "happy", turn: -.3, pose: wave ? "wave" : "stand", phase: t * 3 + 1 });
+    KIT.put(TH[C], S, { x: 380, y: 880, s: .74, flip: 1, mood: "happy", turn: .3 });
+    KIT.put(SAPL[C], S, { x: 1070, y: 892, k: 1 }); KIT.put(STAKE[C], S, { x: 1010, y: 896, s: .62 });
+    OV.badges.style.opacity = 1; [T.b1, T.b2, T.b3].forEach((b0, i) => { const k = pop(t, b0, .45); OV.bd[i].style.transform = `scale(${k})`; OV.bd[i].style.opacity = clamp((t - b0) * 4); });
+    OV.badges.style.top = (150 - 40 * ease(rng(t, T.q, T.q + .5))) + "px";
+    const qk = pop(t, T.q, .45) * (t > T.cm && t < T.cm + .6 ? 1 + .1 * Math.sin(rng(t, T.cm, T.cm + .6) * Math.PI) : 1);
+    OV.q.style.opacity = clamp((t - T.q) * 4); OV.q.style.transform = `translateX(-50%) scale(${qk})`;
+    const sk = pop(t, T.sub, .45), tapped = t > T.tap; OV.sub.style.opacity = clamp((t - T.sub) * 4);
+    OV.sub.style.transform = `translateX(-50%) scale(${sk * (t > T.tap - .05 && t < T.tap + .25 ? .92 : 1)})`;
+    OV.sub.style.background = tapped ? "#606060" : "#E62117"; OV.text(OV.subt, tapped ? "SUBSCRIBED" : "SUBSCRIBE"); OV.bell.style.opacity = tapped ? 1 : 0;
+    const hk = ease(rng(t, T.tap - .9, T.tap)); OV.hand.style.opacity = pulse(t, T.tap - .9, T.tap + .9, .25);
+    OV.hand.style.transform = `translate(${lerp(1500, 1080, hk)}px, ${lerp(980, 690, hk) + (t > T.tap && t < T.tap + .25 ? 8 : 0)}px)`;
+    KIT.vignette(.6); }, .6],
+  // 19 · end card (10 s)
+  [T.end, (t, C, op) => { KIT.show("banyan", { green: 1, night: 0, wind: .1, rainbow: 1, opacity: 1, cam: { x: 960 + 30 * Math.sin(t * .2), y: 520, z: 1.08 } });
+    tint(.55, "linear-gradient(90deg,#2A1A0A 0%,#5A3A1A 55%,#8A6A4A 100%)");
+    OV.end.style.opacity = rng(t, T.end, T.end + .6); KIT.motes(.6, 960, 500, 800, "255,226,140", 30); KIT.vignette(.8); }, .6],
+];
+function scene(t) {
+  resetTints(); dusk(0); OV.reset();
+  runShots(t, shots);
+  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .9, DUR)));
+}
+</script></body></html>

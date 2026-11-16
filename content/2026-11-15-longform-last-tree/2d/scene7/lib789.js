@@ -75,8 +75,8 @@ function makeLocketGround() {
     (t, st, P) => { const k = st.glint * (.5 + .5 * Math.sin(t * 3.1)); P.sp.style.opacity = k; P.sp.setAttribute("transform", `translate(-8 -10) scale(${.4 + .6 * k}) rotate(${t * 30})`); }, { glint: 0 });
 }
 // an axe falling out of a hand: from (x0,y0) to the ground y1 between t0 and t0+d, spinning; a dust puff on landing
-function makeAxeFall() {
-  return makeThing(g => { const a = el("g", {}, g); PROPS.axe(a); const d = [0, 1, 2, 3, 4].map(() => el("circle", { r: 10, fill: "#C9B08A" }, g)); return { a, d }; },
+function makeAxeFall(prop = "axe") {
+  return makeThing(g => { const a = el("g", {}, g); PROPS[prop](a); const d = [0, 1, 2, 3, 4].map(() => el("circle", { r: 10, fill: "#C9B08A" }, g)); return { a, d }; },
     (t, st, P) => { const k = rng(t, st.t0, st.t0 + st.d), y = lerp(st.y0, st.y1, k * k), rot = lerp(st.r0, st.r1, k);
       P.a.setAttribute("transform", `translate(${lerp(st.x0, st.x1, k)} ${y}) rotate(${rot})`);
       P.d.forEach((c, i) => { const ph = (t - st.t0 - st.d - i * .05) / .9; c.style.opacity = ph > 0 && ph < 1 ? (1 - ph) * .75 : 0;
@@ -210,7 +210,7 @@ const OV = (() => {
   const css = document.createElement("style"); css.textContent = `
 #ov789{position:absolute;inset:0;pointer-events:none}
 #ov789 .o{position:absolute;opacity:0}
-#ov-moral{left:0;right:0;top:120px;text-align:center;font-family:Rama,NotoTe;font-size:66px;line-height:1.45;color:#FFF6D8;padding:0 170px;
+#ov-moral{left:50%;top:110px;transform:translateX(-50%);width:max-content;max-width:1560px;text-align:center;background:rgba(30,18,6,.32);border-radius:40px;padding:14px 60px 22px !important;font-family:Rama,NotoTe;font-size:66px;line-height:1.45;color:#FFF6D8;padding:0 170px;
   text-shadow:0 4px 0 #3A2208,0 0 26px rgba(40,20,0,.75),0 0 60px rgba(255,200,80,.35)}
 #ov-badges{left:0;right:0;top:150px;display:flex;justify-content:center;gap:70px}
 .bd{width:250px;text-align:center}
@@ -264,3 +264,74 @@ const OV = (() => {
 function camSeq(t, ks) { let i = 0; while (i < ks.length - 1 && ks[i + 1][0] <= t) i++; const a = ks[i], b = ks[i + 1];
   if (!b || b[2] === "cut" || t < a[0]) return a[1]; return KIT.camLerp(a[1], b[1], ease(rng(t, a[0], b[0]))); }
 const jit = (t, a, f = 40, s = 0) => a ? noise1(t * f, s) * a : 0;
+// Veerendra's sunglasses falling off (same drawing as on his hair): from (x0,y0) to the ground y1 between t0 and t0+d
+function makeGlassesFall() {
+  return makeThing(g => { const a = el("g", {}, g);
+    [-1, 1].forEach(s => el("path", { d: `M${s * 4} -4 L${s * 36} -8 Q${s * 40} 18 ${s * 22} 20 Q${s * 6} 18 ${s * 4} -4 Z`, fill: "#1A2430", stroke: "#C9A440", "stroke-width": 2.5 }, a));
+    el("path", { d: "M-4 -4 Q0 -8 4 -4", stroke: "#C9A440", "stroke-width": 2.5, fill: "none" }, a); el("path", { d: "M-30 0 L-24 6", stroke: "#7FA8C8", "stroke-width": 3 }, a); return { a }; },
+    (t, st, P) => { const k = rng(t, st.t0, st.t0 + st.d), b = t > st.t0 + st.d ? Math.exp(-(t - st.t0 - st.d) * 7) * Math.abs(Math.sin((t - st.t0 - st.d) * 14)) * 30 : 0;
+      P.a.setAttribute("transform", `translate(${lerp(st.x0, st.x1, k)} ${lerp(st.y0, st.y1, k * k) - b}) rotate(${lerp(0, 200, k)})`); P.a.style.opacity = t < st.t0 ? 0 : 1; },
+    { t0: 1e9, d: .7, x0: 0, y0: 0, x1: 0, y1: 0 });
+}
+
+// ---------------- scene 9 additions ----------------
+// cracked dry earth patch (macro raindrop shot): st.wet 0..1 darkens it
+function makeCrackPatch(w = 1400) {
+  return makeThing(g => { const P = { base: el("ellipse", { cx: 0, cy: 0, rx: w / 2, ry: 120, fill: "#C9A070" }, g), L: [] };
+    for (let i = 0; i < 26; i++) { let x = (hash(i * 3.3) - .5) * w * .9, y = (hash(i * 5.1) - .5) * 160, d = `M${x.toFixed(0)} ${y.toFixed(0)}`;
+      for (let j = 0; j < 4; j++) { x += (hash(i * 7 + j) - .5) * 160; y += (hash(i * 11 + j) - .5) * 40; d += ` L${x.toFixed(0)} ${y.toFixed(0)}`; }
+      P.L.push(el("path", { d, stroke: "#6A4A2A", "stroke-width": 3 + hash(i) * 3, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g)); }
+    return P; }, (t, st, P) => { P.base.setAttribute("fill", mixc("#C9A070", "#6A4A30", st.wet)); P.L.forEach(l => l.setAttribute("stroke", mixc("#6A4A2A", "#3A2618", st.wet))); }, { wet: 0 });
+}
+// a mound of fresh earth (hides the digger in the reveal)
+function makeMound() { return makeThing(g => { el("path", { d: "M-170 0 Q-150 -90 -40 -110 Q60 -124 130 -80 Q180 -40 170 0 Z", fill: KIT.lgrad([[0, "#8A6040"], [1, "#5A3A22"]]), stroke: INK, "stroke-width": 4 }, g);
+  for (let i = 0; i < 9; i++) el("ellipse", { cx: -120 + hash(i) * 260, cy: -20 - hash(i * 3) * 70, rx: 8 + hash(i * 5) * 8, ry: 5, fill: "#9A7050" }, g); return {}; }); }
+// flicked earth from a spade: st.t0s list of flick times, at (0,0) going up-left
+function makeFlick() { return makeThing(g => ({ c: [...Array(18)].map(() => el("circle", { r: 7, fill: "#7A5232", stroke: INK, "stroke-width": 1.5 }, g)) }),
+  (t, st, P) => { let best = -1; for (const f of st.t0s) if (t >= f && t < f + 1) best = f;
+    P.c.forEach((c, i) => { const q = best < 0 ? -1 : (t - best) / .9; if (q < 0 || q > 1) { c.style.opacity = 0; return; }
+      c.style.opacity = 1; c.setAttribute("cx", -q * (120 + hash(i) * 180)); c.setAttribute("cy", -Math.sin(q * Math.PI) * (140 + hash(i * 3) * 120) + q * 60); c.setAttribute("r", 5 + hash(i * 5) * 7); }); }, { t0s: [] }); }
+// a lotus cluster that opens (st.k)
+function makeLotusProp(n = 7, seed = 0) { return makeThing(g => { const inner = el("g", {}, g); drawLotus(inner, n, seed); return { inner }; }, (t, st, P) => {
+  P.inner.setAttribute("transform", `scale(${clamp(st.k)}) translate(0 ${Math.sin(t * 1.3 + seed) * 3})`); P.inner.style.opacity = st.k > .01 ? 1 : 0; }, { k: 0 }); }
+// a sweep of big leaves crossing the frame (time-skip wipe): st.k 0..1 position (left -> right), world coords at cam z 1
+function makeLeafWipe() { return makeThing(g => ({ L: [...Array(46)].map((_, i) => el("path", { d: "M0 0 Q60 -80 0 -200 Q-60 -80 0 0 Z", fill: ["#4E9446", "#6DB052", "#3A7A3C", "#8ACC52", "#5FA85A"][i % 5], stroke: "#24502A", "stroke-width": 4 }, g)) }),
+  (t, st, P) => P.L.forEach((l, i) => { const x = lerp(-900, 2900, st.k) + (hash(i) - .5) * 700, y = -100 + (i / 46) * 1300 + (hash(i * 3) - .5) * 80;
+    l.setAttribute("transform", `translate(${x} ${y}) rotate(${hash(i * 5) * 360 + st.k * 200}) scale(${1.4 + hash(i * 7) * 1.6})`); }), { k: 0 }); }
+
+// top-down view of Anandapuram: a green wave spreads from the banyan at the centre. params: wave 0..1, pond 0..1
+KIT.defineSet("topdown", S => {
+  const L = S.layer(1, "map");
+  el("rect", { x: -1400, y: -900, width: 4720, height: 2600, fill: "#C9A070" }, L);
+  for (let i = 0; i < 60; i++) { let x = -400 + hash(i * 2.1) * 2700, y = -200 + hash(i * 4.3) * 1500, d = `M${x.toFixed(0)} ${y.toFixed(0)}`;
+    for (let j = 0; j < 4; j++) { x += (hash(i * 9 + j) - .5) * 200; y += (hash(i * 13 + j) - .5) * 200; d += ` L${x.toFixed(0)} ${y.toFixed(0)}`; }
+    el("path", { d, stroke: "#8A6438", "stroke-width": 3, fill: "none", opacity: .7 }, L); }
+  for (let i = 0; i < 30; i++) stumpTop(L, -300 + hash(i * 6.1) * 2500, -100 + hash(i * 8.7) * 1300, "#9A7A54");
+  const cid = KIT.uid("tw"), cp = el("clipPath", { id: cid }, KIT.defs), circ = el("circle", { cx: 960, cy: 540, r: 0 }, cp);
+  const green = el("g", { "clip-path": `url(#${cid})` }, L);
+  el("rect", { x: -1400, y: -900, width: 4720, height: 2600, fill: "#7AB85C" }, green);
+  for (let i = 0; i < 8; i++) el("rect", { x: -200 + i * 70, y: 760, width: 46, height: 300, rx: 10, fill: i % 2 ? "#6AA84E" : "#8CC46A", transform: "rotate(-12 0 900)" }, green);
+  const ring = el("circle", { cx: 960, cy: 540, r: 0, fill: "none", stroke: "#CFF5A0", "stroke-width": 26, opacity: .55 }, L);
+  // path + pond + huts (on top of both looks)
+  el("path", { d: "M-200 980 Q500 760 960 700 Q1400 640 2200 300", stroke: "#E8CC98", "stroke-width": 44, fill: "none", "stroke-linecap": "round" }, L);
+  const pondB = el("ellipse", { cx: 1480, cy: 860, rx: 210, ry: 120, fill: "#A8804E", stroke: "#6A4A2A", "stroke-width": 4 }, L);
+  const pondW = el("ellipse", { cx: 1480, cy: 860, rx: 0, ry: 0, fill: KIT.lgrad([[0, "#9AD6EE"], [1, "#4A98C6"]]), stroke: "#3A78A8", "stroke-width": 4 }, L);
+  [[420, 640], [620, 860], [1260, 400], [1560, 560], [300, 300], [1700, 220], [820, 1000]].forEach(([x, y], i) => { const h = el("g", { transform: `translate(${x} ${y}) rotate(${hash(i) * 40 - 20})` }, L);
+    el("rect", { x: -60, y: -60, width: 120, height: 120, rx: 8, fill: "#D4AE52", stroke: INK, "stroke-width": 4 }, h);
+    el("path", { d: "M-60 -60 L60 60 M60 -60 L-60 60", stroke: "#B8923E", "stroke-width": 4 }, h); });
+  // trees that pop up as the wave passes
+  const trees = []; for (let i = 0; i < 70; i++) { const x = -200 + hash(i * 3.7) * 2400, y = -80 + hash(i * 5.9) * 1260; if (Math.hypot(x - 960, y - 540) < 300) continue;
+    const g = el("g", {}, L); el("circle", { r: 46, fill: i % 2 ? "#4E9446" : "#3A7A3C", stroke: INK, "stroke-width": 3.5 }, g); el("circle", { cx: -12, cy: -12, r: 18, fill: "#fff", opacity: .15 }, g);
+    trees.push({ g, x, y, d: Math.hypot(x - 960, y - 540) }); }
+  // the banyan from above
+  const ban = el("g", {}, L); el("path", { d: scallop(960, 540, 300, 270, 26, 4, .22), fill: "#2E6A36", stroke: INK, "stroke-width": 6 }, ban);
+  el("path", { d: scallop(940, 520, 210, 190, 18, 7, .25), fill: "#3E8A48", stroke: INK, "stroke-width": 4 }, ban);
+  el("path", { d: scallop(920, 500, 110, 100, 12, 9, .3), fill: "#5FA85A", stroke: INK, "stroke-width": 3 }, ban);
+  const glow = el("circle", { cx: 960, cy: 540, r: 140, fill: KIT.rgrad([[0, "#FFF2B8", .9], [1, "#FFD867", 0]]) }, L);
+  S.actorLayer();
+  S.update = (t, o) => { const w = o.wave || 0, R = 2300 * ease(w); circ.setAttribute("r", R); ring.setAttribute("r", R); ring.style.opacity = w > 0 && w < 1 ? .55 : 0;
+    trees.forEach(T => { const k = clamp((R - T.d) / 160); T.g.setAttribute("transform", `translate(${T.x} ${T.y}) scale(${back(k) * (.8 + hash(T.x) * .5)})`); T.g.style.display = k > 0 ? "" : "none"; });
+    const p = o.pond == null ? clamp((R - 600) / 300) : o.pond; pondW.setAttribute("rx", 200 * Math.sqrt(p)); pondW.setAttribute("ry", 112 * Math.sqrt(p));
+    glow.style.opacity = .4 + .3 * Math.sin(t * 3) + (w < .2 ? .4 : 0); };
+});
+function stumpTop(p, x, y, c) { el("circle", { cx: x, cy: y, r: 16, fill: c, stroke: INK, "stroke-width": 2.5 }, p); el("circle", { cx: x, cy: y, r: 7, fill: "none", stroke: "#6A4A2A", "stroke-width": 1.5 }, p); }
