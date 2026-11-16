@@ -1,0 +1,163 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<!-- Scene 7 · వీరేంద్ర వచ్చాడు (72.16 s). Timeline: work/voices/scene7/timeline.json (do not retime). Dusk at the banyan -> storm -> the Devata appears. -->
+<script src="/home/user/content-arena/tools/anim2d/story16x9/kit.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/cast.js"></script>
+<script src="/home/user/content-arena/tools/anim2d/story16x9/sets.js"></script>
+<script src="../scene4/lib456.js"></script>
+<script src="lib789.js"></script>
+<script>
+"use strict";
+const DUR = 72.16, G = 940;                       // G = ground line for the main actors in the banyan set
+const ME = castPair(makeMeera), CH = castPair(makeChintu), VE = castPair(() => makeVeerendraX());
+const H1 = castPair(() => makeHench(1)), H2 = castPair(() => makeHench(2)), H3 = castPair(() => makeHench(1, { name: "hench3", item: "saw" })), H4 = castPair(() => makeHench(2, { name: "hench4", item: "rope" }));
+const DEV = pair(() => makeDevata()), COL = pair(() => makeLightColumn(2600)), EYES = pair(makeTreeEyes), LOCK = pair(makeLocketGround);
+const J1 = pair(makeJeepSide), J2 = pair(makeJeepSide), SIGN = pair(makeSignProp), SHK = pair(makeShakeLines);
+const SW1 = pair(() => makeSwirl(30)), SW2 = pair(() => makeSwirl(30)), DR1 = pair(() => makeDustRow(14)), DR2 = pair(() => makeDustRow(14));
+const T = { jeeps: 5.3, stop: 8.6, out: 9.2, vStep: 11.3, ve: 13.6, point: 14.7, sign: 16.0, axeUp: 18.95, meeraRun: 22.4, spread: 25.6, meera: 28.3,
+  laugh: 34.6, aside: 36.5, chintu: 37.4, clasp: 40.05, red: 45.6, dark: 50.4, bolt1: 51.6, wind: 53.4, quake: 55.2, bolt2: 56.2, leaves: 58.2, from: 61.8, emerge: 63.2, dev: 68.3, kneel: 69.3 };
+window.CUES = [];
+const storm = t => clamp(rng(t, T.dark, T.dark + 2.3));
+
+// common: the banyan at dusk (sky darkens into the storm)
+function banyan(t, op, cam, extra = {}) {
+  const sm = storm(t), lit = rng(t, T.leaves, T.leaves + 1.4);
+  const S = KIT.show("banyan", Object.assign({ night: .28 + .3 * sm, storm: sm * (1 - .45 * lit), glow: lit, wind: .15 + (t > T.wind ? 1.6 * (1 - .6 * lit) : 0),
+    lightning: Math.max(Math.exp(-Math.abs(t - T.bolt1) * 9), Math.exp(-Math.abs(t - T.bolt2) * 9)) * (t > 50 && t < 58 ? 1 : 0), opacity: op, cam }, extra));
+  dusk(1 - sm); return S;
+}
+function grade(t) { const sm = storm(t);
+  if (sm < 1) tint(.38 * (1 - sm), "linear-gradient(#B888A8,#E8A078 55%,#B87A60)");
+  if (sm > 0) tint(Math.max(.38 * (1 - sm), .5 * sm), "linear-gradient(#5A6488,#7A84A0 60%,#5A607A)");
+  KIT.flash(.55 * Math.max(Math.exp(-Math.abs(t - T.bolt1) * 14), Math.exp(-Math.abs(t - T.bolt2) * 14)) * (t > 50 && t < 58 ? 1 : 0) + (t > T.dev ? .35 * Math.exp(-(t - T.dev) / .35) : 0) + (t > T.leaves && t < T.leaves + 1 ? .25 * Math.exp(-(t - T.leaves) / .3) : 0));
+}
+// the crew standing at the left, facing the tree (x positions); shake when the ground trembles; kneel in awe at the end
+function crew(t, S, C, o = {}) { const q = t > T.quake && t < 58 ? 1 : 0, kn = rng(t, T.kneel, T.kneel + 1.4);
+  [[H4, 120, 900, .74, .3], [H3, 260, 925, .78, .5], [H2, 420, 905, .76, .9], [H1, 560, 935, .8, 1.3]].forEach(([H, x, y, s, sd], i) => {
+    const a = H[C], awe = t > T.leaves; const d = kn * (i % 2 ? .9 : 1);
+    KIT.put(a, S, { x: x + (o.dx || 0), y, s, flip: 1, turn: .25, mood: t > 49.5 ? (awe ? "awe" : "scared") : (t > 34.6 && t < 37 ? "smug" : "neutral"),
+      lookY: awe ? -1 : 0, look: awe ? .2 : .4, pose: t > 49.5 && t < T.leaves ? "cower" : "stand", pose2: "kneel", poseK: ease(d),
+      lean: q * noise1(t * 9, sd) * 6, itemRot: (t > T.wind && t < 58 ? noise1(t * 30, sd) * 14 : 0) + (a.st.item === "saw" ? -60 : 0) });
+  });
+}
+
+const shots = [
+  // 0 · dusk at the banyan: the light column fades; Meera picks up the seed; jeep headlights sweep in from the left
+  [0, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[0, { x: 1080, y: 660, z: 1.12 }], [5.0, { x: 1060, y: 680, z: 1.2 }], [7.6, { x: 900, y: 660, z: 1.1 }]]));
+    KIT.put(COL[C], S, { x: 1086, y: 880, k: 1, w: 1 - .6 * rng(t, 0, 4.8), vis: 1 - rng(t, 1.5, 5.2) });
+    KIT.put(EYES[C], S, { k: .7 * (1 - rng(t, 2, 4.5)) });
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .6 });
+    const m = ME[C], c = CH[C], up = ease(rng(t, 1.6, 3.2)), look = t > 5.6;
+    KIT.put(c, S, { x: 1262, y: G, s: .62, flip: look ? -1 : 1, mood: look ? "scared" : "awe", lookY: look ? 0 : -1, look: look ? .9 : -.3, turn: look ? .3 : -.25 });
+    KIT.put(m, S, { x: 1165, y: G, s: .62, flip: look ? -1 : 1, locket: false, pose: "kneel", pose2: "hold", poseK: up, item: t > 2 ? "seed" : "", glow: 3,
+      mood: look ? "scared" : "awe", lookY: look ? 0 : (t > 2.2 ? .6 : -.8), look: look ? .9 : -.4, turn: look ? .3 : -.3 });
+    if (t > 2.0) { m.st.hR = [lerp(70, 10, up), lerp(150, 90, up)]; m.st.hL = [lerp(40, -10, up), lerp(140, 92, up)]; }
+    const [sx, sy] = KIT.toScreen(S, 1165, G - 150); KIT.glow(.35 + .15 * Math.sin(t * 3), sx, sy, 260);
+    // headlights sweeping from the left
+    const hl = rng(t, T.jeeps, T.jeeps + 1.2); if (hl > 0) { KIT.glow(Math.max(.35 + .15 * Math.sin(t * 3), .8 * hl), lerp(-200, 120, hl), 760, 700, "255,246,200"); }
+    KIT.motes(.5 * (1 - rng(t, 2, 6)), 1086, 600, 400, "255,220,140", 24); KIT.vignette(.75); }],
+  // 1 · jeeps skid to a stop; the crew jumps out with axes, a saw, ropes
+  [7.3, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[7.3, { x: 160, y: 620, z: 1.0 }], [11.4, { x: 300, y: 630, z: 1.05 }]]));
+    const k1 = ease(rng(t, 7.0, T.stop)), k2 = ease(rng(t, 7.3, T.stop + .4));
+    KIT.put(J2[C], S, { x: lerp(-1500, -380, k2), y: 905, s: 1.2, k: lerp(-1500, -380, k2), speed: 1 - k2, dust: t < T.stop + .9 ? 1 - .5 * k2 : 0, beam: 1, tilt: t > T.stop && t < T.stop + .9 ? -2 * Math.sin(rng(t, T.stop, T.stop + .9) * Math.PI) : 0, k2: rng(t, 9.0, 9.4) });
+    KIT.put(J1[C], S, { x: lerp(-1100, 60, k1), y: 960, s: 1.32, k: lerp(-1100, 60, k1), speed: 1 - k1, dust: t < T.stop + .8 ? 1 : 0, beam: 1, tilt: t > T.stop - .3 && t < T.stop + .6 ? -2.5 * Math.sin(rng(t, T.stop - .3, T.stop + .6) * Math.PI) : 0, k2: rng(t, 9.1, 9.5) });
+    // the crew hop out and stride toward the tree
+    [[H1, 9.2, 60, 520, 955, .8], [H2, 9.45, -380, 380, 925, .76], [H3, 9.7, 60, 260, 950, .78], [H4, 10.0, -380, 120, 915, .74]].forEach(([H, t0, x0, x1, y, s], i) => { const a = H[C];
+      if (t < t0) return; const hop = t < t0 + .4 ? Math.sin(rng(t, t0, t0 + .4) * Math.PI) * 50 : 0;
+      KIT.put(a, S, { y, s, hop, mood: "neutral", turn: .3, itemRot: a.st.item === "saw" ? -60 : 0 }); KIT.walk(a, t, t0 + .4, t0 + 2.2, x0, x1); });
+    KIT.vignette(.8); }, .25],
+  // 2 · Veerendra steps down in slow motion, backlit by the headlights; tilt up from his shoes to his face
+  [11.3, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[11.3, { x: 170, y: 860, z: 2.3 }], [13.4, { x: 190, y: 560, z: 1.75 }], [14.6, { x: 200, y: 545, z: 1.8 }]]));
+    KIT.put(J1[C], S, { x: 60, y: 960, s: 1.32, k: 60, beam: 1, k2: 1 });
+    const v = VE[C]; KIT.put(v, S, { y: G, s: .85, mood: "smug", turn: .35, look: .5 }); KIT.walk(v, t, 11.4, 14.4, 80, 250, { cadence: .55 });
+    const [bx, by] = KIT.toScreen(S, 40, 700); KIT.glow(.6, bx, by, 700, "255,240,200");
+    KIT.vignette(.85); }, .25],
+  // 3 · "cut this tree too! a big factory here!" — points at the banyan; the factory board slams into the ground
+  [14.5, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[14.5, { x: 560, y: 705, z: 1.3 }], [18.6, { x: 600, y: 712, z: 1.36 }]]));
+    crew(t, S, C, { dx: -120 });
+    const sk = rng(t, T.sign, T.sign + .3), land = t > T.sign + .3 ? Math.exp(-(t - T.sign - .3) * 8) * Math.sin((t - T.sign - .3) * 40) * 6 : 0;
+    if (t > T.sign - .6) KIT.put(SIGN[C], S, { x: 690, y: 950 - 160 * (1 - sk) * (t < T.sign ? 1 : 1 - sk) + land, s: .55, rot: -3 * (1 - sk) });
+    const v = VE[C], pt = t > T.point && t < 16.1, big = t > 16.3 && t < 18.2;
+    KIT.put(v, S, { x: 440, y: G + 5, s: .85, flip: 1, turn: .3, mood: pt ? "angry" : "smug", look: .6, pose: pt ? "point" : (big ? "spread" : "handsHips"), lean: pt ? 4 : 0 });
+    KIT.vignette(.8); }, .3],
+  // 4 · a man raises the axe at the trunk; "then…" a small figure runs in and spreads her arms in front of the tree
+  [18.3, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[18.3, { x: 820, y: 640, z: 1.3 }], [21.5, { x: 860, y: 620, z: 1.4 }], [25.4, { x: 900, y: 660, z: 1.3 }]]));
+    const up = ease(rng(t, T.axeUp, T.axeUp + 1.1)), stop = t > 23.6;
+    KIT.put(H1[C], S, { x: stop ? lerp(660, 600, ease(rng(t, 23.6, 24.4))) : 660, y: 935, s: .82, flip: 1, turn: .2, pose: "stand", pose2: "armsUp", poseK: up * (1 - .35 * rng(t, 24.4, 25.4)),
+      mood: stop ? "scared" : "angry", look: .6, lean: stop ? -6 : 0 });
+    if (t > T.axeUp + .9 && t < 22) { const [gx, gy] = KIT.toScreen(S, 620, 330); KIT.glow(.5 * pulse(t, T.axeUp + .9, 21.6, .2), gx, gy, 180, "255,236,170"); }
+    const m = ME[C]; if (t > T.meeraRun) { KIT.put(m, S, { y: 945, s: .72, locket: false, item: "seed", glow: 3, mood: "angry", turn: -.3, look: -.8 });
+      KIT.walk(m, t, T.meeraRun, T.meeraRun + 2.2, 1900, 1000, { run: true }); m.st.flip = -1;
+      if (t > T.meeraRun + 2.2) { m.st.pose = "stand"; m.st.pose2 = "spread"; m.st.poseK = ease(rng(t, T.spread - .4, T.spread + .3)); m.st.flip = -1; }
+    }
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .5 });
+    KIT.vignette(.8); }, .3],
+  // 5 · low angle on Meera, arms spread before the trunk; "Meera!"
+  [25.4, (t, C, op) => { const cam = KIT.camPath(t, [[25.4, { x: 1000, y: 760, z: 1.55 }], [28.2, { x: 1000, y: 735, z: 1.7 }]]); cam.z += KIT.punch(t, T.meera, .12, .6);
+    const S = banyan(t, op, cam); const m = ME[C];
+    KIT.put(m, S, { x: 1000, y: 945, s: .72, flip: -1, locket: false, pose: "spread", item: "seed", glow: 3, mood: t > T.meera ? "angry" : "angry", turn: -.25, look: -.6, lookY: -.2, hop: 0 });
+    const [gx, gy] = KIT.toScreen(S, 960, 640); KIT.glow(.45 + .1 * Math.sin(t * 2), gx, gy, 520, "255,214,140");
+    KIT.vignette(.8); }, .25],
+  // 6 · her plea (medium close-up)
+  [29.0, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[29.0, { x: 990, y: 690, z: 2.15 }], [34.3, { x: 990, y: 700, z: 2.3 }]]));
+    KIT.put(ME[C], S, { x: 1000, y: 945, s: .72, flip: -1, locket: false, pose: "spread", item: "seed", glow: 3, mood: t > 31.8 ? "sad" : "angry", turn: -.15, look: -.4, tear: .4 });
+    const [gx, gy] = KIT.toScreen(S, 960, 640); KIT.glow(.4, gx, gy, 600, "255,214,140"); KIT.vignette(.85); }, .25],
+  // 7 · Veerendra bends to her level and laughs in her face, then waves her aside
+  [34.4, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[34.4, { x: 850, y: 720, z: 1.5 }], [37.4, { x: 870, y: 720, z: 1.58 }]]));
+    const v = VE[C], bend = ease(rng(t, 34.4, 35.2)) * (1 - ease(rng(t, 36.3, 36.7))), aside = rng(t, T.aside, T.aside + .45);
+    KIT.put(v, S, { x: 700, y: G + 5, s: .85, flip: 1, turn: .45, lean: 24 * bend, mood: t < 36.3 ? "happy" : "angry", look: .6, lookY: .5 * bend,
+      pose: "handsHips", pose2: "point", poseK: ease(aside) * (1 - rng(t, 37.6, 38)), hop: t < 36.3 ? Math.abs(Math.sin(t * 9)) * 3 * bend : 0 });
+    if (aside > 0) v.st.hR = [lerp(60, 150, ease(aside)), lerp(80, -20, ease(aside))];
+    KIT.put(ME[C], S, { x: 1000, y: 945, s: .72, flip: -1, locket: false, pose: "spread", item: "seed", glow: 3, mood: t < 35.6 ? "scared" : "angry", turn: -.3, look: -.8, lean: -6 * bend });
+    KIT.vignette(.8); }, .25],
+  // 8 · Chintu runs in, knees knocking, and stands beside her; their hands clasp
+  [37.4, (t, C, op) => { const S = banyan(t, op, KIT.camPath(t, [[37.4, { x: 1060, y: 730, z: 1.5 }], [40.9, { x: 1050, y: 730, z: 1.6 }]]));
+    const c = CH[C], m = ME[C], arr = 38.9, cl = ease(rng(t, 39.7, T.clasp + .3));
+    KIT.put(c, S, { y: 945, s: .7, mood: t < arr ? "scared" : (t > 39.0 ? "angry" : "scared"), turn: -.3, look: -.8 }); KIT.walk(c, t, 37.3, arr, 1960, 1130, { run: true }); if (t > arr) c.st.flip = 1;
+    if (t > arr) { c.st.x += Math.sin(t * 38) * 2; c.st.hL = cl > 0 ? [lerp(-30, -46, cl), lerp(110, 96, cl)] : null; }
+    KIT.put(SHK[C], S, { x: c.st.x, y: 945, s: .7, k: t > arr ? 1 - .5 * rng(t, 40, 40.8) : 0 });
+    KIT.put(m, S, { x: 1000, y: 945, s: .72, flip: 1, locket: false, pose: "spread", pose2: "stand", poseK: cl, item: "seed", glow: 3, mood: t > 38.2 ? "happy" : "angry", turn: t > 38 ? .1 : -.3, look: t > 38 && t < 39.8 ? .8 : -.6 });
+    if (cl > 0) { m.st.hR = [lerp(110, 46, cl), lerp(10, 96, cl)]; m.st.item = ""; m.st.itemL = "seed"; m.st.flip = 1; }
+    KIT.vignette(.8); }, .25],
+  // 9 · wide: the kids before the tree vs. the crew; Veerendra's face turns red; the sky darkens; wind; the ground shakes
+  [40.65, (t, C, op) => {
+    const cam = camSeq(t, [[40.65, { x: 760, y: 640, z: 1.02 }], [45.6, { x: 800, y: 650, z: 1.08 }], [45.65, { x: 610, y: 505, z: 2.5 }, "cut"], [48.4, { x: 615, y: 510, z: 2.75 }],
+      [48.45, { x: 900, y: 600, z: .96 }, "cut"], [53.3, { x: 900, y: 615, z: 1.0 }], [58.2, { x: 920, y: 625, z: 1.02 }]]);
+    const q = t > T.quake && t < 57.6 ? 1 : 0, close = t > 45.6 && t < 48.45;
+    const S = banyan(t, op, cam, { shake: q * 10 + (close ? 1.5 : 0) + (t > T.wind && t < 58 ? 2 : 0) });
+    crew(t, S, C); const v = VE[C], m = ME[C], c = CH[C], sm = storm(t);
+    KIT.put(v, S, { x: 640, y: G + 5, s: .85, flip: 1, turn: .35, mood: t > 49.5 ? "scared" : "angry", look: t > 49.5 ? 0 : .7, lookY: t > 49.5 ? -1 : 0, pose: t > 49.5 ? "cower" : "handsHips", lean: q * noise1(t * 8, 7) * 6 });
+    if (close) { const [hx, hy] = KIT.toScreen(S, 640, G + 5 - 440 * .85); tint2(0, ""); tint(.85 * rng(t, 45.9, 47.0), `radial-gradient(circle 230px at ${hx}px ${hy + 40}px,#FF3A2A 0%,#FF7A6A 40%,#FFFFFF 100%)`); }
+    KIT.put(m, S, { x: 1000, y: 945, s: .72, flip: 1, locket: false, pose: "stand", itemL: "seed", glow: 3, mood: t > 49.5 ? "awe" : "angry", turn: -.25, look: -.6, lookY: t > 49.5 ? -1 : 0, hR: [46, 96], lean: q * noise1(t * 8, 3) * 5 });
+    KIT.put(c, S, { x: 1130 + (t < 45 ? Math.sin(t * 38) * 2 : 0), y: 945, s: .7, flip: 1, mood: t > 49.5 ? "scared" : (t < 44.8 ? "angry" : "neutral"), turn: -.25, look: -.6, lookY: t > 49.5 ? -1 : 0, hL: [-46, 96], lean: q * noise1(t * 8, 4) * 5 });
+    KIT.put(SHK[C], S, { x: 1130, y: 945, s: .7, k: t < 44.8 ? .7 : (q ? 1 : 0) });
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .4 });
+    KIT.put(SW1[C], S, { x: 220, y: 960, s: .9, k: rng(t, T.wind, T.wind + .8) * (1 - rng(t, 57.8, 58.4)) });
+    KIT.put(SW2[C], S, { x: 1560, y: 960, s: .8, k: rng(t, T.wind + .3, T.wind + 1.1) * (1 - rng(t, 57.8, 58.4)) });
+    KIT.put(DR1[C], S, { x: 500, y: 965, k: q, w: 900, seed: 1 }); KIT.put(DR2[C], S, { x: 1400, y: 965, k: q, w: 900, seed: 5, dir: -1 });
+    if (!close) grade(t); KIT.vignette(.85 + .1 * sm); }, .3],
+  // 10 · every leaf ignites; push into the canopy; the light opens at the heart of the trunk; the Devata emerges
+  [58.15, (t, C, op) => {
+    const cam = camSeq(t, [[58.15, { x: 930, y: 625, z: 1.02 }], [61.0, { x: 960, y: 270, z: 1.55 }], [62.0, { x: 960, y: 330, z: 1.5 }], [66.0, { x: 960, y: 560, z: 1.08 }], [68.25, { x: 960, y: 610, z: 1.0 }],
+      [68.3, { x: 980, y: 650, z: 1.02 }, "cut"], [69.2, { x: 980, y: 645, z: 1.06 }], [72.2, { x: 920, y: 660, z: .98 }]]);
+    if (t > 68.3) cam.z += KIT.punch(t, T.dev, .1, .7);
+    const S = banyan(t, op, cam, { voice: .9 * rng(t, T.from, T.from + 1) * (1 - .5 * rng(t, 66, 68)) });
+    crew(t, S, C); const v = VE[C], m = ME[C], c = CH[C];
+    KIT.put(v, S, { x: 640, y: G + 5, s: .85, flip: 1, turn: .35, mood: "scared", lookY: -1, look: .3, pose: t < 59 ? "cower" : "stand", lean: -8 * rng(t, 63, 66) });
+    const bk = ease(rng(t, 63.4, 65.6)); KIT.put(m, S, { x: lerp(1000, 1130, bk), y: 945, s: .72, flip: 1, locket: false, itemL: "seed", glow: 3, mood: "awe", turn: -.1 - .3 * bk, look: -.6 * bk, lookY: -1, hR: [46, 96] });
+    KIT.put(c, S, { x: lerp(1130, 1260, bk), y: 945, s: .7, flip: 1, mood: "awe", turn: -.1 - .3 * bk, look: -.6 * bk, lookY: -1, hL: [-46, 96] });
+    KIT.put(LOCK[C], S, { x: 1086, y: 884, s: .7, rot: -8, glint: .6 });
+    // the Devata: a point of light in the trunk grows into a figure woven of leaves and light, floating above the roots
+    const e = ease(rng(t, T.emerge, 67.6)), d = DEV[C];
+    if (t > T.emerge - .2) KIT.put(d, S, { x: 960, y: lerp(650, 560, e), s: lerp(.06, .6, e), vis: clamp(e * 3), glow: 1, mood: t > T.dev ? "happy" : "closed", arms: t > 66.5 ? "open" : "down" });
+    const [hx, hy] = KIT.toScreen(S, 962, lerp(640, 470, e)); KIT.glow(Math.min(1, .4 * rng(t, T.leaves, 60) + .5 * rng(t, T.from, T.emerge + 1)) * (t > 69 ? .75 : 1), hx, hy, 300 + 500 * e);
+    KIT.motes(.4 + .6 * rng(t, T.leaves, 60), 960, 380, 820, "255,226,140", 46);
+    tint(.42 * (1 - rng(t, T.leaves, 61)), "linear-gradient(#5A6488,#7A84A0 60%,#5A607A)");
+    KIT.flash((t > T.leaves && t < T.leaves + 1 ? .3 * Math.exp(-(t - T.leaves) / .3) : 0) + (t > T.dev ? .3 * Math.exp(-(t - T.dev) / .35) : 0));
+    KIT.vignette(.8); }, .3],
+];
+function scene(t) {
+  resetTints(); dusk(0); OV.reset();
+  runShots(t, shots);
+  KIT.fade(Math.max(1 - rng(t, 0, .8), rng(t, DUR - .7, DUR)));
+}
+</script></body></html>
