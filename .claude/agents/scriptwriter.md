@@ -43,6 +43,10 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
   pillars what-if, moral-dilemma, micro-doc, modern-dilemma (see CLAUDE.md table). Write for Telugu 25–34s:
   - Line 1 drops the viewer into the action/stakes ("₹50,000 ఉన్న wallet… దాంట్లో ఒక పిల్లాడి hospital bill!").
     No "Hey ఆగండి" filler when the situation itself is the hook.
+  - Insights (16 Nov 2026, `research/instagram/insights-2026-11-16.md`): the two reels that opened on "late at
+    night, Nikhil's phone gets a strange notification/voice note" held viewers only ~4–5 s on average (others 14–18 s).
+    Don't open on a phone notification at night; open on a concrete conflict with money, people or a deadline.
+    Riddles get shared far more than stories, so give story reels a reason to share or tag ("tag the friend who…").
   - A turn or twist in the middle; specific, lived details (Hitech City traffic, EMI date, appraisal, in-laws'
     visit, Sankranti bus tickets, WhatsApp family group); smart, a little funny, never preachy or childish.
   - The question to the viewer is genuinely hard (both A and B defensible); the reveal is how *our* story ends or
