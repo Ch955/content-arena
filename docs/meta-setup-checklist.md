@@ -107,8 +107,8 @@ If the token leaks: Instagram → Settings → *Apps and websites* → remove `c
 
 ## F. Let the token read insights (owner, 16 Nov 2026 — for `python -m content_arena insights`)
 
-The publishing token only had `instagram_business_basic` + `instagram_business_content_publish`. To read the
-dashboard numbers (views, reach, shares, saves, watch time, follower growth and age/city), add one permission:
+Checked 16 Nov 2026: the current token already reads insights (the first insights run worked), so this section is
+only needed if a later run says the token can't read insights. Then add one permission:
 
 - [ ] App dashboard → **Instagram → API setup with Instagram login** → *Generate access tokens* → next to
       @_reelrasam click **Generate token** → allow the permissions, and make sure
