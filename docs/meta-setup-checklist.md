@@ -104,3 +104,19 @@ If the token leaks: Instagram → Settings → *Apps and websites* → remove `c
 - New or recently changed Facebook profiles are often limited for a few days — wait 24–48 h.
 - Make sure the personal profile has a confirmed email/phone and 2FA on.
 - Try a slightly different Page name ("Reel Rasam Telugu"); some names get silently blocked.
+
+## F. Let the token read insights (owner, 16 Nov 2026 — for `python -m content_arena insights`)
+
+The publishing token only had `instagram_business_basic` + `instagram_business_content_publish`. To read the
+dashboard numbers (views, reach, shares, saves, watch time, follower growth and age/city), add one permission:
+
+- [ ] App dashboard → **Instagram → API setup with Instagram login** → *Generate access tokens* → next to
+      @_reelrasam click **Generate token** → allow the permissions, and make sure
+      **`instagram_business_manage_insights`** is ticked too (keep the two old ones).
+- [ ] Paste the new token **straight into GitHub** → `content-arena` → Settings → Secrets and variables →
+      Actions → Secrets → `IG_ACCESS_TOKEN` → **Update** (and into `.env` on your laptop if you keep one).
+      Never paste it into chat. Publishing keeps working with the new token; the twice-monthly refresh
+      workflow keeps extending it as before.
+- [ ] Tell Claude "insights token done" — it runs the read-only **insights** workflow
+      (`.github/workflows/insights.yml`) and reads the report. Follower age/gender/city only appear once the
+      account has 100+ followers.

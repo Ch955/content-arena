@@ -1,0 +1,39 @@
+name: insights
+
+# Read-only Instagram dashboard (owner, 16 Nov 2026). Run by hand (or by the office): it only READS the account's
+# insights with the same token as publishing and prints a report to the job summary. It never posts or changes
+# anything. The token needs the instagram_business_manage_insights permission (docs/meta-setup-checklist.md, F).
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back"
+        default: "30"
+
+jobs:
+  insights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Read Instagram insights
+        env:
+          GRAPH_API_VERSION: ${{ vars.GRAPH_API_VERSION || 'v23.0' }}
+          META_AUTH: ${{ vars.META_AUTH || 'instagram_login' }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          python -m content_arena insights --days "${{ inputs.days || '30' }}" \
+            --json insights.json --markdown insights.md
+          cat insights.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: instagram-insights
+          path: insights.json
+          retention-days: 30

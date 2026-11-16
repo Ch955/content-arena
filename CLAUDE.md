@@ -154,6 +154,7 @@ python -m content_arena sync content/<post>       # upload images + create/updat
 python -m content_arena list [--status approved]
 python -m content_arena approve <row-id>          # owner only — never run this yourself
 python -m content_arena publish [--live]
+python -m content_arena insights [--days 30]       # read-only Instagram dashboard (runs in the insights workflow)
 python -m content_arena refresh-ig-token          # owner: extend the 60-day IG token (touches account)
 python -m content_arena youtube-auth              # owner, once: connect @reel_rasam (touches account)
 python -m unittest discover -s tests              # tests (no network, no accounts)

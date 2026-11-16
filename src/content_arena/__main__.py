@@ -38,7 +38,21 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("plan", help="what to make each day (podupu katha daily + book story / life lesson)")
     p.add_argument("--days", type=int, default=7)
     p.add_argument("--start", help="YYYY-MM-DD (default: today, IST)")
+    p = sub.add_parser("insights", help="read-only Instagram dashboard (needs the manage_insights permission)")
+    p.add_argument("--days", type=int, default=30)
+    p.add_argument("--reels", type=int, default=25, help="how many recent posts to include (max 25)")
+    p.add_argument("--json", help="also write the full report to this JSON file")
+    p.add_argument("--markdown", help="also write the markdown report to this file")
     args = ap.parse_args(argv)
+
+    if args.cmd == "insights":
+        from . import insights
+        report = insights.run(days=args.days, reels=min(args.reels, 25), out_json=args.json)
+        md = insights.to_markdown(report)
+        print(md)
+        if args.markdown:
+            Path(args.markdown).write_text(md + "\n", encoding="utf-8")
+        return 0
 
     if args.cmd == "pack":
         from . import drive, pack
