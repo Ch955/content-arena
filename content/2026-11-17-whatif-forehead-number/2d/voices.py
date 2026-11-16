@@ -26,6 +26,7 @@ FPS = 30
 COUNTDOWN = 5.0
 TAIL = 0.25   # after 'clue మొదటి seconds లోనే!' -> hard cut back to frame 1 (loop)
 SPEED = {"gemini": 1.15, "eleven": 1.05, "sarvam": 1.05}
+FIT = {2: 1.10}   # extra atempo per line (0.9-1.1) to fit a re-take into the old slot
 LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with v3 [tags])  -- from script.json
     ("vimala", "మా Rohit కి US లో crore package తెల్సా? నీకెంత, Nikhil?", 0.30,
      "a loud, smug aunty showing off to the whole function hall, then a sugar-coated jab with a raised eyebrow; stress on crore",
@@ -33,10 +34,10 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     ("gopi", "అప్పుడే… అందరి forehead మీద ఒక number!", 0.15,
      "a narrator dropping to a hush, then a bright jolt as the numbers light up",
      "[dramatic pause] అప్పుడే… [whispers] అందరి forehead మీద… [excited] ఒక number!"),                                # 1 premise
-    ("vimala", "Rohit కి 12 ఏంది?! ఎవుసం చేసే Srinu కి… 2,400?!", 0.15,
+    ("vimala", "Rohit కి 12 ఏంది?! వ్యవసాయం చేసే Srinu కి… 2,400?!", 0.15,
      "the proud aunty's face falling: shrill disbelief, rising higher and faster on the second number",
-     "[shocked] Rohit కి twelve ఏంది?! [panicking] ఎవుసం చేసే Srinu కి… two thousand four hundred?!"),               # 2 setup
-    ("gopi", "Salary ఆ? Answer చివర్లో… clues మిస్ అవ్వకండి!", 0.15,
+     "[shocked] Rohit కి twelve ఏంది?! [panicking] వ్యవసాయం చేసే Srinu కి… two thousand four hundred?!"),         # 2 setup (QC 16 Nov: re-voiced, ఎవుసం -> వ్యవసాయం)
+    ("gopi", "Salary ఆ? Answer చివర్లో… clues మిస్ అవ్వకండి!", 0.083,   # QC: was 0.15; absorbs the longer L2 re-take
      "a sly narrator aside to the viewer, quick then hushed",
      "[mischievously] Salary ఆ? [whispers] Answer చివర్లో… clues మిస్ అవ్వకండి!"),                                  # 3 hold
     ("ammamma", "నాకు జీతమే లేదు… అయినా నాదే పెద్ద number!", 0.15,
@@ -168,7 +169,7 @@ def build():
         e = "eleven" if m.startswith("eleven") else "sarvam" if m.startswith("sarvam") else "gemini"
         pitch = ELEVEN_PITCH.get(who, 1.0) if e == "eleven" else 1.0
         af = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
-        af += f",asetrate=44100*{pitch},aresample=44100,atempo={SPEED[e] / pitch:.4f}"
+        af += f",asetrate=44100*{pitch},aresample=44100,atempo={SPEED[e] * FIT.get(i, 1.0) / pitch:.4f}"
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-af", af, "-ac", "1", "-ar", "44100", dst], check=True)
         with wave.open(dst) as w:
             a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float) / 32768

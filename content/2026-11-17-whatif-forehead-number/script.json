@@ -1,30 +1,109 @@
-{"lines": [
- {"who": "vimala", "text": "మా Rohit కి US లో crore package తెల్సా? నీకెంత, Nikhil?", "say": "[proudly] మా Rohit కి US లో crore package తెల్సా? [sarcastically] నీకెంత, Nikhil?", "act": "a loud, smug aunty showing off to the whole function hall, then a sugar-coated jab with a raised eyebrow; stress on crore", "beat": "hook"},
- {"who": "gopi", "text": "అప్పుడే… అందరి forehead మీద ఒక number!", "say": "[dramatic pause] అప్పుడే… [whispers] అందరి forehead మీద… [excited] ఒక number!", "act": "a narrator dropping to a hush, then a bright jolt as the numbers light up", "beat": "premise"},
- {"who": "vimala", "text": "Rohit కి 12 ఏంది?! ఎవుసం చేసే Srinu కి… 2,400?!", "say": "[shocked] Rohit కి twelve ఏంది?! [panicking] ఎవుసం చేసే Srinu కి… two thousand four hundred?!", "act": "the proud aunty's face falling: shrill disbelief, rising higher and faster on the second number", "beat": "setup"},
- {"who": "gopi", "text": "Salary ఆ? Answer చివర్లో… clues మిస్ అవ్వకండి!", "say": "[mischievously] Salary ఆ? [whispers] Answer చివర్లో… clues మిస్ అవ్వకండి!", "act": "a sly narrator aside to the viewer, quick then hushed", "beat": "hold"},
- {"who": "ammamma", "text": "నాకు జీతమే లేదు… అయినా నాదే పెద్ద number!", "say": "[chuckles] నాకు జీతమే లేదు… [slowly] అయినా నాదే పెద్ద number!", "act": "a 74-year-old grandmother, amused and unhurried, a twinkle in her voice; stress on నాదే", "beat": "clue-1"},
- {"who": "ananya", "text": "చూడు… Amma laddu పెడుతుంటే నీది 97! Rohit ది… కదలట్లేదు.", "say": "[curious] చూడు… Amma laddu పెడుతుంటే… [excited] నీది 97! [whispers] Rohit ది… కదలట్లేదు.", "act": "a sharp-eyed friend who notices first: quick and excited, then a conspiratorial whisper; stress on కదలట్లేదు", "beat": "clue-2"},
- {"who": "gopi", "text": "Follow కొట్టి… comment చేయండి: ఆ number ఏంటి? 5 seconds!", "say": "[warmly] Follow కొట్టి… [dramatic pause] comment చేయండి — ఆ number ఏంటి? [excited] Five seconds!", "act": "a quick warm aside, then a slow pointed question to the viewer, then urgent quiz-host energy", "beat": "follow-comment-countdown"},
- {"who": "ananya", "text": "Money కాదు… ఈ year family తో, phone లేకుండా గడిపిన గంటలు!", "say": "[softly] Money కాదు… [warmly] ఈ year family తో… phone లేకుండా గడిపిన గంటలు!", "act": "gentle and certain, letting it land slowly; stress on గంటలు", "beat": "reveal"},
- {"who": "nikhil", "text": "Amma-Nanna తో… ఈ year మొత్తం నాలుగు రోజులే?", "say": "[quietly] Amma-Nanna తో… [slowly] ఈ year మొత్తం… నాలుగు రోజులే?", "act": "a calm man doing the maths in his head and going quiet, the last word almost a breath", "beat": "why"},
- {"who": "vimala", "text": "Rohit… గా phone పక్కకు పెట్టు రా!", "say": "[sharply] Rohit… [softly] గా phone పక్కకు పెట్టు రా!", "act": "the same loud aunty now scolding her son: sharp at first, then her voice softens into a mother's plea", "beat": "turn"},
- {"who": "gopi", "text": "Correct ఆ? ✅ మీ forehead మీద ఎంత? Comment చేయండి!", "say": "[warmly] Correct ఆ? [dramatic pause] మీ forehead మీద ఎంత? [excited] Comment చేయండి!", "act": "a warm narrator letting the twist click, then a bright, personal question to the viewer", "beat": "check-comment"},
- {"who": "gopi", "text": "Compare అయ్యే cousin ని tag చేయండి! Follow… clue మొదటి seconds లోనే!", "say": "[mischievously] Compare అయ్యే cousin ని… tag చేయండి! [laughs] Follow… [whispers] clue మొదటి seconds లోనే!", "act": "playful and conspiratorial, a quick laugh, then dropping to an intriguing whisper that sends you back to the start", "beat": "share-close-loop"}
-],
-"visual_plan": [
- "style: NEON skin for the whole engagement night (Kukatpally function hall: fairy-light curtains, an LED stage backdrop 'Divya ❤️ Varun', marigold garlands, plastic chairs, a steel laddu tray). The forehead numbers are the neon element: thin glowing digits, cyan for everyone, floating just above the brows, readable at phone size. setSkin('clay') (warm, soft) only for the final time-lapse with Amma & Nanna (from L10 on), back to NEON for the hard cut to frame 1. Cast per tools/anim2d/cast.md: Nikhil (NIKHIL_OPT, charcoal shirt + office lanyard 'NIKHIL R · TOWER B' in L1, which he pockets), Ananya (ANANYA_OPT, teal kurta), Amma = SAROJA_OPT, Nanna = PRASAD_OPT (both from 15 Nov). New: Vimala aunty, Rohit, Srinu, Ammamma (see brief.md cast table). Divya (the bride, Vimala's daughter) is only a silhouette on the stage. No brands or logos: generic earbuds, a generic video-call grid on Rohit's phone.",
- "NUMBER TABLE (keep identical in every frame; 'hours with family, phone down, in 2026'): Nikhil 96 → 97 (L6) → 100 (end); Rohit 12 (frozen while on his phone, L1–L9) → 15 (end); Srinu 2,400 → 2,403 (end); Ammamma 4,500 → 4,503 (end, always the biggest); Amma (Saroja) 3,250 → 3,253; Nanna (Prasad) 3,180 → 3,183; Vimala 1,900 → 1,903; Ananya 610, never moves (her family isn't here) and she leaves before the time-lapse. No other number changes before L10. Use commas exactly as written (2,400 / 4,500).",
- "L1 hook (0 s, open on the action, no numbers yet): mid-shot of Vimala aunty (silk saree, big jhumkas, heavy gold) blocking Nikhil's way as he walks in, still pulling off his office lanyard. REWATCH CLUE planted in this first frame (do not zoom): behind her, Rohit is the only one holding a phone (earbuds in, video-call grid on screen, eyes down); to the side Srinu is helping Ammamma into a chair and handing her a plate; Amma waves at Nikhil from a sofa with a laddu in her hand. Text hook 'Forehead మీద number… ఏంటది? 🤔' on screen from 0 s.",
- "L2 premise: a soft 'ting' — the numbers ignite one forehead at a time (Vimala's first, then across the hall), a neon shimmer sweeping left to right. Title 'WHAT IF? 🤔' + pill 'అందరి forehead మీద ఒక number…' lands ~1.5 s in.",
- "L3 setup: quick whip-pans with each number popping big as she says it: Rohit '12' (still on his phone, doesn't look up); Srinu '2,400' (white cotton shirt, kanduva on his shoulder, sun-tanned, a small chip 'B.Tech → ఎవుసం 🌾'). Her eyes flick to Nikhil's '96' and widen (no line). Comic sting SFX.",
- "L4 hold: Gopi corner cut-out with a raised eyebrow; tag 'ANSWER చివర్లో 👀' stamps on. Three empty clue slots appear at the top (CLUE 1 · CLUE 2 · CLUE 3).",
- "L5 clue-1: Ammamma (white-and-maroon cotton saree, grey bun, round specs) laughs, tapping her own forehead: '4,500' glows brightest in the room. CLUE SLOT 1 fills: 'Ammamma — జీతం లేదు, 4,500'.",
- "L6 clue-2: Nikhil sits beside Amma on the sofa; she feeds him a laddu with her hand; on 'పెడుతుంటే' his number ticks 96 → 97 with a tiny +1 flick. Cut to Rohit, head down in his video call: '12' — a faint glitch on the digits shows it is NOT moving. CLUE SLOT 2: 'Nikhil 96 → 97 🍬'; CLUE SLOT 3: 'Rohit 📱 — 12'.",
- "L7 follow-comment-countdown: animated FOLLOW button pressed by a finger (pop SFX) on 'Follow కొట్టి', then all three clues line up; big '🤔 ఆ number ఏంటి? 💬 COMMENT' + 5 s countdown 5-4-3-2-1 (no voice during the 5 s, soft tick SFX, the neon digits pulse with each tick). Comment bubbles float up, none give the answer: 'Salary 💰', 'Net worth?', 'Steps count 😂', 'Instagram followers', 'Happiness level?', '🤔'.",
- "L8 reveal: every number in the hall flashes once; a neon label slides under Nikhil's number: '⏱ HOURS WITH FAMILY · 📵 PHONE DOWN · 2026'. Ananya taps her own '610' and shrugs (her family isn't here).",
- "L9 why: close on Nikhil looking from Amma to Nanna; a small chip does the maths: '97 గంటలు ÷ 24 ≈ 4 రోజులు'. Music drops to one soft synth note. He slides his phone into his pocket (screen-down).",
- "L10 turn (setSkin('clay') begins, warm glow spreads from the sofa): Vimala turns to Rohit; he pulls out one earbud, puts the phone face-down on a chair and sits next to her — she pats his cheek. Ananya waves bye from the door ('Divya bye!' on her lips, no voice) and leaves.",
- "L11 check-comment (clay): time-lapse — the wall clock spins 8:00 → 11:00 PM, chairs get stacked, fairy lights switch off one by one; Nikhil stays on the sofa between Amma and Nanna (Nanna showing him old photos in a paper album, not a phone), Ammamma dozing beside them. Numbers climb together: Nikhil 97 → 98 → 99 → 100 (a little sparkle at 100), Rohit 12 → 13 → 14 → 15, everyone else +3. '✅' stamps in a corner on 'Correct ఆ?'; text 'మీ forehead మీద ఎంత? 💬'.",
- "L12 share-close-loop: text 'COMPARE అయ్యే ఆ cousin ని TAG చేయండి 😅' with a tag animation (a contact card 'Cousin 🫠' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM. On 'clue మొదటి seconds లోనే' hard cut back to NEON frame 1 (Vimala blocking Nikhil, Rohit on his phone behind her) so the loop is seamless."
-]}
+{
+ "lines": [
+  {
+   "who": "vimala",
+   "text": "మా Rohit కి US లో crore package తెల్సా? నీకెంత, Nikhil?",
+   "say": "[proudly] మా Rohit కి US లో crore package తెల్సా? [sarcastically] నీకెంత, Nikhil?",
+   "act": "a loud, smug aunty showing off to the whole function hall, then a sugar-coated jab with a raised eyebrow; stress on crore",
+   "beat": "hook"
+  },
+  {
+   "who": "gopi",
+   "text": "అప్పుడే… అందరి forehead మీద ఒక number!",
+   "say": "[dramatic pause] అప్పుడే… [whispers] అందరి forehead మీద… [excited] ఒక number!",
+   "act": "a narrator dropping to a hush, then a bright jolt as the numbers light up",
+   "beat": "premise"
+  },
+  {
+   "who": "vimala",
+   "text": "Rohit కి 12 ఏంది?! వ్యవసాయం చేసే Srinu కి… 2,400?!",
+   "say": "[shocked] Rohit కి twelve ఏంది?! [panicking] వ్యవసాయం చేసే Srinu కి… two thousand four hundred?!",
+   "act": "the proud aunty's face falling: shrill disbelief, rising higher and faster on the second number",
+   "beat": "setup"
+  },
+  {
+   "who": "gopi",
+   "text": "Salary ఆ? Answer చివర్లో… clues మిస్ అవ్వకండి!",
+   "say": "[mischievously] Salary ఆ? [whispers] Answer చివర్లో… clues మిస్ అవ్వకండి!",
+   "act": "a sly narrator aside to the viewer, quick then hushed",
+   "beat": "hold"
+  },
+  {
+   "who": "ammamma",
+   "text": "నాకు జీతమే లేదు… అయినా నాదే పెద్ద number!",
+   "say": "[chuckles] నాకు జీతమే లేదు… [slowly] అయినా నాదే పెద్ద number!",
+   "act": "a 74-year-old grandmother, amused and unhurried, a twinkle in her voice; stress on నాదే",
+   "beat": "clue-1"
+  },
+  {
+   "who": "ananya",
+   "text": "చూడు… Amma laddu పెడుతుంటే నీది 97! Rohit ది… కదలట్లేదు.",
+   "say": "[curious] చూడు… Amma laddu పెడుతుంటే… [excited] నీది 97! [whispers] Rohit ది… కదలట్లేదు.",
+   "act": "a sharp-eyed friend who notices first: quick and excited, then a conspiratorial whisper; stress on కదలట్లేదు",
+   "beat": "clue-2"
+  },
+  {
+   "who": "gopi",
+   "text": "Follow కొట్టి… comment చేయండి: ఆ number ఏంటి? 5 seconds!",
+   "say": "[warmly] Follow కొట్టి… [dramatic pause] comment చేయండి — ఆ number ఏంటి? [excited] Five seconds!",
+   "act": "a quick warm aside, then a slow pointed question to the viewer, then urgent quiz-host energy",
+   "beat": "follow-comment-countdown"
+  },
+  {
+   "who": "ananya",
+   "text": "Money కాదు… ఈ year family తో, phone లేకుండా గడిపిన గంటలు!",
+   "say": "[softly] Money కాదు… [warmly] ఈ year family తో… phone లేకుండా గడిపిన గంటలు!",
+   "act": "gentle and certain, letting it land slowly; stress on గంటలు",
+   "beat": "reveal"
+  },
+  {
+   "who": "nikhil",
+   "text": "Amma-Nanna తో… ఈ year మొత్తం నాలుగు రోజులే?",
+   "say": "[quietly] Amma-Nanna తో… [slowly] ఈ year మొత్తం… నాలుగు రోజులే?",
+   "act": "a calm man doing the maths in his head and going quiet, the last word almost a breath",
+   "beat": "why"
+  },
+  {
+   "who": "gopi",
+   "text": "Correct ఆ? ✅ మీ forehead మీద ఎంత? Comment చేయండి!",
+   "say": "[warmly] Correct ఆ? [dramatic pause] మీ forehead మీద ఎంత? [excited] Comment చేయండి!",
+   "act": "a warm narrator letting the twist click, then a bright, personal question to the viewer",
+   "beat": "check-comment"
+  },
+  {
+   "who": "gopi",
+   "text": "Compare అయ్యే cousin ని tag చేయండి! Follow… clue మొదటి seconds లోనే!",
+   "say": "[mischievously] Compare అయ్యే cousin ని… tag చేయండి! [laughs] Follow… [whispers] clue మొదటి seconds లోనే!",
+   "act": "playful and conspiratorial, a quick laugh, then dropping to an intriguing whisper that sends you back to the start",
+   "beat": "share-close-loop"
+  }
+ ],
+ "visual_plan": [
+  "style: NEON skin for the whole engagement night (Kukatpally function hall: fairy-light curtains, an LED stage backdrop 'Divya ❤️ Varun', marigold garlands, plastic chairs, a steel laddu tray). The forehead numbers are the neon element: thin glowing digits, cyan for everyone, floating just above the brows, readable at phone size. setSkin('clay') (warm, soft) only for the final time-lapse with Amma & Nanna (from L10 on), back to NEON for the hard cut to frame 1. Cast per tools/anim2d/cast.md: Nikhil (NIKHIL_OPT, charcoal shirt + office lanyard 'NIKHIL R · TOWER B' in L1, which he pockets), Ananya (ANANYA_OPT, teal kurta), Amma = SAROJA_OPT, Nanna = PRASAD_OPT (both from 15 Nov). New: Vimala aunty, Rohit, Srinu, Ammamma (see brief.md cast table). Divya (the bride, Vimala's daughter) is only a silhouette on the stage. No brands or logos: generic earbuds, a generic video-call grid on Rohit's phone.",
+  "NUMBER TABLE (keep identical in every frame; 'hours with family, phone down, in 2026'): Nikhil 96 → 97 (L6) → 100 (end); Rohit 12 (frozen while on his phone, L1–L9) → 15 (end); Srinu 2,400 → 2,403 (end); Ammamma 4,500 → 4,503 (end, always the biggest); Amma (Saroja) 3,250 → 3,253; Nanna (Prasad) 3,180 → 3,183; Vimala 1,900 → 1,903; Ananya 610, never moves (her family isn't here) and she leaves before the time-lapse. No other number changes before L10. Use commas exactly as written (2,400 / 4,500).",
+  "L1 hook (0 s, open on the action, no numbers yet): mid-shot of Vimala aunty (silk saree, big jhumkas, heavy gold) blocking Nikhil's way as he walks in, still pulling off his office lanyard. REWATCH CLUE planted in this first frame (do not zoom): behind her, Rohit is the only one holding a phone (earbuds in, video-call grid on screen, eyes down); to the side Srinu is helping Ammamma into a chair and handing her a plate; Amma waves at Nikhil from a sofa with a laddu in her hand. Text hook 'Forehead మీద number… ఏంటది? 🤔' on screen from 0 s.",
+  "L2 premise: a soft 'ting' — the numbers ignite one forehead at a time (Vimala's first, then across the hall), a neon shimmer sweeping left to right. Title 'WHAT IF? 🤔' + pill 'అందరి forehead మీద ఒక number…' lands ~1.5 s in.",
+  "L3 setup: quick whip-pans with each number popping big as she says it: Rohit '12' (still on his phone, doesn't look up); Srinu '2,400' (white cotton shirt, kanduva on his shoulder, sun-tanned, a small chip 'B.Tech → వ్యవసాయం 🌾'). Her eyes flick to Nikhil's '96' and widen (no line). Comic sting SFX.",
+  "L4 hold: Gopi corner cut-out with a raised eyebrow; tag 'ANSWER చివర్లో 👀' stamps on. Three empty clue slots appear at the top (CLUE 1 · CLUE 2 · CLUE 3).",
+  "L5 clue-1: Ammamma (white-and-maroon cotton saree, grey bun, round specs) laughs, tapping her own forehead: '4,500' glows brightest in the room. CLUE SLOT 1 fills: 'Ammamma — జీతం లేదు, 4,500'.",
+  "L6 clue-2: Nikhil sits beside Amma on the sofa; she feeds him a laddu with her hand; on 'పెడుతుంటే' his number ticks 96 → 97 with a tiny +1 flick. Cut to Rohit, head down in his video call: '12' — a faint glitch on the digits shows it is NOT moving. CLUE SLOT 2: 'Nikhil 96 → 97 🍬'; CLUE SLOT 3: 'Rohit 📱 — 12'.",
+  "L7 follow-comment-countdown: animated FOLLOW button pressed by a finger (pop SFX) on 'Follow కొట్టి', then all three clues line up; big '🤔 ఆ number ఏంటి? 💬 COMMENT' + 5 s countdown 5-4-3-2-1 (no voice during the 5 s, soft tick SFX, the neon digits pulse with each tick). Comment bubbles float up, none give the answer: 'Salary 💰', 'Net worth?', 'Steps count 😂', 'Instagram followers', 'Happiness level?', '🤔'.",
+  "L8 reveal: every number in the hall flashes once; a neon label slides under Nikhil's number: '⏱ HOURS WITH FAMILY · 📵 PHONE DOWN · 2026'. Ananya taps her own '610' and shrugs (her family isn't here).",
+  "L9 why: close on Nikhil looking from Amma to Nanna; a small chip does the maths: '97 గంటలు ÷ 24 ≈ 4 రోజులు'. Music drops to one soft synth note. He slides his phone into his pocket (screen-down).",
+  "L10 turn — SILENT (the voiced line was cut for length): setSkin('clay') begins right after Nikhil's L9 with a warm glow from the sofa; Vimala turns to Rohit and gestures 'phone down'; he pulls out one earbud, puts the phone face-down on a chair and sits next to her — she pats his cheek (~1.3 s, the start of Gopi's L11 plays over it). Ananya waves bye from the door ('Divya bye!' on her lips, no voice) at the start of the time-lapse and leaves.",
+  "L11 check-comment (clay): time-lapse — the wall clock spins 8:00 → 11:00 PM, chairs get stacked, fairy lights switch off one by one; Nikhil stays on the sofa between Amma and Nanna (Nanna showing him old photos in a paper album, not a phone), Ammamma dozing beside them. Numbers climb together, one step on each hour (9:00, 10:00, 11:00 PM): Nikhil 97 → 98 → 99 → 100 (a little sparkle at 100), Rohit 12 → 13 → 14 → 15, everyone else +3. '✅' stamps in a corner on 'Correct ఆ?'; text 'మీ forehead మీద ఎంత? 💬'.",
+  "L12 share-close-loop: text 'COMPARE అయ్యే ఆ cousin ని TAG చేయండి 😅' with a tag animation (a contact card 'Cousin 🫠' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM. On 'clue మొదటి seconds లోనే' hard cut back to NEON frame 1 (Vimala blocking Nikhil, Rohit on his phone behind her) so the loop is seamless."
+ ],
+ "cut_lines": [
+  {
+   "was": "L10",
+   "who": "vimala",
+   "text": "Rohit… గా phone పక్కకు పెట్టు రా!",
+   "say": "[sharply] Rohit… [softly] గా phone పక్కకు పెట్టు రా!",
+   "act": "the same loud aunty now scolding her son: sharp at first, then her voice softens into a mother's plea",
+   "beat": "turn",
+   "cut": "16 Nov 2026 (Editor): cut for length (the reel ran 46.4 s; brief: trim L10 first). The turn plays as a silent clay visual."
+  }
+ ],
+ "note": "11 voiced lines (script L10 cut, see cut_lines). Line numbers in the visual plan keep the original numbering (L1-L12, L10 = silent turn)."
+}

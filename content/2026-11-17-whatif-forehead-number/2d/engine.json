@@ -8,7 +8,7 @@
  },
  "why": "ElevenLabs planned for the story cast (Vimala, Ananya, Nikhil, Ammamma) but the API key's own quota had 51 credits left and refused line 0 (81 needed) -> everyone on Gemini, so nobody switches voice mid-reel. Sarvam TTS/STT returned 402 (no credits): not used; takes checked with the Gemini listener.",
  "requests": "Gemini TTS batches via content_arena.scenevoice (<=2 voices per request, lines in script order); 0 retakes",
- "fixes": "recut.py (L1|L2 split: 'ఒక number!' moved back to Gopi's L1), tighten.py MAXP=.26 KEEP=.18 TH=.02, script L10 (Vimala) cut for length, beat.py +0.6 s after 'Follow…' for the end card",
+ "fixes": "recut.py (L1|L2 split: 'ఒక number!' moved back to Gopi's L1), tighten.py MAXP=.26 KEEP=.18 TH=.02, script L10 (Vimala) cut for length, beat.py +0.6 s after 'Follow…' for the end card; QC 16 Nov: L2 (script L3) re-voiced on Gemini Autonoe with వ్యవసాయం (tighten MAXP=.20 KEEP=.14, FIT atempo x1.10, gap before L3 0.15 -> 0.083 so every other timing is unchanged)",
  "speed": "gemini 1.15 (atempo)",
  "lines": {
   "0": {
@@ -27,7 +27,7 @@
    "who": "vimala",
    "engine": "gemini-batch",
    "start": 6.992,
-   "dur": 3.696
+   "dur": 3.763
   },
   "3": {
    "who": "gopi",
@@ -38,7 +38,7 @@
   "4": {
    "who": "ammamma",
    "engine": "gemini-batch",
-   "start": 13.42,
+   "start": 13.419,
    "dur": 3.351
   },
   "5": {
@@ -50,7 +50,7 @@
   "6": {
    "who": "gopi",
    "engine": "gemini-batch",
-   "start": 21.433,
+   "start": 21.432,
    "dur": 3.036
   },
   "7": {
@@ -74,7 +74,7 @@
   "10": {
    "who": "gopi",
    "engine": "gemini-batch",
-   "start": 39.418,
+   "start": 39.417,
    "dur": 4.571
   }
  },

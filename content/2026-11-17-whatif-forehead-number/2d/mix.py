@@ -115,8 +115,8 @@ put(sfx, add(smooth(noise(0.08, 40), 3), tone(240, 0.08, 30)), b["tPocket"] + 0.
 whoosh(b["clay"] - 0.1, 0.4, 0.15)
 put(sfx, add(smooth(noise(0.04, 120), 2), tone(500, 0.05, 50)), b["tDown"], 0.18)        # phone face-down on the chair
 put(sfx, add(smooth(noise(0.03, 150), 2), tone(700, 0.04, 60)), b["tPat"], 0.10); put(sfx, add(smooth(noise(0.03, 150), 2), tone(700, 0.04, 60)), b["tPat"] + 0.13, 0.08)
-for k in range(3): put(sfx, tone(midi(91 + 2 * k), 0.15, 20), b["tl0"] + (k + 1) * (b["tl1"] - b["tl0"]) / 4.0, 0.08)   # counters tick up
-for k, m in enumerate((98, 103, 107)): put(sfx, tone(midi(m), 0.5, 7), b["tl0"] + (b["tl1"] - b["tl0"]) * 0.75 + k * 0.06, 0.07)   # sparkle at 100
+for k in range(3): put(sfx, tone(midi(91 + 2 * k), 0.15, 20), b["tl0"] + (k + 1) * (b["tl1"] - b["tl0"]) / 3.0, 0.08)   # counters tick up on 9, 10, 11 PM
+for k, m in enumerate((98, 103, 107)): put(sfx, tone(midi(m), 0.5, 7), b["tl1"] + k * 0.06, 0.07)   # sparkle at 100 (11:00 PM)
 ding(b["tCheck"], 0.22, 91); pop_(b["tQ2"], 0.12)
 whoosh(b["sh0"], 0.35, 0.16)
 for i in range(3): pop_(b["tAt"] + 0.1 + i * 0.08, 0.09, 700, 1400)

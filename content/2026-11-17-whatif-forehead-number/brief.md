@@ -16,7 +16,8 @@ status: idea
 
 Tue 17 Nov 2026, 07:30 IST (one reel a day; rotation: what-if, 35–45 s). Art: **neon** (the `plan` default, and the
 right one here: the glowing forehead digits are the neon), with `setSkin('clay')` for the warm time-lapse ending
-(L10–L11) and back to neon for the loop frame. 12 lines in `script.json`, all about 10 words or fewer.
+(L10–L11) and back to neon for the loop frame. 11 voiced lines in `script.json` (L10 cut for length on 16 Nov; the turn
+is now a silent visual), all about 10 words or fewer.
 Manager's premise; I kept its core and tightened the writing (changes listed under "Changes from the manager's
 premise" below).
 
@@ -25,7 +26,7 @@ premise" below).
 |---|---|---|---|---|---|
 | `nikhil` | male | young (28, Hyderabad software engineer, comes straight from the office in Hitech City) | cool / thoughtful | standard Andhra | `NIKHIL_OPT` + lanyard "NIKHIL R · TOWER B" in L1; `profile_for("male","young","cool")` → andhra-male-young |
 | `ananya` | female | young (27, his close friend; here as the bride Divya's office friend) | emotional / curious, the one who notices first | standard Andhra (చూడు, కదలట్లేదు) | `ANANYA_OPT` (teal kurta); `profile_for("female","young","emotional")` → andhra-female-young |
-| `vimala` | female | middle (~52, Nikhil's అత్తయ్య (Nanna's sister), mother of the bride Divya and of Rohit; loud, competitive, loving underneath) | aggressive (sharp-tongued) | natural Telangana (తెల్సా, ఏంది, ఎవుసం, గా, పెట్టు రా) | silk saree, big jhumkas, heavy gold, sharp eyebrows; `profile_for("female","middle","aggressive")` → **telangana-female-young** (the bank has no Telangana middle-aged female voice; the Editor may pitch it down a little, owner confirms by ear) |
+| `vimala` | female | middle (~52, Nikhil's అత్తయ్య (Nanna's sister), mother of the bride Divya and of Rohit; loud, competitive, loving underneath) | aggressive (sharp-tongued) | natural Telangana (తెల్సా, ఏంది) | silk saree, big jhumkas, heavy gold, sharp eyebrows; `profile_for("female","middle","aggressive")` → **telangana-female-young** (the bank has no Telangana middle-aged female voice; the Editor may pitch it down a little, owner confirms by ear) |
 | `ammamma` | female | elder (~74, Amma's mother; lives in the village with Srinu's family) | warm / amused | standard Andhra | white-and-maroon cotton saree, grey bun, round specs; built-in `ammamma` voice (stability 1.0) |
 | `gopi` | male | young (host/narrator) | — | Tenglish | 5 lines: premise, hold, follow + comment + countdown, ✅ + comment question, tag + close + loop |
 
@@ -33,7 +34,7 @@ Silent (drawn, no lines):
 - `saroja`: Amma (~55), `SAROJA_OPT` from 15 Nov. Feeds Nikhil the laddu (L6). Number 3,250.
 - `prasad`: Nanna (~60), `PRASAD_OPT` from 15 Nov. Shows Nikhil a photo album in the time-lapse. Number 3,180.
 - `rohit`: male, young (~30), Vimala's son, works in the US and flew in for his sister's engagement. Kurta, earbuds,
-  head down in a video call the whole time until L10. Number 12.
+  head down in a video call the whole time until the silent turn (L10). Number 12.
 - `srinu`: male, young (~29), Amma's brother's son. B.Tech, left a Bengaluru job to farm with his parents in the
   village. White cotton shirt, kanduva on his shoulder, sun-tanned, easy smile; always helping Ammamma. Number 2,400.
 - Divya, the bride (silhouette on the stage only). No Pinky (adult story).
@@ -61,8 +62,8 @@ Spoken numbers: only 12, 2,400 (L3), 97 (L6) and "నాలుగు రోజ�
 - "Phone down" is part of the rule, so the "Rohit's number doesn't move while he's on his phone" clue is explained.
 - L1 says "crore package" (US salary), not "40 lakhs" (see the Telugu flags).
 - No "same city" line, so it can't contradict the 15 and 16 Nov reels (see the plot-hole check).
-- The aunt gets a small turn (L10: she tells her own son to put his phone down) instead of a lecture, and her son's
-  number climbs too. It's warm, not preachy.
+- The aunt gets a small turn (L10: she nudges her own son to put his phone down; silent since 16 Nov, the line was cut
+  for length) instead of a lecture, and her son's number climbs too. It's warm, not preachy.
 - Loop line: "clue మొదటి seconds లోనే!" with a real clue planted in frame 1 (Rohit is already the only one on a phone).
 
 ## Premise options (the "would I send this to a friend?" test)
@@ -91,20 +92,21 @@ Spoken numbers: only 12, 2,400 (L3), 97 (L6) and "నాలుగు రోజ�
 | 2 | అత్తయ్య: "నీకెంత?" 😏 | (Gopi) "ఒక engagement లో… అందరి forehead మీద ఒక number వెలిగితే?" |
 | 3 | అందరి నుదుటి మీద ఒక number | (Gopi) "మీ salary మీ forehead మీదే కనిపిస్తే?" (misleading, so it's half clickbait; rejected) |
 
-## Script shape (12 lines)
+## Script shape (11 voiced lines; L10 is a silent turn)
 HOOK, open on the action (L1 Vimala's jab; title a beat later) → PREMISE (L2 the numbers ignite) → misdirect (L3 "Rohit
-కి 12 ఏంది?! ఎవుసం చేసే Srinu కి… 2,400?!", with Nikhil's 96 on screen) → hold (L4 "Salary ఆ? Answer చివర్లో…") →
+కి 12 ఏంది?! వ్యవసాయం చేసే Srinu కి… 2,400?!", with Nikhil's 96 on screen) → hold (L4 "Salary ఆ? Answer చివర్లో…") →
 CLUE 1 (L5 Ammamma: no salary, biggest number) → CLUE 2 + 3 (L6 Ananya: Nikhil's 96 → 97 while Amma feeds him;
 Rohit's doesn't move) → follow + comment + 5 s countdown (L7) → REVEAL (L8 "Money కాదు… family తో, phone లేకుండా
-గడిపిన గంటలు!") → WHY it hurts (L9 Nikhil: "…ఈ year మొత్తం నాలుగు రోజులే?") → TURN (L10 Vimala to Rohit: "గా
-phone పక్కకు పెట్టు రా!") → ✅ + comment question (L11, over the clay time-lapse: numbers climb, Nikhil 97 → 100)
+గడిపిన గంటలు!") → WHY it hurts (L9 Nikhil: "…ఈ year మొత్తం నాలుగు రోజులే?") → TURN (L10, silent: Vimala nudges Rohit, he puts the
+phone face-down and sits by her) → ✅ + comment question (L11, over the clay time-lapse: numbers climb, Nikhil 97 → 100)
 → tag + follow + LOOP (L12 "clue మొదటి seconds లోనే!" → hard cut to frame 1).
 
 Interaction beats (adult wording): 1 hook L1 · 2 hold L4 ("Answer చివర్లో… clues మిస్ అవ్వకండి!") · 3 follow L7 ·
 4 "comment చేయండి: ఆ number ఏంటి? 5 seconds!" + countdown L7 · 5 "Correct ఆ? ✅" L11 · 6 share as a tag
 ("Compare అయ్యే cousin ని tag చేయండి!") L12 · 7 close + loop L12 (end card carries follow/subscribe).
 **Note:** to stay inside 45 s, beats 3 and 4 share one line (L7: the follow tap, then the question and countdown).
-If the owner wants them separate, add back "ఇలాంటి what-ifs రోజూ కావాలంటే… follow చేయండి!" and cut L10.
+If the owner wants them separate, add back "ఇలాంటి what-ifs రోజూ కావాలంటే… follow చేయండి!" (L10's line is already cut,
+so this would need another trim, e.g. L3 or L4, to stay inside 45 s).
 
 ## Plot-hole check (the twist must survive a rewatch)
 - **What exactly is counted?** Whole hours with family in 2026, phone down. In-person only: Rohit's video calls with
@@ -113,7 +115,7 @@ If the owner wants them separate, add back "ఇలాంటి what-ifs రో�
   since he walked in finished the hour while he sat with Amma. Ananya reads it as a link to Amma (the clue); it is also
   simply true that this was family time.
 - **Why don't Srinu's or Ammamma's numbers tick in the same seconds?** Their hours didn't happen to finish in those few
-  minutes. Every phone-down person ticks +3 in the 3-hour time-lapse, and only Rohit (on his phone until L10) and
+  minutes. Every phone-down person ticks +3 in the 3-hour time-lapse (+1 on each hour: 9, 10, 11 PM), and only Rohit (on his phone until the L10 turn) and
   Ananya (not with her family) stay put before that. Rohit's "doesn't move" is the point of L6: he's the only one with a
   phone in his hand.
 - **Ammamma has no salary but the biggest number**: the first fair clue that it isn't money. She lives with Srinu's
@@ -136,8 +138,8 @@ If the owner wants them separate, add back "ఇలాంటి what-ifs రో�
   viewer sees a game to play rather than a pause.
 - **Drop risk 3, L7 + countdown:** all three clues lined up, digits pulsing with each tick, comment bubbles that don't
   give it away.
-- **Drop risk 4, after the reveal:** L9 is the quiet sting (one soft note), L10 the comic release (the aunty turns her
-  jab on her own son), L11 a visual payoff (numbers climbing, 100 sparkles), then the loop. No lecture anywhere.
+- **Drop risk 4, after the reveal:** L9 is the quiet sting (one soft note), L10 the comic release (the aunty turns on her
+  own son, silently), L11 a visual payoff (numbers climbing, 100 sparkles), then the loop. No lecture anywhere.
 - Cut: no "spend time with your parents" sermon, no explanation of where the numbers come from, no statistic.
 
 ## CTA options
@@ -159,12 +161,13 @@ If the owner wants them separate, add back "ఇలాంటి what-ifs రో�
 | 7 | gopi | 3.4 (+ 5 s silent countdown) |
 | 8 | ananya | 3.6 |
 | 9 | nikhil | 3.0 |
-| 10 | vimala | 2.2 |
+| 10 | — (silent turn; line cut) | 0 (≈1.3 s of visual, overlapping L11) |
 | 11 | gopi | 2.9 |
 | 12 | gopi | 3.6 |
-12 lines, ~95 words ≈ 37–38 s of voice at the normal pace (no speed-up needed) + 5 s countdown ≈ 42–45 s, at the top
-of the 35–45 s cap. If it runs over 45 s, trim in this order: L10 (keep the phone-down as a silent visual) → L3 to
-"Rohit కి 12 ఏంది?! Srinu కి 2,400?!" (keep the 'B.Tech → ఎవుసం 🌾' chip) → L4 to "Salary ఆ? Answer చివర్లో!".
+Rendered 16 Nov (Editor): 11 voiced lines, 44.24 s total. The first cut ran 46.4 s, so L10 was cut (step 1 of the
+trim order below); actual timings in `2d/timeline.json`. Original estimate: 12 lines, ~95 words ≈ 37–38 s of voice + 5 s
+countdown ≈ 42–45 s. If it runs over 45 s, trim in this order: L10 (keep the phone-down as a silent visual) → L3 to
+"Rohit కి 12 ఏంది?! Srinu కి 2,400?!" (keep the 'B.Tech → వ్యవసాయం 🌾' chip) → L4 to "Salary ఆ? Answer చివర్లో!".
 
 ## Facts to verify
 - None. This is **a fictional story** (Nikhil, Ananya, Vimala, Rohit, Srinu, Ammamma, Saroja, Prasad and Divya are our
@@ -172,9 +175,9 @@ of the 35–45 s cap. If it runs over 45 s, trim in this order: L10 (keep the ph
   numbers, not statistics. No quote, real person, brand or app is used. The caption says "a fictional story".
 
 ## Telugu / dialect flags for the owner
-- Vimala (aggressive → Telangana): L1 "తెల్సా?" (= తెలుసా?), L3 "ఏంది", "ఎవుసం" (Telangana for వ్యవసాయం/farming),
-  L10 "గా phone" (గా = that) and "పెట్టు రా". Please check they sound natural and not like a caricature. If "ఎవుసం"
-  is too regional for the wider audience, use "వ్యవసాయం చేసే Srinu కి".
+- Vimala (aggressive → Telangana): L1 "తెల్సా?" (= తెలుసా?), L3 "ఏంది". Please check they sound natural and not like a
+  caricature. L3 now says "వ్యవసాయం చేసే Srinu కి" (16 Nov QC: the voice mispronounced "ఎవుసం", so it was re-voiced
+  with the standard word).
 - L1 "crore package": the premise said "40 lakhs", but for a US job a Telugu aunty would boast in crores (≈ $120k);
   revert if you prefer the manager's line.
 - L5 "నాకు జీతమే లేదు… అయినా నాదే పెద్ద number!": jeetham = salary; natural for an elder?

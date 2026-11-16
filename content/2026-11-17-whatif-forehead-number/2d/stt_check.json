@@ -61,10 +61,11 @@
   "sim": 1.0
  },
  "2": {
-  "expected": "Rohit కి twelve ఏంది?! ఎవుసం చేసే Srinu కి… two thousand four hundred?!",
-  "heard": "రోహిత్ కి 12 ఏంది? Eversonn చేసే శ్రీను కి 2400?",
+  "expected": "Rohit కి twelve ఏంది?! వ్యవసాయం చేసే Srinu కి… two thousand four hundred?!",
+  "heard": "రోహిత్ కి twelve ఉంటే వ్యవసాయం చేసే శ్రీను కి twenty four hundred",
   "by": "gemini",
-  "sim": 0.28
+  "sim": 0.65,
+  "note": "QC 16 Nov: re-voiced on Gemini Autonoe with వ్యవసాయం (old take heard 'Eversonn చేసే', sim 0.28); this is the final tightened take"
  },
- "_note": "Sarvam STT returned 402 (no credits) on 16 Nov 2026, so every take was checked with the Gemini listener. L1/L2 after recut.py; L9/L10 renumbered after the cut of script L10."
+ "_note": "Sarvam STT returned 402 (no credits) on 16 Nov 2026, so every take was checked with the Gemini listener. L1/L2 after recut.py; L9/L10 renumbered after the cut of script L10. L2 re-voiced 16 Nov (QC)."
 }

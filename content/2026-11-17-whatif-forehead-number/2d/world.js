@@ -12,7 +12,7 @@ const pop=(t,t0,d=0.35)=>t<t0?0:back((t-t0)/d);
 const INK="#10141E";
 const $=id=>document.getElementById(id);
 // comment bubbles during the countdown (generic names; none gives the answer away)
-const CB=[["Ravi","Salary 💰","#1E88E5",40,1360],["Divya","Net worth?","#D81B60",600,1420],["Teja","Steps count 😂","#2E7D32",60,1520],
+const CB=[["Ravi","Salary 💰","#1E88E5",40,1360],["Priya","Net worth?","#D81B60",600,1420],["Teja","Steps count 😂","#2E7D32",60,1520],
           ["Anu","Followers count?","#8E24AA",470,1600],["Karthik","Happiness level?","#E65100",40,1680],["Sneha","🤔","#00897B",880,1330]];
 $("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 
@@ -313,7 +313,7 @@ $("nums").innerHTML=Object.keys(PEOPLE).map(k=>`<div class="num${k==="ammamma"?"
 const fmt=n=>n>=1000?Math.floor(n/1000)+","+String(n%1000).padStart(3,"0"):String(n);
 
 // ---------- timeline ----------
-const COLORS={gopi:"#F5B347",nikhil:"#C9C3F2",ananya:"#7FE0D0",vimala:"#FF8AD8",ammamma:"#FFE082"}, NAMES={gopi:"GOPI",nikhil:"NIKHIL",ananya:"ANANYA",vimala:"VIMALA అత్తయ్య",ammamma:"AMMAMMA"};
+const COLORS={gopi:"#F5B347",nikhil:"#C9C3F2",ananya:"#7FE0D0",vimala:"#FF8AD8",ammamma:"#FFE082"}, NAMES={gopi:"GOPI",nikhil:"NIKHIL",ananya:"ANANYA",vimala:'VIMALA <span class="te">అత్తయ్య</span>',ammamma:"AMMAMMA"};
 let TL;
 function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
 function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
@@ -331,7 +331,7 @@ let B=null;
 function beats(){ if(B) return B; B={};
   B.titleIn=1.5; B.crore=at(0,"crore"); B.jab=at(0,"నీకెంత");
   B.ign0=at(1,"అందరి")-0.05; B.ign1=at(1,"number"); B.titleOut=E(1)+0.15;
-  B.wR=S(2)-0.12; B.wS=at(2,"ఎవుసం")-0.12; B.t2400=at(2,"two thousand"); B.wBack=E(2)+0.05;
+  B.wR=S(2)-0.12; B.wS=at(2,"వ్యవసాయం")-0.12; B.t2400=at(2,"two thousand"); B.wBack=E(2)+0.05;
   B.slots=S(3)+0.05; B.tHold=at(3,"Answer"); B.tMiss=at(3,"clues");
   B.nearOff=S(4)-0.15; B.tTap=at(4,"అయినా"); B.slot1=at(4,"పెద్ద");
   B.sofa=S(5)-0.15; B.tFeed=at(5,"laddu")-0.15; B.tTick=at(5,"పెడుతుంటే")+0.25; B.t97=at(5,"ninety"); B.slot2=B.t97+0.15; B.wRo=at(5,"Rohit")-0.12; B.slot3=at(5,"కదలట్లేదు")+0.1;
@@ -341,8 +341,9 @@ function beats(){ if(B) return B; B={};
   B.why=E(7)+0.1; B.tMath=at(8,"నాలుగు")-0.35; B.tPocket=E(8)-0.55;
   // script L10 (Vimala's line) is cut for length: the turn plays silently in clay between Nikhil's line and Gopi's
   B.clay=E(8)+0.12; B.tPoint=B.clay+0.1; B.tBud=B.clay+0.3; B.tDown=B.clay+0.62; B.tSit=B.clay+0.88; B.tPat=B.clay+1.0;
-  B.tl0=Math.max(B.clay+1.3,at(9,"Correct")+0.35); B.tCheck=at(9,"Correct"); B.tQ2=at(9,"మీ"); B.tl1=E(9)+0.1;
-  B.sh0=S(10)-0.1; B.tAt=at(10,"cousin")-0.2; B.tTag=at(10,"tag")+0.15; B.end0=at(10,"Follow")-0.15; B.tEF=at(10,"Follow")+0.3; B.loop0=at(10,"clue")-0.04;
+  B.tl0=Math.max(B.clay+1.3,at(9,"Correct")+0.35); B.tCheck=at(9,"Correct"); B.tQ2=at(9,"మీ");
+  B.sh0=S(10)-0.1; B.tl1=B.sh0-0.45;   // 8:00 -> 11:00 PM; each +1 lands on the hour (9, 10, 11), 11 PM holds before the share card
+  B.tAt=at(10,"cousin")-0.2; B.tTag=at(10,"tag")+0.15; B.end0=at(10,"Follow")-0.15; B.tEF=at(10,"Follow")+0.3; B.loop0=at(10,"clue")-0.04;
   return B}
 
 const focus=(z,wx,wy,sx=540,sy=1000)=>({z,fx:wx-(sx-540)/z,fy:wy-(sy-1000)/z});
@@ -512,7 +513,7 @@ function frame(t){
     const [C,v0,v1]=PEOPLE[k], e=$("n-"+k), st=C.st;
     let v=v0;
     if(k==="nikhil"&&t>=b.tTick) v=97;
-    if(clay&&t>=b.tl0){ const steps=Math.min(3,Math.floor(tlk*3.999)); if(k==="nikhil") v=97+steps; else if(k==="rohitS") v=12+steps; else if(k!=="ananya") v=v0+Math.min(v1-v0,steps) }
+    if(clay&&t>=b.tl0){ const steps=Math.min(3,Math.floor(tlk*3+1e-6)); /* +1 at 9:00, 10:00, 11:00 PM (hr = 8 + 3*tlk) */ if(k==="nikhil") v=97+steps; else if(k==="rohitS") v=12+steps; else if(k!=="ananya") v=v0+Math.min(v1-v0,steps) }
     if(k==="nikhil"&&clay&&t<b.tl0) v=97;
     const on=!loop&&st.vis>0.5&&t>=ignAt(k)&&!(k==="ananya"&&!(t>=b.sofa-0.2));
     e.style.opacity=on?Math.min(1,st.vis):0; if(!on) continue;
@@ -531,7 +532,7 @@ function frame(t){
     e.style.transform=`translate(${px}px,${py}px) translate(-50%,-50%) translateX(${glitch?Math.sin(t*90)*4:0}px) scale(${sc})`;
   }
   {const e=$("plus1"), k=(t-b.tTick)/0.8, [wx,wy]=NKS.fore(), [px,py]=scr(wx,wy); e.style.opacity=!loop&&k>0&&k<1?1-k:0; e.style.transform=`translate(${px+40}px,${py-60-k*70}px)`}
-  {const t100=b.tl0+(b.tl1-b.tl0)*0.75, e=$("spark"), k=(t-t100)/0.9, [wx,wy]=NKS.fore(), [px,py]=scr(wx,wy); e.style.opacity=!loop&&k>0&&k<1?Math.sin(k*Math.PI):0;
+  {const t100=b.tl1, e=$("spark"), k=(t-t100)/0.9, [wx,wy]=NKS.fore(), [px,py]=scr(wx,wy); e.style.opacity=!loop&&k>0&&k<1?Math.sin(k*Math.PI):0;
    e.style.transform=`translate(${px-30}px,${py-70}px) scale(${0.8+k*0.6}) rotate(${k*40}deg)`}
   {const e=$("shimmer"), k=(t-b.ign0-0.2)/(b.ign1-b.ign0+0.2); e.style.opacity=!loop&&k>0&&k<1?Math.sin(k*Math.PI):0; e.style.left=lerp(-260,1080,k)+"px"}
 
