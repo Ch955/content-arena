@@ -158,6 +158,6 @@ const shots = [
 function scene(t) {
   resetTints(); dusk(0); OV.reset(); setSkin("flat");
   runShots(t, shots);
-  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .7, DUR)));
+  // continuous action 7 -> 8 -> 9: no fade at either end
 }
 </script></body></html>

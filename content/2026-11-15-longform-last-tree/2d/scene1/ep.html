@@ -12,7 +12,10 @@ const MEn = makeMeeraNight(), ROCK = makeRock();
 const GL = [0, 1, 2, 3, 4, 5].map(() => makeLeaf("#FFE27A"));
 const VE = makeVeerendraS(), H1 = makeHench(1), H2 = makeHench(2), HX = makeHench(1, { item: "axeR" });
 const VA = makeVillager(0, { item: "pot" }), VB = makeVillager(1), VC = makeVillager(2), VA2 = makeVillager(0), VB2 = makeVillager(1);
-const K0 = makeKid(0), K1 = makeKid(1), K2 = makeKid(2), K0b = makeKid(0), K1b = makeKid(1);
+const K0 = makeKid(0), K1 = makeKid(1), K2 = makePerson({ ...CHINTU_OPT, name: "youngV", who: null, drawTop: undefined, skin: "#B57A52", belly: 6,   // the purple-shirt boy = young Veerendra (chin scar: scene 8 match-cut); same as makeYoungVeerendra in scene7/lib789.js
+  B: { ...CHINTU_OPT.B, rx: 56, ry: 58 }, top: { c: "#8A4AB8", sleeve: "#8A4AB8" }, bottom: { type: "shorts", c: "#A8845A" },
+  drawHead(h) { CHINTU_OPT.drawHead(h); const ry = h.B.ry; el("path", { d: `M10 ${ry * .74} l13 9`, stroke: "#E7B89A", "stroke-width": 3.4, "stroke-linecap": "round", fill: "none" }, h.face);
+    el("path", { d: `M13 ${ry * .73} l-2 6 M18 ${ry * .77} l-2 6`, stroke: "#C98A6A", "stroke-width": 1.6, "stroke-linecap": "round", fill: "none" }, h.face); } }), K0b = makeKid(0), K1b = makeKid(1);
 const SW1 = makeSwing(330), SW2 = makeSwing(330);
 const DEER = makeDeer(), PEA = makePeacock(), RB1 = makeRabbit(), RB2 = makeRabbit("#C9B8A0");
 const JEEP = makeJeep(), COINS = makeCoins(), CRACKS = makeCracks(22, 1300);

@@ -232,7 +232,7 @@ const OV = (() => {
 #ov-end .te{position:absolute;left:116px;top:640px;font-family:Rama,NotoTe;font-size:46px;color:#FFF6E0;text-shadow:0 3px 0 #2A1604,0 0 14px rgba(0,0,0,.8)}
 #ov-end .cm{position:absolute;left:116px;top:735px;display:flex;align-items:center;gap:18px;background:#FFFDF6;border:5px solid #3A2418;border-radius:34px;padding:10px 32px 16px 20px;
   font-family:Rama,NotoTe;font-size:44px;color:#3A2418;box-shadow:0 8px 0 rgba(0,0,0,.35);white-space:nowrap}
-#ov-end .slot{position:absolute;width:640px;height:360px;border-radius:24px;border:4px solid rgba(255,246,216,.55);background:rgba(20,12,6,.35);box-shadow:0 0 0 8px rgba(0,0,0,.12)}
+#ov-end .virt{position:absolute;left:1160px;width:640px;top:858px;text-align:center;font-family:Rama,NotoTe;font-size:54px;color:#FFE48A;text-shadow:0 4px 0 #3A2208,0 0 22px rgba(255,200,80,.6)}
 #ov-end .ai{position:absolute;left:0;right:0;bottom:26px;text-align:center;font-family:InterB;font-size:26px;color:rgba(255,246,224,.85);text-shadow:0 2px 0 #000}`;
   document.head.appendChild(css);
   const root = document.createElement("div"); root.id = "ov789"; const stage = document.getElementById("stage"); stage.insertBefore(root, document.getElementById("k-chip"));
@@ -252,7 +252,7 @@ const OV = (() => {
   <div class="brand">REEL RASAM</div><div class="subs">${play(56)}<span>Subscribe @reel_rasam</span></div>
   <div class="te">ఇలాంటి కథల కోసం subscribe చేయండి!</div>
   <div class="cm">${bubble(58)}<span>కామెంట్ చేయండి: ధైర్యం? కరుణ? త్యాగం?</span></div>
-  <div class="slot" style="left:1160px;top:150px"></div><div class="slot" style="left:1160px;top:560px"></div>
+  <div class="virt">ధైర్యం · కరుణ · త్యాగం</div>
   <div class="ai">Animation &amp; voices are AI-generated · a fictional story</div></div>`;
   const $ = id => document.getElementById(id);
   const O = { moral: $("ov-moral"), badges: $("ov-badges"), bd: [0, 1, 2].map(i => $("bd" + i)), q: $("ov-q"), sub: $("ov-sub"), subt: $("ov-subt"), bell: $("ov-bell"), hand: $("ov-hand"), end: $("ov-end"),

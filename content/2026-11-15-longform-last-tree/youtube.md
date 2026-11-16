@@ -5,15 +5,15 @@
 Anandapuram was once a green village — until greed cut down every tree but one old banyan. One night its leaves glow gold and it calls a 12-year-old girl by name. Meera and her friend Chintu must pass three tests — courage, compassion and sacrifice — to awaken a magic seed before a businessman's axes reach the last tree. A fantasy story about nature, kindness and second chances.
 
 ⏱️ Chapters
-00:00 ఆనందపురం — చివరి చెట్టు
-00:00 మీరా ప్రశ్న — మెరిసే ఆకులు
-00:00 మూడు పరీక్షలు — మాయా విత్తనం
-00:00 మొదటి పరీక్ష — ధైర్యం
-00:00 రెండో పరీక్ష — కరుణ
-00:00 మూడో పరీక్ష — త్యాగం
-00:00 వీరేంద్ర వచ్చాడు
-00:00 వృక్ష దేవత
-00:00 వర్షం — పచ్చని ఆనందపురం
+0:00 ఆనందపురం — చివరి చెట్టు
+1:59 మీరా ప్రశ్న — మెరిసే ఆకులు
+3:34 మూడు పరీక్షలు — మాయా విత్తనం
+5:04 మొదటి పరీక్ష — ధైర్యం
+6:49 రెండో పరీక్ష — కరుణ
+8:20 మూడో పరీక్ష — త్యాగం
+9:39 వీరేంద్ర వచ్చాడు
+10:51 వృక్ష దేవత
+12:24 వర్షం — పచ్చని ఆనందపురం
 
 💬 మీరైతే ఏ పరీక్షలో ఎక్కువ కష్టపడేవారు — ధైర్యం, కరుణ, త్యాగం? కామెంట్ చేయండి!
 

@@ -18,6 +18,7 @@ const LOT = [pair(() => makeLotusProp(7, 0)), pair(() => makeLotusProp(6, 5)), p
 const DEERM = pair(makeDeer), DEERF = pair(makeDeer), BIRDS = [0, 1, 2, 3, 4, 5, 6].map(() => pair(makeBird)), NOTES = pair(makeNotes), NOTES2 = pair(makeNotes);
 const MOUND = pair(makeMound), FLICK = pair(makeFlick), WIPE = pair(makeLeafWipe), SAPL = pair(() => makeSaplingProp(1.6)), STAKE = pair(makeNameStake), EYES = pair(makeTreeEyes);
 const YT = [...Array(8)].map((_, i) => pair(() => makeYoungTree(i)));
+const METER = pair(makeSeedMeter);
 const T = { drop1: 4.4, drop2: 5.75, drop3: 6.75, rain: 7.4, slip: 17.4, land: 18.9, sprout: 19.6, wave: 23.3, pond: 29.3, sprouts: 30.8, lotus: 32.5, deer: 33.9, birds: 35.2,
   cheer: 36.5, thatayya: 43.9, plant: 45.6, who: 50.0, ve: 53.55, vline: 55.1, thLine: 61.5, seasons: 69.9, green: 73.0, deerB: 76.4, sapling: 79.4, amma: 83.1, tree: 87.3,
   meera: 92.6, rainbow: 97.0, moral: 106.85, shubham: 121.75, cta: 124.0, b1: 126.2, b2: 126.95, b3: 127.7, q: 128.4, cm: 131.4, sub: 132.4, tap: 134.3, end: 136.73 };
@@ -191,12 +192,17 @@ const shots = [
     KIT.vignette(.6); }, .6],
   // 19 · end card (10 s)
   [T.end, (t, C, op) => { KIT.show("banyan", { green: 1, night: 0, wind: .1, rainbow: 1, opacity: 1, cam: { x: 960 + 30 * Math.sin(t * .2), y: 520, z: 1.08 } });
-    tint(.55, "linear-gradient(90deg,#2A1A0A 0%,#5A3A1A 55%,#8A6A4A 100%)");
-    OV.end.style.opacity = rng(t, T.end, T.end + .6); KIT.motes(.6, 960, 500, 800, "255,226,140", 30); KIT.vignette(.8); }, .6],
+    tint(.55, "linear-gradient(90deg,#2A1A0A 0%,#5A3A1A 50%,#B89A70 100%)");
+    // our own art on the right: the seed with its three lit rings (flame, drop, heart-leaf) glowing over the green banyan
+    const S = KIT.get("banyan"), cx = 960 + 30 * Math.sin(t * .2), wx = cx + (1480 - 960) / 1.08, wy = 520 + (490 - 540) / 1.08;
+    KIT.put(METER[C], S, { x: wx, y: wy, s: .9 / 1.08, glow: 3, lit: [1, 1, 1], pop: [T.end + .5, T.end + .8, T.end + 1.1], hands: 0, vis: rng(t, T.end, T.end + .8) });
+    KIT.glow(.55 * rng(t, T.end, T.end + .8) * (.9 + .1 * Math.sin(t * 2)), 1480, 470, 420);
+    OV.end.style.opacity = rng(t, T.end, T.end + .6) * (1 - rng(t, DUR - .9, DUR));   // the HTML card sits above the fade layer
+    KIT.motes(.6, 960, 500, 800, "255,226,140", 30); KIT.vignette(.8); }, .6],
 ];
 function scene(t) {
   resetTints(); dusk(0); OV.reset();
   runShots(t, shots);
-  KIT.fade(Math.max(1 - rng(t, 0, .6), rng(t, DUR - .9, DUR)));
+  KIT.fade(rng(t, DUR - .9, DUR));   // continuous from scene 8: no fade-in; the film's final fade-out
 }
 </script></body></html>
