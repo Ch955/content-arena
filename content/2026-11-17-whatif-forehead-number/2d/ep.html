@@ -1,0 +1,165 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- What-if #2 "the forehead number". 2D animated, per-scene skins: NEON for cousin Divya's engagement night in a
+     Kukatpally function hall (fairy-light curtains, LED backdrop "Divya ❤️ Varun", marigolds, plastic chairs, a steel
+     laddu tray) and for the loop frame; CLAY (warm) for Vimala's turn + the 8 -> 11 PM time-lapse with Amma & Nanna.
+     The forehead numbers are crisp HTML neon digits pinned above each character's brows (the number table in
+     script.json, identical in every frame). Text hook from frame 1; WHAT IF title a beat later; three clue slots fill
+     as the clues land; follow tap; 5-s countdown + comment bubbles (none gives the answer); reveal label; maths chip;
+     ✅; tag-a-cousin; end card; hard cut back to frame 1 (loop). Frame 1 plants the rewatch clue: Rohit is the only
+     one on a phone. Cast: makeAdult() — Nikhil + Ananya from tools/anim2d/cast.md; Amma = SAROJA_OPT, Nanna =
+     PRASAD_OPT (cast.md); new: Vimala, Rohit, Srinu, Ammamma (saved in cast.md). -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0A0E1E}
+svg{display:block}
+#s,#nar{position:absolute;left:0;top:0}
+#nar{z-index:2} .sub{z-index:4}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(14,18,30,.72)}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#00B8D4;color:#10141E;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#fff;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;background:#0E1220;opacity:0}
+/* text hook (frame 1) + WHAT IF title (a beat later) */
+#hook{position:absolute;top:166px;left:30px;right:30px;text-align:center;z-index:3;opacity:0}
+#hook .pill{font-size:56px;padding:2px 30px 10px}
+#title{position:absolute;top:290px;left:40px;right:40px;text-align:center;opacity:0;z-index:3}
+#title .t{font-family:Anton;font-size:124px;line-height:1.05;letter-spacing:4px;color:#7FF6FF;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 9px 0 #10141E,0 0 40px rgba(0,229,255,.7)}
+/* forehead numbers: thin glowing neon digits */
+#nums{position:absolute;inset:0;z-index:1;pointer-events:none}
+.num{position:absolute;left:0;top:0;white-space:nowrap;font-family:Anton;letter-spacing:1px;color:#E6FFFF;opacity:0;transform-origin:50% 50%;
+  -webkit-text-stroke:1.5px rgba(0,40,60,.9);paint-order:stroke fill;
+  text-shadow:0 0 6px #00E5FF,0 0 16px #00E5FF,0 0 30px rgba(0,184,212,.9)}
+.num.big{color:#FFFFFF;text-shadow:0 0 8px #00E5FF,0 0 22px #00E5FF,0 0 44px #18FFFF,0 0 70px rgba(24,255,255,.8)}
+.num.glitch{text-shadow:-5px 0 0 rgba(255,40,80,.85),5px 0 0 rgba(0,200,255,.85),0 0 16px #00E5FF}
+.plus{position:absolute;left:0;top:0;opacity:0;font-family:Anton;font-size:56px;color:#B9F6CA;text-shadow:0 0 10px #00E676,0 0 24px #00E676;z-index:1}
+.spark{position:absolute;left:0;top:0;opacity:0;font-size:54px;z-index:1}
+#shimmer{position:absolute;top:0;bottom:0;width:260px;left:0;opacity:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,229,255,0),rgba(0,229,255,.35),rgba(255,255,255,.55),rgba(0,229,255,.35),rgba(0,229,255,0));mix-blend-mode:screen}
+/* chips + labels */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:Anton,Rama,NotoTe;font-size:48px;letter-spacing:1.5px;color:#10141E;background:#FFD54F;border:6px solid #10141E;border-radius:18px;padding:2px 22px 6px;box-shadow:0 8px 0 #10141E;z-index:3}
+.chip.cy{background:#7FF6FF}
+.chip.gr{background:#B9F6CA}
+.chip.wa{background:#FFB74D}
+#hold{position:absolute;top:330px;left:0;right:0;text-align:center;opacity:0;z-index:3}
+#hold span{display:inline-block;font-family:Rama,NotoTe;font-size:56px;color:#10141E;background:#F5B347;padding:6px 28px 12px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* clue slots */
+#slots{position:absolute;top:150px;left:30px;right:30px;display:flex;gap:18px;opacity:0;z-index:3}
+.slot{flex:1;height:156px;border-radius:22px;border:5px dashed rgba(255,255,255,.75);background:rgba(14,18,30,.88);position:relative;overflow:hidden}
+.slot .l{position:absolute;top:8px;left:0;right:0;text-align:center;font-family:Anton;font-size:26px;letter-spacing:2px;color:#FFD54F}
+.slot .q{position:absolute;top:46px;left:0;right:0;text-align:center;font-family:Anton;font-size:64px;color:rgba(255,255,255,.55)}
+.slot .c{position:absolute;top:44px;left:6px;right:6px;text-align:center;opacity:0}
+.slot .c b{display:block;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:30px;line-height:1.2;color:#fff}
+.slot .c small{display:block;font-family:Rama,NotoTe,InterB;font-size:27px;line-height:1.25;color:#7FF6FF;margin-top:4px}
+.slot.full{border-style:solid;border-color:#7FF6FF;background:rgba(10,40,70,.92);box-shadow:0 0 22px rgba(0,229,255,.55)}
+/* reveal label */
+#lab{position:absolute;left:70px;right:70px;top:330px;opacity:0;z-index:3;text-align:center;transform-origin:50% 100%}
+#lab .bx{display:inline-block;background:rgba(6,20,40,.94);border:6px solid #7FF6FF;border-radius:30px;padding:14px 34px 18px;box-shadow:0 0 40px rgba(0,229,255,.7),0 10px 0 #10141E}
+#lab .r1{font-family:Anton;font-size:64px;letter-spacing:2px;color:#E6FFFF;text-shadow:0 0 18px #00E5FF}
+#lab .r2{font-family:Anton;font-size:50px;letter-spacing:2px;color:#FFD54F;margin-top:2px;opacity:0}
+#lab .ar{position:absolute;left:50%;bottom:-34px;margin-left:-22px;border:22px solid transparent;border-top:30px solid #7FF6FF}
+/* follow */
+#fol{position:absolute;top:1200px;left:230px;width:620px;text-align:center;opacity:0;z-index:3}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:4}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:4}
+/* question + countdown */
+#q{position:absolute;top:330px;left:30px;right:30px;text-align:center;opacity:0;z-index:3}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:80px;line-height:1.2;color:#10141E;background:#fff;border:7px solid #10141E;border-radius:26px;padding:6px 34px 14px;box-shadow:0 10px 0 #10141E}
+#cdw{position:absolute;top:500px;left:50%;width:250px;height:250px;margin-left:-125px;opacity:0;z-index:3}
+#digit{position:absolute;top:0;left:0;right:0;height:250px;line-height:250px;text-align:center;font-family:Anton;font-size:136px;color:#7FF6FF;
+  -webkit-text-stroke:11px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:3}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:42px;line-height:1.2;color:#10141E}
+#cnow{position:absolute;top:1230px;left:0;right:0;text-align:center;opacity:0;z-index:3}
+#cnow span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:18px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* maths chip, time-lapse clock, check */
+#math{position:absolute;top:330px;left:0;right:0;text-align:center;opacity:0;z-index:3}
+#math span{display:inline-block;font-family:Anton,Rama,NotoTe;font-size:66px;letter-spacing:1px;color:#10141E;background:#FFF3B0;border:7px solid #10141E;border-radius:26px;padding:4px 32px 10px;box-shadow:0 10px 0 #10141E}
+#math em{font-style:normal;color:#C62828}
+#tclk{position:absolute;top:170px;left:0;right:0;text-align:center;opacity:0;z-index:3}
+#tclk span{display:inline-block;font-family:Anton;font-size:60px;letter-spacing:2px;color:#3B2A1A;background:#FFE0B2;border:6px solid #3B2A1A;border-radius:20px;padding:2px 28px;box-shadow:0 8px 0 #3B2A1A}
+#q2{position:absolute;top:300px;left:30px;right:30px;text-align:center;opacity:0;z-index:3}
+#q2 span{display:inline-block;font-family:Rama,NotoTe;font-size:66px;line-height:1.2;color:#10141E;background:#fff;border:7px solid #10141E;border-radius:26px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#check{position:absolute;left:50px;top:440px;width:190px;height:190px;border-radius:50%;background:#43A047;border:9px solid #10141E;box-shadow:0 10px 0 #10141E;opacity:0;display:grid;place-items:center;font-family:Anton;font-size:116px;color:#fff;z-index:3}
+/* share: tag the cousin */
+#share{position:absolute;inset:0;opacity:0;z-index:3}
+#share .dim2{position:absolute;inset:0;background:rgba(14,18,30,.74)}
+#sq{position:absolute;top:190px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cbox{position:absolute;left:90px;right:90px;top:500px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:44px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:720px} #ct2{top:850px} #ct3{top:980px}
+#ct1 .av{background:#00ACC1} #ct2 .av{background:#FB8C00} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(14,18,30,.86);z-index:3}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:50px;color:#fff;margin-top:10px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:3}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<div id="nums"></div>
+<div id="shimmer"></div>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">WHAT IF? 🤔</div></div>
+<div id="hook"><span class="pill" id="hookT">Forehead మీద number… ఏంటది? 🤔</span></div>
+<div id="title"><div class="t">WHAT IF? 🤔</div></div>
+<div id="slots">
+  <div class="slot" id="sl0"><div class="l">CLUE 1</div><div class="q">?</div><div class="c"><b>👵 Ammamma</b><small>జీతం లేదు · 4,500</small></div></div>
+  <div class="slot" id="sl1"><div class="l">CLUE 2</div><div class="q">?</div><div class="c"><b>Nikhil 96 → 97</b><small>Amma laddu 🍬</small></div></div>
+  <div class="slot" id="sl2"><div class="l">CLUE 3</div><div class="q">?</div><div class="c"><b>Rohit 📱 · 12</b><small>కదలట్లేదు</small></div></div>
+</div>
+<div class="chip" id="cBtech">B.Tech → ఎవుసం 🌾</div>
+<div class="chip cy" id="cUS">US · crore package 💰</div>
+<div id="hold"><span>Salary ఆ? ANSWER చివర్లో 👀</span></div>
+<div id="lab"><div class="bx"><div class="r1">⏱ HOURS WITH FAMILY</div><div class="r2" id="lab2">📵 PHONE DOWN · 2026</div></div><div class="ar"></div></div>
+<div id="math"><span>97 గంటలు ÷ 24 ≈ <em>4 రోజులు</em></span></div>
+<div id="tclk"><span id="tclkT">🕗 8:00 PM</span></div>
+<div id="q2"><span>మీ forehead మీద ఎంత? 💬</span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div class="hand" id="tapHand">👆</div>
+<div id="q"><span>🤔 ఆ number ఏంటి?</span></div>
+<div id="cdw"><svg width="250" height="250" viewBox="-125 -125 250 250">
+  <circle r="108" fill="#fff" stroke="#10141E" stroke-width="10"/>
+  <circle id="arc" r="90" fill="none" stroke="#00B8D4" stroke-width="20" transform="rotate(-90)" stroke-dasharray="565.5 565.5" stroke-linecap="round"/>
+  </svg><div id="digit">5</div></div>
+<div id="cnow"><span>💬 COMMENT చేయండి</span></div>
+<div id="cbs"></div>
+<div id="check">✓</div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>COMPARE అయ్యే ఆ cousin ని<br>TAG చేయండి 😅</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">C</div>Cousin 🫠<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">O</div>Office gang ☕</div>
+  <div class="ct" id="ct3"><div class="av">F</div>Family group 👨‍👩‍👧</div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · WHAT IF?</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో twist! 🌀</div></div></div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "neon";  // art style: neon engagement night; render(t) switches to clay for the turn + time-lapse</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

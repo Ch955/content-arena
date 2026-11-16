@@ -68,3 +68,21 @@ const NIGHT_OPT={...NIKHIL_OPT,tee:true,shirt:"#8A8F98",collar:"#6B7079"};   // 
 ```
 Voices in that reel (all Gemini — the ElevenLabs key is out of credits): Gopi=Puck, Nikhil=Charon, Ananya=Kore; Nikhil's
 own voice note = Charon + a phone-speaker band-pass (`PHONE_AF` in voices.py).
+
+## Engagement-night family (from What-if #2 "the forehead number", `content/2026-11-17-whatif-forehead-number/2d/world.js`, 17 Nov 2026)
+Neon Kukatpally function hall (cousin Divya's engagement) + clay time-lapse. `makeAdult()` there adds `jhumka` (big gold
+bell earrings), `necklace` (two gold chains + pendant), `bangles`, `sharp` (arched, sharp eyebrows), `earbuds` (white;
+`st.buds=0` takes the right one out), `kanduva` + `kanduvaStripe` (cotton towel over the left shoulder), `round` (round
+glasses), `old` (forehead lines), `noFlowers` (bun without jasmine), `puff` (styled hair), `saree.motif` / `saree.bw`,
+`st.gasp` (open-mouth surprise), the items `laddu`, `plate` (steel plate with sweets), and left-hand `vcall` (phone with a
+generic video-call grid) and `album` (paper photo album). Seated cast: no `legs`, hip at the seat, sofa/chair front drawn after.
+```js
+const VIMALA_OPT={skin:"#C88A5E",hair:"#1E1412",shirt:"#4A148C",saree:{base:"#6A1B9A",pallu:"#AD1457",border:"#FFC107",motif:"#FFD54F",bw:12},sleeve:"#4A148C",fore:"#C88A5E",bun:true,bindi:true,jhumka:true,necklace:true,bangles:true,sharp:true,lines:true,brow:5.5,lash:4.5,blush:0.25,lip:"#B0203A"};   // Vimala అత్తయ్య, ~52 (Nanna's sister)
+const ROHIT_OPT={skin:"#C68A5E",hair:"#17110E",shirt:"#E8E0CC",trim:"#B08D57",kurta:true,sleeve:"#E8E0CC",puff:true,earbuds:true,brow:6,lip:"#7A3A30"};   // Rohit, ~30, her son (US job); standing: legs:{pant:"#EDE7D9",shoe:"#6D4C41"}
+const SRINU_OPT={skin:"#9C6440",hair:"#1A1410",shirt:"#F7F7F2",collar:"#ECECE4",button:"#D8D8D0",kanduva:"#FFF8E7",kanduvaStripe:"#C62828",moustache:"#1E1612",brow:6.5,lip:"#6A3028"};   // Srinu, ~29, B.Tech -> farmer cousin; legs:{pant:"#F2EFE6",shoe:"#6D4C41"}
+const AMMAMMA_OPT={skin:"#B98060",hair:"#C9C9C9",shirt:"#7B1E2B",saree:{base:"#F4F1E8",pallu:"#F7F4EC",border:"#7B1E2B",bw:11},sleeve:"#7B1E2B",fore:"#B98060",bun:true,noFlowers:true,glasses:"#6D4C41",round:true,lines:true,old:true,bindi:true,brow:4.5,browCol:"#9E9E9E",lash:3.5,blush:0.2,lip:"#8A4A40"};   // Ammamma, ~74 (Amma's mother)
+```
+Nikhil here: `{...NIKHIL_OPT, badge:["NIKHIL R","TOWER B"], legs:{pant:"#2B3240",shoe:"#1A1A1A"}}` at the door, plain `NIKHIL_OPT`
+seated on the sofa; Ananya standing: `{...ANANYA_OPT, legs:{pant:"#F3E5AB",shoe:"#8D6E63"}}`.
+Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam had none): Gopi=Puck, Vimala=Autonoe,
+Ammamma=Sulafat, Ananya=Kore, Nikhil=Charon.

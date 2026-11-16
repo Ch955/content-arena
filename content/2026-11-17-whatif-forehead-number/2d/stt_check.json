@@ -1,0 +1,70 @@
+{
+ "3": {
+  "expected": "Salary ఆ? Answer చివర్లో… clues మిస్ అవ్వకండి!",
+  "heard": "Salaryయా? Answer చివర్లో clues miss అవ్వకండి.",
+  "by": "gemini",
+  "sim": 0.85
+ },
+ "4": {
+  "expected": "నాకు జీతమే లేదు… అయినా నాదే పెద్ద number!",
+  "heard": "నాకు జీతమే లేదు అయినా నాదే పెద్ద నెంబర్",
+  "by": "gemini",
+  "sim": 0.82
+ },
+ "5": {
+  "expected": "చూడు… Amma laddu పెడుతుంటే… నీది ninety-seven! Rohit ది… కదలట్లేదు.",
+  "heard": "చూడు, అమ్మ లడ్డు పెడుతుంటే నీది 97, రోహిత్‌ది కదలట్లేదు.",
+  "by": "gemini",
+  "sim": 0.58
+ },
+ "6": {
+  "expected": "Follow కొట్టి… comment చేయండి — ఆ number ఏంటి? Five seconds!",
+  "heard": "ఫాలో ఒకటి కామెంట్ చేయండి. ఆ నెంబర్ ఏంటి? 5 seconds.",
+  "by": "gemini",
+  "sim": 0.49
+ },
+ "7": {
+  "expected": "Money కాదు… ఈ year family తో… phone లేకుండా గడిపిన గంటలు!",
+  "heard": "మనీ కాదు ఈ ఫ్యామిలీతో ఫోన్ లేకుండా గడిపిన గంటలు",
+  "by": "gemini",
+  "sim": 0.59
+ },
+ "8": {
+  "expected": "Amma-Nanna తో… ఈ year మొత్తం… నాలుగు రోజులే?",
+  "heard": "అమ్మానాన్నతో ఈ ఏడు మాత్రం నాలుగు రోజులే",
+  "by": "gemini",
+  "sim": 0.56
+ },
+ "9": {
+  "expected": "Correct ఆ? మీ forehead మీద ఎంత? Comment చేయండి!",
+  "heard": "Correct aa? మీ forehead మీద ఎంత? Comment చేయండి.",
+  "by": "gemini",
+  "sim": 0.96
+ },
+ "10": {
+  "expected": "Compare అయ్యే cousin ని… tag చేయండి! Follow… clue మొదటి seconds లోనే!",
+  "heard": "Compare అయ్యే cousin ని tag చేయండి. Follow, clue మొదటి second లోనే.",
+  "by": "gemini",
+  "sim": 0.99,
+  "note": "checked on the tightened take before beat.py inserted the 0.6 s end-card pause (the listener stops at a long silence); the part after the pause was checked alone: 'క్లూ మొదటి సెకండ్ లోనే'"
+ },
+ "11": {
+  "expected": "Compare అయ్యే cousin ని… tag చేయండి! Follow… clue మొదటి seconds లోనే!",
+  "heard": "Compare అయ్యే cousin ని tag చేయండి. Follow. Clue మొదటి seconds లోనే!",
+  "by": "gemini",
+  "sim": 1.0
+ },
+ "1": {
+  "expected": "అప్పుడే… అందరి forehead మీద… ఒక number!",
+  "heard": "అప్పుడే అందరి forehead మీద ఒక number",
+  "by": "gemini",
+  "sim": 1.0
+ },
+ "2": {
+  "expected": "Rohit కి twelve ఏంది?! ఎవుసం చేసే Srinu కి… two thousand four hundred?!",
+  "heard": "రోహిత్ కి 12 ఏంది? Eversonn చేసే శ్రీను కి 2400?",
+  "by": "gemini",
+  "sim": 0.28
+ },
+ "_note": "Sarvam STT returned 402 (no credits) on 16 Nov 2026, so every take was checked with the Gemini listener. L1/L2 after recut.py; L9/L10 renumbered after the cut of script L10."
+}
