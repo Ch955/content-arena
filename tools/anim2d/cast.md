@@ -86,3 +86,20 @@ Nikhil here: `{...NIKHIL_OPT, badge:["NIKHIL R","TOWER B"], legs:{pant:"#2B3240"
 seated on the sofa; Ananya standing: `{...ANANYA_OPT, legs:{pant:"#F3E5AB",shoe:"#8D6E63"}}`.
 Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam had none): Gopi=Puck, Vimala=Autonoe,
 Ammamma=Sulafat, Ananya=Kore, Nikhil=Charon.
+
+## Sandeep + the Tower B office (from Moral dilemma #2 "the reference call", `content/2026-11-18-dilemma-reference-call/2d/world.js`, 18 Nov 2026)
+Paper office at Tower B, Hitech City (glass stand-up room, Sandeep's desk) + a sepia torn-paper flashback inset ("LAST
+YEAR": paper filter + CSS sepia on an HTML-clipped inset with its own little SVG world) + the chai stall below Tower B at
+dusk (same paper skin, warm palette). Radhika (HR) is voice only: a generic call card (no app, no logo). `makeAdult()`
+there adds `sidePart` (neat gelled side part with a gloss line), `watch` (plain smart watch on the left wrist, no logo),
+the items `glass` (chai tumbler, either hand), `cert` (certificate held at the chest) and left-hand `phoneUp` (phone face-up
+with a calendar). Silent stand-up colleague: `PEER1` (moustache, brown shirt).
+```js
+const SANDEEP_OPT={skin:"#BF8459",hair:"#120D0A",shirt:"#8EC3EE",collar:"#79AEDC",button:"#E8F2FB",sleeve:"#8EC3EE",fore:"#BF8459",cuff:"#A9D3F5",sidePart:true,watch:"#263238",brow:6,lip:"#7A3A30"};   // Sandeep K, 34, senior engineer on Nikhil's team: slim light-blue shirt, rolled sleeves, smart watch, gelled side part, confident half-smile (smirk)
+const SANDEEP_DOWN={...SANDEEP_OPT,fore:"#8EC3EE",cuff:"#79AEDC"};   // sleeves down (chai stall), lanyard in his pocket (st.lany=0)
+```
+Office: `{...SANDEEP_OPT, badge:["SANDEEP K","TOWER B"]}`; standing: `legs:{pant:"#37414F",shoe:"#3E2723"}`. Ananya standing here
+wears a team lanyard: `{...ANANYA_OPT, badge:["ANANYA","TOWER B"], legs:{pant:"#F3E5AB",shoe:"#8D6E63"}}`.
+Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam none): Gopi=Puck, Nikhil=Charon,
+Ananya=Kore, Sandeep=Umbriel (profile andhra-male-middle on ElevenLabs), Radhika=Gacrux + a mild phone band (profile
+andhra-female-middle).

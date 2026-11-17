@@ -1,0 +1,244 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moral dilemma #2 "the reference call". 2D animated, PAPER skin throughout (owner, 12 Nov: style per scene):
+     cool paper for the Tower B office at Hitech City (3:40 PM, right after the 3:30 PM stand-up), a SEPIA torn-paper
+     flashback inset for "last year" (paper filter + CSS sepia), and warm-dusk paper for the chai stall at 6:40 PM.
+     Radhika (HR) is voice only: a generic call card (no app, no logo) with a live waveform, a mute key and the call
+     timer. Rewatch clues in frame 1: Sandeep watching Nikhil leave the stand-up (uneasy), the "Q3 RELEASE STAR ·
+     SANDEEP" certificate on his desk, the reference-form chip (Peer reference (Q3 release) / Final round TODAY 5:00 PM);
+     in the flashback the "deployed by nikhil.r" log. Clocks: 3:40/3:41 -> call ended 3:44 -> 6:40 PM.
+     Beats: text hook from frame 1, title a beat later; REVENGE? button + hold tag; follow tap; A/B split + taps on A and
+     B as they are read + 5-s countdown + comment bubbles (none hints at the ending); the panels slide apart for the
+     reveal (Nikhil steps between: neither); clock-wipe; chai stall; A/B/C tiles; tag-a-colleague; end card; hard cut
+     back to frame 1 (loop). Cast: makeAdult() - Nikhil + Ananya from tools/anim2d/cast.md; new: Sandeep (saved in
+     cast.md). No real company names or brands anywhere. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#E9E2D2}
+svg{display:block}
+#s,#nar,#ab{position:absolute;left:0;top:0}
+#ab{opacity:0;z-index:3}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(30,24,18,.74);z-index:6}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8553D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;background:#2A2016;opacity:0;z-index:1}
+/* Telugu inside Anton/letter-spaced labels: no letter-spacing (it splits the conjuncts) */
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* text hook (frame 1) + title (a beat later) */
+#hook{position:absolute;top:156px;left:24px;right:24px;text-align:center;z-index:5}
+#hook .pill{font-size:54px;padding:2px 26px 10px}
+#title{position:absolute;top:262px;left:40px;right:40px;text-align:center;opacity:0;z-index:5}
+#title .t{font-family:Anton;font-size:110px;line-height:1.0;letter-spacing:4px;color:#FFD54F;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 9px 0 #10141E}
+#title .md{display:inline-block;margin-top:8px;font-family:Anton;font-size:40px;letter-spacing:4px;color:#fff;background:#E8553D;border:5px solid #10141E;border-radius:14px;padding:2px 20px;box-shadow:0 7px 0 #10141E}
+/* call card (generic call UI, no app/logo) */
+#call{position:absolute;left:0;top:0;width:500px;opacity:0;z-index:3;transform-origin:0 0;background:#FFFDF5;border:6px solid #10141E;border-radius:30px;box-shadow:0 9px 0 #10141E;padding:16px 20px 16px}
+#call .row{display:flex;align-items:center;gap:16px}
+#call .av{width:76px;height:76px;border-radius:50%;background:#7E57C2;border:4px solid #10141E;display:grid;place-items:center;font-family:Anton;font-size:40px;color:#fff;flex:none}
+#call .nm{font-family:InterB;font-weight:800;font-size:38px;color:#10141E;line-height:1.05}
+#call .rl{font-family:InterB;font-weight:700;font-size:24px;color:#5A5F6E;margin-top:4px}
+#call .bar{display:flex;align-items:center;gap:12px;margin-top:12px}
+#call .tm{font-family:InterB;font-weight:800;font-size:28px;color:#2E7D32;min-width:96px}
+#wave{display:flex;align-items:center;gap:5px;height:44px;flex:1}
+#wave i{display:block;width:9px;border-radius:5px;background:#7E57C2;height:6px}
+#mute{width:64px;height:64px;border-radius:50%;border:4px solid #10141E;background:#ECEFF1;display:grid;place-items:center;font-size:34px;flex:none;position:relative}
+#mute.on{background:#E53935}
+#muteLbl{position:absolute;top:-46px;left:50%;transform:translateX(-50%);font-family:Anton;font-size:26px;letter-spacing:2px;color:#fff;background:#E53935;border:4px solid #10141E;border-radius:10px;padding:0 10px;white-space:nowrap;opacity:0}
+#endBtn{width:64px;height:64px;border-radius:50%;border:4px solid #10141E;background:#E53935;display:grid;place-items:center;font-size:30px;flex:none}
+#call.ended{background:#ECE7DA}
+#call .ended{display:none;font-family:InterB;font-weight:800;font-size:30px;color:#C62828;margin-top:12px}
+#call.ended .ended{display:block} #call.ended .bar{display:none}
+/* reference form chip */
+#form{position:absolute;left:0;top:0;width:500px;opacity:0;z-index:3;transform-origin:100% 0;background:#FFFDF5;border:6px solid #10141E;border-radius:22px;box-shadow:0 9px 0 #10141E;padding:12px 20px 14px;
+  background-image:repeating-linear-gradient(#FFFDF5 0 48px,#E3EAF3 48px 50px)}
+#form .hd{font-family:Anton;font-size:30px;letter-spacing:2px;color:#fff;background:#3F5A86;border-radius:10px;padding:0 12px;display:inline-block;margin-bottom:6px}
+#form p{font-family:InterB;font-weight:700;font-size:28px;line-height:48px;color:#10141E;white-space:nowrap}
+#form p b{font-weight:900}
+#form .pr{background:#FFF59D;border-radius:8px;padding:0 6px;margin-left:-6px}
+#form .fr{color:#C62828;font-weight:900}
+/* crisp world-tracked labels (certificate on Sandeep's desk, digital wall clock, stall clock) */
+.wl{position:absolute;left:0;top:0;opacity:0;z-index:2;transform-origin:50% 50%;white-space:nowrap}
+#cert{width:200px;background:#FFF8E1;border:5px solid #B8860B;outline:3px solid #10141E;border-radius:6px;padding:6px 6px 8px;text-align:center;box-shadow:0 6px 0 rgba(16,20,30,.55)}
+#cert .s{font-size:26px;line-height:1}
+#cert b{display:block;font-family:Anton;font-weight:normal;font-size:27px;letter-spacing:1px;color:#8D5A00;line-height:1.1}
+#cert i{display:block;font-style:normal;font-family:Anton;font-size:31px;letter-spacing:2px;color:#10141E;line-height:1.1}
+#wclk{font-family:Anton;font-size:44px;letter-spacing:2px;color:#FF5A3C;background:#1C1F26;border:5px solid #10141E;border-radius:12px;padding:0 16px;box-shadow:0 6px 0 rgba(16,20,30,.5)}
+#doorTag{font-family:Anton;font-size:24px;letter-spacing:2px;color:#3F5A86;background:rgba(255,255,255,.85);border:3px solid #3F5A86;border-radius:8px;padding:0 10px}
+/* REVENGE? button + hold tag */
+#rev{position:absolute;left:0;top:0;opacity:0;z-index:4;font-family:Anton;font-size:62px;letter-spacing:3px;color:#fff;background:#D32F2F;border:7px solid #10141E;border-radius:26px;padding:4px 30px;box-shadow:0 10px 0 #10141E;white-space:nowrap}
+#hold{position:absolute;top:1180px;left:0;right:0;text-align:center;opacity:0;z-index:4}
+#hold span{display:inline-block;font-family:Rama,NotoTe;font-size:52px;color:#10141E;background:#F5B347;padding:4px 26px 12px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* Ananya's chip */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:40px;color:#10141E;background:#FFE0B2;border:6px solid #10141E;border-radius:18px;padding:4px 22px 8px;box-shadow:0 8px 0 #10141E;z-index:4}
+/* flashback inset (sepia torn paper) */
+#fbw{position:absolute;left:50px;top:330px;width:980px;height:800px;opacity:0;z-index:3;filter:drop-shadow(0 14px 0 rgba(40,28,14,.55))}
+#fb{position:absolute;inset:0;clip-path:var(--torn);filter:sepia(.85) saturate(.9) contrast(1.04) brightness(1.02);background:#E8D9BC;overflow:hidden}
+#fbs{position:absolute;left:0;top:0}
+#fbLY{position:absolute;left:26px;top:22px;font-family:Anton;font-size:44px;letter-spacing:4px;color:#FFF8E7;background:#6D4C2F;border:5px solid #3B2A1A;border-radius:12px;padding:0 18px;transform:rotate(-4deg)}
+#dash{position:absolute;left:0;top:0;width:430px;height:300px;padding:14px 18px;font-family:InterB;color:#1B1B1B;opacity:0}
+#dash .t1{font-family:Anton;font-size:44px;letter-spacing:1px;color:#1B5E20}
+#dash .lg{font-family:'Courier New',monospace;font-weight:700;font-size:23px;line-height:1.55;color:#263238}
+#dash .lg em{font-size:31px}
+#dash .lg em{font-style:normal;background:#FFF176;padding:0 4px;border-radius:4px}
+#slide{position:absolute;left:0;top:0;width:520px;height:250px;text-align:center;font-family:Anton;color:#fff;opacity:0}
+#slide .a{font-size:70px;letter-spacing:2px;margin-top:40px;line-height:1}
+#slide .b{font-size:34px;letter-spacing:3px;color:#FFE082;margin-top:12px}
+#appr{position:absolute;left:0;top:0;width:560px;background:#FFFDF5;border:5px solid #3B2A1A;border-radius:12px;padding:14px 20px;opacity:0;box-shadow:0 10px 0 rgba(40,28,14,.5)}
+#appr .h{font-family:Anton;font-size:30px;letter-spacing:2px;color:#5A5F6E}
+#appr .p{font-family:Anton;font-size:46px;letter-spacing:1px;color:#10141E;margin-top:4px}
+#appr .p em{font-style:normal;color:#C62828}
+/* follow */
+#fol{position:absolute;top:1200px;left:230px;width:620px;text-align:center;opacity:0;z-index:4}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:7}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:7}
+/* A/B split */
+#q{position:absolute;top:160px;left:30px;right:30px;text-align:center;opacity:0;z-index:4}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:68px;line-height:1.2;color:#10141E;background:#FFFDF5;border:7px solid #10141E;border-radius:26px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+.abl{position:absolute;top:310px;width:500px;opacity:0;text-align:center;z-index:4}
+.abl span{display:inline-block;font-family:Rama,NotoTe;font-size:46px;line-height:1.25;color:#fff;border:6px solid #10141E;border-radius:22px;padding:4px 22px 12px;box-shadow:0 8px 0 #10141E}
+.abl b{font-family:Anton;font-weight:normal;font-size:60px;margin-right:10px}
+#aL{left:20px} #aL span{background:#2D6CDF} #bL{left:560px} #bL span{background:#D7263D}
+.abl.hit span{box-shadow:0 0 0 8px #FFF59D,0 8px 0 #10141E}
+.sb{position:absolute;left:0;top:0;opacity:0;z-index:4;background:#FFFDF5;border:5px solid #10141E;border-radius:26px;padding:8px 18px 10px;font-family:InterB;font-weight:800;font-size:34px;color:#10141E;box-shadow:0 7px 0 #10141E;white-space:nowrap}
+.sb:after{content:"";position:absolute;left:40px;bottom:-24px;border:12px solid transparent;border-top:16px solid #10141E}
+#cross{position:absolute;left:0;top:0;font-size:76px;opacity:0;z-index:4}
+#offerT{position:absolute;left:0;top:0;opacity:0;z-index:4;width:300px;height:90px}
+#offerT div{position:absolute;top:0;width:150px;height:90px;background:#FFFDF5;border:5px solid #10141E;font-family:Anton;font-size:34px;line-height:80px;color:#2E7D32;overflow:hidden;white-space:nowrap}
+#oL{left:0;border-right:none !important;border-radius:14px 0 0 14px;text-align:right;clip-path:polygon(0 0,100% 0,92% 20%,100% 42%,90% 63%,100% 82%,94% 100%,0 100%)}
+#oR{left:150px;border-left:none !important;border-radius:0 14px 14px 0;text-align:left;clip-path:polygon(8% 0,100% 0,100% 100%,0 100%,6% 82%,0 63%,10% 42%,0 20%)}
+#cdw{position:absolute;top:620px;left:50%;width:250px;height:250px;margin-left:-125px;opacity:0;z-index:5}
+#digit{position:absolute;top:0;left:0;right:0;height:250px;line-height:250px;text-align:center;font-family:Anton;font-size:136px;color:#F5B347;
+  -webkit-text-stroke:11px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:5}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:42px;line-height:1.2;color:#10141E}
+#cnow{position:absolute;top:1660px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#cnow span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:18px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* reveal cards */
+.rc{position:absolute;left:60px;right:60px;opacity:0;z-index:4;background:#FFFDF5;border:7px solid #10141E;border-radius:26px;box-shadow:0 10px 0 #10141E;padding:8px 26px 14px;font-family:Rama,NotoTe;font-size:52px;line-height:1.3;color:#10141E;text-align:center}
+#rc1{top:330px;border-color:#2E7D32;box-shadow:0 10px 0 #1B5E20}
+#rc2{top:470px}
+#rc2 small{display:block;font-size:44px;color:#3F5A86}
+#neither{position:absolute;top:180px;left:0;right:0;text-align:center;opacity:0;z-index:4}
+#neither>span{display:inline-block;font-family:Anton;font-size:58px;letter-spacing:3px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:18px;padding:2px 26px;box-shadow:0 8px 0 #10141E}
+/* clock wipe + stall clock */
+#wipe{position:absolute;inset:0;opacity:0;z-index:5;background:#F3D9B1;display:grid;place-items:center}
+#wipe .c{text-align:center}
+#wipe .ic{font-size:180px;line-height:1}
+#wipe .tt{font-family:Anton;font-size:150px;letter-spacing:4px;color:#10141E;line-height:1.05}
+#wipe .sd{font-family:Anton;font-size:46px;letter-spacing:4px;color:#8D4E1A}
+#sclk{position:absolute;top:166px;right:56px;opacity:0;z-index:4;font-family:Anton;font-size:44px;letter-spacing:2px;color:#3B2A1A;background:#FFE0B2;border:5px solid #3B2A1A;border-radius:14px;padding:0 18px;box-shadow:0 6px 0 #3B2A1A}
+#cal{background:#FFFDF5;border:5px solid #10141E;border-radius:18px;padding:8px 14px 10px;box-shadow:0 7px 0 rgba(16,20,30,.6)}
+#cal .h{font-family:InterB;font-weight:800;font-size:20px;color:#5A5F6E;letter-spacing:1px}
+#cal .e{font-family:InterB;font-weight:800;font-size:30px;color:#10141E;border-left:7px solid #3F5A86;padding-left:10px;margin-top:4px;line-height:1.2}
+#cal .e em{font-style:normal;color:#2E7D32}
+/* A/B/C tiles */
+#q3{position:absolute;top:300px;left:30px;right:30px;text-align:center;opacity:0;z-index:4}
+#q3 span{display:inline-block;font-family:Rama,NotoTe;font-size:62px;line-height:1.2;color:#10141E;background:#FFFDF5;border:7px solid #10141E;border-radius:26px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+.tile{position:absolute;left:110px;right:110px;height:150px;opacity:0;z-index:4;border:7px solid #10141E;border-radius:26px;box-shadow:0 10px 0 #10141E;display:flex;align-items:center;gap:26px;padding:0 30px;font-family:Rama,NotoTe;font-size:54px;color:#fff}
+.tile b{font-family:Anton;font-weight:normal;font-size:84px;width:90px;text-align:center}
+#tA{top:500px;background:#2D6CDF} #tB{top:690px;background:#D7263D} #tC{top:880px;background:#F5B347;color:#10141E}
+#tC.glow{box-shadow:0 0 0 10px #FFF59D,0 0 50px 16px rgba(255,213,79,.9),0 10px 0 #10141E}
+/* share: tag the colleague */
+#share{position:absolute;inset:0;opacity:0;z-index:5}
+#share .dim2{position:absolute;inset:0;background:rgba(30,22,14,.72)}
+#sq{position:absolute;top:190px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cbox{position:absolute;left:90px;right:90px;top:520px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:740px} #ct2{top:870px} #ct3{top:1000px}
+#ct1 .av{background:#00ACC1} #ct2 .av{background:#FB8C00} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(30,22,14,.86);z-index:5}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:50px;color:#fff;margin-top:10px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:6}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="ab" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:5"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">MORAL DILEMMA</div></div>
+<div id="hook"><span class="pill">Credit <span class="te">కొట్టేసినవాడికి… నేనే</span> reference?!</span></div>
+<div id="title"><div class="t">A or B? 🤔</div><div class="md">MORAL DILEMMA</div></div>
+<div class="wl" id="cert"><div class="s">🏆</div><b>Q3 RELEASE STAR</b><i>· SANDEEP ·</i></div>
+<div class="wl" id="wclk">3:40 PM</div>
+<div class="wl" id="doorTag">STAND-UP · 3:30 PM</div>
+<div id="call"><div class="row"><div class="av">R</div><div><div class="nm">Radhika</div><div class="rl">HR (Talent) · Reference check</div></div></div>
+  <div class="bar"><div class="tm" id="ctm">01:12</div><div id="wave"></div><div id="mute">🎤<div id="muteLbl">MUTED</div></div><div id="endBtn">📞</div></div>
+  <div class="ended">Call ended · 3:44 PM</div></div>
+<div id="form"><div class="hd">REFERENCE CHECK</div>
+  <p>Candidate: <b>SANDEEP K</b></p>
+  <p>Offer: <b>₹30 LPA</b> · Senior Engineer</p>
+  <p class="pr">Peer reference (Q3 release):</p>
+  <p><b>NIKHIL R</b> ✓</p>
+  <p class="fr">Final round: TODAY 5:00 PM</p></div>
+<div id="rev">😈 REVENGE?</div>
+<div id="hold"><span>Nikhil ఏం చెప్పాడో… చివర్లో 👀</span></div>
+<div class="chip" id="cAmma">Sandeep's Amma · dialysis · <span class="te">ఈ నెల నుంచి</span></div>
+<div id="fbw"><div id="fb"><svg id="fbs" width="980" height="800" viewBox="0 0 980 800"></svg>
+  <div id="dash"><div class="t1">Q3 RELEASE ✔</div><div class="lg">prod · v3.0 · <b>SUCCESS</b><br><em>deployed by nikhil.r</em><br>02:07 AM · checks 412/412 ✔</div></div>
+  <div id="slide"><div class="a">Q3 hero 👏 Sandeep</div><div class="b">ALL-HANDS · Q3 RELEASE</div></div>
+  <div id="appr"><div class="h">APPRAISAL · NIKHIL R</div><div class="p">Promotion: <em>NOT THIS CYCLE</em></div></div>
+  <div id="fbLY">LAST YEAR</div></div></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="q"><span>మీరైతే A or B? 💬</span></div>
+<div class="abl" id="aL"><span><b>A</b>మొత్తం నిజం</span></div>
+<div class="abl" id="bL"><span><b>B</b>Cover చేయడం</span></div>
+<div class="sb" id="sbA">He took my credit 😤</div>
+<div class="sb" id="sbB">He's great, no issues 👍</div>
+<div id="cross">🤞</div>
+<div id="offerT"><div id="oL">₹30 LPA&nbsp;</div><div id="oR">&nbsp;OFFER</div></div>
+<div id="cdw"><svg width="250" height="250" viewBox="-125 -125 250 250">
+  <circle r="108" fill="#FFFDF5" stroke="#10141E" stroke-width="10"/>
+  <circle id="arc" r="90" fill="none" stroke="#E8553D" stroke-width="20" transform="rotate(-90)" stroke-dasharray="565.5 565.5" stroke-linecap="round"/>
+  </svg><div id="digit">5</div></div>
+<div id="cnow"><span>💬 COMMENT <b class="te">చేయండి</b></span></div>
+<div id="cbs"></div>
+<div id="neither"><span>A <span class="te">కాదు</span>… B <span class="te">కాదు</span>…</span></div>
+<div class="rc" id="rc1">✔ Pressure లో deliver చేస్తాడు</div>
+<div class="rc" id="rc2">✋ Credit విషయంలో నేను biased<small>→ ఆయన్నే Q3 గురించి అడగండి</small></div>
+<div class="wl" id="cal"><div class="h">TODAY</div><div class="e">Final round · 5:00 PM <em>✔ done</em></div></div>
+<div id="sclk">🕡 6:40 PM</div>
+<div id="wipe"><div class="c"><div class="ic">🕡</div><div class="tt">6:40 PM</div><div class="sd">SAME DAY · CHAI STALL</div></div></div>
+<div id="q3"><span>A, B లేక C? 💬</span></div>
+<div class="tile" id="tA"><b>A</b>నిజం</div>
+<div class="tile" id="tB"><b>B</b>Cover</div>
+<div class="tile" id="tC"><b>C</b>Nikhil way ☕</div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>CREDIT కొట్టేసే ఆ colleague ని<br>TAG చేయండి 😤</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">O</div>Office friend 🙃<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">T</div>Team gang ☕</div>
+  <div class="ct" id="ct3"><div class="av">B</div>Bestie 💼</div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · MORAL DILEMMA</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో twist! 🌀</div></div></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "paper";  // art style: paper (office + chai stall); the flashback inset is paper + sepia</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

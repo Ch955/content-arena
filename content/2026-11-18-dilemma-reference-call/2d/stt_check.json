@@ -1,0 +1,74 @@
+{
+ "0": {
+  "expected": "Sandeep కి thirty LPA offer… మీ honest feedback… మీదే ఉంది.",
+  "heard": "సందీప్ కి 30 LPA ఆఫర్. మీ హానెస్ట్ ఫీడ్‌బ్యాక్ మీదే ఉంది.",
+  "by": "gemini",
+  "sim": 0.33
+ },
+ "1": {
+  "expected": "నా Q three release… credit తనదన్నాడు. నా promotion… పోయింది.",
+  "heard": "నా Q3 రిలీజ్ క్రెడిట్ తనదన్నాడు. నా ప్రమోషన్ పోయింది.",
+  "by": "gemini",
+  "sim": 0.46
+ },
+ "2": {
+  "expected": "ఒక్క call తో… revenge! Nikhil ఏం చెప్పాడో… చివర్లో.",
+  "heard": "ఒక్క కాల్ తో revenge నిఖిల్ ఏం చెప్పాడో చివర్లో.",
+  "by": "gemini",
+  "sim": 0.75
+ },
+ "3": {
+  "expected": "Sandeep వాళ్ళ అమ్మకి… ఈ నెలే dialysis మొదలైంది.",
+  "heard": "సందీప్ వాళ్ళ అమ్మకి ఈ నెలే dialysis మొదలయ్యింది.",
+  "by": "gemini",
+  "sim": 0.78
+ },
+ "4": {
+  "expected": "ఇలాంటి dilemmas రోజూ కావాలంటే… follow చేయండి!",
+  "heard": "ఇలాంటి dilemmas రోజూ కావాలంటే follow చేయండి.",
+  "by": "gemini",
+  "sim": 1.0
+ },
+ "5": {
+  "expected": "మీరైతే? A… మొత్తం నిజం. B… cover చేయడం. Comment చేయండి!",
+  "heard": "మీరైతే A మొత్తం నిజం, B కవర్ చేయడం కామెంట్ చేయండి.",
+  "by": "gemini",
+  "sim": 0.72
+ },
+ "6": {
+  "expected": "Pressure లో Sandeep… deliver చేస్తాడు. అది నిజం.",
+  "heard": "Pressure లో సందీప్ deliver చేస్తాడు. అది నిజం.",
+  "by": "gemini",
+  "sim": 0.83
+ },
+ "7": {
+  "expected": "Credit విషయంలో… నేను biased. ఆయన్నే Q three గురించి అడగండి.",
+  "heard": "Credit విషయంలో నేను biased. ఆయన్నే Q3 గురించి అడగండి.",
+  "by": "gemini",
+  "sim": 0.95
+ },
+ "8": {
+  "expected": "HR… Q three గురించే అడిగారు. నిజం చెప్పా. Sorry రా.",
+  "heard": "HR Q3 గురించి అడిగారు. నిజం చెప్పా. Sorry రా.",
+  "by": "gemini",
+  "sim": 0.9
+ },
+ "9": {
+  "expected": "Chai చల్లారిపోతుంది… తాగు.",
+  "heard": "చాయ్ చల్లారిపోతుంది. తాగు.",
+  "by": "gemini",
+  "sim": 0.82
+ },
+ "10": {
+  "expected": "A, B… లేక Nikhil లా… C? Comment చేయండి!",
+  "heard": "A, B, లేఖ, నిఖిల్లా, C, కామెంట్ చేయండి.",
+  "by": "gemini",
+  "sim": 0.48
+ },
+ "11": {
+  "expected": "Credit కొట్టేసే colleague ని… tag చేయండి! Follow… ఈ call మీకే వస్తే?",
+  "heard": "Credit కొట్టేసే colleague ని tag చేయండి. Follow ఈ call మీతో వస్తే.",
+  "by": "gemini",
+  "sim": 0.96
+ }
+}
