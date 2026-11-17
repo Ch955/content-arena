@@ -14,7 +14,7 @@ const INK="#10141E";
 const $=id=>document.getElementById(id);
 // comment bubbles during the countdown (generic names; none hints at how the story ends)
 const CB=[["Ravi","A — karma bro","#1E88E5",40,1250],["Priya","B — amma kosam","#D81B60",560,1300],["Teja","A, no doubt","#2E7D32",60,1380],
-          ["Anu","B… past is past","#8E24AA",540,1440],["Karthik","Phone cut చేస్తా 😅","#E65100",40,1500],["Sneha","🤔","#00897B",880,1210]];
+          ["Anu","B… past is past","#8E24AA",540,1440],["Karthik","Phone cut చేస్తా 😅","#E65100",40,1500],["Sneha","🤔","#00897B",945,1000]];
 $("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 // after the reveal (A/B/C prompt): a few comment pops
 const CB2=[["Vamsi","C ☕ 💯","#00897B",640,1090],["Swathi","A only!","#1E88E5",760,1220],["Sai","B… amma kosam","#D81B60",560,1350]];
@@ -173,7 +173,7 @@ function makeAdult(o){
     el("rect",{x:-40,y:-52,width:80,height:24,rx:6,fill:"#2D6CDF"},bd);
     el("rect",{x:-14,y:-22,width:28,height:30,rx:3,fill:"#C9D6E3"},bd); el("circle",{cx:0,cy:-11,r:7,fill:"#8A5A3B"},bd);
     txt(o.badge[0],{x:0,y:26,"font-family":"Anton","font-size":17,"text-anchor":"middle",fill:INK},bd);
-    txt(o.badge[1],{x:0,y:44,"font-family":"Anton","font-size":12.5,"text-anchor":"middle",fill:"#2D6CDF","letter-spacing":1},bd); o._lany=ly}
+    txt(o.badge[1],{x:0,y:44,"font-family":"Anton","font-size":12.5,"text-anchor":"middle",fill:"#2D6CDF","letter-spacing":1},bd); o._lany=ly; o._bd=bd}
   const arm=s=>({up:el("line",{stroke:o.sleeve||o.shirt,"stroke-width":32,"stroke-linecap":"round"},body),
                  lo:el("line",{stroke:o.fore||o.sleeve||o.shirt,"stroke-width":28,"stroke-linecap":"round"},body),
                  cuff:o.cuff?el("circle",{r:15,fill:o.cuff},body):null,
@@ -201,7 +201,7 @@ function makeAdult(o){
   items.cert=el("g",{},itemG); el("rect",{x:-70,y:-56,width:120,height:84,rx:4,fill:"#FFF8E1",stroke:"#B8860B","stroke-width":6},items.cert);
   el("circle",{cx:-10,cy:-26,r:12,fill:"#FFC107",stroke:INK,"stroke-width":2.5},items.cert); [-6,4,14].forEach((y,k)=>el("rect",{x:-48,y,width:k?60:76,height:5,rx:2,fill:"#8D6E63"},items.cert));
   itemsL.phoneUp=el("g",{},itemGL); el("rect",{x:-21,y:-40,width:42,height:72,rx:8,fill:"#1A1A1A",stroke:INK,"stroke-width":3},itemsL.phoneUp); el("rect",{x:-16,y:-34,width:32,height:58,rx:4,fill:"#E8F0FE"},itemsL.phoneUp);
-  el("rect",{x:-12,y:-22,width:6,height:30,fill:"#3F5A86"},itemsL.phoneUp); el("rect",{x:-4,y:-22,width:16,height:7,fill:"#90A4AE"},itemsL.phoneUp); el("rect",{x:-4,y:-11,width:12,height:5,fill:"#2E7D32"},itemsL.phoneUp);
+  el("rect",{x:-12,y:-20,width:24,height:24,rx:3,fill:"#FFFFFF",stroke:"#3F5A86","stroke-width":2},itemsL.phoneUp); el("rect",{x:-12,y:-20,width:24,height:7,rx:2,fill:"#E53935"},itemsL.phoneUp); for(let q=0;q<6;q++) el("rect",{x:-8+(q%3)*6,y:-10+Math.floor(q/3)*6,width:3.5,height:3.5,fill:q===4?"#2E7D32":"#90A4AE"},itemsL.phoneUp);
   // head
   const head=el("g",{},body);
   el("ellipse",{cx:-55,cy:2,rx:10,ry:17,fill:o.skin,stroke:INK,"stroke-width":3},head); el("ellipse",{cx:55,cy:2,rx:10,ry:17,fill:o.skin,stroke:INK,"stroke-width":3},head);
@@ -257,7 +257,7 @@ function makeAdult(o){
     const ht=`translate(${k.look*3},${-392+k.headY}) rotate(${k.headRot})`; head.setAttribute("transform",ht); hairBack.setAttribute("transform",ht);
     face.setAttribute("transform",`translate(${k.look*7},${k.lookY*3})`);
     legs.forEach((L,i)=>L.setAttribute("transform",`rotate(${(i?1:-1)*k.walk*14} 0 -10)`));
-    if(o._lany) o._lany.style.opacity=k.lany;
+    if(o._lany) o._lany.style.opacity=k.lany; if(o._bd) o._bd.setAttribute("transform",`translate(0,-122) scale(${k.flip},1)`);
     buds.forEach((b_,i)=>b_.style.opacity=(i===1?k.buds:1));
     [[AL,SH[0],k.hL,-1],[AR,SH[1],k.hR,1]].forEach(([A,S,T,side])=>{const [e,h]=ik(S[0],S[1],T[0],T[1],118,112,side);
       A.up.setAttribute("x1",S[0]);A.up.setAttribute("y1",S[1]);A.up.setAttribute("x2",e[0]);A.up.setAttribute("y2",e[1]);
@@ -574,8 +574,8 @@ function frame(t){
   const ST=focus(1.0,CX+540,1000);
   const shots=[
     [0,OPEN],
-    [b.tYours-0.15,focus(1.0+0.05*clamp((t-b.tYours+0.15)/0.4)+0.012*t+punch(b.tYours,0.05),540,1000)],
-    [b.mute,focus(1.08,470,1080),0.3],
+    [b.tYours-0.15,focus(1.0+0.03*clamp((t-b.tYours+0.15)/0.4)+0.012*t+punch(b.tYours,0.02),540,1000)],
+    [b.mute,focus(1.08,540,1060),0.3],
     [S(2)-0.1,focus(1.45+0.03*(t-S(2))+punch(b.tRev,0.08),330,1170,540,1060),0.25],
     [b.an0,focus(1.3+0.02*(t-b.an0)+punch(b.tMonth,0.06),470,1180,540,1010),0.25],
     [b.fol0,WIDE,0.3],
@@ -599,7 +599,7 @@ function frame(t){
   if(!loop&&t>=b.abc0&&t<b.sh0) dm=0.42*clamp((t-b.abc0)/0.3); $("dim").style.opacity=dm;
   // world-tracked labels: certificate, wall clock, stand-up door tag, Sandeep's calendar
   const wlab=(id,on,wx,wy,s=1)=>{const e=$(id); e.style.opacity=on?1:0; if(!on) return; const [px,py]=scr(wx,wy); e.style.transform=`translate(${px}px,${py}px) translate(-50%,-50%) scale(${cm.z*s})`};
-  wlab("cert",!stall&&!reveal,962,1228,1);
+  {const [cx_]=scr(940,1232), hw=100*0.9*cm.z; wlab("cert",!stall&&!reveal&&cx_-hw>=0&&cx_+hw<=1080,940,1232,0.9)}   // whole plaque in frame, or not at all
   {const clkTxt=t>=b.callEnd&&!loop?"3:44 PM":(reveal?"3:43 PM":(!loop&&t>=b.clk41?"3:41 PM":"3:40 PM")); $("wclk").textContent=clkTxt;
    const pulse=(!loop&&t>b.clk41&&t<b.clk41+0.4)?1+0.15*Math.sin((t-b.clk41)/0.4*Math.PI):((!loop&&t>b.callEnd&&t<b.callEnd+0.4)?1+0.15*Math.sin((t-b.callEnd)/0.4*Math.PI):1);
    wlab("wclk",!stall,410,780,pulse)}
@@ -667,7 +667,7 @@ function frame(t){
   // subtitles (… -> ...); during the loop cut only the last phrase
   const sub=$("sub"), L=curLine(t);
   if(loop){ sub.style.opacity=t<E(11)+0.2?1:0; sub.innerHTML=`<span class="who" style="background:${COLORS.gopi}">GOPI</span><br>ఈ call మీకే వస్తే?` }
-  else if(L){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...")}`} else sub.style.opacity=0;
+  else if(L){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${L.text.replace(/…/g,"...").replace(/ (రా[.!?]?)$/,"&nbsp;$1")}`} else sub.style.opacity=0;
   if(!loop&&t<0.15) sub.style.opacity=0;
 }
 function show(id,on,s=1,extra=""){const e=$(id); e.style.opacity=on?1:0; if(on) e.style.transform=`${extra} scale(${Math.max(0.01,s)})`}
