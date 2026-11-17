@@ -1,0 +1,104 @@
+{
+ "lines": [
+  {
+   "who": "radhika",
+   "text": "Sandeep కి ₹30 LPA offer… మీ honest feedback మీదే ఉంది.",
+   "say": "[professional] Sandeep కి thirty LPA offer… [warmly] మీ honest feedback… [firm] మీదే ఉంది.",
+   "act": "a polished, polite HR manager on a work call, warm but businesslike; a small weight on మీదే, as if handing him the decision",
+   "beat": "hook"
+  },
+  {
+   "who": "nikhil",
+   "text": "నా Q3 release credit తనదన్నాడు… నా promotion పోయింది.",
+   "say": "[under his breath] నా Q three release… credit తనదన్నాడు. [bitter] నా promotion… పోయింది.",
+   "act": "a calm man muting the call and muttering to himself; an old hurt surfacing, clipped and quiet; stress on పోయింది",
+   "beat": "stakes"
+  },
+  {
+   "who": "gopi",
+   "text": "ఒక్క call తో revenge! Nikhil ఏం చెప్పాడో… చివర్లో.",
+   "say": "[mischievously] ఒక్క call తో… revenge! [whispers] Nikhil ఏం చెప్పాడో… చివర్లో.",
+   "act": "a sly narrator aside to the viewer, tempting, then dropping to a hush",
+   "beat": "temptation-hold"
+  },
+  {
+   "who": "ananya",
+   "text": "Sandeep వాళ్ళ అమ్మకి… ఈ నెలే dialysis మొదలైంది.",
+   "say": "[whispers] Sandeep వాళ్ళ అమ్మకి… [softly] ఈ నెలే dialysis మొదలైంది.",
+   "act": "a caring friend leaning in so the call can't hear, gentle and worried; stress on ఈ నెలే",
+   "beat": "option-b"
+  },
+  {
+   "who": "gopi",
+   "text": "ఇలాంటి dilemmas రోజూ కావాలంటే… follow చేయండి!",
+   "say": "[warmly] ఇలాంటి dilemmas రోజూ కావాలంటే… [excited] follow చేయండి!",
+   "act": "a quick, warm aside, light and brisk",
+   "beat": "follow"
+  },
+  {
+   "who": "gopi",
+   "text": "మీరైతే? A — మొత్తం నిజం. B — cover చేయడం. Comment చేయండి!",
+   "say": "[dramatic pause] మీరైతే? A… మొత్తం నిజం. B… cover చేయడం. [excited] Comment చేయండి!",
+   "act": "a slow, personal question to the viewer, each option weighed, then urgent quiz-host energy",
+   "beat": "comment-countdown"
+  },
+  {
+   "who": "nikhil",
+   "text": "Pressure లో Sandeep deliver చేస్తాడు. అది నిజం.",
+   "say": "[calmly] Pressure లో Sandeep… deliver చేస్తాడు. [firm] అది నిజం.",
+   "act": "unmuting and answering evenly, fair and composed, no bitterness left in the voice",
+   "beat": "reveal"
+  },
+  {
+   "who": "nikhil",
+   "text": "Credit విషయంలో నేను biased… ఆయన్నే Q3 గురించి అడగండి.",
+   "say": "[thoughtful] Credit విషయంలో… నేను biased. [calmly] ఆయన్నే Q three గురించి అడగండి.",
+   "act": "honest and measured, admitting his own bias plainly, then a polite, steady suggestion; stress on biased",
+   "beat": "take"
+  },
+  {
+   "who": "sandeep",
+   "text": "HR Q3 గురించే అడిగారు… నిజం చెప్పా. Sorry రా.",
+   "say": "[awkwardly] HR… Q three గురించే అడిగారు. [sighs] నిజం చెప్పా. [softly] Sorry రా.",
+   "act": "a usually slick colleague, for once without his polish: awkward, a small exhale, then a quiet sincere apology",
+   "beat": "turn"
+  },
+  {
+   "who": "nikhil",
+   "text": "Chai చల్లారిపోతుంది… తాగు.",
+   "say": "[warmly] Chai చల్లారిపోతుంది… [softly] తాగు.",
+   "act": "understated and kind, almost a small smile in the voice; the forgiveness is in the tone, not the words",
+   "beat": "turn"
+  },
+  {
+   "who": "gopi",
+   "text": "A, B… లేక Nikhil లా C? Comment చేయండి!",
+   "say": "[mischievously] A, B… లేక Nikhil లా… C? [excited] Comment చేయండి!",
+   "act": "a playful narrator springing the third option on the viewer, then a bright call to comment",
+   "beat": "comment-choice"
+  },
+  {
+   "who": "gopi",
+   "text": "Credit కొట్టేసే colleague ని tag చేయండి! Follow… ఈ call మీకే వస్తే?",
+   "say": "[laughs] Credit కొట్టేసే colleague ని… tag చేయండి! [warmly] Follow… [whispers] ఈ call మీకే వస్తే?",
+   "act": "cheeky and conspiratorial with a quick laugh, then a warm sign-off that drops into a hushed question sending you back to the start",
+   "beat": "share-close-loop"
+  }
+ ],
+ "visual_plan": [
+  "style: PAPER skin for the whole reel (the `plan` default; cut-paper suits an office drama told like a memory). Present-day office (L1-L8): cool paper palette, grey-blue glass, white desks, a teal accent. L2 flashback ('last year'): a torn-edge paper photo inset with a sepia wash, so it reads as the past without a skin switch (the Editor may use setSkin('flat') for it instead if the inset looks busy). Chai stall (L9-L10): same paper skin in a warm dusk palette (orange sky, sodium streetlight cut-outs). The Editor may switch skins per scene if a scene needs it. Cast per tools/anim2d/cast.md: Nikhil (NIKHIL_OPT, charcoal shirt, lanyard 'NIKHIL R · TOWER B', legs/shoes from 14 Nov), Ananya (ANANYA_OPT, teal kurta, a team lanyard). New: Sandeep (see brief.md cast table: slim-fit light-blue shirt, rolled sleeves, a smart watch with no logo, neat gelled side-parted hair, a confident half-smile that drops at the chai stall). Radhika (HR) is voice only, shown as a call card. No company names, logos or brands anywhere: generic 'Tower B' office and a generic call app.",
+  "CONSISTENCY TABLE (keep identical in every frame and in the caption): offer '₹30 LPA · Senior Engineer'; the project 'Q3 RELEASE' (last year); Sandeep's final HR round 'TODAY 5:00 PM'; the call at ~3:40 PM right after the 3:30 PM stand-up; the chai stall at 6:40 PM the same day; Sandeep's mother started dialysis 'this month' (no hospital or illness shown, ever).",
+  "L1 hook (0 s, open mid-call, no ringing phone, no notification): a glass stand-up room at Tower B, Hitech City (window cut-outs of towers, afternoon light). Nikhil steps out with the phone already at his ear; a call card floats beside him: 'Radhika · HR (Talent) · Reference check' and a small form chip: 'Candidate: SANDEEP K · Offer ₹30 LPA · Peer reference (Q3 release): NIKHIL R · Final round TODAY 5:00 PM'. REWATCH CLUES planted in this first frame (do not zoom): (1) inside the glass room Sandeep looks up and watches Nikhil leave with the phone, uneasy (he named him as the reference); (2) on Sandeep's desk outside the room, a paper certificate 'Q3 RELEASE STAR · SANDEEP' stands next to his laptop. Text hook 'Credit కొట్టేసినవాడికి… నేనే reference?!' on screen from 0 s; title 'A or B? 🤔' + pill 'MORAL DILEMMA' lands ~1.5 s in.",
+  "L2 stakes: Nikhil presses MUTE (a red mute icon pops). Torn-edge sepia paper inset ('LAST YEAR'): Nikhil at 2 AM at his desk with the release dashboard 'Q3 RELEASE ✔ · deployed by nikhil.r'; then an all-hands slide 'Q3 hero 👏 Sandeep' with Sandeep accepting the certificate; then an appraisal card 'Promotion: NOT THIS CYCLE' sliding onto Nikhil's desk. Back to the present on 'పోయింది'.",
+  "L3 temptation-hold: Gopi corner cut-out with a raised eyebrow; a big cut-paper 'REVENGE?' button glows under Nikhil's thumb next to the mute icon. Tag 'NIKHIL ఏం చెప్పాడో… చివర్లో 👀' stamps on.",
+  "L4 option-b: Ananya has followed him out; she leans in, a hand on his arm, glancing back at the glass room where Sandeep sits. A small chip floats by her: 'Sandeep's Amma · dialysis · ఈ నెల నుంచి' (text only, no hospital or medical image). Nikhil's jaw tightens.",
+  "L5 follow: animated FOLLOW button pressed by a finger (pop SFX); the wall clock above them reads 3:41.",
+  "L6 comment-countdown: hard split-screen. LEFT 'A · మొత్తం నిజం' (a paper speech bubble with 'He took my credit' and Sandeep's offer card tearing), RIGHT 'B · Cover చేయడం' (a speech bubble 'He's great, no issues 👍' with Nikhil's fingers crossed behind his back). Big ticking clock between them; text 'మీరైతే A or B? 💬' + 5 s countdown 5-4-3-2-1 (no voice during the 5 s, clock-tick SFX). Comment bubbles float up, none hint at the ending: 'A — karma bro', 'B — amma kosam', 'A, no doubt', 'B… past is past', 'Phone cut చేస్తా 😅', '🤔'.",
+  "L7 reveal: the split panels slide apart and Nikhil steps between them (neither A nor B). He unmutes (mute icon flips off) and answers evenly; on screen a clean card: '✔ Pressure లో deliver చేస్తాడు'.",
+  "L8 take: a second card stacks under the first: '✋ Credit విషయంలో నేను biased → ఆయన్నే Q3 గురించి అడగండి'. Ananya's eyebrows lift, then a slow nod. The call card shows 'Call ended · 3:44 PM'. A paper clock-wipe card: '6:40 PM'.",
+  "L9 turn: the chai stall below Tower B at dusk (steel kettle, glass tumblers, a cut-paper streetlight; no shop name). Sandeep walks up without his usual swagger, sleeves down, lanyard in his pocket; his phone, face-up in his hand for a beat, shows a calendar entry 'Final round · 5:00 PM ✔ done' (no result shown). He stands beside Nikhil, eyes on the ground, then looks at him on 'Sorry రా'. (Sandeep worked out it was Nikhil: only the Q3 reference would make HR ask about Q3.)",
+  "L10 turn: Nikhil slides a second glass of chai across the counter to him. The two stand side by side, steam rising. Music drops to one soft note. No offer email, no hug: the outcome of the offer stays off-screen on purpose.",
+  "L11 comment-choice: three paper tiles drop in, 'A · నిజం', 'B · Cover', and a third glowing tile 'C · Nikhil way ☕'; text 'A, B లేక C? 💬 COMMENT'.",
+  "L12 share-close-loop: text 'CREDIT కొట్టేసే ఆ colleague ని TAG చేయండి 😤' with a tag animation (a contact card 'Office friend 🙃' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM. On 'ఈ call మీకే వస్తే?' hard cut back to frame 1 (Nikhil stepping out of the stand-up room with the phone at his ear, Sandeep watching from inside) so the loop is seamless."
+ ]
+}
