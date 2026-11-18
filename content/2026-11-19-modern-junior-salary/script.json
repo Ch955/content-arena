@@ -1,0 +1,120 @@
+{
+ "lines": [
+  {
+   "who": "kiran",
+   "text": "Anna! నా CTC 18 lakhs అయ్యింది… మీ runbook వల్లే!",
+   "say": "[excited] Anna! నా CTC… eighteen lakhs అయ్యింది! [laughs] మీ runbook వల్లే!",
+   "act": "a bubbly 23-year-old bursting with good news across the lunch table, loud, innocent and grateful; a delighted laugh on runbook",
+   "beat": "hook"
+  },
+  {
+   "who": "gopi",
+   "text": "Nikhil… ఆరేళ్ళ experience. CTC… 14 lakhs. ఏం చేశాడో… చివర్లో!",
+   "say": "[dramatic pause] Nikhil… ఆరేళ్ళ experience. [whispers] CTC… fourteen lakhs. [mischievously] ఏం చేశాడో… చివర్లో!",
+   "act": "a narrator freezing the moment, deadpan, a hushed sting on the number, then a sly tease to the viewer",
+   "beat": "stakes-hold"
+  },
+  {
+   "who": "kiran",
+   "text": "వేరే offer చూపిస్తే… match చేశారు! ఇంకో పని కూడా చేశా anna…",
+   "say": "[proudly] వేరే offer చూపిస్తే… match చేశారు! [mischievously] ఇంకో పని కూడా చేశా anna…",
+   "act": "rattling on, pleased with himself, then a secretive little grin as he starts a second story and trails off mid-thought",
+   "beat": "plant"
+  },
+  {
+   "who": "ananya",
+   "text": "Junior కి 18 ఆ? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+   "say": "[whispers] Junior కి… eighteen ఆ? [indignant] Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+   "act": "a fiercely loyal friend hissing low so Kiran can't hear, disbelief turning into a firm push; stress on ఇప్పుడే",
+   "beat": "option-a"
+  },
+  {
+   "who": "nikhil",
+   "text": "Fight చేస్తే drama… quiet గా resume update చేయనా?",
+   "say": "[quietly] Fight చేస్తే… drama. [sighs] quiet గా resume update చేయనా?",
+   "act": "a calm man's inner voice, hurt but controlled, weighing the quiet exit; a small tired sigh before the question",
+   "beat": "option-b"
+  },
+  {
+   "who": "gopi",
+   "text": "రోజూ ఇలాంటి office dilemmas కావాలంటే… follow చేయండి!",
+   "say": "[warmly] రోజూ ఇలాంటి office dilemmas కావాలంటే… [excited] follow చేయండి!",
+   "act": "a quick, bright aside, light and brisk",
+   "beat": "follow"
+  },
+  {
+   "who": "gopi",
+   "text": "మీరైతే? A… ఇవాళే fight. B… silent job hunt. Comment చేయండి!",
+   "say": "[dramatic pause] మీరైతే? A… ఇవాళే fight. B… silent job hunt. [excited] Comment చేయండి!",
+   "act": "a slow, personal question to the viewer, each option weighed evenly, then urgent quiz-host energy",
+   "beat": "comment-countdown"
+  },
+  {
+   "who": "nikhil",
+   "text": "Negotiate చేశావ్ కదా… good. Congrats రా, Kiran!",
+   "say": "[warmly] Negotiate చేశావ్ కదా… [laughs] good. Congrats రా, Kiran!",
+   "act": "genuinely warm and unbothered, an elder-brother smile in the voice; no sarcasm at all",
+   "beat": "reveal"
+  },
+  {
+   "who": "nikhil",
+   "text": "Ma'am, పదిహేను నిమిషాలే. Runbook… మూడు outages… నలుగురు juniors.",
+   "say": "[calmly] Ma'am, పదిహేను నిమిషాలే. [confidently] Runbook… మూడు outages… నలుగురు juniors.",
+   "act": "composed and businesslike in a small meeting, laying down three facts one by one like cards; stress on పదిహేను",
+   "beat": "solution"
+  },
+  {
+   "who": "nikhil",
+   "text": "Kiran తో compare కాదు… market correction కావాలి. Review date తో.",
+   "say": "[firmly] Kiran తో compare కాదు… [calmly] market correction కావాలి. Review date తో.",
+   "act": "steady and polite, drawing a clear line on the first half, then a plain, confident ask; no pleading",
+   "beat": "solution"
+  },
+  {
+   "who": "hema",
+   "text": "Review — December 1. నువ్వు అడగకముందే… Kiran HR కి చెప్పాడు.",
+   "say": "[calmly] Review… December first. [warmly] నువ్వు అడగకముందే… [softly] Kiran HR కి చెప్పాడు.",
+   "act": "a calm, kind engineering manager of about 40; businesslike on the date, then a warm half-smile as she shares a secret; stress on అడగకముందే",
+   "beat": "twist"
+  },
+  {
+   "who": "kiran",
+   "text": "Runbook Nikhil anna ది… ముందు ఆయన salary చూడండి!",
+   "say": "[earnest] Runbook Nikhil anna ది… [firmly] ముందు ఆయన salary చూడండి!",
+   "act": "the same bubbly junior, for once serious and sincere, standing up for his mentor in a formal room; stress on ముందు",
+   "beat": "twist"
+  },
+  {
+   "who": "gopi",
+   "text": "మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? A or B… comment!",
+   "say": "[mischievously] మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? [excited] A or B… comment!",
+   "act": "conspiratorial and playful, like asking a colleague at the coffee machine, then a bright call to comment",
+   "beat": "comment"
+  },
+  {
+   "who": "gopi",
+   "text": "మీరు train చేసిన junior ని tag చేయండి! Follow… clue మొదట్లోనే ఉంది!",
+   "say": "[laughs] మీరు train చేసిన junior ని… tag చేయండి! [warmly] Follow… [whispers] clue మొదట్లోనే ఉంది!",
+   "act": "a cheeky laugh, a warm sign-off, then a hushed tip that sends you back to the start",
+   "beat": "share-close-loop"
+  }
+ ],
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (the `plan` default; clean flat office colours suit a bright, funny-real cafeteria story). One exception: the L12 flashback is a torn-edge inset (setSkin('paper') + a light sepia wash, as in the 18 Nov flashback) so it reads as 'earlier, in the HR room'. The Editor may switch skins per scene if a scene needs it. Setting: the Tower B office, Hitech City (same building as 15 and 18 Nov): a busy cafeteria at 1 PM (steel counters, a samosa-and-chai tray, window cut-outs of glass towers), Hema's small glass cabin next morning, and the HR meeting room in the flashback. Cast per tools/anim2d/cast.md: Nikhil `{...NIKHIL_OPT, badge:[\"NIKHIL R\",\"TOWER B\"]}` (seated at the table; standing in L9-L10: legs:{pant:\"#2B3240\",shoe:\"#1A1A1A\"}), Ananya `{...ANANYA_OPT, badge:[\"ANANYA\",\"TOWER B\"]}`. New: Kiran and Hema (see the brief's cast table). No company names, logos or brands anywhere: generic 'Tower B', a generic mail app, a generic calendar.",
+  "CONSISTENCY TABLE (identical in every frame, the caption and youtube.md): Kiran's new CTC '₹18 L' (another company's offer, matched by ours); Nikhil '6 yrs · ₹14 L'; Nikhil's data cards 'Runbook (payments module)', '3 outages prevented', '4 juniors trained'; the meeting 'Fri 10:00 AM · 15 min · Hema / Nikhil · Comp check-in' (the morning after the lunch); the review date 'Dec 1'. Kiran is still 'the new junior' from the 15 Nov reel (joined recently; his first on-call was the Sunday P1).",
+  "L1 hook (0 s, open on the action, no title yet, no phone notification): the cafeteria table. Kiran bounces into the seat opposite Nikhil and Ananya, tray in hand, grinning; a big flat speech chip pops: 'CTC ₹18 L 🎉'. Nikhil's hand with a samosa is halfway to his mouth. On Kiran's lanyard a small kudos pin 'P1 ⭐' (from the Sunday fix). Text hook 'Junior కి 18… నాకు 14?! 😶' on screen from 0 s; title 'A or B? 🤔' + pill 'MODERN DILEMMA' lands ~1.5 s in.",
+  "L2 stakes-hold: FREEZE FRAME. Everything stops except Nikhil's eyes; the samosa hangs in mid-air with a tiny 'pause ⏸' icon over it (record-scratch SFX). A flat info card slides beside Nikhil: 'Nikhil · 6 yrs · ₹14 L'. A second chip beside Kiran: '₹18 L'. Gopi corner cut-out raises an eyebrow; tag 'NIKHIL ఏం చేశాడో… చివర్లో 👀' stamps on.",
+  "L3 plant (KEY REWATCH CLUE, ~1.5 s, readable but not zoomed): un-freeze; Kiran rattles on, waving his phone: an offer-letter icon morphing into a 'MATCHED ✔' stamp. On 'ఇంకో పని కూడా చేశా' his phone tilts toward camera for a beat: a mail from 'HR' with the subject 'Re: one more point — your mentor' (no body text). His fitness band (plain, no logo) buzzes 'Stand-up 1:15'; he jumps up mid-sentence, waves 'anna, later!' (no voice) and jogs off with his tray. It must read as a bubbly kid getting pulled away, not as a hint.",
+  "L4 option-a: Ananya leans in across the table, eyes on Kiran's back as he leaves; she taps the table twice on 'ఇప్పుడే'. Behind her, through the glass, a door sign 'Hema S · Engineering Manager' glows (A's destination).",
+  "L5 option-b: Nikhil's inner-voice bubble: a laptop screen with a generic job site 'Resume · Updated 3 yrs ago' and an 'UPDATE?' button blinking; the samosa, still in his hand, slowly droops (comic).",
+  "L6 follow: animated FOLLOW button pressed by a finger (pop SFX); the cafeteria wall clock reads 1:16.",
+  "L7 comment-countdown: hard split-screen. LEFT 'A · ఇవాళే fight': Nikhil storming toward the 'Hema S' cabin door, a red angry speech bubble '₹18 vs ₹14?!'. RIGHT 'B · Silent job hunt': Nikhil at home at night on the laptop, a stack of interview invites, a sticky note 'notice period 90 days'. Big ticking clock between them; text 'మీరైతే A or B? 💬' + 5 s countdown 5-4-3-2-1 (no voice during the 5 s, clock-tick SFX). Comment bubbles float up, NONE hint at Kiran's HR mail, a calm meeting or the ending: 'A — 6 years ఊరికే కాదు', 'B — switch చేస్తేనే hike 💯', 'Loyalty = 14 lakhs 💀', 'A, ఇప్పుడే వెళ్ళు bro', 'Samosa చల్లారిపోయింది 😂', '🤔'.",
+  "L8 reveal: the split panels slide apart; we're back at the table (a few minutes later) as Kiran pops back for his forgotten water bottle. Nikhil, smiling, finally takes the bite of the samosa (the freeze-icon from L2 pops like a bubble) and gives Kiran a fist bump. Ananya blinks, surprised.",
+  "L9 solution: wipe to a calendar card 'Fri 10:00 AM · 15 min · Hema / Nikhil · Comp check-in', then Hema's glass cabin (a small plant, a whiteboard, a laptop). Nikhil sits calmly and places three flat cards on the desk one by one on each phrase: '📄 Runbook (payments module)', '🛡 3 outages prevented', '👥 4 juniors trained'. A small 15:00 timer in the corner. SECOND REWATCH CLUE (do not zoom): Hema's laptop already shows a document titled 'Market correction · Nikhil R · DRAFT'.",
+  "L10 solution: a fourth card he does NOT play: a Kiran '₹18 L' card, which Nikhil turns face-down and slides aside on 'compare కాదు'. Then a clean card: 'Ask: market correction + review date'.",
+  "L11 twist: Hema nods, writes 'Review: Dec 1' on a sticky note and presses it onto the 'Ask' card. On 'అడగకముందే' she turns her laptop around: the 'DRAFT' document, created 'Tue'. Nikhil's eyebrows rise.",
+  "L12 twist (flashback): torn-edge paper/sepia inset labelled 'TUESDAY · HR ROOM': Kiran across a table from an HR person (faceless back view, no name), the matched offer on the table; Kiran, serious for once, taps a printed 'RUNBOOK · NIKHIL R' and points out of frame. The HR mail subject from L3 ('Re: one more point — your mentor') flashes over the inset for 6 frames (the clue paying off). Back to the cabin: Nikhil looks out through the glass at the cafeteria where Kiran, far off, is waving a samosa at someone. Music drops to one warm note.",
+  "L13 comment: two flat tiles 'A · Fight' and 'B · Job hunt' with a third glowing tile 'C · Nikhil way 📄'; text 'Junior కంటే తక్కువ వచ్చిందా? 💬 COMMENT'.",
+  "L14 share-close-loop: text 'మీరు TRAIN చేసిన JUNIOR ని TAG చేయండి 😅' with a tag animation (a contact card 'Office junior 🧑‍💻' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM. On 'clue మొదట్లోనే ఉంది' hard cut back to frame 1 (Kiran bouncing into the seat: 'Anna!') so the loop is seamless."
+ ]
+}
