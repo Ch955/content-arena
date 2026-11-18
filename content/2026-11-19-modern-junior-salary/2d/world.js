@@ -119,7 +119,7 @@ el("path",{d:`M${CB_+944} 1160 Q${CB_+960} 1170 ${CB_+944} 1182`,stroke:INK,"str
 // Hema's laptop (screen toward camera; the document is the HTML #lap label)
 const lapG=el("g",{},W);
 el("rect",{x:-125,y:-160,width:250,height:160,rx:10,fill:"#37474F",stroke:INK,"stroke-width":5},lapG);
-el("rect",{x:-112,y:-148,width:224,height:136,rx:4,fill:"#ECEFF1"},lapG);
+const lapScr=el("rect",{x:-112,y:-148,width:224,height:136,rx:4,fill:"#ECEFF1"},lapG);   // turns to the lid back once Hema turns it to Nikhil (L11)
 el("path",{d:"M-140 0 L140 0 L150 12 L-150 12 Z",fill:"#90A4AE",stroke:INK,"stroke-width":4},lapG);
 const LAPX=CB_+590, LAPY=1188;
 
@@ -472,7 +472,7 @@ let curSkin="";
 function skinTo(s){ if(s!==curSkin){ setSkin(s); curSkin=s } }
 const mmss=s=>`${String(Math.floor(s/60)).padStart(2,"0")}:${String(Math.floor(s%60)).padStart(2,"0")}`;
 // keep short Telugu words (రా, కి, ది, ఆ? ...) on the line of the word before them
-const subFix=s=>s.replace(/…/g,"...").replace(/([^\s.!?])\s([ఀ-౿]{1,2}[.,!?]*)(?=\s|$)/g,"$1&nbsp;$2").replace(/(^|\s)(మీ|నా|ఏం|ఈ|నువ్వు)\s/g,"$1$2&nbsp;").replace(/A or B/g,"A&nbsp;or&nbsp;B");
+const subFix=s=>s.replace(/…/g,"...").replace(/([^\s.!?])\s([ఀ-౿]{1,2}[.,!?]*)(?=\s|$)/g,"$1&nbsp;$2").replace(/(^|\s)(మీ|నా|ఏం|ఈ|నువ్వు)\s/g,"$1$2&nbsp;").replace(/A or B/g,"A&nbsp;or&nbsp;B").replace(/(1[48]) lakhs/g,"$1&nbsp;lakhs").replace(/silent job hunt/g,"silent&nbsp;job&nbsp;hunt");
 
 function frame(t){
   const b=beats(); T_=t;
@@ -663,7 +663,7 @@ function frame(t){
    const pz=[b.buzz,b.clk15,b.clk16,b.rev].reduce((a_,t0)=>(!loop&&t>t0&&t<t0+0.4)?1+0.15*Math.sin((t-t0)/0.4*Math.PI):a_,1);
    wlab("wclk",!cabin&&!(t>=b.ab0&&t<b.rev+0.3),345,610,0.82*pz)}
   {const glow=!loop&&T>=b.tCab-0.25&&T<E(3)+0.4; $("door").className="wl"+(glow?" glow":""); wlab("door",!cabin&&!(t>=b.ab0&&t<b.rev+0.3),110,560,glow?1+0.04*Math.sin(t*10):1)}
-  {const on=cabin&&!fbOn&&t<b.abc0&&!(t>=b.tAsk+0.45&&t<b.fb0); $("lap").querySelector(".c").style.opacity=t>=b.tAsk?1:0; wlab("lap",on&&t>=b.wipe1-0.3,LAPX,LAPY-82,1)}
+  {const turned=!loop&&t>=b.tAsk+0.225; lapScr.setAttribute("fill",turned?"#546E7A":"#ECEFF1"); const on=cabin&&!fbOn&&t<b.abc0&&!turned; $("lap").querySelector(".c").style.opacity=t>=b.tAsk?1:0; wlab("lap",on&&t>=b.wipe1-0.3,LAPX,LAPY-82,1)}
   // text hook (frame 1) + title a beat later
   {const on=loop||t<b.tHold; $("hook").style.opacity=on?(loop?1:clamp((b.tHold-t)/0.15)):0; $("hook").style.transform=`rotate(${-1.5+(loop?0:Math.sin(t*3)*0.6)}deg)`;
    const ti=$("title"), ton=!loop&&t>b.titleIn&&t<b.fz0; ti.style.opacity=ton?clamp((b.fz0-t)/0.12):0; ti.style.transform=`scale(${Math.max(0.01,back((t-b.titleIn)/0.45))}) rotate(-2deg)`}
@@ -702,11 +702,11 @@ function frame(t){
   const cabUI=cabin&&!fbOn&&t<b.abc0;
   show("calc",cabUI&&t>b.wipe1-0.1,pop(t,b.wipe1-0.1,0.3)); show("timer",cabUI&&t>b.wipe1-0.1,pop(t,b.wipe1,0.3)); $("timer").textContent="⏱ "+mmss(Math.max(0,900-Math.max(0,t-b.wipe1)));
   // the cards Nikhil lays down, the Kiran card (face-down, aside), the ask, Hema's sticky note, the DRAFT document
-  const cardsOn=cabin&&t<b.fb0-0.05;
+  const cardsOn=cabin&&!(t>=b.fb0-0.05&&t<b.fb1)&&t<b.abc0;   // back on the desk after the flashback
   const slap=(id,t0,x,y,rot)=>{const e=$(id), on=cardsOn&&t>=t0; e.style.opacity=on?1:0; if(!on) return; const k=out((t-t0)/0.18); e.style.left=x+"px"; e.style.top=y+"px"; e.style.transform=`translateY(${(1-k)*-60}px) scale(${lerp(1.35,1,k)}) rotate(${rot}deg)`};
   slap("k1",b.tK1,55,1170,-3); slap("k2",b.tK2,395,1176,2); slap("k3",b.tK3,735,1168,-2);
   {const e=$("kk"), on=cardsOn&&t>=b.kk0; e.style.opacity=on?1:0; if(on){const fk=clamp((t-b.tCmp)/0.3), mk=ease((t-b.tCmp-0.15)/0.4);
-    e.style.left=lerp(420,40,mk)+"px"; e.style.top=lerp(1325,1335,mk)+"px"; e.style.transform=`translateY(${(1-out((t-b.kk0)/0.18))*-50}px) rotateY(${fk*180}deg) rotate(${lerp(1,-7,mk)}deg)`;
+    e.style.left=lerp(400,20,mk)+"px"; e.style.top=lerp(1325,1335,mk)+"px"; e.style.transform=`translateY(${(1-out((t-b.kk0)/0.18))*-50}px) rotateY(${fk*180}deg) rotate(${lerp(1,-7,mk)}deg)`;
     e.querySelector(".back").style.opacity=fk>0.5?1:0; e.querySelector(".tx").style.opacity=fk>0.5?0:1}}
   slap("kask",b.tMkt,300,1325,1);
   {const e=$("note"), on=cardsOn&&t>=b.tDec+0.35; e.style.opacity=on?1:0; if(on){const k=out((t-b.tDec-0.35)/0.2); e.style.left="800px"; e.style.top="1352px"; e.style.transform=`translateY(${(1-k)*-40}px) scale(${lerp(1.4,1,k)}) rotate(7deg)`}}

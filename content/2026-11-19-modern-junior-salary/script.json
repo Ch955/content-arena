@@ -86,8 +86,8 @@
   },
   {
    "who": "gopi",
-   "text": "మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? A or B… comment!",
-   "say": "[mischievously] మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? [excited] A or B… comment!",
+   "text": "మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? A or B… comment చేయండి!",
+   "say": "[mischievously] మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? [excited] A or B… comment చేయండి!",
    "act": "conspiratorial and playful, like asking a colleague at the coffee machine, then a bright call to comment",
    "beat": "comment"
   },
