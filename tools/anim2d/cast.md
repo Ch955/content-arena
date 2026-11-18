@@ -103,3 +103,23 @@ wears a team lanyard: `{...ANANYA_OPT, badge:["ANANYA","TOWER B"], legs:{pant:"#
 Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam none): Gopi=Puck, Nikhil=Charon,
 Ananya=Kore, Sandeep=Umbriel (profile andhra-male-middle on ElevenLabs), Radhika=Gacrux + a mild phone band (profile
 andhra-female-middle).
+
+## Kiran + Hema (from Modern dilemma #2 "the junior's salary", `content/2026-11-19-modern-junior-salary/2d/world.js`, 19 Nov 2026)
+Flat Tower B cafeteria (Thu 1:13 PM) + Hema's glass cabin (Fri 10:00 AM) + a paper/sepia torn-edge flashback inset
+("TUESDAY · HR ROOM", own SVG world with the paper filter + CSS sepia). Kiran is the new junior from the 15 Nov reel; on
+15 Nov he was only a name on screen (roster card, runbook screen), so this is his first drawing: keep it from now on.
+`makeAdult()` there adds `polo` (polo T-shirt: soft collar, short placket, no logo), `shortSleeve` (sleeve cap over a
+skin-coloured upper arm; set `fore` to the skin), `fluffy` (wavy hair with a front flick), `roundFace`, `band` (plain
+fitness band on the left wrist, no logo; `st.buzz=1` lights + shakes it), `pin` (gold "P1" star pin on the lanyard
+badge; counter-flipped with the badge so it never mirrors), `lowBun` (with `bun`+`noFlowers`: a low bun peeking behind
+the head), `earCol` (stud colour, e.g. silver), `rect` (rectangular specs with `glasses`), the items `samosa`/`samosaBit`
+(right hand) and left-hand `bottle` (plain water bottle) and `phone`.
+```js
+const KIRAN_OPT={skin:"#B97A50",hair:"#22160F",shirt:"#F2B705",collar:"#D99A00",button:"#FFF8E1",polo:true,shortSleeve:true,fore:"#B97A50",fluffy:true,roundFace:true,band:"#263238",brow:6,lip:"#7A3A30",blush:0.24};   // Kiran M, 23: bubbly new junior, mustard polo, fluffy wavy hair + front flick, round clean-shaven face, big grin (smile+laugh)
+const HEMA_OPT={skin:"#C48A62",hair:"#1E1412",shirt:"#283593",saree:{base:"#3949AB",pallu:"#303F9F",border:"#F5F5F5",bw:5,motif:"#9FA8DA"},sleeve:"#283593",fore:"#C48A62",bun:true,lowBun:true,noFlowers:true,earrings:true,earCol:"#CFD8DC",glasses:"#111111",rect:true,brow:5,lash:4,blush:0.2,lip:"#9A3A40"};   // Hema S, ~40: Nikhil's engineering manager (Suresh the TL's boss), indigo handloom saree with a thin white border, rectangular black specs, low bun, silver studs
+```
+Office: Kiran `{...KIRAN_OPT, badge:["KIRAN M","TOWER B"], pin:true}`, Hema `{...HEMA_OPT, badge:["HEMA S","ENG MANAGER"]}`
+(the badge's second line shrinks automatically when it is long). Nikhil/Ananya seated with their TOWER B badges.
+Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam none): Gopi=Puck, Nikhil=Charon,
+Ananya=Kore, Kiran=Fenrir, Hema=Despina. Kiran is never on ElevenLabs: `profile_for("male","young","cool")` is
+andhra-male-young = Nikhil's voice (the bank has one Andhra young male). Hema: profile andhra-female-middle (Seeta).

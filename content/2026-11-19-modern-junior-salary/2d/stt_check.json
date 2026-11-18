@@ -1,0 +1,86 @@
+{
+ "0": {
+  "expected": "Anna! నా CTC… eighteen lakhs అయ్యింది! మీ runbook వల్లే!",
+  "heard": "అన్నా, నా CTC 18 lakhs అయ్యింది. మీ Run book వల్లే.",
+  "by": "gemini",
+  "sim": 0.79
+ },
+ "1": {
+  "expected": "Nikhil… ఆరేళ్ళ experience. CTC… fourteen lakhs. ఏం చేశాడో… చివర్లో!",
+  "heard": "Nikhil, ఆరేళ్ల experience, CTC 14 lakhs. ఏం చేసాడో చివర్లో.",
+  "by": "gemini",
+  "sim": 0.88
+ },
+ "2": {
+  "expected": "వేరే offer చూపిస్తే… match చేశారు! ఇంకో పని కూడా చేశా anna…",
+  "heard": "వేరే offer చూపిస్తే match చేశారు. ఇంకో పని కూడా చేశా అన్న.",
+  "by": "gemini",
+  "sim": 0.91
+ },
+ "3": {
+  "expected": "Junior కి… eighteen ఆ? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+  "heard": "Junior కి 18 ఆ? నిఖిల్ ఇప్పుడే Cabin కి వెళ్ళు.",
+  "by": "gemini",
+  "sim": 0.74
+ },
+ "4": {
+  "expected": "Fight చేస్తే… drama. quiet గా resume update చేయనా?",
+  "heard": "fight చేస్తే drama. quiet గా resume update చేయనా.",
+  "by": "gemini",
+  "sim": 1.0
+ },
+ "5": {
+  "expected": "రోజూ ఇలాంటి office dilemmas కావాలంటే… follow చేయండి!",
+  "heard": "రోజూ ఇలాంటి office dilemmas కావాలంటే follow చేయండి.",
+  "by": "gemini",
+  "sim": 1.0
+ },
+ "6": {
+  "expected": "మీరైతే? A… ఇవాళే fight. B… silent job hunt. Comment చేయండి!",
+  "heard": "మీరైతే A ఇవాల్టి fight, B silent job hunt, comment చేయండి.",
+  "by": "gemini",
+  "sim": 0.93
+ },
+ "7": {
+  "expected": "Negotiate చేశావ్ కదా… good. Congrats రా, Kiran!",
+  "heard": "Negotiate చేసావు కదా! Good, congrats రా కిరణ్.",
+  "by": "gemini",
+  "sim": 0.81
+ },
+ "8": {
+  "expected": "Ma'am, పదిహేను నిమిషాలే. Runbook… మూడు outages… నలుగురు juniors.",
+  "heard": "Ma'am 15 నిమిషాలే. run book మూడు outages నలుగురు juniors.",
+  "by": "gemini",
+  "sim": 0.93
+ },
+ "9": {
+  "expected": "Kiran తో compare కాదు… market correction కావాలి. Review date తో.",
+  "heard": "కిరణ్ తో compare కాదు market correction కావాలి review date తో.",
+  "by": "gemini",
+  "sim": 0.9
+ },
+ "10": {
+  "expected": "Review… December first. నువ్వు అడగకముందే… Kiran HR కి చెప్పాడు.",
+  "heard": "Review డిసెంబర్ 1st. నువ్వు అడగకముందే కిరణ్ HR కి చెప్పాడు.",
+  "by": "gemini",
+  "sim": 0.71
+ },
+ "11": {
+  "expected": "Runbook Nikhil anna ది… ముందు ఆయన salary చూడండి!",
+  "heard": "Run book నిఖిల్ అన్నది. ముందు ఆయన salary చూడండి.",
+  "by": "gemini",
+  "sim": 0.74
+ },
+ "12": {
+  "expected": "మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా? A or B… comment!",
+  "heard": "మీకు ఎప్పుడైనా junior కంటే తక్కువ వచ్చిందా?\nA or B\ncomment చేయండి.",
+  "by": "gemini",
+  "sim": 0.94
+ },
+ "13": {
+  "expected": "మీరు train చేసిన junior ని… tag చేయండి! Follow… clue మొదట్లోనే ఉంది!",
+  "heard": "మీరు train చేసిన junior ని tag చేయండి. follow. clue మొదటిలోనే ఉంది.",
+  "by": "gemini",
+  "sim": 0.98
+ }
+}
