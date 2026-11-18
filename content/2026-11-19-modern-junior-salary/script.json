@@ -23,9 +23,9 @@
   },
   {
    "who": "ananya",
-   "text": "Junior కి 18 ఆ? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
-   "say": "[whispers] Junior కి… eighteen ఆ? [indignant] Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
-   "act": "a fiercely loyal friend hissing low so Kiran can't hear, disbelief turning into a firm push; stress on ఇప్పుడే",
+   "text": "Junior కి పద్దెనిమిదా? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+   "say": "[surprised] Junior కి… పద్దెనిమిదా? [firmly] Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+   "act": "a fiercely loyal friend, surprised and indignant, in a clear, low but full voice (not a whisper); say పద్దెనిమిదా clearly in disbelief, then a firm push; stress on ఇప్పుడే",
    "beat": "option-a"
   },
   {

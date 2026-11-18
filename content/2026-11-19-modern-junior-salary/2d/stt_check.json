@@ -18,10 +18,10 @@
   "sim": 0.91
  },
  "3": {
-  "expected": "Junior కి… eighteen ఆ? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
-  "heard": "Junior కి 18 ఆ? నిఖిల్ ఇప్పుడే Cabin కి వెళ్ళు.",
+  "expected": "Junior కి… పద్దెనిమిదా? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!",
+  "heard": "Junior కి? 18? నిఖిల్, ఇప్పుడే cabin కి వెళ్ళు.",
   "by": "gemini",
-  "sim": 0.74
+  "sim": 0.78
  },
  "4": {
   "expected": "Fight చేస్తే… drama. quiet గా resume update చేయనా?",

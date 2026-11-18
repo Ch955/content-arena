@@ -185,7 +185,7 @@ L14 drop "Follow…" (the end card carries it). Never cut L3, L11 or L12; they a
 - L2 "ఆరేళ్ళ experience" (six years' experience): please confirm the spelling ఆరేళ్ళ (vs. ఆరేళ్ల).
 - L3 "వేరే offer చూపిస్తే… match చేశారు!" ("I showed another offer and they matched it"). Natural? Alternative: "వేరే
   offer చూపించా… వెంటనే match చేశారు!" (+1 word). "ఇంకో పని కూడా చేశా anna…" uses the colloquial చేశా (చేశాను).
-- L4 "Junior కి 18 ఆ?" — the questioning "ఆ" written separately, as in "Ready ఆ?" in CLAUDE.md. Fine on screen?
+- L4 now "Junior కి పద్దెనిమిదా?" (Editor retake, 18 Nov: the whispered English "eighteen ఆ?" was heard as "80" in the mix, so the number is said in Telugu, in a clear voice). Spelling/feel OK?
 - L5 "quiet గా resume update చేయనా?" — self-talk "shall I…?"; alternative "చేసుకుందామా?".
 - L7 "B… silent job hunt" is English on purpose (how office people say it); Telugu alternative "B… గుట్టుగా job hunt".
 - L8 "Congrats రా, Kiran!" — "రా" from a senior to a 23-year-old junior he trained: warm elder-brother, not

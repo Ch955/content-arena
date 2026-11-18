@@ -20,7 +20,10 @@ ElevenLabs planned Hema/Ananya/Nikhil/Gopi (account 1,051 credits) but the key's
 (needs 94); Sarvam STT 402 (no credits), so takes were checked with the Gemini listener (stt_check.py).
 Fixes after voicing: recut.py (two batch-split bleeds: L1|L2 'చివర్లో', L5|L6 'మీరైతే'), tighten.py (MAXP=.26 KEEP=.18
 TH=.02), beat.py (AT=3.14: +0.6 s end-card pause in L13 before 'clue'). L12's subtitle says 'comment చేయండి!' because
-Gopi says it (script: 'comment!'). Total 57.0 s: no script trims were needed (cap 58 s)."""
+Gopi says it (script: 'comment!'). Total 57.0 s: no script trims were needed (cap 58 s).
+Retake (coordinator, 18 Nov): L3 Ananya re-voiced on Gemini Kore with the number in Telugu ('పద్దెనిమిదా', clear, not a
+whisper; the whispered 'eighteen' was heard as '80' in the mix), tighten.py 3 (same settings), FIT 0.9243 to keep its
+old 3.368 s slot, so every other timing is unchanged; only render chunk 0 of 3 was re-rendered."""
 import base64, json, os, re, subprocess, sys, wave
 import numpy as np, requests
 
@@ -28,7 +31,7 @@ FPS = 30
 COUNTDOWN = 5.0
 TAIL = 0.25   # after 'clue మొదట్లోనే ఉంది!' -> hard cut back to frame 1 (loop)
 SPEED = {"gemini": 1.15, "eleven": 1.05, "sarvam": 1.05}
-FIT = {}   # extra atempo per line (0.9-1.1) to fit a re-take into the old slot
+FIT = {3: 0.9243}   # L3 retake (19 Nov) fitted to its old slot; extra atempo per line (0.9-1.1) to fit a re-take into the old slot
 LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with v3 [tags])  -- from script.json
     ("kiran", "Anna! నా CTC 18 lakhs అయ్యింది… మీ runbook వల్లే!", 0.30,
      "a bubbly 23-year-old bursting with good news across the lunch table, loud, innocent and grateful; a delighted laugh on runbook",
@@ -39,9 +42,9 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     ("kiran", "వేరే offer చూపిస్తే… match చేశారు! ఇంకో పని కూడా చేశా anna…", 0.15,
      "rattling on, pleased with himself, then a secretive little grin as he starts a second story and trails off mid-thought",
      "[proudly] వేరే offer చూపిస్తే… match చేశారు! [mischievously] ఇంకో పని కూడా చేశా anna…"),                       # 2 plant
-    ("ananya", "Junior కి 18 ఆ? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!", 0.55,     # Kiran's band buzzes, he jogs off in this gap
-     "a fiercely loyal friend hissing low so Kiran can't hear, disbelief turning into a firm push; stress on ఇప్పుడే",
-     "[whispers] Junior కి… eighteen ఆ? [indignant] Nikhil… ఇప్పుడే cabin కి వెళ్ళు!"),                                 # 3 option-a
+    ("ananya", "Junior కి పద్దెనిమిదా? Nikhil… ఇప్పుడే cabin కి వెళ్ళు!", 0.55,     # Kiran's band buzzes, he jogs off in this gap
+     "a fiercely loyal friend, surprised and indignant, in a clear, low but full voice (NOT a whisper); say పద్దెనిమిదా clearly in disbelief, then a firm push; stress on ఇప్పుడే",
+     "[surprised] Junior కి… పద్దెనిమిదా? [firmly] Nikhil… ఇప్పుడే cabin కి వెళ్ళు!"),                                 # 3 option-a
     ("nikhil", "Fight చేస్తే drama… quiet గా resume update చేయనా?", 0.15,
      "a calm man's inner voice, hurt but controlled, weighing the quiet exit; a small tired sigh before the question",
      "[quietly] Fight చేస్తే… drama. [sighs] quiet గా resume update చేయనా?"),                                          # 4 option-b
