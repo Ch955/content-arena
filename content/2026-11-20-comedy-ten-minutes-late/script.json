@@ -1,0 +1,445 @@
+{
+ "lines": [
+  {
+   "who": "manager",
+   "text": "ఒరేయ్ రమేష్! ఏంట్రా లేటుగా వచ్చావు?",
+   "say": "[shouting] ఒరేయ్ రమేష్! [sarcastically] ఏంట్రా… లేటుగా వచ్చావు?",
+   "act": "a smug 45-year-old boss catching a latecomer: a loud bark on the name, then slow, mocking sarcasm; stress on లేటుగా",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "tick-tock",
+     "sound": "wall-clock tick-tock, 4 ticks, dry and close",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "mid",
+     "dur_s": 1.1,
+     "offset_s": -1.5,
+     "note": "starts at 0.0 s under the text hook '10:10 AM ⏰'"
+    },
+    {
+     "cue": "ting",
+     "sound": "bright bell 'TING!' as the minute hand clicks onto 10:10",
+     "on": "pre-roll, clock hits 10:10",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.5,
+     "offset_s": -0.4
+    },
+    {
+     "cue": "tiptoe",
+     "sound": "cartoon tiptoe plinks (pizzicato, 3 notes) as Ramesh sneaks in",
+     "on": "pre-roll",
+     "at": "before",
+     "level": "low",
+     "dur_s": 0.4,
+     "offset_s": -0.4
+    },
+    {
+     "cue": "whoosh-zoom",
+     "sound": "fast whoosh as the camera whips to the manager",
+     "on": "ఒరేయ్",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.3
+    },
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM: deep sub boom with a cymbal-crash tail; music cut for 0.6 s",
+     "on": "ఏంట్రా",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0,
+     "note": "sub-heavy so it does not mask the word; camera punch-in on the hit"
+    }
+   ],
+   "est_s": 2.6
+  },
+  {
+   "who": "ramesh",
+   "text": "పది నిమిషాలే కదా సార్!",
+   "say": "[nervous laugh] పది నిమిషాలే… [cheekily] కదా సార్!",
+   "act": "a cheeky late-20s employee, helmet still in hand, caught but grinning: a small nervous laugh, then casual innocence; stress on పది",
+   "beat": "excuse",
+   "sfx": [
+    {
+     "cue": "bloop",
+     "sound": "tiny cartoon 'bloop' as he flashes ten fingers",
+     "on": "పది",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.2
+    }
+   ],
+   "est_s": 1.6
+  },
+  {
+   "who": "manager",
+   "text": "సరే, సరే... rating టైమ్ లో చూసుకుందాం.",
+   "say": "[dismissively] సరే, సరే… [smugly] rating టైమ్ లో… చూసుకుందాం.",
+   "act": "waving it off, far too calm, then a slow, smug threat over the coffee mug; stress on rating",
+   "beat": "plant",
+   "sfx": [
+    {
+     "cue": "slurp",
+     "sound": "short comic coffee slurp",
+     "on": "సరే, సరే…",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "dun-dunn",
+     "sound": "sinister low two-note sting 'dun… DUNN' (low strings/brass)",
+     "on": "చూసుకుందాం",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.8
+    },
+    {
+     "cue": "whoosh-flip",
+     "sound": "whoosh + rapid calendar-page flips into Scene 2",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "gopi",
+   "text": "Appraisal రోజు… top rating రావాల్సిన రమేష్ కి… secondary rating!",
+   "say": "[dramatic pause] Appraisal రోజు… [whispers] top rating రావాల్సిన రమేష్ కి… [mischievously] secondary rating!",
+   "act": "a narrator teasing the viewer: a hushed build-up, then a gleeful sting on secondary",
+   "beat": "rating-stamp",
+   "sfx": [
+    {
+     "cue": "drumroll",
+     "sound": "snare drumroll, rising",
+     "on": "top rating రావాల్సిన రమేష్ కి…",
+     "at": "under",
+     "level": "low",
+     "dur_s": 2.0,
+     "note": "low under the voice, swelling to mid; cuts dead on the stamp"
+    },
+    {
+     "cue": "stamp",
+     "sound": "STAMP slam: heavy thud + paper slap, screen shake",
+     "on": "secondary",
+     "at": "on",
+     "level": "max",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "sad-trombone",
+     "sound": "sad trombone 'wah… wah… wah… waaaah' (last note wobbling); music cut",
+     "on": "end of line",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2
+    }
+   ],
+   "est_s": 4.8
+  },
+  {
+   "who": "gopi",
+   "text": "Follow కొట్టండి… అసలు గొడవ ఇప్పుడే!",
+   "say": "[excited] Follow కొట్టండి… [mischievously] అసలు గొడవ… ఇప్పుడే!",
+   "act": "quick and playful, a wink to the viewer, then a gleeful tease",
+   "beat": "follow",
+   "sfx": [
+    {
+     "cue": "pop",
+     "sound": "follow button pops in",
+     "on": "Follow",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.2
+    },
+    {
+     "cue": "tap-ding",
+     "sound": "finger tap click + 'ding'",
+     "on": "కొట్టండి",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "stomps",
+     "sound": "three heavy angry footsteps + glass cabin door bang",
+     "on": "ఇప్పుడే",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 2.4
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, ఎందుకు సార్ నాకు సెకండరీ రేటింగ్ ఇచ్చారు? నా పని మీకు నచ్చలేదా?",
+   "say": "[frustrated] సార్, ఎందుకు సార్ నాకు సెకండరీ రేటింగ్ ఇచ్చారు? [hurt] నా పని… మీకు నచ్చలేదా?",
+   "act": "an angry, hurt employee still holding his temper and still polite: fast and hot on the first question, then a wounded drop; stress on ఎందుకు",
+   "beat": "confront",
+   "sfx": [
+    {
+     "cue": "crowd-ooooh",
+     "sound": "office crowd 'ooooooh!' (rising) as colleagues pop up over the cubicles",
+     "on": "before line, on the door bang",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.8,
+     "offset_s": -0.8,
+     "note": "ducks to low under the first word if it overlaps"
+    }
+   ],
+   "est_s": 4.2
+  },
+  {
+   "who": "manager",
+   "text": "నీ పని బాగానే ఉంది రమేష్. కానీ నువ్వు పది నిమిషాలు లేటుగా వచ్చావు కదా!",
+   "say": "[calmly] నీ పని బాగానే ఉంది రమేష్. [smugly] కానీ నువ్వు… పది నిమిషాలు… [sarcastically] లేటుగా వచ్చావు కదా!",
+   "act": "unbothered and sweet at first, then a slow, smug gotcha, leaning back with the mug; stress on పది",
+   "beat": "reason",
+   "sfx": [
+    {
+     "cue": "dhan-dhan-dhan",
+     "sound": "TV-serial triple zoom 'DHAN! DHAN! DHAAAN!' on Ramesh's shocked face, a whoosh on each zoom; music cut",
+     "on": "కదా!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.9
+    }
+   ],
+   "est_s": 4.7
+  },
+  {
+   "who": "ramesh",
+   "text": "ఒరేయ్... నీ దుంప తెగ! పది నిమిషాలు లేటుగా వస్తే రేటింగ్ తగ్గిస్తారా ఎవరైనా?",
+   "say": "[shouting] ఒరేయ్… [furious] నీ దుంప తెగ! [angry] పది నిమిషాలు లేటుగా వస్తే… రేటింగ్ తగ్గిస్తారా ఎవరైనా?",
+   "act": "the dam breaks: a furious shout that throws the respect out of the window and hands the boss his own ఒరేయ్ back, then fast, incredulous ranting; stress on పది",
+   "beat": "outburst",
+   "sfx": [
+    {
+     "cue": "record-scratch",
+     "sound": "record scratch; the music bed stops dead; FREEZE frame",
+     "on": "నీ (onset of నీ దుంప తెగ)",
+     "at": "on",
+     "level": "max",
+     "dur_s": 0.4,
+     "note": "freeze holds through 'నీ దుంప తెగ!' in silence"
+    },
+    {
+     "cue": "crowd-gasp",
+     "sound": "colleagues' sharp gasp 'HAAH!'",
+     "on": "తెగ!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "music-in",
+     "sound": "music bed returns, faster",
+     "on": "పది నిమిషాలు",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.0
+    }
+   ],
+   "est_s": 4.4
+  },
+  {
+   "who": "manager",
+   "text": "మరి ఏం చేయమంటావ్?",
+   "say": "[smugly] మరి… [chuckles] ఏం చేయమంటావ్?",
+   "act": "completely unmoved, a slow, smug shrug, almost bored",
+   "beat": "ask",
+   "sfx": [
+    {
+     "cue": "long-slurp",
+     "sound": "long, loud comic coffee slurp",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 1.8
+  },
+  {
+   "who": "ramesh",
+   "text": "రేపటి నుంచి గంట ముందే ఆఫీస్‌కి వస్తా!",
+   "say": "[determined] రేపటి నుంచి… [proudly] గంట ముందే ఆఫీస్‌కి వస్తా!",
+   "act": "a sudden switch to mock-heroic resolve, chest out, slow like a punch dialogue; stress on గంట",
+   "beat": "promise",
+   "sfx": [
+    {
+     "cue": "heroic-sting",
+     "sound": "mock-heroic rising brass 'ta-da-DAAA' (generic, synthesized)",
+     "on": "గంట ముందే",
+     "at": "under",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 2.2
+  },
+  {
+   "who": "manager",
+   "text": "అయితే చాలా మంచిది రమేష్!",
+   "say": "[pleased] అయితే… [warmly] చాలా మంచిది రమేష్!",
+   "act": "delighted, a smug, victorious smile, raising the mug like a toast",
+   "beat": "trap",
+   "sfx": [
+    {
+     "cue": "smug-ding",
+     "sound": "sparkly 'ding!'",
+     "on": "మంచిది",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out (music included) for 0.4 s: the pause before the punch",
+     "on": "end of line",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 2.0
+  },
+  {
+   "who": "ramesh",
+   "text": "మరి నా శాలరీ డబుల్ చేస్తావా నువ్వు?",
+   "say": "[mischievously] మరి… నా శాలరీ… [deadpan] డబుల్ చేస్తావా నువ్వు?",
+   "act": "leaning in, a slow, cheeky, dead-serious bargain, a beat before డబుల్; stress on డబుల్",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "lean-whoosh",
+     "sound": "soft whoosh as he leans across the desk",
+     "on": "మరి",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.3
+    },
+    {
+     "cue": "hollow-donk",
+     "sound": "hollow wooden 'DONK' (coconut/wood-block knock with a ringing hollow tail) on the manager's frozen blank face",
+     "on": "నువ్వు?",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.5,
+     "offset_s": 0.2
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "big audience laugh track",
+     "on": "after the DONK",
+     "at": "after",
+     "level": "max",
+     "dur_s": 3.0,
+     "offset_s": 0.1,
+     "note": "max for 1 s, then tails to mid under the punch text"
+    },
+    {
+     "cue": "hooray",
+     "sound": "crowd 'HOORAY!' cheer + applause",
+     "on": "0.4 s into the laugh",
+     "at": "after",
+     "level": "high",
+     "dur_s": 2.2,
+     "offset_s": 0.5
+    },
+    {
+     "cue": "rimshot",
+     "sound": "'ba-dum-TSS' rimshot as the second half of the punch text lands",
+     "on": "punch text: కానీ ఉద్యోగి టైమ్‌కి విలువ ఉండదు!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": 2.0,
+     "note": "silent card after this line, ~2.5 s, laugh tail underneath"
+    }
+   ],
+   "est_s": 5.2
+  },
+  {
+   "who": "gopi",
+   "text": "మీ manager ఇలా చేశాడా? Comment చేయండి!",
+   "say": "[laughs] మీ manager ఇలా చేశాడా? [excited] Comment చేయండి!",
+   "act": "laughing along with the viewer, a friendly nudge",
+   "beat": "comment",
+   "sfx": [
+    {
+     "cue": "bubble-pops",
+     "sound": "three comment-bubble pops",
+     "on": "Comment",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 2.2
+  },
+  {
+   "who": "gopi",
+   "text": "మీ manager ని tag చేయండి!",
+   "say": "[mischievously] మీ manager ని… [whispers] tag చేయండి!",
+   "act": "a conspiratorial grin, dropping to a cheeky whisper as if the manager might hear",
+   "beat": "share-tag-close",
+   "sfx": [
+    {
+     "cue": "tag-swoosh",
+     "sound": "swoosh + pop as a contact card gets tagged",
+     "on": "tag",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card logo sting + sparkle",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "tick-ting",
+     "sound": "callback: two clock ticks + a small 'ting' under the end card",
+     "on": "end card",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.8,
+     "offset_s": 0.3
+    }
+   ],
+   "est_s": 2.6
+  }
+ ],
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (owner's choice; bright, clean flat office colours suit a slapstick office comedy). No skin switches needed; the two FREEZE moments (L8 record scratch, L12 DONK) are freeze frames with a flat colour flash, not a new skin. Setting: a generic small Hyderabad IT office (NOT Tower B, so it stays apart from the Nikhil/Ananya stories): open-plan cubicles, a big wall clock, a board 'OFFICE TIME: 10:00 AM', the manager's glass cabin with a door plate 'MANAGER' (no name, no company name, no logos or brands anywhere).",
+  "CAST (new, one-off): Ramesh, late 20s: light-blue shirt (slightly untucked), messy uneven hair tufts, a black backpack, a dark-grey half-face bike helmet (in his hand in Scene 1; on his desk in the background in Scene 3), an ID lanyard 'RAMESH'. Manager, ~45: white shirt neatly tucked in, a maroon tie, a thick black moustache, slightly bald (receding top, grey temples), a small paunch, a plain white coffee mug (no text or logo) in his hand in every manager shot. Silent colleagues: 3 generic office workers who pop up over cubicles (L6, L8). Gopi: corner cut-out for his narration lines only (L4, L5, L13, L14).",
+  "CONSISTENCY TABLE (identical in every frame, the caption and youtube.md): arrival '10:10 AM', office time '10:00 AM', '10 నిమిషాలు' late; the rating stamp 'RATING: TOP → SECONDARY'; tomorrow '1 hour early'. No numbers for the salary (only 'DOUBLE?').",
+  "Intro 0.0-1.5 s (silent, no voice): text hook '10:10 AM ⏰' big on screen from frame 1; the wall clock's minute hand ticks onto 10:10 (TING) beside the 'OFFICE TIME: 10:00 AM' board. Ramesh tiptoes in, backpack on, helmet in hand, hair a mess. Title pill 'OFFICE COMEDY 😂' lands ~1.0 s in.",
+  "L1 hook: whip-pan to the manager standing at the cabin door with the mug (whoosh). On 'ఏంట్రా' a punch-in zoom + screen shake (DHOOM); a flat red 'LATE!' burst behind the manager.",
+  "L2 excuse: Ramesh freezes mid-tiptoe, turns with a guilty grin, holds up ten fingers (bloop). Small chip: '10 నిమిషాలే 🙏'.",
+  "L3 plant: the manager waves it off with one hand, sips (slurp), then slowly narrows his eyes over the mug; on 'చూసుకుందాం' the lights dim to one cold spot on him (dun-DUNN). Calendar pages flip away (whoosh) to Scene 2.",
+  "L4 rating-stamp (Scene 2): a calendar card 'APPRAISAL DAY'. A big flat rating form 'RAMESH · RATING:' with 'TOP ⭐' glowing; drumroll; on 'secondary' a huge rubber STAMP slams 'SECONDARY' over it, screen shake, and the big text 'RATING: TOP → SECONDARY' (TOP crossed out). Ramesh's face droops during the sad trombone; one flat grey raincloud over his head.",
+  "L5 follow: the animated FOLLOW button pops up by Gopi's cut-out and gets tapped (tap + ding). On 'ఇప్పుడే' Ramesh marches toward the glass cabin (3 stomps) and bangs the door open.",
+  "L6 confront (Scene 3): inside the cabin. Ramesh at the desk, hands on it, angry but polite; three colleague heads pop up over the cubicle wall behind the glass ('ooooh'). The manager leans back in his chair, mug in hand.",
+  "L7 reason: the manager sweetly nods on 'బాగానే ఉంది', then taps the wall clock behind him on 'పది నిమిషాలు'. After 'కదా!' the TV-serial triple zoom on Ramesh's shocked face (DHAN! DHAN! DHAAAN!), a flat colour flash on each zoom.",
+  "L8 outburst: on 'ఒరేయ్…' Ramesh slaps the desk; at the onset of 'నీ దుంప తెగ' RECORD SCRATCH and FREEZE FRAME (slight desaturation, a 'paused' feel, everything still) while he says it; the big text 'నీ దుంప తెగ!' stamps over the freeze. Colleagues gasp; unfreeze on 'పది నిమిషాలు' as he rants with both hands.",
+  "L9 ask: the manager, unmoved, shrugs and takes a long slurp; Ramesh glares.",
+  "L10 promise: Ramesh straightens, chest out, a flat sunrise-ray background behind him for 1 s (mock heroic); chip '⏰ 1 hour early'.",
+  "L11 trap: the manager beams and raises the mug like a toast, a sparkle on his bald patch (ding). Then everything goes silent for 0.4 s.",
+  "L12 punch: Ramesh leans across the desk, deadpan; chip '₹ DOUBLE?' with a 😂 sticker. On the DONK the manager's face goes blank (dot eyes, mouth a flat line, the mug frozen mid-air, one eye-twitch); the laugh track and HOORAY roll: the three colleague heads cheer behind the glass with confetti.",
+  "Punch card (silent, ~2.5 s, laugh tail underneath): a flat full-screen card types in two halves: 'ఆఫీస్‌లో టైమ్‌కి విలువ ఉంటుంది...' then 'కానీ ఉద్యోగి టైమ్‌కి విలువ ఉండదు! 😂' (rimshot on the second half). Not voiced, on purpose: the laugh carries it.",
+  "L13 comment: comment bubbles pop up with the text 'మీ manager ఇలా చేశాడా? 😂 COMMENT చేయండి!' (example bubbles: '😂😂', 'Same here bro', 'Literally my manager' — no real usernames).",
+  "L14 share-tag-close: text 'మీ MANAGER ని TAG చేయండి! 😅' with a tag animation (a contact card 'My Manager 👔' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM, with the wall clock ticking in the corner (tick-tick-ting callback)."
+ ]
+}
