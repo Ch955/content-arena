@@ -143,3 +143,27 @@ Voices in that reel (all Gemini; the ElevenLabs key cap had ~51 credits, Sarvam 
 manager=Algieba, Gopi=Puck. Profiles if ElevenLabs is back: Ramesh `profile_for("male","young","aggressive")` =
 telangana-male-young (Kaka; never the free-plan built-in, which is Gopi's Liam), the manager
 `profile_for("male","middle","smooth")` = andhra-male-middle (Sai Datta, warm).
+
+## Office Politics series: Suresh + Priya (+ the 20 Nov manager and Ramesh) (from Ep 1 "Operation Red Flower", `content/2026-11-21-comedy-operation-red-flower/2d/office_cast.js`, 21 Nov 2026)
+REUSABLE FILE: copy `office_cast.js` into the next episode's `2d/` and load it before `world.js` (ep.html:
+`skins.js`, `office_cast.js`, `world.js`). It has the helpers, the extended `makeAdult()` rig, the props and factories
+`makeManager(parent, standing, extra)`, `makeRamesh(...)`, `makeSuresh(...)`, `makePriya(...)`, `makeColleague(k, ...)`
+(k = 0 pink kurta + bun, 1 green shirt + glasses, 2 orange shirt + moustache), `resetPose(C, x, y, s, talk)` and
+`bobble(st, t, amp)` (Suresh's bobble-head nod). `standing=true` adds the series' trouser/shoe colours (`LEGS`).
+New rig options: `ponytail` (high, swings with `st.ponySwing`), `cardigan` (open, over a crew-neck top; `trim` = neckline),
+`hoops` (small gold hoops), `earPen` (pen behind the right ear), `sidePart` + `oiled` (shiny side part, comb lines),
+`buttoned` (shirt buttoned to the collar, straining buttons; `strain` colour). Props: `clipboard` (right hand, `item`),
+`notepad` (left hand, `itemL`), the BRIGHT-RED felicitation garland (`st.garland` 0..1 = drop, `st.gswing`), the Santa
+party hat (`st.santa` 0..1, `st.hatTilt`); poses `st.splay` (legs spread: sitting on the floor), `st.sit` (seated:
+legs foreshortened), `st.nod`.
+```js
+const SURESH_OFFICE_OPT={skin:"#BE8A5E",hair:"#0E0A08",shirt:"#C9B8EC",collar:"#B9A6E2",button:"#FFFFFF",strain:"#8E7CC3",buttoned:true,sidePart:true,oiled:true,brow:6,lip:"#7A3A30",blush:0.22};   // Suresh (Office Politics), ~30, the manager's favourite yes-man: oiled shiny side part + comb lines, too-tight pale-lavender shirt buttoned to the collar (straining buttons), no tie, notepad in his left hand
+const PRIYA_OPT={skin:"#C9956B",hair:"#1F1410",shirt:"#F2B632",trim:"#D99A1E",cardigan:"#26355E",sleeve:"#26355E",fore:"#26355E",cuff:"#1B2748",ponytail:true,tieCol:"#E53935",hoops:true,earPen:true,brow:4.8,lash:4,blush:0.28,lip:"#A0404A"};   // Priya, late 20s, runs the games: high ponytail (red hair tie), mustard top under an open navy cardigan, small gold hoops, a pen behind her right ear, clipboard when hosting
+```
+Badges: `["SURESH","STAFF"]`, `["PRIYA","STAFF"]`. Standing legs: Suresh `{pant:"#2E2E38",shoe:"#4E342E"}`, Priya
+`{pant:"#3A3F55",shoe:"#6D4C41"}`. NOT the 15 Nov TL: never reuse `SURESH_OPT` for this Suresh.
+The manager keeps the plain white mug in his `itemL` hand in every scene (also on the floor and in the garland).
+Voices (all Gemini; ElevenLabs skipped for this series because its bank clashes): manager=Algieba, Ramesh=Sadachbia,
+Suresh=Achird, Priya=Pulcherrima, Gopi=Puck; team chorus = those three + Umbriel, Callirrhoe, Zubenelgenubi (chorus.py).
+Series SFX: `tools/anim2d/sfx/faaah.wav` (our own FAAAH: 3 Gemini takes Rasalgethi/Alnilam/Gacrux, layered; onset at 0.4 s,
+see the post's `faaah.py`/`faaah/faaah.json`) and the tuba sting `tuba_sting()` in that post's `mix.py`.

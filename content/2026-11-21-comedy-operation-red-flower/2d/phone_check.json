@@ -1,0 +1,502 @@
+{
+ "full": {
+  "voice_p90": -13.2,
+  "hits": {
+   "villain entry (door blast + steps + brass)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": 4.0
+   },
+   "DHOOM (Attention)": {
+    "level": "max",
+    "t": 0.57,
+    "vs_voice_p90_db": 10.1
+   },
+   "sleigh-bell jingle (Christmas games!)": {
+    "level": "mid",
+    "t": 2.19,
+    "vs_voice_p90_db": 0.8
+   },
+   "record scratch (కానీ)": {
+    "level": "max",
+    "t": 3.32,
+    "vs_voice_p90_db": 6.4
+   },
+   "dun... DUNN (ఇంటికి!)": {
+    "level": "high",
+    "t": 5.93,
+    "vs_voice_p90_db": 5.2
+   },
+   "colleagues' snicker": {
+    "level": "mid",
+    "t": 8.79,
+    "vs_voice_p90_db": -3.4
+   },
+   "whoosh + pantry door creak": {
+    "level": "mid",
+    "t": 8.94,
+    "vs_voice_p90_db": -4.1
+   },
+   "spy pizzicato bed (pantry)": {
+    "level": "low",
+    "t": 9.04,
+    "vs_voice_p90_db": -1.1
+   },
+   "kettle click + bubble": {
+    "level": "low",
+    "t": 9.37,
+    "vs_voice_p90_db": -1.1
+   },
+   "heist title sting (Red Flower!)": {
+    "level": "high",
+    "t": 13.68,
+    "vs_voice_p90_db": 5.2
+   },
+   "hands-in slap": {
+    "level": "mid",
+    "t": 14.11,
+    "vs_voice_p90_db": -1.5
+   },
+   "tiny cheer 'yes!'": {
+    "level": "mid",
+    "t": 14.15,
+    "vs_voice_p90_db": -2.1
+   },
+   "whoosh back to the floor": {
+    "level": "mid",
+    "t": 14.36,
+    "vs_voice_p90_db": -8.4
+   },
+   "musical-chairs calliope tune": {
+    "level": "mid",
+    "t": 17.75,
+    "vs_voice_p90_db": -7.6
+   },
+   "needle stop": {
+    "level": "high",
+    "t": 18.59,
+    "vs_voice_p90_db": -0.9
+   },
+   "scramble whooshes": {
+    "level": "mid",
+    "t": 18.64,
+    "vs_voice_p90_db": 9.6
+   },
+   "floor THUD + squeak": {
+    "level": "max",
+    "t": 18.95,
+    "vs_voice_p90_db": 9.6
+   },
+   "FAAAH #1 (floor, no chair)": {
+    "level": "max",
+    "t": 19.02,
+    "vs_voice_p90_db": 6.5
+   },
+   "laugh track (మీదేగా!)": {
+    "level": "high",
+    "t": 22.78,
+    "vs_voice_p90_db": -0.2
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 22.8,
+    "vs_voice_p90_db": -5.0
+   },
+   "tap + ding": {
+    "level": "mid",
+    "t": 23.2,
+    "vs_voice_p90_db": -0.6
+   },
+   "bottle spin + tock": {
+    "level": "mid",
+    "t": 24.28,
+    "vs_voice_p90_db": -0.3
+   },
+   "tension tick": {
+    "level": "low",
+    "t": 24.82,
+    "vs_voice_p90_db": -0.3
+   },
+   "spotlight ka-CHUNK (సురేష్!)": {
+    "level": "high",
+    "t": 26.17,
+    "vs_voice_p90_db": 3.7
+   },
+   "harp glissando (Yes sir!)": {
+    "level": "mid",
+    "t": 27.12,
+    "vs_voice_p90_db": 0.1
+   },
+   "bobble-head boings": {
+    "level": "low",
+    "t": 27.92,
+    "vs_voice_p90_db": 1.3
+   },
+   "crowd 'ooooooh!'": {
+    "level": "high",
+    "t": 31.82,
+    "vs_voice_p90_db": 4.6
+   },
+   "DHAN! 1": {
+    "level": "max",
+    "t": 32.15,
+    "vs_voice_p90_db": 7.1
+   },
+   "DHAN! 2": {
+    "level": "max",
+    "t": 32.38,
+    "vs_voice_p90_db": 8.2
+   },
+   "DHANAAAN! 3": {
+    "level": "max",
+    "t": 32.61,
+    "vs_voice_p90_db": 9.5
+   },
+   "snare drumroll (low -> rising)": {
+    "level": "low",
+    "t": 34.76,
+    "vs_voice_p90_db": -2.6
+   },
+   "garland whoosh + THWUMP + hat fwump": {
+    "level": "high",
+    "t": 35.23,
+    "vs_voice_p90_db": 6.3
+   },
+   "FAAAH #2 (garland + Santa hat)": {
+    "level": "max",
+    "t": 35.65,
+    "vs_voice_p90_db": 6.2
+   },
+   "sleigh-bell tail (low)": {
+    "level": "low",
+    "t": 36.45,
+    "vs_voice_p90_db": 1.0
+   },
+   "STAMP slam (పరిగెత్తించినందుకు!)": {
+    "level": "max",
+    "t": 38.43,
+    "vs_voice_p90_db": 8.1
+   },
+   "laugh + mock applause": {
+    "level": "high",
+    "t": 39.41,
+    "vs_voice_p90_db": -0.6
+   },
+   "DHOOM + thunder (double)": {
+    "level": "max",
+    "t": 42.14,
+    "vs_voice_p90_db": 11.1
+   },
+   "team gasp 'HAAH!'": {
+    "level": "mid",
+    "t": 43.34,
+    "vs_voice_p90_db": -8.2
+   },
+   "music box (first half)": {
+    "level": "low",
+    "t": 44.06,
+    "vs_voice_p90_db": -1.2
+   },
+   "hollow DONK": {
+    "level": "high",
+    "t": 48.69,
+    "vs_voice_p90_db": 1.2
+   },
+   "party poppers": {
+    "level": "high",
+    "t": 49.49,
+    "vs_voice_p90_db": 0.7
+   },
+   "team cheer": {
+    "level": "mid",
+    "t": 49.52,
+    "vs_voice_p90_db": 0.7
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 50.33,
+    "vs_voice_p90_db": 3.6
+   },
+   "comedy sting: tuba bom-bom-ba-BOM + bells": {
+    "level": "high",
+    "t": 50.62,
+    "vs_voice_p90_db": 2.6
+   },
+   "laugh-track tail": {
+    "level": "mid",
+    "t": 50.72,
+    "vs_voice_p90_db": 1.7
+   },
+   "comment-bubble pops": {
+    "level": "mid",
+    "t": 53.78,
+    "vs_voice_p90_db": 0.6
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 55.85,
+    "vs_voice_p90_db": -2.7
+   },
+   "'Episode 2' card slam": {
+    "level": "mid",
+    "t": 56.73,
+    "vs_voice_p90_db": -2.1
+   },
+   "end-card sting + sleigh sparkle": {
+    "level": "mid",
+    "t": 57.4,
+    "vs_voice_p90_db": -1.1
+   }
+  }
+ },
+ "phone>250Hz": {
+  "voice_p90": -15.9,
+  "hits": {
+   "villain entry (door blast + steps + brass)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": -0.4
+   },
+   "DHOOM (Attention)": {
+    "level": "max",
+    "t": 0.57,
+    "vs_voice_p90_db": 7.1
+   },
+   "sleigh-bell jingle (Christmas games!)": {
+    "level": "mid",
+    "t": 2.19,
+    "vs_voice_p90_db": 2.3
+   },
+   "record scratch (కానీ)": {
+    "level": "max",
+    "t": 3.32,
+    "vs_voice_p90_db": 8.7
+   },
+   "dun... DUNN (ఇంటికి!)": {
+    "level": "high",
+    "t": 5.93,
+    "vs_voice_p90_db": 1.7
+   },
+   "colleagues' snicker": {
+    "level": "mid",
+    "t": 8.79,
+    "vs_voice_p90_db": -3.6
+   },
+   "whoosh + pantry door creak": {
+    "level": "mid",
+    "t": 8.94,
+    "vs_voice_p90_db": -3.6
+   },
+   "spy pizzicato bed (pantry)": {
+    "level": "low",
+    "t": 9.04,
+    "vs_voice_p90_db": -0.8
+   },
+   "kettle click + bubble": {
+    "level": "low",
+    "t": 9.37,
+    "vs_voice_p90_db": -0.8
+   },
+   "heist title sting (Red Flower!)": {
+    "level": "high",
+    "t": 13.68,
+    "vs_voice_p90_db": 3.9
+   },
+   "hands-in slap": {
+    "level": "mid",
+    "t": 14.11,
+    "vs_voice_p90_db": -1.5
+   },
+   "tiny cheer 'yes!'": {
+    "level": "mid",
+    "t": 14.15,
+    "vs_voice_p90_db": -2.5
+   },
+   "whoosh back to the floor": {
+    "level": "mid",
+    "t": 14.36,
+    "vs_voice_p90_db": -5.8
+   },
+   "musical-chairs calliope tune": {
+    "level": "mid",
+    "t": 17.75,
+    "vs_voice_p90_db": -5.8
+   },
+   "needle stop": {
+    "level": "high",
+    "t": 18.59,
+    "vs_voice_p90_db": 1.7
+   },
+   "scramble whooshes": {
+    "level": "mid",
+    "t": 18.64,
+    "vs_voice_p90_db": 7.6
+   },
+   "floor THUD + squeak": {
+    "level": "max",
+    "t": 18.95,
+    "vs_voice_p90_db": 7.6
+   },
+   "FAAAH #1 (floor, no chair)": {
+    "level": "max",
+    "t": 19.02,
+    "vs_voice_p90_db": 8.1
+   },
+   "laugh track (మీదేగా!)": {
+    "level": "high",
+    "t": 22.78,
+    "vs_voice_p90_db": 1.9
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 22.8,
+    "vs_voice_p90_db": -2.7
+   },
+   "tap + ding": {
+    "level": "mid",
+    "t": 23.2,
+    "vs_voice_p90_db": 1.7
+   },
+   "bottle spin + tock": {
+    "level": "mid",
+    "t": 24.28,
+    "vs_voice_p90_db": -1.2
+   },
+   "tension tick": {
+    "level": "low",
+    "t": 24.82,
+    "vs_voice_p90_db": 0.8
+   },
+   "spotlight ka-CHUNK (సురేష్!)": {
+    "level": "high",
+    "t": 26.17,
+    "vs_voice_p90_db": 4.3
+   },
+   "harp glissando (Yes sir!)": {
+    "level": "mid",
+    "t": 27.12,
+    "vs_voice_p90_db": 2.1
+   },
+   "bobble-head boings": {
+    "level": "low",
+    "t": 27.92,
+    "vs_voice_p90_db": 3.1
+   },
+   "crowd 'ooooooh!'": {
+    "level": "high",
+    "t": 31.82,
+    "vs_voice_p90_db": 4.8
+   },
+   "DHAN! 1": {
+    "level": "max",
+    "t": 32.15,
+    "vs_voice_p90_db": 6.1
+   },
+   "DHAN! 2": {
+    "level": "max",
+    "t": 32.38,
+    "vs_voice_p90_db": 6.9
+   },
+   "DHANAAAN! 3": {
+    "level": "max",
+    "t": 32.61,
+    "vs_voice_p90_db": 8.6
+   },
+   "snare drumroll (low -> rising)": {
+    "level": "low",
+    "t": 34.76,
+    "vs_voice_p90_db": -1.5
+   },
+   "garland whoosh + THWUMP + hat fwump": {
+    "level": "high",
+    "t": 35.23,
+    "vs_voice_p90_db": -0.0
+   },
+   "FAAAH #2 (garland + Santa hat)": {
+    "level": "max",
+    "t": 35.65,
+    "vs_voice_p90_db": 8.3
+   },
+   "sleigh-bell tail (low)": {
+    "level": "low",
+    "t": 36.45,
+    "vs_voice_p90_db": 3.5
+   },
+   "STAMP slam (పరిగెత్తించినందుకు!)": {
+    "level": "max",
+    "t": 38.43,
+    "vs_voice_p90_db": 8.1
+   },
+   "laugh + mock applause": {
+    "level": "high",
+    "t": 39.41,
+    "vs_voice_p90_db": 1.7
+   },
+   "DHOOM + thunder (double)": {
+    "level": "max",
+    "t": 42.14,
+    "vs_voice_p90_db": 8.2
+   },
+   "team gasp 'HAAH!'": {
+    "level": "mid",
+    "t": 43.34,
+    "vs_voice_p90_db": -5.8
+   },
+   "music box (first half)": {
+    "level": "low",
+    "t": 44.06,
+    "vs_voice_p90_db": -0.2
+   },
+   "hollow DONK": {
+    "level": "high",
+    "t": 48.69,
+    "vs_voice_p90_db": 1.7
+   },
+   "party poppers": {
+    "level": "high",
+    "t": 49.49,
+    "vs_voice_p90_db": 2.8
+   },
+   "team cheer": {
+    "level": "mid",
+    "t": 49.52,
+    "vs_voice_p90_db": 2.8
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 50.33,
+    "vs_voice_p90_db": 6.2
+   },
+   "comedy sting: tuba bom-bom-ba-BOM + bells": {
+    "level": "high",
+    "t": 50.62,
+    "vs_voice_p90_db": 2.0
+   },
+   "laugh-track tail": {
+    "level": "mid",
+    "t": 50.72,
+    "vs_voice_p90_db": 2.0
+   },
+   "comment-bubble pops": {
+    "level": "mid",
+    "t": 53.78,
+    "vs_voice_p90_db": 2.9
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 55.85,
+    "vs_voice_p90_db": -0.0
+   },
+   "'Episode 2' card slam": {
+    "level": "mid",
+    "t": 56.73,
+    "vs_voice_p90_db": -0.8
+   },
+   "end-card sting + sleigh sparkle": {
+    "level": "mid",
+    "t": 57.4,
+    "vs_voice_p90_db": -0.6
+   }
+  }
+ }
+}

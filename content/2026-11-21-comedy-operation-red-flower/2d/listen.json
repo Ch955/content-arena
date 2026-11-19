@@ -1,0 +1,193 @@
+{
+ "L0": {
+  "expected": "Attention everyone! ఈరోజు… Christmas games! కానీ… pending work finish చేశాకే ఇంటికి!",
+  "heard": "Attention everyone ఈ రోజు Christmas games కానీ pending work finish చేశాకే ఇంటికి",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "expected": "వావ్ సార్… games తో పాటు… overtime కూడా free ఆ?",
+  "heard": "Wow sir games తో పాటు overtime కూడా free ఆ?",
+  "issue": "none",
+  "sim": 0.8,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "expected": "Games నేను నడిపిస్తా… target మాత్రం… ఒక్కరే.",
+  "heard": "Games నేను నడిపిస్తా target మాత్రం",
+  "issue": "ends abruptly",
+  "sim": 0.91,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "expected": "Manager! Code name… Operation Red Flower!",
+  "heard": "Manager code name operation Red Flower",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "expected": "Musical chairs ఆ? Chair నా weakness కాదు… నా strength!",
+  "heard": "Musical chairs ఆ? Chair నా weakness కాదు",
+  "issue": "ends abruptly",
+  "sim": 0.87,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "expected": "Relax సార్… office లో important chair… ఎప్పుడూ మీదేగా!",
+  "heard": "నా strength Relax sir office లో important chair ఎప్పుడూ మీదేగా",
+  "issue": "contains two speakers",
+  "sim": 0.82,
+  "by": "gemini-3-flash-preview"
+ },
+ "L6": {
+  "expected": "Follow కొట్టండి… next game… ఇంకా డేంజర్!",
+  "heard": "Follow కొట్టండి next game ఇంకా danger",
+  "issue": "none",
+  "sim": 0.81,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "expected": "Truth or Dare! సార్… మీ favourite employee ఎవరు?",
+  "heard": "సరే Truth or Dare sir మీ favorite employee ఎవరు?",
+  "issue": "none",
+  "sim": 0.86,
+  "by": "gemini-3-flash-preview"
+ },
+ "L8": {
+  "expected": "సురేష్!",
+  "heard": "సురేష్",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "expected": "Yes sir! Thank you sir!",
+  "heard": "Yes sir! Thank you sir!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "expected": "మేమంతా appraisal queue లో… Suresh కి మాత్రం… VIP pass ఆ సార్?",
+  "heard": "మేమంతా appraisal queue లో.. సురేష్ కి మాత్రం VIP pass ఆ sir?",
+  "issue": "none",
+  "sim": 0.8,
+  "by": "gemini-3-flash-preview"
+ },
+ "L11": {
+  "expected": "సార్… మీకోసం ఒక… special award!",
+  "heard": "Sir, మీకోసం ఒక special award",
+  "issue": "none",
+  "sim": 0.85,
+  "by": "gemini-3-flash-preview"
+ },
+ "L12": {
+  "expected": "సంవత్సరం మొత్తం… మమ్మల్ని… పరిగెత్తించినందుకు!",
+  "heard": "సంవత్సరం మొత్తం మమ్మల్ని పరిగెత్తించినందుకు",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L13": {
+  "expected": "ఏంటీ?! రేపటి నుంచి అందరికీ… double workload!",
+  "heard": "ఏంటి? రేపటి నుంచి అందరికీ double workload?",
+  "issue": "none",
+  "sim": 0.97,
+  "by": "gemini-3-flash-preview"
+ },
+ "L14": {
+  "expected": "క్రిస్మస్‌కి శాంటా గిఫ్టులు ఇస్తాడనుకున్నాం… మన మేనేజర్ మాత్రం… పనులు గిఫ్ట్‌గా ఇచ్చాడు!",
+  "heard": "Christmas కి Santa gifts ఇస్తాడనుకున్నాం, మన manager మాత్రం పనులు gift గా ఇచ్చాడు",
+  "issue": "none",
+  "sim": 0.55,
+  "by": "gemini-3-flash-preview"
+ },
+ "L16": {
+  "expected": "మీ manager కి ఏ award ఇస్తారు? Comment చేయండి!",
+  "heard": "మీ manager కి ఏ award ఇస్తారో comment చేయండి",
+  "issue": "none",
+  "sim": 0.97,
+  "by": "gemini-3-flash-preview"
+ },
+ "L17": {
+  "expected": "మీ office manager ని… tag చేయండి… రేపు Episode 2!",
+  "heard": "మీ office manager ని tag చేయండి",
+  "issue": "none",
+  "sim": 0.83,
+  "by": "gemini-3-flash-preview"
+ },
+ "faaah/take_0_0.wav": {
+  "heard": "Aaaaah!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "One long dramatic shout"
+ },
+ "faaah/take_0_1.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A cheerful greeting spoken by one voice"
+ },
+ "faaah/take_0_2.wav": {
+  "heard": "Aaaaah!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "A very long dramatic shout"
+ },
+ "faaah/take_1_0.wav": {
+  "heard": "Faaaah!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "One short dramatic shout"
+ },
+ "faaah/take_1_1.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A cheerful high-pitched greeting"
+ },
+ "faaah/take_1_2.wav": {
+  "heard": "Faaaah!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "One short dramatic shout"
+ },
+ "faaah/take_2_0.wav": {
+  "heard": "Haaaa!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "One short dramatic shout"
+ },
+ "faaah/take_2_1.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A cheerful greeting spoken by one male voice"
+ },
+ "faaah/take_2_2.wav": {
+  "heard": "Haaaa!",
+  "kind": "SHOUT",
+  "clean": true,
+  "note": "One long dramatic shout"
+ },
+ "chorus/priya.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A calm greeting spoken by one voice"
+ },
+ "chorus/ramesh.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A calm greeting spoken by one voice"
+ },
+ "chorus/suresh.wav": {
+  "heard": "Merry Christmas sir!",
+  "kind": "OTHER",
+  "clean": true,
+  "note": "A calm greeting spoken by one voice"
+ }
+}

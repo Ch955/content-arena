@@ -1,0 +1,104 @@
+{
+ "L0": {
+  "heard": "Attention everyone! ఈరోజు Christmas games! కానీ pending work finish చేశాకే ఇంటికి!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "heard": "Wow sir! Games తో పాటు overtime కూడా free ఆ?",
+  "issue": "none",
+  "sim": 0.8,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "heard": "Games నేను నడిపిస్తా, target మాత్రం ఒక్కరే!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "heard": "Manager code name Operation Red Flower.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "heard": "Red Flower... Musical chairs ఆ? Chair నా weakness కాదు నా strength!",
+  "issue": "none",
+  "sim": 0.91,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "heard": "Relax sir, office లో important chair ఎప్పుడూ మీదే కదా!",
+  "issue": "none",
+  "sim": 0.89,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "heard": "Truth or Dare! Sir, మీ favorite employee ఎవరు?",
+  "issue": "none",
+  "sim": 0.89,
+  "by": "gemini-3-flash-preview"
+ },
+ "L8": {
+  "heard": "సురేష్!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "heard": "Yes sir! Thank you sir!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "heard": "మేమంతా అప్రైజల్ క్యూ లో... సురేష్ కి మాత్రం VIP పాస్ సర్!",
+  "issue": "none",
+  "sim": 0.48,
+  "by": "gemini-3-flash-preview"
+ },
+ "L11": {
+  "heard": "సర్... మీకోసం ఒక స్పెషల్ అవార్డ్.",
+  "issue": "none",
+  "sim": 0.45,
+  "by": "gemini-3-flash-preview"
+ },
+ "L12": {
+  "heard": "సంవత్సరం మొత్తం మమ్మల్ని పరిగెత్తించినందుకు.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L13": {
+  "heard": "ఏంటి? రేపటి నుంచి అందరికీ డబల్ వర్క్ లోడ్.",
+  "issue": "none",
+  "sim": 0.58,
+  "by": "gemini-3-flash-preview"
+ },
+ "L14": {
+  "heard": "క్రిస్మస్ కి Santa గిఫ్ట్ లు ఇస్తాడు అనుకున్నాం. మన మేనేజర్ మాత్రం పనులు గిఫ్ట్ గా ఇచ్చాడు.",
+  "issue": "none",
+  "sim": 0.91,
+  "by": "gemini-3-flash-preview"
+ },
+ "L15": {
+  "heard": "Merry Christmas, sir!",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L16": {
+  "heard": "మీ మేనేజర్ కి ఏ అవార్డ్ ఇస్తారో కామెంట్ చేయండి.",
+  "issue": "none",
+  "sim": 0.45,
+  "by": "gemini-3-flash-preview"
+ },
+ "L17": {
+  "heard": "మీ ఆఫీస్ మేనేజర్ ని ట్యాగ్ చేయండి. రేపు Episode 2.",
+  "issue": "none",
+  "sim": 0.55,
+  "by": "gemini-3-flash-preview"
+ }
+}
