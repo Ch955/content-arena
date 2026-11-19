@@ -1,0 +1,518 @@
+{
+ "lines": [
+  {
+   "who": "manager",
+   "text": "ఈరోజు మీ అందరికీ ఒక ఛాలెంజ్! ఎవరు ఎక్కువ తెలివైనవాళ్లో ఈ గేమ్స్‌లో తెలుస్తుంది!",
+   "say": "[smugly] ఈరోజు మీ అందరికీ… ఒక ఛాలెంజ్! [dramatic pause] ఎవరు ఎక్కువ తెలివైనవాళ్లో… [proudly] ఈ గేమ్స్‌లో తెలుస్తుంది!",
+   "act": "a villain making his grand entrance: slow, booming, savouring every word; stress on ఛాలెంజ్",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "villain-entry",
+     "sound": "slow-mo footsteps + wind (his tie flaps) + low villain brass swell (original synth)",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": -0.6,
+     "note": "starts at 0.0 s under the text hook; mug steam drifts like smoke"
+    },
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM: sub boom + cymbal tail; camera punch-in",
+     "on": "ఛాలెంజ్!",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "game-show",
+     "sound": "game-show 'ta-daa' fanfare stab (original)",
+     "on": "తెలుస్తుంది!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 4.6
+  },
+  {
+   "who": "ramesh",
+   "text": "మీరు కూడా ఆడతారా సార్?",
+   "say": "[innocently] మీరు కూడా… ఆడతారా సార్?",
+   "act": "wide-eyed, too-sweet innocent question; stress on మీరు",
+   "beat": "bait",
+   "sfx": [
+    {
+     "cue": "bloop",
+     "sound": "tiny cartoon 'bloop'",
+     "on": "సార్?",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.2
+    }
+   ],
+   "est_s": 1.6
+  },
+  {
+   "who": "manager",
+   "text": "నన్ను ఓడించేవాడు… ఈ office లో ఇంకా పుట్టలేదు!",
+   "say": "[chuckles] నన్ను ఓడించేవాడు… [smugly] ఈ office లో… ఇంకా పుట్టలేదు!",
+   "act": "over-confident punch-dialogue swagger, slow, chest out, mug raised; stress on పుట్టలేదు",
+   "beat": "boast",
+   "sfx": [
+    {
+     "cue": "heroic-brass",
+     "sound": "mock-heroic rising brass 'ta-da-DAAA' (generic, synthesized)",
+     "on": "పుట్టలేదు!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "sly-ting",
+     "sound": "glint 'ting' + sly two-note pizzicato on Ramesh's secret smile",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6,
+     "offset_s": 0.3
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "priya",
+   "text": "సార్! మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్ మీరే ఫాలో అయ్యారా?",
+   "say": "[mischievously] సార్! [dramatic pause] మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్… మీరే ఫాలో అయ్యారా?",
+   "act": "sharp, polite and deadly: a quiz-host smile, then the question slow and precise; stress on మీరే",
+   "beat": "game1-honesty",
+   "sfx": [
+    {
+     "cue": "card-whoosh",
+     "sound": "whoosh + quiz 'ding' as the card 'GAME 1: HONESTY TEST' slams in",
+     "on": "సార్!",
+     "at": "before",
+     "level": "mid",
+     "dur_s": 0.5,
+     "offset_s": -0.5
+    },
+    {
+     "cue": "gulp",
+     "sound": "big cartoon gulp from the manager",
+     "on": "అయ్యారా?",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.3
+    },
+    {
+     "cue": "crowd-ooooh",
+     "sound": "office crowd 'ooooooh!'",
+     "on": "after the gulp",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": 0.3
+    }
+   ],
+   "est_s": 4.0
+  },
+  {
+   "who": "manager",
+   "text": "See… deadline అనేది ఒక mindset. Let's take it offline!",
+   "say": "[nervous laugh] See… deadline అనేది ఒక mindset. [calmly] Let's take it… offline!",
+   "act": "caught: a nervous laugh, then slick corporate jargon, tugging his tie, avoiding eyes; stress on offline",
+   "beat": "dodge",
+   "sfx": [
+    {
+     "cue": "sweat-plip",
+     "sound": "sweat-drop 'plip'",
+     "on": "See…",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.2
+    },
+    {
+     "cue": "crickets",
+     "sound": "crickets chirp in the silence",
+     "on": "offline!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "ramesh",
+   "text": "మీ deadlines వల్ల సార్… మాకు offline life ఏ లేదు!",
+   "say": "[deadpan] మీ deadlines వల్ల సార్… [sarcastically] మాకు offline life ఏ… లేదు!",
+   "act": "dry and innocent, a tiny sad smile; stress on life",
+   "beat": "deadline-jab",
+   "sfx": [
+    {
+     "cue": "laugh-track",
+     "sound": "audience laugh track (in-house crowd layer)",
+     "on": "లేదు!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2
+    },
+    {
+     "cue": "rimshot",
+     "sound": "'ba-dum-TSS'",
+     "on": "under the laugh",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6,
+     "offset_s": 0.2
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "priya",
+   "text": "Game 2! Blindfold… సార్, మీ chair ని మీరే కనిపెట్టండి!",
+   "say": "[excited] Game 2! [mischievously] Blindfold… సార్, మీ chair ని మీరే కనిపెట్టండి!",
+   "act": "a bright game host, then a sly dare; stress on మీరే",
+   "beat": "game2-blindfold",
+   "sfx": [
+    {
+     "cue": "card-whoosh",
+     "sound": "whoosh + 'GAME 2: BLINDFOLD' card",
+     "on": "Game 2!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "follow-pop",
+     "sound": "FOLLOW button pops in (silent follow tap, corner)",
+     "on": "Blindfold…",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.2,
+     "note": "mid-reel follow beat, visual + sound only"
+    },
+    {
+     "cue": "follow-tap",
+     "sound": "finger tap + 'ding'",
+     "on": "కనిపెట్టండి!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "blindfold-fwip",
+     "sound": "cloth 'fwip' as the blindfold is tied",
+     "on": "end of line",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.3
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "ramesh",
+   "text": "కొంచెం left సార్… మా pending appraisals లాగే… slow గా!",
+   "say": "[whispers] కొంచెం left సార్… [deadpan] మా pending appraisals లాగే… slow గా!",
+   "act": "a helpful whisper with a knife in it; stress on slow",
+   "beat": "clue1",
+   "sfx": [
+    {
+     "cue": "shuffle",
+     "sound": "slow shuffling feet",
+     "on": "whole line",
+     "at": "under",
+     "level": "low",
+     "dur_s": 2.0
+    },
+    {
+     "cue": "cooler-donk",
+     "sound": "DONK into the water cooler + 'glug-glug'",
+     "on": "slow గా!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "priya",
+   "text": "ఇంకొంచెం ముందుకి… మా hike ఆగిపోయిన చోటే మీ chair!",
+   "say": "[mischievously] ఇంకొంచెం ముందుకి… [sarcastically] మా hike ఆగిపోయిన చోటే… మీ chair!",
+   "act": "sweet guidance, sarcastic sting; stress on hike",
+   "beat": "clue2",
+   "sfx": [
+    {
+     "cue": "snicker",
+     "sound": "team snicker",
+     "on": "chair!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "suresh",
+   "text": "Yes sir! Straight వెళ్ళండి సార్!",
+   "say": "[excited] Yes sir! [proudly] Straight వెళ్ళండి సార్!",
+   "act": "the eager yes-man, loud and loyal, nodding, pointing confidently at exactly the wrong thing",
+   "beat": "clue3-bump",
+   "sfx": [
+    {
+     "cue": "glass-bonk",
+     "sound": "BOINNG: face-first into the glass cabin door, the glass wobbling",
+     "on": "సార్!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.5,
+     "offset_s": 0.2
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — OUR OWN dramatic shout (layered Gemini TTS takes, 3 voices, pitch-shifted, + reverse whoosh + sub boom; see brief 'FAAAH build'); music cut",
+     "on": "after the bonk",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.6,
+     "note": "FAAAH #1; slow-mo replay of the bump"
+    },
+    {
+     "cue": "birds",
+     "sound": "cartoon birds tweeting round his head",
+     "on": "after the FAAAH",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.8,
+     "offset_s": 1.8
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "priya",
+   "text": "Game 3! Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!",
+   "say": "[excited] Game 3! [whispers] Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!",
+   "act": "bright host on the title, then a hushed, theatrical rule; stress on ఒక్క",
+   "beat": "game3-silence",
+   "sfx": [
+    {
+     "cue": "card-whoosh",
+     "sound": "whoosh + 'GAME 3: SILENCE' card",
+     "on": "Game 3!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "stopwatch",
+     "sound": "stopwatch click + 2 loud ticks (on-screen 01:00 → 00:58)",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.8
+    }
+   ],
+   "est_s": 2.6
+  },
+  {
+   "who": "manager",
+   "text": "రమేష్! ఆ రిపోర్ట్ ఎక్కడ? సురేష్! క్లయింట్‌కి కాల్ చేశావా?",
+   "say": "[shouting] రమేష్! ఆ రిపోర్ట్ ఎక్కడ? [angry] సురేష్! క్లయింట్‌కి కాల్ చేశావా?",
+   "act": "holds for barely a second, then explodes: instant, loud, reflex boss-barking, rapid-fire; stress on రిపోర్ట్",
+   "beat": "silence-fail",
+   "sfx": [
+    {
+     "cue": "buzzer",
+     "sound": "game-show 'BZZZT' wrong buzzer + stopwatch stops at 00:58",
+     "on": "రమేష్!",
+     "at": "on",
+     "level": "high",
+     "dur_s": 0.4,
+     "note": "sits under the first word, transient-light"
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — OUR OWN dramatic shout (layered Gemini TTS takes, 3 voices, pitch-shifted, + reverse whoosh + sub boom; see brief 'FAAAH build'); music cut",
+     "on": "after చేశావా?",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.2,
+     "note": "FAAAH #2"
+    }
+   ],
+   "est_s": 4.6
+  },
+  {
+   "who": "ramesh",
+   "text": "రెండు seconds సార్… మీరు out!",
+   "say": "[deadpan] రెండు seconds సార్… [mischievously] మీరు out!",
+   "act": "a calm referee's verdict, savouring it; stress on out",
+   "beat": "out",
+   "sfx": [
+    {
+     "cue": "stamp",
+     "sound": "'OUT!' STAMP slam + screen shake",
+     "on": "out!",
+     "at": "on",
+     "level": "max",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 1.8
+  },
+  {
+   "who": "manager",
+   "text": "నేను మాట్లాడకపోతే ఈ office నడవదు! So… winner ఎవరు?",
+   "say": "[proudly] నేను మాట్లాడకపోతే… ఈ office నడవదు! [smugly] So… winner ఎవరు?",
+   "act": "totally unashamed, chest out, then a smug fishing question; stress on నడవదు",
+   "beat": "winner-ask",
+   "sfx": [
+    {
+     "cue": "drumroll",
+     "sound": "short drumroll",
+     "on": "winner ఎవరు?",
+     "at": "under",
+     "level": "low",
+     "dur_s": 0.8
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "team",
+   "text": "మీరే సార్!",
+   "say": "[excited] మీరే సార్!",
+   "act": "the whole team in perfect fake-cheerful unison",
+   "beat": "fake-win",
+   "sfx": [
+    {
+     "cue": "cheer",
+     "sound": "team cheer + party horn + confetti",
+     "on": "సార్!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.8
+    },
+    {
+     "cue": "victory-brass",
+     "sound": "mock-victory brass as the manager dances (generic, synthesized)",
+     "on": "after the cheer",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.8,
+     "offset_s": 0.4
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out for 0.3 s; Ramesh turns to the camera",
+     "on": "end of the dance",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.3,
+     "offset_s": 1.2
+    }
+   ],
+   "est_s": 2.2
+  },
+  {
+   "who": "ramesh",
+   "text": "అవును సార్... గేమ్‌లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం మీరు ఎప్పుడో ఓడిపోయారు!",
+   "say": "[deadpan] అవును సార్… గేమ్‌లో మీరు గెలిచారు. [dramatic pause] కానీ మా అందరి మనసుల్లో మాత్రం… [mischievously] మీరు ఎప్పుడో ఓడిపోయారు!",
+   "act": "to the camera, the innocent-looking mastermind: calm agreement, a beat, then a slow, sweet knife; stress on ఓడిపోయారు",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "freeze",
+     "sound": "record scratch + FREEZE FRAME (camera-flash white pop)",
+     "on": "ఓడిపోయారు!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.4,
+     "offset_s": 0.1
+    },
+    {
+     "cue": "comedy-sting",
+     "sound": "comedy sting under the freeze: bouncy tuba 'bom-bom-ba-BOM' (same as Ep 1)",
+     "on": "freeze",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 0.4
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "big laugh track",
+     "on": "freeze",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 0.5
+    }
+   ],
+   "est_s": 5.6
+  },
+  {
+   "who": "gopi",
+   "text": "Comment చేయండి… మీ office manager ని tag చేయండి!",
+   "say": "[laughs] Comment చేయండి… [mischievously] మీ office manager ని… [whispers] tag చేయండి!",
+   "act": "laughing with the viewer, then a cheeky whisper as if the manager might hear",
+   "beat": "comment-tag-close",
+   "sfx": [
+    {
+     "cue": "bubble-pops",
+     "sound": "three comment-bubble pops",
+     "on": "Comment",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    },
+    {
+     "cue": "tag-swoosh",
+     "sound": "swoosh + pop as a contact card gets tagged",
+     "on": "tag",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card sting + sparkle",
+     "on": "end card",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.6
+  }
+ ],
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (same as Ep 0/Ep 2: one series look). Setting: the same generic office as 20 Nov (open cubicles, big wall clock, the manager's glass cabin 'MANAGER', no company name, no logos or brands). Continuity egg: a small sticky note 'SECONDARY ⭐' on Ramesh's monitor (Ep 0 callback). Freeze frames = still + white flash pop + slight desaturation, not a skin switch. No Christmas decor this time except one leftover drooping paper star and the red garland hung on the manager's cabin door (Ep 1 callback).",
+  "CAST (same in every frame of Ep 1 and Ep 2, and the same as Ep 0 '10 nimishala late', 20 Nov): RAMESH = RAMESH_OPT from tools/anim2d/cast.md (light-blue untucked shirt, messy hair, light stubble, badge 'RAMESH · STAFF'; his helmet on his desk); MANAGER = MANAGER_OPT (tucked white shirt, maroon tie, thick moustache, bald top + grey temples, paunch, the plain white mug in his LEFT hand). NEW SURESH (not the 15 Nov TL): oiled, shiny side-parted hair with a comb line, a too-tight pale-lavender formal shirt buttoned to the collar with straining buttons, no tie, a small notepad, badge 'SURESH · STAFF', always nodding (bobble nod loop). NEW PRIYA: high ponytail, mustard-yellow top under a navy cardigan, small gold hoops, a pen behind her ear, a clipboard when she hosts the games, badge 'PRIYA · STAFF'. EXTRAS (silent / chorus only): the 20 Nov colleagues — pink-kurta woman with a bun, green-shirt man with glasses, orange-shirt man with a moustache. Gopi: corner cut-out for his lines only.",
+  "Intro 0.0-0.6 s (no voice): text hook 'Manager vs Team: 3 Games 🎮' from frame 1. Villain entry: the manager walks down the aisle in slow-mo, tie flapping in a wind that shouldn't exist, mug steaming, low angle.",
+  "L1: DHOOM punch-in on 'ఛాలెంజ్!'; a game-show scoreboard drops: 'MANAGER 0 · TEAM 0'.",
+  "L2-L3: Ramesh innocent; the manager's chest-out boast with mock-heroic rays; on the 'ting', a close-up of Ramesh's small secret smile (one eyebrow).",
+  "L4 Game 1: card 'GAME 1: HONESTY TEST'; Priya with her clipboard, pen pointing; the manager gulps.",
+  "L5: the manager tugs his tie, a sweat drop; chip 'Let's take it offline 🙃'; crickets.",
+  "L6: Ramesh dry; chip 'OFFLINE LIFE: 404 NOT FOUND'; laugh; scoreboard ticks TEAM +1.",
+  "L7 Game 2: card 'GAME 2: BLINDFOLD'; FOLLOW button pops in the corner and is tapped (the silent follow beat); Suresh ties a black blindfold on the manager.",
+  "L8: arms out, shuffling; chip 'PENDING APPRAISALS ⏳'; DONK into the water cooler.",
+  "L9: Priya's clue; chip 'HIKE 🚫 STUCK HERE'.",
+  "L10: Suresh, nodding hard, points 'Straight!' at the glass cabin door; the manager walks face-first into it: BOINNG, the glass wobbles, slow-mo replay, FAAAH #1, cartoon birds circle his head.",
+  "L11 Game 3: card 'GAME 3: SILENCE'; a big stopwatch 01:00 starts.",
+  "L12: two ticks in, he explodes, pointing at Ramesh then Suresh; the stopwatch stops at 00:58 with a red buzzer flash; FAAAH #2 with a flat red burst.",
+  "L13: an 'OUT!' stamp over the manager; scoreboard TEAM +1.",
+  "L14: unashamed, chest out; then he looks around fishing for praise.",
+  "L15: the team in unison 'మీరే సార్!'; confetti; the manager does a little victory dance holding the mug like a trophy; scoreboard flips to 'MANAGER 1' with a fake sparkle. Then silence.",
+  "L16 punch: Ramesh turns to the camera (close-up, the dancing manager blurred behind); on 'ఓడిపోయారు!' FREEZE FRAME on the manager mid-dance + Ramesh's knowing look, white flash; text 'GAME: MANAGER 🏆 · మనసుల్లో: TEAM ❤️' over the still; comedy sting + laugh.",
+  "L17 comment + tag: bubbles 'మీ manager ఏ game లో ఓడిపోతాడు? 👇' (no real usernames), then 'మీ OFFICE MANAGER ని TAG చేయండి! 😅' with a contact card tagged; end card 'Series: Office Politics · Ep 2' + FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM."
+ ]
+}

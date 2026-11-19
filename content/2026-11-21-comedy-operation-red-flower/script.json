@@ -1,0 +1,585 @@
+{
+ "lines": [
+  {
+   "who": "manager",
+   "text": "Attention everyone! ఈరోజు Christmas games! కానీ… pending work finish చేశాకే ఇంటికి!",
+   "say": "[shouting] Attention everyone! [smugly] ఈరోజు… Christmas games! [sarcastically] కానీ… pending work finish చేశాకే ఇంటికి!",
+   "act": "a smug, overconfident boss making a villain-style entrance: a big bark, a fake-generous announcement, then a slow, smug sting in the tail; stress on కానీ",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "villain-entry",
+     "sound": "cabin door BLASTS open + slow-mo heavy footsteps + low villain brass swell (original synth)",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.8,
+     "offset_s": -0.8,
+     "note": "starts at 0.0 s under the text hook; coffee-mug steam drifts like smoke"
+    },
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM: deep sub boom + cymbal tail; camera punch-in",
+     "on": "Attention",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0,
+     "note": "sub-heavy so it does not mask the word"
+    },
+    {
+     "cue": "jingle",
+     "sound": "cheerful sleigh-bell jingle sparkle (synth bells)",
+     "on": "Christmas games!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.8
+    },
+    {
+     "cue": "record-scratch",
+     "sound": "record scratch: the jingle dies dead",
+     "on": "కానీ…",
+     "at": "on",
+     "level": "max",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "dun-dunn",
+     "sound": "sinister low two-note sting 'dun… DUNN'",
+     "on": "ఇంటికి!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.8
+    }
+   ],
+   "est_s": 4.6
+  },
+  {
+   "who": "ramesh",
+   "text": "వావ్ సార్… games తో పాటు overtime కూడా free ఆ?",
+   "say": "[sarcastically] వావ్ సార్… [deadpan] games తో పాటు… overtime కూడా free ఆ?",
+   "act": "innocent face, sweet fake gratitude that turns bone-dry; stress on overtime",
+   "beat": "sarcasm",
+   "sfx": [
+    {
+     "cue": "snicker",
+     "sound": "colleagues' stifled snicker behind the cubicles",
+     "on": "free ఆ?",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "whoosh-pantry",
+     "sound": "whoosh + pantry door creak into the secret meeting",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 2.6
+  },
+  {
+   "who": "priya",
+   "text": "Games నేను నడిపిస్తా… target మాత్రం ఒక్కరే.",
+   "say": "[whispers] Games నేను నడిపిస్తా… [mischievously] target మాత్రం… ఒక్కరే.",
+   "act": "a sharp, confident colleague in a secret huddle: a low, crisp whisper, a sly smile on ఒక్కరే",
+   "beat": "plan",
+   "sfx": [
+    {
+     "cue": "spy-bed",
+     "sound": "sneaky heist pizzicato + walking bass (original), under the pantry scene",
+     "on": "whole line",
+     "at": "under",
+     "level": "low",
+     "dur_s": 5.4,
+     "note": "runs under L3-L4"
+    },
+    {
+     "cue": "kettle",
+     "sound": "electric kettle click + bubble",
+     "on": "Games",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "ramesh",
+   "text": "Manager! Code name… Operation Red Flower!",
+   "say": "[whispers] Manager! [dramatic pause] Code name… [mischievously] Operation Red Flower!",
+   "act": "the innocent-looking mastermind: a hushed reveal, a beat, then the name slow and grand like a heist-movie title; stress on Red",
+   "beat": "operation",
+   "sfx": [
+    {
+     "cue": "heist-sting",
+     "sound": "heist title sting: finger snap + low brass stab + bass hit",
+     "on": "Red Flower!",
+     "at": "on",
+     "level": "high",
+     "dur_s": 0.8
+    },
+    {
+     "cue": "hands-in",
+     "sound": "team hands-in slap + tiny cheer 'yes!'",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "whoosh",
+     "sound": "whoosh back to the floor; the musical-chairs tune starts",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.3,
+     "offset_s": 0.4
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "manager",
+   "text": "Musical chairs ఆ? Chair నా weakness కాదు… నా strength!",
+   "say": "[chuckles] Musical chairs ఆ? [smugly] Chair నా weakness కాదు… నా strength!",
+   "act": "over-confident, slow like a hero's punch dialogue, cracking his knuckles; stress on strength",
+   "beat": "chairs",
+   "sfx": [
+    {
+     "cue": "chair-tune",
+     "sound": "bouncy musical-chairs calliope tune (original synth), fast",
+     "on": "after the line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.4,
+     "offset_s": 0.1,
+     "note": "the team circles the chairs; the manager struts"
+    },
+    {
+     "cue": "needle-stop",
+     "sound": "needle lifts: the tune stops dead",
+     "on": "tune end",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.2,
+     "offset_s": 1.5
+    },
+    {
+     "cue": "scramble",
+     "sound": "four fast whooshes as everyone dives for a chair",
+     "on": "tune end",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4,
+     "offset_s": 1.6
+    },
+    {
+     "cue": "floor-thud",
+     "sound": "heavy butt-thud on the floor + chair-leg squeak",
+     "on": "tune end",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.3,
+     "offset_s": 2.0
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — OUR OWN dramatic shout (layered Gemini TTS takes, 3 voices, pitch-shifted, + reverse whoosh + sub boom; see brief 'FAAAH build'); music cut",
+     "on": "the manager on the floor, no chair",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 2.1,
+     "note": "FAAAH #1; freeze-zoom on his shocked face"
+    }
+   ],
+   "est_s": 5.0
+  },
+  {
+   "who": "ramesh",
+   "text": "Relax సార్… office లో important chair ఎప్పుడూ మీదేగా!",
+   "say": "[mischievously] Relax సార్… [deadpan] office లో important chair… ఎప్పుడూ మీదేగా!",
+   "act": "offering a hand with a too-sweet smile, the jab hidden in the politeness; stress on ఎప్పుడూ",
+   "beat": "chair-joke",
+   "sfx": [
+    {
+     "cue": "laugh-track",
+     "sound": "audience laugh track (in-house crowd layer)",
+     "on": "మీదేగా!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.4,
+     "note": "tails to low under L7"
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "gopi",
+   "text": "Follow కొట్టండి… next game ఇంకా డేంజర్!",
+   "say": "[excited] Follow కొట్టండి… [mischievously] next game… ఇంకా డేంజర్!",
+   "act": "quick and playful, a wink to the viewer, then a gleeful tease",
+   "beat": "follow",
+   "sfx": [
+    {
+     "cue": "pop",
+     "sound": "follow button pops in",
+     "on": "Follow",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.2
+    },
+    {
+     "cue": "tap-ding",
+     "sound": "finger tap click + 'ding'",
+     "on": "కొట్టండి",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 2.2
+  },
+  {
+   "who": "priya",
+   "text": "Truth or Dare! సార్… మీ favourite employee ఎవరు?",
+   "say": "[excited] Truth or Dare! [dramatic pause] సార్… [mischievously] మీ favourite employee ఎవరు?",
+   "act": "a bright quiz-show host, fast, then a slow, sly trap question; stress on favourite",
+   "beat": "truth",
+   "sfx": [
+    {
+     "cue": "bottle-spin",
+     "sound": "spin-the-bottle whirr, slowing, stopping on the manager + 'tock'",
+     "on": "Truth or Dare!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.7
+    },
+    {
+     "cue": "tension-tick",
+     "sound": "tense tick bed",
+     "on": "favourite employee ఎవరు?",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.2
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "manager",
+   "text": "సురేష్!",
+   "say": "[proudly] సురేష్!",
+   "act": "no hesitation at all, an instant, proud answer, pointing straight at him",
+   "beat": "favourite",
+   "sfx": [
+    {
+     "cue": "spotlight",
+     "sound": "spotlight 'ka-CHUNK' onto Suresh",
+     "on": "సురేష్!",
+     "at": "on",
+     "level": "high",
+     "dur_s": 0.3
+    }
+   ],
+   "est_s": 0.8
+  },
+  {
+   "who": "suresh",
+   "text": "Yes sir! Thank you sir!",
+   "say": "[excited] Yes sir! [nervous laugh] Thank you sir!",
+   "act": "an eager office yes-man, nodding fast, high and grateful, almost bowing",
+   "beat": "yes-sir",
+   "sfx": [
+    {
+     "cue": "harp-gliss",
+     "sound": "sparkly harp glissando (teacher's-pet sparkle)",
+     "on": "Yes sir!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "nod-boings",
+     "sound": "three tiny bobble-head 'boing's as he nods",
+     "on": "Thank you sir!",
+     "at": "under",
+     "level": "low",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 1.4
+  },
+  {
+   "who": "ramesh",
+   "text": "మేమంతా appraisal queue లో… Suresh కి మాత్రం VIP pass ఆ సార్?",
+   "say": "[sarcastically] మేమంతా appraisal queue లో… [deadpan] Suresh కి మాత్రం… VIP pass ఆ సార్?",
+   "act": "innocent-faced, polite and slow, every word a needle; stress on VIP",
+   "beat": "favourite-jab",
+   "sfx": [
+    {
+     "cue": "crowd-ooooh",
+     "sound": "office crowd 'ooooooh!' (rising)",
+     "on": "సార్?",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "dhan-dhan-dhan",
+     "sound": "TV-serial triple zoom 'DHAN! DHAN! DHAAAN!' on the manager; music cut",
+     "on": "after the ooooh",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.9,
+     "offset_s": 0.6
+    }
+   ],
+   "est_s": 3.6
+  },
+  {
+   "who": "priya",
+   "text": "సార్… మీకోసం ఒక special award!",
+   "say": "[warmly] సార్… [mischievously] మీకోసం ఒక… special award!",
+   "act": "fake-sweet and ceremonial, like an award-function anchor, a smirk underneath; stress on special",
+   "beat": "award",
+   "sfx": [
+    {
+     "cue": "drumroll",
+     "sound": "snare drumroll, rising",
+     "on": "మీకోసం ఒక…",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.2
+    },
+    {
+     "cue": "garland-drop",
+     "sound": "whoosh + heavy 'THWUMP' as the huge red flower garland drops round his neck, then a Santa hat lands 'fwump' on his bald head",
+     "on": "special award!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — OUR OWN dramatic shout (layered Gemini TTS takes, 3 voices, pitch-shifted, + reverse whoosh + sub boom; see brief 'FAAAH build'); music cut",
+     "on": "garland + Santa hat on",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.6,
+     "note": "FAAAH #2; a sleigh-bell jingle tail at low"
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "ramesh",
+   "text": "సంవత్సరం మొత్తం… మమ్మల్ని పరిగెత్తించినందుకు!",
+   "say": "[proudly] సంవత్సరం మొత్తం… [deadpan] మమ్మల్ని… పరిగెత్తించినందుకు!",
+   "act": "a solemn award-function announcer, then bone-dry on the reason; stress on పరిగెత్తించినందుకు",
+   "beat": "award-reveal",
+   "sfx": [
+    {
+     "cue": "stamp",
+     "sound": "STAMP slam on the award plaque + screen shake",
+     "on": "పరిగెత్తించినందుకు!",
+     "at": "on",
+     "level": "max",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "laugh-applause",
+     "sound": "laugh track + mock applause",
+     "on": "end of line",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "manager",
+   "text": "ఏంటీ?! రేపటి నుంచి అందరికీ… double workload!",
+   "say": "[shouting] ఏంటీ?! [angry] రేపటి నుంచి అందరికీ… [furious] double workload!",
+   "act": "the villain unmasked: a furious roar, garland swinging, Santa hat askew; stress on double",
+   "beat": "threat",
+   "sfx": [
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM + thunder-crack tail; lights flicker",
+     "on": "double",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "crowd-gasp",
+     "sound": "team's sharp gasp 'HAAH!'",
+     "on": "workload!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out for 0.3 s; Ramesh turns to the camera",
+     "on": "end of line",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.3,
+     "offset_s": 0.4
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "ramesh",
+   "text": "క్రిస్మస్‌కి శాంటా గిఫ్టులు ఇస్తాడనుకున్నాం... మన మేనేజర్ మాత్రం పనులు గిఫ్ట్‌గా ఇచ్చాడు!",
+   "say": "[deadpan] క్రిస్మస్‌కి శాంటా గిఫ్టులు ఇస్తాడనుకున్నాం… [dramatic pause] మన మేనేజర్ మాత్రం… [sarcastically] పనులు గిఫ్ట్‌గా ఇచ్చాడు!",
+   "act": "turning to the camera with the innocent face of a mastermind: a dry storyteller's set-up, a beat, then the sting; stress on పనులు",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "music-box",
+     "sound": "tiny music-box jingle under the first half",
+     "on": "క్రిస్మస్‌కి శాంటా గిఫ్టులు",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.8
+    },
+    {
+     "cue": "donk",
+     "sound": "hollow wooden 'DONK' on the manager's blank face",
+     "on": "ఇచ్చాడు!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.5,
+     "offset_s": 0.2
+    }
+   ],
+   "est_s": 5.0
+  },
+  {
+   "who": "team",
+   "text": "Merry Christmas Sir!",
+   "say": "[excited] Merry Christmas Sir!",
+   "act": "the whole team together, a loud, cheerful, sing-song shout, perfectly innocent",
+   "beat": "freeze",
+   "sfx": [
+    {
+     "cue": "popper-cheer",
+     "sound": "party poppers + team cheer",
+     "on": "Christmas",
+     "at": "on",
+     "level": "high",
+     "dur_s": 0.8
+    },
+    {
+     "cue": "freeze",
+     "sound": "record scratch + FREEZE FRAME (camera-flash white pop)",
+     "on": "Sir!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.4,
+     "offset_s": 0.1
+    },
+    {
+     "cue": "comedy-sting",
+     "sound": "comedy BGM sting under the freeze: bouncy tuba 'bom-bom-ba-BOM' + sleigh bells (original)",
+     "on": "freeze",
+     "at": "after",
+     "level": "high",
+     "dur_s": 2.0,
+     "offset_s": 0.4
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "laugh track tail",
+     "on": "freeze",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 2.0,
+     "offset_s": 0.5
+    }
+   ],
+   "est_s": 3.6
+  },
+  {
+   "who": "gopi",
+   "text": "మీ manager కి ఏ award ఇస్తారు? Comment చేయండి!",
+   "say": "[laughs] మీ manager కి ఏ award ఇస్తారు? [excited] Comment చేయండి!",
+   "act": "laughing along with the viewer, a friendly nudge",
+   "beat": "comment",
+   "sfx": [
+    {
+     "cue": "bubble-pops",
+     "sound": "three comment-bubble pops",
+     "on": "Comment",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 2.4
+  },
+  {
+   "who": "gopi",
+   "text": "మీ office manager ని tag చేయండి… రేపు Episode 2!",
+   "say": "[mischievously] మీ office manager ని… [whispers] tag చేయండి… [excited] రేపు Episode 2!",
+   "act": "a conspiratorial whisper on tag, then a bright teaser",
+   "beat": "tag-teaser-close",
+   "sfx": [
+    {
+     "cue": "tag-swoosh",
+     "sound": "swoosh + pop as a contact card gets tagged",
+     "on": "tag",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "ep2-hit",
+     "sound": "'Episode 2' card slam",
+     "on": "Episode 2!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card sting + sleigh-bell sparkle",
+     "on": "end card",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.6
+  }
+ ],
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (same as Ep 0/Ep 2: one series look). Setting: the same generic office as 20 Nov (open cubicles, big wall clock, the manager's glass cabin 'MANAGER', no company name, no logos or brands). Continuity egg: a small sticky note 'SECONDARY ⭐' on Ramesh's monitor (Ep 0 callback). Freeze frames = still + white flash pop + slight desaturation, not a skin switch. Christmas decor, office-party only: paper star, a small decorated tree by the reception, red-green streamers, a 'MERRY CHRISTMAS' banner (no religious imagery, no church/nativity). Pantry: kettle, tea cups, a whiteboard.",
+  "CAST (same in every frame of Ep 1 and Ep 2, and the same as Ep 0 '10 nimishala late', 20 Nov): RAMESH = RAMESH_OPT from tools/anim2d/cast.md (light-blue untucked shirt, messy hair, light stubble, badge 'RAMESH · STAFF'; his helmet on his desk); MANAGER = MANAGER_OPT (tucked white shirt, maroon tie, thick moustache, bald top + grey temples, paunch, the plain white mug in his LEFT hand). NEW SURESH (not the 15 Nov TL): oiled, shiny side-parted hair with a comb line, a too-tight pale-lavender formal shirt buttoned to the collar with straining buttons, no tie, a small notepad, badge 'SURESH · STAFF', always nodding (bobble nod loop). NEW PRIYA: high ponytail, mustard-yellow top under a navy cardigan, small gold hoops, a pen behind her ear, a clipboard when she hosts the games, badge 'PRIYA · STAFF'. EXTRAS (silent / chorus only): the 20 Nov colleagues — pink-kurta woman with a bun, green-shirt man with glasses, orange-shirt man with a moustache. Gopi: corner cut-out for his lines only.",
+  "Intro 0.0-0.8 s (no voice): text hook '🎄 Operation Red Flower 🌺' big from frame 1. Villain entry: the cabin door blasts open, the manager walks out in slow-mo, mug steam drifting like smoke, low camera angle.",
+  "L1 hook: DHOOM punch-in on 'Attention'; jingle sparkle + tinsel on 'Christmas games!'; on 'కానీ…' the record scratch, the decorations seem to droop; chip 'PENDING WORK ✅ FIRST'.",
+  "L2: Ramesh with a sweet innocent smile, hands folded; colleagues snicker behind the cubicles. Whip to the pantry.",
+  "L3-L4 (secret pantry meeting): low warm light, the team huddled round the kettle; Priya draws on the whiteboard: '🎯 TARGET: MANAGER'. On 'Operation Red Flower!' a heist-style title card 'OPERATION RED FLOWER 🌺' slams in; hands-in huddle.",
+  "L5 musical chairs: a row of office chairs; the manager cracks his knuckles, struts. The tune stops, everyone dives, he lands on the floor between two chairs; FAAAH #1 with a freeze-zoom on his face and a flat red burst.",
+  "L6: Ramesh offers a hand, too sweet; chip 'IMPORTANT CHAIR 💺 = MANAGER'; laugh track.",
+  "L7 follow: FOLLOW button pops by Gopi's corner cut-out and gets tapped.",
+  "L8-L10 Truth or Dare: a bottle spins on the pantry table and stops on the manager; Priya with her clipboard. On 'సురేష్!' a spotlight hits Suresh, who nods like a bobble-head; sparkle around him.",
+  "L11: Ramesh polite and slow; two chips: the team in a long 'APPRAISAL QUEUE' line vs Suresh with a gold 'VIP PASS' lanyard; 'ooooh', then the TV-serial triple zoom on the manager.",
+  "L12 award: drumroll; a huge bright-red flower garland (felicitation style, bright red, NOT a white/funeral garland) drops round his neck and a Santa hat lands on his bald head; FAAAH #2. Optional owner-approved extra: Priya tucks one small red flower behind his ear (the Telugu 'చెవిలో పువ్వు' = 'fooled you' nod), silent.",
+  "L13: an award plaque STAMPS in: 'BEST MANAGER 2026 🏆 — సంవత్సరమంతా మమ్మల్ని పరిగెత్తించినందుకు 🏃'; laugh + applause.",
+  "L14: the manager roars, garland swinging, hat askew; chip 'WORKLOAD ×2'; lights flicker on the DHOOM; then silence.",
+  "L15 punch: Ramesh turns to the camera (close-up, the team blurred behind); a little Santa-sack icon full of laptops/files on 'పనులు గిఫ్ట్‌గా'; DONK on the manager's blank face (st.blank + st.twitch).",
+  "L16 FREEZE: the whole team waves 'Merry Christmas Sir!' with party poppers; FREEZE FRAME on the group + the manager in garland and Santa hat, a white flash, text 'MERRY CHRISTMAS SIR! 😂' over the still; comedy sting.",
+  "L17 comment: bubbles 'మీ manager కి ఏ award? 👇' (example bubbles '😂😂', 'Best Running Coach award', no real usernames).",
+  "L18 tag + teaser: 'మీ OFFICE MANAGER ని TAG చేయండి! 😅' with a contact card 'My Manager 👔' tagged; card 'రేపు EPISODE 2 👀'; end card 'Series: Office Politics · Ep 1' + FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM."
+ ]
+}
