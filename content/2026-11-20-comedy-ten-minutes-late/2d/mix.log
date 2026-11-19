@@ -1,44 +1,45 @@
-pre: I=-18.6 LUFS TP=-2.5 dBTP | gain +3.6 dB | final: I=-15.2 LUFS TP=-1.7 dBTP LRA=5.2 | max limiter GR -2.8 dB
-    0.06  mid   -10.4  #1 tick-tock 1
-    0.33  mid   -10.4  #1 tick-tock 2
-    0.60  mid   -10.4  #1 tick-tock 3
-    0.87  mid   -10.4  #1 tick-tock 4
-    1.12  high   -4.4  #2 TING (10:10)
-    0.78  low   -20.4  #3 tiptoe plink 1
-    0.92  low   -20.4  #3 tiptoe plink 2
-    1.06  low   -20.4  #3 tiptoe plink 3
-    1.09  mid   -10.4  #4 whoosh (whip-pan)
-    2.16  max    -2.1  #5 DHOOM
-    4.26  low   -20.4  #6 bloop (ten fingers)
-    6.34  mid   -10.4  #7 coffee slurp
-    7.83  high   -4.4  #8 dun... DUNN
-    8.49  mid   -10.4  #9 whoosh + calendar flips
-    9.76  mid   -13.0  #10 snare drumroll (low->mid)
-   11.53  max    -2.0  #11 STAMP slam
-   12.45  high   -4.4  #12 sad trombone
-   13.00  mid   -10.4  #13 follow pop-in
-   13.45  mid   -10.4  #14 tap + ding
-   14.00  high   -4.4  #15 3 stomps + glass door bang
-   14.49  high   -4.4  #16 crowd 'ooooooh!'
-   23.70  max    -1.7  #17 DHAN! 1
-   23.95  max    -1.7  #17 DHAN! 2
-   24.20  max    -1.7  #17 DHANAAAN! 3
-   24.82  max    -1.7  #18 record scratch (FREEZE)
-   26.07  mid   -10.4  #19 crowd gasp 'HAAH!'
-   30.54  mid   -10.4  #21 long coffee slurp
-   31.78  mid   -10.4  #22 mock-heroic brass ta-da-DAAA
-   34.18  mid   -10.4  #23 sparkly ding
-   35.63  low   -20.4  #25 soft whoosh (lean in)
-   38.26  max    -1.7  #26 hollow DONK
-   38.36  max    -2.2  #27 audience laugh track (max -> mid)
-   38.76  high   -7.2  #28 HOORAY cheer + applause
-   40.06  high   -4.4  #29 rimshot ba-dum-TSS
-   43.05  mid   -10.4  #30 comment-bubble pops
-   44.79  mid   -10.4  #31 tag swoosh + pop
-   45.58  mid   -10.4  #32 end-card sting + sparkle
-   45.78  low   -20.4  #33 callback tick 1
-   45.98  low   -20.4  #33 callback tick 2
-   46.18  low   -20.4  #33 callback ting
-voice peaks: [-5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4, -5.4] | bed under voice -20.8 open -13.0
-silence 0.445 s, max 0.0
-mix ok 46.55
+voice phone-band 50 ms RMS p90 (pre-master): -20.0 dBFS
+pre: I=-17.3 LUFS TP=-2.2 dBTP | gain +2.3 dB | final: I=-15.1 LUFS TP=-1.7 dBTP LRA=7.2 | max limiter GR -1.8 dB
+    0.06  mid    -4.9  #1 tick-tock 1
+    0.33  mid    -5.5  #1 tick-tock 2
+    0.60  mid    -6.2  #1 tick-tock 3
+    0.87  mid    -5.0  #1 tick-tock 4
+    1.12  high   -9.6  #2 TING (10:10)
+    0.78  low   -22.7  #3 tiptoe plink 1
+    0.92  low   -22.7  #3 tiptoe plink 2
+    1.06  low   -22.6  #3 tiptoe plink 3
+    1.09  mid   -11.6  #4 whoosh (whip-pan)
+    2.04  max    -2.4  #5 DHOOM
+    4.26  low   -28.2  #6 bloop (ten fingers)
+    6.34  mid    -9.3  #7 coffee slurp
+    7.83  high   -2.5  #8 dun... DUNN
+    8.49  mid    -4.8  #9 whoosh + calendar flips
+    9.76  mid    -6.4  #10 snare drumroll (low->mid)
+   11.37  max    -2.6  #11 STAMP slam
+   12.60  high   -7.4  #12 sad trombone
+   13.15  mid   -16.7  #13 follow pop-in
+   13.60  mid   -15.6  #14 tap + ding
+   14.15  high   -2.1  #15 3 stomps + glass door bang
+   14.64  high   -1.8  #16 crowd 'ooooooh!'
+   23.85  max    -2.5  #17 DHAN! 1
+   24.10  max    -2.6  #17 DHAN! 2
+   24.35  max    -2.7  #17 DHANAAAN! 3
+   25.07  max    -6.1  #18 record scratch (FREEZE)
+   27.29  mid   -11.5  #19 crowd gasp 'HAAH!'
+   31.80  mid   -11.2  #21 long coffee slurp
+   33.04  mid   -15.8  #22 mock-heroic brass ta-da-DAAA
+   35.43  mid   -13.2  #23 sparkly ding
+   36.89  low   -21.5  #25 soft whoosh (lean in)
+   39.52  max    -4.9  #26 hollow DONK
+   39.62  max    -5.9  #27 audience laugh track (max -> mid)
+   40.02  high   -6.3  #28 HOORAY cheer + applause
+   41.32  high   -5.0  #29 rimshot ba-dum-TSS
+   43.30  mid   -15.6  #30 comment-bubble pops
+   45.05  mid   -16.7  #31 tag swoosh + pop
+   45.89  mid   -14.3  #32 end-card sting + sparkle
+   46.09  low   -15.0  #33 callback tick 1
+   46.29  low   -15.2  #33 callback tick 2
+   46.49  low   -25.1  #33 callback ting
+voice peaks: [-6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7, -6.7] | bed under voice -22.7 open -14.3
+silence 0.446 s, max 0.0
+mix ok 47.16

@@ -46,7 +46,7 @@ def tv_band(x, fc, q=2.0, hop=256, nfft=1024):
     xp = np.concatenate([x, np.zeros(nfft)])
     for s in range(0, len(x), hop):
         fr = xp[s:s + nfft] * win; c = fc[min(len(fc) - 1, s + nfft // 2)]
-        g = 1 / (1 + (q * (f / c - c / np.maximum(f, 1)))) ** 2
+        g = 1 / (1 + (q * (f / c - c / np.maximum(f, 1))) ** 2)   # (bracket fixed 19 Nov, QC)
         out[s:s + nfft] += np.fft.irfft(np.fft.rfft(fr) * g) * win; wsum[s:s + nfft] += win ** 2
     return (out / np.maximum(wsum, 1e-6))[:len(x)]
 def tv_lowpass(x, fc, hop=256, nfft=1024):
@@ -93,10 +93,26 @@ def put(bus, sig, at, pan=0.0):
     if s < 0: sig = sig[-s:]; s = 0
     e = min(n, s + len(sig))
     if s < n: bus[s:e] += sig[: e - s]
-def cue(name, level, sig, at, pan=0.0, bus=None, peak=None):
-    """place a cue at the brief's level (peak dBFS)."""
-    p = LV[level] if peak is None else peak
-    put(sfx if bus is None else bus, norm(sig, p), at, pan); CUES.append((name, level, at, len(sig) / SR, p))
+# Levels on PHONES (QC, 19 Nov): a cue is set by its loudest 50 ms RMS above 250 Hz (what a phone speaker plays),
+# relative to the voice's loud moments (p90 of the voice's 50 ms RMS above 250 Hz): max +7, high +1.5, mid -5, low -14 dB.
+# 'max' hits are also soft-saturated first (tanh) so their energy is dense, not one spike for the limiter to shave off.
+PH = {"low": -14.0, "mid": -5.0, "high": 1.5, "max": 7.0}
+def hp250(x): return fft_filter(x, 250, None, 2)
+def ph_max(x, a=0.0, b_=None):
+    m = x if x.ndim == 1 else x.mean(1); m = hp250(m); s0 = int(a * SR); m = m[s0:] if b_ is None else m[s0:int(b_ * SR)]
+    w = int(0.05 * SR); h = int(0.01 * SR)
+    if len(m) <= w: return 20 * np.log10(np.sqrt((m ** 2).mean()) + 1e-12)
+    c = np.cumsum(np.concatenate([[0], m ** 2])); r = (c[w::h][: (len(m) - w) // h + 1] - c[: len(m) - w + 1:h][: (len(m) - w) // h + 1]) / w
+    return 10 * np.log10(r.max() + 1e-12)
+def sat(x, drive=3.0): m = np.abs(x).max() or 1; return np.tanh(drive * x / m) / np.tanh(drive)
+def at_phone(sig, level, win=None, extra=0.0):
+    sig = np.asarray(sig, float)
+    if level == "max": sig = sat(sig, 3.0)
+    cur = ph_max(sig, *(win or (0.0, None))); return sig * db(VP90 + PH[level] + extra - cur)
+def cue(name, level, sig, at, pan=0.0, bus=None, peak=None, extra=0.0):
+    """place a cue at the brief's level, measured on phones (see PH)."""
+    x = at_phone(sig, level, extra=extra)
+    put(sfx if bus is None else bus, x, at, pan); CUES.append((name, level, at, len(x) / SR, 20 * np.log10(np.abs(x).max() + 1e-12)))
 
 # ---------------- SFX builders ----------------
 def tick(hi=True):
@@ -110,13 +126,19 @@ def pluck(f, d=0.12):
 def whoosh(d=0.3, f0=400, f1=3000, q=1.2):
     x = env_x(d); fc = f0 * (f1 / f0) ** (x / d); return tv_band(noise(d), fc, q) * np.sin(np.pi * x / d) ** 1.5
 def dhoom():
+    """DHOOM: sub sweep 90->35 Hz + a low-passed thump + a cymbal crash, PLUS the phone layers (QC): a big snare/clap crack
+    (200 Hz-4 kHz), a distorted copy of the boom (its harmonics 150-1500 Hz are what a phone plays) and a low brass stab."""
     d = 1.1; x = env_x(d); f = 35 + 55 * np.exp(-x * 4)
     boom = sine(f, d) * np.exp(-x * 2.6) * np.minimum(1, x / 0.004)
-    boom += 0.5 * sine(2 * f, d) * np.exp(-x * 5)                                          # an octave up so phones hear it
+    boom += 0.5 * sine(2 * f, d) * np.exp(-x * 5)
     thump = fft_filter(noise(0.25), None, 180) * expdec(0.25, 18)
     crash = fft_filter(noise(d), 4500, None) * np.exp(-x * 3.2) * np.minimum(1, x / 0.01)
-    o = boom; o[: len(thump)] += thump * 1.5; o += crash * db(-12) * (np.abs(boom).max() / (np.abs(crash).max() or 1))
+    dist = fft_filter(np.tanh(5 * (boom + 0.2 * sine(3 * f, d))), 150, 1600) * np.exp(-x * 3.5)
+    crack = fft_filter(noise(0.16), 200, 4000) * expdec(0.16, 22) + 0.8 * sine(190 + 60 * np.exp(-env_x(0.16) * 30), 0.16) * expdec(0.16, 16)
+    stab_ = sum(saw(midi(m), 0.5) for m in (36, 43, 48)) / 3; stab_ = fft_filter(stab_, 120, 2500) * expdec(0.5, 6) * np.minimum(1, env_x(0.5) / 0.004)
+    o = boom * 0.9; o[: len(thump)] += thump * 1.2; o += crash * 0.25 + dist * 0.8; o[: len(crack)] += crack * 1.4; o[: len(stab_)] += stab_ * 0.7
     return o
+
 def bloop(): x = env_x(0.2); return sine(300 + 400 * x / 0.2, 0.2) * np.sin(np.pi * x / 0.2)
 def slurp(d=0.4):
     x = env_x(d); fc = 1200 * (2500 / 1200) ** (x / d); s = tv_band(noise(d), fc, 3.0)
@@ -142,10 +164,13 @@ def drumroll(d):
         t0 += 1 / 30 + rng.normal(0, 0.002); k += 1
     return o * (db(-24 + 10 * (x / d)) / db(-14))        # low -> mid ramp (normalized to mid at the end)
 def stamp():
+    """STAMP: 60 Hz thump + a broadband paper slap, PLUS a wooden 'whack' body (220 Hz + 3 kHz crack) for phones."""
     d = 0.4; x = env_x(d)
     th = sine(60 + 50 * np.exp(-x * 30), d) * np.exp(-x * 14) + 0.6 * sine(150, d) * np.exp(-x * 22)
     slap = fft_filter(noise(0.08), 300, 9000) * expdec(0.08, 45)
-    o = th; o[: len(slap)] += slap * 1.4; return o * np.minimum(1, x / 0.001)
+    whack = fft_filter(noise(0.12), 250, 3500) * expdec(0.12, 30) + 0.9 * sine(220 + 80 * np.exp(-env_x(0.12) * 40), 0.12) * expdec(0.12, 22)
+    o = th * 0.8; o[: len(slap)] += slap * 1.4; o[: len(whack)] += whack * 1.5; return o * np.minimum(1, x / 0.001)
+
 def sad_trombone(total=1.0):
     notes = [(midi(55), 0.2), (midi(54), 0.2), (midi(53), 0.2), (midi(52), total - 0.6)]   # G3 F#3 F3 E3
     o = []
@@ -172,10 +197,17 @@ def stomps_door():
     for f, kk in ((2310, 9), (3170, 11), (4420, 8), (5830, 13), (2730, 10)): bang += sine(f, d) * np.exp(-x * kk) * 0.25 * (1 + 0.5 * np.sin(2 * np.pi * 37 * x))   # glassy rattle
     o[s:s + len(bang)] += bang[: len(o) - s]; return o
 def orch_hit(d, f=midi(36)):
+    """TV-serial orchestra hit: a low saw chord + noise + a 50 Hz thump, PLUS a brass stab an octave up and a
+    timpani/snare crack (200 Hz-3 kHz) so the hit is loud on phones."""
     x = env_x(d); ch = sum(saw(f * r, d) for r in (1, 1.5, 2, 2.378, 3)) / 3
     ch = tv_lowpass(ch, 3000 * np.exp(-x * 4) + 400) * np.exp(-x * (3.5 if d > 0.4 else 7))
+    br = sum(saw(f * 2 * r, d) + saw(f * 2 * r * 1.005, d) for r in (1, 1.189, 1.5)) / 6
+    br = fft_filter(br, 200, 3000) * np.exp(-x * (3 if d > 0.4 else 6)) * np.minimum(1, x / 0.006)
     thump = sine(50 + 40 * np.exp(-x * 30), d) * np.exp(-x * 10); nz = fft_filter(noise(d), 600, 8000) * np.exp(-x * 25) * 0.6
-    return (ch + thump * 1.2 + nz) * np.minimum(1, x / 0.003)
+    crack = fft_filter(noise(min(d, 0.12)), 200, 3000) * expdec(min(d, 0.12), 25)
+    o = ch + thump * 0.9 + nz + br * 1.2; o[: len(crack)] += crack * 1.2
+    return o * np.minimum(1, x / 0.003)
+
 def scratch(d=0.38):
     x = env_x(d); u = x / d
     fc = np.where(u < 0.45, 2000 - 1600 * (np.clip(u, 0, 0.45) / 0.45) ** 0.7, 400 + 1100 * (np.clip(u - 0.45, 0, 1) / 0.55) ** 1.3)   # 2 kHz -> 400 -> 1.5 kHz
@@ -303,6 +335,14 @@ def bed(t0, t1, bpm=120.0, g=1.0, bright=False, start_grid=None):
             put(music, _cache[key] * 0.12 * g, at_ + beat, 0.0)   # a clap on 2
         k += 1
 
+# ---------------- voices (first: every cue is levelled against them) ----------------
+VPK = -9
+for l in L:
+    a = rd(f"vo/L{l['i']}.wav"); voice_line = norm(a, VPK); s = int(l["start"] * SR); e = min(n, s + len(voice_line)); voice[s:e] += voice_line[: e - s]
+_vh = hp250(voice); _w = int(0.05 * SR)
+_vr = [20 * np.log10(np.sqrt((_vh[int(t * SR):int(t * SR) + _w] ** 2).mean()) + 1e-12) for l in L for t in np.arange(l["start"], l["start"] + l["dur"] - 0.05, 0.05)]
+_vr = np.array(_vr); VP90 = float(np.percentile(_vr[_vr > -60], 90)); print(f"voice phone-band 50 ms RMS p90 (pre-master): {VP90:.1f} dBFS")
+
 # ======================= PLACE EVERYTHING =======================
 B = b
 # Scene 1 -------------------------------------------------------------------------------------------------------------
@@ -330,26 +370,26 @@ ooh_at = B["oohS"]
 # duck the 'ooooh' to low where it touches L5's first word
 gx = np.arange(len(ooh)) / SR + ooh_at; duck_ = np.where(gx > S(5) - 0.05, db(LV["low"] - LV["high"]), 1.0)
 duck_ = np.convolve(duck_, np.ones(2205) / 2205, "same"); duck_[:2205] = 1
-ooh = norm(ooh, LV["high"]) * duck_[:, None]; put(crowd, ooh, ooh_at); CUES.append(("#16 crowd 'ooooooh!'", "high", ooh_at, len(ooh) / SR, LV['high']))
+ooh = at_phone(ooh, "high", (0.0, 0.5)) * duck_[:, None]; put(crowd, ooh, ooh_at); CUES.append(("#16 crowd 'ooooooh!'", "high", ooh_at, len(ooh) / SR, 20 * np.log10(np.abs(ooh).max())))
 whoosh_ = whoosh(0.15, 800, 3000)
 for k, t0 in enumerate(B["dhan"]):
-    put(sfx, norm(whoosh_, LV["mid"]), t0 - 0.12, (-0.5, 0.5, 0)[k])
+    put(sfx, at_phone(whoosh_, "mid"), t0 - 0.12, (-0.5, 0.5, 0)[k])
     cue(f"#17 DHAN{'!' if k < 2 else 'AAAN!'} {k + 1}", "max", orch_hit(0.22 if k < 2 else 0.7, midi([36, 37, 36][k])), t0, 0.0)
 cue("#18 record scratch (FREEZE)", "max", scratch(0.38), B["scratch"])
 gasp = crowd_layer("gasp", 0.45, 21, stagger=(0.0, 0.05), semis=1.5, murmur=0.05)
-put(crowd, norm(gasp, LV["mid"]), B["gasp"]); CUES.append(("#19 crowd gasp 'HAAH!'", "mid", B["gasp"], len(gasp) / SR, LV['mid']))
+gasp = at_phone(gasp, "mid"); put(crowd, gasp, B["gasp"]); CUES.append(("#19 crowd gasp 'HAAH!'", "mid", B["gasp"], len(gasp) / SR, 20 * np.log10(np.abs(gasp).max())))
 cue("#21 long coffee slurp", "mid", slurp(0.6), B["slurp2"], 0.2)
 cue("#22 mock-heroic brass ta-da-DAAA", "mid", brass(1.0), B["tGanta"])
 cue("#23 sparkly ding", "mid", sparkle_ding(), B["ding"])
 cue("#25 soft whoosh (lean in)", "low", whoosh(0.3, 300, 1500), B["lean"] - 0.02)
 cue("#26 hollow DONK", "max", donk(), B["donk"])
-laugh = crowd_layer("laugh", 3.0, 31, swell=lambda x: np.where(x < 1.0, 1.0, np.maximum(db(LV["mid"] - LV["max"]), 1 - (x - 1.0) * 0.45)), stagger=(0.03, 0.3), semis=2.5, murmur=0.18, copies=2)
-put(crowd, norm(laugh, LV["max"]), B["laugh"]); CUES.append(("#27 audience laugh track (max -> mid)", "max", B["laugh"], len(laugh) / SR, LV['max']))
+laugh = crowd_layer("laugh", 3.0, 31, swell=lambda x: np.where(x < 1.0, 1.0, np.maximum(db(LV["mid"] - LV["max"]), 1 - (x - 1.0) * 0.45)), stagger=(0.0, 0.08), semis=2.5, murmur=0.18, copies=2)
+laugh = at_phone(laugh, "max", (0.0, 1.0)); put(crowd, laugh, B["laugh"]); CUES.append(("#27 audience laugh track (max -> mid)", "max", B["laugh"], len(laugh) / SR, 20 * np.log10(np.abs(laugh).max())))
 cheer = crowd_layer("cheer", 2.2, 41, copies=2, stagger=(0.03, 0.25), swell=lambda x: np.minimum(1, x / 0.15) * np.where(x < 1.2, 1, np.maximum(0.3, 1 - (x - 1.2) * 0.7)))
 clap = applause(2.4, rate=40)
 hc = cheer[: len(clap)] if len(cheer) >= len(clap) else np.pad(cheer, ((0, len(clap) - len(cheer)), (0, 0)))
 hooray = hc / (np.abs(hc).max() or 1) + clap / (np.abs(clap).max() or 1) * 0.7
-put(crowd, norm(hooray, LV["high"]), B["hooray"]); CUES.append(("#28 HOORAY cheer + applause", "high", B["hooray"], len(hooray) / SR, LV['high']))
+hooray = at_phone(hooray, "high", (0.0, 1.0), ) * 1.0; put(crowd, hooray, B["hooray"]); CUES.append(("#28 HOORAY cheer + applause", "high", B["hooray"], len(hooray) / SR, 20 * np.log10(np.abs(hooray).max())))
 cue("#29 rimshot ba-dum-TSS", "high", rimshot(), B["rim"] - 0.30)      # the 'TSS' lands as the punch card's second half completes
 cue("#30 comment-bubble pops", "mid", bubbles(), B["tCm"])
 cue("#31 tag swoosh + pop", "mid", np.concatenate([whoosh(0.25, 600, 2800), popsweep(600, 1400, 0.15)]), B["tTag"] - 0.1)
@@ -374,10 +414,11 @@ cut(B["dhoom"] - 0.01, B["dhoom"] + 0.6)                      # DHOOM: music cut
 cut(B["tromb"], B["tromb"] + 1.0)                              # sad trombone
 music *= gate[:, None]
 
-# ---------------- voices ----------------
-VPK = -9
-for l in L:
-    a = rd(f"vo/L{l['i']}.wav"); voice_line = norm(a, VPK); s = int(l["start"] * SR); e = min(n, s + len(voice_line)); voice[s:e] += voice_line[: e - s]
+# voice -3 dB around every max hit that touches a word (QC): 20 ms ramps
+vd = np.ones(n)
+for name, lev, t0, d, pk in CUES:
+    if lev == "max": vd[int((t0 - 0.02) * SR):int((t0 + 0.45) * SR)] = db(-3)
+vd = np.convolve(vd, np.ones(882) / 882, "same"); voice *= vd
 act = np.convolve((np.abs(voice) > 0.01).astype(float), np.ones(4410) / 4410, mode="same")
 vact = np.clip(act * 3, 0, 1)
 music_duck = 1 - (1 - db(-9)) * vact                           # bed -9 dB under the voice
@@ -425,6 +466,8 @@ TARGET = -15.0
 gain_db = min(TARGET - I0, 6.0)                                 # cap: never push the hits more than ~6 dB into the limiter
 y, gl = tp_limiter(mix * db(gain_db), -1.7)
 write("mix.wav", y)
+if os.environ.get("STEMS"):   # SFX + crowd only (same master gain + limiter gain), for the per-cue phone check
+    write("stem_fx.wav", (sfx + crowd) * db(gain_db) * gl[:, None])
 I1, tp1, lra = measure("mix.wav")
 print(f"pre: I={I0:.1f} LUFS TP={tp0:.1f} dBTP | gain {gain_db:+.1f} dB | final: I={I1:.1f} LUFS TP={tp1:.1f} dBTP LRA={lra:.1f} | max limiter GR {20*np.log10(gl.min()):.1f} dB")
 
@@ -434,7 +477,7 @@ rep = {"integrated_lufs": I1, "true_peak_dbtp": tp1, "lra": lra, "master_gain_db
 for name, lev, t0, d, bus in CUES:
     a, b_ = int(t0 * SR), int(min(DUR, t0 + d) * SR)
     if b_ <= a: continue
-    own = bus + gain_db + 20 * np.log10(gl[a:b_].min())          # the cue's own peak in the final mix (after master gain + limiter)
+    own = bus + gain_db + 20 * np.log10(gl[a:b_].min())   # (bus = the cue's placed peak, dBFS)          # the cue's own peak in the final mix (after master gain + limiter)
     mixpk = 20 * np.log10(np.abs(y[a:b_]).max() + 1e-9)              # everything in that window (voice included)
     rep["cues"].append({"cue": name, "level": lev, "t": round(t0, 2), "dur": round(d, 2), "cue_peak_dbfs": round(float(own), 1), "mix_peak_in_window_dbfs": round(float(mixpk), 1)})
 for l in L:

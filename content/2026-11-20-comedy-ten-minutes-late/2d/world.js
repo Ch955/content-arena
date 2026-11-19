@@ -294,8 +294,8 @@ function makeAdult(o){
       const tw=bl&&i===1&&k.twitch?Math.sin(T_*80)*1.6:0; E.dot.setAttribute("cy",tw); E.dot.setAttribute("r",bl?(i===1&&k.twitch?4+Math.abs(Math.sin(T_*40)):4.5):4.5);
       E.w.setAttribute("ry",closed?1:8+(k.brow==="u"?2:0)+(k.gasp?2:0)+(k.wide?3:0)); [E.ir,E.pu].forEach(p=>{p.setAttribute("cx",k.look*4.5);p.setAttribute("cy",k.lookY*3)}); E.hl.setAttribute("cx",k.look*4.5-2.5);E.hl.setAttribute("cy",k.lookY*3-2.5);
       [E.ir,E.pu,E.hl].forEach(p=>p.style.opacity=closed||bl?0:1);
-      E.lid.setAttribute("d",k.sad?"M-13 -1 Q0 -9 13 -4":k.brow==="a"?"M-13 -5 Q0 -6 13 -1":"M-13 -3 Q0 -11 13 -3")});
-    brows.forEach((b,i)=>{const s=i?1:-1; let B={n:[-27,-29],u:[-34,-36],s:[-24,-30],a:[-30,-22],q:i?[-37,-35]:[-26,-27],w:[-27,-33]}[k.brow]||[-27,-29];
+      E.lid.setAttribute("d",k.sad?"M-13 -1 Q0 -9 13 -4":"M-13 -3 Q0 -11 13 -3")});
+    brows.forEach((b,i)=>{const s=i?1:-1; let B={n:[-27,-29],u:[-34,-36],s:[-24,-30],a:[-19,-33],q:i?[-37,-35]:[-26,-27],w:[-27,-33]}[k.brow]||[-27,-29];
       if(k.blank&&i===1&&k.twitch) B=[B[0]-Math.abs(Math.sin(T_*40))*4,B[1]-Math.abs(Math.sin(T_*40))*4];
       b.setAttribute("d",`M${s*8} ${B[0]} Q${s*20} ${(B[0]+B[1])/2-4} ${s*33} ${B[1]}`)});
   }
@@ -395,17 +395,17 @@ let B=null;
 function beats(){ if(B) return B; B={};
   // Scene 1: silent intro (tick-tock x4 -> TING at 10:10), the bark, the excuse, the threat
   B.tick=[0.06,0.33,0.60,0.87]; B.ting=1.12; B.titleIn=1.0; B.tip=[S(0)-0.42,S(0)-0.28,S(0)-0.14];
-  B.whip=S(0)-0.06; B.dhoom=segS(0,1); B.dhoomEnd=B.dhoom+0.6;
+  B.whip=S(0)-0.06; B.dhoom=segS(0,1)-0.12;   /* the crack lands in the gap before ఏంట్రా, the boom rolls under it */ B.dhoomEnd=B.dhoom+0.6;
   B.r0=S(1)-0.12; B.bloop=onset(1,"పది");
   B.m2=S(2)-0.1; B.slurp1=segE(2,0)+0.02; B.tChu=onset(2,"చూసుకుందాం"); B.dun1=E(2)+0.06; B.dun2=E(2)+0.36; B.flip0=E(2)+0.72;
   // Scene 2: the appraisal (drumroll -> STAMP -> sad trombone), the follow tap, the march + door bang
-  B.s2=S(3)-0.25; B.formIn=at(3,"top")-0.35; B.roll0=segS(3,1)-0.05; B.stamp=segS(3,2); B.tromb=E(3)+0.05;
+  B.s2=S(3)-0.25; B.formIn=at(3,"top")-0.35; B.roll0=segS(3,1)-0.05; B.stamp=segE(3,1)+0.04;   /* in the gap before "secondary" (QC: not on the word) */ B.tromb=E(3)+0.05;
   B.fol0=S(4)-0.4; B.tFolPop=S(4)-0.35; B.tFol=onset(4,"కొట్టండి"); B.fol1=E(4)+0.3;
   B.stomp=[E(4)+0.05,E(4)+0.23,E(4)+0.41]; B.bang=E(4)+0.58;
   // Scene 3: the cabin
   B.cab=B.bang+0.04; B.ooh=B.bang+0.04; B.oohS=B.bang-0.06;
   B.r5=S(5)-0.1; B.m6=S(6)-0.1; B.tGood=at(6,"బాగానే"); B.tPadi6=at(6,"పది"); B.dhan=[E(6)+0.10,E(6)+0.35,E(6)+0.60];
-  B.r7=S(7)-0.08; B.slap=onset(7,"ఒరేయ్"); B.scratch=segE(7,0)+0.03; B.frz0=B.scratch; B.tNee=segS(7,1); B.gasp=segE(7,1)+0.02; B.frz1=segS(7,2); B.musicIn=B.frz1;
+  B.r7=S(7)-0.08; B.slap=onset(7,"ఒరేయ్"); B.scratch=segE(7,0)+0.03; B.frz0=B.scratch; B.tNee=segS(7,1); B.gasp=segE(7,3)+0.02; B.frz1=segS(7,4);   /* retake: ఒరేయ్ | నీ | దుంప | తెగ! | పది నిమిషాలు… */ B.musicIn=B.frz1;
   B.m8=S(8)-0.1; B.slurp2=E(8)+0.04;
   B.r9=S(9)-0.08; B.tGanta=at(9,"గంట")-0.08;
   B.m10=S(10)-0.1; B.ding=onset(10,"మంచిది",0,0.2); B.sil0=E(10)+0.06; B.sil1=S(11)-0.015;
@@ -419,7 +419,7 @@ function beats(){ if(B) return B; B={};
 const focus=(z,wx,wy,sx=540,sy=1000,r=0)=>({z,fx:wx-(sx-540)/z,fy:wy-(sy-1000)/z,r});
 const mixCam=(a,b_,k)=>({z:lerp(a.z,b_.z,k),fx:lerp(a.fx,b_.fx,k),fy:lerp(a.fy,b_.fy,k),r:lerp(a.r||0,b_.r||0,k)});
 // keep short Telugu words (కి, ని, ఆ? ...) on the line of the word before them
-const subFix=s=>s.replace(/…/g,"...").replace(/([^\s.!?])\s([ఀ-౿]{1,2}[.,!?]*)(?=\s|$)/g,"$1&nbsp;$2").replace(/(^|\s)(మీ|నా|నీ|ఏం)\s/g,"$1$2&nbsp;").replace(/(టైమ్) (లో)/g,"$1&nbsp;$2").replace(/(రమేష్) (కి)/g,"$1&nbsp;$2").replace(/secondary rating/g,"secondary&nbsp;rating").replace(/top rating/g,"top&nbsp;rating").replace(/(సెకండరీ) (రేటింగ్)/g,"$1&nbsp;$2").replace(/(manager) (ని)/g,"$1&nbsp;$2").replace(/(tag) (చేయండి)/g,"$1&nbsp;$2");
+const subFix=s=>s.replace(/…/g,"...").replace(/([^\s.!?])\s([ఀ-౿]{1,2}[.,!?]*)(?=\s|$)/g,"$1&nbsp;$2").replace(/(^|\s)(మీ|నా|నీ|ఏం)\s/g,"$1$2&nbsp;").replace(/(టైమ్) (లో)/g,"$1&nbsp;$2").replace(/(రమేష్) (కి)/g,"$1&nbsp;$2").replace(/secondary rating/g,"secondary&nbsp;rating").replace(/top rating/g,"top&nbsp;rating").replace(/(సెకండరీ) (రేటింగ్)/g,"$1&nbsp;$2").replace(/(manager) (ని)/g,"$1&nbsp;$2").replace(/(tag) (చేయండి)/g,"$1&nbsp;$2").replace(/పది నిమిషాలు/g,"పది&nbsp;నిమిషాలు").replace("చేశాడా? Comment","చేశాడా?<br>Comment");
 
 function frame(t){
   const b=beats(); T_=t;
@@ -428,7 +428,7 @@ function frame(t){
   const donkHold=t>=b.donk&&t<b.donk+0.5;
   const T=frozen?b.frz0:silent?b.sil0:t;                 // character time (stops in the freeze and in the silent beat)
   const s2=t>=b.flip0+0.3&&t<b.cab, cabin=t>=b.cab, s1=!s2&&!cabin;
-  $("s").style.filter=frozen?`saturate(${lerp(1,0.25,clamp((t-b.frz0)/0.08))}) contrast(1.08) brightness(1.03)`:"";
+  $("s").style.filter=frozen?`saturate(${lerp(1,0.6,clamp((t-b.frz0)/0.08))}) contrast(1.08) brightness(1.03)`:"";   // light desaturation: Ramesh stays red
   const reset=(C,who,x,y,s)=>Object.assign(C.st,{x,y,s,talk:who&&!frozen&&!silent?talkOf(who,t):0,blink:frozen||silent?0:(((T*0.6+x*0.0013)%3.3)<0.11?1:0),shut:0,look:0,lookY:0,brow:"n",smile:0,laugh:0,sad:0,smirk:0,gasp:0,
     headRot:0,headY:0,hop:0,rot:0,item:"",itemL:"",itemRot:0,itemRotL:0,vis:1,wink:0,walk:0,lany:1,pack:0,spread:0,blank:0,twitch:0,angry:0,sweat:0,wide:0,squash:1,hL:[-62,-66],hR:[62,-66]});
 
@@ -502,7 +502,7 @@ function frame(t){
     if(t>=b.dhan[0]&&t<b.r7){ rc.angry=0; rc.gasp=1; rc.wide=1; rc.brow="u"; rc.look=0.6; rc.hL=[-40,-300]; rc.hR=[40,-300]; mc.smirk=1; MC.aim("R",MCX+100,1246) }   // shocked face (triple zoom)
     if(t>=b.r7){ rc.gasp=0; rc.wide=0; rc.angry=1; rc.brow="a"; rc.look=0.9; rc.rot=-6;
       const k=Math.max(0,1-Math.abs(t-b.slap)/0.12); RC.aim("R",RCX+150,1250-30*(1-k)); RC.aim("L",RCX-60,1250-30*(1-k)); rc.hop=k*6;      // slaps the desk
-      if(t>=b.frz0){ rc.hR=[150,-330]; rc.hL=[-80,-120] }                                                                                     // finger in his face (frozen)
+      if(t>=b.frz0){ rc.hR=[150,-330]; rc.hL=[-80,-120]; rc.gasp=1; rc.wide=1; rc.angry=1.7; rc.brow="a"; rc.headRot=-4 }                       // finger in his face, red and furious (frozen)
       if(t>=b.frz1){ const w=Math.sin(t*9); rc.hL=[-110+w*20,-260]; rc.hR=[110-w*20,-280]; rc.rot=-4 }                                         // rants with both hands
       mc.smirk=0; mc.brow="u"; mc.gasp=t>=b.frz0&&t<b.frz1?1:0; mc.wide=1; mc.sweat=t>=b.frz0?0.9:0 }
     if(t>=b.m8){ rc.angry=0.8; rc.brow="a"; rc.hL=[-62,-66]; RC.aim("L",RCX-70,1252); RC.aim("R",RCX+120,1252); rc.rot=-3;
@@ -612,7 +612,7 @@ function frame(t){
   wchip("c10",t>b.bloop-0.05&&t<b.m2,330,660,b.bloop-0.05,-3);
   wchip("c1h",cabin&&t>b.tGanta&&t<b.m10,RCX+120,700,b.tGanta,-3);
   wchip("cDbl",cabin&&t>b.tDbl-0.1&&t<b.donk,CB_+520,720,b.tDbl-0.1,3);
-  {const e=$("emo"), on=cabin&&t>b.tDbl+0.15&&t<b.donk+0.45; const [px,py]=scr(RCX+150,760); e.style.opacity=on?1:0; e.style.left=(px-60)+"px"; e.style.top=(py-80)+"px"; e.style.transform=`scale(${Math.max(0.01,pop(t,b.tDbl+0.15,0.3))}) rotate(${Math.sin(t*8)*8}deg)`}
+  {const e=$("emo"), on=cabin&&t>b.tDbl+0.15&&t<b.donk+0.45; const [px,py]=scr(CB_+520,720); e.style.opacity=on?1:0; e.style.left=(px+205)+"px"; e.style.top=(py-85)+"px"; e.style.transform=`scale(${Math.max(0.01,pop(t,b.tDbl+0.15,0.3))}) rotate(${Math.sin(t*8)*8}deg)`}
   show("frz",frozen,1,"");
   // calendar flip: DEC 10 -> JAN -> FEB -> MAR -> APPRAISAL DAY (Scene 1 -> 2)
   {const c=$("cal"), on=t>=b.flip0&&t<b.s2+0.55; const k=Math.min(clamp((t-b.flip0)/0.12),clamp((b.s2+0.55-t)/0.15)); c.style.opacity=on?k:0;
@@ -657,7 +657,7 @@ function frame(t){
   {const ec=$("endc"), eOn=t>b.end0; ec.style.opacity=eOn?clamp((t-b.end0)/0.12):0;
    $("eF").textContent=t<b.tEF?"FOLLOW @_REELRASAM":"FOLLOWING ✓  @_REELRASAM"; $("eF").style.transform=`scale(${Math.abs(t-b.tEF)<0.1?0.92:1})`; $("eF").style.background=t<b.tEF?"":"#6D6875";
    const eh=$("eHand"), ek=ease((t-b.end0)/Math.max(0.2,b.tEF-b.end0-0.05)), edip=Math.max(0,1-Math.abs(t-b.tEF)/0.1);
-   eh.style.opacity=eOn&&t<b.tEF+0.4?1:0; eh.style.transform=`translate(${lerp(900,500,ek)-50}px,${lerp(1300,800,ek)+edip*12}px) scale(${1-0.1*edip}) rotate(-8deg)`;
+   eh.style.opacity=eOn&&t<b.tEF+0.3?clamp((b.tEF+0.3-t)/0.12):0; eh.style.transform=`translate(${lerp(900,300,ek)-50}px,${lerp(1300,690,ek)+edip*12}px) scale(${1-0.1*edip}) rotate(-8deg)`;   // taps FOLLOW (left part), then leaves
    const n=b.eTick.filter(x=>t>=x).length+(t>=b.eTing?1:0); $("eSec").setAttribute("transform",`rotate(${n*6})`); $("eM").setAttribute("transform",`rotate(60)`); $("eH").setAttribute("transform",`rotate(305)`);
    $("eclk").style.transform=`scale(${t>=b.eTing&&t<b.eTing+0.3?1+0.1*Math.sin((t-b.eTing)/0.3*Math.PI):1})`}
   // flashes (coloured): DHOOM, STAMP, the door bang, DHAN x3, the freeze, the DONK

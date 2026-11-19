@@ -1,0 +1,52 @@
+{
+ "full": {
+  "voice_p90": -12.4,
+  "hits": {
+   "DHOOM": 9.3,
+   "STAMP": 6.7,
+   "DHAN1": 8.2,
+   "DHAN2": 8.3,
+   "DHAN3": 8.5,
+   "scratch": 5.0,
+   "DONK": 7.1,
+   "laugh 1st s": 5.4,
+   "HOORAY": 5.4,
+   "rimshot": 0.1,
+   "TING": 1.5,
+   "trombone": 3.3,
+   "ooh": 4.8,
+   "gasp": -1.3,
+   "brass": 3.3,
+   "whip whoosh": 1.5,
+   "slurp1": 0.9,
+   "slurp2": -3.7,
+   "dun-DUNN": 5.2,
+   "stomps+door": 2.5
+  }
+ },
+ "phone>250Hz": {
+  "voice_p90": -14.3,
+  "hits": {
+   "DHOOM": 4.7,
+   "STAMP": 5.7,
+   "DHAN1": 6.4,
+   "DHAN2": 6.4,
+   "DHAN3": 6.6,
+   "scratch": 6.6,
+   "DONK": 6.7,
+   "laugh 1st s": 6.8,
+   "HOORAY": 6.8,
+   "rimshot": 1.9,
+   "TING": 2.5,
+   "trombone": 1.1,
+   "ooh": 3.4,
+   "gasp": 0.1,
+   "brass": 4.7,
+   "whip whoosh": 2.5,
+   "slurp1": 1.4,
+   "slurp2": -4.7,
+   "dun-DUNN": 1.0,
+   "stomps+door": 1.1
+  }
+ }
+}

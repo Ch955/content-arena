@@ -27,7 +27,7 @@ def gemini(path):
             try: r = requests.post(f"{API}/{model}:generateContent", json=body, timeout=60)
             except requests.RequestException as e: print("  ", model, e.__class__.__name__, flush=True); continue
             if r.status_code == 200:
-                try: return r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                try: return " ".join(x.get("text","") for x in r.json()["candidates"][0]["content"]["parts"] if not x.get("thought")).strip()
                 except (KeyError, IndexError): pass
             print("  ", model, r.status_code, flush=True)
         time.sleep(20 * (rnd + 1))

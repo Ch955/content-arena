@@ -20,6 +20,9 @@ Pipeline: voices.py -> vo_orig (backup) -> recut.py (vo_orig -> vo_fix; L4 cut a
 -> tighten.py (MAXP=.26 KEEP=.18 TH=.02; vo_fix -> vo) -> beat.py (+0.36 s gap in L7 for the record scratch)
 -> voices.py --build. Takes checked with the Gemini listener (stt_check.json; the strong listener's daily quota ran out
 after L9, so L10-L13 were checked with flash-lite + seg_check.py). Total 46.55 s after the brief's 4 trims.
+QC retakes (19 Nov, Gemini, same voices): L7 (crisp 'నీ… దుంప… తెగ!', FIT 1.06), L12 (normal voice), L13 (normal voice, clear
+'tag'); first takes kept in vo_take1/. Checked with gemini-3.5-transcribe + gemini-3.5-flash-lite (the strong listeners were
+out of quota). beat.py now also opens a 0.15 s gap before 'secondary' for the STAMP. End card +0.3 s. Total 47.16 s.
 GAP values leave room for the SFX hits (brief: 'leave voice gaps for the high/max hits'): the DUN-DUNN + calendar flip
 before L3, the sad trombone before L4, the stomps/door bang + 'ooooh' before L5, DHAN-DHAN-DHAAN before L7, the long
 slurp before L9, the 0.4 s TOTAL silence before L11 (the punch), and the silent punch card + laugh track before L12."""
@@ -30,9 +33,9 @@ FPS = 30
 INTRO = 1.20       # silent intro (trim step 1: 1.45 -> 1.2): clock tick-tock -> 10:10 TING, Ramesh tiptoes in (brief: first voice at ~1.5 s)
 SILENCE = 0.40     # the total silence before the punch (never cut)
 CARD = 2.75        # DONK + laugh + HOORAY + the silent punch card (typed in two halves, rimshot) before L12
-TAIL = 1.05        # end card (trim step 4: the sting overlaps L13's end): sting + sparkle, tick-tick-ting callback
+TAIL = 1.35        # end card (trim step 4: the sting overlaps L13's end; +0.3 s for the end card, QC 19 Nov): sting + sparkle, tick-tick-ting callback
 SPEED = {"gemini": 1.15, "eleven": 1.05, "sarvam": 1.05}
-FIT = {}           # extra atempo per line (0.9-1.1) to fit a re-take into its old slot
+FIT = {7: 1.06}    # L7 retake (QC, 19 Nov) slightly faster to stay near 47 s; extra atempo per line (0.9-1.1) to fit a re-take into its old slot
 LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with v3 [tags])  -- from script.json
     ("manager", "ఒరేయ్ రమేష్! ఏంట్రా లేటుగా వచ్చావు?", INTRO,
      "a smug 45-year-old boss catching a latecomer: a loud bark on the name, then slow, mocking sarcasm; stress on లేటుగా",
@@ -56,8 +59,8 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
      "unbothered and sweet at first, then a slow, smug gotcha, leaning back with the mug; stress on పది",
      "[calmly] నీ పని బాగానే ఉంది రమేష్. [smugly] కానీ నువ్వు… పది నిమిషాలు… [sarcastically] లేటుగా వచ్చావు కదా!"),  # 6 reason (DHAN x3 after)
     ("ramesh", "ఒరేయ్... నీ దుంప తెగ! పది నిమిషాలు లేటుగా వస్తే రేటింగ్ తగ్గిస్తారా ఎవరైనా?", 0.95,
-     "the dam breaks: a furious shout that throws the respect out of the window and hands the boss his own ఒరేయ్ back, then fast, incredulous ranting; comic fury, not real venom; stress on పది",
-     "[shouting] ఒరేయ్… [furious] నీ దుంప తెగ! [angry] పది నిమిషాలు లేటుగా వస్తే… రేటింగ్ తగ్గిస్తారా ఎవరైనా?"),    # 7 outburst (scratch + freeze)
+     "the dam breaks: a furious shout that hands the boss his own ఒరేయ్ back; then say నీ… దుంప… తెగ! crisply and deliberately, word by word, every syllable clear (nee, dum-pa, te-ga), same comic fury; then fast, incredulous ranting; comic fury, not real venom; stress on పది",
+     "[shouting] ఒరేయ్… [furious] నీ… దుంప… తెగ! [angry] పది నిమిషాలు లేటుగా వస్తే… రేటింగ్ తగ్గిస్తారా ఎవరైనా?"),   # retake 19 Nov (QC): crisp నీ… దుంప… తెగ!    # 7 outburst (scratch + freeze)
     ("manager", "మరి ఏం చేయమంటావ్?", 0.25,
      "completely unmoved, a slow, smug shrug, almost bored",
      "[smugly] మరి… [chuckles] ఏం చేయమంటావ్?"),                                                                 # 8 ask (long slurp after)
@@ -71,11 +74,11 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
      "leaning in, a slow, cheeky, dead-serious bargain, a beat before డబుల్; stress on డబుల్",
      "[mischievously] మరి… నా శాలరీ… [deadpan] డబుల్ చేస్తావా నువ్వు?"),                                          # 11 PUNCH (DONK, laugh, HOORAY)
     ("gopi", "మీ manager ఇలా చేశాడా? Comment చేయండి!", CARD,
-     "laughing along with the viewer, a friendly nudge",
-     "[laughs] మీ manager ఇలా చేశాడా? [excited] Comment చేయండి!"),                                              # 12 comment
+     "a friendly narrator in a normal, clear speaking voice with a smile, a friendly nudge; say the English word Comment clearly",
+     "మీ manager ఇలా చేశాడా? [excited] Comment చేయండి!"),                                                       # retake 19 Nov (QC): clear, normal voice                                              # 12 comment
     ("gopi", "మీ manager ని tag చేయండి!", 0.20,
-     "a conspiratorial grin, dropping to a cheeky whisper as if the manager might hear",
-     "[mischievously] మీ manager ని… [whispers] tag చేయండి!"),                                                   # 13 tag -> end card
+     "a cheeky grin in a clear, normal speaking voice (NOT a whisper); say the English word tag clearly",
+     "[mischievously] మీ manager ని… tag చేయండి!"),                                                             # retake 19 Nov (QC): normal voice, clear 'tag'                                                   # 13 tag -> end card
 ]
 
 sys.path.insert(0, os.path.join(os.environ.get("CONTENT_ARENA", "/home/user/content-arena"), "src"))
