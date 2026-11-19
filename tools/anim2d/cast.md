@@ -123,3 +123,23 @@ Office: Kiran `{...KIRAN_OPT, badge:["KIRAN M","TOWER B"], pin:true}`, Hema `{..
 Voices in that reel (all Gemini — the ElevenLabs key had 51 credits left, Sarvam none): Gopi=Puck, Nikhil=Charon,
 Ananya=Kore, Kiran=Fenrir, Hema=Despina. Kiran is never on ElevenLabs: `profile_for("male","young","cool")` is
 andhra-male-young = Nikhil's voice (the bank has one Andhra young male). Hema: profile andhra-female-middle (Seeta).
+
+## Office comedy one-offs: Ramesh + his manager (from "పది నిమిషాల లేట్!", `content/2026-11-20-comedy-ten-minutes-late/2d/world.js`, 20 Nov 2026)
+Generic office (not Tower B). `makeAdult()` there adds `messy` (uneven hair tufts), `bald` + `grey` (bald top with a
+shine, dark sides with grey temples), `paunch`, `tie`, `belt`, `untucked` (wavy shirt hem), `backpack` (pack behind the
+torso + front straps; `st.pack` shows/hides it), `st.spread` (open hands: ten fingers), `st.angry` (red flush),
+`st.sweat`, `st.wide` (wide eyes), `st.blank` + `st.twitch` (the DONK face: dot eyes, flat mouth, one eye twitching),
+`st.squash`, and the props `mug` (plain white coffee mug, no text/logo; the manager holds it in his LEFT hand, `itemL`)
+and `helmet` (dark-grey half-face bike helmet; Ramesh's left hand in Scene 1, on his desk after that).
+```js
+const RAMESH_OPT={skin:"#B9805A",hair:"#1B1310",shirt:"#9CCBF0",collar:"#84B8E2",button:"#FFFFFF",messy:true,untucked:true,pocket:true,stubble:"#4A3426",brow:6.5,lip:"#7A3A30",blush:0.2};   // Ramesh, late 20s: light-blue shirt (untucked), messy hair, light stubble
+const MANAGER_OPT={skin:"#B07850",hair:"#1C1612",grey:"#A7A7A7",bald:true,shirt:"#FAFAFA",collar:"#E3E3E3",tie:"#7B1E2B",paunch:true,belt:true,moustache:"#14100C",thickMo:true,lines:true,brow:7.5,lip:"#6A3028",blush:0.12};   // the manager, ~45: tucked white shirt, maroon tie, thick moustache, bald top + grey temples, paunch
+```
+Ramesh: `{...RAMESH_OPT, badge:["RAMESH","STAFF"], backpack:"#23262B", legs:{pant:"#3B4252",shoe:"#1A1A1A"}}` walking in;
+seated/standing in the cabin without the backpack. Manager standing: `legs:{pant:"#37404A",shoe:"#2B1B12"}`. Neither
+character is ever flipped (no mirrored badge text). Colleagues (silent, behind the cabin glass): a woman in a pink
+kurta with a bun, a man in a green shirt with glasses, a man in an orange shirt with a moustache.
+Voices in that reel (all Gemini; the ElevenLabs key cap had ~51 credits, Sarvam none): Ramesh=Sadachbia, the
+manager=Algieba, Gopi=Puck. Profiles if ElevenLabs is back: Ramesh `profile_for("male","young","aggressive")` =
+telangana-male-young (Kaka; never the free-plan built-in, which is Gopi's Liam), the manager
+`profile_for("male","middle","smooth")` = andhra-male-middle (Sai Datta, warm).

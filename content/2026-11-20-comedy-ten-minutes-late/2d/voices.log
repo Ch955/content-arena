@@ -1,0 +1,20 @@
+ElevenLabs credits left (account): 1051 | key cap: 51 | budget: 51
+  manager: needs 326 credits -> gemini
+  ramesh: needs 381 credits -> gemini
+  gopi: needs 290 credits -> gemini
+plan: {'manager': 'gemini', 'ramesh': 'gemini', 'gopi': 'gemini'}
+0 manager gemini 1.45 2.762
+1 ramesh gemini 4.512 1.101
+2 manager gemini 5.863 2.231
+3 gopi gemini 9.243 3.952
+4 gopi gemini 14.345 2.011
+5 ramesh gemini 17.406 3.305
+6 manager gemini 20.961 5.362
+7 ramesh gemini 27.373 3.771
+8 manager gemini 31.394 1.562
+9 ramesh gemini 33.656 1.936
+10 manager gemini 35.792 1.818
+11 ramesh gemini 38.129 2.405
+12 gopi gemini 43.285 3.032
+13 gopi gemini 46.516 1.643
+total 49.51

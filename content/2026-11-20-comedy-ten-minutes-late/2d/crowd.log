@@ -1,0 +1,20 @@
+request 0 ('Orus', 'Kore')
+request 1 ('Enceladus', 'Leda')
+request 2 ('Iapetus', 'Aoede')
+request 3 ('Umbriel', 'Zephyr')
+0 ooh 1.91 -> [1.91]
+0 gasp 2.03 -> [2.03]
+0 laugh 9.62 -> [np.float64(4.03), np.float64(5.24)]
+0 hooray 3.99 -> [np.float64(1.46), np.float64(2.37)]
+1 ooh 5.5 -> [np.float64(1.96), np.float64(3.24)]
+1 gasp 1.07 -> [1.07]
+1 laugh 9.92 -> [np.float64(4.68), np.float64(4.66)]
+1 hooray 4.96 -> [np.float64(2.5), np.float64(2.18)]
+2 ooh 5.46 -> [np.float64(2.41), np.float64(2.64)]
+2 gasp 1.09 -> [1.09]
+2 laugh 7.45 -> [np.float64(2.92), np.float64(3.78)]
+2 hooray 5.27 -> [np.float64(1.58), np.float64(3.29)]
+3 ooh 4.32 -> [np.float64(2.24), np.float64(1.63)]
+3 gasp 1.15 -> [1.15]
+3 laugh 6.67 -> [np.float64(3.48), np.float64(2.23)]
+3 hooray 5.04 -> [np.float64(3.12), np.float64(1.47)]

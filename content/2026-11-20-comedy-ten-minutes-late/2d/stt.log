@@ -1,0 +1,36 @@
+   gemini-3-flash-preview 429
+L6 [gemini] sim=0.98
+  exp: నీ పని బాగానే ఉంది రమేష్. కానీ నువ్వు… పది నిమిషాలు… లేటుగా వచ్చావు కదా!
+  got: నీ పని బాగానే ఉంది రమేష్. కానీ నువ్వు పది నిమిషాలు లేట్ గా వచ్చావు కదా?
+   gemini-3-flash-preview 429
+L7 [gemini] sim=0.73
+  exp: ఒరేయ్… నీ దుంప తెగ! పది నిమిషాలు లేటుగా వస్తే… రేటింగ్ తగ్గిస్తారా ఎవరైనా?
+  got: ఒరేయ్ నీకు ఒకటి తెలుసా? పది నిమిషాలు late గా వస్తే rating తగ్గిస్తారా ఎవరైనా?
+   gemini-3-flash-preview 429
+L8 [gemini] sim=1.00
+  exp: మరి… ఏం చేయమంటావ్?
+  got: మరి ఏం చేయమంటావ్
+   gemini-3-flash-preview 429
+L9 [gemini] sim=0.95
+  exp: రేపటి నుంచి… గంట ముందే ఆఫీస్‌కి వస్తా!
+  got: రేపటి నుంచి గంట ముందే ఆఫీస్కొస్తా
+   gemini-3-flash-preview 429
+   gemini-3.5-flash ReadTimeout
+   gemini-3.8-flash 429
+   gemini-flash-latest 429
+   gemini-pro-latest 429
+   gemini-3-flash-preview 429
+   gemini-3.5-flash 429
+   gemini-3.8-flash 429
+   gemini-flash-latest 429
+   gemini-pro-latest 429
+   gemini-3-flash-preview 429
+   gemini-3.5-flash 429
+   gemini-3.8-flash 429
+   gemini-flash-latest 429
+   gemini-pro-latest 429
+   gemini-3-flash-preview 429
+   gemini-3.5-flash 429
+   gemini-3.8-flash 429
+   gemini-flash-latest 429
+   gemini-pro-latest 429

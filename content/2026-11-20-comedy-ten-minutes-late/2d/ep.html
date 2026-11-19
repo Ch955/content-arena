@@ -1,0 +1,163 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Office comedy "పది నిమిషాల లేట్!" (the owner's own script). 2D animated, FLAT skin for the whole reel: a generic small
+     Hyderabad IT office (open-plan cubicles, a big wall clock, an "OFFICE TIME: 10:00 AM" board, the manager's glass cabin
+     with a "MANAGER" door plate; no company name, no brand, no logo anywhere), Scene 2 at Ramesh's desk ("APPRAISAL DAY"
+     rating form + STAMP), Scene 3 inside the glass cabin (3 colleague heads pop up over the cubicles behind the glass).
+     Picture follows the sound: the camera punch on the DHOOM, the STAMP shake, the DHAN-DHAN-DHAAN triple zoom, the
+     record-scratch FREEZE, the 0.4 s still + silent beat, the DONK snap-zoom on the blank face, confetti on the HOORAY,
+     the silent punch card typed in two halves (rimshot on the second). Cast: makeAdult() rig (tools/anim2d/cast.md);
+     new: Ramesh + the manager (saved in cast.md); Gopi = the house narrator badge. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#EAF3F8}
+svg{display:block}
+#s,#nar,#fx{position:absolute;left:0;top:0}
+#fx{z-index:4}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,20,30,.74);z-index:8}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:7}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center;background:rgba(16,20,30,.82);padding:4px 18px 4px 6px;border-radius:30px}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8553D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;opacity:0;z-index:1}
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* text hook (frame 1) + title (a beat later) */
+#hook{position:absolute;top:156px;left:24px;right:24px;text-align:center;z-index:6}
+#hook .pill{font-family:Anton;font-size:96px;letter-spacing:3px;padding:0 34px 4px;color:#E8553D}
+#title{position:absolute;top:300px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title span{display:inline-block;font-family:Anton;font-size:60px;letter-spacing:3px;color:#fff;background:#2D6CDF;border:6px solid #10141E;border-radius:18px;padding:0 26px 4px;box-shadow:0 8px 0 #10141E}
+/* chips */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:900;font-size:50px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:20px;padding:4px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
+.chip .te{font-weight:normal}
+#cDbl{background:#C5F2C0;font-size:64px}
+#emo{position:absolute;left:0;top:0;opacity:0;font-size:120px;z-index:5;filter:drop-shadow(0 6px 0 rgba(0,0,0,.4))}
+#frz{position:absolute;top:170px;right:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
+/* calendar flip (Scene 1 -> 2) */
+#cal{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:5;display:grid;place-items:center;background:rgba(16,20,30,.55)}
+#calP{position:relative;width:640px;height:560px;perspective:1600px}
+.pg{position:absolute;inset:0;background:#FFFDF5;border:8px solid #10141E;border-radius:28px;box-shadow:0 14px 0 #10141E;text-align:center;overflow:hidden;transform-origin:50% 0}
+.pg .rg{height:120px;background:#E8553D;border-bottom:8px solid #10141E;font-family:Anton;font-size:76px;letter-spacing:6px;color:#fff;line-height:112px}
+.pg .bd{font-family:Anton;font-size:250px;line-height:400px;color:#10141E}
+#pgA .bd{font-size:96px;line-height:1.1;padding-top:70px;letter-spacing:4px;color:#2D6CDF}
+#pgA .rg{background:#2D6CDF}
+/* rating form + stamp (Scene 2) */
+#form{position:absolute;left:90px;right:90px;top:300px;opacity:0;z-index:4;background:#FFFDF5;border:8px solid #10141E;border-radius:30px;box-shadow:0 14px 0 #10141E;padding:26px 40px 34px;font-family:InterB}
+#form .h{font-family:Anton;font-size:44px;letter-spacing:4px;color:#5A5F6E}
+#form .nm{font-family:Anton;font-size:74px;letter-spacing:3px;color:#10141E;line-height:1.05;margin-top:6px}
+#form .ln{height:12px;border-radius:6px;background:#E3E7EE;margin-top:16px}
+#form .rt{display:flex;align-items:center;gap:22px;margin-top:26px}
+#form .rt b{font-family:Anton;font-weight:normal;font-size:56px;letter-spacing:3px;color:#5A5F6E}
+#top{position:relative;font-family:Anton;font-size:80px;letter-spacing:4px;color:#10141E;background:#FFE066;border:6px solid #10141E;border-radius:18px;padding:0 24px}
+#top.glow{box-shadow:0 0 0 8px #FFF59D,0 0 50px 18px rgba(255,213,79,.95)}
+#top i{position:absolute;left:-10px;right:-10px;top:50%;height:12px;margin-top:-6px;background:#E53935;border-radius:6px;transform-origin:0 50%;transform:scaleX(0) rotate(-6deg)}
+#stamp{position:absolute;left:0;top:0;opacity:0;z-index:5;font-family:Anton;font-size:116px;letter-spacing:6px;color:#D32F2F;border:12px solid #D32F2F;border-radius:22px;padding:0 30px;background:rgba(255,245,245,.55);white-space:nowrap;
+  -webkit-mask-image:repeating-linear-gradient(115deg,#000 0 22px,rgba(0,0,0,.78) 22px 26px)}
+#bigR{position:absolute;left:30px;right:30px;top:420px;text-align:center;opacity:0;z-index:5}
+#bigR span{display:inline-block;font-family:Anton;font-size:76px;letter-spacing:2px;color:#fff;background:#10141E;border:6px solid #FFE066;border-radius:22px;padding:4px 30px 8px;box-shadow:0 10px 0 rgba(0,0,0,.4);white-space:nowrap}
+#bigR s{text-decoration:none;position:relative;color:#9AA0AA}
+#bigR s:after{content:"";position:absolute;left:-6px;right:-6px;top:52%;height:10px;background:#E53935;border-radius:5px;transform:rotate(-8deg)}
+#bigR em{font-style:normal;color:#FF6B5A}
+/* follow */
+#fol{position:absolute;top:760px;left:230px;width:620px;text-align:center;opacity:0;z-index:5}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:9}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:9}
+/* outburst text */
+#dumpa{position:absolute;left:20px;right:20px;top:330px;text-align:center;opacity:0;z-index:6}
+#dumpa span{display:inline-block;font-family:Rama,NotoTe;letter-spacing:0;font-size:120px;line-height:1.25;color:#FFE066;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E;padding:0 10px}
+/* the silent punch card */
+#card{position:absolute;left:34px;right:34px;top:250px;opacity:0;z-index:6;background:#FFFDF5;border:8px solid #10141E;border-radius:34px;box-shadow:0 14px 0 #10141E;padding:30px 30px 36px;text-align:center;transform-origin:50% 0}
+#card .l1,#card .l2{font-family:Rama,NotoTe;letter-spacing:0;line-height:1.3}
+#card .l1{font-size:58px;color:#10141E}
+#card .l2{font-size:64px;color:#D7263D;margin-top:14px}
+#card .w{display:inline-block;opacity:0;margin:0 6px}
+/* comment prompt + bubbles (L12) */
+#cq{position:absolute;top:900px;left:30px;right:30px;text-align:center;opacity:0;z-index:6}
+#cq span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:6}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:38px;line-height:1.2;color:#10141E}
+/* share: tag your manager */
+#share{position:absolute;inset:0;opacity:0;z-index:6}
+#share .dim2{position:absolute;inset:0;background:rgba(16,20,30,.78)}
+#sq{position:absolute;top:240px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:64px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+#sq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+#cbox{position:absolute;left:90px;right:90px;top:520px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:740px} #ct2{top:870px} #ct3{top:1000px}
+#ct1 .av{background:#7B1E2B} #ct2 .av{background:#00ACC1} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.9);z-index:7}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:Rama,NotoTe;font-size:52px;color:#fff;margin-top:10px}
+#eclk{position:absolute;right:70px;top:1260px}
+.flash{position:absolute;inset:0;opacity:0;z-index:7}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:7"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE COMEDY</div></div>
+<div id="hook"><span class="pill">10:10 AM ⏰</span></div>
+<div id="title"><span>OFFICE COMEDY 😂</span></div>
+<div class="chip" id="c10"><span class="te">10 నిమిషాలే</span> 🙏</div>
+<div class="chip" id="c1h">⏰ 1 hour early</div>
+<div class="chip" id="cDbl">₹ DOUBLE?</div>
+<div id="emo">😂</div>
+<div id="frz">❚❚ FREEZE</div>
+<div id="cal"><div id="calP">
+  <div class="pg" id="pgA"><div class="rg">HR · REVIEW</div><div class="bd">APPRAISAL<br>DAY</div></div>
+  <div class="pg" id="pg3"><div class="rg">MAR</div><div class="bd">31</div></div>
+  <div class="pg" id="pg2"><div class="rg">FEB</div><div class="bd">14</div></div>
+  <div class="pg" id="pg1"><div class="rg">JAN</div><div class="bd">01</div></div>
+  <div class="pg" id="pg0"><div class="rg">DEC</div><div class="bd">10</div></div>
+</div></div>
+<div id="form"><div class="h">PERFORMANCE REVIEW</div><div class="nm">RAMESH</div><div class="ln"></div><div class="ln" style="width:72%"></div>
+  <div class="rt"><b>RATING:</b><span id="top">TOP ⭐<i></i></span></div></div>
+<div id="stamp">SECONDARY</div>
+<div id="bigR"><span>RATING: <s>TOP</s> → <em>SECONDARY</em></span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="dumpa"><span>నీ దుంప తెగ!</span></div>
+<div id="card"><div class="l1" id="l1"></div><div class="l2" id="l2"></div></div>
+<div id="cq"><span>మీ <b>MANAGER</b> ఇలా చేశాడా? 😂<br><b>COMMENT</b> చేయండి!</span></div>
+<div id="cbs"></div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>మీ <b>MANAGER</b> ని <b>TAG</b> చేయండి! 😅</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">M</div>My Manager 👔<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">O</div>Office gang ☕</div>
+  <div class="ct" id="ct3"><div class="av">B</div>Bestie 💼</div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో twist! 🌀</div></div>
+  <svg id="eclk" width="190" height="190" viewBox="-95 -95 190 190"><circle r="86" fill="#FFFDF5" stroke="#10141E" stroke-width="9"/>
+    <g id="eTicks"></g><line id="eH" x1="0" y1="0" x2="0" y2="-42" stroke="#10141E" stroke-width="9" stroke-linecap="round"/><line id="eM" x1="0" y1="0" x2="0" y2="-64" stroke="#10141E" stroke-width="7" stroke-linecap="round"/>
+    <line id="eSec" x1="0" y1="12" x2="0" y2="-70" stroke="#E53935" stroke-width="3.5" stroke-linecap="round"/><circle r="7" fill="#E53935"/></svg></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style: flat for the whole reel (owner's choice); freezes are colour/saturation effects, not a new skin</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>
