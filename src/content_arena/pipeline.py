@@ -78,7 +78,8 @@ def front_matter(brief: str, key: str) -> str:
 # Owner's posting slots (9 Nov 2026), IST: the riddle in the morning, the story/lesson in the evening.
 SLOT_TIMES = {"podupu": "07:30", "book-story": "18:30", "life-lesson": "18:30", "festival": "19:00",
               "what-if": "07:30", "moral-dilemma": "07:30", "micro-doc": "07:30", "modern-dilemma": "07:30", "series": "07:30",
-              "twist-story": "07:30"}   # one reel a day, in the morning (owner, 13 Nov 2026)
+              "twist-story": "07:30",
+              "office-comedy": "07:30"}  # owner's own comedy scripts (19 Nov 2026), same morning slot   # one reel a day, in the morning (owner, 13 Nov 2026)
 
 
 def slot_time(slug: str, pillar: str | None) -> str | None:
