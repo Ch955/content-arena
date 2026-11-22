@@ -1,11 +1,11 @@
 ---
-post_slug: 2026-11-22-comedy-manager-mind-game
+post_slug: 2026-11-23-comedy-manager-mind-game
 pillar: office-comedy
 format: reel
 platforms: instagram,youtube
 language: te+en
 style: flat
-slot: "2026-11-22 07:30 IST"
+slot: "2026-11-23 07:30 IST"
 series: "Office Politics"
 episode: 2
 topic: "Office comedy (the owner's own story, '😂 Operation Manager Mind Game'): the manager challenges the team to three games, sure nobody can beat him. Honesty Test: Priya asks if he ever followed his own deadline, and he dodges in corporate-speak. Blindfold: he must find his chair with the team's appraisal clues, and Suresh guides him into the glass door. Silence: he lasts two seconds before barking orders. He asks who won, the team says 'మీరే సార్!', and Ramesh's punch to camera; freeze frame."
