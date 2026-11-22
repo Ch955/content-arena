@@ -4,7 +4,7 @@ text (Telugu letters + Latin words, like stt_check.py); FAAAH/chorus takes are d
 Usage: python listen.py lines [i ...] | python listen.py takes  -> listen.json"""
 import base64, difflib, json, os, re, subprocess, sys, time, glob
 import requests
-src = open("voices.py").read(); a = src.index("LINES = ["); ns = {"INTRO": 0.8, "SILENCE": 0.3, "TEAM": "team"}
+src = open("voices.py").read(); a = src.index("LINES = ["); ns = {"INTRO": 0.6, "SILENCE": 0.3, "TEAM": "team", "CHORUS_TEXT": "మీరే సార్!"}
 exec(src[a:src.index("\n]\n", a) + 3], ns); LINES = ns["LINES"]
 TAGS = re.compile(r"\[[^\]]{1,40}\]\s*"); norm = lambda s: re.sub(r"[^ఀ-౿a-z]", "", s.lower())
 API = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -35,10 +35,10 @@ def ask(paths, q):
 res = json.load(open("listen.json")) if os.path.exists("listen.json") else {}
 mode = sys.argv[1] if len(sys.argv) > 1 else "lines"
 if mode == "lines":
-    idx = [int(x) for x in sys.argv[2:]] or [i for i in range(len(LINES)) if LINES[i][0] != "team"]
-    for k in range(0, len(idx), 9):
-        grp = idx[k:k + 9]
-        m, ans = ask([f"vo/L{i}_raw.wav" for i in grp],
+    idx = [int(x) for x in sys.argv[2:]] or [i for i in range(len(LINES)) if LINES[i][0] != "team" and i != 8]
+    for k in range(0, len(idx), 15):
+        grp = idx[k:k + 15]
+        m, ans = ask([f"{os.environ.get('SRC', 'vo')}/L{i}_raw.wav" for i in grp],
                      f"There are {len(grp)} clips. Transcribe exactly what is spoken in EACH clip (Telugu in Telugu script, English words in Latin letters). "
                      "Also note if a clip contains a second speaker, words from another line, or someone reading out instructions. "
                      'Reply as JSON: {"1": {"text": "...", "issue": "none or a short note"}, "2": ...}')
@@ -51,7 +51,7 @@ if mode == "lines":
 else:
     paths = sorted(glob.glob("faaah/take_*.wav")) + sorted(glob.glob("chorus/*.wav"))
     m, ans = ask(paths, f"There are {len(paths)} short vocal clips. For EACH clip say what is heard: the words (if any), how many voices, "
-                 "whether it is one long dramatic shout like 'Faaaah!', a cheerful 'Merry Christmas Sir!', or something else/extra (speech, "
+                 "whether it is one long dramatic shout like 'Faaaah!', a cheerful Telugu 'మీరే సార్!' (Meere Sir!), or something else/extra (speech, "
                  'instructions read aloud, noise, silence). Reply as JSON: {"1": {"heard": "...", "kind": "SHOUT|CHORUS|OTHER", "clean": true/false, "note": "..."}, ...}')
     for n, p in enumerate(paths, 1):
         res[p] = ans.get(str(n)); print(p, "->", res[p], flush=True)
