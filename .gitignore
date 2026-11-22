@@ -32,3 +32,7 @@ content/*/assets/*.wav
 tools/anim2d/story16x9/stills/
 tools/anim2d/story16x9/sheet.png
 tools/anim2d/story16x9/*.mp4
+
+# raw voice takes / crowd stems from reel builds (regenerable, large)
+content/*/2d/**/*.wav
+content/*/2d/**/*.mp3
