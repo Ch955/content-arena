@@ -110,7 +110,7 @@ def ph_max(x, a=0.0, b_=None):
 def sat(x, drive=3.0): m = np.abs(x).max() or 1; return np.tanh(drive * x / m) / np.tanh(drive)
 def at_phone(sig, level, win=None, extra=0.0):
     sig = np.asarray(sig, float)
-    if level == "max": sig = sat(sig, 4.0)
+    if level == "max": sig = sat(sig, float(os.environ.get("DRIVE", 6.0)))
     cur = ph_max(sig, *(win or (0.0, None))); return sig * db(VP90 + PH_PRE.get(level, PH[level]) + extra - cur)
 def cue(name, level, sig, at, pan=0.0, bus=None, peak=None, extra=0.0):
     """place a cue at the brief's level, measured on phones (see PH)."""
@@ -522,7 +522,7 @@ crowd_cue("crowd 'ooooooh!'", "high", oo, B["ooh"], (0.0, 0.35))
 whoosh_ = whoosh(0.15, 800, 3000)
 for k, t0 in enumerate(B["dhan"]):
     put(sfx, at_phone(whoosh_, "mid"), t0 - 0.12, (-0.5, 0.5, 0)[k])
-    C(f"DHAN{'!' if k < 2 else 'AAAN!'} {k + 1}", "max", orch_hit(0.22 if k < 2 else 0.5, midi([36, 37, 36][k])), t0, win=(0.0, 0.22 if k < 2 else 0.4), extra=1.6 if k < 2 else 0.0)
+    C(f"DHAN{'!' if k < 2 else 'AAAN!'} {k + 1}", "max", orch_hit(0.22 if k < 2 else 0.5, midi([36, 37, 36][k])), t0, win=(0.0, 0.22 if k < 2 else 0.4), extra=2.6 if k < 2 else 0.0)
 # L12-L13 the award
 C("snare drumroll (low -> rising)", "low", drumroll(B["roll1"] - B["roll0"]), B["roll0"], extra=6.0, win=(B["roll1"] - B["roll0"] - 0.4, B["roll1"] - B["roll0"]))
 C("garland whoosh + THWUMP + hat fwump", "high", garland_drop(), B["garl"] - 0.1, win=(0.1, 0.45), extra=1.5)
@@ -544,7 +544,7 @@ C("hollow DONK", "high", donk(), B["donk"])
 C("party poppers", "high", poppers(), B["popper"] - 0.02, win=(0.0, 0.3))
 ch = crowd_layer("cheer", 0.8, 41, copies=2, stagger=(0.03, 0.15), swell=lambda x: np.minimum(1, x / 0.1) * np.maximum(0.2, 1 - x * 0.9))
 crowd_cue("team cheer", "mid", ch, B["popper"])
-C("FREEZE: record scratch + flash pop", "max", scratch(0.3) + np.pad(flash_pop(), (0, int(0.3 * SR) - len(flash_pop()))), B["frz"] - 0.02, win=(0.0, 0.3), extra=1.2)
+C("FREEZE: record scratch + flash pop", "max", scratch(0.3) + np.pad(flash_pop(), (0, int(0.3 * SR) - len(flash_pop()))), B["frz"] - 0.02, win=(0.0, 0.3), extra=2.2)
 C("comedy sting: tuba bom-bom-ba-BOM + bells", "high", tuba_sting(), B["sting"], win=(0.0, 1.0))
 lt3 = crowd_layer("laugh", 1.4, 35, swell=lambda x: np.where(x < 0.5, 1.0, np.maximum(db(-12), 1 - (x - 0.5) * 1.0)), stagger=(0.0, 0.08), semis=2.5, murmur=0.15)
 crowd_cue("laugh-track tail", "mid", lt3, B["laugh3"], (0.0, 0.5))
@@ -626,10 +626,11 @@ def tp_limiter(x, ceil_db=-1.2, look=0.005, rel=0.08):
         out_g[i] = cur
     out_g = np.minimum(out_g, g)
     return x * out_g[:, None], out_g
+mix = np.stack([fft_filter(mix[:, c], 30, None, 2) for c in range(2)], 1)   # QC 22 Nov: 30 Hz high-pass (sub energy no phone plays; it made the AAC encode overshoot)
 write("mix_pre.wav", mix)
 I0, tp0, _ = measure("mix_pre.wav")
-TARGET = -15.0
-CEIL = float(os.environ.get("CEIL", -3.5))   # QC 22 Nov: the AAC encode added ~2.8 dB on low punchy hits (mp4 read +1.2 dBTP at -1.7); -3.5 -> mp4 <= -1 dBTP
+TARGET = float(os.environ.get("TARGET", -16.5))   # QC 22 Nov: less master gain = less limiting, so the hits keep their punch at the lower ceiling
+CEIL = float(os.environ.get("CEIL", -4.5))   # QC 22 Nov: the AAC encode added ~2.8 dB on low punchy hits (mp4 read +1.2 dBTP at -1.7); -3.5 -> mp4 <= -1 dBTP
 gain_db = min(TARGET - I0, 6.0)                                 # cap: never push the hits more than ~6 dB into the limiter
 y, gl = tp_limiter(mix * db(gain_db), CEIL)
 write("mix.wav", y)

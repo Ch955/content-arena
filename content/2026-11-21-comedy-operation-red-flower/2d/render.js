@@ -27,13 +27,14 @@ if (args[0] === '--join') {
   await p.evaluate(() => document.fonts.ready);
   fs.writeFileSync(path.join(__dirname, 'beats.json'), JSON.stringify(await p.evaluate(() => beats()), null, 1));
   if (args[0] === '--beats') return b.close();
-  if (args.length && args[0] !== '--chunk') {
+  if (args.length && args[0] !== '--chunk' && args[0] !== '--from') {
     fs.mkdirSync(path.join(__dirname, 'stills'), { recursive: true });
     for (const t of args.map(Number)) { const t0 = Date.now(); await p.evaluate(t => render(t), t);
       await p.screenshot({ path: path.join(__dirname, 'stills', `still-${t}.png`) }); console.log('still', t, Date.now() - t0, 'ms'); }
     return b.close();
   }
   let f0 = 0, f1 = total, out = OUT, audio = true;
+  if (args[0] === '--from') { f0 = +args[1]; f1 = total; out = path.join(__dirname, 'tail.mp4'); audio = false; }   // QC 22 Nov: re-render only a tail (frames f0..end)
   if (args[0] === '--chunk') { const k = +args[1], n = +args[2]; f0 = Math.floor(total * k / n); f1 = Math.floor(total * (k + 1) / n); out = path.join(__dirname, `part${k}.mp4`); audio = false; }
   const ffArgs = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-i', '-'];
   if (audio) ffArgs.push('-i', path.join(__dirname, 'mix.wav'));
