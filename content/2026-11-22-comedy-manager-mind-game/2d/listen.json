@@ -1,0 +1,107 @@
+{
+ "L0": {
+  "expected": "ఈరోజు మీ అందరికీ… ఒక ఛాలెంజ్! ఎవరు ఎక్కువ తెలివైనవాళ్లో… ఈ గేమ్స్‌లో తెలుస్తుంది!",
+  "heard": "ఈరోజు మీ అందరికీ ఒక Challenge. ఎవరు ఎక్కువ తెలివైన వాళ్ళో ఈ Games లో తెలుస్తుంది.",
+  "issue": "none",
+  "sim": 0.78,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "expected": "మీరు కూడా… ఆడతారా సార్?",
+  "heard": "మీరు కూడా ఆడతారా సార్?",
+  "issue": "second speaker",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "expected": "నన్ను ఓడించేవాడు… ఈ office లో… ఇంకా పుట్టలేదు!",
+  "heard": "నన్ను ఓడించేవాడు ఈ ఆఫీసులో",
+  "issue": "incomplete sentence",
+  "sim": 0.6,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "expected": "సార్! మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్… మీరే ఫాలో అయ్యారా?",
+  "heard": "సార్, మీరు ఎప్పుడైనా టీం కి ఇచ్చిన Deadline మీరే Follow అయ్యారా? Game 2",
+  "issue": "second speaker, reading instructions",
+  "sim": 0.7,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "expected": "See… deadline అనేది ఒక mindset. Let's take it… offline!",
+  "heard": "ఇంకా పుట్టలేదు. See, Deadline అనేది ఒక Mindset.",
+  "issue": "completing previous line, includes second speaker",
+  "sim": 0.62,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "expected": "మీ deadlines వల్ల సార్… మాకు offline life ఏ… లేదు!",
+  "heard": "Let's take it offline. మీ Deadlines వల్ల సార్ మాకు Offline లైఫే లేదు. రమేష్!",
+  "issue": "second speaker",
+  "sim": 0.69,
+  "by": "gemini-3-flash-preview"
+ },
+ "L6": {
+  "expected": "Game 2! Blindfold… సార్, మీ chair ని మీరే కనిపెట్టండి!",
+  "heard": "Blindfold. సార్ మీ Chair ని మీరే కనిపెట్టండి.",
+  "issue": "second speaker, reading instructions",
+  "sim": 0.95,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "expected": "కొంచెం left సార్… మా pending appraisals లాగే… slow గా!",
+  "heard": "కొంచెం Left సార్. మా Pending appraisals లాగే స్లో గా.",
+  "issue": "second speaker",
+  "sim": 0.91,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "expected": "Yes sir! Straight వెళ్ళండి సార్!",
+  "heard": "Yes సార్, Straight వెళ్ళండి సార్.",
+  "issue": "second speaker",
+  "sim": 0.87,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "expected": "Game 3! Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!",
+  "heard": "Game 3 Silence Challenge. ఒక్క నిమిషం ఒక్క మాట కూడా వద్దు.",
+  "issue": "second speaker, reading instructions",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L11": {
+  "expected": "రమేష్! ఆ రిపోర్ట్ ఎక్కడ? సురేష్! క్లయింట్‌కి కాల్ చేశావా?",
+  "heard": "ఆ Report ఎక్కడ? సురేష్ Client కి Call చేసావా? రెండు సెకండ్స్ సార్.",
+  "issue": "second speaker",
+  "sim": 0.39,
+  "by": "gemini-3-flash-preview"
+ },
+ "L12": {
+  "expected": "రెండు seconds సార్… మీరు out!",
+  "heard": "మీరు అవుట్. నేను మాట్లాడకపోతే",
+  "issue": "second speaker, incomplete sentence",
+  "sim": 0.17,
+  "by": "gemini-3-flash-preview"
+ },
+ "L13": {
+  "expected": "నేను మాట్లాడకపోతే… ఈ office నడవదు! So… winner ఎవరు?",
+  "heard": "ఈ ఆఫీసు నడవదు. సో విన్నర్ ఎవరు?",
+  "issue": "completing previous line",
+  "sim": 0.31,
+  "by": "gemini-3-flash-preview"
+ },
+ "L15": {
+  "expected": "అవును సార్… గేమ్‌లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం… మీరు ఎప్పుడో ఓడిపోయారు!",
+  "heard": "అవును సార్, Game లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం మీరెప్పుడో ఓడిపోయారు.",
+  "issue": "second speaker",
+  "sim": 0.92,
+  "by": "gemini-3-flash-preview"
+ },
+ "L16": {
+  "expected": "Comment చేయండి… మీ office manager ని… tag చేయండి!",
+  "heard": "Comment చేయండి మీ ఆఫీస్ Manager ని Tag చేయండి.",
+  "issue": "second speaker",
+  "sim": 0.86,
+  "by": "gemini-3-flash-preview"
+ }
+}

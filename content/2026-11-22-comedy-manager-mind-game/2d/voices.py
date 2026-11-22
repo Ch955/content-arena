@@ -21,7 +21,9 @@ INTRO = 0.60       # silent villain entry under the text hook (brief: 0-0.6 s)
 SILENCE = 0.30     # all sound out before the punch (never cut)
 TAIL = 1.20        # end card 'Series: Office Politics · Ep 2' (trim step 3: the end sting overlaps L17)
 SPEED = 1.15
-FIT = {}           # extra atempo per line on top of x1.15 (set after the takes are in; never on L16 = index 15)
+FIT = {0: 1.06, 2: 1.05, 4: 1.06, 6: 1.05, 7: 1.04, 10: 1.06, 13: 1.07}
+# ^ extra atempo per line on top of x1.15 (22 Nov): after the recut + tighten the reel was 59.8 s; these (+ 3 tighter action gaps)
+#   bring it to ~58 s. NEVER on the owner's punch (L16 = index 15: plain x1.15, coordinator's rule) or the short lines.
 SILENT = {8}       # trim step 1 (brief), planned up front: L9 Priya's hike clue is not voiced
 TEAM = "team"
 CHORUS_TEXT = "మీరే సార్!"
@@ -56,13 +58,13 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     ("suresh", "Yes sir! Straight వెళ్ళండి సార్!", 0.60,
      "the eager yes-man, loud and loyal, nodding, pointing confidently at exactly the wrong thing",
      "[excited] Yes sir! [proudly] Straight వెళ్ళండి సార్!"),                                                              # 9 L10 (+ glass door, FAAAH #1)
-    ("priya", "Game 3! Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!", 1.95,
+    ("priya", "Game 3! Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!", 1.80,
      "bright host on the title, then a hushed, theatrical rule (clear, not a whisper); stress on ఒక్క",
      "[excited] Game 3! [whispers] Silence challenge… ఒక్క నిమిషం, ఒక్క మాట కూడా వద్దు!"),                              # 10 L11 game 3
     ("manager", "రమేష్! ఆ రిపోర్ట్ ఎక్కడ? సురేష్! క్లయింట్‌కి కాల్ చేశావా?", 0.75,
      "explodes instantly: loud, reflex boss-barking, rapid-fire; stress on రిపోర్ట్",
      "[shouting] రమేష్! ఆ రిపోర్ట్ ఎక్కడ? [angry] సురేష్! క్లయింట్‌కి కాల్ చేశావా?"),                                        # 11 L12 (owner, verbatim; + FAAAH #2)
-    ("ramesh", "రెండు seconds సార్… మీరు out!", 1.30,
+    ("ramesh", "రెండు seconds సార్… మీరు out!", 1.20,
      "a calm referee's verdict, savouring it; stress on out",
      "[deadpan] రెండు seconds సార్… [mischievously] మీరు out!"),                                                          # 12 L13 (+ OUT stamp)
     ("manager", "నేను మాట్లాడకపోతే ఈ office నడవదు! So… winner ఎవరు?", 0.45,
@@ -74,7 +76,7 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     ("ramesh", "అవును సార్... గేమ్‌లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం మీరు ఎప్పుడో ఓడిపోయారు!", 1.40,
      "to the camera, the innocent-looking mastermind: calm agreement, a beat, then a sweet, unhurried knife; stress on ఓడిపోయారు",
      "[deadpan] అవును సార్… గేమ్‌లో మీరు గెలిచారు. [dramatic pause] కానీ మా అందరి మనసుల్లో మాత్రం… [mischievously] మీరు ఎప్పుడో ఓడిపోయారు!"),  # 15 L16 PUNCH (owner, verbatim) + FREEZE
-    ("gopi", "Comment చేయండి… మీ office manager ని tag చేయండి!", 1.40,
+    ("gopi", "Comment చేయండి… మీ office manager ని tag చేయండి!", 1.30,
      "laughing with the viewer, then cheeky and conspiratorial (clear, not a whisper); say Comment and tag clearly",
      "[laughs] Comment చేయండి… [mischievously] మీ office manager ని… tag చేయండి!"),                                       # 16 L17 comment + tag
 ]

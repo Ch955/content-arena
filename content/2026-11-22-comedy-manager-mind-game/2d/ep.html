@@ -1,6 +1,7 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
-<!-- Office comedy Ep 1 "🎄 Operation Red Flower" (the owner's own story; series "Office Politics"). 2D animated, FLAT skin
+<!-- Office comedy Ep 2 "😂 Operation Manager Mind Game" (built on Ep 1's page; notes below are Ep 1's, the sets are in world.js).
+     Ep 1 "🎄 Operation Red Flower" (the owner's own story; series "Office Politics"). 2D animated, FLAT skin
      for the whole reel (one series look with Ep 0/Ep 2). Sets: the same generic office as 20 Nov (open cubicles, wall clock,
      the manager's glass cabin with the MANAGER door; no company name, brand or logo) dressed for an OFFICE Christmas party
      only (streamers, a paper star, a small decorated tree, a MERRY CHRISTMAS banner; no religious imagery), and a pantry
@@ -29,33 +30,35 @@ svg{display:block}
 /* text hook (frame 1) + series title (a beat later) */
 #hook{position:absolute;top:150px;left:24px;right:24px;text-align:center;z-index:6}
 #hook .pill{font-family:Anton;font-size:84px;letter-spacing:2px;line-height:1.08;padding:6px 30px 10px;color:#D32F2F}
-#title{position:absolute;top:386px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title{position:absolute;top:400px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
 #title span{display:inline-block;font-family:Anton;font-size:52px;letter-spacing:3px;color:#fff;background:#2D6CDF;border:6px solid #10141E;border-radius:18px;padding:0 26px 4px;box-shadow:0 8px 0 #10141E}
+/* scoreboard (drops on the DHOOM) + game cards (slam big, then shrink to a label under the scoreboard) */
+#score{position:absolute;top:146px;left:0;right:0;text-align:center;opacity:0;z-index:6}
+#score .sb{display:inline-flex;gap:0;align-items:stretch;border:6px solid #10141E;border-radius:18px;box-shadow:0 8px 0 #10141E;overflow:hidden;font-family:Anton;font-size:44px;letter-spacing:2px}
+#score .m{background:#7B1E2B;color:#fff;padding:2px 22px 4px}
+#score .v{background:#10141E;color:#FFE066;padding:2px 14px 4px}
+#score .tm{background:#2D6CDF;color:#fff;padding:2px 22px 4px}
+#score .n{display:inline-block;min-width:34px;color:#FFE066}
+.gcard{position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;z-index:6}
+.gcard .bd{display:inline-block;background:#10141E;border:8px solid #FFE066;border-radius:26px;padding:8px 40px 16px;box-shadow:0 12px 0 rgba(0,0,0,.45)}
+.gcard .k{display:block;font-family:Anton;font-size:46px;letter-spacing:6px;color:#FFE066}
+.gcard .a{display:block;font-family:Anton;font-size:104px;letter-spacing:3px;line-height:1.02;color:#fff}
+#g1 .bd{border-color:#4FC3F7} #g2 .bd{border-color:#FF8A65} #g3 .bd{border-color:#AED581}
 /* chips */
 .chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:900;font-size:50px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:20px;padding:4px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
-.chip .te{font-weight:normal}
-#cPend{background:#FFCDD2}
-#cWork{background:#FF8A80;font-size:66px;font-family:Anton;font-weight:normal;letter-spacing:2px}
-#cVip{background:#FFE082}
-#cQueue{background:#E3F2FD}
-#cGift{background:#FFF3E0;font-size:44px}
-#frz{position:absolute;top:170px;right:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
-/* heist title card */
-#heist{position:absolute;left:0;right:0;top:330px;text-align:center;opacity:0;z-index:6}
-#heist .bd{display:inline-block;background:#10141E;border:8px solid #E53935;border-radius:26px;padding:14px 44px 22px;box-shadow:0 14px 0 rgba(0,0,0,.45)}
-#heist .k{display:block;font-family:Anton;font-size:40px;letter-spacing:8px;color:#FFE066}
-#heist .a{display:block;font-family:Anton;font-size:112px;letter-spacing:4px;line-height:1.02;color:#fff}
-#heist .b{display:block;font-family:Anton;font-size:112px;letter-spacing:4px;line-height:1.02;color:#FF5252}
-/* award plaque */
-#plaque{position:absolute;left:60px;right:60px;top:300px;opacity:0;z-index:6;text-align:center;background:linear-gradient(#FFE58A,#F5B800);border:9px solid #10141E;border-radius:30px;box-shadow:0 14px 0 #10141E;padding:20px 26px 30px}
-#plaque .h{font-family:Anton;font-size:78px;letter-spacing:3px;color:#10141E;line-height:1.05}
-#plaque .l{font-family:Rama,NotoTe;font-size:50px;line-height:1.3;color:#7B1E2B;margin-top:10px}
-#plaque .rb{position:absolute;right:-18px;top:-30px;font-family:Anton;font-size:30px;letter-spacing:2px;color:#fff;background:#D32F2F;border:5px solid #10141E;border-radius:50%;width:120px;height:120px;display:grid;place-items:center;transform:rotate(14deg)}
+#cOff{background:#E1F5FE}
+#c404{background:#FFCDD2;font-family:Anton;font-weight:normal;letter-spacing:2px;font-size:54px;text-align:center;line-height:1.1}
+#c404 small{display:block;font-size:40px;color:#C62828}
+#cPend{background:#FFE0B2}
+/* OUT! stamp */
+#outS{position:absolute;left:0;top:0;opacity:0;z-index:6;font-family:Anton;font-size:170px;letter-spacing:6px;color:#E53935;border:14px solid #E53935;border-radius:30px;padding:0 40px 6px;background:rgba(255,255,255,.78);line-height:1.1}
 /* the FREEZE caption */
 #frzT{position:absolute;left:20px;right:20px;top:330px;text-align:center;opacity:0;z-index:6}
-#frzT span{display:inline-block;font-family:Anton;font-size:104px;letter-spacing:2px;line-height:1.05;color:#FFE066;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E;padding:0 10px}
+#frzT span{display:inline-block;font-family:Anton;font-size:92px;letter-spacing:2px;line-height:1.12;color:#FFE066;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E;padding:0 10px}
+#frzT .te{font-family:Rama,NotoTe;letter-spacing:0;color:#FF8A80}
+#frz{position:absolute;top:250px;right:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
 /* follow */
-#fol{position:absolute;top:760px;left:230px;width:620px;text-align:center;opacity:0;z-index:5}
+#fol{position:absolute;top:1250px;left:560px;width:460px;text-align:center;opacity:0;z-index:5}
 .btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
 #bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
 .btn.done{background:#6D6875 !important}
@@ -73,7 +76,7 @@ svg{display:block}
 #share{position:absolute;inset:0;opacity:0;z-index:6}
 #share .dim2{position:absolute;inset:0;background:rgba(16,20,30,.78)}
 #sq{position:absolute;top:240px;left:30px;right:30px;text-align:center}
-#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:62px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
 #sq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
 #cbox{position:absolute;left:90px;right:90px;top:520px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
 #cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
@@ -84,9 +87,6 @@ svg{display:block}
 #ct1{top:740px} #ct2{top:870px} #ct3{top:1000px}
 #ct1 .av{background:#7B1E2B} #ct2 .av{background:#00ACC1} #ct3 .av{background:#43A047}
 .ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
-#ep2{position:absolute;left:0;right:0;top:1150px;text-align:center;opacity:0;z-index:7}
-#ep2 span{display:inline-block;font-family:Rama,NotoTe;font-size:74px;line-height:1.2;color:#fff;background:#D32F2F;border:8px solid #10141E;border-radius:26px;padding:6px 40px 14px;box-shadow:0 12px 0 #10141E}
-#ep2 b{font-family:Anton;font-weight:normal;letter-spacing:3px}
 /* end card */
 #endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.9);z-index:7}
 #endc .box{position:absolute;top:470px;left:90px;right:90px;text-align:center}
@@ -102,22 +102,22 @@ svg{display:block}
 <div id="dim"></div>
 <svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
 <svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:7"></svg>
-<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE POLITICS · EP 1</div></div>
-<div id="hook"><span class="pill">🎄 OPERATION<br>RED FLOWER 🌺</span></div>
-<div id="title"><span>CHRISTMAS GAMES 🎄</span></div>
-<div class="chip" id="cPend">PENDING WORK ✅ FIRST</div>
-<div class="chip" id="cChair">IMPORTANT CHAIR 💺 = MANAGER</div>
-<div class="chip" id="cQueue">🧍🧍🧍 APPRAISAL QUEUE</div>
-<div class="chip" id="cVip">⭐ VIP PASS</div>
-<div class="chip" id="cWork">WORKLOAD ×2</div>
-<div class="chip" id="cGift">🎅 GIFT = 📁📁💻 WORK</div>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE POLITICS · EP 2</div></div>
+<div id="hook"><span class="pill">MANAGER vs TEAM:<br>3 GAMES 🎮</span></div>
+<div id="title"><span>OPERATION MANAGER MIND GAME 😂</span></div>
+<div id="score"><span class="sb"><span class="m">MANAGER <span class="n" id="sM">0</span></span><span class="v">vs</span><span class="tm">TEAM <span class="n" id="sT">0</span></span></span></div>
+<div class="gcard" id="g1"><div class="bd"><span class="k">GAME 1</span><span class="a">HONESTY TEST</span></div></div>
+<div class="gcard" id="g2"><div class="bd"><span class="k">GAME 2</span><span class="a">BLINDFOLD 🙈</span></div></div>
+<div class="gcard" id="g3"><div class="bd"><span class="k">GAME 3</span><span class="a">SILENCE 🤐</span></div></div>
+<div class="chip" id="cOff">Let's take it offline 🙃</div>
+<div class="chip" id="c404">OFFLINE LIFE<small>404 NOT FOUND</small></div>
+<div class="chip" id="cPend">PENDING APPRAISALS ⏳</div>
+<div id="outS">OUT!</div>
 <div id="frz">❚❚ FREEZE</div>
-<div id="heist"><div class="bd"><span class="k">TOP SECRET · CODE NAME</span><span class="a">OPERATION</span><span class="b">RED FLOWER 🌺</span></div></div>
-<div id="plaque"><div class="h">BEST MANAGER 2026 🏆</div><div class="l">సంవత్సరమంతా మమ్మల్ని పరిగెత్తించినందుకు 🏃</div><div class="rb">AWARD</div></div>
-<div id="frzT"><span>MERRY CHRISTMAS<br>SIR! 😂</span></div>
+<div id="frzT"><span>GAME: MANAGER 🏆<br><b class="te">మనసుల్లో</b>: TEAM ❤️</span></div>
 <div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
 <div class="ring" id="ring"></div>
-<div id="cq"><span>మీ <b>MANAGER</b> కి ఏ <b>AWARD</b> ఇస్తారు? 👇<br><b>COMMENT</b> చేయండి!</span></div>
+<div id="cq"><span>మీ <b>MANAGER</b> ఏ <b>GAME</b> లో<br>ఓడిపోతాడు? 👇</span></div>
 <div id="cbs"></div>
 <div id="share"><div class="dim2"></div>
   <div id="sq"><span>మీ <b>OFFICE MANAGER</b> ని<br><b>TAG</b> చేయండి! 😅</span></div>
@@ -126,8 +126,7 @@ svg{display:block}
   <div class="ct" id="ct2"><div class="av">O</div>Office gang ☕</div>
   <div class="ct" id="ct3"><div class="av">B</div>Bestie 💼</div>
 </div>
-<div id="ep2"><span>రేపు <b>EPISODE 2</b> 👀</span></div>
-<div id="endc"><div class="box"><span class="ser">SERIES: OFFICE POLITICS · EP 1</span><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు <b>EPISODE 2</b>! 👀</div></div></div>
+<div id="endc"><div class="box"><span class="ser">SERIES: OFFICE POLITICS · EP 2</span><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span></div></div>
 <div class="hand" id="tapHand">👆</div>
 <div class="hand" id="eHand">👆</div>
 <div class="flash" id="flash"></div>
