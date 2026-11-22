@@ -1,0 +1,42 @@
+voice phone-band 50 ms RMS p90 (pre-master): -20.4 dBFS
+pre: I=-15.9 LUFS TP=0.6 dBTP | gain +0.9 dB | final: I=-17.1 LUFS TP=-3.5 dBTP LRA=7.6 | max limiter GR -11.5 dB
+    0.00  high   -3.9  villain entry (door + slow steps + brass)
+    2.04  max    -4.3  DHOOM (ఛాలెంజ్!)
+    5.52  mid   -16.0  game-show ta-daa (తెలుస్తుంది!)
+    6.70  low   -30.0  bloop (సార్?)
+    9.61  mid   -17.6  mock-heroic brass (పుట్టలేదు!)
+   10.09  mid   -18.0  sly ting + pizzicato (Ramesh's smile)
+   10.49  mid   -16.4  card whoosh + ding (GAME 1)
+   14.03  mid   -19.7  gulp
+   14.33  high   -3.7  crowd 'ooooooh!'
+   14.70  low   -27.2  sweat-drop plip (See...)
+   18.22  mid   -18.3  crickets (offline!)
+   21.21  high   -4.0  laugh track (లేదు!)
+   21.41  mid   -12.9  rimshot ba-dum-TSS
+   21.86  mid   -16.2  card whoosh + ding (GAME 2)
+   22.84  mid   -18.5  follow pop
+   24.41  mid   -17.2  follow tap + ding
+   25.52  low   -22.6  blindfold fwip
+   25.85  low   -21.6  shuffle (under L8)
+   28.83  mid   -12.2  water-cooler DONK + glug
+   29.13  mid   -11.8  snicker
+   30.89  max   -11.5  glass BOINNG
+   31.29  max    -3.5  FAAAH #1 (glass door)
+   32.34  low   -30.0  cartoon birds
+   32.26  mid   -16.1  card whoosh + ding (GAME 3)
+   35.99  mid    -5.4  stopwatch click + 2 ticks
+   36.69  high   -7.3  wrong-answer buzzer (రమేష్!)
+   39.69  max    -3.5  FAAAH #2 (instant shouting)
+   41.88  max    -3.6  OUT! STAMP
+   45.11  low   -13.2  snare drumroll (winner ఎవరు?)
+   46.97  high   -4.9  team cheer (సార్!)
+   47.32  mid   -18.4  victory brass
+   53.33  max    -3.7  FREEZE: record scratch + flash pop
+   53.65  high   -7.0  comedy sting: tuba bom-bom-ba-BOM (Ep 1, series)
+   53.75  high   -9.9  laugh track (freeze)
+   54.65  mid   -17.9  comment-bubble pops
+   56.30  mid   -18.6  tag swoosh + pop
+   56.63  mid   -16.2  end-card sting
+voice peaks: [-9.6, -8.1, -8.1, -8.1, -8.1, -8.1, -8.1, -8.1, -8.1, -8.1, -8.1, -8.2, -8.1, -8.1, -8.1, -8.1] | bed under voice -24.1 open -15.1
+silence 0.305 s, max 0.0
+mix ok 58.13

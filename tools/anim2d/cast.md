@@ -156,6 +156,9 @@ New rig options: `ponytail` (high, swings with `st.ponySwing`), `cardigan` (open
 `notepad` (left hand, `itemL`), the BRIGHT-RED felicitation garland (`st.garland` 0..1 = drop, `st.gswing`), the Santa
 party hat (`st.santa` 0..1, `st.hatTilt`); poses `st.splay` (legs spread: sitting on the floor), `st.sit` (seated:
 legs foreshortened), `st.nod`.
+Ep 2 (22 Nov, `content/2026-11-22-comedy-manager-mind-game/2d/office_cast.js` = the newest copy): adds `st.blind` (0..1, the black
+game blindfold over the eyes, knot + tails on his left side); nothing else changed. Its `world.js` adds the water cooler and the
+manager's big MANAGER chair to the same office.
 ```js
 const SURESH_OFFICE_OPT={skin:"#BE8A5E",hair:"#0E0A08",shirt:"#C9B8EC",collar:"#B9A6E2",button:"#FFFFFF",strain:"#8E7CC3",buttoned:true,sidePart:true,oiled:true,brow:6,lip:"#7A3A30",blush:0.22};   // Suresh (Office Politics), ~30, the manager's favourite yes-man: oiled shiny side part + comb lines, too-tight pale-lavender shirt buttoned to the collar (straining buttons), no tie, notepad in his left hand
 const PRIYA_OPT={skin:"#C9956B",hair:"#1F1410",shirt:"#F2B632",trim:"#D99A1E",cardigan:"#26355E",sleeve:"#26355E",fore:"#26355E",cuff:"#1B2748",ponytail:true,tieCol:"#E53935",hoops:true,earPen:true,brow:4.8,lash:4,blush:0.28,lip:"#A0404A"};   // Priya, late 20s, runs the games: high ponytail (red hair tie), mustard top under an open navy cardigan, small gold hoops, a pen behind her right ear, clipboard when hosting

@@ -1,0 +1,382 @@
+{
+ "full": {
+  "voice_p90": -13.9,
+  "hits": {
+   "villain entry (door + slow steps + brass)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": 7.3
+   },
+   "DHOOM (ఛాలెంజ్!)": {
+    "level": "max",
+    "t": 2.04,
+    "vs_voice_p90_db": 10.2
+   },
+   "game-show ta-daa (తెలుస్తుంది!)": {
+    "level": "mid",
+    "t": 5.52,
+    "vs_voice_p90_db": -7.1
+   },
+   "bloop (సార్?)": {
+    "level": "low",
+    "t": 6.7,
+    "vs_voice_p90_db": -16.1
+   },
+   "mock-heroic brass (పుట్టలేదు!)": {
+    "level": "mid",
+    "t": 9.61,
+    "vs_voice_p90_db": -6.1
+   },
+   "sly ting + pizzicato (Ramesh's smile)": {
+    "level": "mid",
+    "t": 10.09,
+    "vs_voice_p90_db": -6.0
+   },
+   "card whoosh + ding (GAME 1)": {
+    "level": "mid",
+    "t": 10.49,
+    "vs_voice_p90_db": -7.4
+   },
+   "gulp": {
+    "level": "mid",
+    "t": 14.03,
+    "vs_voice_p90_db": -5.9
+   },
+   "crowd 'ooooooh!'": {
+    "level": "high",
+    "t": 14.33,
+    "vs_voice_p90_db": 3.0
+   },
+   "sweat-drop plip (See...)": {
+    "level": "low",
+    "t": 14.7,
+    "vs_voice_p90_db": 1.5
+   },
+   "crickets (offline!)": {
+    "level": "mid",
+    "t": 18.22,
+    "vs_voice_p90_db": -7.4
+   },
+   "laugh track (లేదు!)": {
+    "level": "high",
+    "t": 21.21,
+    "vs_voice_p90_db": 0.7
+   },
+   "rimshot ba-dum-TSS": {
+    "level": "mid",
+    "t": 21.41,
+    "vs_voice_p90_db": 0.7
+   },
+   "card whoosh + ding (GAME 2)": {
+    "level": "mid",
+    "t": 21.86,
+    "vs_voice_p90_db": -2.2
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 22.84,
+    "vs_voice_p90_db": -7.3
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 24.41,
+    "vs_voice_p90_db": -7.4
+   },
+   "blindfold fwip": {
+    "level": "low",
+    "t": 25.52,
+    "vs_voice_p90_db": -16.4
+   },
+   "shuffle (under L8)": {
+    "level": "low",
+    "t": 25.85,
+    "vs_voice_p90_db": -17.9
+   },
+   "water-cooler DONK + glug": {
+    "level": "mid",
+    "t": 28.83,
+    "vs_voice_p90_db": -4.2
+   },
+   "snicker": {
+    "level": "mid",
+    "t": 29.13,
+    "vs_voice_p90_db": -5.8
+   },
+   "glass BOINNG": {
+    "level": "max",
+    "t": 30.89,
+    "vs_voice_p90_db": 8.1
+   },
+   "FAAAH #1 (glass door)": {
+    "level": "max",
+    "t": 31.29,
+    "vs_voice_p90_db": 5.9
+   },
+   "cartoon birds": {
+    "level": "low",
+    "t": 32.34,
+    "vs_voice_p90_db": -7.4
+   },
+   "card whoosh + ding (GAME 3)": {
+    "level": "mid",
+    "t": 32.26,
+    "vs_voice_p90_db": -7.4
+   },
+   "stopwatch click + 2 ticks": {
+    "level": "mid",
+    "t": 35.99,
+    "vs_voice_p90_db": 7.6
+   },
+   "wrong-answer buzzer (రమేష్!)": {
+    "level": "high",
+    "t": 36.69,
+    "vs_voice_p90_db": 8.9
+   },
+   "FAAAH #2 (instant shouting)": {
+    "level": "max",
+    "t": 39.69,
+    "vs_voice_p90_db": 5.9
+   },
+   "OUT! STAMP": {
+    "level": "max",
+    "t": 41.88,
+    "vs_voice_p90_db": 7.8
+   },
+   "snare drumroll (winner ఎవరు?)": {
+    "level": "low",
+    "t": 45.52,
+    "vs_voice_p90_db": -10.6
+   },
+   "team cheer (సార్!)": {
+    "level": "high",
+    "t": 46.97,
+    "vs_voice_p90_db": 0.8
+   },
+   "victory brass": {
+    "level": "mid",
+    "t": 47.32,
+    "vs_voice_p90_db": 0.8
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 53.33,
+    "vs_voice_p90_db": 6.2
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (Ep 1, series)": {
+    "level": "high",
+    "t": 53.65,
+    "vs_voice_p90_db": 3.0
+   },
+   "laugh track (freeze)": {
+    "level": "high",
+    "t": 53.75,
+    "vs_voice_p90_db": 3.0
+   },
+   "comment-bubble pops": {
+    "level": "mid",
+    "t": 54.65,
+    "vs_voice_p90_db": -3.6
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 56.3,
+    "vs_voice_p90_db": -7.3
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 56.63,
+    "vs_voice_p90_db": -7.3
+   }
+  }
+ },
+ "phone>250Hz": {
+  "voice_p90": -15.8,
+  "hits": {
+   "villain entry (door + slow steps + brass)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": -0.9
+   },
+   "DHOOM (ఛాలెంజ్!)": {
+    "level": "max",
+    "t": 2.04,
+    "vs_voice_p90_db": 6.3
+   },
+   "game-show ta-daa (తెలుస్తుంది!)": {
+    "level": "mid",
+    "t": 5.52,
+    "vs_voice_p90_db": -5.5
+   },
+   "bloop (సార్?)": {
+    "level": "low",
+    "t": 6.7,
+    "vs_voice_p90_db": -14.5
+   },
+   "mock-heroic brass (పుట్టలేదు!)": {
+    "level": "mid",
+    "t": 9.61,
+    "vs_voice_p90_db": -4.3
+   },
+   "sly ting + pizzicato (Ramesh's smile)": {
+    "level": "mid",
+    "t": 10.09,
+    "vs_voice_p90_db": -4.2
+   },
+   "card whoosh + ding (GAME 1)": {
+    "level": "mid",
+    "t": 10.49,
+    "vs_voice_p90_db": -5.5
+   },
+   "gulp": {
+    "level": "mid",
+    "t": 14.03,
+    "vs_voice_p90_db": -5.5
+   },
+   "crowd 'ooooooh!'": {
+    "level": "high",
+    "t": 14.33,
+    "vs_voice_p90_db": 2.0
+   },
+   "sweat-drop plip (See...)": {
+    "level": "low",
+    "t": 14.7,
+    "vs_voice_p90_db": 0.3
+   },
+   "crickets (offline!)": {
+    "level": "mid",
+    "t": 18.22,
+    "vs_voice_p90_db": -5.5
+   },
+   "laugh track (లేదు!)": {
+    "level": "high",
+    "t": 21.21,
+    "vs_voice_p90_db": 2.0
+   },
+   "rimshot ba-dum-TSS": {
+    "level": "mid",
+    "t": 21.41,
+    "vs_voice_p90_db": 2.0
+   },
+   "card whoosh + ding (GAME 2)": {
+    "level": "mid",
+    "t": 21.86,
+    "vs_voice_p90_db": -0.5
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 22.84,
+    "vs_voice_p90_db": -5.5
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 24.41,
+    "vs_voice_p90_db": -5.5
+   },
+   "blindfold fwip": {
+    "level": "low",
+    "t": 25.52,
+    "vs_voice_p90_db": -14.5
+   },
+   "shuffle (under L8)": {
+    "level": "low",
+    "t": 25.85,
+    "vs_voice_p90_db": -16.1
+   },
+   "water-cooler DONK + glug": {
+    "level": "mid",
+    "t": 28.83,
+    "vs_voice_p90_db": -4.5
+   },
+   "snicker": {
+    "level": "mid",
+    "t": 29.13,
+    "vs_voice_p90_db": -5.5
+   },
+   "glass BOINNG": {
+    "level": "max",
+    "t": 30.89,
+    "vs_voice_p90_db": 7.5
+   },
+   "FAAAH #1 (glass door)": {
+    "level": "max",
+    "t": 31.29,
+    "vs_voice_p90_db": 6.8
+   },
+   "cartoon birds": {
+    "level": "low",
+    "t": 32.34,
+    "vs_voice_p90_db": -5.5
+   },
+   "card whoosh + ding (GAME 3)": {
+    "level": "mid",
+    "t": 32.26,
+    "vs_voice_p90_db": -5.5
+   },
+   "stopwatch click + 2 ticks": {
+    "level": "mid",
+    "t": 35.99,
+    "vs_voice_p90_db": 1.5
+   },
+   "wrong-answer buzzer (రమేష్!)": {
+    "level": "high",
+    "t": 36.69,
+    "vs_voice_p90_db": 1.9
+   },
+   "FAAAH #2 (instant shouting)": {
+    "level": "max",
+    "t": 39.69,
+    "vs_voice_p90_db": 6.8
+   },
+   "OUT! STAMP": {
+    "level": "max",
+    "t": 41.88,
+    "vs_voice_p90_db": 6.7
+   },
+   "snare drumroll (winner ఎవరు?)": {
+    "level": "low",
+    "t": 45.52,
+    "vs_voice_p90_db": -8.7
+   },
+   "team cheer (సార్!)": {
+    "level": "high",
+    "t": 46.97,
+    "vs_voice_p90_db": 2.5
+   },
+   "victory brass": {
+    "level": "mid",
+    "t": 47.32,
+    "vs_voice_p90_db": 2.5
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 53.33,
+    "vs_voice_p90_db": 7.2
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (Ep 1, series)": {
+    "level": "high",
+    "t": 53.65,
+    "vs_voice_p90_db": 3.0
+   },
+   "laugh track (freeze)": {
+    "level": "high",
+    "t": 53.75,
+    "vs_voice_p90_db": 3.0
+   },
+   "comment-bubble pops": {
+    "level": "mid",
+    "t": 54.65,
+    "vs_voice_p90_db": -2.0
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 56.3,
+    "vs_voice_p90_db": -5.5
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 56.63,
+    "vs_voice_p90_db": -5.5
+   }
+  }
+ }
+}

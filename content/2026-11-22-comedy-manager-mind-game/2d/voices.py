@@ -37,7 +37,7 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     ("manager", "నన్ను ఓడించేవాడు… ఈ office లో ఇంకా పుట్టలేదు!", 0.20,
      "over-confident punch-dialogue swagger, chest out, a little chuckle first, punchy not slow; stress on పుట్టలేదు",
      "[chuckles] నన్ను ఓడించేవాడు… [smugly] ఈ office లో… ఇంకా పుట్టలేదు!"),                                              # 2 L3
-    ("priya", "సార్! మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్ మీరే ఫాలో అయ్యారా?", 0.60,
+    ("priya", "సార్! మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్ మీరే ఫాలో అయ్యారా?", 0.75,
      "sharp, polite and deadly: a quiz-host smile on సార్, then the question crisp and precise; stress on మీరే",
      "[mischievously] సార్! [dramatic pause] మీరు ఎప్పుడైనా టీమ్‌కి ఇచ్చిన డెడ్‌లైన్… మీరే ఫాలో అయ్యారా?"),                # 3 L4 game 1 (owner, verbatim)
     ("manager", "See… deadline అనేది ఒక mindset. Let's take it offline!", 0.70,
@@ -73,7 +73,7 @@ LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with
     (TEAM, CHORUS_TEXT, 0.25,
      "the whole team in perfect fake-cheerful unison",
      "[excited] మీరే సార్!"),                                                                                              # 14 L15 chorus (chorus.py)
-    ("ramesh", "అవును సార్... గేమ్‌లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం మీరు ఎప్పుడో ఓడిపోయారు!", 1.40,
+    ("ramesh", "అవును సార్... గేమ్‌లో మీరు గెలిచారు. కానీ మా అందరి మనసుల్లో మాత్రం మీరు ఎప్పుడో ఓడిపోయారు!", 1.30,
      "to the camera, the innocent-looking mastermind: calm agreement, a beat, then a sweet, unhurried knife; stress on ఓడిపోయారు",
      "[deadpan] అవును సార్… గేమ్‌లో మీరు గెలిచారు. [dramatic pause] కానీ మా అందరి మనసుల్లో మాత్రం… [mischievously] మీరు ఎప్పుడో ఓడిపోయారు!"),  # 15 L16 PUNCH (owner, verbatim) + FREEZE
     ("gopi", "Comment చేయండి… మీ office manager ని tag చేయండి!", 1.30,

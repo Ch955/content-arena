@@ -1,4 +1,7 @@
-"""Office comedy Ep 1 'Operation Red Flower' soundtrack (built on the QC-fixed 20 Nov mix.py: tv_band fix, phone-band
+"""Office comedy Ep 2 'Operation Manager Mind Game' soundtrack: Ep 1's mix.py (below) with the Ep 2 cue table, the new synths
+(game-show ta-daa, quiz ding, gulp, plip, crickets, fwip, shuffle, glass BOINNG, birds, buzzer, stopwatch, victory brass), the
+FAAAH reused as-is, and a -3.5 dBTP master ceiling. Ep 1 notes:
+Office comedy Ep 1 'Operation Red Flower' soundtrack (built on the QC-fixed 20 Nov mix.py: tv_band fix, phone-band
 levels, crack layers on the max hits, -3 dB voice duck round max hits). Below: the 20 Nov notes.
 Office comedy 'పది నిమిషాల లేట్!' soundtrack. EVERYTHING here is synthesized in this file (sine/saw/FM/noise, envelopes,
 FFT filters, a synthetic room reverb), except the voices and the crowd vocal takes, which are our own Gemini TTS takes
@@ -110,7 +113,7 @@ def ph_max(x, a=0.0, b_=None):
 def sat(x, drive=3.0): m = np.abs(x).max() or 1; return np.tanh(drive * x / m) / np.tanh(drive)
 def at_phone(sig, level, win=None, extra=0.0):
     sig = np.asarray(sig, float)
-    if level == "max": sig = sat(sig, 4.0)
+    if level == "max": sig = sat(sig, 4.0); sig = fft_filter(sig, None, 8000, 4)   # Ep 2: the saturated hits' fizz above 8 kHz made the AAC encode overshoot (+3.5 dB)
     cur = ph_max(sig, *(win or (0.0, None))); return sig * db(VP90 + PH_PRE.get(level, PH[level]) + extra - cur)
 def cue(name, level, sig, at, pan=0.0, bus=None, peak=None, extra=0.0):
     """place a cue at the brief's level, measured on phones (see PH)."""
@@ -459,6 +462,64 @@ def flash_pop():
 def door_creak(d=0.45):
     x = env_x(d); f = 450 + 300 * np.sin(np.pi * x / d); return tv_band(saw(f, d) * (0.6 + 0.4 * np.sin(2 * np.pi * 23 * x)), f * 2, 3.0) * np.sin(np.pi * x / d)
 
+# ---------------- Ep 2 synths (new: game-show ta-daa + quiz ding, gulp, sweat plip, crickets, cloth fwip, shuffle, glass BOINNG,
+# cartoon birds, wrong-answer buzzer, stopwatch ticks, victory brass); everything else is Ep 1's ----------------
+def tada(d=0.6):
+    seq = [(midi(67), 0.09), (midi(72), 0.09), (midi(79), d - 0.18)]; o = []
+    for f, dd in seq:
+        x = env_x(dd); s = saw(f, dd) + saw(f * 1.005, dd) + 0.5 * saw(f * 1.5, dd)
+        o.append(tv_lowpass(s, 900 + 3500 * np.minimum(1, x / 0.03) * np.ones(len(x))) * adsr(dd, 0.008, 0.12, 0.75, 0.04 if dd < 0.2 else 0.2))
+    o = np.concatenate(o); sp = sparkle_ding()[: len(o)]; o[: len(sp)] += sp * 0.5; return o
+def quiz_ding():
+    d = 0.5; x = env_x(d); return (sine(1320, d) + 0.5 * sine(1320 * 2.0, d) * np.exp(-x * 8) + 0.3 * sine(1980, d)) * np.exp(-x * 6) * np.minimum(1, x / 0.002)
+def card_whoosh():
+    o = np.zeros(int(0.55 * SR)); w = whoosh(0.3, 500, 3500); o[: len(w)] += w; dg = quiz_ding(); s = int(0.22 * SR); o[s:s + len(dg)] += dg[: len(o) - s] * 0.8; return o
+def gulp():
+    d = 0.3; x = env_x(d); f = 420 * np.exp(-x * 7) + 110
+    g_ = sine(f, d) * np.sin(np.pi * np.minimum(1, x / 0.22)) ** 0.7; c = tv_band(noise(d), f * 3, 3.0) * np.exp(-x * 14) * 0.6
+    return (g_ + c) * np.minimum(1, x / 0.004)
+def plip():
+    d = 0.14; x = env_x(d); return sine(900 + 2200 * np.minimum(1, x / 0.05), d) * np.exp(-x * 30) * np.minimum(1, x / 0.002)
+def crickets(d=0.7):
+    o = np.zeros(int(d * SR))
+    for t0 in np.arange(0.0, d - 0.15, 0.32):
+        for k in range(3):   # a chirp = 3 fast pulses of a 4.5 kHz tone
+            dd = 0.025; c = sine(4500, dd) * np.sin(np.pi * env_x(dd) / dd); s = int((t0 + k * 0.035) * SR); o[s:s + len(c)] += c[: len(o) - s]
+    return o
+def fwip():
+    d = 0.22; x = env_x(d); fc = 900 * (4000 / 900) ** (x / d); return tv_band(noise(d), fc, 1.5) * np.sin(np.pi * x / d) ** 2
+def shuffle(d):
+    r = np.random.default_rng(12); o = np.zeros(int(d * SR)); t0 = 0.0
+    while t0 < d - 0.2:
+        dd = 0.16; c = fft_filter(r.standard_normal(int(dd * SR)), 300, 2500) * np.sin(np.pi * env_x(dd) / dd) ** 2
+        s = int(t0 * SR); o[s:s + len(c)] += c[: len(o) - s] * r.uniform(0.6, 1.0); t0 += r.uniform(0.3, 0.4)
+    return o
+def boinng():
+    """glass BOINNG: a thud + a struck-glass ring (1.1 kHz + 2.8 kHz) with a fast wobble, PLUS a 'boing' spring (phone band)."""
+    d = 0.75; x = env_x(d)
+    th = sine(90 + 60 * np.exp(-x * 25), d) * np.exp(-x * 12) + fft_filter(noise(d), 200, 3000) * np.exp(-x * 30) * 0.9
+    wob = 1 + 0.035 * np.sin(2 * np.pi * 14 * x) * np.exp(-x * 2)
+    ring = (sine(1100 * wob, d) + 0.7 * sine(2800 * wob, d) * np.exp(-x * 3) + 0.3 * sine(4150 * wob, d) * np.exp(-x * 6)) * np.exp(-x * 4.5) * (0.75 + 0.25 * np.sin(2 * np.pi * 9 * x))
+    boing = sine(260 + 180 * np.sin(2 * np.pi * 11 * x) * np.exp(-x * 4), d) * np.exp(-x * 5) * 0.8
+    o = th * 1.1 + ring * 0.7 + boing; return o * np.minimum(1, x / 0.001)
+def birds(d=0.8):
+    o = np.zeros(int(d * SR))
+    for k, t0 in enumerate(np.arange(0.0, d - 0.12, 0.2)):
+        dd = 0.12; x = env_x(dd); f = 2000 + 2000 * np.sin(np.pi * x / dd) * (1 if k % 2 else 0.8)
+        c = sine(f, dd) * np.sin(np.pi * x / dd); s = int(t0 * SR); o[s:s + len(c)] += c[: len(o) - s]
+    return o
+def buzzer(d=0.4):
+    x = env_x(d); sq = np.sign(np.sin(2 * np.pi * 110 * x)) + np.sign(np.sin(2 * np.pi * 117 * x))
+    return fft_filter(sq, None, 3000) * np.minimum(1, x / 0.005) * np.minimum(1, (d - x) / 0.03)
+def sw_tick():
+    c = fft_filter(noise(0.025), 2500, 7000) * expdec(0.025, 200); return c + 0.7 * sine(2600, 0.025) * expdec(0.025, 160)
+def victory_brass(d=0.65):
+    seq = [(midi(72), 0.1), (midi(72), 0.1), (midi(72), 0.1), (midi(79), d - 0.3)]; o = []
+    for f, dd in seq:
+        x = env_x(dd); s = saw(f, dd) + saw(f * 1.004, dd) + 0.6 * saw(f * 0.5, dd)
+        o.append(tv_lowpass(s, 800 + 3000 * np.minimum(1, x / 0.04) * np.ones(len(x))) * adsr(dd, 0.01, 0.1, 0.8, 0.03 if dd < 0.2 else 0.15))
+    return np.concatenate(o)
+
 # ---------------- voices (first: every cue is levelled against them) ----------------
 VPK = -9
 for l in L:
@@ -472,107 +533,79 @@ B = b
 def stereo_rd(p):
     with wave.open(p) as w: a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float).reshape(-1, w.getnchannels()) / 32768
     return a if a.shape[1] == 2 else np.repeat(a, 2, 1)
-FAAAH = stereo_rd("/home/user/content-arena/tools/anim2d/sfx/faaah.wav"); FA_ON = json.load(open("faaah/faaah.json"))["onset_s"]
+FAAAH = stereo_rd("/home/user/content-arena/tools/anim2d/sfx/faaah.wav"); FA_ON = json.load(open("faaah/faaah.json"))["onset_s"]   # reused as-is (0.4 s)
 WIN = []   # (name, level, measure from, measure to) for phone_check.py
 def C(name, level, sig, at, pan=0.0, win=None, bus=None, extra=0.0):
     cue(name, level, sig, at, pan, bus=bus, extra=extra); d = len(sig) / SR
     WIN.append((name, level, at + (win[0] if win else 0.0), at + (win[1] if win else min(d, 1.0))))
-def crowd_cue(name, level, x, at, win=(0.0, 0.6)):
-    x = at_phone(x, level, win); put(crowd, x, at); CUES.append((name, level, at, len(x) / SR, 20 * np.log10(np.abs(x).max() + 1e-12))); WIN.append((name, level, at + win[0], at + win[1]))
-def faaah(name, onset):
-    x = FAAAH.copy(); cur = ph_max(x, FA_ON, FA_ON + 1.0); x = x * db(VP90 + PH_PRE["max"] - cur)      # no extra saturation: the file is built hot
+def crowd_cue(name, level, x, at, win=(0.0, 0.6), extra=0.0):
+    x = at_phone(x, level, win, extra); put(crowd, x, at); CUES.append((name, level, at, len(x) / SR, 20 * np.log10(np.abs(x).max() + 1e-12))); WIN.append((name, level, at + win[0], at + win[1]))
+def faaah(name, onset, extra=0.0):
+    x = FAAAH.copy(); cur = ph_max(x, FA_ON, FA_ON + 1.0); x = x * db(VP90 + PH_PRE["max"] + extra - cur)      # no extra saturation: the file is built hot
     put(sfx, x, onset - FA_ON); CUES.append((name, "max", onset, 1.2, 20 * np.log10(np.abs(x).max() + 1e-12))); WIN.append((name, "max", onset, onset + 1.0))
+X = json.load(open("mix_extra.json")) if os.path.exists("mix_extra.json") else {}   # per-cue trims (dB) found with phone_check.py
+x_ = lambda k: X.get(k, 0.0)
 # L1 (hook)
-C("villain entry (door blast + steps + brass)", "high", villain_entry(0.9), 0.0, 0.1, win=(0.0, 0.5), extra=2.0)
-C("DHOOM (Attention)", "max", dhoom(), B["dhoom"] - 0.01, win=(0.0, 0.45))
-C("sleigh-bell jingle (Christmas games!)", "mid", jingle(0.8), B["jingle"], 0.2)
-C("record scratch (కానీ)", "max", scratch(0.38), B["scratch"], win=(0.0, 0.38))
-C("dun... DUNN (ఇంటికి!)", "high", dun_dunn()[: int(0.95 * SR)], B["dun"])
-# L2
-sn = crowd_layer("laugh", 0.6, 51, stagger=(0.0, 0.06), semis=2.0, murmur=0.05, swell=lambda x: np.minimum(1, x / 0.1) * np.maximum(0, 1 - x / 0.7))
-crowd_cue("colleagues' snicker", "mid", sn, B["snick"], (0.0, 0.5))
-C("whoosh + pantry door creak", "mid", np.concatenate([whoosh(0.25, 600, 3000), door_creak(0.3)]), B["whoosh1"], -0.3, win=(0.0, 0.55))
-# L3-L4 pantry
-C("spy pizzicato bed (pantry)", "low", spy_bed(B["flo"] - B["pan0"] + 0.1), B["pan0"] - 0.05, win=(0.0, 1.5))
-C("kettle click + bubble", "low", kettle(), B["kettle"], 0.4)
-C("heist title sting (Red Flower!)", "high", heist_sting(), B["heist"] - 0.03, win=(0.0, 0.5), extra=1.0)
-hy = crowd_layer("cheer", 0.35, 61, stagger=(0.0, 0.04), semis=1.5, murmur=0.03, swell=lambda x: np.maximum(0, 1 - x / 0.45))
-C("hands-in slap", "mid", hands_in(), B["hands"])
-crowd_cue("tiny cheer 'yes!'", "mid", hy, B["hands"] + 0.04, (0.0, 0.3))
-C("whoosh back to the floor", "mid", whoosh(0.3, 500, 3200), B["whoosh2"], 0.3)
-# L5 musical chairs
-C("musical-chairs calliope tune", "mid", calliope(B["needle"] - B["tune0"]), B["tune0"])
-C("needle stop", "high", needle_stop(), B["needle"])
-C("scramble whooshes", "mid", scramble(), B["scram"])
-C("floor THUD + squeak", "max", floor_thud(), B["thud"], win=(0.0, 0.3))
-faaah("FAAAH #1 (floor, no chair)", B["faaah"])
-# L6 + the silent follow
-lt = crowd_layer("laugh", 1.4, 31, swell=lambda x: np.where(x < 0.7, 1.0, np.maximum(db(-10), 1 - (x - 0.7) * 1.1)), stagger=(0.0, 0.08), semis=2.5, murmur=0.15, copies=2)
-crowd_cue("laugh track (మీదేగా!)", "high", lt, B["laugh1"], (0.0, 0.8))
-C("follow pop", "mid", popsweep(500, 1200), B["fol0"] + 0.02)
-C("tap + ding", "mid", tap_ding(), B["tFol"])
-# L8-L11 truth or dare
-C("bottle spin + tock", "mid", bottle_spin(0.7), B["spin"])
-C("tension tick", "low", tension_tick(B["tick1"] - B["tick0"]), B["tick0"], win=(0.0, 1.0))
-C("spotlight ka-CHUNK (సురేష్!)", "high", spotlight(), B["spot"] - 0.02, extra=1.5)
-C("harp glissando (Yes sir!)", "mid", harp_gliss(0.55), B["yes"])
-C("bobble-head boings", "low", boings(), B["thank"])
+C("villain entry (door + slow steps + brass)", "high", fades(villain_entry(0.9)[: int(0.68 * SR)], 0.003, 0.1), 0.0, 0.1, win=(0.0, 0.5), extra=2.0 + x_("entry"))
+C("DHOOM (ఛాలెంజ్!)", "max", dhoom(), B["dhoom"] - 0.01, win=(0.0, 0.45), extra=x_("dhoom"))
+C("game-show ta-daa (తెలుస్తుంది!)", "mid", tada(0.6), B["tada"], 0.2)
+# L2-L3
+C("bloop (సార్?)", "low", bloop(), B["bloop"])
+C("mock-heroic brass (పుట్టలేదు!)", "mid", brass(1.0), B["brass"], -0.1)
+C("sly ting + pizzicato (Ramesh's smile)", "mid", np.concatenate([ting()[: int(0.3 * SR)], pizz(midi(76), 0.15), pizz(midi(71), 0.2)]), B["ting"], 0.3)
+# GAME 1
+C("card whoosh + ding (GAME 1)", "mid", card_whoosh(), B["g1"], -0.2)
+C("gulp", "mid", gulp(), B["gulp"])
 oo = crowd_layer("ooh", 0.6, 11, swell=lambda x: np.minimum(1, 0.35 + 0.65 * x / 0.3) * np.maximum(0.15, 1 - np.maximum(0, x - 0.4) * 2.5))
 crowd_cue("crowd 'ooooooh!'", "high", oo, B["ooh"], (0.0, 0.35))
-whoosh_ = whoosh(0.15, 800, 3000)
-for k, t0 in enumerate(B["dhan"]):
-    put(sfx, at_phone(whoosh_, "mid"), t0 - 0.12, (-0.5, 0.5, 0)[k])
-    C(f"DHAN{'!' if k < 2 else 'AAAN!'} {k + 1}", "max", orch_hit(0.22 if k < 2 else 0.5, midi([36, 37, 36][k])), t0, win=(0.0, 0.22 if k < 2 else 0.4), extra=1.6 if k < 2 else 0.0)
-# L12-L13 the award
-C("snare drumroll (low -> rising)", "low", drumroll(B["roll1"] - B["roll0"]), B["roll0"], extra=6.0, win=(B["roll1"] - B["roll0"] - 0.4, B["roll1"] - B["roll0"]))
-C("garland whoosh + THWUMP + hat fwump", "high", garland_drop(), B["garl"] - 0.1, win=(0.1, 0.45), extra=1.5)
-faaah("FAAAH #2 (garland + Santa hat)", B["faaah2"])
-C("sleigh-bell tail (low)", "low", jingle(0.8, 12, 7), B["faaah2"] + 0.8, 0.3)
-C("STAMP slam (పరిగెత్తించినందుకు!)", "max", stamp(), B["stamp"] - 0.005, win=(0.0, 0.25))
-lt2 = crowd_layer("laugh", 1.1, 33, swell=lambda x: np.where(x < 0.45, 1.0, np.maximum(db(-12), 1 - (x - 0.45) * 1.4)), stagger=(0.0, 0.08), semis=2.5, murmur=0.15, copies=2)
-cl = applause(1.2, rate=40); hc = lt2[: len(cl)] if len(lt2) >= len(cl) else np.pad(lt2, ((0, len(cl) - len(lt2)), (0, 0)))
-la = hc / (np.abs(hc).max() or 1) + cl / (np.abs(cl).max() or 1) * 0.6
-crowd_cue("laugh + mock applause", "high", la, B["laugh2"], (0.0, 0.6))
-# L14 the threat + the silence
-C("DHOOM + thunder (double)", "max", dhoom() + np.concatenate([np.zeros(int(0.2 * SR)), fft_filter(noise(0.9), 80, 1200) * expdec(0.9, 4) * 0.3])[: len(dhoom())], B["dhoom2"] - 0.01, win=(0.0, 0.45))
-gp = crowd_layer("gasp", 0.4, 21, stagger=(0.0, 0.05), semis=1.5, murmur=0.05)
-crowd_cue("team gasp 'HAAH!'", "mid", gp, B["gasp"], (0.0, 0.3))
-# L15 the punch
-C("music box (first half)", "low", music_box(1.8), B["r14"] + 0.05, 0.2, win=(0.0, 1.2))
-C("hollow DONK", "high", donk(), B["donk"])
-# L16 + FREEZE
-C("party poppers", "high", poppers(), B["popper"] - 0.02, win=(0.0, 0.3))
+C("sweat-drop plip (See...)", "low", plip(), B["see"], 0.3)
+C("crickets (offline!)", "mid", crickets(0.7), B["crick"], 0.2, win=(0.0, 0.6))
+lt = crowd_layer("laugh", 1.2, 31, swell=lambda x: np.where(x < 0.6, 1.0, np.maximum(db(-10), 1 - (x - 0.6) * 1.2)), stagger=(0.0, 0.08), semis=2.5, murmur=0.15, copies=2)
+crowd_cue("laugh track (లేదు!)", "high", lt, B["laugh1"], (0.0, 0.8))
+C("rimshot ba-dum-TSS", "mid", rimshot(), B["rim"])
+# GAME 2
+C("card whoosh + ding (GAME 2)", "mid", card_whoosh(), B["g2"] - 0.2, -0.2)
+C("follow pop", "mid", popsweep(500, 1200), B["fol0"] + 0.02)
+C("follow tap + ding", "mid", tap_ding(), B["tFol"])
+C("blindfold fwip", "low", fwip(), B["fwip"] - 0.05)
+C("shuffle (under L8)", "low", shuffle(B["donk"] - B["shuf0"]), B["shuf0"], -0.2, win=(0.0, 1.0))
+C("water-cooler DONK + glug", "mid", donk(), B["donk"], extra=1.0)
+sn = crowd_layer("laugh", 0.6, 51, stagger=(0.0, 0.06), semis=2.0, murmur=0.05, swell=lambda x: np.minimum(1, x / 0.1) * np.maximum(0, 1 - x / 0.7))
+crowd_cue("snicker", "mid", sn, B["donk"] + 0.3, (0.0, 0.5))
+C("glass BOINNG", "max", boinng(), B["bonk"], win=(0.0, 0.35), extra=x_("bonk"))
+faaah("FAAAH #1 (glass door)", B["faaah"], x_("faaah1"))
+C("cartoon birds", "low", birds(0.8), B["birds"], 0.3)
+# GAME 3
+C("card whoosh + ding (GAME 3)", "mid", card_whoosh(), B["g3"] - 0.2, -0.2)
+sw_ = np.zeros(int(0.8 * SR)); 
+for t0 in (0.0, B["tick1"] - B["sw0"], B["tick2"] - B["sw0"]): c_ = sw_tick() * (0.7 if t0 == 0 else 1.0); s_ = int(t0 * SR); sw_[s_:s_ + len(c_)] += c_
+C("stopwatch click + 2 ticks", "mid", sw_, B["sw0"], win=(0.0, 0.8))
+C("wrong-answer buzzer (రమేష్!)", "high", buzzer(0.4), B["buzz"] - 0.03, extra=x_("buzz"))
+faaah("FAAAH #2 (instant shouting)", B["faaah2"], x_("faaah2"))
+C("OUT! STAMP", "max", stamp(), B["stamp"] - 0.005, win=(0.0, 0.25), extra=x_("stamp"))
+# L14-L15
+C("snare drumroll (winner ఎవరు?)", "low", drumroll(B["roll1"] - B["roll0"]), B["roll0"], extra=6.0, win=(B["roll1"] - B["roll0"] - 0.4, B["roll1"] - B["roll0"]))
 ch = crowd_layer("cheer", 0.8, 41, copies=2, stagger=(0.03, 0.15), swell=lambda x: np.minimum(1, x / 0.1) * np.maximum(0.2, 1 - x * 0.9))
-crowd_cue("team cheer", "mid", ch, B["popper"])
-C("FREEZE: record scratch + flash pop", "max", scratch(0.3) + np.pad(flash_pop(), (0, int(0.3 * SR) - len(flash_pop()))), B["frz"] - 0.02, win=(0.0, 0.3), extra=1.2)
-C("comedy sting: tuba bom-bom-ba-BOM + bells", "high", tuba_sting(), B["sting"], win=(0.0, 1.0))
+crowd_cue("team cheer (సార్!)", "high", ch, B["cheer"], (0.0, 0.5))
+C("victory brass", "mid", victory_brass(0.6), B["vbrass"])
+# L16 + FREEZE
+C("FREEZE: record scratch + flash pop", "max", scratch(0.3) + np.pad(flash_pop(), (0, int(0.3 * SR) - len(flash_pop()))), B["frz"] - 0.02, win=(0.0, 0.3), extra=1.2 + x_("frz"))
+C("comedy sting: tuba bom-bom-ba-BOM (Ep 1, series)", "high", tuba_sting(), B["sting"], win=(0.0, 1.0))
 lt3 = crowd_layer("laugh", 1.4, 35, swell=lambda x: np.where(x < 0.5, 1.0, np.maximum(db(-12), 1 - (x - 0.5) * 1.0)), stagger=(0.0, 0.08), semis=2.5, murmur=0.15)
-crowd_cue("laugh-track tail", "mid", lt3, B["laugh3"], (0.0, 0.5))
-# L17-L18 CTA + end card
+crowd_cue("laugh track (freeze)", "high", lt3, B["laugh3"], (0.0, 0.5))
+# L17 CTA + end card
 C("comment-bubble pops", "mid", bubbles(), B["tCm"])
 C("tag swoosh + pop", "mid", np.concatenate([whoosh(0.25, 600, 2800), popsweep(600, 1400, 0.15)]), B["tTag"] - 0.1)
-C("'Episode 2' card slam", "mid", stamp()[: int(0.3 * SR)] * 0.7 + np.pad(jingle(0.2, 20, 3), (0, int(0.3 * SR) - int(0.2 * SR))), B["ep2"] - 0.03)
-C("end-card sting + sleigh sparkle", "mid", end_sting() + np.pad(jingle(0.8, 14, 5) * 0.5, (0, len(end_sting()) - int(0.8 * SR))), B["endSting"])
+C("end-card sting", "mid", end_sting(), B["endSting"])
 
-# ---------------- music: the bouncy 20 Nov office bed + sleigh bells; cut on each max ----------------
-def bells_layer(t0, t1, bpm=120.0, g=1.0, grid=0.0):
-    st8 = 60 / bpm / 2; k = int(np.ceil((t0 - grid) / st8 - 1e-6))
-    while grid + k * st8 < t1 - 0.02:
-        at_ = grid + k * st8
-        key = ("j", k % 2)
-        if key not in _cache: _cache[key] = jingle(0.12, 30, 20 + k % 2) * (1.0 if k % 2 == 0 else 0.6)
-        put(music, _cache[key] * 0.10 * g, at_, 0.35); k += 1
-def bed2(t0, t1, bpm=120.0, g=1.0, bright=False, bells=True, grid=None):
-    bed(t0, t1, bpm, g, bright, grid); 
-    if bells: bells_layer(t0, t1, bpm, g, grid or 0.0)
-bed2(B["jingle"], B["scratch"], 120, g=1.0, bright=True)                     # the fake-generous announcement (killed by the scratch)
-bed2(S(1) - 0.05, B["whoosh1"], 120, g=0.8, bells=False)                     # Ramesh's sarcasm (light)
-bed2(B["flo"], B["tune0"], 120, g=1.0)                                       # the strut (the calliope takes over)
-bed2(S(5) + 0.05, B["dhan"][0], 120, g=0.9)                                  # back after the FAAAH, through truth or dare
-bed2(S(11) - 0.05, B["garl"], 120, g=0.8, bells=False)                        # the award set-up (drumroll on top)
-bed2(B["r12"], B["dhoom2"], 120, g=0.9)                                      # after FAAAH #2 (cut dead on the DHOOM)
-bed2(B["popper"] - 0.1, B["frz"], 120 * 1.08, g=1.0, bright=True, grid=B["popper"] - 0.1)    # the party
-bed2(B["sting"] + 1.2, DUR, 120 * 1.08, g=0.85, bright=True, grid=B["sting"] + 1.2)          # upbeat tag to the end card
+# ---------------- music: the bouncy office bed (Ep 0/1 groove, no sleigh bells now); cut on each max ----------------
+bed(B["tada"] - 0.05, B["ting"], 120, g=0.8)                                  # after the challenge, through the boast
+bed(B["g1"] + 0.4, B["crick"], 120, g=0.75)                                    # GAME 1 (dies for the crickets)
+bed(B["r5"], B["g2"] - 0.2, 120, g=0.8)                                        # Ramesh's jab + the laugh
+bed(B["g2"] + 0.3, B["bonk"], 120, g=0.75)                                     # GAME 2 (cut dead on the BOINNG)
+bed(B["r12"], B["roll0"], 120, g=0.75)                                         # after FAAAH #2 (GAME 3 itself is silent: the silence game)
+bed(B["ch"] - 0.05, B["sil0"], 120 * 1.08, g=1.0, bright=True, start_grid=B["ch"] - 0.05)      # the victory dance
+bed(B["sting"] + 1.2, DUR, 120 * 1.08, g=0.85, bright=True, start_grid=B["sting"] + 1.2)       # upbeat tag to the end card
 gate = np.ones(n)
 def cut(t0, t1, fade=0.012):
     a, b_ = int(t0 * SR), int(t1 * SR); gate[a:b_] = 0
@@ -617,9 +650,12 @@ def tp_limiter(x, ceil_db=-1.2, look=0.005, rel=0.08):
         u = upsample4(x[:, c]); pk = np.maximum(pk, np.abs(u).reshape(-1, 4).max(1)[: len(x)])
     need = np.minimum(1, ceil / np.maximum(pk, 1e-9))
     la = int(look * SR); g = np.minimum.accumulate(np.concatenate([need, np.ones(la)])[::-1])[::-1] if False else need.copy()
-    # look-ahead min over the next `la` samples, then smooth release
+    # Ep 2 (AAC overshoot fix): a centred min over +-la, then a centred moving average over la -> the gain ramps down over
+    # ~2.5 ms instead of stepping (a step = a broadband click that the AAC encoder turned into +3.5 dB overs); still <= need
     from numpy.lib.stride_tricks import sliding_window_view
-    padded = np.concatenate([need, np.ones(la)]); g = sliding_window_view(padded, la + 1).min(1)[: len(x)]
+    padded = np.concatenate([np.ones(la), need, np.ones(la)]); g1 = sliding_window_view(padded, 2 * la + 1).min(1)[: len(x)]
+    h_ = la // 2; c_ = np.cumsum(np.concatenate([np.ones(h_ + 1), g1, np.ones(h_)])); g = (c_[2 * h_ + 1:] - c_[:-2 * h_ - 1])[: len(x)] / (2 * h_ + 1)
+    g = np.minimum(g, g1)
     out_g = np.empty_like(g); cur = 1.0; rc = np.exp(-1 / (rel * SR)); ac = np.exp(-1 / (0.0015 * SR))
     for i in range(len(g)):
         tgt = g[i]; cur = tgt if tgt < cur else tgt + (cur - tgt) * rc
@@ -629,8 +665,11 @@ def tp_limiter(x, ceil_db=-1.2, look=0.005, rel=0.08):
 write("mix_pre.wav", mix)
 I0, tp0, _ = measure("mix_pre.wav")
 TARGET = -15.0
+CEIL = -3.5                                                     # Ep 2 (QC, 21 Nov): AAC added ~2.8 dB on low punchy hits -> ceiling -3.5 dBTP so the mp4 stays <= -1 dBTP
 gain_db = min(TARGET - I0, 6.0)                                 # cap: never push the hits more than ~6 dB into the limiter
-y, gl = tp_limiter(mix * db(gain_db), -1.7)
+mix = np.stack([fft_filter(mix[:, c], None, 16000, 4) for c in range(2)], 1)   # Ep 2: nothing above 16 kHz (AAC drops it anyway)
+y, gl = tp_limiter(mix * db(gain_db), CEIL)
+a0, b0 = int(B["sil0"] * SR), int(B["sil1"] * SR); y[a0:b0] = 0
 write("mix.wav", y)
 if os.environ.get("STEMS"):   # SFX + crowd only (same master gain + limiter gain), for the per-cue phone check
     write("stem_fx.wav", (sfx + crowd) * db(gain_db) * gl[:, None])
