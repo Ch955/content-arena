@@ -629,8 +629,9 @@ def tp_limiter(x, ceil_db=-1.2, look=0.005, rel=0.08):
 write("mix_pre.wav", mix)
 I0, tp0, _ = measure("mix_pre.wav")
 TARGET = -15.0
+CEIL = float(os.environ.get("CEIL", -3.5))   # QC 22 Nov: the AAC encode added ~2.8 dB on low punchy hits (mp4 read +1.2 dBTP at -1.7); -3.5 -> mp4 <= -1 dBTP
 gain_db = min(TARGET - I0, 6.0)                                 # cap: never push the hits more than ~6 dB into the limiter
-y, gl = tp_limiter(mix * db(gain_db), -1.7)
+y, gl = tp_limiter(mix * db(gain_db), CEIL)
 write("mix.wav", y)
 if os.environ.get("STEMS"):   # SFX + crowd only (same master gain + limiter gain), for the per-cue phone check
     write("stem_fx.wav", (sfx + crowd) * db(gain_db) * gl[:, None])

@@ -18,12 +18,12 @@ import numpy as np
 FPS = 30
 INTRO = 0.60       # silent villain entry under the text hook (brief: 0-0.8 s; 0.6 to fit the 60 s cap)
 SILENCE = 0.30     # all sound out before the punch (never cut)
-TAIL = 1.20        # end card (trim step 3: the end sting overlaps L18): 'Series: Office Politics · Ep 1' + sting
+TAIL = 0.90        # end card (trim step 3: the end sting overlaps L18; 1.2 -> 0.9 s, QC 22 Nov: the time went to L15's pace): 'Series: Office Politics · Ep 1' + sting
 SPEED = 1.15
-FIT = {0: 1.12, 1: 1.08, 2: 1.08, 4: 1.15, 5: 1.05, 7: 1.04, 9: 1.06, 10: 1.04, 11: 1.08, 12: 1.06, 13: 1.10, 14: 1.03, 16: 1.06, 17: 1.10}
+FIT = {0: 1.12, 1: 1.08, 2: 1.08, 4: 1.15, 5: 1.05, 7: 1.04, 9: 1.06, 10: 1.04, 11: 1.08, 12: 1.06, 13: 1.10, 16: 1.06, 17: 1.10}
 # ^ extra atempo per line on top of x1.15 (19 Nov): the takes ran 55 s of voice (brief estimate ~41 s), 74 s in all. After the
 #   brief's trims (L7 silent, chair action short, end sting over L18), tighter pauses and minimum SFX gaps it was still ~66 s,
-#   so the slowest lines (chars/s) are sped up most; the owner's punch (L15 = index 14) only x1.03, సురేష్! not at all.
+#   so the slowest lines (chars/s) are sped up most; the owner's punch (L15 = index 14) plays at plain x1.15 (QC 22 Nov), సురేష్! too.
 SILENT = {6}       # trim step 1 (brief): L7 'Follow కొట్టండి…' becomes a SILENT follow tap (over the laugh after L6); not voiced in the reel
 TEAM = "team"
 LINES = [  # (who, subtitle text, gap before, acting direction, spoken text with [tags])  -- from script.json

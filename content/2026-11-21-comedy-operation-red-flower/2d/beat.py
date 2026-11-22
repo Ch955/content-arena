@@ -1,12 +1,14 @@
 """Insert silent beats into takes (run after tighten.py) so a max hit sits in a voice gap instead of on top of a word:
 - L0 (manager, brief L1): +0.22 s before 'కానీ…' for the RECORD SCRATCH (the jingle dies dead);
 - L12 (Ramesh, brief L13): +0.12 s before 'పరిగెత్తించినందుకు!' for the STAMP slam;
-- L13 (manager, brief L14): +0.14 s before 'double' for the DHOOM crack.
+- L13 (manager, brief L14): +0.14 s before 'double' for the DHOOM crack;
+- L14 (Ramesh, the owner's punch, brief L15; QC 22 Nov): +0.20 s in the dramatic pause before 'మన మేనేజర్' (the take is NOT
+  tightened any more: MAXP=1 KEEP=1, plain x1.15) so the punch breathes.
 Each cut is at the middle of the raw pause nearest AT seconds; writes vo/L{i}_raw.wav from vo/L{i}_tight.wav (kept).
 (If tighten.py is re-run, delete vo/L*_tight.wav first.)"""
 import os, shutil, wave, numpy as np
-INS = [(0, 3.51, 0.22), (12, 2.08, 0.12), (13, 2.38, 0.14)]      # (line, raw seconds in the tightened take, seconds added after the speed-up)
-FIT = {0: 1.12, 12: 1.06, 13: 1.10}
+INS = [(0, 3.51, 0.22), (12, 2.08, 0.12), (13, 2.38, 0.14), (14, 2.95, 0.20)]      # (line, raw seconds in the tightened take, seconds added after the speed-up)
+FIT = {0: 1.12, 12: 1.06, 13: 1.10, 14: 1.0}
 for I, AT, ADD in INS:
     src = f"vo/L{I}_tight.wav"
     if not os.path.exists(src): shutil.copy(f"vo/L{I}_raw.wav", src)
