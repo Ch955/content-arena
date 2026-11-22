@@ -1,0 +1,139 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Office comedy Ep 1 "🎄 Operation Red Flower" (the owner's own story; series "Office Politics"). 2D animated, FLAT skin
+     for the whole reel (one series look with Ep 0/Ep 2). Sets: the same generic office as 20 Nov (open cubicles, wall clock,
+     the manager's glass cabin with the MANAGER door; no company name, brand or logo) dressed for an OFFICE Christmas party
+     only (streamers, a paper star, a small decorated tree, a MERRY CHRISTMAS banner; no religious imagery), and a pantry
+     (kettle, tea cups, a whiteboard) for the secret meeting. Freezes = still + white flash + slight desaturation.
+     Cast: tools/anim2d/cast.md via office_cast.js (manager + Ramesh as on 20 Nov; NEW Suresh and Priya). -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#EAF3F8}
+svg{display:block}
+#s,#nar,#fx{position:absolute;left:0;top:0}
+#fx{z-index:4}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,20,30,.74);z-index:8;text-wrap:balance}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:7}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center;background:rgba(16,20,30,.82);padding:4px 18px 4px 6px;border-radius:30px}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8553D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;opacity:0;z-index:1;pointer-events:none}
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* text hook (frame 1) + series title (a beat later) */
+#hook{position:absolute;top:150px;left:24px;right:24px;text-align:center;z-index:6}
+#hook .pill{font-family:Anton;font-size:84px;letter-spacing:2px;line-height:1.08;padding:6px 30px 10px;color:#D32F2F}
+#title{position:absolute;top:386px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title span{display:inline-block;font-family:Anton;font-size:52px;letter-spacing:3px;color:#fff;background:#2D6CDF;border:6px solid #10141E;border-radius:18px;padding:0 26px 4px;box-shadow:0 8px 0 #10141E}
+/* chips */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:900;font-size:50px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:20px;padding:4px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
+.chip .te{font-weight:normal}
+#cPend{background:#FFCDD2}
+#cWork{background:#FF8A80;font-size:66px;font-family:Anton;font-weight:normal;letter-spacing:2px}
+#cVip{background:#FFE082}
+#cQueue{background:#E3F2FD}
+#cGift{background:#FFF3E0;font-size:44px}
+#frz{position:absolute;top:170px;right:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
+/* heist title card */
+#heist{position:absolute;left:0;right:0;top:330px;text-align:center;opacity:0;z-index:6}
+#heist .bd{display:inline-block;background:#10141E;border:8px solid #E53935;border-radius:26px;padding:14px 44px 22px;box-shadow:0 14px 0 rgba(0,0,0,.45)}
+#heist .k{display:block;font-family:Anton;font-size:40px;letter-spacing:8px;color:#FFE066}
+#heist .a{display:block;font-family:Anton;font-size:112px;letter-spacing:4px;line-height:1.02;color:#fff}
+#heist .b{display:block;font-family:Anton;font-size:112px;letter-spacing:4px;line-height:1.02;color:#FF5252}
+/* award plaque */
+#plaque{position:absolute;left:60px;right:60px;top:300px;opacity:0;z-index:6;text-align:center;background:linear-gradient(#FFE58A,#F5B800);border:9px solid #10141E;border-radius:30px;box-shadow:0 14px 0 #10141E;padding:20px 26px 30px}
+#plaque .h{font-family:Anton;font-size:78px;letter-spacing:3px;color:#10141E;line-height:1.05}
+#plaque .l{font-family:Rama,NotoTe;font-size:50px;line-height:1.3;color:#7B1E2B;margin-top:10px}
+#plaque .rb{position:absolute;right:-18px;top:-30px;font-family:Anton;font-size:30px;letter-spacing:2px;color:#fff;background:#D32F2F;border:5px solid #10141E;border-radius:50%;width:120px;height:120px;display:grid;place-items:center;transform:rotate(14deg)}
+/* the FREEZE caption */
+#frzT{position:absolute;left:20px;right:20px;top:330px;text-align:center;opacity:0;z-index:6}
+#frzT span{display:inline-block;font-family:Anton;font-size:104px;letter-spacing:2px;line-height:1.05;color:#FFE066;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E;padding:0 10px}
+/* follow */
+#fol{position:absolute;top:760px;left:230px;width:620px;text-align:center;opacity:0;z-index:5}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:9}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:9}
+/* comment prompt + bubbles */
+#cq{position:absolute;top:880px;left:30px;right:30px;text-align:center;opacity:0;z-index:6}
+#cq span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:6}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:38px;line-height:1.2;color:#10141E}
+/* share: tag your manager */
+#share{position:absolute;inset:0;opacity:0;z-index:6}
+#share .dim2{position:absolute;inset:0;background:rgba(16,20,30,.78)}
+#sq{position:absolute;top:240px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:62px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+#sq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+#cbox{position:absolute;left:90px;right:90px;top:520px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:740px} #ct2{top:870px} #ct3{top:1000px}
+#ct1 .av{background:#7B1E2B} #ct2 .av{background:#00ACC1} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+#ep2{position:absolute;left:0;right:0;top:1150px;text-align:center;opacity:0;z-index:7}
+#ep2 span{display:inline-block;font-family:Rama,NotoTe;font-size:74px;line-height:1.2;color:#fff;background:#D32F2F;border:8px solid #10141E;border-radius:26px;padding:6px 40px 14px;box-shadow:0 12px 0 #10141E}
+#ep2 b{font-family:Anton;font-weight:normal;letter-spacing:3px}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.9);z-index:7}
+#endc .box{position:absolute;top:470px;left:90px;right:90px;text-align:center}
+#endc .ser{display:inline-block;font-family:Anton;font-size:50px;letter-spacing:3px;color:#10141E;background:#FFE066;border:6px solid #10141E;border-radius:20px;padding:4px 28px 8px;margin-bottom:56px;box-shadow:0 8px 0 #000}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:44px;color:#F5B347;letter-spacing:4px;margin-bottom:36px}
+#endc .nx{font-family:Rama,NotoTe;font-size:60px;color:#fff;margin-top:14px}
+#endc .nx b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.flash{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:7"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE POLITICS · EP 1</div></div>
+<div id="hook"><span class="pill">🎄 OPERATION<br>RED FLOWER 🌺</span></div>
+<div id="title"><span>CHRISTMAS GAMES 🎄</span></div>
+<div class="chip" id="cPend">PENDING WORK ✅ FIRST</div>
+<div class="chip" id="cChair">IMPORTANT CHAIR 💺 = MANAGER</div>
+<div class="chip" id="cQueue">🧍🧍🧍 APPRAISAL QUEUE</div>
+<div class="chip" id="cVip">⭐ VIP PASS</div>
+<div class="chip" id="cWork">WORKLOAD ×2</div>
+<div class="chip" id="cGift">🎅 GIFT = 📁📁💻 WORK</div>
+<div id="frz">❚❚ FREEZE</div>
+<div id="heist"><div class="bd"><span class="k">TOP SECRET · CODE NAME</span><span class="a">OPERATION</span><span class="b">RED FLOWER 🌺</span></div></div>
+<div id="plaque"><div class="h">BEST MANAGER 2026 🏆</div><div class="l">సంవత్సరమంతా మమ్మల్ని పరిగెత్తించినందుకు 🏃</div><div class="rb">AWARD</div></div>
+<div id="frzT"><span>MERRY CHRISTMAS<br>SIR! 😂</span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="cq"><span>మీ <b>MANAGER</b> కి ఏ <b>AWARD</b> ఇస్తారు? 👇<br><b>COMMENT</b> చేయండి!</span></div>
+<div id="cbs"></div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>మీ <b>OFFICE MANAGER</b> ని<br><b>TAG</b> చేయండి! 😅</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">M</div>My Manager 👔<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">O</div>Office gang ☕</div>
+  <div class="ct" id="ct3"><div class="av">B</div>Bestie 💼</div>
+</div>
+<div id="ep2"><span>రేపు <b>EPISODE 2</b> 👀</span></div>
+<div id="endc"><div class="box"><span class="ser">SERIES: OFFICE POLITICS · EP 1</span><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు <b>EPISODE 2</b>! 👀</div></div></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style: flat for the whole reel (series look); freezes are colour/saturation effects, not a new skin</script>
+<script src="skins.js"></script>
+<script src="office_cast.js"></script>
+<script src="world.js"></script>
+</body></html>
