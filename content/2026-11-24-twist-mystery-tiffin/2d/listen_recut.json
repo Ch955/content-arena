@@ -1,0 +1,93 @@
+{
+ "L0": {
+  "expected": "ఆరో రోజు! ఈ tiffin ఎవరు పెడుతున్నారు… Nikhil?!",
+  "heard": "ఆరో రోజు ఈ టిఫిన్ ఎవరు పెడుతున్నారు నిఖిల్",
+  "issue": "none",
+  "sim": 0.67,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "expected": "పెసరట్టు-ఉప్మా… నా favourite. పేరు కూడా… లేదు.",
+  "heard": "పెసరట్టు ఉప్మా నా favorite పేరు కూడా లేదు",
+  "issue": "none",
+  "sim": 0.99,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "expected": "Secret admirer! Party ఎప్పుడు?",
+  "heard": "Secret admirer party ఎప్పుడు",
+  "issue": "different speaker",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "expected": "అమ్మ రాజమండ్రిలో… మరి నాకు… ఎవరు వండుతారు?",
+  "heard": "అమ్మ రాజమండ్రిలో మరి నాకు ఎవరు వండుతారు",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "expected": "అన్నం తిన్నావా… నాన్నా?",
+  "heard": "అన్నం తిన్నావా నాన్న",
+  "issue": "different speaker",
+  "sim": 0.97,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "expected": "ఈ పోపు వాసన… ఎక్కడో తెలిసినట్టుందే!",
+  "heard": "ఈ పోపు వాసన ఎక్కడో తెలిసినట్టుందే",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L6": {
+  "expected": "Clues అన్నీ… screen మీదే! ఇలాంటి twists కి… follow కొట్టండి!",
+  "heard": "Clues అన్నీ screen మీదే ఇలాంటి twist కి follow కొట్టండి",
+  "issue": "reading instructions",
+  "sim": 0.99,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "expected": "Tiffin ఎవరిది? మీ guess comment చేయండి… five seconds!",
+  "heard": "Tiffin ఎవరిది మీ guess comment చేయండి 5 seconds",
+  "issue": "reading instructions",
+  "sim": 0.95,
+  "by": "gemini-3-flash-preview"
+ },
+ "L8": {
+  "expected": "Aunty… మీరా?!",
+  "heard": "Aunty మీరా",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "expected": "ఈ box మా బాబుది… America వెళ్ళి రెండేళ్ళు. Phone కూడా… తక్కువే.",
+  "heard": "ఈ box మా బాబుది America వెళ్లి రెండేళ్లు phone కూడా తక్కువే",
+  "issue": "different speaker",
+  "sim": 0.96,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "expected": "అలవాటుగా… వాడికి వండుతా. నువ్వు అచ్చం వాడిలాగే… నాన్నా.",
+  "heard": "అలవాటుగా వాడికి వండుతా నువ్వు అచ్చం వాడిలాగే నాన్న",
+  "issue": "different speaker",
+  "sim": 0.99,
+  "by": "gemini-3-flash-preview"
+ },
+ "L11": {
+  "expected": "అమ్మా… ఊరికే చేశా. అన్నం తిన్నావా?",
+  "heard": "అమ్మ ఊరికే చేశా అన్నం తిన్నావా",
+  "issue": "none",
+  "sim": 0.98,
+  "by": "gemini-3-flash-preview"
+ },
+ "L12": {
+  "expected": "మీకూ office లో… ఒక 'అమ్మ' ఉన్నారా? వాళ్ళని tag చేయండి!",
+  "heard": "మీకు office లో ఒక అమ్మ ఉన్నారా వాళ్ళని tag చేయండి",
+  "issue": "reading instructions",
+  "sim": 0.98,
+  "by": "gemini-3-flash-preview"
+ }
+}

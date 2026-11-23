@@ -1,0 +1,202 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Twist story "the mystery tiffin". 2D animated, FLAT skin (warm office colours): Nikhil's desk in Tower B, Hitech City
+     (Day 6, 1:00 PM), the ground-floor cafeteria counter (yellow/teal, 1:15 PM), his desk again the next day (12:40 PM),
+     and a torn-edge PAPER + sepia memory inset in L10 (paper filter + CSS sepia on an HTML-clipped inset with its own SVG
+     world). Rewatch clues: the dent on the lid at 2 o'clock + the tea-trolley wheel rolling out (frame 1), the steam swirl
+     (curry leaf + mustard seeds) off the tiffin (L2) = off her tempering pan (L5/L6), the photo by her counter (a young man
+     in a charcoal shirt with a suitcase, 'Nov 2024'), her order slip 'N — పెసరట్టు-ఉప్మా'. Beats: text hook from frame 1,
+     title a beat later; ANSWER AT THE END; heart + sticker; thought bubble; recap strip + follow tap; spinning tiffin +
+     5-s countdown + wrong-guess bubbles only; NEXT DAY wipe; the freeze; memory inset; split frame; the video call; tag
+     card; end card; silent hard cut back to frame 1 (loop) with 'Dent మొదటి frame లోనే ఉంది 👀'. Cast: makeAdult() -
+     Nikhil + Ananya from tools/anim2d/cast.md, Amma = SAROJA_OPT; new: Lakshmi aunty (saved in cast.md). No company
+     names, apps, logos or brands anywhere. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#F4E6D0}
+svg{display:block}
+#s,#nar,#ab{position:absolute;left:0;top:0}
+#ab{opacity:0;z-index:3}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,20,30,.74);z-index:6}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#00897B;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;background:#10141E;opacity:0;z-index:1}
+/* Telugu inside Anton/letter-spaced labels: no letter-spacing (it splits the conjuncts) */
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+#hook{position:absolute;top:156px;left:24px;right:24px;text-align:center;z-index:5}
+#hook .pill{font-size:60px;padding:2px 30px 10px}
+#title{position:absolute;top:300px;left:40px;right:40px;text-align:center;opacity:0;z-index:5}
+#title .t{font-family:Anton;font-size:96px;line-height:1.0;letter-spacing:4px;color:#FFD54F;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 9px 0 #10141E}
+/* world-tracked crisp labels (clock, menu, the order slip, the monitor sticky) */
+.wl{position:absolute;left:0;top:0;opacity:0;z-index:2;transform-origin:50% 50%;white-space:nowrap}
+#wclk{font-family:Anton;font-size:42px;letter-spacing:2px;color:#FF5A3C;background:#1C1F26;border:5px solid #10141E;border-radius:12px;padding:0 16px;box-shadow:0 6px 0 rgba(16,20,30,.5)}
+#menu{width:360px;text-align:center;color:#FFFDF5;font-family:Rama,NotoTe;font-size:30px;line-height:1.3}
+#menu b{display:block;font-family:Anton;font-weight:normal;font-size:40px;letter-spacing:4px;color:#FFD54F;margin-bottom:4px}
+#slip{font-family:Rama,NotoTe;font-size:32px;color:#1A237E;background:#FFFEF8;border:3px solid #9E9E9E;border-radius:4px;padding:2px 14px 6px;box-shadow:0 4px 0 rgba(16,20,30,.35)}
+#slip small{display:block;font-family:InterB;font-weight:800;font-size:15px;color:#8A8A8A;letter-spacing:1px;margin-bottom:-2px}
+/* L1/L2 chips */
+#ans{position:absolute;top:300px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#ans span{display:inline-block;font-family:Anton;font-size:56px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 28px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#lidU{position:absolute;left:0;top:0;opacity:0;z-index:4;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFFFFF,#CFD8DC 62%,#90A4AE);border:8px solid #10141E;box-shadow:0 10px 0 #10141E;display:grid;place-items:center}
+#lidU .lb{width:190px;height:66px;border:5px dashed #78909C;border-radius:10px;background:rgba(255,255,255,.75);display:grid;place-items:center;font-family:Anton;font-size:44px;color:#B0BEC5}
+#heart{position:absolute;left:0;top:0;opacity:0;z-index:4;font-size:120px;line-height:1}
+#stk{position:absolute;left:0;top:0;opacity:0;z-index:4;white-space:nowrap;font-family:Anton;font-size:50px;letter-spacing:2px;color:#fff;background:#E91E63;border:6px solid #10141E;border-radius:18px;padding:2px 22px;box-shadow:0 8px 0 #10141E}
+#poof{position:absolute;left:0;top:0;opacity:0;z-index:4;font-size:90px}
+/* L4 thought bubble */
+#think{position:absolute;left:0;top:0;opacity:0;z-index:4;width:640px;transform-origin:85% 100%}
+#think .cl{background:#fff;border:6px solid #10141E;border-radius:60px;padding:18px;box-shadow:0 8px 0 #10141E}
+#think .dots{position:absolute;right:60px;bottom:-74px}
+#think .dots i{position:absolute;border-radius:50%;background:#fff;border:5px solid #10141E}
+#thk{display:block;border-radius:40px}
+.tl{position:absolute;font-family:Rama,NotoTe;font-size:34px;color:#10141E;background:#FFF59D;border:4px solid #10141E;border-radius:12px;padding:0 12px 4px}
+/* time chips + the NEXT DAY wipe */
+#tchip{position:absolute;top:166px;left:56px;opacity:0;z-index:4;font-family:Anton;font-size:40px;letter-spacing:2px;color:#10141E;background:#FFFDF5;border:5px solid #10141E;border-radius:14px;padding:0 18px;box-shadow:0 6px 0 #10141E;border-left:14px solid #00897B}
+#wipe{position:absolute;inset:0;opacity:0;z-index:5;background:#FDE9C4;display:grid;place-items:center}
+#wipe .c{text-align:center}
+#wipe .sd{font-family:Anton;font-size:72px;letter-spacing:6px;color:#10141E}
+#wipe .tm{display:inline-block;margin-top:24px;font-family:Anton;font-size:120px;letter-spacing:3px;color:#FF5A3C;background:#1C1F26;border:8px solid #10141E;border-radius:22px;padding:0 34px;box-shadow:0 12px 0 #10141E}
+#sniffq{position:absolute;left:0;top:0;opacity:0;z-index:4;width:84px;height:84px;border-radius:50%;background:#fff;border:6px solid #10141E;display:grid;place-items:center;font-family:Anton;font-size:56px;color:#10141E;box-shadow:0 6px 0 #10141E}
+/* L6 recap strip (no labels) */
+#recap{position:absolute;top:560px;left:40px;right:40px;display:flex;justify-content:space-between;opacity:0;z-index:4}
+#recap .pn{width:310px;height:310px;background:#FFFDF5;border:7px solid #10141E;border-radius:22px;box-shadow:0 9px 0 #10141E;overflow:hidden;opacity:0}
+/* follow */
+#fol{position:absolute;top:1200px;left:230px;width:620px;text-align:center;opacity:0;z-index:4}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:7}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:7}
+/* L7 + countdown */
+#q{position:absolute;top:170px;left:30px;right:30px;text-align:center;opacity:0;z-index:5}
+#q span{display:inline-block;font-family:Rama,NotoTe;font-size:72px;line-height:1.2;color:#10141E;background:#FFFDF5;border:7px solid #10141E;border-radius:26px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+#spin{position:absolute;left:290px;top:420px;width:500px;height:500px;opacity:0;z-index:4}
+#qm{position:absolute;left:0;top:0;opacity:0;z-index:5;font-family:Anton;font-size:150px;color:#FFD54F;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+#cdw{position:absolute;top:960px;left:50%;width:250px;height:250px;margin-left:-125px;opacity:0;z-index:5}
+#digit{position:absolute;top:0;left:0;right:0;height:250px;line-height:250px;text-align:center;font-family:Anton;font-size:136px;color:#F5B347;
+  -webkit-text-stroke:11px #10141E;paint-order:stroke fill;text-shadow:0 10px 0 #10141E}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:5}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:38px;line-height:1.2;color:#10141E}
+#cnow{position:absolute;top:1250px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#cnow span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:18px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+/* memory inset (sepia torn paper) */
+#fbw{position:absolute;left:60px;top:300px;width:960px;height:760px;opacity:0;z-index:3;filter:drop-shadow(0 14px 0 rgba(40,28,14,.55))}
+#fb{position:absolute;inset:0;clip-path:var(--torn);filter:sepia(.8) saturate(.95) contrast(1.04) brightness(1.03);background:#E8D9BC;overflow:hidden}
+#fbs{position:absolute;left:0;top:0}
+#fbLY{position:absolute;left:30px;top:26px;font-family:Rama,NotoTe;font-size:46px;color:#FFF8E7;background:#6D4C2F;border:5px solid #3B2A1A;border-radius:12px;padding:0 18px 4px;transform:rotate(-3deg)}
+#clang{position:absolute;left:0;top:0;opacity:0;font-family:Anton;font-size:64px;letter-spacing:2px;color:#3B2A1A;background:#FFF8E7;border:5px solid #3B2A1A;border-radius:50% 46% 52% 44%;padding:6px 26px}
+#phc{position:absolute;left:0;top:0;opacity:0;z-index:4;width:380px;background:#1A1A1A;border:6px solid #10141E;border-radius:34px;padding:14px;box-shadow:0 9px 0 #10141E}
+#phc .scr{background:#F5F7FA;border-radius:22px;padding:14px 18px 18px;font-family:InterB}
+#phc .nm{display:flex;align-items:center;gap:14px;font-family:Rama,NotoTe;font-size:40px;color:#10141E}
+#phc .nm i{width:64px;height:64px;border-radius:50%;background:#8D6E63;display:grid;place-items:center;font-style:normal;font-size:34px}
+#phc .lc{margin-top:10px;font-weight:800;font-size:24px;color:#8A90A0;letter-spacing:1px}
+#phc .dots{margin-top:6px;height:12px;background:repeating-linear-gradient(90deg,#CFD8DC 0 14px,transparent 14px 26px);border-radius:6px}
+/* L12 video call (generic UI, no app) */
+#vc{position:absolute;left:0;top:0;opacity:0;z-index:4;width:500px;height:900px;background:#111;border:8px solid #10141E;border-radius:56px;box-shadow:0 12px 0 #10141E;overflow:hidden}
+#vcs{position:absolute;left:0;top:0}
+#vc .hd{position:absolute;top:0;left:0;right:0;padding-top:30px;height:160px;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,0));text-align:center;font-family:Rama,NotoTe;font-size:44px;color:#fff;text-shadow:0 3px 8px rgba(0,0,0,.8)}
+#vc .hd small{display:block;font-family:InterB;font-weight:800;font-size:26px;letter-spacing:1px;color:#E0F2F1}
+#vc .bt{position:absolute;bottom:40px;left:0;right:0;display:flex;justify-content:center;gap:40px}
+#vc .bt i{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:40px;background:rgba(255,255,255,.25);border:4px solid rgba(255,255,255,.5)}
+#vc .bt i.end{background:#E53935;border-color:#B71C1C}
+#vc .pip{position:absolute;top:150px;right:22px;width:130px;height:180px;border-radius:18px;border:4px solid #fff;overflow:hidden;background:#F4E6D0}
+#vc .ringing{position:absolute;inset:0;background:linear-gradient(#26A69A,#00695C);display:grid;place-items:center;text-align:center;font-family:Rama,NotoTe;color:#fff;font-size:50px}
+#vc .ringing small{display:block;font-family:InterB;font-weight:800;font-size:30px;letter-spacing:2px;color:#E0F2F1;margin-top:8px}
+#vc .av{width:200px;height:200px;border-radius:50%;margin:0 auto 26px;background:#FFE0B2;border:6px solid #fff;display:grid;place-items:center;font-size:110px}
+/* share: tag your office Amma */
+#share{position:absolute;inset:0;opacity:0;z-index:5}
+#share .dim2{position:absolute;inset:0;background:rgba(16,20,30,.74)}
+#sq{position:absolute;top:190px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:62px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cbox{position:absolute;left:90px;right:90px;top:540px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:760px} #ct2{top:890px} #ct3{top:1020px}
+#ct1 .av{background:#F9A825} #ct2 .av{background:#00ACC1} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-family:InterB;font-size:32px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.88);z-index:5}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:46px;color:#F5B347;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:50px;color:#fff;margin-top:10px}
+/* the silent loop */
+#loopT{position:absolute;left:0;right:0;top:1220px;text-align:center;opacity:0;z-index:5}
+#loopT span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:18px;padding:2px 26px 10px;box-shadow:0 8px 0 #10141E}
+#dring{position:absolute;left:0;top:0;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:8px solid #FFD54F;box-shadow:0 0 0 5px #10141E,inset 0 0 0 4px #10141E;opacity:0;z-index:4}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:6}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="ab" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:6"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">TWIST STORY</div></div>
+<div id="hook"><span class="pill">6 రోజులు… పేరు లేని tiffin 🍱</span></div>
+<div id="title"><div class="t">MYSTERY TIFFIN</div></div>
+<div class="wl" id="wclk">1:00 PM</div>
+<div class="wl" id="menu"><b>MENU</b>పెసరట్టు · ఉప్మా · ఇడ్లీ<br>వడ · దోశ · చాయ్</div>
+<div class="wl" id="slip"><small>ORDER · 8:45 AM</small>N — పెసరట్టు-ఉప్మా</div>
+<div id="ans"><span>ANSWER AT THE END 👀</span></div>
+<div id="lidU"><div class="lb">?</div></div>
+<div id="heart">💗</div>
+<div id="stk">SECRET ADMIRER? 💘</div>
+<div id="poof">💨</div>
+<div id="think"><div class="cl"><svg id="thk" width="592" height="330" viewBox="0 0 592 330"></svg>
+  <div class="tl" style="left:40px;top:28px">రాజమండ్రి</div><div class="tl" style="left:356px;top:28px">Hyderabad</div></div>
+  <div class="dots"><i style="width:44px;height:44px;left:0;top:0"></i><i style="width:28px;height:28px;left:36px;top:50px"></i></div></div>
+<div id="tchip">1:15 PM · CAFETERIA</div>
+<div id="sniffq">?</div>
+<div id="recap"><div class="pn" id="pn0"><svg id="rc0" width="296" height="296" viewBox="0 0 296 296"></svg></div><div class="pn" id="pn1"><svg id="rc1" width="296" height="296" viewBox="0 0 296 296"></svg></div><div class="pn" id="pn2"><svg id="rc2" width="296" height="296" viewBox="0 0 296 296"></svg></div></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="q"><span>Tiffin ఎవరిది? 💬</span></div>
+<svg id="spin" width="500" height="500" viewBox="-250 -250 500 500"></svg>
+<div id="qm">?</div>
+<div id="cdw"><svg width="250" height="250" viewBox="-125 -125 250 250">
+  <circle r="108" fill="#FFFDF5" stroke="#10141E" stroke-width="10"/>
+  <circle id="arc" r="90" fill="none" stroke="#E8553D" stroke-width="20" transform="rotate(-90)" stroke-dasharray="565.5 565.5" stroke-linecap="round"/>
+  </svg><div id="digit">5</div></div>
+<div id="cnow"><span>💬 COMMENT <b class="te">చేయండి</b></span></div>
+<div id="cbs"></div>
+<div id="wipe"><div class="c"><div class="sd">NEXT DAY</div><div class="tm">12:40 PM</div></div></div>
+<div id="fbw"><div id="fb"><svg id="fbs" width="960" height="760" viewBox="0 0 960 760"></svg>
+  <div id="clang">CLANG!</div>
+  <div id="fbLY">చిన్నప్పుడు</div></div></div>
+<div id="phc"><div class="scr"><div class="nm"><i>👦</i>బాబు 📞</div><div class="lc">LAST CALL</div><div class="dots"></div></div></div>
+<div id="vc"><svg id="vcs" width="484" height="884" viewBox="0 0 484 884"></svg>
+  <div class="hd">అమ్మ ❤️<small id="vct">00:03</small></div>
+  <div class="pip"><svg id="pip" width="122" height="172" viewBox="0 0 122 172"></svg></div>
+  <div class="bt"><i>🎤</i><i class="end">📞</i><i>📷</i></div>
+  <div class="ringing" id="vring"><div><div class="av">👩</div>అమ్మ<small>CALLING…</small></div></div></div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span>మీకూ office లో ఒక అమ్మ ఉన్నారా?<br>TAG చేయండి 🥹</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">O</div><span>Office అమ్మ 🍱</span><span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">T</div>Team lunch gang 🍛</div>
+  <div class="ct" id="ct3"><div class="av">C</div>Canteen anna ☕</div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · TWIST STORY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో twist! 🌀</div></div></div>
+<div id="dring"></div>
+<div id="loopT"><span>Dent మొదటి frame లోనే ఉంది 👀</span></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style: flat (desk + cafeteria); the L10 memory inset is paper + sepia</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

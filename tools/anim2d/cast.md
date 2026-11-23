@@ -170,3 +170,23 @@ Voices (all Gemini; ElevenLabs skipped for this series because its bank clashes)
 Suresh=Achird, Priya=Pulcherrima, Gopi=Puck; team chorus = those three + Umbriel, Callirrhoe, Zubenelgenubi (chorus.py).
 Series SFX: `tools/anim2d/sfx/faaah.wav` (our own FAAAH: 3 Gemini takes Rasalgethi/Alnilam/Gacrux, layered; onset at 0.4 s,
 see the post's `faaah.py`/`faaah/faaah.json`) and the tuba sting `tuba_sting()` in that post's `mix.py`.
+
+## Lakshmi aunty + the mystery tiffin (from Twist story "the mystery tiffin", `content/2026-11-24-twist-mystery-tiffin/2d/world.js`, 24 Nov 2026)
+Flat desk at Tower B (Day 6 1:00 PM / Day 7 12:40 PM) + the ground-floor cafeteria counter (yellow wall, teal tiles) + a
+paper/sepia torn-edge memory inset. Lakshmi aunty (~55) runs the cafeteria counter and the 12:30 tea-trolley round on
+Nikhil's floor. NOT the retired comedy cast's "Lakshmi Amma" (`who` is `lakshmi`). `makeAdult()` there adds
+`saree.check` (checked cotton: white check lines over the skirt and pallu), `floor` (saree to the floor when standing:
+sandal colour), `apron` (bib apron + a pocket with her phone; `st.phoneGlow` lights it), `streaks` (grey hair streaks),
+`st.specSwing` (the specs on the chain swing, degrees), `st.tear`, the items `ladle` (right hand), `plate` (pesarattu-upma)
+and left-hand `laptop`; props `makeTiffin()` (two-tier steel tiffin, the DENT on the lid at 2 o'clock, `food`, `glint`),
+`makeTrolley()`, `makeSwirl()`/`swirlAt()` (curry-leaf + mustard-seed steam), `makePhoto()` (her son at the airport, 'Nov 2024').
+```js
+const LAKSHMI_OPT={skin:"#C08660",hair:"#2B2220",streaks:"#B8B8B8",shirt:"#283A8C",saree:{base:"#2F3F9A",pallu:"#34459F",border:"#E0A526",bw:7,check:"#F4F4F4"},sleeve:"#283A8C",fore:"#C08660",
+                   bun:true,lowBun:true,bindi:true,specChain:true,roundFace:true,lines:true,apron:"#E5A82E",bangles:"#B0BEC5",earrings:true,earCol:"#E0A526",brow:4.5,browCol:"#4A3C34",lash:3.5,blush:0.3,lip:"#9A4A44"};   // Lakshmi aunty, ~55: faded indigo-and-white checked cotton saree with a thin mustard border, mustard cafeteria apron, specs on a beaded chain, grey streaks in a low bun, small bindi, soft round face, steel bangles
+const SON_OPT={skin:"#BE8460",hair:"#16100C",shirt:"#45454D",collar:"#3A3A42",sidePart:true,brow:6,lip:"#7A3A30"};   // her son, ~28 (photo + memory only): charcoal shirt like Nikhil's, side part, clean-shaven
+```
+No badge (cafeteria staff). Behind a counter/desk: hip ~95 px above the top (`CT-20` at the counter, `DT-95` at the desk).
+Nikhil's Amma on the video call = `SAROJA_OPT` (same Amma as 15/16 Nov). Her son as a boy in the memory: the kid rig
+(`makeKid`, white school shirt, navy shorts).
+Voices in that reel (all Gemini; ElevenLabs skipped, its key cap had ~51 credits): Gopi=Puck, Nikhil=Charon, Ananya=Kore,
+Lakshmi=Vindemiatrix (profile andhra-female-middle = Seeta if ElevenLabs is ever used).

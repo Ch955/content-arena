@@ -1,0 +1,16 @@
+batch ['ananya', 'nikhil'] [0, 1, 2, 3, 5, 8, 11]
+batch ['lakshmi', 'gopi'] [4, 6, 7, 9, 10, 12]
+0 ananya gemini 0.25 4.264
+1 nikhil gemini 4.714 2.924
+2 ananya gemini 7.788 4.156
+3 nikhil gemini 12.144 3.069
+4 lakshmi gemini 15.963 1.177
+5 ananya gemini 17.339 3.528
+6 gopi gemini 21.068 2.952
+7 gopi gemini 24.17 4.964
+8 nikhil gemini 35.484 1.457
+9 lakshmi gemini 37.291 3.595
+10 lakshmi gemini 41.186 4.627
+11 nikhil gemini 47.113 3.09
+12 gopi gemini 50.753 2.799
+total 55.9

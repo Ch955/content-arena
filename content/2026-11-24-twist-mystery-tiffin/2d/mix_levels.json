@@ -1,0 +1,374 @@
+{
+ "integrated_lufs": -15.1,
+ "true_peak_dbtp": -3.5,
+ "lra": 9.7,
+ "master_gain_db": 5.8,
+ "max_gr_db": -1.55,
+ "cues": [
+  {
+   "cue": "lid tap 1 (ఆరో)",
+   "level": "mid",
+   "t": 0.24,
+   "cue_peak_dbfs": -13.1,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "lid tap 2",
+   "level": "soft",
+   "t": 0.46,
+   "cue_peak_dbfs": -17.0,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "trolley wheels rolling out (frame 1)",
+   "level": "low",
+   "t": 0.0,
+   "cue_peak_dbfs": -14.9,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "lid lift clink",
+   "level": "soft",
+   "t": 3.53,
+   "cue_peak_dbfs": -16.9,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "steam whoosh",
+   "level": "low",
+   "t": 3.63,
+   "cue_peak_dbfs": -19.4,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "hmm pluck (no name)",
+   "level": "low",
+   "t": 6.03,
+   "cue_peak_dbfs": -24.1,
+   "mix_peak_in_window_dbfs": -4.9
+  },
+  {
+   "cue": "heart pop",
+   "level": "low",
+   "t": 7.68,
+   "cue_peak_dbfs": -26.4,
+   "mix_peak_in_window_dbfs": -17.5
+  },
+  {
+   "cue": "sticker slap",
+   "level": "soft",
+   "t": 8.24,
+   "cue_peak_dbfs": -13.3,
+   "mix_peak_in_window_dbfs": -4.8
+  },
+  {
+   "cue": "heart poof",
+   "level": "low",
+   "t": 10.0,
+   "cue_peak_dbfs": -18.4,
+   "mix_peak_in_window_dbfs": -4.9
+  },
+  {
+   "cue": "thought bubble pop",
+   "level": "low",
+   "t": 10.31,
+   "cue_peak_dbfs": -26.5,
+   "mix_peak_in_window_dbfs": -4.9
+  },
+  {
+   "cue": "bubble out",
+   "level": "low",
+   "t": 13.3,
+   "cue_peak_dbfs": -26.0,
+   "mix_peak_in_window_dbfs": -16.3
+  },
+  {
+   "cue": "cut whoosh (cafeteria)",
+   "level": "low",
+   "t": 13.25,
+   "cue_peak_dbfs": -19.4,
+   "mix_peak_in_window_dbfs": -14.2
+  },
+  {
+   "cue": "tadka sizzle",
+   "level": "low",
+   "t": 13.37,
+   "cue_peak_dbfs": -14.2,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "tadka splutter (smell cue)",
+   "level": "soft",
+   "t": 15.21,
+   "cue_peak_dbfs": -10.9,
+   "mix_peak_in_window_dbfs": -4.4
+  },
+  {
+   "cue": "'?' pluck",
+   "level": "low",
+   "t": 16.5,
+   "cue_peak_dbfs": -24.4,
+   "mix_peak_in_window_dbfs": -7.3
+  },
+  {
+   "cue": "recap swish 1",
+   "level": "low",
+   "t": 18.46,
+   "cue_peak_dbfs": -21.0,
+   "mix_peak_in_window_dbfs": -4.7
+  },
+  {
+   "cue": "recap swish 2",
+   "level": "low",
+   "t": 18.71,
+   "cue_peak_dbfs": -19.7,
+   "mix_peak_in_window_dbfs": -5.2
+  },
+  {
+   "cue": "recap swish 3",
+   "level": "low",
+   "t": 18.96,
+   "cue_peak_dbfs": -20.4,
+   "mix_peak_in_window_dbfs": -6.7
+  },
+  {
+   "cue": "follow tap",
+   "level": "soft",
+   "t": 20.66,
+   "cue_peak_dbfs": -18.4,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "spin whoosh + chime (Tiffin ఎవరిది?)",
+   "level": "soft",
+   "t": 21.41,
+   "cue_peak_dbfs": -17.0,
+   "mix_peak_in_window_dbfs": -4.8
+  },
+  {
+   "cue": "countdown tick 5",
+   "level": "low",
+   "t": 24.31,
+   "cue_peak_dbfs": -17.4,
+   "mix_peak_in_window_dbfs": -14.9
+  },
+  {
+   "cue": "countdown tick 4",
+   "level": "low",
+   "t": 25.31,
+   "cue_peak_dbfs": -14.7,
+   "mix_peak_in_window_dbfs": -15.6
+  },
+  {
+   "cue": "countdown tick 3",
+   "level": "low",
+   "t": 26.31,
+   "cue_peak_dbfs": -16.1,
+   "mix_peak_in_window_dbfs": -15.1
+  },
+  {
+   "cue": "countdown tick 2",
+   "level": "low",
+   "t": 27.31,
+   "cue_peak_dbfs": -16.3,
+   "mix_peak_in_window_dbfs": -14.1
+  },
+  {
+   "cue": "countdown tick 1",
+   "level": "low",
+   "t": 28.31,
+   "cue_peak_dbfs": -14.6,
+   "mix_peak_in_window_dbfs": -14.8
+  },
+  {
+   "cue": "comment plip 1",
+   "level": "low",
+   "t": 24.61,
+   "cue_peak_dbfs": -26.0,
+   "mix_peak_in_window_dbfs": -17.7
+  },
+  {
+   "cue": "comment plip 2",
+   "level": "low",
+   "t": 25.56,
+   "cue_peak_dbfs": -26.0,
+   "mix_peak_in_window_dbfs": -19.0
+  },
+  {
+   "cue": "comment plip 3",
+   "level": "low",
+   "t": 26.51,
+   "cue_peak_dbfs": -26.0,
+   "mix_peak_in_window_dbfs": -17.6
+  },
+  {
+   "cue": "comment plip 4",
+   "level": "low",
+   "t": 27.46,
+   "cue_peak_dbfs": -26.0,
+   "mix_peak_in_window_dbfs": -19.0
+  },
+  {
+   "cue": "NEXT DAY wipe",
+   "level": "low",
+   "t": 29.31,
+   "cue_peak_dbfs": -19.3,
+   "mix_peak_in_window_dbfs": -19.0
+  },
+  {
+   "cue": "footsteps (he walks in)",
+   "level": "low",
+   "t": 29.76,
+   "cue_peak_dbfs": -14.7,
+   "mix_peak_in_window_dbfs": -13.3
+  },
+  {
+   "cue": "freeze: soft low piano + specs tinkle",
+   "level": "soft",
+   "t": 30.33,
+   "cue_peak_dbfs": -11.2,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "memory: paper rustle",
+   "level": "low",
+   "t": 32.64,
+   "cue_peak_dbfs": -18.2,
+   "mix_peak_in_window_dbfs": -3.7
+  },
+  {
+   "cue": "memory: the soft tiffin clang",
+   "level": "mid",
+   "t": 33.31,
+   "cue_peak_dbfs": -13.0,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "memory: plane far away",
+   "level": "low",
+   "t": 34.17,
+   "cue_peak_dbfs": -19.7,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "phone card pop",
+   "level": "low",
+   "t": 35.92,
+   "cue_peak_dbfs": -26.3,
+   "mix_peak_in_window_dbfs": -18.4
+  },
+  {
+   "cue": "split chime",
+   "level": "low",
+   "t": 39.77,
+   "cue_peak_dbfs": -22.7,
+   "mix_peak_in_window_dbfs": -5.1
+  },
+  {
+   "cue": "chair rolls in",
+   "level": "low",
+   "t": 42.11,
+   "cue_peak_dbfs": -18.3,
+   "mix_peak_in_window_dbfs": -11.2
+  },
+  {
+   "cue": "video-call ring",
+   "level": "soft",
+   "t": 42.26,
+   "cue_peak_dbfs": -18.0,
+   "mix_peak_in_window_dbfs": -11.2
+  },
+  {
+   "cue": "call connects",
+   "level": "low",
+   "t": 42.99,
+   "cue_peak_dbfs": -24.4,
+   "mix_peak_in_window_dbfs": -5.8
+  },
+  {
+   "cue": "tag ding",
+   "level": "soft",
+   "t": 48.49,
+   "cue_peak_dbfs": -19.6,
+   "mix_peak_in_window_dbfs": -7.8
+  },
+  {
+   "cue": "end-card follow tap",
+   "level": "low",
+   "t": 49.53,
+   "cue_peak_dbfs": -24.4,
+   "mix_peak_in_window_dbfs": -19.9
+  }
+ ],
+ "voices": [
+  {
+   "line": 0,
+   "who": "ananya",
+   "final_peak_dbfs": -3.4
+  },
+  {
+   "line": 1,
+   "who": "nikhil",
+   "final_peak_dbfs": -3.5
+  },
+  {
+   "line": 2,
+   "who": "ananya",
+   "final_peak_dbfs": -4.0
+  },
+  {
+   "line": 3,
+   "who": "nikhil",
+   "final_peak_dbfs": -3.8
+  },
+  {
+   "line": 4,
+   "who": "lakshmi",
+   "final_peak_dbfs": -3.5
+  },
+  {
+   "line": 5,
+   "who": "ananya",
+   "final_peak_dbfs": -3.7
+  },
+  {
+   "line": 6,
+   "who": "gopi",
+   "final_peak_dbfs": -3.7
+  },
+  {
+   "line": 7,
+   "who": "gopi",
+   "final_peak_dbfs": -3.8
+  },
+  {
+   "line": 8,
+   "who": "nikhil",
+   "final_peak_dbfs": -3.9
+  },
+  {
+   "line": 9,
+   "who": "lakshmi",
+   "final_peak_dbfs": -3.4
+  },
+  {
+   "line": 10,
+   "who": "lakshmi",
+   "final_peak_dbfs": -3.7
+  },
+  {
+   "line": 11,
+   "who": "nikhil",
+   "final_peak_dbfs": -4.4
+  },
+  {
+   "line": 12,
+   "who": "gopi",
+   "final_peak_dbfs": -3.2
+  }
+ ],
+ "music_bed_peak_under_voice_dbfs": -19.6,
+ "music_bed_peak_open_dbfs": -9.2,
+ "loop_silence_s": 1.5,
+ "loop_max_abs": 0.0
+}
