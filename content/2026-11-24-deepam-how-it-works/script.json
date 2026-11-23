@@ -1,0 +1,97 @@
+{
+  "lines": [
+    {
+      "who": "gopi",
+      "text": "ఒక్క దీపం కోసం… 50 లక్షల మంది!",
+      "say": "[whispers] ఒక్క దీపం కోసం… [excited] 50 లక్షల మంది!",
+      "act": "hushed awe on the first half, then a big amazed punch on '50 లక్షల'; not shouting",
+      "beat": "hook"
+    },
+    {
+      "who": "gopi",
+      "text": "ఈ సాయంత్రం Arunachalam కొండ మీద… Maha Deepam.",
+      "say": "[softly] ఈ సాయంత్రం… Arunachalam కొండ మీద… [warmly] Maha Deepam.",
+      "act": "soft, reverent, slow; warmth on 'Maha Deepam'",
+      "beat": "context"
+    },
+    {
+      "who": "gopi",
+      "text": "ఊరు Tiruvannamalai… ఇంత మందిని ఎలా manage చేస్తారు?",
+      "say": "ఊరు Tiruvannamalai… [mischievously] ఇంత మందిని… ఎలా manage చేస్తారు?",
+      "act": "curious, leaning in, opening a question the viewer wants answered; stress on 'ఎలా'",
+      "beat": "open-loop"
+    },
+    {
+      "who": "gopi",
+      "text": "4,877 buses… 16 special trains!",
+      "say": "[excited] 4,877 buses… [dramatic pause] 16 special trains!",
+      "act": "fast, impressed, like reading a scoreboard; hit '16' hard",
+      "beat": "fact-1"
+    },
+    {
+      "who": "gopi",
+      "text": "15,500 కి పైగా police… 1,100 CCTV cameras!",
+      "say": "15,500 కి పైగా police… [whispers] 1,100 CCTV cameras!",
+      "act": "firm and proud on the police number, then a sly whisper on the cameras, as if they are watching",
+      "beat": "fact-2"
+    },
+    {
+      "who": "gopi",
+      "text": "ఇలాంటి behind-the-scenes కావాలంటే… follow చేయండి!",
+      "say": "[excited] ఇలాంటి behind-the-scenes కావాలంటే… follow చేయండి!",
+      "act": "quick, friendly nudge; don't slow the pace",
+      "beat": "follow"
+    },
+    {
+      "who": "gopi",
+      "text": "కొండ చుట్టూ 14 km… గిరి ప్రదక్షిణ దారి.",
+      "say": "[softly] కొండ చుట్టూ… 14 km… [warmly] గిరి ప్రదక్షిణ దారి.",
+      "act": "slower, devotional calm; let '14 km' breathe",
+      "beat": "fact-3"
+    },
+    {
+      "who": "pinky",
+      "text": "అమ్మమ్మా… కాళ్ళు నొప్పి! ఆకలి!",
+      "say": "[whiny] అమ్మమ్మా… కాళ్ళు నొప్పి! [pouting] ఆకలి!",
+      "act": "a tired 6-year-old tugging her grandmother's hand, whiny and cute; two short complaints",
+      "beat": "interrupt"
+    },
+    {
+      "who": "ammamma",
+      "text": "భయం లేదు… 120 medical camps, 288 చోట్ల free భోజనం.",
+      "say": "[chuckles] భయం లేదు… [warmly] 120 medical camps… 288 చోట్ల free భోజనం.",
+      "act": "a calm ~70-year-old grandmother, amused and reassuring, slow and kind",
+      "beat": "fact-4-5"
+    },
+    {
+      "who": "gopi",
+      "text": "మీరు గిరి ప్రదక్షిణ చేశారా? Comment లో చెప్పండి!",
+      "say": "[warmly] మీరు గిరి ప్రదక్షిణ చేశారా? [excited] Comment లో చెప్పండి!",
+      "act": "a genuine, warm question to the viewer, then a bright nudge",
+      "beat": "comment"
+    },
+    {
+      "who": "gopi",
+      "text": "సాయంత్రం… 50 లక్షల మంది… ఒక్క దీపం వైపు.",
+      "say": "[whispers] సాయంత్రం… [dramatic pause] 50 లక్షల మంది… ఒక్క దీపం వైపు.",
+      "act": "hushed, awe-struck, very slow; the quietest line of the reel",
+      "beat": "climax"
+    },
+    {
+      "who": "gopi",
+      "text": "Arunachalam వెళ్ళే మీ వాళ్ళకి పంపండి… follow చేయండి!",
+      "say": "[warmly] Arunachalam వెళ్ళే మీ వాళ్ళకి… పంపండి! [excited] follow చేయండి!",
+      "act": "warm send-off, then a friendly close; keep it short",
+      "beat": "share-close"
+    }
+  ],
+  "visual_plan": [
+    "STYLE: FLAT skin, night palette (deep indigo/navy sky, charcoal hill silhouette, saffron-gold accents); counters in big gold digits with a soft glow. The reel goes night → dusk → the flame. Respectful and awe-filled throughout.",
+    "NO deity faces, idols, lingams, temple interiors or ritual close-ups; no direction/orientation trivia. Show only: the hill, the flame, crowds walking (from behind/side, simple silhouettes), buses, trains, police caps, CCTV poles, medical tents, food plates, map pin. No real logos (TNSTC, Railways) or brand names.",
+    "COUNTDOWN RAIL: 6 small lamp icons on the left edge; one lights per fact beat (L4, L5, L7, L9×2, L11); the 6th lights just before the hilltop flame.",
+    "SOURCE STRIP: 'Source: The Hindu, 23 Nov 2026' visible from L3 to the end card (small, bottom, readable).",
+    "NUMBERS ON SCREEN exactly as in Facts to verify: 50,00,000 (50 lakh, label 'expected'), 4,877 buses, 16 special trains, 15,500+ police, ~1,100 CCTV, 14 km, 120 medical camps, 288 free-food spots. Do NOT add a time ('6 PM'), hill height, ghee quantity or any other number.",
+    "Per-line: L1: COUNTER 0 → 50,00,000 (gold digits) over a wide night shot of the hill; tiny lamps of a walking crowd at its foot. TEXT HOOK on screen 0–2 s. | L2: Slow push-in on the dark hilltop (unlit). Chip: 'MAHA DEEPAM · 24 NOV 2026'. | L3: Map pin drops on 'TIRUVANNAMALAI, TAMIL NADU'. Bottom strip stays from here to the end: 'Source: The Hindu, 23 Nov 2026'. Countdown rail appears on the side: 6 empty lamp icons. | L4: COUNTER 4,877 with a stream of flat buses rolling in; then COUNTER 16 with a train sliding across. Small chip: '23–25 NOV'. Lamp 1 of 6 lights on the rail. | L5: COUNTER 15,500+ (rows of caps/badges, no faces in detail); then COUNTER ~1,100 with CCTV icons blinking on poles. Lamp 2 lights. | L6: Animated follow-button tap (Instagram) + subscribe (YouTube) in a corner while the crowd keeps walking. Keep under 3 s. | L7: COUNTER 0 → 14 KM as a glowing line draws a loop around the hill silhouette; tiny walking figures (from behind, barefoot) along it. Lamp 3 lights. | L8: Cut close to a devotee family walking (seen from the side, no deity imagery): Pinky in a small pavadai holding Ammamma's hand, a cloth bag. Pattern interrupt: first human voice after the host. | L9: COUNTER 120 with a red-cross tent icon; then COUNTER 288 with steaming banana-leaf plates. Lamps 4 and 5 light. Optional small chip: '~35 ambulances, 10 bike ambulances'. | L10: Comment-bubble icon pops up over the walking crowd; sky starts turning dusk orange. | L11: Dusk. Crowd silhouettes all turn toward the hilltop; lamp 6 on the rail lights; then the FLAME LIGHTS on the hilltop (whoosh + warm swell, 2–3 s, no voice), glow spreading down the hill. Hold. | L12: Share-arrow icon, then END CARD (@_reelrasam | YouTube @reel_rasam) over the lit hill. Loop: the last frame matches frame 1's wide hill shot, so the reel restarts on 'ఒక్క దీపం కోసం…'.",
+    "AUDIO: soft synthesized drone + temple-bell-like chime (our own synth, no recorded devotional music); counters tick; flame lighting = whoosh + warm swell with no voice for 2–3 s."
+  ]
+}
