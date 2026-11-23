@@ -1,0 +1,404 @@
+{
+ "integrated_lufs": -15.1,
+ "true_peak_dbtp": -3.5,
+ "lra": 3.7,
+ "master_gain_db": 5.8,
+ "max_gr_db": -2.76,
+ "cues": [
+  {
+   "cue": "crowd murmur (wide)",
+   "level": "low",
+   "t": 0.0,
+   "cue_peak_dbfs": -22.7,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "crowd murmur (dusk)",
+   "level": "low",
+   "t": 32.49,
+   "cue_peak_dbfs": -21.6,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "crowd murmur (path)",
+   "level": "low",
+   "t": 25.04,
+   "cue_peak_dbfs": -24.5,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter ticks 1",
+   "level": "low",
+   "t": 1.4,
+   "cue_peak_dbfs": -15.8,
+   "mix_peak_in_window_dbfs": -4.1
+  },
+  {
+   "cue": "counter lands 1",
+   "level": "low",
+   "t": 2.3,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -7.4
+  },
+  {
+   "cue": "counter ticks 2",
+   "level": "low",
+   "t": 9.16,
+   "cue_peak_dbfs": -19.1,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 2",
+   "level": "low",
+   "t": 9.91,
+   "cue_peak_dbfs": -25.2,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter ticks 3",
+   "level": "low",
+   "t": 11.91,
+   "cue_peak_dbfs": -19.4,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 3",
+   "level": "low",
+   "t": 12.66,
+   "cue_peak_dbfs": -26.4,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter ticks 4",
+   "level": "low",
+   "t": 13.47,
+   "cue_peak_dbfs": -17.0,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 4",
+   "level": "low",
+   "t": 14.22,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -4.1
+  },
+  {
+   "cue": "counter ticks 5",
+   "level": "low",
+   "t": 16.02,
+   "cue_peak_dbfs": -15.0,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 5",
+   "level": "low",
+   "t": 16.77,
+   "cue_peak_dbfs": -26.5,
+   "mix_peak_in_window_dbfs": -3.6
+  },
+  {
+   "cue": "counter ticks 6",
+   "level": "low",
+   "t": 21.75,
+   "cue_peak_dbfs": -15.6,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 6",
+   "level": "low",
+   "t": 22.5,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -4.3
+  },
+  {
+   "cue": "counter ticks 7",
+   "level": "low",
+   "t": 27.33,
+   "cue_peak_dbfs": -16.8,
+   "mix_peak_in_window_dbfs": -3.9
+  },
+  {
+   "cue": "counter lands 7",
+   "level": "low",
+   "t": 28.08,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -3.9
+  },
+  {
+   "cue": "counter ticks 8",
+   "level": "low",
+   "t": 29.21,
+   "cue_peak_dbfs": -18.1,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "counter lands 8",
+   "level": "low",
+   "t": 29.96,
+   "cue_peak_dbfs": -25.4,
+   "mix_peak_in_window_dbfs": -5.1
+  },
+  {
+   "cue": "cut back wide whoosh",
+   "level": "low",
+   "t": 5.72,
+   "cue_peak_dbfs": -19.1,
+   "mix_peak_in_window_dbfs": -5.5
+  },
+  {
+   "cue": "pin drop",
+   "level": "low",
+   "t": 6.34,
+   "cue_peak_dbfs": -27.2,
+   "mix_peak_in_window_dbfs": -5.0
+  },
+  {
+   "cue": "rail slides in",
+   "level": "low",
+   "t": 6.24,
+   "cue_peak_dbfs": -20.0,
+   "mix_peak_in_window_dbfs": -5.0
+  },
+  {
+   "cue": "bus hum",
+   "level": "low",
+   "t": 8.86,
+   "cue_peak_dbfs": -17.6,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "train passing",
+   "level": "low",
+   "t": 11.56,
+   "cue_peak_dbfs": -20.2,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "police caps pop in",
+   "level": "low",
+   "t": 13.57,
+   "cue_peak_dbfs": -27.0,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "CCTV poles rise + soft beeps",
+   "level": "low",
+   "t": 15.87,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "follow tap",
+   "level": "soft",
+   "t": 19.79,
+   "cue_peak_dbfs": -20.1,
+   "mix_peak_in_window_dbfs": -6.7
+  },
+  {
+   "cue": "subscribe tap",
+   "level": "soft",
+   "t": 20.24,
+   "cue_peak_dbfs": -20.1,
+   "mix_peak_in_window_dbfs": -8.2
+  },
+  {
+   "cue": "the 14-km loop draws",
+   "level": "low",
+   "t": 20.72,
+   "cue_peak_dbfs": -22.3,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "cut to the path",
+   "level": "low",
+   "t": 24.92,
+   "cue_peak_dbfs": -20.5,
+   "mix_peak_in_window_dbfs": -14.2
+  },
+  {
+   "cue": "barefoot steps",
+   "level": "low",
+   "t": 25.04,
+   "cue_peak_dbfs": -18.3,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "cut back to the hill",
+   "level": "low",
+   "t": 32.49,
+   "cue_peak_dbfs": -19.0,
+   "mix_peak_in_window_dbfs": -5.2
+  },
+  {
+   "cue": "rail lamp 1 lights (bell)",
+   "level": "low",
+   "t": 13.02,
+   "cue_peak_dbfs": -25.7,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "rail lamp 2 lights (bell)",
+   "level": "low",
+   "t": 17.66,
+   "cue_peak_dbfs": -24.2,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "rail lamp 3 lights (bell)",
+   "level": "low",
+   "t": 24.56,
+   "cue_peak_dbfs": -24.5,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "rail lamp 4 lights (bell)",
+   "level": "low",
+   "t": 28.0,
+   "cue_peak_dbfs": -24.8,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "rail lamp 5 lights (bell)",
+   "level": "low",
+   "t": 30.08,
+   "cue_peak_dbfs": -24.3,
+   "mix_peak_in_window_dbfs": -4.8
+  },
+  {
+   "cue": "rail lamp 6 lights (bell)",
+   "level": "soft",
+   "t": 37.86,
+   "cue_peak_dbfs": -19.9,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "comment question pop",
+   "level": "low",
+   "t": 32.67,
+   "cue_peak_dbfs": -27.0,
+   "mix_peak_in_window_dbfs": -5.2
+  },
+  {
+   "cue": "comment plip 1",
+   "level": "low",
+   "t": 33.87,
+   "cue_peak_dbfs": -26.7,
+   "mix_peak_in_window_dbfs": -9.2
+  },
+  {
+   "cue": "comment plip 2",
+   "level": "low",
+   "t": 34.2,
+   "cue_peak_dbfs": -26.7,
+   "mix_peak_in_window_dbfs": -5.4
+  },
+  {
+   "cue": "comment plip 3",
+   "level": "low",
+   "t": 34.53,
+   "cue_peak_dbfs": -26.7,
+   "mix_peak_in_window_dbfs": -9.0
+  },
+  {
+   "cue": "diya-lighting whoosh (the flame)",
+   "level": "soft",
+   "t": 39.17,
+   "cue_peak_dbfs": -16.1,
+   "mix_peak_in_window_dbfs": -11.1
+  },
+  {
+   "cue": "the flame: soft bell",
+   "level": "soft",
+   "t": 40.17,
+   "cue_peak_dbfs": -17.9,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "share pop",
+   "level": "low",
+   "t": 42.02,
+   "cue_peak_dbfs": -20.5,
+   "mix_peak_in_window_dbfs": -4.9
+  },
+  {
+   "cue": "share tap",
+   "level": "low",
+   "t": 43.69,
+   "cue_peak_dbfs": -25.1,
+   "mix_peak_in_window_dbfs": -7.2
+  },
+  {
+   "cue": "end-card follow tap",
+   "level": "low",
+   "t": 45.77,
+   "cue_peak_dbfs": -25.0,
+   "mix_peak_in_window_dbfs": -10.6
+  }
+ ],
+ "voices": [
+  {
+   "line": 0,
+   "who": "gopi",
+   "final_peak_dbfs": -3.6
+  },
+  {
+   "line": 1,
+   "who": "gopi",
+   "final_peak_dbfs": -3.3
+  },
+  {
+   "line": 2,
+   "who": "gopi",
+   "final_peak_dbfs": -3.8
+  },
+  {
+   "line": 3,
+   "who": "gopi",
+   "final_peak_dbfs": -3.8
+  },
+  {
+   "line": 4,
+   "who": "gopi",
+   "final_peak_dbfs": -4.1
+  },
+  {
+   "line": 5,
+   "who": "gopi",
+   "final_peak_dbfs": -3.4
+  },
+  {
+   "line": 6,
+   "who": "gopi",
+   "final_peak_dbfs": -3.5
+  },
+  {
+   "line": 7,
+   "who": "pinky",
+   "final_peak_dbfs": -3.6
+  },
+  {
+   "line": 8,
+   "who": "ammamma",
+   "final_peak_dbfs": -3.5
+  },
+  {
+   "line": 9,
+   "who": "gopi",
+   "final_peak_dbfs": -3.3
+  },
+  {
+   "line": 10,
+   "who": "gopi",
+   "final_peak_dbfs": -3.5
+  },
+  {
+   "line": 11,
+   "who": "gopi",
+   "final_peak_dbfs": -3.3
+  }
+ ],
+ "music_bed_peak_under_voice_dbfs": -17.2,
+ "music_bed_peak_open_dbfs": -10.7,
+ "loop_silence_s": 1.1,
+ "loop_max_abs": 0.0
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Special-day reel "ఒక్క దీపం కోసం 50 లక్షల మంది" (Arunachalam Maha Deepam, 24 Nov 2026). 2D animated, FLAT skin in night
+     colours shifting to dusk: the Arunachalam hill silhouette, crowds walking (from behind), buses + a train (no logos, no
+     text), police caps, CCTV poles, the 14-km loop drawn around the hill, a medical tent (green cross) and banana-leaf
+     plates, Pinky + Ammamma on the path (cast.md looks), big counters with Indian digit grouping, a side rail of 6 lamps
+     (one per fact), the silent hilltop flame, the end card, and a hard cut back to frame 1 (loop). No deity faces, idols,
+     temple interiors or ritual close-ups. Source strip 'Source: The Hindu, 23 Nov 2026' from L3 to the end card. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0B1030}
+svg{display:block}
+#s{position:absolute;left:0;top:0}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(10,12,28,.78);z-index:6}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8762B;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+.pill{display:inline-block;font-family:Rama,NotoTe;color:#10141E;background:#FFF4D6;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#hook{position:absolute;top:156px;left:24px;right:24px;text-align:center;z-index:5}
+#hook .pill{font-size:60px;padding:2px 30px 10px}
+/* big counters */
+#cnt{position:absolute;top:290px;left:0;right:0;text-align:center;opacity:0;z-index:4}
+#cnt .row{display:inline-flex;align-items:center;gap:22px}
+#cnt .ic{width:150px;height:150px;flex:none}
+#cnt .num{font-family:Anton;font-size:180px;line-height:1.05;color:#FFD54F;-webkit-text-stroke:12px #10141E;paint-order:stroke fill;
+  text-shadow:0 10px 0 #10141E,0 0 40px rgba(255,190,60,.55);white-space:nowrap}
+#cnt .lab{display:inline-block;margin-top:6px;font-family:Anton;font-size:52px;letter-spacing:3px;color:#fff;background:rgba(10,12,28,.82);border:5px solid #FFD54F;border-radius:16px;padding:2px 26px 6px}
+#cnt .lab .te{font-size:50px}
+/* chips */
+.chip{position:absolute;left:0;right:0;text-align:center;opacity:0;z-index:5}
+.chip span{display:inline-block;font-family:Anton;font-size:56px;letter-spacing:3px;color:#10141E;background:#F5B347;padding:4px 30px;border-radius:16px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#pinL{position:absolute;left:0;top:0;opacity:0;z-index:4;text-align:center;font-family:Anton;color:#10141E;background:#FFF4D6;border:6px solid #10141E;border-radius:18px;box-shadow:0 9px 0 #10141E;padding:6px 26px 8px;white-space:nowrap}
+#pinL b{display:block;font-weight:normal;font-size:58px;letter-spacing:3px;line-height:1.05}
+#pinL i{display:block;font-style:normal;font-size:36px;letter-spacing:4px;color:#B3541E}
+/* source strip */
+#src{position:absolute;top:1452px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#src span{display:inline-block;font-family:InterB;font-weight:700;font-size:28px;color:#FFF4D6;background:rgba(10,12,28,.8);border:3px solid rgba(255,213,79,.7);border-radius:12px;padding:4px 18px}
+/* lamp rail */
+#rail{position:absolute;left:18px;top:600px;width:92px;height:720px;opacity:0;z-index:4}
+/* follow + subscribe */
+#fol{position:absolute;top:330px;right:40px;width:470px;opacity:0;z-index:5;text-align:center}
+.btn{display:block;font-family:Anton;font-size:56px;letter-spacing:3px;color:#fff;padding:8px 90px 8px 0;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:26px}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #bS{background:#E53935}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:7}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:7}
+/* caps card (L5) */
+#caps{position:absolute;left:150px;top:640px;width:780px;height:330px;opacity:0;z-index:3;background:rgba(10,12,28,.62);border:5px solid rgba(255,213,79,.6);border-radius:30px}
+/* comment bubbles (L10) */
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 24px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:5}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:40px;line-height:1.2;color:#10141E}
+#cq{position:absolute;top:300px;left:30px;right:30px;text-align:center;opacity:0;z-index:5}
+#cq span{display:inline-block;font-family:Rama,NotoTe;font-size:64px;line-height:1.25;color:#10141E;background:#FFF4D6;border:7px solid #10141E;border-radius:26px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+/* share (L12) */
+#share{position:absolute;top:880px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#share .sb{display:inline-flex;align-items:center;gap:22px;font-family:Anton;font-size:64px;letter-spacing:3px;color:#10141E;background:#FFD54F;border:6px solid #10141E;border-radius:26px;box-shadow:0 10px 0 #10141E;padding:10px 40px}
+#share svg{width:84px;height:84px}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;z-index:5;background:linear-gradient(rgba(10,12,28,0) 0%,rgba(10,12,28,.2) 38%,rgba(10,12,28,.86) 52%,rgba(10,12,28,.9) 100%)}
+#endc .box{position:absolute;top:930px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:56px;letter-spacing:3px;color:#fff;padding:10px 110px 10px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:34px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#E53935}
+#endc .lg{font-family:Anton;font-size:44px;color:#F5B347;letter-spacing:4px;margin-bottom:36px}
+#endc .nx{font-family:Rama,NotoTe;font-size:52px;color:#fff;margin-top:6px}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:6}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">MAHA DEEPAM</div></div>
+<div id="hook"><span class="pill">50 లక్షల మంది... ఒక్క దీపం 🪔</span></div>
+<div id="cnt"><div class="row"><svg class="ic" id="cic" viewBox="-75 -75 150 150"></svg><div class="num" id="cnum">0</div></div><br><div class="lab" id="clab"></div></div>
+<div class="chip" id="chipMD" style="top:300px"><span>MAHA DEEPAM · 24 NOV 2026</span></div>
+<div id="pinL"><b>TIRUVANNAMALAI</b><i>TAMIL NADU</i></div>
+<svg id="rail" viewBox="0 0 92 720"></svg>
+<div id="caps"><svg id="capsv" width="770" height="320" viewBox="0 0 770 320"></svg></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div><div class="btn" id="bS">▶ SUBSCRIBE</div></div>
+<div class="ring" id="ring"></div>
+<div id="cq"><span>మీరు గిరి ప్రదక్షిణ చేశారా? 💬</span></div>
+<div id="cbs"></div>
+<div id="share"><span class="sb"><svg viewBox="-50 -50 100 100"><path d="M-36 4 L34 -30 L14 36 L2 10 Z" fill="#fff" stroke="#10141E" stroke-width="7" stroke-linejoin="round"/><path d="M34 -30 L2 10" stroke="#10141E" stroke-width="6"/></svg>SHARE <span class="te" style="font-size:58px">చేయండి</span></span></div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · @_REELRASAM</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">ఒక్క దీపం... ఎన్నో చేతులు 🪔</div></div></div>
+<div id="src"><span>Source: The Hindu, 23 Nov 2026</span></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // flat, night palette -> dusk -> the flame</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

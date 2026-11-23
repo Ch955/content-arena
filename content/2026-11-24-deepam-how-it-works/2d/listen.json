@@ -1,0 +1,86 @@
+{
+ "L0": {
+  "expected": "ఒక్క దీపం కోసం… యాభై లక్షల మంది!",
+  "heard": "ఒక్క దీపం కోసం 50 లక్షల మంది",
+  "issue": "none",
+  "sim": 0.91,
+  "by": "gemini-3.5-flash"
+ },
+ "L1": {
+  "expected": "ఈ సాయంత్రం… Arunachalam కొండ మీద… Maha Deepam.",
+  "heard": "ఈ సాయంత్రం అరుణాచలం కొండ మీద",
+  "issue": "none",
+  "sim": 0.52,
+  "by": "gemini-3.5-flash"
+ },
+ "L2": {
+  "expected": "ఊరు Tiruvannamalai… ఇంత మందిని… ఎలా manage చేస్తారు?",
+  "heard": "మహాదీపం. ఊరు తిరువణ్ణామలై. ఇంతమందిని ఎలా మేనేజ్ చేస్తారో?",
+  "issue": "none",
+  "sim": 0.48,
+  "by": "gemini-3.5-flash"
+ },
+ "L3": {
+  "expected": "నాలుగు వేల ఎనిమిది వందల డెబ్బై ఏడు buses… పదహారు special trains!",
+  "heard": "4,870 బస్సెస్, 16 స్పెషల్ ట్రైన్స్,",
+  "issue": "none",
+  "sim": 0.11,
+  "by": "gemini-3.5-flash"
+ },
+ "L4": {
+  "expected": "పదిహేను వేల ఐదు వందలకు పైగా police… పదకొండు వందల CCTV cameras!",
+  "heard": "15,500 కు పైగా పోలీస్, 1,100 ల CCTV కెమెరాస్.",
+  "issue": "none",
+  "sim": 0.32,
+  "by": "gemini-3.5-flash"
+ },
+ "L5": {
+  "expected": "ఇలాంటి behind-the-scenes కావాలంటే… follow చేయండి!",
+  "heard": "ఇలాంటి బిహైండ్ ద సీన్స్ కావాలంటే ఫాలో చేయండి.",
+  "issue": "none",
+  "sim": 0.51,
+  "by": "gemini-3.5-flash"
+ },
+ "L6": {
+  "expected": "కొండ చుట్టూ… పద్నాలుగు kilometres… గిరి ప్రదక్షిణ దారి.",
+  "heard": "కొండ చుట్టూ 14 కిలోమీటర్లు గిరి ప్రదక్షిణ దారి.",
+  "issue": "none",
+  "sim": 0.71,
+  "by": "gemini-3.5-flash"
+ },
+ "L7": {
+  "expected": "అమ్మమ్మా… కాళ్ళు నొప్పి! ఆకలి!",
+  "heard": "అలసట, కాళ్లు నొప్పి, ఆకలి",
+  "issue": "none",
+  "sim": 0.73,
+  "by": "gemini-3.5-flash"
+ },
+ "L8": {
+  "expected": "భయం లేదు… నూట ఇరవై medical camps… రెండు వందల ఎనభై ఎనిమిది చోట్ల free భోజనం.",
+  "heard": "భయం లేదు. 120 మెడికల్ క్యాంప్స్, 288 చోట్ల ఫ్రీ భోజనం.",
+  "issue": "none",
+  "sim": 0.39,
+  "by": "gemini-3.5-flash"
+ },
+ "L9": {
+  "expected": "మీరు గిరి ప్రదక్షిణ చేశారా? Comment లో చెప్పండి!",
+  "heard": "మీరు గిరి ప్రదక్షిణ చేశారా? కామెంట్లో చెప్పండి.",
+  "issue": "none",
+  "sim": 0.82,
+  "by": "gemini-3.5-flash"
+ },
+ "L10": {
+  "expected": "సాయంత్రం… యాభై లక్షల మంది… ఒక్క దీపం వైపు.",
+  "heard": "సాయంత్రం 50 లక్షల మంది ఒక్క దీపం వైపు",
+  "issue": "none",
+  "sim": 0.94,
+  "by": "gemini-3.5-flash"
+ },
+ "L11": {
+  "expected": "Arunachalam వెళ్ళే మీ వాళ్ళకి… పంపండి! follow చేయండి!",
+  "heard": "అరుణాచలం వెళ్లే మీ వాళ్లకి పంపండి, ఫాలో చేయండి.",
+  "issue": "none",
+  "sim": 0.6,
+  "by": "gemini-3.5-flash"
+ }
+}

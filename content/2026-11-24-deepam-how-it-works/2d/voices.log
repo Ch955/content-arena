@@ -1,0 +1,17 @@
+batch [0, 1, 2, 3, 4, 5, 6, 7]
+batch [8, 9, 10, 11]
+  batch voice failed for lines 0–3: 'content'
+  could not split lines 0–3 cleanly; voicing them one by one
+0 gopi gemini 0.2 2.661
+1 gopi gemini 3.111 2.343
+2 gopi gemini 5.654 3.174
+3 gopi gemini 9.078 5.619
+4 gopi gemini 14.897 2.432
+5 gopi gemini 17.529 4.725
+6 gopi gemini 22.504 4.105
+7 pinky gemini 27.059 1.696
+8 ammamma gemini 28.955 6.594
+9 gopi gemini 35.899 2.802
+10 gopi gemini 39.101 4.367
+11 gopi gemini 46.168 4.271
+total 52.94
