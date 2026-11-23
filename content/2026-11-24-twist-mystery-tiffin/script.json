@@ -1,0 +1,113 @@
+{
+  "lines": [
+    {
+      "who": "ananya",
+      "text": "ఆరో రోజు! ఈ tiffin ఎవరు పెడుతున్నారు Nikhil?!",
+      "say": "[excited] ఆరో రోజు! [curious] ఈ tiffin ఎవరు పెడుతున్నారు… Nikhil?!",
+      "act": "a confident 27-year-old friend bursting in, half thrilled, half suspicious, tapping the steel lid; punch on 'ఆరో'",
+      "beat": "hook"
+    },
+    {
+      "who": "nikhil",
+      "text": "పెసరట్టు-ఉప్మా… నా favourite. పేరు కూడా లేదు.",
+      "say": "[quietly] పెసరట్టు-ఉప్మా… నా favourite. [uneasy] పేరు కూడా… లేదు.",
+      "act": "a calm, introverted young man lifting the lid, pleased for a second, then uneasy; low and measured",
+      "beat": "problem"
+    },
+    {
+      "who": "ananya",
+      "text": "Secret admirer! Party ఎప్పుడు?",
+      "say": "[teasing] Secret admirer! [laughs] Party ఎప్పుడు?",
+      "act": "playful teasing, eyebrows up, a quick laugh; light and fast",
+      "beat": "red-herring"
+    },
+    {
+      "who": "nikhil",
+      "text": "అమ్మ రాజమండ్రిలో… మరి నాకు ఎవరు వండుతారు?",
+      "say": "[softly] అమ్మ రాజమండ్రిలో… [uneasy] మరి నాకు… ఎవరు వండుతారు?",
+      "act": "not amused; a quiet, slightly lonely worry, stress on 'ఎవరు'",
+      "beat": "problem"
+    },
+    {
+      "who": "lakshmi",
+      "text": "అన్నం తిన్నావా నాన్నా?",
+      "say": "[warmly] అన్నం తిన్నావా… నాన్నా?",
+      "act": "a warm cafeteria aunty of about 55 at her counter, a habitual motherly question, slow and soft",
+      "beat": "clue"
+    },
+    {
+      "who": "ananya",
+      "text": "ఈ పోపు వాసన… ఎక్కడో తెలిసినట్టుందే!",
+      "say": "[sniffs] ఈ పోపు వాసన… [curious] ఎక్కడో తెలిసినట్టుందే!",
+      "act": "sniffing the air at the counter, puzzled, half to herself, a small frown",
+      "beat": "clue"
+    },
+    {
+      "who": "gopi",
+      "text": "Clues అన్నీ screen మీదే… ఇలాంటి twists కి follow కొట్టండి!",
+      "say": "[mischievously] Clues అన్నీ… screen మీదే! [excited] ఇలాంటి twists కి… follow కొట్టండి!",
+      "act": "a sly young host leaning into the camera, teasing, then a bright quick CTA",
+      "beat": "follow"
+    },
+    {
+      "who": "gopi",
+      "text": "Tiffin ఎవరిది? మీ guess comment చేయండి… five seconds!",
+      "say": "[dramatic pause] Tiffin ఎవరిది? [excited] మీ guess comment చేయండి… five seconds!",
+      "act": "a game-show challenge, a beat of suspense on the question, then upbeat and quick",
+      "beat": "comment-countdown"
+    },
+    {
+      "who": "nikhil",
+      "text": "Aunty… మీరా?!",
+      "say": "[gasps] Aunty… [softly] మీరా?!",
+      "act": "caught off guard, a stunned soft whisper, not angry",
+      "beat": "reveal"
+    },
+    {
+      "who": "lakshmi",
+      "text": "ఈ box మా బాబుది… America వెళ్ళి రెండేళ్ళు. Phone కూడా తక్కువే.",
+      "say": "[sighs] ఈ box మా బాబుది… [softly] America వెళ్ళి రెండేళ్ళు. [slowly] Phone కూడా… తక్కువే.",
+      "act": "embarrassed, thumb on the dented lid, a mother's quiet ache; slow, no crying",
+      "beat": "twist"
+    },
+    {
+      "who": "lakshmi",
+      "text": "అలవాటుగా వాడికి వండుతా… నువ్వు అచ్చం వాడిలాగే నాన్నా.",
+      "say": "[nostalgic] అలవాటుగా… వాడికి వండుతా. [warmly] నువ్వు అచ్చం వాడిలాగే… నాన్నా.",
+      "act": "a small shy smile through the sadness, tender, stress on 'అచ్చం'",
+      "beat": "twist"
+    },
+    {
+      "who": "nikhil",
+      "text": "అమ్మా… ఊరికే చేశా. అన్నం తిన్నావా?",
+      "say": "[warmly] అమ్మా… [softly] ఊరికే చేశా. అన్నం తిన్నావా?",
+      "act": "on a video call, voice catching slightly, then a gentle smile; the same question the aunty asks him",
+      "beat": "ending"
+    },
+    {
+      "who": "gopi",
+      "text": "మీకూ office లో ఒక 'అమ్మ' ఉన్నారా? వాళ్ళని tag చేయండి!",
+      "say": "[warmly] మీకూ office లో… ఒక 'అమ్మ' ఉన్నారా? [excited] వాళ్ళని tag చేయండి!",
+      "act": "a warm, heartfelt host question, then a bright nudge to tag; stress on 'అమ్మ'",
+      "beat": "comment-tag-close"
+    }
+  ],
+  "visual_plan": [
+    "style: FLAT skin for the whole reel (clean, warm office colours; a cafeteria in yellow/teal). One exception: the L10 memory inset is a torn-edge paper/sepia panel (setSkin('paper')), as in the 18 and 19 Nov flashbacks. The Editor may switch skins per scene if a scene needs it. Setting: Tower B, Hitech City (same building as 15–19 Nov): Nikhil's desk (monitor, a small plant, window cut-out of glass towers, wall clock), and the ground-floor cafeteria counter (steel counters, a menu board, a tempering pan with mustard seeds and curry leaves). Cast per tools/anim2d/cast.md: Nikhil `{...NIKHIL_OPT, badge:[\"NIKHIL R\",\"TOWER B\"]}` (charcoal shirt), Ananya `{...ANANYA_OPT, badge:[\"ANANYA\",\"TOWER B\"]}` (teal kurta). NEW: Lakshmi aunty (see the brief's cast table). Nikhil's Amma appears silent on a phone screen in L12. No company names, logos, brands or app names anywhere (generic video-call UI).",
+    "CONSISTENCY TABLE (identical in every frame): the tiffin = a round two-tier steel tiffin with a small DENT on the lid at the 2 o'clock position (same spot in L1, L2, L10 and the loop frame), no name, no note; contents pesarattu (green, folded) with upma inside; desk clock '1:00 PM' with a 'DAY 6' sticky-note tally (6 strokes) on the monitor; Lakshmi's steam = the same curry-leaf + mustard-seed swirl motif as the steam off the tiffin in L2; the photo near her counter = a young man in a charcoal shirt with a suitcase at an airport, handwritten 'Nov 2024'; her breakfast order slip on the counter 'N — పెసరట్టు-ఉప్మా'.",
+    "L1 hook (0–3 s, title a beat later): open ON the action. Close-up of the steel tiffin on Nikhil's desk, the dent catching a highlight; Ananya leans in from the right and taps the lid on 'ఆరో రోజు!'. 'DAY 6' sticky tally on the monitor. Background, far left edge: the back wheel of a steel tea trolley rolling out of frame (rewatch clue). Text hook top: '6 రోజులు… పేరు లేని tiffin 🍱'. Then the small title card slides in.",
+    "L2: Nikhil lifts the lid; pesarattu-upma; steam rises in the curry-leaf/mustard swirl. Ananya bends and sniffs it (silent, rewatch clue for L6). He turns the lid over: no name, no note (an empty white space where a name would be). On-screen ANSWER AT THE END 👀 for ~2 s.",
+    "L3: Ananya grins, a little pink heart pops over the tiffin, then a 'SECRET ADMIRER? 💘' sticker slaps on; Nikhil's flat expression pops the heart.",
+    "L4: Nikhil alone in frame; a thought bubble: a small house in రాజమండ్రి with Amma waving (left) and his empty one-key flat in Hyderabad (right). The bubble pops. Slight push-in on his uneasy face.",
+    "L5: Cafeteria, 1:15 PM. Lakshmi aunty at the counter (cotton saree, apron, specs on a chain), ladle in hand, smiling at Nikhil as he picks up a plate. Visible but NOT highlighted: the airport photo taped by the counter (young man, charcoal shirt) and the order slip 'N — పెసరట్టు-ఉప్మా'. Her tempering pan sizzles with the same swirl motif.",
+    "L6: Ananya at the counter sniffs, the swirl drifts past her nose; a tiny '?' above her. Nikhil is already walking away with his plate (they don't connect it).",
+    "L7: Gopi pops in at the corner; quick 3-panel recap strip with NO labels: the lid dent, the counter photo, the steam swirl (shown fast, same weight, no arrows). Animated FOLLOW tap on 'follow కొట్టండి'.",
+    "L8 + 5 s countdown: the tiffin spins centre-screen with a big '?'; 5-4-3-2-1 ring. Comment bubbles with wrong guesses only: 'Ananya ఏ 😏', 'Secret admirer 💘', 'Amma courier పంపిందా? 📦', 'Office ghost 👻😂'. Never show Lakshmi or the photo during the countdown.",
+    "L9 reveal: next day, 12:40 PM (clock), Nikhil comes back early from a meeting with his laptop; Lakshmi is at his desk with her tea trolley, placing the tiffin. She freezes; specs swing on the chain. Beat of silence before 'మీరా?!'.",
+    "L10 twist: she touches the dent with her thumb. Torn-edge paper inset: a small boy dropping this same tiffin (clang, the dent appears), then the same boy grown up at the airport in a charcoal shirt (the counter photo), waving goodbye. Back to flat: her phone in her apron pocket with a long gap since 'Last call'. No numbers needed on screen.",
+    "L11: she pushes the tiffin toward him, shy smile; split-frame: Nikhil in his charcoal shirt next to the photo of her son in a charcoal shirt.",
+    "L12 ending: Nikhil pulls a second chair; they share the tiffin at his desk. He video-calls his Amma (a woman in her 50s, plain saree, kitchen behind her, silent); she lights up. Lakshmi watches and smiles, wiping her specs. Warm music swell, no hug, no speech.",
+    "L13 comment-tag-close: text 'మీకూ office లో ఒక అమ్మ ఉన్నారా? TAG చేయండి 🥹' with a tag animation (a contact card 'Office అమ్మ 🍱' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM.",
+    "LOOP (silent, ~1.5 s): hard cut back to the frame-1 close-up of the dented lid; small on-screen text 'Dent మొదటి frame లోనే ఉంది 👀' so the cut lands seamlessly into L1."
+  ]
+}
