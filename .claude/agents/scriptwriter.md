@@ -27,7 +27,10 @@ punchy lines), hashtag rules (Instagram ≤ 5; YouTube #shorts first, ≤ 15), c
   "text", "act", "beat"}], "visual_plan": [...]} plus brief.md, caption.md, youtube.md. Hook with a contradiction
   or challenge in line 1; Pinky makes a funny wrong guess; include all 7 interaction beats from CLAUDE.md, worded
   for this reel; **reveal the answer in the same reel** with a short "why" that makes it click. Lines ≤ ~10 words.
-  Captions: "answer reveal అయ్యే ముందే comment చేయండి… friends కి share చేయండి"; hashtags per CLAUDE.md
+  Captions (owner, 23 Nov 2026): SHORT — caption.md = heading + 1–2 fitting emoji, blank line,
+  "Follow 👉 Instagram @_reelrasam | YouTube @reel_rasam", blank line, `#fyp #explorepage #reels #insta #telugu`.
+  youtube.md = title line, then the same heading + emoji + follow line as the description, then the YouTube tags
+  (#shorts first, ≤ 15). No story text, no paragraphs; hashtags per CLAUDE.md
   (Instagram: the 5 biggest relevant tags; YouTube: 15).
 - Files go in `content/<YYYY-MM-DD>-<slug>/`. Brief front matter needs `pillar`, `format: reel`, `topic`.
 - Flag any Telugu you're unsure of for the owner.

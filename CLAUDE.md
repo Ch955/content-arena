@@ -99,8 +99,11 @@ Pinky guesses — lip-synced Gemini voices, synthesized music/SFX, Telugu subtit
 The old cinema pillars (comedy, ott-weekly, tfi-fact, quiz; 28 Oct – 8 Nov 2026) are retired; their safety
 rules (no star lookalikes, no film footage/music) still apply to anything cinema-related.
 
-Language: Telugu-first slides and cards (Telugu script, English terms where natural),
-captions with a Telugu paragraph then an English one. Spoken scripts are natural Tenglish.
+Language: Telugu-first slides and cards (Telugu script, English terms where natural).
+**Captions (owner, 23 Nov 2026, from 24 Nov): short — no story text.** Instagram caption and YouTube description are only:
+the reel's heading + 1–2 emoji that describe it (e.g. 😂 for comedy), the follow line
+`Follow 👉 Instagram @_reelrasam | YouTube @reel_rasam`, then the hashtags (Instagram: the fixed 5 above).
+No story summary, no Telugu/English paragraphs, no CTA paragraph (the reel itself carries the CTAs). Spoken scripts are natural Tenglish.
 
 **Spoken style (reels): talk *to* the viewer, never read a paragraph.** Open with a scroll-stopping
 hook ("Hey! ఆగండి ఆగండి… scroll చేయకండి!"), use short punchy lines (one idea each, ≤ ~12 words),
