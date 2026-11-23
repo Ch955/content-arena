@@ -126,6 +126,7 @@ publish (Actions) →  Instagram / Facebook                            row: post
 ```
 
 - One table row per **platform post** (`<post-slug>-instagram`, `-youtube` for reels; `-facebook` once a Page exists).
+- **Instagram hashtags from 23 Nov 2026 (owner):** every reel uses `#fyp #explorepage #reels #insta #telugu` (5 = Instagram's cap; the older per-pillar sets below now apply to YouTube only).
 - **Hashtags (owner, 9 Nov 2026: use the high-reach ones):** Instagram allows only **5** (its cap since Dec 2025),
   so pick the biggest *relevant* tags — e.g. riddle reel: `#telugu #telugureels #riddles #podupukathalu #reelrasam`;
   story: `#telugu #telugureels #telugustories #moralstories #reelrasam`. From 13 Nov: what-if `#telugu #telugureels #whatif
