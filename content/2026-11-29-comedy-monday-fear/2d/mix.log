@@ -1,0 +1,32 @@
+voice phone-band 50 ms RMS p90 (pre-master): -21.8 dBFS
+pre: I=-17.5 LUFS TP=0.2 dBTP | gain +2.5 dB | final: I=-16.8 LUFS TP=-3.5 dBTP LRA=7.7 | max limiter GR -7.8 dB
+    0.00  low   -27.5  bliss: lazy lo-fi bed
+    0.08  low   -20.9  happy sigh 'haaah'
+    1.00  high  -17.4  phone PING
+    1.11  max    -5.1  DHOOM (the message lands; popcorn freezes)
+    1.35  low   -16.2  typing clicks
+    1.95  mid   -18.3  message 'pop'
+    8.35  max    -3.5  FAAAH #1 (ఏంట్రా ఇది!)
+    9.40  mid   -10.2  time-lapse whirr + clock ticks
+    9.50  mid   -18.3  follow pop
+   10.12  mid   -17.5  follow tap + ding
+   10.60  mid   -15.6  card whoosh + ding (MONDAY 9:00 AM)
+   11.25  high   -4.1  villain chair-spin + dun-dunn
+   14.04  low   -24.7  fly buzz (under L3)
+   16.66  mid   -10.8  sticker SLAP + sparkle
+   21.13  low   -29.7  bloop (వెళ్లొచ్చా?)
+   21.46  high   -9.0  needle-stop (ఎందుకు?)
+   25.03  mid   -16.5  TV-serial violin swell (L8-L9)
+   31.41  high   -8.6  needle-stop (సార్!)
+   31.70  max    -7.6  DHAN-DHAN-DHAN (the manager's 😳)
+   32.78  max    -3.7  FAAAH #2 (జీతం కూడా పెంచండి సార్!)
+   37.91  max    -4.0  FREEZE: record scratch + flash pop
+   38.60  high  -20.5  funny-bg: slide-whistle down + coffee drips
+   38.80  high  -10.1  comedy sting: tuba bom-bom-ba-BOM (series)
+   38.90  high  -12.0  laugh track (reaction)
+   39.93  high   -3.5  ending card slam
+   44.80  mid   -18.3  tag swoosh + pop
+   45.17  mid   -15.8  end-card sting
+voice peaks: [-6.5, -6.5, -6.5, -6.5, -6.5, -6.5, -6.5, -6.5, -6.5, -6.5, -6.5] | bed under voice -22.6 open -13.5
+silence 0.3 s, max 0.0
+mix ok 47.02

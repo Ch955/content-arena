@@ -87,8 +87,8 @@ function makeAdult(o){
   const g=el("g",{},o.parent||svg), body=el("g",{},g);
   const legs=[];
   if(o.legs&&o.legs.bare) [-1,1].forEach(s=>{const lg_=el("g",{},body);      // Ep 5: bare shins + feet under checked shorts
-    el("path",{d:`M${s*54-17} 170 L${s*54+17} 170 L${s*56+16} 420 L${s*56-16} 420 Z`,fill:o.skin,stroke:INK,"stroke-width":4},lg_);
-    el("path",{d:`M${s*56-24} 414 Q${s*56-26} 446 ${s*56+s*12} 448 Q${s*56+40*s} 446 ${s*56+36*s} 422 Z`,fill:o.skin,stroke:INK,"stroke-width":4},lg_);
+    el("path",{d:`M${s*54-23} 170 L${s*54+23} 170 L${s*56+21} 420 L${s*56-21} 420 Z`,fill:o.skin,stroke:INK,"stroke-width":4},lg_);
+    el("path",{d:`M${s*56-30} 410 Q${s*56-34} 452 ${s*56+s*14} 456 Q${s*56+50*s} 452 ${s*56+44*s} 418 Z`,fill:o.skin,stroke:INK,"stroke-width":4},lg_);
     el("path",{d:`M${s*50-34} -14 L${s*50+34} -14 L${s*54+32} 186 L${s*54-32} 186 Z`,fill:o.legs.pant,stroke:INK,"stroke-width":5},lg_);
     [-16,4,24].forEach(dx=>el("line",{x1:s*50+dx-2,y1:-10,x2:s*54+dx,y2:182,stroke:o.legs.check,"stroke-width":7,opacity:.85},lg_));
     [30,80,130].forEach(y=>el("line",{x1:s*51-32,y1:y,x2:s*51+32,y2:y,stroke:o.legs.check,"stroke-width":7,opacity:.85},lg_));
@@ -177,7 +177,7 @@ function makeAdult(o){
   el("circle",{cx:-34,cy:20,r:11,fill:"#E57373",opacity:o.blush||0.18},face); el("circle",{cx:34,cy:20,r:11,fill:"#E57373",opacity:o.blush||0.18},face);
   if(o.lines) [-21,21].forEach(x=>{el("path",{d:`M${x-13} 7 Q${x} 13 ${x+13} 7`,stroke:"#7A4A2A","stroke-width":2,fill:"none",opacity:.5},face)});
   if(o.lines) el("path",{d:"M-30 -46 Q0 -52 30 -46 M-26 -38 Q0 -43 26 -38",stroke:"#7A4A2A","stroke-width":2,fill:"none",opacity:.4},face);
-  const panda=el("g",{opacity:0},face); [-21,21].forEach(x=>el("ellipse",{cx:x,cy:-6,rx:19,ry:15,fill:"#5D4A5E",opacity:.55},panda));   // Ep 5
+  const panda=el("g",{opacity:0},face); [-21,21].forEach(x=>el("ellipse",{cx:x,cy:-6,rx:19,ry:15,fill:"#3E2F45",opacity:.8},panda));   // Ep 5
   const eyes=[-21,21].map(x=>{const e=el("g",{transform:`translate(${x},-8)`},face);
     const w=el("ellipse",{rx:12,ry:8,fill:"#fff",stroke:INK,"stroke-width":2},e);
     const ir=el("circle",{r:6.5,fill:"#3B2414"},e); const pu=el("circle",{r:3,fill:"#000"},e); const hl=el("circle",{r:2,fill:"#fff"},e);
@@ -247,7 +247,7 @@ function makeAdult(o){
     if(o._lany) o._lany.style.opacity=k.lany;
     panda.setAttribute("opacity",k.panda||0); wildG.setAttribute("opacity",k.wild?1:0);
     if(moEl&&o.thickMo) moEl.setAttribute("d",moP(k.moDroop||0,(k.moBristle||0)));
-    tear.style.opacity=k.tear>0?1:0; if(k.tear>0) tear.setAttribute("transform",`translate(30,${8+k.tear*34}) scale(${0.8+0.3*k.tear})`);
+    tear.style.opacity=k.tear>0?1:0; if(k.tear>0) tear.setAttribute("transform",`translate(30,${8+k.tear*34}) scale(${1.4+0.4*k.tear})`);
     flush.setAttribute("opacity",k.angry*0.32); sweat.setAttribute("opacity",k.sweat);
     blindG.style.display=k.blind>0?"":"none"; if(k.blind>0) blindG.setAttribute("transform",`translate(0,${(1-k.blind)*-60}) scale(${0.6+0.4*k.blind},1)`);
     hatG.style.display=k.santa>0?"":"none"; if(k.santa>0) hatG.setAttribute("transform",`translate(0,${-(1-k.santa)*520}) rotate(${k.hatTilt||0} 0 -70)`);

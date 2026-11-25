@@ -1,0 +1,282 @@
+{
+ "full": {
+  "voice_p90": -14.6,
+  "hits": {
+   "bliss: lazy lo-fi bed": {
+    "level": "low",
+    "t": 0.0,
+    "vs_voice_p90_db": -10.1
+   },
+   "happy sigh 'haaah'": {
+    "level": "low",
+    "t": 0.08,
+    "vs_voice_p90_db": -10.1
+   },
+   "phone PING": {
+    "level": "high",
+    "t": 1.0,
+    "vs_voice_p90_db": -0.1
+   },
+   "DHOOM (the message lands; popcorn freezes)": {
+    "level": "max",
+    "t": 1.11,
+    "vs_voice_p90_db": 9.8
+   },
+   "typing clicks": {
+    "level": "low",
+    "t": 1.35,
+    "vs_voice_p90_db": 8.5
+   },
+   "message 'pop'": {
+    "level": "mid",
+    "t": 1.95,
+    "vs_voice_p90_db": -0.3
+   },
+   "FAAAH #1 (ఏంట్రా ఇది!)": {
+    "level": "max",
+    "t": 8.35,
+    "vs_voice_p90_db": 6.4
+   },
+   "time-lapse whirr + clock ticks": {
+    "level": "mid",
+    "t": 9.4,
+    "vs_voice_p90_db": -4.6
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 9.5,
+    "vs_voice_p90_db": -6.5
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 10.12,
+    "vs_voice_p90_db": -4.6
+   },
+   "card whoosh + ding (MONDAY 9:00 AM)": {
+    "level": "mid",
+    "t": 10.6,
+    "vs_voice_p90_db": -6.7
+   },
+   "villain chair-spin + dun-dunn": {
+    "level": "high",
+    "t": 11.25,
+    "vs_voice_p90_db": 6.0
+   },
+   "fly buzz (under L3)": {
+    "level": "low",
+    "t": 14.04,
+    "vs_voice_p90_db": 0.1
+   },
+   "sticker SLAP + sparkle": {
+    "level": "mid",
+    "t": 16.66,
+    "vs_voice_p90_db": 4.1
+   },
+   "bloop (వెళ్లొచ్చా?)": {
+    "level": "low",
+    "t": 21.13,
+    "vs_voice_p90_db": -8.1
+   },
+   "needle-stop (ఎందుకు?)": {
+    "level": "high",
+    "t": 21.46,
+    "vs_voice_p90_db": -0.0
+   },
+   "TV-serial violin swell (L8-L9)": {
+    "level": "mid",
+    "t": 25.03,
+    "vs_voice_p90_db": 0.3
+   },
+   "needle-stop (సార్!)": {
+    "level": "high",
+    "t": 31.41,
+    "vs_voice_p90_db": -0.2
+   },
+   "DHAN-DHAN-DHAN (the manager's 😳)": {
+    "level": "max",
+    "t": 31.7,
+    "vs_voice_p90_db": 9.4
+   },
+   "FAAAH #2 (జీతం కూడా పెంచండి సార్!)": {
+    "level": "max",
+    "t": 32.78,
+    "vs_voice_p90_db": 6.8
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 37.91,
+    "vs_voice_p90_db": 6.5
+   },
+   "funny-bg: slide-whistle down + coffee drips": {
+    "level": "high",
+    "t": 38.6,
+    "vs_voice_p90_db": 2.5
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (series)": {
+    "level": "high",
+    "t": 38.8,
+    "vs_voice_p90_db": 2.5
+   },
+   "laugh track (reaction)": {
+    "level": "high",
+    "t": 38.9,
+    "vs_voice_p90_db": 2.5
+   },
+   "ending card slam": {
+    "level": "high",
+    "t": 40.03,
+    "vs_voice_p90_db": 1.2
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 44.8,
+    "vs_voice_p90_db": 0.9
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 45.17,
+    "vs_voice_p90_db": -0.4
+   }
+  }
+ },
+ "phone>250Hz": {
+  "voice_p90": -16.3,
+  "hits": {
+   "bliss: lazy lo-fi bed": {
+    "level": "low",
+    "t": 0.0,
+    "vs_voice_p90_db": -12.7
+   },
+   "happy sigh 'haaah'": {
+    "level": "low",
+    "t": 0.08,
+    "vs_voice_p90_db": -12.7
+   },
+   "phone PING": {
+    "level": "high",
+    "t": 1.0,
+    "vs_voice_p90_db": 1.5
+   },
+   "DHOOM (the message lands; popcorn freezes)": {
+    "level": "max",
+    "t": 1.11,
+    "vs_voice_p90_db": 6.1
+   },
+   "typing clicks": {
+    "level": "low",
+    "t": 1.35,
+    "vs_voice_p90_db": -4.2
+   },
+   "message 'pop'": {
+    "level": "mid",
+    "t": 1.95,
+    "vs_voice_p90_db": -4.9
+   },
+   "FAAAH #1 (ఏంట్రా ఇది!)": {
+    "level": "max",
+    "t": 8.35,
+    "vs_voice_p90_db": 7.2
+   },
+   "time-lapse whirr + clock ticks": {
+    "level": "mid",
+    "t": 9.4,
+    "vs_voice_p90_db": -2.9
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 9.5,
+    "vs_voice_p90_db": -4.9
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 10.12,
+    "vs_voice_p90_db": -2.9
+   },
+   "card whoosh + ding (MONDAY 9:00 AM)": {
+    "level": "mid",
+    "t": 10.6,
+    "vs_voice_p90_db": -5.0
+   },
+   "villain chair-spin + dun-dunn": {
+    "level": "high",
+    "t": 11.25,
+    "vs_voice_p90_db": 1.8
+   },
+   "fly buzz (under L3)": {
+    "level": "low",
+    "t": 14.04,
+    "vs_voice_p90_db": 1.7
+   },
+   "sticker SLAP + sparkle": {
+    "level": "mid",
+    "t": 16.66,
+    "vs_voice_p90_db": 4.4
+   },
+   "bloop (వెళ్లొచ్చా?)": {
+    "level": "low",
+    "t": 21.13,
+    "vs_voice_p90_db": -7.8
+   },
+   "needle-stop (ఎందుకు?)": {
+    "level": "high",
+    "t": 21.46,
+    "vs_voice_p90_db": 1.6
+   },
+   "TV-serial violin swell (L8-L9)": {
+    "level": "mid",
+    "t": 25.03,
+    "vs_voice_p90_db": 0.3
+   },
+   "needle-stop (సార్!)": {
+    "level": "high",
+    "t": 31.41,
+    "vs_voice_p90_db": 1.4
+   },
+   "DHAN-DHAN-DHAN (the manager's 😳)": {
+    "level": "max",
+    "t": 31.7,
+    "vs_voice_p90_db": 7.8
+   },
+   "FAAAH #2 (జీతం కూడా పెంచండి సార్!)": {
+    "level": "max",
+    "t": 32.78,
+    "vs_voice_p90_db": 7.2
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 37.91,
+    "vs_voice_p90_db": 7.4
+   },
+   "funny-bg: slide-whistle down + coffee drips": {
+    "level": "high",
+    "t": 38.6,
+    "vs_voice_p90_db": 3.1
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (series)": {
+    "level": "high",
+    "t": 38.8,
+    "vs_voice_p90_db": 3.1
+   },
+   "laugh track (reaction)": {
+    "level": "high",
+    "t": 38.9,
+    "vs_voice_p90_db": 3.1
+   },
+   "ending card slam": {
+    "level": "high",
+    "t": 40.03,
+    "vs_voice_p90_db": 0.4
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 44.8,
+    "vs_voice_p90_db": 2.1
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 45.17,
+    "vs_voice_p90_db": -1.9
+   }
+  }
+ }
+}
