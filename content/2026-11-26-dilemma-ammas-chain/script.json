@@ -1,0 +1,97 @@
+{
+  "lines": [
+    {
+      "who": "nikhil",
+      "text": "చెల్లి పేరు మీద… అమ్మ chain?!",
+      "say": "[gasps] చెల్లి పేరు మీద… [whispers] అమ్మ chain?!",
+      "act": "a calm young man frozen at a shop counter, a sharp intake of breath, then a stunned low whisper; stress on 'అమ్మ'",
+      "beat": "hook"
+    },
+    {
+      "who": "narasimha",
+      "text": "Keerthi పెట్టింది బాబూ… ₹38,000. వడ్డీ పెరుగుతోంది.",
+      "say": "[slowly] Keerthi పెట్టింది బాబూ… ముప్పై ఎనిమిది వేలు. [sighs] వడ్డీ పెరుగుతోంది.",
+      "act": "an unhurried old pawnbroker of about 65, matter-of-fact and slightly tired, tapping the ledger; stress on 'వడ్డీ'",
+      "beat": "stakes"
+    },
+    {
+      "who": "amma",
+      "text": "Keerthi పెళ్ళికి ఆ chain… locker లో భద్రం.",
+      "say": "[warmly] Keerthi పెళ్ళికి ఆ chain… [softly] locker లో భద్రం.",
+      "act": "a contented mother of about 55 folding laundry, saying it casually and proudly, no idea anything is wrong",
+      "beat": "irony-clue"
+    },
+    {
+      "who": "gopi",
+      "text": "A: అమ్మకి చెప్పాలా? B: గుట్టుగా విడిపించాలా?",
+      "say": "[dramatic pause] A… అమ్మకి చెప్పాలా? [whispers] B… గుట్టుగా విడిపించాలా?",
+      "act": "a game-show host presenting two doors, a weighty beat on A, then a sly hush on B; even weight, no hint",
+      "beat": "dilemma"
+    },
+    {
+      "who": "gopi",
+      "text": "మీరైతే A or B? Comment చేయండి… follow కొట్టండి!",
+      "say": "[excited] మీరైతే A or B? Comment చేయండి… [mischievously] follow కొట్టండి!",
+      "act": "an upbeat quick challenge to the viewer, then a cheeky nudge; fast and bright",
+      "beat": "comment-countdown-follow"
+    },
+    {
+      "who": "nikhil",
+      "text": "Chain విడిపించా. ఎందుకు పెట్టావ్ Keerthi?",
+      "say": "[quietly] Chain… విడిపించా. [softly] ఎందుకు పెట్టావ్ Keerthi?",
+      "act": "an older brother holding the chain out, not angry, hurt and gentle; low and measured",
+      "beat": "reveal"
+    },
+    {
+      "who": "keerthi",
+      "text": "అమ్మ hospital bill అన్నయ్యా… call నాకే వచ్చింది.",
+      "say": "[tearful] అమ్మ hospital bill అన్నయ్యా… [shaky] call నాకే వచ్చింది.",
+      "act": "a 22-year-old student, eyes down, voice catching, holding back tears; stress on 'hospital'",
+      "beat": "twist"
+    },
+    {
+      "who": "keerthi",
+      "text": "అమ్మ మనిద్దరికీ చెప్పలేదు… నేనూ చెప్పలేకపోయా.",
+      "say": "[softly] అమ్మ మనిద్దరికీ చెప్పలేదు… [sniffles] నేనూ చెప్పలేకపోయా.",
+      "act": "a guilty, small confession, half a sob on the last word; slow, no wailing",
+      "beat": "twist"
+    },
+    {
+      "who": "nikhil",
+      "text": "ఇక మీద ఈ ఇంట్లో… ఎవరూ ఏదీ దాచకూడదు.",
+      "say": "[firmly] ఇక మీద ఈ ఇంట్లో… [dramatic pause] ఎవరూ ఏదీ దాచకూడదు.",
+      "act": "calm and firm at the dining table, chain and receipt laid down, looking at both; a quiet family rule, not a lecture",
+      "beat": "resolution"
+    },
+    {
+      "who": "amma",
+      "text": "సరే నాన్నా… మరి నీ watch ఎక్కడ?",
+      "say": "[chuckles] సరే నాన్నా… [slowly] మరి నీ watch ఎక్కడ?",
+      "act": "caught but tender, a knowing little chuckle, then a slow mock-stern question with raised eyebrows; stress on 'watch'",
+      "beat": "turn"
+    },
+    {
+      "who": "gopi",
+      "text": "ఇలా గుట్టుగా కాపాడే sibling ఉన్నారా? Tag చేయండి!",
+      "say": "[warmly] ఇలా గుట్టుగా కాపాడే sibling ఉన్నారా? [excited] Tag చేయండి!",
+      "act": "a warm, heartfelt host question, then a bright nudge to tag; stress on 'sibling'",
+      "beat": "tag-share-close"
+    }
+  ],
+  "visual_plan": [
+    "style: PIXEL skin for the whole reel (16-bit retro-game look, chunky pixels, a small HUD strip at the top). Settings: (1) a small old-style pawn and jewellery counter in Dilsukhnagar, Hyderabad: glass counter, a brass weighing scale, a steel drawer of small cloth pledge packets with paper tokens, a ledger, a ceiling fan, a street sign reading only 'DILSUKHNAGAR' (no shop name, no brand anywhere); (2) Nikhil's Dilsukhnagar home (he lives with Amma, as in the 16 Nov reel): hall with a steel bureau that has an inner locker, a dining table, a wall calendar, Keerthi's study corner. Cast: Nikhil `{...NIKHIL_OPT}` (charcoal shirt, short hair, light stubble; NO watch, see the consistency table), Amma `SAROJA_OPT` (magenta saree, ~55; same Amma as 15/16/24 Nov), NEW Keerthi and NEW Narasimha (see the brief's cast table). No real shop, hospital, bank or college names or logos.",
+    "CONSISTENCY TABLE (identical in every frame): Amma's chain = a thin gold chain with a small round pendant with a red stone. Keerthi's pledge token = a pink paper slip 'KEERTHI — 14 AUG', on its cloth packet. Nikhil's own pledge token = a pink paper slip 'NIKHIL — WATCH — 02 SEP' in his hand at the counter. Nikhil's left wrist = bare, with a pale watch tan line (every frame he's in). Hospital receipt = a folded white slip with a red '+' and '14 AUG'; the only visible text is 'BALANCE PAID'. Keerthi's fee receipt on her study board = 'FINAL YEAR FEE PAID ✓ 02 SEP'. Wall calendar at home: August page with '12–13: పిన్ని, Vijayawada' in Amma's handwriting (the 'trip' Amma told the kids about). The amount '₹38,000' is the only rupee number in the whole reel.",
+    "HUD (pixel game UI, top strip): 'STAGE: AMMA'S CHAIN', and from L2 an 'INTEREST' meter whose bar creeps up (₹38,000 + ▲). No other numbers.",
+    "L1 hook (0–3 s, open ON the action, title a beat later): close-up of the counter. Nikhil slides his pink 'NIKHIL — WATCH — 02 SEP' token across (bare wrist with the tan line visible, rewatch clue). Narasimha pulls the drawer; next to the watch packet sits a packet with Amma's red-stone chain and the token 'KEERTHI — 14 AUG'. Pixel zoom-punch on the token on 'అమ్మ chain?!'. Text hook top: 'అమ్మ chain… చెల్లి పేరు మీద?!'. Then a small title card: 'అమ్మ chain'.",
+    "L2: Narasimha (old, specs low on his nose, white half-sleeve shirt) taps the ledger; the INTEREST meter appears in the HUD and ticks up. On-screen for ~2 s: 'NIKHIL'S CHOICE AT THE END 👀'.",
+    "L3: home, evening. Amma folds laundry by the steel bureau and pats its locker door on 'locker లో భద్రం'. Behind her (visible, NOT highlighted): the wall calendar '12–13: పిన్ని, Vijayawada' and a weekly pill box on the table. Keerthi at her study corner freezes for a beat; the corner of the folded hospital receipt sticks out of her college bag on the chair; her study board shows 'FINAL YEAR FEE PAID ✓ 02 SEP'. Nikhil stands in the doorway, his hand on his pocket (the chain is still at the shop).",
+    "L4: pixel game screen 'CHOOSE A / B' with a blinking cursor. Card A 'అమ్మకి చెప్పు' (sub-label 'Keerthi in trouble'), card B 'గుట్టుగా విడిపించు' (sub-label 'Savings −₹38,000 + interest'). Equal size, equal colour; the cursor hops A↔B evenly.",
+    "L5 + 5 s countdown: the CHOOSE screen stays; an 8-bit '5-4-3-2-1' timer; comment bubbles pop in for A and B in equal numbers ('A — అమ్మకి తెలియాలి', 'B — చెల్లిని కాపాడు', 'A 💯', 'B 🤝'). Animated FOLLOW button tap on 'follow కొట్టండి'. Nothing about the hospital, the receipt or the watch.",
+    "L6 reveal: next morning, a pixel 'SAVE FILE: NIKHIL' bar drains by ₹38,000 + interest at the counter; the 8-bit cursor lands on B. The chain comes out of the drawer; his own watch packet stays inside with a small 'NOT REDEEMED' tag. Home: Nikhil holds the chain out to Keerthi in the corridor.",
+    "L7–L8 twist: Keerthi pulls out the folded receipt: red '+', '14 AUG', 'BALANCE PAID'. Quick pixel match-cut: receipt '14 AUG' next to the token 'KEERTHI — 14 AUG'. A small sepia-tinted pixel flashback: Amma in a hospital bed under the August calendar dates, Keerthi taking a call outside the ward, then Keerthi opening the bureau locker. Back to now: Keerthi's eyes down.",
+    "L9 resolution: the dining table. Nikhil lays down the chain and the receipt; Amma sees the receipt and goes quiet (caught). A pixel banner, small: 'NEW HOUSE RULE: NO SECRETS'.",
+    "L10 turn: Amma's chuckle; she taps Nikhil's bare wrist (tan line). Pixel inset, quick: the token 'NIKHIL — WATCH — 02 SEP' next to Keerthi's 'FINAL YEAR FEE PAID ✓ 02 SEP' (he pawned his watch for her fee). Keerthi gasps at him; Nikhil scratches his neck, caught. All three laugh. On-screen after the line: 'Nikhil లాగే choose చేశారా? Comment లో ✅'.",
+    "L11 tag-share-close: text 'మీ కోసం గుట్టుగా త్యాగం చేసే sibling ని TAG చేయండి 🤝' with a tag animation (a contact card 'అన్నయ్య / చెల్లి 💛' gets tagged); end card FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM · 'రేపు ఇంకో dilemma!'.",
+    "LOOP (silent, ~1.5 s): hard cut back to the frame-1 counter close-up: his token 'NIKHIL — WATCH — 02 SEP' and the bare wrist; small text 'Watch token మొదటి frame లోనే ఉంది 👀', so the cut lands back into L1."
+  ]
+}
