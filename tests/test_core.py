@@ -510,6 +510,14 @@ class StoryPlanTests(unittest.TestCase):
         self.assertEqual(pipeline.slot_time("2026-11-13-whatif-x", "what-if"), "2026-11-13 07:30")
         self.assertEqual(pipeline.slot_time("2026-11-16-twist-x", "twist-story"), "2026-11-16 07:30")
 
+    def test_office_politics_every_day_from_30_nov(self):
+        from datetime import date
+        from content_arena import schedule, pipeline
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 29)), ["what-if"])   # rotation until Sunday
+        self.assertEqual([schedule.pillars_for(date(2026, 12, d)) for d in range(1, 8)], [["office-comedy"]] * 7)
+        self.assertEqual(schedule.pillars_for(date(2026, 11, 30)), ["office-comedy"])
+        self.assertEqual(pipeline.slot_time("2026-11-30-comedy-x", "office-comedy"), "2026-11-30 07:30")
+
 class LeadCastVoiceTests(unittest.TestCase):
     def test_library_voice_falls_back_to_builtin_on_free_plan(self):
         from unittest import mock

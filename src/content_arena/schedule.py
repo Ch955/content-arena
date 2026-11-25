@@ -33,6 +33,9 @@ SERIES_WEEKS: set[date] = set()   # paused (owner, 12 Nov 2026: one reel a day);
 # entertainment, no fact videos"): the four types repeat in this order. Festivals/special days add a reel on request.
 ONE_A_DAY_START = date(2026, 11, 13)
 ROTATION = ["what-if", "moral-dilemma", "modern-dilemma", "twist-story"]
+# Office Politics every day from Mon 30 Nov 2026 (owner, 25 Nov: "From Monday as well we go with office politics"):
+# the comedy series with Ramesh (hero), the same manager (villain) and Suresh (support), one episode a day at 07:30.
+OFFICE_START = date(2026, 11, 30)
 
 
 def series_episode(day: date) -> int | None:
@@ -59,6 +62,8 @@ def pillars_for(day: date, anchor: date | None = None) -> list[str]:
     if day >= ONE_A_DAY_START:
         if series_episode(day):
             return ["series"]
+        if day >= OFFICE_START:
+            return ["office-comedy"]
         return [ROTATION[(day - ONE_A_DAY_START).days % len(ROTATION)]]
     if day >= STORY_PLAN_START:
         wd = day.weekday()

@@ -18,6 +18,14 @@ editor, quality-checker; art-director and instagram-worker only for image/carous
    If any is missing, notify the owner and stop.
 
 ## Evening mode — make TOMORROW's one reel (date = today + 1, IST; owner 12 Nov 2026: one entertainment reel a day, no fact videos)
+**From Mon 30 Nov 2026 every day is Office Politics** (owner, 25 Nov: "From Monday as well we go with office politics";
+`plan` prints `office-comedy`). Make the next episode of the "Office Politics" series: read the last episode's folder
+(`content/*-comedy-*`, front matter `series: "Office Politics"`, `episode:`) and continue the numbering and cast —
+Ramesh (hero), the same manager (villain), Suresh (support comedy), Priya when needed (`tools/anim2d/office_cast.js`,
+same Gemini voices). Each episode is one fresh, relatable office-politics situation (appraisal, leave, WFH, meetings,
+blame games, team lunch, deadlines…) with its own punchline: 45–50 s, every punchline gets a 1–2 s pause + a reaction
+shot + a funny sound, FAAAH on the craziest moment, short caption (CLAUDE.md). No real companies, no mocking any group.
+If a folder for tomorrow already exists (e.g. the owner sent a script), don't make another one — finish/sync that one.
 1. `python -m content_arena plan --start <tomorrow> --days 1` → from 13 Nov: slot 1 `what-if` or `moral-dilemma`,
    slot 2 `micro-doc` or `modern-dilemma` (owner: adult storylines, premium, never childish; CLAUDE.md quality bar).
 2. Pick strong premises (pitch 3, keep the one you'd send to a friend): real stakes in line 1, a twist, a hard A/B

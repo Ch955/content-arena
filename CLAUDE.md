@@ -37,6 +37,10 @@ special-day reel is added only when the owner asks. The four types repeat in ord
 | 3 | `modern-dilemma` — relatable 25–34 life: work-life balance, office politics, EMIs, in-laws, career switch, weddings, WFH | 45–60 s: a funny-real situation → the dilemma → A/B + countdown → a smart resolution |
 | 4 | `twist-story` — Katha Twist-style emotional or mystery story with Nikhil & Ananya (hook 3 s → relatable problem → clues → emotional/unexpected twist → a question) | 45–60 s: the twist is explained in the same reel; a theory/feeling question for the comments |
 
+**From Mon 30 Nov 2026 (owner, 25 Nov): Office Politics every day** — the comedy series with Ramesh (hero), the
+same manager (villain) and Suresh (support), one episode a day at 7:30 AM (`OFFICE_START` in `schedule.py`; pillar
+`office-comedy`). The four-type rotation above is paused until the owner says otherwise.
+
 No fact videos (micro-docs retired 12 Nov 2026). Stories are fiction — say "a fictional situation/story" in the caption.
 
 **Quality bar (owner, 13 Nov 2026): premium, adult, clever — never childish or low-level.** Each script needs a
