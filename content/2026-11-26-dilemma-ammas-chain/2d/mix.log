@@ -1,0 +1,70 @@
+voice phone-band p90: -21.9 dBFS
+pre: I=-22.3 LUFS TP=-7.6 | gain +7.3 dB | final: I=-15.5 LUFS TP=-3.5 dBTP LRA=9.8 | max limiter GR -3.2 dB
+    0.10  low   -18.4  token slide on the glass
+    0.70  soft  -18.6  token coin clink
+    0.30  low   -21.0  tray slides in
+    0.90  low   -21.1  tray stops: clink
+    1.07  soft  -15.0  punch-in: chain jingle
+    1.00  low   -20.6  title blip
+    4.29  low   -19.3  ledger taps
+    4.29  low   -22.8  interest meter up
+    2.56  low   -23.9  answer-at-the-end chip
+    4.89  low   -19.0  cut home: whoosh
+    7.42  low   -14.7  locker pat 1
+    7.59  low   -13.7  locker pat 2
+    8.27  low   -23.2  Keerthi freezes: low blip
+    8.78  soft  -16.0  game boot
+    9.28  low   -22.6  cursor A
+   10.63  low   -22.6  cursor B
+   12.42  low   -27.4  cursor hop 1
+   12.92  low   -27.4  cursor hop 2
+   13.42  low   -28.0  cursor hop 3
+   13.92  low   -27.4  cursor hop 4
+   14.42  low   -27.4  cursor hop 5
+   14.92  low   -28.2  cursor hop 6
+   15.42  low   -27.4  cursor hop 7
+   15.92  low   -27.4  cursor hop 8
+   16.42  low   -27.4  cursor hop 9
+   16.92  low   -27.4  cursor hop 10
+   17.42  low   -27.4  cursor hop 11
+   17.92  low   -27.4  cursor hop 12
+   18.42  low   -27.4  cursor hop 13
+   18.92  low   -27.4  cursor hop 14
+   19.42  low   -27.4  cursor hop 15
+   19.92  low   -27.4  cursor hop 16
+   14.32  soft  -17.2  follow tap
+   15.40  low   -21.1  countdown tick 5
+   16.40  low   -21.7  countdown tick 4
+   17.40  low   -21.8  countdown tick 3
+   18.40  low   -21.0  countdown tick 2
+   19.40  low   -21.9  countdown tick 1
+   15.75  low   -20.3  comment plip 1
+   16.80  low   -20.3  comment plip 2
+   17.85  low   -20.3  comment plip 3
+   18.90  low   -20.3  comment plip 4
+   20.45  soft  -15.7  B selected jingle
+   20.83  low   -17.4  cut: next morning
+   21.10  low   -23.0  SAVE FILE drain
+   21.30  soft  -15.4  chain lifted: jingle
+   21.80  low   -19.6  chain handed over
+   22.48  low   -17.6  cut: corridor
+   24.75  low   -16.8  receipt rustle
+   25.13  soft  -20.7  flashback in (ward)
+   26.85  low   -24.9  8-bit phone ring
+   28.14  low   -25.5  flashback out
+   28.94  soft  -18.1  match: 14 AUG ding
+   30.16  low   -24.5  flashback in (locker)
+   30.36  low   -20.5  locker creak
+   31.14  low   -24.0  flashback out 2
+   31.57  low   -19.3  cut: dining
+   32.19  low   -21.6  chain laid on the table
+   33.44  low   -21.3  house rule banner
+   36.51  low   -18.9  wrist tap 1
+   36.73  low   -18.7  wrist tap 2
+   36.47  soft  -16.5  02 SEP inset ding
+   37.33  low   -20.3  laugh sparkle
+   37.60  low   -22.3  comment check blip
+   40.38  soft  -16.3  tag ding
+   41.79  low   -22.1  end-card follow tap
+voice peaks: [-2.9, -3.2, -3.4, -3.3, -3.3, -3.3, -3.3, -3.6, -3.1, -3.3, -3.4] | bed under voice -16.2 open -7.7
+mix ok 43.81

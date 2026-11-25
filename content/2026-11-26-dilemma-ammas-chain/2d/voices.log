@@ -1,0 +1,15 @@
+batch ['nikhil', 'narasimha'] [0, 1, 5, 8]
+batch ['amma', 'keerthi'] [2, 6, 7, 9]
+batch ['gopi'] [3, 4, 10]
+0 nikhil gemini 0.25 1.919
+1 narasimha gemini 2.369 4.191
+2 amma gemini 7.31 3.724
+3 gopi gemini 11.584 2.917
+4 gopi gemini 14.651 4.247
+5 nikhil gemini 25.498 1.727
+6 keerthi gemini 27.575 2.898
+7 keerthi gemini 30.723 3.762
+8 nikhil gemini 35.086 2.596
+9 amma gemini 38.132 2.132
+10 gopi gemini 41.164 2.784
+total 46.6

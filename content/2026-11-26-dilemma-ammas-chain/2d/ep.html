@@ -1,0 +1,223 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moral dilemma "Amma's chain". 2D animated, PIXEL skin for the whole reel (16-bit retro game): the pawn counter in
+     Dilsukhnagar (frame 1 + the reveal + the loop), Nikhil's Dilsukhnagar home (hall: bureau + wall calendar, Keerthi's
+     study corner, the dining table), a hospital ward, and a retro-game CHOOSE A / B menu (HTML). Flashbacks = the same
+     pixel world under a CSS sepia tint with a FLASHBACK frame + date tab. Every clue text (tokens, receipt, calendar,
+     fee slip, street sign, HUD) is crisp HTML on top of the pixel filter, tracked to the world by wlab(). Rewatch clues:
+     'NIKHIL — WATCH — 02 SEP' token + his bare left wrist with a pale tan line (frame 1), 'KEERTHI — 14 AUG' token,
+     the calendar '12–13: పిన్ని, Vijayawada', the pill box, the receipt corner in her bag, 'FINAL YEAR FEE PAID ✓ 02 SEP'
+     on her study board. Cast: makeAdult() rig - Nikhil (NIKHIL_OPT + the tan line), Amma = SAROJA_OPT; new: Keerthi +
+     Narasimha (saved in tools/anim2d/cast.md). No shop, hospital, bank, college or brand names anywhere. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1B2430}
+svg{display:block}
+#s,#nar{position:absolute;left:0;top:0}
+/* Telugu: never letter-spaced (it splits the conjuncts) */
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* pixel boxes: square corners, notched pixel border, hard offset shadow */
+.px{background:#FFF4D6;color:#16121F;box-shadow:-6px 0 0 0 #16121F,6px 0 0 0 #16121F,0 -6px 0 0 #16121F,0 6px 0 0 #16121F,12px 12px 0 0 rgba(22,18,31,.75)}
+.sub{position:absolute;left:44px;right:44px;bottom:176px;padding:14px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000;opacity:0;background:rgba(14,12,30,.86);z-index:8;
+  box-shadow:-6px 0 0 0 #F3E9D2,6px 0 0 0 #F3E9D2,0 -6px 0 0 #F3E9D2,0 6px 0 0 #F3E9D2}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:2px 16px;margin-bottom:8px;text-shadow:none;color:#16121F}
+.top{position:absolute;top:58px;left:48px;right:48px;display:flex;justify-content:space-between;align-items:center;z-index:7}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center;background:#16121F;padding:4px 16px 4px 6px;box-shadow:6px 6px 0 rgba(0,0,0,.45)}
+.brand i{width:48px;height:48px;background:#F5B700;color:#16121F;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:4px solid #16121F}
+.tag{font-family:Anton;font-size:30px;letter-spacing:3px;background:#7E3FBF;color:#fff;padding:6px 18px;border:5px solid #16121F;box-shadow:6px 6px 0 #16121F}
+/* HUD strip (game UI) */
+#hud{position:absolute;top:134px;left:48px;right:48px;height:62px;display:flex;justify-content:space-between;align-items:center;z-index:7;opacity:0}
+#hud .stg{font-family:Anton;font-size:30px;letter-spacing:3px;color:#FFE28A;background:#16121F;padding:6px 16px;border:4px solid #FFE28A}
+#imet{display:flex;align-items:center;gap:10px;background:#16121F;padding:6px 12px;border:4px solid #FF7A59;opacity:0}
+#imet b{font-family:Anton;font-weight:normal;font-size:26px;letter-spacing:2px;color:#FF7A59}
+#imet .bar{display:flex;gap:3px}
+#imet .bar i{width:13px;height:26px;background:#3A2F4A}
+#imet .bar i.on{background:#FF7A59}
+#imet span{font-family:Anton;font-size:28px;color:#fff;letter-spacing:1px}
+#imet em{font-style:normal;font-family:Anton;font-size:26px;color:#FF7A59}
+#imet.paid{border-color:#5BD17A} #imet.paid b,#imet.paid em{color:#5BD17A}
+#hook{position:absolute;top:226px;left:24px;right:24px;text-align:center;z-index:6;opacity:0}
+#hook .px{display:inline-block;font-family:Rama,NotoTe;font-size:62px;padding:2px 30px 12px}
+#title{position:absolute;top:1250px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title small{display:block;font-family:Anton;font-size:40px;letter-spacing:6px;color:#FFE28A;text-shadow:4px 4px 0 #16121F;margin-bottom:6px}
+#title .t{font-family:Rama,NotoTe;font-size:120px;line-height:1.05;color:#FFE28A;-webkit-text-stroke:14px #16121F;paint-order:stroke fill;text-shadow:10px 10px 0 #16121F}
+#ans{position:absolute;top:380px;left:0;right:0;text-align:center;opacity:0;z-index:6}
+#ans span{display:inline-block;font-family:Anton;font-size:54px;letter-spacing:3px;padding:4px 26px;background:#FFB000}
+/* world-tracked crisp labels */
+.wl{position:absolute;left:0;top:0;opacity:0;z-index:2;transform-origin:50% 50%;white-space:nowrap}
+.tok{width:150px;height:70px;background:#F7A8C4;border:3px solid #7A2948;color:#3A0F22;font-family:Anton;font-size:20px;line-height:1.1;letter-spacing:1px;text-align:center;display:flex;flex-direction:column;justify-content:center;box-shadow:4px 4px 0 rgba(22,18,31,.6)}
+.tok big{font-size:26px;letter-spacing:2px}
+#notR{font-family:Anton;font-size:18px;letter-spacing:1px;color:#fff;background:#B3261E;border:3px solid #16121F;padding:1px 8px;box-shadow:3px 3px 0 #16121F}
+#sign{width:260px;height:58px;background:#1F6B3A;border:4px solid #F3F3F3;color:#fff;font-family:Anton;font-size:30px;letter-spacing:3px;display:grid;place-items:center;box-shadow:0 0 0 3px #10301C}
+#cal{width:270px;height:340px;background:#FFFDF4;border:3px solid #6B5A44;box-shadow:4px 4px 0 rgba(22,18,31,.45)}
+#cal .hd{background:#C0392B;color:#fff;font-family:Anton;font-size:30px;letter-spacing:4px;text-align:center;padding:4px 0}
+#cal .gr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px 8px 0}
+#cal .gr i{font-style:normal;font-family:InterB;font-weight:700;font-size:15px;color:#5A4A3A;text-align:center;height:24px;line-height:24px}
+#cal .gr i.m{outline:3px solid #1E4FB3;outline-offset:-2px;border-radius:50%}
+#cal .nt{margin:8px 8px 0;font-family:Rama,NotoTe;font-size:31px;line-height:1.15;color:#1E4FB3;transform:rotate(-3deg)}
+#fee{width:260px;background:#FFFFFF;border:3px solid #2E7D32;color:#1B5E20;text-align:center;padding:4px 6px 6px;box-shadow:4px 4px 0 rgba(22,18,31,.45)}
+#fee b{display:block;font-family:Anton;font-weight:normal;font-size:25px;letter-spacing:1px;line-height:1.15}
+#fee span{display:block;font-family:Anton;font-size:30px;letter-spacing:2px;color:#16121F}
+/* receipt + token cards (screen space, crisp) */
+.card{position:absolute;opacity:0;z-index:5}
+.rcpt{width:330px;background:#FFFFFF;color:#16121F;text-align:center;padding:16px 18px 20px;box-shadow:-6px 0 0 0 #16121F,6px 0 0 0 #16121F,0 -6px 0 0 #16121F,0 6px 0 0 #16121F,12px 12px 0 0 rgba(22,18,31,.75)}
+.rcpt .pl{width:64px;height:64px;margin:0 auto 8px;position:relative}
+.rcpt .pl:before,.rcpt .pl:after{content:"";position:absolute;background:#D32F2F}
+.rcpt .pl:before{left:22px;top:0;width:20px;height:64px}.rcpt .pl:after{left:0;top:22px;width:64px;height:20px}
+.rcpt .dt{font-family:Anton;font-size:64px;letter-spacing:3px;line-height:1.05}
+.rcpt .bp{display:inline-block;margin-top:8px;font-family:Anton;font-size:36px;letter-spacing:2px;color:#2E7D32;border:4px solid #2E7D32;padding:0 12px}
+.tokc{width:330px;height:170px;background:#F7A8C4;color:#3A0F22;font-family:Anton;text-align:center;display:flex;flex-direction:column;justify-content:center;
+  box-shadow:-6px 0 0 0 #7A2948,6px 0 0 0 #7A2948,0 -6px 0 0 #7A2948,0 6px 0 0 #7A2948,12px 12px 0 0 rgba(22,18,31,.75)}
+.tokc b{font-weight:normal;font-size:44px;letter-spacing:2px;line-height:1.1}
+.tokc .dt{font-size:64px;letter-spacing:3px;line-height:1.05}
+.feec{width:330px;height:170px;background:#FFFFFF;color:#1B5E20;font-family:Anton;text-align:center;display:flex;flex-direction:column;justify-content:center;
+  box-shadow:-6px 0 0 0 #2E7D32,6px 0 0 0 #2E7D32,0 -6px 0 0 #2E7D32,0 6px 0 0 #2E7D32,12px 12px 0 0 rgba(22,18,31,.75)}
+.feec b{font-weight:normal;font-size:31px;letter-spacing:1px;line-height:1.1}
+.feec .dt{font-size:64px;letter-spacing:3px;line-height:1.05;color:#16121F}
+.hl{display:inline-block;background:#FFE28A;padding:0 10px;line-height:1.08;margin-top:6px}
+.eq{position:absolute;opacity:0;z-index:6;width:96px;height:66px;background:linear-gradient(#FFE28A 0 24px,transparent 24px 42px,#FFE28A 42px 66px);filter:drop-shadow(5px 5px 0 #16121F) drop-shadow(-3px -3px 0 #16121F)}
+/* time chips */
+#tchip{position:absolute;top:226px;left:48px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;padding:2px 18px;background:#FFE28A}
+/* flashback frame */
+#fbf{position:absolute;inset:0;opacity:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 22px #3B2A1A,inset 0 0 0 30px #E8D2A6,inset 0 0 160px rgba(40,24,8,.55)}
+#fbtab{position:absolute;top:226px;right:48px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#3B2A1A;padding:2px 18px;background:#E8D2A6;
+  box-shadow:-6px 0 0 0 #3B2A1A,6px 0 0 0 #3B2A1A,0 -6px 0 0 #3B2A1A,0 6px 0 0 #3B2A1A,10px 10px 0 0 rgba(22,18,31,.6)}
+/* the CHOOSE A / B game screen */
+#game{position:absolute;inset:0;opacity:0;z-index:4;background:#12102B;overflow:hidden}
+#game:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.045) 0 3px,transparent 3px 7px)}
+#stars{position:absolute;left:0;top:0;width:6px;height:6px}
+#gt{position:absolute;top:280px;left:0;right:0;text-align:center;line-height:1}
+#gt .t{display:inline-block;font-family:Anton;font-size:128px;letter-spacing:8px;color:#FFE28A;text-shadow:7px 7px 0 #E8553D,14px 14px 0 #16121F}
+#gt small{display:block;margin-top:18px;font-family:Anton;font-size:34px;letter-spacing:6px;color:#9FD6FF}
+.opt{position:absolute;left:150px;width:800px;height:230px;display:flex;align-items:center;gap:30px;padding:0 30px;background:#FFF4D6;
+  box-shadow:-8px 0 0 0 #F3E9D2,8px 0 0 0 #F3E9D2,0 -8px 0 0 #F3E9D2,0 8px 0 0 #F3E9D2,16px 16px 0 0 #000}
+#oA{top:520px} #oB{top:810px}
+.opt .k{flex:none;width:150px;height:150px;display:grid;place-items:center;font-family:Anton;font-size:120px;color:#16121F;background:#FFB000;
+  box-shadow:-6px 0 0 0 #16121F,6px 0 0 0 #16121F,0 -6px 0 0 #16121F,0 6px 0 0 #16121F}
+.opt .tx{font-family:Rama,NotoTe;font-size:66px;line-height:1.15;color:#16121F}
+.opt .tx small{display:block;font-family:InterB;font-weight:800;font-size:32px;color:#6A4F8A;margin-top:4px}
+.opt.sel{background:#FFE28A}
+#cur{position:absolute;left:50px;top:0;width:0;height:0;border-top:36px solid transparent;border-bottom:36px solid transparent;border-left:56px solid #FFE28A;filter:drop-shadow(6px 6px 0 #000);opacity:0}
+#selT{position:absolute;left:0;right:0;top:1100px;text-align:center;opacity:0}
+#selT span{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:6px;color:#16121F;background:#5BD17A;padding:4px 30px;box-shadow:12px 12px 0 #000}
+#timer{position:absolute;top:1085px;left:150px;width:800px;height:110px;display:flex;align-items:center;gap:22px;padding:0 24px;background:#16121F;opacity:0;
+  box-shadow:-6px 0 0 0 #9FD6FF,6px 0 0 0 #9FD6FF,0 -6px 0 0 #9FD6FF,0 6px 0 0 #9FD6FF}
+#timer b{font-family:Anton;font-weight:normal;font-size:40px;letter-spacing:4px;color:#9FD6FF}
+#digit{font-family:Anton;font-size:86px;color:#FFE28A;width:70px;text-align:center;line-height:1}
+#blocks{display:flex;gap:10px;margin-left:auto}
+#blocks i{width:58px;height:58px;background:#FFE28A;box-shadow:4px 4px 0 #000}
+#blocks i.off{background:#3A2F4A}
+.cb{position:absolute;opacity:0;background:#FFFFFF;padding:8px 22px 10px;white-space:nowrap;z-index:5;
+  box-shadow:-5px 0 0 0 #16121F,5px 0 0 0 #16121F,0 -5px 0 0 #16121F,0 5px 0 0 #16121F,10px 10px 0 0 #000}
+.cb:after{content:"";position:absolute;left:30px;bottom:-26px;width:22px;height:22px;background:#FFFFFF;box-shadow:-5px 0 0 0 #16121F,5px 0 0 0 #16121F,0 5px 0 0 #16121F}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:Rama,NotoTe,InterB;font-size:40px;line-height:1.2;color:#16121F}
+#cnow{position:absolute;top:1235px;left:0;right:0;text-align:center;opacity:0;z-index:5}
+#cnow span{display:inline-block;font-family:Anton;font-size:50px;letter-spacing:3px;padding:2px 26px;background:#FFB000}
+/* follow */
+#fol{position:absolute;top:1330px;left:230px;width:620px;text-align:center;opacity:0;z-index:6}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:8px 46px;background:#D62976;
+  box-shadow:-6px 0 0 0 #16121F,6px 0 0 0 #16121F,0 -6px 0 0 #16121F,0 6px 0 0 #16121F,12px 12px 0 0 #000}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:9}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border:8px solid #fff;opacity:0;z-index:9}
+/* SAVE FILE bar (reveal) */
+#save{position:absolute;top:226px;left:48px;right:48px;opacity:0;z-index:6;background:#16121F;padding:12px 18px;
+  box-shadow:-6px 0 0 0 #9FD6FF,6px 0 0 0 #9FD6FF,0 -6px 0 0 #9FD6FF,0 6px 0 0 #9FD6FF}
+#save .r{display:flex;justify-content:space-between;align-items:center;font-family:Anton;font-size:36px;letter-spacing:3px;color:#9FD6FF}
+#save .r em{font-style:normal;color:#FF7A59;letter-spacing:1px}
+#save .bb{margin-top:8px;height:34px;background:#3A2F4A;position:relative}
+#save .bb i{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,#5BD17A 0 22px,#3FAE5C 22px 26px)}
+#rule{position:absolute;top:380px;left:0;right:0;text-align:center;opacity:0;z-index:6}
+#rule span{display:inline-block;font-family:Anton;font-size:56px;letter-spacing:3px;padding:6px 28px;background:#FFE28A}
+#ck{position:absolute;top:1230px;left:30px;right:30px;text-align:center;opacity:0;z-index:6}
+#ck span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;line-height:1.25;padding:4px 28px 12px}
+/* share: tag your sibling */
+#share{position:absolute;inset:0;opacity:0;z-index:6;background:rgba(18,16,43,.93)}
+#share:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 3px,transparent 3px 7px)}
+#sq{position:absolute;top:300px;left:40px;right:40px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;line-height:1.3;padding:8px 30px 14px}
+#cbox{position:absolute;left:100px;right:100px;top:700px;background:#fff;padding:18px 26px;box-shadow:-6px 0 0 0 #F3E9D2,6px 0 0 0 #F3E9D2,0 -6px 0 0 #F3E9D2,0 6px 0 0 #F3E9D2}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:26px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:44px;color:#16121F;margin-top:6px;min-height:58px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;padding:0 8px}
+.ct{position:absolute;left:160px;right:160px;display:flex;align-items:center;gap:20px;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:44px;color:#16121F;background:#fff;padding:14px 24px;opacity:0;
+  box-shadow:-5px 0 0 0 #16121F,5px 0 0 0 #16121F,0 -5px 0 0 #16121F,0 5px 0 0 #16121F,10px 10px 0 0 #000}
+.ct .av{width:66px;height:66px;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:920px} #ct2{top:1050px}
+#ct1 .av{background:#F5B700} #ct2 .av{background:#2D9CDB}
+.ct .ok{margin-left:auto;font-family:InterB;font-size:32px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(18,16,43,.95);z-index:7}
+#endc .box{position:absolute;top:560px;left:90px;right:90px;text-align:center}
+#endc .eb{display:block;font-family:Anton;font-size:62px;letter-spacing:3px;color:#fff;padding:12px 0;margin-bottom:44px;
+  box-shadow:-6px 0 0 0 #F3E9D2,6px 0 0 0 #F3E9D2,0 -6px 0 0 #F3E9D2,0 6px 0 0 #F3E9D2,12px 12px 0 0 #000}
+#eF{background:#D62976} #eS{background:#E62117}
+#endc .lg{font-family:Anton;font-size:44px;color:#FFE28A;letter-spacing:4px;margin-bottom:50px}
+#endc .nx{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:54px;color:#fff;margin-top:10px}
+/* the silent loop */
+#loopT{position:absolute;left:0;right:0;top:1250px;text-align:center;opacity:0;z-index:6}
+#loopT span{display:inline-block;font-family:Rama,NotoTe;font-size:56px;padding:2px 26px 12px;background:#FFE28A}
+.mark{position:absolute;left:0;top:0;border:8px solid #FFE28A;box-shadow:0 0 0 5px #16121F,inset 0 0 0 4px #16121F;opacity:0;z-index:4}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:9}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="fbf"></div>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:8"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">MORAL DILEMMA</div></div>
+<div id="hud"><div class="stg">STAGE: AMMA'S CHAIN</div>
+  <div id="imet"><b>INTEREST</b><div class="bar" id="ibar"></div><span>₹38,000</span><em id="iarr">▲</em></div></div>
+<div id="hook"><span class="px">అమ్మ chain... చెల్లి పేరు మీద?!</span></div>
+<div id="title"><small>MORAL DILEMMA</small><div class="t">అమ్మ chain</div></div>
+<div id="ans"><span class="px" style="background:#FFB000">NIKHIL'S CHOICE AT THE END 👀</span></div>
+<div class="wl tok" id="tokN"><span>NIKHIL — WATCH</span><big>02 SEP</big></div>
+<div class="wl tok" id="tokK"><span>KEERTHI</span><big>14 AUG</big></div>
+<div class="wl" id="notR">NOT REDEEMED</div>
+<div class="wl" id="sign">DILSUKHNAGAR</div>
+<div class="wl" id="cal"><div class="hd">AUGUST</div><div class="gr" id="calg"></div><div class="nt">12–13: పిన్ని,<br>Vijayawada</div></div>
+<div class="wl" id="fee"><b>FINAL YEAR FEE<br>PAID ✓</b><span>02 SEP</span></div>
+<div id="tchip" class="px">NEXT MORNING</div>
+<div id="fbtab">◀ FLASHBACK · <span id="fbd">12–13 AUG</span></div>
+<div class="card" id="rc"><div class="rcpt"><div class="pl"></div><div class="dt"><span class="hl">14 AUG</span></div><div class="bp">BALANCE PAID</div></div></div>
+<div class="eq" id="eq1"></div>
+<div class="card" id="kc"><div class="tokc"><b>KEERTHI</b><div class="dt"><span class="hl">14 AUG</span></div></div></div>
+<div class="card" id="nc"><div class="tokc"><b>NIKHIL — WATCH</b><div class="dt"><span class="hl">02 SEP</span></div></div></div>
+<div class="eq" id="eq2"></div>
+<div class="card" id="fc"><div class="feec"><b>FINAL YEAR FEE PAID ✓</b><div class="dt"><span class="hl">02 SEP</span></div></div></div>
+<div id="save"><div class="r"><span>SAVE FILE: NIKHIL</span><em id="saveA">−₹38,000 + interest</em></div><div class="bb"><i id="saveB"></i></div></div>
+<div id="rule"><span class="px">NEW HOUSE RULE: NO SECRETS</span></div>
+<div id="ck"><span class="px">Nikhil లాగే choose చేశారా?<br>Comment లో ✅</span></div>
+<div id="game"><div id="stars"></div>
+  <div id="gt"><div class="t">CHOOSE A / B</div><small>PLAYER: YOU</small></div>
+  <div id="cur"></div>
+  <div class="opt" id="oA"><div class="k">A</div><div class="tx">అమ్మకి చెప్పు<small>Keerthi in trouble</small></div></div>
+  <div class="opt" id="oB"><div class="k">B</div><div class="tx">గుట్టుగా విడిపించు<small>Savings −₹38,000 + interest</small></div></div>
+  <div id="timer"><b>COMMENT 💬</b><div id="digit">5</div><div id="blocks"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div id="selT"><span>B SELECTED</span></div>
+</div>
+<div id="cbs"></div>
+<div id="cnow"><span class="px" style="background:#FFB000">మీరైతే A or B? 💬</span></div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="share">
+  <div id="sq"><span class="px">మీ కోసం గుట్టుగా త్యాగం చేసే<br>sibling ని TAG చేయండి 🤝</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">అ</div><span>అన్నయ్య / చెల్లి 💛</span><span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">C</div><span>College gang 🎒</span></div>
+</div>
+<div id="endc"><div class="box"><div class="lg">REEL RASAM · MORAL DILEMMA</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span><div class="nx">రేపు ఇంకో dilemma! 🎮</div></div></div>
+<div class="mark" id="mk1"></div><div class="mark" id="mk2"></div>
+<div id="loopT"><span class="px" style="background:#FFE28A">Watch token మొదటి frame లోనే ఉంది 👀</span></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "pixel";  // the whole reel is pixel (flashbacks = pixel + CSS sepia on the world)</script>
+<script src="skins.js"></script>
+<script src="world.js"></script>
+</body></html>

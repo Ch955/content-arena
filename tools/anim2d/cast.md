@@ -190,3 +190,25 @@ Nikhil's Amma on the video call = `SAROJA_OPT` (same Amma as 15/16 Nov). Her son
 (`makeKid`, white school shirt, navy shorts).
 Voices in that reel (all Gemini; ElevenLabs skipped, its key cap had ~51 credits): Gopi=Puck, Nikhil=Charon, Ananya=Kore,
 Lakshmi=Vindemiatrix (profile andhra-female-middle = Seeta if ElevenLabs is ever used).
+
+## Keerthi + Narasimha (from Moral dilemma "Amma's chain", `content/2026-11-26-dilemma-ammas-chain/2d/world.js`, 26 Nov 2026)
+Pixel skin for the whole reel: the pawn counter in Dilsukhnagar, Nikhil's Dilsukhnagar home (bureau + wall calendar,
+Keerthi's study corner, the dining table), a hospital ward (sepia flashback). Keerthi is Nikhil's younger sister (22,
+final-year degree student); Narasimha is the pawnbroker (~65). Amma = `SAROJA_OPT` (same Amma as 15/16/24 Nov).
+`makeAdult()` there (the 24 Nov tiffin rig) adds `wrist` (bare wrist below the sleeve end) + `tan` (a pale watch tan line on
+Nikhil's anatomical LEFT wrist = the viewer's right arm, AR; this reel only, he pawned his watch), `braid` (loose side braid
+over her left shoulder, `tie` colour), `dupatta` (+ `dupDot`), `pen` (shirt-pocket pen), `lowSpecs` (reading specs low on
+the nose, frame colour), `bald` (balding top with white side hair, colour). Props: `makeChainLie/makeChainHang` (Amma's thin
+gold chain with a small round pendant with a red stone), `makeToken` (pink pledge slip), `makeReceipt` (hospital slip, red +).
+```js
+const KEERTHI_OPT={skin:"#C9926A",hair:"#1E1410",shirt:"#E0A419",trim:"#8C3B12",kurta:true,braid:true,tie:"#C62828",dupatta:"#A3243B",dupDot:"#FFE28A",sleeve:"#E0A419",fore:"#C9926A",cuff:"#8C3B12",
+                   earrings:true,earCol:"#E0E0E0",brow:4.2,lash:4,blush:0.32,lip:"#B0485A"};   // Keerthi, 22: mustard cotton kurti, maroon dotted dupatta, loose side braid with a red tie, silver studs
+const NARASIMHA_OPT={skin:"#B07A55",hair:"#E6E6E6",bald:"#ECECEC",shirt:"#F4F4EE",collar:"#E2E2D8",button:"#C9C9C0",sleeve:"#F4F4EE",fore:"#B07A55",pen:"#1E4FB3",lowSpecs:"#4E342E",lines:true,
+                     brow:5.5,browCol:"#DADADA",lip:"#7A3A30",blush:0.1};   // Narasimha, ~65: balding, white side hair, reading specs low on his nose, white half-sleeve shirt, blue pen in the pocket
+```
+Keerthi standing: `legs:{pant:"#3D5A8C",shoe:"#8D6E63"}` (blue jeans), scale 1.0 (Nikhil 1.08); her canvas college bag with a
+generic ID lanyard sits on her desk (prop, no college name). Narasimha behind the counter: hip at `CT+40` (shirt hidden by
+the counter), scale 0.95. Nikhil in this reel: `{...NIKHIL_OPT, wrist:true, tan:"#EBCFAE"}` (+ `legs` standing).
+Voices in that reel (all Gemini; ElevenLabs skipped): Gopi=Puck, Nikhil=Charon, Amma=Kore, Keerthi=Achernar,
+Narasimha=Schedar. Profiles if ElevenLabs is ever used: Keerthi `profile_for("female","young","emotional")` =
+andhra-female-young (Ananya's voice: don't use both in one reel), Narasimha `profile_for("male","middle","cool")`.
