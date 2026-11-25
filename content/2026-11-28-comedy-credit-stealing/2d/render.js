@@ -1,15 +1,15 @@
-// Office comedy Ep 2 'Operation Manager Mind Game' (FLAT office): render ep.html frame-by-frame (30 fps) with Chromium + ffmpeg.
+// Office comedy Ep 4 'మీటింగ్‌లో మేనేజర్ మాయ!' (FLAT office; Ep 2's render.js): render ep.html frame-by-frame (30 fps) with Chromium + ffmpeg.
 //   node render.js 2 8 15            -> stills/still-<t>.png (also writes beats.json for mix.py)
 //   node render.js --beats           -> beats.json only
 //   node render.js --chunk K N       -> part<K>.mp4 = frames of chunk K of N (video only; run N in parallel)
-//   node render.js --join N          -> concat part0..N-1 + mix.wav -> reel-rasam-comedy-manager-mind-game-anim.mp4
+//   node render.js --join N          -> concat part0..N-1 + mix.wav -> reel-rasam-comedy-credit-stealing-anim.mp4
 //   node render.js                   -> whole reel in one process
 const { chromium } = require('playwright');
 const { spawn, spawnSync } = require('child_process');
 const fs = require('fs'), path = require('path');
 const tl = JSON.parse(fs.readFileSync(path.join(__dirname, 'timeline.json')));
 const args = process.argv.slice(2);
-const OUT = path.join(__dirname, 'reel-rasam-comedy-manager-mind-game-anim.mp4');
+const OUT = path.join(__dirname, 'reel-rasam-comedy-credit-stealing-anim.mp4');
 const total = Math.round(tl.dur * 30);
 if (args[0] === '--join') {
   const n = +args[1], list = path.join(__dirname, 'parts.txt');

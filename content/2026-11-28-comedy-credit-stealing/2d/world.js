@@ -1,13 +1,14 @@
-// Office comedy Ep 2 "😂 Operation Manager Mind Game" — sets + choreography (loaded by ep.html after office_cast.js).
-// ONE set: the same open office as Ep 0/Ep 1 (cubicles, wall clock, the manager's glass cabin + MANAGER door), Christmas decor
-// gone except Ep 1's leftovers (a drooping paper star; the red garland hung on the cabin door), Ramesh's 'SECONDARY ⭐' sticky
-// (Ep 0) on his monitor, his helmet on the partition. New props: the water cooler, the manager's big chair, the scoreboard
-// (HTML), the 3 game cards (HTML), the stopwatch (fx), the OUT! stamp (HTML). Beats: S1 villain entry + challenge -> GAME 1
-// honesty -> GAME 2 blindfold (silent follow tap, cooler DONK, glass door BOINNG + FAAAH #1, birds) -> GAME 3 silence
-// (stopwatch, explosion, FAAAH #2, OUT! stamp) -> 'winner?' -> 'మీరే సార్!' victory dance -> 0.3 s silence -> Ramesh's punch to
-// camera -> FREEZE -> comment / tag / end card 'Series: Office Politics · Ep 2'.
+// Office comedy Ep 4 "మీటింగ్‌లో మేనేజర్ మాయ!" — sets + choreography (loaded by ep.html after office_cast.js; built on Ep 2's world.js).
+// TWO sets in one world: the office's MEETING ROOM (whiteboard with a plain rising arrow, the meeting table, Ramesh's laptop with
+// the Ep 0 'SECONDARY ⭐' sticky on its lid, the manager's plain white mug on the table) and the manager's GLASS CABIN (Ep 1's
+// garland on the MANAGER door, his desk + nameplate, the same mug on the desk). The boss is voice only (HTML caller card).
+// Beats: villain walk + text hook -> DHOOM 'గైస్!' + limp claps -> 2 AM coding flashback -> head pat + 'RAMESH' chip SHLOOPed into
+// TEAM -> night-calls flashback -> 'VISION 💡' + ooooh -> whoosh to the cabin (silent follow tap, speed dial) -> 'I delivered...'
+// -> FAAAH on Ramesh's jaw drop -> boss on speaker + KA-CHING BONUS -> the doubt -> finger count 1-2-3 -> punch: '???' flips to
+// COMPANY 🏢, FREEZE -> 0.3 s silence -> Ramesh laugh-cries (tears squirting sideways) -> ending card, 3 stamps -> Gopi -> end card.
+
 // comment bubbles: generic names, no real usernames
-const CB=[["Ravi","Silence game 😂😂","#1E88E5",70,1110],["Divya","Blindfold 🙈 glass door!","#D81B60",250,1220],["Teja","మా manager అన్నిట్లో 😅","#2E7D32",110,1330]];
+const CB=[["Ravi","మా TL 😤","#1E88E5",70,1110],["Divya","Senior కొట్టేశాడు 😭","#D81B60",250,1220],["Teja","Appraisal లో చూద్దాం 😂","#2E7D32",110,1330]];
 $("cbs").innerHTML=CB.map(([n,g,c,x,y],i)=>`<div class="cb" id="cb${i}" style="left:${x}px;top:${y}px"><b style="color:${c}">${n}</b><i>${g}</i></div>`).join("");
 
 const defs=el("defs",{});
@@ -16,123 +17,160 @@ applySkin(cam, defs);
 const W=el("g",{id:"world"},cam);
 const FEET=1700;
 const hipAt=s=>FEET-448*s;
-const S85=0.85, H85=hipAt(S85);                 // everyone stands at this scale on the office floor
-const RAM_X=90, PRI_X=280, MG_X=760, SUR_X=960, COOL_X=470, CHAIR_X=800, DOOR_X=1180, SUR_DOOR=1580;
-// blur for the dancing manager behind Ramesh's close-up (L16)
-{const f=el("filter",{id:"bgBlur",x:"-30%",y:"-30%",width:"160%",height:"160%"},defs); el("feGaussianBlur",{stdDeviation:7},f)}
+const S85=0.85, H85=hipAt(S85);
+const SUR_X=-170, RAM_X=110, MG_X=720, MG_P=330;          // meeting room
+const RC_X=1640, MC_X=2030;                                // cabin: Ramesh beside the desk, the manager behind it
+const BS=0.72, BH=1640-448*BS;                             // back-row colleagues (further back, smaller)
+const TABLE_Y=1330;
+{const f=el("filter",{id:"bgBlur",x:"-30%",y:"-30%",width:"160%",height:"160%"},defs); el("feGaussianBlur",{stdDeviation:6},f)}
 
-// ===== OPEN OFFICE (x -900..2300) =====
-el("rect",{x:-1100,y:-900,width:3600,height:2300,fill:"#EAF3F8"},W);
-el("rect",{x:-1100,y:1380,width:3600,height:22,fill:"#B7C6D3"},W);
-el("rect",{x:-1100,y:1402,width:3600,height:1400,fill:"#CDD7E0"},W);
-for(let k=0;k<16;k++) el("line",{x1:-1100+k*260,y1:1402,x2:-1600+k*360,y2:2600,stroke:"#BCC8D3","stroke-width":5},W);
-for(let y=1480;y<2400;y+=110) el("line",{x1:-1100,y1:y,x2:2500,y2:y,stroke:"#BCC8D3","stroke-width":4},W);
-// Ep 1 leftover: a paper star on a string, drooping (static)
-const starG=el("g",{transform:"translate(-560,1250) rotate(160) scale(.7)"},W);
-el("line",{x1:0,y1:-160,x2:0,y2:-62,stroke:INK,"stroke-width":3},starG);
-{const p=[]; for(let k=0;k<10;k++){const r=k%2?26:64, a=-Math.PI/2+k*Math.PI/5; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r).toFixed(1)}`)}
- el("polygon",{points:p.join(" "),fill:"#FFD54F",stroke:INK,"stroke-width":5,"stroke-linejoin":"round"},starG)}
-// the big wall clock (as on 20 Nov)
-const CLX=-330, CLY=560;
-const clockG=el("g",{transform:`translate(${CLX},${CLY})`},W);
-el("circle",{r:132,fill:"#10141E"},clockG); el("circle",{r:118,fill:"#FFFDF5"},clockG);
-for(let k=0;k<60;k++){const a=k*Math.PI/30, r0=k%5?104:92; el("line",{x1:Math.sin(a)*r0,y1:-Math.cos(a)*r0,x2:Math.sin(a)*110,y2:-Math.cos(a)*110,stroke:INK,"stroke-width":k%5?3:8},clockG)}
-[[12,0],[3,90],[6,180],[9,270]].forEach(([n,a])=>txt(String(n),{x:Math.sin(a*Math.PI/180)*74,y:-Math.cos(a*Math.PI/180)*74+13,"font-family":"Anton","font-size":38,"text-anchor":"middle",fill:INK},clockG));
-el("line",{x1:0,y1:10,x2:0,y2:-58,stroke:INK,"stroke-width":13,"stroke-linecap":"round",transform:"rotate(150)"},clockG);
-const mHand=el("line",{x1:0,y1:14,x2:0,y2:-90,stroke:INK,"stroke-width":9,"stroke-linecap":"round"},clockG);
-el("circle",{r:9,fill:"#E53935"},clockG);
-// back row of cubicles: monitors, then the colleagues' heads (S1 snicker), then the partitions
-const cub=el("g",{},W), backPeople=el("g",{},W), cubP=el("g",{},W);
-for(let x=-700;x<1000;x+=250){ el("rect",{x:x+70,y:1030,width:120,height:84,rx:6,fill:"#37474F",stroke:INK,"stroke-width":4},cub); el("rect",{x:x+80,y:1040,width:100,height:62,rx:3,fill:"#90CAF9"},cub); el("rect",{x:x+120,y:1114,width:20,height:26,fill:"#546E7A"},cub) }
-el("rect",{x:-700,y:1140,width:1700,height:240,fill:"#9FB4C7",stroke:INK,"stroke-width":5},cubP);
-el("rect",{x:-700,y:1132,width:1700,height:16,rx:6,fill:"#7F96AB",stroke:INK,"stroke-width":4},cubP);
-for(let x=-450;x<1000;x+=250) el("rect",{x:x-5,y:1140,width:10,height:240,fill:"#7F96AB"},cubP);
-// Ramesh's monitor on the back row: the 'SECONDARY ⭐' sticky (Ep 0 callback) + his helmet on the partition
-const sticky=el("g",{transform:"translate(-70,1068) rotate(8) scale(.62)"},cubP);
-el("rect",{x:-56,y:-34,width:112,height:68,fill:"#FFF176",stroke:INK,"stroke-width":3},sticky);
-txt("SECONDARY",{x:0,y:-2,"font-family":"Anton","font-size":20,"text-anchor":"middle",fill:"#C62828"},sticky);
-{const p=[]; for(let k=0;k<10;k++){const r=k%2?5:12, a=-Math.PI/2+k*Math.PI/5; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r+20).toFixed(1)}`)} el("polygon",{points:p.join(" "),fill:"#FFB300",stroke:INK,"stroke-width":1.5},sticky)}
-{const h=el("g",{transform:"translate(-330,1128)"},cubP); helmetShape(h,0.8)}
-// the manager's glass cabin + door (plate outside: readable, never mirrored)
-el("rect",{x:1080,y:300,width:900,height:1080,fill:"#D3E9F2",stroke:"#56616C","stroke-width":14},W);
-el("rect",{x:1500,y:1040,width:380,height:22,fill:"#B9A58A",stroke:"#7E6A50","stroke-width":3},W);
-el("rect",{x:1600,y:880,width:12,height:160,fill:"#7E6A50"},W); el("circle",{cx:1606,cy:860,r:60,fill:"#81C784",opacity:.8},W);
-[[1520,320,1460,1370],[1700,320,1640,1370],[1880,320,1820,1370]].forEach(([x1,y1,x2,y2])=>el("polygon",{points:`${x1},${y1} ${x1+30},${y1} ${x2+30},${y2} ${x2},${y2}`,fill:"#FFFFFF",opacity:.35},W));
-const doorG=el("g",{transform:"translate(1180,0)"},W);
-const doorP=el("g",{},doorG);
+// ===== MEETING ROOM (x -900..1100) =====
+el("rect",{x:-1300,y:-900,width:4400,height:2300,fill:"#EAF3F8"},W);
+el("rect",{x:-1300,y:1380,width:4400,height:22,fill:"#B7C6D3"},W);
+el("rect",{x:-1300,y:1402,width:4400,height:1400,fill:"#CDD7E0"},W);
+for(let y=1480;y<2400;y+=110) el("line",{x1:-1300,y1:y,x2:3100,y2:y,stroke:"#BCC8D3","stroke-width":4},W);
+// a tall window strip on the left (daylight) + a potted plant
+el("rect",{x:-860,y:380,width:300,height:620,rx:10,fill:"#BFE3F5",stroke:"#56616C","stroke-width":12},W);
+el("line",{x1:-710,y1:380,x2:-710,y2:1000,stroke:"#56616C","stroke-width":8},W);
+[[-830,420,-760,980],[-680,420,-610,980]].forEach(([x1,y1,x2,y2])=>el("polygon",{points:`${x1},${y1} ${x1+26},${y1} ${x2+26},${y2} ${x2},${y2}`,fill:"#FFFFFF",opacity:.4},W));
+// the whiteboard: a plain rising arrow, bars, no text, no logos
+const WB=el("g",{transform:"translate(560,520)"},W);
+el("rect",{x:0,y:0,width:440,height:340,rx:12,fill:"#FFFFFF",stroke:"#78909C","stroke-width":12},WB);
+el("rect",{x:40,y:340,width:360,height:14,rx:6,fill:"#90A4AE",stroke:INK,"stroke-width":3},WB);
+[[70,250,50],[150,215,85],[230,170,130],[310,110,190]].forEach(([x,y,h])=>el("rect",{x,y,width:54,height:h,rx:4,fill:"#90CAF9",stroke:INK,"stroke-width":3},WB));
+el("polyline",{points:"60,280 150,220 230,240 330,110 380,70",fill:"none",stroke:"#2E7D32","stroke-width":12,"stroke-linecap":"round","stroke-linejoin":"round"},WB);
+el("path",{d:"M352 60 L398 56 L384 100 Z",fill:"#2E7D32",stroke:"#2E7D32","stroke-width":6,"stroke-linejoin":"round"},WB);
+// a wall clock (as on 20 Nov)
+{const clockG=el("g",{transform:"translate(-330,600) scale(.8)"},W);
+ el("circle",{r:132,fill:"#10141E"},clockG); el("circle",{r:118,fill:"#FFFDF5"},clockG);
+ for(let k=0;k<60;k++){const a=k*Math.PI/30, r0=k%5?104:92; el("line",{x1:Math.sin(a)*r0,y1:-Math.cos(a)*r0,x2:Math.sin(a)*110,y2:-Math.cos(a)*110,stroke:INK,"stroke-width":k%5?3:8},clockG)}
+ [[12,0],[3,90],[6,180],[9,270]].forEach(([n,a])=>txt(String(n),{x:Math.sin(a*Math.PI/180)*74,y:-Math.cos(a*Math.PI/180)*74+13,"font-family":"Anton","font-size":38,"text-anchor":"middle",fill:INK},clockG));
+ el("line",{x1:0,y1:10,x2:0,y2:-58,stroke:INK,"stroke-width":13,"stroke-linecap":"round",transform:"rotate(310)"},clockG);
+ el("line",{x1:0,y1:14,x2:0,y2:-90,stroke:INK,"stroke-width":9,"stroke-linecap":"round",transform:"rotate(60)"},clockG); el("circle",{r:9,fill:"#E53935"},clockG)}
+// the wall between the meeting room and the cabin
+el("rect",{x:1100,y:-900,width:130,height:2300,fill:"#B7C6D3",stroke:INK,"stroke-width":6},W);
+
+// ===== THE MANAGER'S GLASS CABIN (x 1230..2450) =====
+el("rect",{x:1230,y:300,width:1220,height:1080,fill:"#D3E9F2",stroke:"#56616C","stroke-width":14},W);
+for(let y=330;y<640;y+=34) el("line",{x1:1560,y1:y,x2:2430,y2:y,stroke:"#B0C8D4","stroke-width":10},W);           // blinds (upper half)
+[[1700,320,1640,1370],[1950,320,1890,1370],[2250,320,2190,1370]].forEach(([x1,y1,x2,y2])=>el("polygon",{points:`${x1},${y1} ${x1+30},${y1} ${x2+30},${y2} ${x2},${y2}`,fill:"#FFFFFF",opacity:.35},W));
+// faint cubicles seen through the glass
+for(let x=1600;x<2420;x+=200){ el("rect",{x:x,y:1040,width:110,height:76,rx:6,fill:"#90A4AE",opacity:.45},W) }
+el("rect",{x:1560,y:1120,width:870,height:260,fill:"#9FB4C7",opacity:.45},W);
+// the door (MANAGER plate, readable) + Ep 1's red garland
+const doorP=el("g",{transform:"translate(1260,0)"},W);
 el("rect",{x:0,y:430,width:270,height:950,fill:"#C3E2EE",stroke:"#56616C","stroke-width":12},doorP);
 el("rect",{x:0,y:640,width:270,height:40,fill:"#FFFFFF",opacity:.6},doorP);
 el("rect",{x:226,y:860,width:14,height:110,rx:5,fill:"#90A4AE",stroke:INK,"stroke-width":3},doorP);
 el("rect",{x:40,y:500,width:190,height:62,rx:8,fill:"#FFFDF5",stroke:"#3F5A86","stroke-width":5},doorP);
 txt("MANAGER",{x:135,y:545,"font-family":"Anton","font-size":38,"letter-spacing":2,"text-anchor":"middle",fill:"#3F5A86"},doorP);
-// Ep 1 leftover: the red felicitation garland hung on the cabin door (below the plate)
 {const gg=el("g",{transform:"translate(135,930) scale(.82)"},doorP); garlandShape(gg)}
-const doorShine=el("rect",{x:30,y:700,width:24,height:520,fill:"#FFFFFF",opacity:.5},doorP);
-W.appendChild(doorG);
-// the manager's big chair (the Game 2 target): it stands right behind where he starts -- the clues lead him away from it
-const chairG=el("g",{transform:`translate(${CHAIR_X},0)`},W);
-el("rect",{x:-100,y:1010,width:200,height:330,rx:40,fill:"#263238",stroke:INK,"stroke-width":7},chairG);
-el("rect",{x:-80,y:1040,width:160,height:250,rx:30,fill:"#37474F"},chairG);
-el("rect",{x:-62,y:1080,width:124,height:40,rx:8,fill:"#FFFDF5",stroke:INK,"stroke-width":4},chairG);
-txt("MANAGER",{x:0,y:1111,"font-family":"Anton","font-size":30,"letter-spacing":1,"text-anchor":"middle",fill:"#3F5A86"},chairG);
-el("rect",{x:-120,y:1330,width:240,height:52,rx:18,fill:"#1C262C",stroke:INK,"stroke-width":7},chairG);
-el("rect",{x:-14,y:1382,width:28,height:200,fill:"#78909C",stroke:INK,"stroke-width":4},chairG);
-el("path",{d:`M-110 ${FEET-26} L0 1580 L110 ${FEET-26}`,stroke:"#455A64","stroke-width":16,fill:"none","stroke-linecap":"round"},chairG);
-[-110,0,110].forEach(dx=>el("circle",{cx:dx,cy:FEET-18,r:16,fill:"#263238",stroke:INK,"stroke-width":3},chairG));
-// the water cooler (Game 2: the DONK)
-const coolG=el("g",{},W), coolB=el("g",{},coolG);
-el("rect",{x:-72,y:1390,width:144,height:300,rx:14,fill:"#ECEFF1",stroke:INK,"stroke-width":6},coolB);
-el("rect",{x:-50,y:1440,width:100,height:70,rx:8,fill:"#CFD8DC",stroke:INK,"stroke-width":4},coolB);
-el("rect",{x:-18,y:1452,width:12,height:28,rx:3,fill:"#1E88E5",stroke:INK,"stroke-width":2},coolB); el("rect",{x:6,y:1452,width:12,height:28,rx:3,fill:"#E53935",stroke:INK,"stroke-width":2},coolB);
-el("path",{d:"M-44 1390 L-36 1360 L36 1360 L44 1390 Z",fill:"#B0BEC5",stroke:INK,"stroke-width":5},coolB);
-const bottle=el("g",{},coolB);
-el("path",{d:"M-58 1360 L-58 1230 Q-58 1196 -24 1190 L-18 1160 L18 1160 L24 1190 Q58 1196 58 1230 L58 1360 Z",fill:"#81D4FA",stroke:INK,"stroke-width":6,opacity:.95},bottle);
-el("path",{d:"M-58 1300 L58 1300 L58 1360 L-58 1360 Z",fill:"#4FC3F7",opacity:.8},bottle);
-el("rect",{x:-40,y:1220,width:14,height:110,rx:7,fill:"#FFFFFF",opacity:.6},bottle);
-const bub=[0,1,2].map(k=>el("circle",{cx:0,cy:1330,r:8,fill:"#FFFFFF",stroke:"#4FC3F7","stroke-width":2,opacity:0},coolB));
-// heroic rays behind the boast (L3) + the FAAAH burst (behind the manager)
-const rays=el("g",{},W);
-for(let k=0;k<18;k++){const a=k*Math.PI/9; el("polygon",{points:`0,0 ${Math.cos(a-0.07)*900},${Math.sin(a-0.07)*900} ${Math.cos(a+0.07)*900},${Math.sin(a+0.07)*900}`,fill:k%2?"#FFE082":"#FFF59D",opacity:.75},rays)}
-const burst=el("g",{},W);
+el("rect",{x:30,y:700,width:24,height:520,fill:"#FFFFFF",opacity:.5},doorP);
+// the manager's big chair behind the desk (Ep 2 look)
+const chairG=el("g",{transform:`translate(${MC_X+40},0)`},W);
+el("rect",{x:-100,y:1000,width:200,height:330,rx:40,fill:"#263238",stroke:INK,"stroke-width":7},chairG);
+el("rect",{x:-80,y:1030,width:160,height:250,rx:30,fill:"#37474F"},chairG);
+
+// ---------- people ----------
+const backPeople=el("g",{},W);
+const BC=[1,0,2].map(k=>makeColleague(k,backPeople,true));            // green-shirt glasses, pink kurta, orange moustache
+const BC_X=[-400,480,900];
+const people=el("g",{},W);
+const SU=makeSuresh(people,true,{});
+const RM=makeRamesh(people,true,{});
+const MG=makeManager(people,true,{});
+// FAAAH burst (behind Ramesh's head in the cabin)
+const burst=el("g",{},W), burstT=el("g",{},W);
 {const pts=[]; for(let k=0;k<28;k++){const r=k%2?150:260, a=k*Math.PI/14; pts.push(`${(Math.cos(a)*r).toFixed(0)},${(Math.sin(a)*r*0.86).toFixed(0)}`)}
  el("polygon",{points:pts.join(" "),fill:"#E53935",stroke:INK,"stroke-width":8,"stroke-linejoin":"round"},burst);
  el("polygon",{points:pts.join(" "),fill:"#FF8A65",transform:"scale(.62)"},burst)}
-const burstT=el("g",{},W);
 txt("FAAAH!",{x:0,y:0,"font-family":"Anton","font-size":120,"letter-spacing":2,"text-anchor":"middle",fill:"#FFE066",stroke:INK,"stroke-width":10,"paint-order":"stroke","stroke-linejoin":"round"},burstT);
+people.parentNode.insertBefore(burst,people);
+// the meeting table (in front of everyone in the meeting room): laptop with the SECONDARY sticky, the mug, a notepad
+const tableG=el("g",{},W);
+el("rect",{x:-760,y:TABLE_Y+30,width:1820,height:420,fill:"#6D4C41",stroke:INK,"stroke-width":7},tableG);
+el("path",{d:`M-800 ${TABLE_Y+34} L-760 ${TABLE_Y-6} L1060 ${TABLE_Y-6} L1100 ${TABLE_Y+34} Z`,fill:"#A1887F",stroke:INK,"stroke-width":7,"stroke-linejoin":"round"},tableG);
+el("line",{x1:-760,y1:TABLE_Y+80,x2:1060,y2:TABLE_Y+80,stroke:"#5D4037","stroke-width":6},tableG);
+{const lp=el("g",{transform:`translate(${RAM_X-70},${TABLE_Y+6})`},tableG);              // Ramesh's laptop (lid back to us)
+ el("path",{d:"M-92 0 L-80 -128 L80 -128 L92 0 Z",fill:"#90A4AE",stroke:INK,"stroke-width":5,"stroke-linejoin":"round"},lp);
+ el("rect",{x:-104,y:-4,width:208,height:14,rx:5,fill:"#78909C",stroke:INK,"stroke-width":4},lp);
+ const sk=el("g",{transform:"translate(-6,-66) rotate(-6)"},lp);
+ el("rect",{x:-50,y:-30,width:100,height:60,fill:"#FFF176",stroke:INK,"stroke-width":3},sk);
+ txt("SECONDARY",{x:0,y:-2,"font-family":"Anton","font-size":17,"text-anchor":"middle",fill:"#C62828"},sk);
+ {const p=[]; for(let k=0;k<10;k++){const r=k%2?4.5:11, a=-Math.PI/2+k*Math.PI/5; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r+17).toFixed(1)}`)} el("polygon",{points:p.join(" "),fill:"#FFB300",stroke:INK,"stroke-width":1.5},sk)}}
+{const m=el("g",{transform:`translate(${MG_X+140},${TABLE_Y-36}) scale(1.1)`},tableG); mugShape(m)}    // the manager's mug, set down on the table
+{const np=el("g",{transform:`translate(${SUR_X+60},${TABLE_Y+2})`},tableG); el("path",{d:"M-50 0 L-40 -16 L44 -16 L54 0 Z",fill:"#FFFDF5",stroke:INK,"stroke-width":4},np)}
+// the cabin desk (in front of the manager) + nameplate + the same mug
+const deskG=el("g",{},W);
+el("rect",{x:1800,y:TABLE_Y+30,width:520,height:420,fill:"#5D4037",stroke:INK,"stroke-width":7},deskG);
+el("path",{d:`M1770 ${TABLE_Y+34} L1800 ${TABLE_Y-6} L2320 ${TABLE_Y-6} L2350 ${TABLE_Y+34} Z`,fill:"#8D6E63",stroke:INK,"stroke-width":7,"stroke-linejoin":"round"},deskG);
+{const np=el("g",{transform:`translate(2110,${TABLE_Y-6})`},deskG);                       // standing name block on the desk top (clear of the subtitles)
+ el("path",{d:"M-100 0 L-92 -54 L92 -54 L100 0 Z",fill:"#FFE082",stroke:INK,"stroke-width":5,"stroke-linejoin":"round"},np);
+ txt("MANAGER",{x:0,y:-12,"font-family":"Anton","font-size":36,"letter-spacing":2,"text-anchor":"middle",fill:"#5D4037"},np)}
+{const m=el("g",{transform:`translate(2265,${TABLE_Y-36}) scale(1.1)`},deskG); mugShape(m)}
+{const ps=el("g",{transform:`translate(1880,${TABLE_Y-8})`},deskG); el("rect",{x:-22,y:-50,width:44,height:52,rx:6,fill:"#455A64",stroke:INK,"stroke-width":4},ps);
+ [[-10,"#E53935"],[2,"#1E88E5"],[12,"#43A047"]].forEach(([dx,c])=>el("line",{x1:dx,y1:-50,x2:dx+dx*0.4,y2:-96,stroke:c,"stroke-width":7,"stroke-linecap":"round"},ps))}
+burstT.parentNode.appendChild(burstT);
+// the manager's phone (world space, in his right hand)
+const phoneG=el("g",{},W), phoneS=el("g",{},phoneG);
+el("rect",{x:-26,y:-48,width:52,height:96,rx:10,fill:"#263238",stroke:INK,"stroke-width":5},phoneS);
+const phoneScr=el("rect",{x:-19,y:-38,width:38,height:72,rx:4,fill:"#4FC3F7"},phoneS);
+const waves=[0,1,2].map(k=>el("path",{d:`M${40+k*22} -30 Q${58+k*26} 0 ${40+k*22} 30`,stroke:"#FFFFFF","stroke-width":7,fill:"none","stroke-linecap":"round",opacity:0},phoneG));
+// the VISION lightbulb over his head (world space)
+const bulbG=el("g",{},W);
+{for(let k=0;k<10;k++){const a=k*Math.PI/5; el("line",{x1:Math.cos(a)*74,y1:Math.sin(a)*74,x2:Math.cos(a)*112,y2:Math.sin(a)*112,stroke:"#FFB300","stroke-width":10,"stroke-linecap":"round"},bulbG)}
+ el("circle",{r:58,fill:"#FFF176",stroke:INK,"stroke-width":7},bulbG);
+ el("path",{d:"M-18 18 L-8 -6 L0 14 L8 -6 L18 18",stroke:"#F57F17","stroke-width":6,fill:"none","stroke-linejoin":"round"},bulbG);
+ el("rect",{x:-28,y:50,width:56,height:40,rx:8,fill:"#90A4AE",stroke:INK,"stroke-width":5},bulbG);
+ el("ellipse",{cx:-20,cy:-24,rx:12,ry:18,fill:"#FFFFFF",opacity:.7},bulbG);
+ const lbl=el("g",{transform:"translate(0,-150)"},bulbG);
+ el("rect",{x:-140,y:-50,width:280,height:92,rx:22,fill:"#10141E",stroke:"#FFE066","stroke-width":6},lbl);
+ txt("VISION",{x:0,y:26,"font-family":"Anton","font-size":70,"letter-spacing":4,"text-anchor":"middle",fill:"#FFE066"},lbl)}
+// pat lines over Ramesh's head + the tears (world space)
+const patFx=el("g",{opacity:0},W); [-1,0,1].forEach(k=>el("path",{d:`M${k*40} -20 L${k*52} -56`,stroke:INK,"stroke-width":7,"stroke-linecap":"round"},patFx));
+const tears=[]; for(let k=0;k<22;k++){const g=el("g",{opacity:0},W); el("path",{d:"M0 -16 Q12 0 0 10 Q-12 0 0 -16 Z",fill:"#4FC3F7",stroke:INK,"stroke-width":3},g); tears.push(g)}
+// sparkles (screen space: BONUS, the stamps)
+const SPK=[]; for(let k=0;k<8;k++){const g=el("g",{opacity:0},fx); const p=[]; for(let j=0;j<8;j++){const r=j%2?7:24, a=j*Math.PI/4-Math.PI/2; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r).toFixed(1)}`)} el("polygon",{points:p.join(" "),fill:"#FFF59D",stroke:"#FFB300","stroke-width":3},g); SPK.push(g)}
+// whoosh speed lines (screen space)
+const SPD=[]; for(let k=0;k<14;k++) SPD.push(el("rect",{x:0,y:0,width:520,height:10,rx:5,fill:"#FFFFFF",opacity:0},fx));
 
-// ---------- people ----------
-const people=el("g",{},W);
-const BC=[0,1,2].map(k=>makeColleague(k,backPeople,false));
-const impact=el("g",{opacity:0},W); for(let k=0;k<7;k++){const a=-1.2+k*0.4; el("line",{x1:Math.cos(a)*50,y1:Math.sin(a)*50,x2:Math.cos(a)*120,y2:Math.sin(a)*120,stroke:INK,"stroke-width":9,"stroke-linecap":"round"},impact)}     // the 20 Nov colleagues: heads over the partition (reactions, chorus)
-const SU=makeSuresh(people,true,{});
-const PR=makePriya(people,true,{});
-const RM=makeRamesh(people,true,{});
-const MG=makeManager(people,true,{});
-W.appendChild(coolG);                                            // the cooler stands in front of the back row, behind nobody
-people.parentNode.insertBefore(rays,people); people.parentNode.insertBefore(burst,people); people.parentNode.insertBefore(coolG,people); people.parentNode.insertBefore(burstT,people.nextSibling);
-// mug steam ('villain smoke')
-const steam=[]; for(let k=0;k<8;k++) steam.push(el("circle",{r:16,fill:"#FFFFFF",stroke:"#B0BEC5","stroke-width":3,opacity:0},W));
-// cartoon birds + stars circling the manager's head after the glass door (world space)
-const birds=[0,1,2,3].map(k=>{const g=el("g",{opacity:0},W);
-  if(k%2===0){ el("ellipse",{cx:0,cy:0,rx:26,ry:18,fill:"#FFD54F",stroke:INK,"stroke-width":4},g); el("path",{d:"M22 -4 L40 2 L22 8 Z",fill:"#FB8C00",stroke:INK,"stroke-width":3},g);
-    el("circle",{cx:10,cy:-6,r:4,fill:INK},g); el("path",{d:"M-6 -6 Q-16 -30 -28 -10",fill:"#FFE082",stroke:INK,"stroke-width":3},g) }
-  else { const p=[]; for(let j=0;j<10;j++){const r=j%2?10:26, a=-Math.PI/2+j*Math.PI/5; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r).toFixed(1)}`)} el("polygon",{points:p.join(" "),fill:"#FFF176",stroke:INK,"stroke-width":3.5},g) }
-  return g});
-// confetti (screen space) + sparkles (screen space)
-const CONF=[]; for(let k=0;k<80;k++) CONF.push(el("rect",{x:-9,y:-5,width:18,height:10,rx:2,fill:["#E53935","#FFD54F","#43A047","#1E88E5","#8E24AA","#FF7043"][k%6],opacity:0},fx));
-const SPK=[]; for(let k=0;k<6;k++){const g=el("g",{opacity:0},fx); const p=[]; for(let j=0;j<8;j++){const r=j%2?7:24, a=j*Math.PI/4-Math.PI/2; p.push(`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r).toFixed(1)}`)} el("polygon",{points:p.join(" "),fill:"#FFF59D",stroke:"#FFB300","stroke-width":3},g); SPK.push(g)}
-// the 1:00 stopwatch (screen space, Game 3)
-const SWX=540, SWY=600;
-const swG=el("g",{opacity:0},fx), swIn=el("g",{},swG);
-el("rect",{x:-30,y:-205,width:60,height:40,rx:8,fill:"#90A4AE",stroke:INK,"stroke-width":6},swIn);
-el("rect",{x:-14,y:-176,width:28,height:22,fill:"#78909C",stroke:INK,"stroke-width":4},swIn);
-el("circle",{cx:0,cy:0,r:168,fill:"#10141E"},swIn);
-const swFace=el("circle",{cx:0,cy:0,r:150,fill:"#FFFDF5"},swIn);
-for(let k=0;k<60;k++){const a=k*Math.PI/30, r0=k%5?132:118; el("line",{x1:Math.sin(a)*r0,y1:-Math.cos(a)*r0,x2:Math.sin(a)*142,y2:-Math.cos(a)*142,stroke:INK,"stroke-width":k%5?3:7},swIn)}
-const swHand=el("line",{x1:0,y1:16,x2:0,y2:-126,stroke:"#E53935","stroke-width":8,"stroke-linecap":"round"},swIn);
-el("circle",{r:12,fill:"#E53935",stroke:INK,"stroke-width":3},swIn);
-const swTxt=txt("01:00",{x:0,y:84,"font-family":"Anton","font-size":64,"letter-spacing":2,"text-anchor":"middle",fill:INK},swIn);
-// ---------- narrator Gopi badge (house look, clay, screen space) ----------
+// ---------- the flashback insets (screen space) ----------
+const fxDefs=el("defs",{},fx);
+function inset(id,x,y,w,h,bg){const g=el("g",{opacity:0},fx); const cp=el("clipPath",{id},fxDefs); el("rect",{x:0,y:0,width:w,height:h,rx:28},cp);
+  el("rect",{x:6,y:14,width:w,height:h,rx:28,fill:"rgba(0,0,0,.45)"},g);
+  const inner=el("g",{"clip-path":`url(#${id})`},g); el("rect",{x:0,y:0,width:w,height:h,fill:bg},inner);
+  const frame=el("rect",{x:0,y:0,width:w,height:h,rx:28,fill:"none",stroke:"#FFFDF5","stroke-width":10},g);
+  return {g,inner,x,y,w,h}}
+const IW=470, IH=420;
+// 1: Ramesh coding at 2 AM
+const F1=inset("fb1",570,300,IW,IH,"#1A2340");
+el("circle",{cx:80,cy:80,r:40,fill:"#FFF59D"},F1.inner); el("circle",{cx:98,cy:68,r:36,fill:"#1A2340"},F1.inner);
+[[180,50],[300,90],[400,40],[240,140]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:4,fill:"#FFFFFF",opacity:.8},F1.inner));
+const glow1=el("ellipse",{cx:IW/2,cy:300,rx:170,ry:120,fill:"#4FC3F7",opacity:.25},F1.inner);
+const RM1=makeRamesh(F1.inner,false,{});
+el("rect",{x:0,y:330,width:IW,height:100,fill:"#4E342E",stroke:INK,"stroke-width":5},F1.inner);
+{const lp=el("g",{transform:`translate(${IW/2},334)`},F1.inner);
+ el("path",{d:"M-80 0 L-70 -100 L70 -100 L80 0 Z",fill:"#78909C",stroke:INK,"stroke-width":5,"stroke-linejoin":"round"},lp);
+ el("circle",{cx:0,cy:-50,r:12,fill:"#B0BEC5"},lp)}
+{const cl=el("g",{transform:"translate(388,370)"},F1.inner);
+ el("rect",{x:-66,y:-30,width:132,height:56,rx:8,fill:"#10141E",stroke:"#455A64","stroke-width":4},cl);
+ txt("2:00 AM",{x:0,y:14,"font-family":"Anton","font-size":36,"letter-spacing":2,"text-anchor":"middle",fill:"#FF5252"},cl)}
+{const cups=el("g",{transform:"translate(60,330)"},F1.inner); [0,1,2].forEach(k=>{const c=el("g",{transform:`translate(${k*18},${-k*34}) scale(.62)`},cups); mugShape(c)})}
+const code1=["{ }","</>","if()","++",";"].map((s,k)=>txt(s,{x:0,y:0,"font-family":"Anton","font-size":34,fill:"#69F0AE","text-anchor":"middle",opacity:0},F1.inner));
+// 2: Ramesh juggling three ringing phones at night
+const F2=inset("fb2",570,300,IW,IH,"#20183A");
+el("circle",{cx:390,cy:80,r:40,fill:"#FFF59D"},F2.inner); el("circle",{cx:372,cy:68,r:36,fill:"#20183A"},F2.inner);
+[[60,60],[150,110],[260,40],[440,170]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:4,fill:"#FFFFFF",opacity:.8},F2.inner));
+const RM2=makeRamesh(F2.inner,false,{});
+const ph2=[0,1,2].map(k=>{const g=el("g",{},F2.inner); el("rect",{x:-20,y:-36,width:40,height:72,rx:8,fill:["#E53935","#43A047","#1E88E5"][k],stroke:INK,"stroke-width":4},g);
+  el("rect",{x:-14,y:-28,width:28,height:50,rx:3,fill:"#E1F5FE"},g);
+  [0,1].forEach(j=>el("path",{d:`M${26+j*14} -20 Q${36+j*16} 0 ${26+j*14} 20`,stroke:"#FFE066","stroke-width":5,fill:"none","stroke-linecap":"round"},g));
+  [0,1].forEach(j=>el("path",{d:`M${-26-j*14} -20 Q${-36-j*16} 0 ${-26-j*14} 20`,stroke:"#FFE066","stroke-width":5,fill:"none","stroke-linecap":"round"},g)); return g});
+{const cl=el("g",{transform:"translate(90,375)"},F2.inner);
+ el("rect",{x:-70,y:-30,width:140,height:56,rx:8,fill:"#10141E",stroke:"#455A64","stroke-width":4},cl);
+ txt("11:47 PM",{x:0,y:14,"font-family":"Anton","font-size":34,"letter-spacing":2,"text-anchor":"middle",fill:"#FF5252"},cl)}
+
+// ---------- narrator Gopi badge (house look, clay, screen space; Ep 2) ----------
 const ndefs=el("defs",{},nar);
 const clip=el("clipPath",{id:"badgeClip"},ndefs); el("circle",{cx:0,cy:0,r:122},clip);
 const badge=el("g",{},nar);
@@ -175,219 +213,187 @@ function makeChar(o){
 const GOPI=makeChar({parent:gopiG,skin:"#C68A55",hair:"#3B2A20",shirt:"#FB8C00",shorts:"#1E88E5"});
 
 // ---------- timeline ----------
-const COLORS={gopi:"#F5B347",ramesh:"#9CCBF0",manager:"#F48FB1",priya:"#FFD54F",suresh:"#C9B8EC",team:"#A5D6A7"}, NAMES={gopi:"GOPI",ramesh:"RAMESH",manager:"MANAGER",priya:"PRIYA",suresh:"SURESH",team:"TEAM"};
+const COLORS={gopi:"#F5B347",ramesh:"#9CCBF0",manager:"#F48FB1",boss:"#B0BEC5",suresh:"#C9B8EC"}, NAMES={gopi:"GOPI",ramesh:"RAMESH",manager:"MANAGER",boss:"BOSS 📞",suresh:"SURESH"};
 let TL;
 const LN=i=>TL.lines.find(l=>l.i===i);
 function talkOf(who,t){for(const l of TL.lines){if(l.who!==who)continue;const f=Math.floor((t-l.start)*TL.fps);if(f>=0&&f<l.env.length)return l.env[f]}return 0}
-function curLine(t){return TL.lines.find(l=>t>=l.start-0.1&&t<l.start+l.dur+0.25)}
 const S=i=>LN(i).start, E=i=>LN(i).start+LN(i).dur, D=i=>LN(i).dur;
 const W0=(i,k)=>S(i)+LN(i).fseg[Math.min(k,LN(i).fseg.length-1)][0], W1=(i,k)=>S(i)+LN(i).fseg[Math.min(k,LN(i).fseg.length-1)][1];
-function atIn(i,k,frac){return W0(i,k)+(W1(i,k)-W0(i,k))*frac}
 const OV=(typeof window!=="undefined"&&window.BEAT_OVERRIDES)||{};
 let B=null;
 function beats(){ if(B) return B; B={};
-  // S1: villain entry, the challenge, the bait, the boast
-  B.door=0.05; B.walk0=0.1; B.walk1=2.0; B.titleIn=0.45; B.doorShut=1.55;
-  B.dhoom=W0(0,2)-0.02; B.tada=E(0)+0.02;
-  B.r1=S(1)-0.1; B.bloop=E(1)+0.02;
-  B.m2=S(2)-0.05; B.brass=W0(2,5)-0.02; B.ting=E(2)+0.05;
-  // GAME 1: honesty test
-  B.g1=S(3)-0.3; B.gulp=E(3)+0.03; B.ooh=E(3)+0.33;
-  B.m4=S(4)-0.05; B.see=W0(4,0); B.offChip=W0(4,4)-0.05; B.crick=E(4)+0.02;
-  B.r5=S(5)-0.08; B.c404=atIn(5,1,0.2); B.laugh1=E(5)+0.03; B.rim=B.laugh1+0.2; B.team1=B.laugh1+0.35;
-  // GAME 2: blindfold
-  B.g2=S(6)-0.02; B.fol0=W0(6,1); B.tFol=W0(6,5)+0.1; B.fol1=E(6)+0.3; B.tie0=W0(6,3); B.fwip=E(6)+0.02;
-  B.shuf0=S(7)-0.05; B.pend=W0(7,3)-0.05; B.donk=E(7)+0.05;
-  B.s9=S(9)-0.05; B.point=W0(9,1); B.bonk=E(9)+0.2; B.faaah=E(9)+0.6; B.faaahE=B.faaah+1.0; B.birds=B.faaahE+0.05; B.team2=B.faaahE;
-  // GAME 3: silence
-  B.g3=S(10)-0.02; B.sw0=E(10)+0.02; B.tick1=B.sw0+0.05; B.tick2=B.sw0+0.42;
-  B.buzz=W0(11,0); B.pointS=W0(11,3); B.faaah2=E(11)+0.2; B.faaah2E=B.faaah2+1.0;
-  B.r12=S(12)-0.05; B.stamp=E(12)-0.04; B.team3=B.stamp;
-  B.m13=S(13)-0.05; B.fish=W0(13,2)-0.05; B.roll0=W0(13,3)-0.1; B.roll1=E(13);
-  // 'మీరే సార్!' + the silence + the punch + FREEZE
-  B.ch=S(14)-0.03; B.mgr1=S(14)+0.12; B.cheer=E(14)+0.0; B.vbrass=E(14)+0.35; B.sil0=S(15)-0.32; B.sil1=S(15)-0.015;
-  B.r15=S(15)-0.02; B.frz=E(15)+0.1; B.sting=E(15)+0.4; B.laugh3=E(15)+0.5;
-  B.c16=S(16)-0.15; B.tCm=W0(16,0)+0.1; B.s17=W0(16,1)-0.08; B.tTag=W0(16,2)+0.05; B.endSting=E(16)-0.3; B.end0=E(16)+0.02; B.tEF=B.end0+0.45;
+  const P=TL.punch;
+  // meeting room
+  B.walk0=0.0; B.walk1=0.62; B.titleIn=0.95; B.hookOff=W0(0,3)+0.2;
+  B.dhoom=W0(0,0)-0.02; B.wide1=W0(0,3)-0.1; B.clap=E(0)+0.02;
+  B.app0=E(0)+0.35; B.app1=S(2)-0.05;                                    // the manager walks over to Ramesh during L2
+  B.r2=S(1)-0.1; B.fb1a=S(1)+0.45; B.fb1b=E(1)+0.35; B.keys=B.fb1a+0.05; B.name=W0(1,5);
+  B.m3=S(2)-0.05; B.pat0=S(2)+0.05; B.shloop=W0(2,1); B.team=W0(2,1)-0.45;
+  B.r4=S(3)-0.1; B.fb2a=S(3)+0.3; B.fb2b=E(3)+0.3; B.rings=W0(3,1)-0.05;
+  B.m5=S(4)-0.05; B.tap=W0(4,1); B.bulb=W0(4,3)-0.03; B.ooh=E(4)+0.2;
+  // whoosh to the cabin
+  B.fol0=E(4)+0.2; B.tFol=E(4)+0.7; B.fol1=S(5)+0.5; B.wh0=E(4)+0.55; B.wh1=B.wh0+0.42; B.cab=B.wh0+0.2; B.dial=E(4)+0.9;
+  B.m6=S(5)-0.05; B.faaah=E(5)+0.2; B.faaahE=B.faaah+1.1;
+  B.boss=S(6)-0.05; B.kaching=E(6)+0.02;
+  B.r8=S(7)-0.08; B.bloop=E(7)+0.02; B.m9=S(8)-0.05;
+  B.r10=S(9)-0.05; B.k1=W1(9,1)-0.08; B.k2=W1(9,3)-0.08; B.k3=W0(9,4)-0.05; B.roll0=W0(9,4); B.roll1=E(9);
+  // the punch block (owner)
+  B.m11=S(10)-0.05; B.flip=S(10)+0.12; B.frz=E(10)+P.frz_off; B.sil0=B.frz+P.frz_d; B.sil1=B.sil0+TL.silence;
+  B.react=B.sil1; B.trombone=B.sil1; B.sting=B.sil1+0.2; B.laugh=B.sil1+0.5; B.card0=B.sil1+P.react;
+  B.stamp1=B.card0+0.05; B.stamp2=B.card0+0.6; B.stamp3=B.card0+1.15; B.card1=S(11)-0.08;
+  // Gopi + end card
+  B.c11=S(11)-0.1; B.tCm=W0(11,4); B.endSting=E(11)-0.3; B.end0=E(11)+0.02; B.tEF=B.end0+0.45;
   Object.assign(B,OV);
   return B}
 
 const focus=(z,wx,wy,sx=540,sy=1000,r=0)=>({z,fx:wx-(sx-540)/z,fy:wy-(sy-1000)/z,r});
 const mixCam=(a,b_,k)=>({z:lerp(a.z,b_.z,k),fx:lerp(a.fx,b_.fx,k),fy:lerp(a.fy,b_.fy,k),r:lerp(a.r||0,b_.r||0,k)});
-// keep short Telugu words with a neighbour (never orphan one on its own line), and hand-made breaks for the long lines
+// subtitles: glue short Telugu words to a neighbour (no orphans), hand-made breaks for the long lines
 const subFix=s=>s.replace(/…/g,"...").replace(/(^|\s)(మీ|నా|నీ|ఏం|ఏ|మన|ఒక|ఈ|ఆ|మా)\s/g,"$1$2&nbsp;").replace(/([^\s.!?;])\s([ఀ-౿]{1,2}[.,!?]*)(?=\s|$)/g,"$1&nbsp;$2")
-  .replace(/(Game) (\d)/g,"$1&nbsp;$2").replace(/(Yes) (sir)/g,"$1&nbsp;$2").replace(/(take) (it)/g,"$1&nbsp;$2").replace(/(offline) (life)/g,"$1&nbsp;$2").replace(/(pending) (appraisals)/g,"$1&nbsp;$2")
-  .replace("ఛాలెంజ్! ఎవరు","ఛాలెంజ్!<br>ఎవరు").replace("mindset. Let's","mindset.<br>Let's").replace("సార్... మాకు","సార్...<br>మాకు").replace("Blindfold... సార్,","Blindfold...<br>సార్,")
-  .replace("సార్... మా&nbsp;pending","సార్...<br>మా&nbsp;pending").replace("challenge... ఒక్క","challenge...<br>ఒక్క").replace("ఎక్కడ? సురేష్!","ఎక్కడ?<br>సురేష్!").replace("నడవదు! So","నడవదు!<br>So")
-  .replace("గెలిచారు. కానీ","గెలిచారు.<br>కానీ").replace("మాత్రం మీరు","మాత్రం<br>మీరు").replace("చేయండి... మీ","చేయండి...<br>మీ").replace("ఓడించేవాడు... ఈ","ఓడించేవాడు...<br>ఈ")
-  .replace("ఎప్పుడైనా టీమ్‌కి","ఎప్పుడైనా<br>టీమ్‌కి").replace("డెడ్‌లైన్ మీరే","డెడ్‌లైన్<br>మీరే");
+  .replace("I delivered","I&nbsp;delivered").replace("Well done","Well&nbsp;done")
+  .replace("అవ్వడానికి మన","అవ్వడానికి<br>మన").replace("ఆ&nbsp;కోడ్ మొత్తం","ఆ&nbsp;కోడ్<br>మొత్తం").replace("కూడా నేనే","కూడా<br>నేనే")
+  .replace("విషయం. కానీ","విషయం.<br>కానీ").replace("Finally, I&nbsp;delivered the","Finally, I&nbsp;delivered<br>the")
+  .replace("చేశాను... క్రెడిట్","చేశాను...<br>క్రెడిట్").replace("తీసుకున్నారు... మరి","తీసుకున్నారు...<br>మరి").replace("కొట్టేశారు? Comment","కొట్టేశారు?<br>Comment");
 
 function frame(t){
   const b=beats(); T_=t;
-  const silent=t>=b.sil0&&t<b.sil1, frozen=t>=b.frz, fz1=t>=b.faaah&&t<b.faaahE, fz2=t>=b.faaah2&&t<b.faaah2E;
-  // character time: slow-mo through FAAAH #1 (the glass keeps wobbling), stops in FAAAH #2, the silent beat and the freeze
-  const T=frozen?b.frz:silent?b.sil0:fz1?b.faaah+(t-b.faaah)*0.15:t>=b.faaahE&&t<b.g3?t-0.85:fz2?b.faaah2:t;
-  const sc1=t<b.g1, g1=t>=b.g1&&t<b.g2, g2=t>=b.g2&&t<b.g3, g3=t>=b.g3&&t<b.ch, fin=t>=b.ch, punch=t>=b.r15;
-  $("s").style.filter=frozen?`saturate(${lerp(1,0.7,clamp((t-b.frz)/0.08))}) contrast(1.06) brightness(1.03)`:(fz1||fz2)?"saturate(1.25) contrast(1.05)":"";
-  const still=frozen||silent||fz2;
+  const frozen=t>=b.frz&&t<b.sil1, silent=t>=b.sil0&&t<b.sil1, reactOn=t>=b.react&&t<b.c11, fz1=t>=b.faaah&&t<b.faaahE;
+  const T=frozen?b.frz:fz1?b.faaah+(t-b.faaah)*0.2:t>=b.faaahE&&t<b.r8?t-0.88:t;          // slow-mo through the FAAAH, stopped in the freeze
+  const cabin=t>=b.cab, card=t>=b.card0&&t<b.card1;
+  $("s").style.filter=frozen?`saturate(${lerp(1,0.65,clamp((t-b.frz)/0.08))}) contrast(1.06) brightness(1.03)`:fz1?"saturate(1.25) contrast(1.05)":(t>=b.wh0&&t<b.wh1?`blur(${(6*Math.sin(clamp((t-b.wh0)/(b.wh1-b.wh0))*Math.PI)).toFixed(1)}px)`:"");
+  const still=frozen;
   const R=(C,who,x,y,s)=>{resetPose(C,x,y,s,who&&!still?talkOf(who,t):0); C.st.blink=still?0:(((T*0.6+x*0.0013)%3.3)<0.11?1:0); return C.st};
-  const m=R(MG,"manager",MG_X,H85,S85), r=R(RM,"ramesh",RAM_X,H85,S85), p=R(PR,"priya",PRI_X,H85,S85), su=R(SU,"suresh",SUR_X,H85,S85);
-  m.itemL="mug"; MG.aim("L",m.x-70,H85-170*S85); m.hR=[70,-70]; m.look=-0.4; m.smirk=1; m.brow="q";
-  r.look=0.6; r.smile=1; r.brow="u"; RM.aim("L",RAM_X-40,H85-60); RM.aim("R",RAM_X+40,H85-60);
-  p.look=0.6; p.smirk=1; p.brow="q"; p.item="clipboard"; PR.aim("R",PRI_X+50,H85-170); PR.aim("L",PRI_X-30,H85-60);
-  su.itemL="notepad"; su.look=-0.6; su.smile=1; su.brow="u"; SU.aim("L",SUR_X-40,H85-140); SU.aim("R",SUR_X+40,H85-80); bobble(su,T,0.35);
-  [MG,RM,PR,SU].forEach(c=>{c.g.removeAttribute("filter")});
-  let doorK=0, coolRot=0, wob=0;
+  const m=R(MG,"manager",MG_X,H85,S85), r=R(RM,"ramesh",RAM_X,H85,S85), su=R(SU,"suresh",SUR_X,H85,S85);
+  m.look=-0.4; m.smirk=1; m.brow="q";
+  r.look=0.6; r.smile=1; r.brow="n"; RM.aim("L",RAM_X-40,H85-60); RM.aim("R",RAM_X+40,H85-60);
+  su.itemL="notepad"; su.look=0.6; su.smile=1; su.brow="u"; SU.aim("L",SUR_X-40,H85-140); SU.aim("R",SUR_X+40,H85-80); bobble(su,T,0.35);
+  [MG,RM,SU].forEach(c=>c.g.removeAttribute("filter"));
+  let phone=null, bulbK=0, patK=0;
 
-  // ---------------- S1: villain entry from the cabin, the challenge, the bait, the boast ----------------
-  if(sc1){
-    const k=clamp((T-b.walk0)/(b.walk1-b.walk0)), step=Math.sin(k*Math.PI*3);
-    m.x=lerp(DOOR_X+150,MG_X,out(k)); m.walk=k<1?step*0.8:0; m.hop=k<1?Math.abs(step)*8:0; m.rot=k<1?step*1.2:0; m.brow="a"; m.look=-0.5;
-    m.hR=[90+step*20,-60];
-    su.x=lerp(DOOR_X+330,SUR_X,out(clamp((T-b.walk0-0.35)/(b.walk1-b.walk0)))); su.walk=k<1?-step*0.7:0;                       // the yes-man trails behind him
-    doorK=t<b.doorShut?out((t-b.door)/0.12):1-out((t-b.doorShut)/0.25);
-    if(T>=b.dhoom){ m.brow="a"; m.smirk=1; m.headRot=-3; m.spread=1; m.hR=[160,-300]; m.look=-0.6 }                            // the challenge
-    if(T>=b.dhoom+0.9){ m.hR=[110,-160]; m.spread=0; m.smile=1; m.smirk=0; m.brow="u" }
-    [r,p].forEach(c=>{c.gasp=T>=b.dhoom&&T<b.dhoom+0.8?1:0; c.wide=c.gasp; c.look=0.7; c.smirk=0; c.smile=c.gasp?0:1});
-    if(t>=b.r1){ r.smile=1; r.wide=1; r.brow="u"; r.look=0.8; RM.aim("R",RAM_X+70,H85-190) }                                 // too-sweet innocent question
-    if(t>=b.r1){ m.look=-0.8; m.smile=0; m.smirk=1; m.brow="q" }
-    if(t>=b.m2){ m.laugh=T<W0(2,0)+0.35?1:0; m.smirk=1; m.rot=-2; m.headRot=-5; m.look=-0.3; MG.aim("L",m.x-60,H85-410); m.hR=[100,-90]; r.wide=0 }   // chest out, mug raised
-    if(t>=b.brass){ m.smile=1; m.smirk=0; m.brow="u"; m.hop=Math.max(0,8-(T-b.brass)*30) }
-    if(t>=b.ting-0.05){ r.smile=0; r.smirk=1; r.brow="q"; r.look=0; r.lookY=0 }                                               // Ramesh's secret smile (one eyebrow)
+  // ================= MEETING ROOM =================
+  if(!cabin){
+    const k=clamp((T-b.walk0)/(b.walk1-b.walk0)), step=Math.sin(k*Math.PI*2.5);
+    m.x=lerp(1010,MG_X,out(k)); m.walk=k<1?step*0.8:0; m.hop=k<1?Math.abs(step)*8:0; m.rot=k<1?step*1.2:0; m.brow="a"; m.look=-0.6; m.hR=[90+step*20,-60];   // villain walk
+    if(T>=b.dhoom){ m.brow="u"; m.smile=1; m.smirk=0; m.headRot=-3; m.hR=[150,-250]; m.hL=[-150,-250]; m.spread=1; m.look=-0.5 }   // 'గైస్!' arms up
+    if(T>=b.dhoom+0.9){ m.hR=[110,-150]; m.hL=[-110,-150]; m.spread=0 }
+    if(T>=b.wide1){ m.spread=1; m.hR=[175,-210]; m.hL=[-175,-210]; m.headRot=-2+Math.sin(T*2)*2; m.smile=1; m.brow="u"; m.look=-0.7 }   // arms wide: 'మన టీమ్ అందరి'
+    // the team: gasp on the DHOOM, limp claps (Suresh claps hardest)
+    if(T>=b.dhoom&&T<b.dhoom+0.7){ [r,su].forEach(c=>{c.gasp=1; c.wide=1; c.smile=0}) }
+    if(t>=b.clap&&t<b.clap+1.0){ const cl=Math.abs(Math.sin((t-b.clap)*Math.PI*6)); SU.aim("L",SUR_X-14+cl*30,H85-230); SU.aim("R",SUR_X+14-cl*30,H85-230); su.itemL=""; su.smile=1; su.shut=1; bobble(su,T,1.4);
+      const cl2=Math.abs(Math.sin((t-b.clap)*Math.PI*3)); RM.aim("L",RAM_X-30+cl2*20,H85-150); RM.aim("R",RAM_X+30-cl2*20,H85-150); r.smile=0; r.brow="n"; r.look=0.7 }
+    // L2: Ramesh's polite hand, the manager walks over
+    if(t>=b.r2){ r.smile=0; r.smirk=0; r.brow="u"; r.look=0.7; RM.aim("R",RAM_X+70,H85-420); if(t>=W0(1,5)){ r.smile=1; r.brow="n" } }
+    if(t>=b.app0){ const a=clamp((T-b.app0)/(b.app1-b.app0)), st_=Math.sin(a*Math.PI*4); m.x=lerp(MG_X,MG_P,ease(a)); m.walk=a<1?st_*0.6:0; m.hop=a<1?Math.abs(st_)*5:0;
+      m.spread=0; m.hR=[70,-70]; m.hL=[-70,-70]; m.smile=1; m.smirk=0; m.brow="u"; m.look=-0.8; m.headRot=0 }
+    // L3: the head pat; 'RAMESH' sucked into TEAM
+    if(t>=b.m3&&t<b.r4){ m.smirk=1; m.smile=0; m.brow="q"; m.look=-0.8; m.headRot=-4; patK=t>=b.pat0?1:0;
+      const pb=Math.abs(Math.sin((t-b.pat0)*Math.PI*3.2)); const [hx,hy]=RM.headW(); MG.aim("L",hx+20,hy-70*S85-pb*24); r.squash=1-0.025*(1-pb)*patK;
+      r.smile=0; r.brow="a"; r.look=0.3; r.lookY=-0.6; RM.aim("R",RAM_X+40,H85-60); m.hR=[70,-80];
+      if(t>=b.shloop){ m.spread=1; m.hR=[170,-260]; m.smile=1; m.smirk=0; m.look=0 } }
+    // L4: pushing harder
+    if(t>=b.r4){ m.x=MG_P; r.brow="a"; r.angry=0.25; r.look=0.7; RM.aim("R",RAM_X+120,H85-260); RM.aim("L",RAM_X-60,H85-240); m.smirk=1; m.brow="q"; m.look=-0.7; m.hR=[70,-70]; m.hL=[-70,-70] }
+    // L5: calm, then 'విజన్ నాది!' tapping his temple + the bulb
+    if(t>=b.m5){ r.angry=0; r.brow="n"; r.smile=0; r.look=0.7; RM.aim("R",RAM_X+40,H85-60); RM.aim("L",RAM_X-40,H85-60); m.smile=1; m.smirk=0; m.brow="n"; m.look=-0.5; m.hR=[60,-120]; m.hL=[-60,-120];
+      if(t>=b.tap){ const [hx,hy]=MG.headW(); const tp=Math.abs(Math.sin((t-b.tap)*Math.PI*2.2)); MG.aim("R",hx+50*S85,hy-38*S85-tp*12); m.smirk=1; m.smile=0; m.brow="q"; m.look=0 }
+      if(t>=b.bulb){ m.smile=1; m.smirk=0; m.brow="u"; m.headRot=-4; m.rot=-2; m.hop=Math.max(0,8-(T-b.bulb)*30); bulbK=1 } }
+    if(t>=b.ooh){ [r,su].forEach(c=>{c.gasp=1; c.wide=1; c.smile=0; c.smirk=0}); su.nod=0; su.headRot=0 }
   }
-  // ---------------- GAME 1: honesty test ----------------
-  if(g1){
-    p.look=0.8; p.smile=1; p.smirk=0; p.brow="u"; PR.aim("L",PRI_X+150,H85-240);                                              // pen pointing at him
-    m.look=-0.7; m.smile=1; m.brow="u"; m.smirk=0;
-    if(t>=W0(3,1)){ p.smile=0; p.smirk=1; p.brow="q" }
-    if(t>=b.gulp&&t<b.m4){ m.smile=0; m.gasp=1; m.wide=1; m.sweat=1; m.brow="u"; m.squash=1-0.05*Math.sin(clamp((T-b.gulp)/0.3)*Math.PI); m.look=0 }
-    if(t>=b.m4){ m.sweat=1; m.look=0.7; m.smile=1; m.brow="w"; m.hR=[14,-282]; m.headRot=4;                                   // tugging his tie, avoiding eyes
-      if(t>=W0(4,4)){ m.hR=[150,-190]; m.spread=1; m.smirk=1; m.smile=0; m.brow="n"; m.headRot=0 } }
-    if(t>=b.ooh&&t<b.r5){ r.gasp=1; r.wide=1; r.smile=0; p.gasp=0; su.gasp=1; su.smile=0 }
-    if(t>=b.r5){ r.smile=0; r.sad=1; r.brow="w"; r.look=0.8; r.smirk=0; RM.aim("R",RAM_X+60,H85-120); m.spread=0; m.hR=[70,-70]; m.smile=0; m.smirk=0; m.brow="a"; m.look=-0.7; m.angry=0.3 }
-    if(t>=b.laugh1){ [p,su].forEach((c,j)=>{c.laugh=1; c.shut=1; c.smirk=0; c.smile=0; c.headRot=Math.sin(T*12+j)*6; c.hop=Math.abs(Math.sin(T*10+j*2))*8}); r.sad=0; r.smirk=1; m.angry=0.6 }
+  // ================= CABIN =================
+  if(cabin){
+    m.x=MC_X; r.x=RC_X; su.vis=0;
+    const [hx,hy]=MG.headW();
+    m.smile=1; m.smirk=0; m.brow="u"; m.look=0.2; m.rot=-2; m.headRot=-4;                                        // chest out, on the phone
+    phone={x:MC_X+62*S85,y:H85-392*S85+10,rot:-10,scr:0.6};
+    MG.aim("R",phone.x+4,phone.y+30); m.hL=[-70,-70];
+    r.smile=0; r.brow="u"; r.look=0.9; r.lookY=-0.1; RM.aim("L",RC_X-40,H85-60); RM.aim("R",RC_X+40,H85-60);
+    if(t>=b.m6){ m.hL=[-160,-150]; m.spread=1 }
+    if(T>=b.faaah-0.12&&t<b.boss){ r.gasp=1; r.wide=1; r.squash=1+0.04*Math.sin(clamp((T-b.faaah+0.12)/0.25)*Math.PI*0.5); r.brow="u"; RM.aim("L",RC_X-70,H85-250); RM.aim("R",RC_X+70,H85-250) }   // jaw drop
+    if(t>=b.boss){ phone={x:MC_X-70,y:H85-150,rot:-80,scr:1}; MG.aim("R",phone.x+10,phone.y+18); m.hL=[-70,-70]; m.spread=0; m.look=-0.2; m.lookY=0.6;   // on speaker, held out flat
+      m.smile=1; m.brow="u"; r.gasp=0; r.wide=0; r.sad=1; r.brow="w"; r.look=0.6; r.lookY=0.3 }
+    if(t>=b.kaching){ m.laugh=1; m.shut=1; m.hop=Math.max(0,10-(t-b.kaching)*40); r.sad=1 }
+    if(t>=b.r8){ m.laugh=0; m.shut=0; m.smile=1; m.look=0.2; phone={x:MC_X+62*S85,y:H85-392*S85+10,rot:-10,scr:0.6}; MG.aim("R",phone.x+4,phone.y+30);
+      r.sad=0; r.smile=1; r.wide=1; r.brow="u"; r.look=0.8; RM.aim("R",RC_X+60,H85-470); RM.aim("L",RC_X-40,H85-60) }   // schoolboy hand
+    if(t>=b.m9){ phone={x:MC_X+30,y:H85-170,rot:-20,scr:0.15}; MG.aim("R",phone.x+6,phone.y+20); MG.aim("L",MC_X-10,H85-170); m.smile=0; m.angry=0.5; m.brow="a"; m.look=-0.8; m.headRot=3; m.rot=0;
+      r.smile=1; RM.aim("R",RC_X+60,H85-440) }      // phone pressed to his chest, annoyed
+    if(t>=b.r10){ m.angry=0.2; m.brow="a"; m.look=-0.8; r.smile=0; r.wide=0; r.brow="n"; r.look=0.8; r.lookY=0; RM.aim("L",RC_X-40,H85-60);
+      const n=t<b.k1?0:t<b.k2?1:t<b.k3?2:3; RM.aim("R",RC_X+90,H85-330-n*20); r.spread=1; if(t>=b.k3){ r.brow="q"; r.smirk=1 } }   // counting on his fingers
+    if(t>=b.m11){ m.angry=0; m.smile=1; m.brow="u"; m.look=-0.6; m.headRot=-6; m.rot=-3; MG.aim("L",MC_X-170,H85-300); m.spread=1;   // proud, straight-faced: good news!
+      r.spread=0; r.smirk=0; r.brow="n"; RM.aim("R",RC_X+40,H85-60); if(t>=W0(10,1)){ r.gasp=1; r.wide=1; r.brow="u" } }
+    if(reactOn){ // the reaction shot: Ramesh laugh-cries (the owner's 😭😂)
+      const rk=(t-b.react); const env=TL.react.env[Math.floor(rk*30)]||0;
+      r.gasp=0; r.wide=0; r.laugh=1; r.shut=1; r.brow="w"; r.sad=1; r.talk=0; r.headRot=Math.sin(rk*18)*5; r.hop=Math.abs(Math.sin(rk*16))*6*(0.4+env); r.look=0;
+      RM.aim("L",RC_X-60,H85-200+Math.sin(rk*14)*10); RM.aim("R",RC_X+60,H85-200+Math.sin(rk*14+1)*10);
+      m.smile=1; m.brow="u"; m.look=-0.6; m.headRot=-6; m.spread=0; MG.aim("L",MC_X-70,H85-70) }
+    if(t>=b.c11){ r.laugh=0; r.shut=0; r.sad=1; r.brow="w"; r.look=0.7; r.smile=0; m.smile=1; m.brow="u" }
+    if(t>=b.react&&t<b.c11) MG.g.setAttribute("filter","url(#bgBlur)");
   }
-  // ---------------- GAME 2: blindfold ----------------
-  let mx=MG_X;
-  if(g2){
-    p.smile=1; p.smirk=0; p.brow="u"; p.look=0.8; PR.aim("L",PRI_X-60,H85-330);                                                // bright game host
-    if(t>=W0(6,1)){ p.smile=0; p.smirk=1; p.brow="q" }
-    m.smile=1; m.smirk=1; m.brow="u"; m.look=-0.3;
-    if(t>=b.tie0&&t<b.shuf0+0.2){ const k=out((t-b.tie0)/0.4); su.x=lerp(SUR_X,MG_X+95,k); su.itemL=""; bobble(su,T,0.2);
-      SU.aim("L",MG_X+40,H85-370*S85); SU.aim("R",MG_X+120,H85-380*S85); su.look=-0.8 }                                          // Suresh ties it on
-    m.blind=clamp((t-b.fwip+0.25)/0.25);
-    if(t>=b.shuf0){ su.x=lerp(MG_X+95,SUR_DOOR,out((t-b.shuf0)/0.8)); su.walk=t<b.shuf0+0.8?Math.sin(t*12)*0.7:0; su.look=-0.8 }   // to the far side of the glass door
-    if(t>=b.shuf0){ const k=clamp((T-b.shuf0)/(b.donk-b.shuf0)); mx=lerp(MG_X,COOL_X+128,k); const st=Math.sin(T*9);
-      m.walk=st*0.5; m.hop=Math.abs(st)*5; m.rot=st*1.5; m.smile=0; m.smirk=1; m.brow="n"; m.itemL="mug"; MG.aim("L",mx-150,H85-290); m.hR=[150,-260];
-      r.smile=0; r.smirk=1; r.brow="q"; r.look=0.8; RM.aim("R",RAM_X+40,H85-345); p.smirk=1; p.look=0.8 }                         // arms out, shuffling left; Ramesh's helpful low voice
-    if(t>=b.donk){ const k=T-b.donk; mx=COOL_X+128+Math.min(30,k*120); m.walk=0; m.hop=0; m.rot=Math.sin(k*30)*4*Math.exp(-k*5); m.gasp=1; m.smirk=0; m.squash=1-0.07*Math.exp(-k*10);
-      coolRot=-7*Math.sin(k*22)*Math.exp(-k*4); [r,p].forEach(c=>{c.smirk=0; c.gasp=0; c.laugh=k<0.6?1:0; c.shut=c.laugh}) }
-    if(t>=b.s9){ su.smile=1; su.brow="u"; bobble(su,T,1.6); su.look=0.8; su.itemL="notepad"; m.gasp=0; m.smirk=1; m.look=0.6 }
-    if(t>=b.point){ SU.aim("L",SUR_DOOR-260,H85-250); su.itemL=""; su.look=-0.9; su.hop=Math.abs(Math.sin(T*8))*5;                                          // points 'Straight!' at the glass door
-      const k=clamp((T-b.point)/(b.bonk-b.point)); mx=lerp(COOL_X+158,DOOR_X+60,ease(k)); const st=Math.sin(T*12);
-      m.walk=k<1?st*0.9:0; m.hop=k<1?Math.abs(st)*8:0; m.rot=k<1?2:0; m.smile=1; m.smirk=0; m.brow="u"; MG.aim("L",mx+40,H85-300); m.hR=[190,-250] }   // confident, straight on
-    if(T>=b.bonk){ const k=T-b.bonk; mx=DOOR_X+60-Math.min(26,k*200); m.walk=0; m.hop=0; m.rot=-3*Math.exp(-k*6); m.squash=1-0.1*Math.exp(-k*8); m.gasp=1; m.wide=1; m.smile=0; m.brow="u";
-      m.hR=[130,-180]; MG.aim("L",mx-80,H85-200); wob=Math.sin(k*38)*Math.exp(-k*2.8); su.gasp=1; su.smile=0; su.nod=0; su.headRot=0;
-      [r,p].forEach(c=>{c.gasp=1; c.wide=1; c.laugh=0; c.shut=0}) }
-    if(t>=b.faaahE){ m.gasp=0; m.wide=0; m.blank=1; m.twitch=1; m.headRot=Math.sin(t*3)*6; [r,p].forEach((c,j)=>{c.gasp=0; c.laugh=1; c.shut=1; c.hop=Math.abs(Math.sin(t*10+j))*8}); su.gasp=0; su.sad=1 }
-  }
-  m.x=g2?mx:m.x;
-  // ---------------- GAME 3: silence ----------------
-  if(g3){
-    m.blind=0; m.smirk=0; m.smile=0; m.brow="n"; m.look=0; m.angry=0; r.smirk=1; r.smile=0; r.look=0.7; p.smirk=1; p.look=0.7; su.look=-0.7; su.smile=1;
-    if(t>=b.g3+0.1&&t<b.buzz){ p.smile=1; p.smirk=0; PR.aim("L",PRI_X-20,H85-360); if(t>=W0(10,1)) PR.aim("L",PRI_X+20,H85-345) }     // finger on lips
-    if(t>=b.sw0&&t<b.buzz){ const k=(t-b.sw0)/(b.buzz-b.sw0); m.angry=0.2+k*1.0; m.brow="a"; m.headRot=Math.sin(t*40)*k*2.5; m.squash=1-0.02*k; m.wide=1 }  // cheeks puff, holding it in
-    if(t>=b.buzz){ m.angry=1.2; m.brow="a"; m.wide=0; m.headRot=Math.sin(T*16)*3; m.hop=Math.max(0,12-(T-b.buzz)*50);
-      MG.aim("R",RAM_X+260,H85-260); m.look=-0.9;                                                                              // 'రమేష్!' (points at Ramesh)
-      if(t>=b.pointS){ MG.aim("R",SUR_X-60,H85-280); m.look=0.9 }                                                             // 'సురేష్!'
-      [r,p,su].forEach(c=>{c.gasp=1; c.wide=1; c.smirk=0; c.smile=0; c.nod=0; c.headRot=0}) }
-    if(t>=b.r12){ m.angry=0.6; m.hop=0; m.hR=[70,-70]; m.look=-0.5;
-      [r,p,su].forEach(c=>{c.gasp=0; c.wide=0}); r.smirk=1; r.brow="q"; r.look=0.8; RM.aim("R",RAM_X+150,H85-300); p.smirk=1; su.sad=1 }  // a calm referee
-    if(t>=b.stamp){ m.angry=0; m.gasp=1; m.wide=1; m.brow="u"; RM.aim("R",RAM_X+200,H85-380) }
-    if(t>=b.m13){ m.gasp=0; m.wide=0; m.smirk=1; m.smile=0; m.brow="u"; m.rot=-3; m.headRot=-5; m.hR=[100,-80]; m.look=-0.3;    // unashamed, chest out
-      r.smirk=0; r.brow="w"; RM.aim("R",RAM_X+40,H85-60); p.smirk=0; p.brow="w"; su.sad=0; su.smile=1 }
-    if(t>=b.fish){ m.hR=[78,-388]; m.look=Math.sin(T*5)*0.9; m.headRot=Math.sin(T*5)*5; m.smile=1; m.smirk=0 }               // hand to his ear, fishing for praise
-  }
-  // ---------------- 'మీరే సార్!', the victory dance, the silence, the punch, the FREEZE ----------------
-  if(fin){
-    const dk=T-b.ch, w=Math.sin(T*11);
-    m.x=lerp(MG_X,520,ease(clamp(dk/1.6))); m.smile=1; m.shut=1; m.brow="u"; m.hop=Math.abs(w)*22; m.rot=w*5; m.headRot=-w*6;
-    MG.aim("L",m.x-60,H85-520); m.hR=[120+w*40,-330+Math.abs(w)*60]; m.spread=1;                                           // the mug up like a trophy
-    [r,p,su].forEach((c,j)=>{const ww=Math.sin(T*13+j*1.7); c.smile=1; c.smirk=0; c.brow="u"; c.look=0; c.hop=Math.abs(ww)*10; c.nod=0; c.headRot=0});
-    RM.aim("R",RAM_X+60,H85-430+Math.sin(T*13)*20); PR.aim("L",PRI_X-60,H85-430+Math.sin(T*13+1.7)*20); SU.aim("R",SUR_X+60,H85-430+Math.sin(T*13+3.4)*20); p.item="";
-    if(punch){ r.x=RAM_X+60; r.s=1.15; r.y=hipAt(1.15)+150; r.hop=0; r.smile=0; r.smirk=1; r.brow="q"; r.look=0; r.lookY=0; RM.aim("L",r.x-40,r.y-60); RM.aim("R",r.x+40,r.y-60);
-      people.appendChild(RM.g); [MG,PR,SU].forEach(c=>c.g.setAttribute("filter","url(#bgBlur)"));
-      [p,su].forEach(c=>{c.hop=0; c.smile=0; c.smirk=1; c.brow="q"}); PR.aim("L",PRI_X-30,H85-60); SU.aim("R",SUR_X+40,H85-80);
-      if(t>=W0(15,4)-0.05) r.brow="q", r.headRot=-3 }
-  } else people.insertBefore(RM.g,MG.g);
-  [SU,PR,RM,MG].forEach(c=>c.draw());
-  // back-row colleagues pop up: the 'ooooh' (G1), the laughs, the chorus
-  BC.forEach((c,i)=>{const X=[630,185,-300][i];
-    const up=Math.max(g1&&t>=b.ooh?out((t-b.ooh-0.05*i)/0.2):0, t>=b.laugh1&&t<b.g2?1:0, g2&&t>=b.faaahE?out((t-b.faaahE-0.06*i)/0.2):0, fin?out((t-b.ch-0.05*i)/0.2):0);
-    const st_=R(c,null,X,lerp(1330,1150,up),0.5); st_.vis=up>0?1:0; st_.look=i===0?0.5:0.7;
-    if(g1&&t<b.laugh1){ st_.gasp=1; st_.wide=1 } else if(fin){ st_.smile=1; st_.hR=[30,-460]; st_.hop=Math.abs(Math.sin(T*12+i))*10 } else { st_.laugh=1; st_.shut=1; st_.headRot=Math.sin(T*14+i)*5; st_.hop=Math.abs(Math.sin(T*12+i))*10 }
-    if(punch) c.g.setAttribute("filter","url(#bgBlur)"); else c.g.removeAttribute("filter");
+  [SU,RM,MG].forEach(c=>c.draw());
+  // back-row colleagues (meeting room only): limp claps, the ooooh
+  BC.forEach((c,i)=>{const st_=R(c,null,BC_X[i],BH,BS); st_.vis=cabin?0:1; st_.look=i===0?0.6:-0.4; st_.smile=0; st_.brow="n";
+    if(t>=b.dhoom&&t<b.dhoom+0.7){ st_.gasp=1; st_.wide=1 }
+    if(t>=b.clap&&t<b.clap+1.0){ const cl=Math.abs(Math.sin((t-b.clap)*Math.PI*2.4+i)); c.aim("L",BC_X[i]-20+cl*14,BH-160); c.aim("R",BC_X[i]+20-cl*14,BH-160); st_.smile=0; st_.brow="n"; st_.lookY=0.3 }
+    if(t>=b.ooh){ st_.gasp=1; st_.wide=1; st_.brow="u"; st_.headRot=(i-1)*4; st_.look=i===0?0.8:-0.6 }
     c.draw()});
-  // the door (opens for the entry; the glass wobbles after the BOINNG), the cooler, the rays
-  doorP.setAttribute("transform",`translate(${wob*10},0) skewX(${wob*4}) scale(${1-0.78*doorK},1)`); doorShine.setAttribute("x",30+wob*30);
-  coolB.setAttribute("transform",`rotate(${coolRot} ${COOL_X} 1690) translate(${COOL_X},0)`);
-  bub.forEach((c_,i)=>{const k=(t-b.donk-0.1-i*0.12)/0.5; const on=g2&&k>0&&k<1; c_.setAttribute("opacity",on?1-k:0); c_.setAttribute("cy",1330-k*120); c_.setAttribute("cx",Math.sin(k*9+i)*14)});
-  {const on=sc1&&t>=b.brass&&t<b.ting; rays.style.display=on?"":"none"; rays.setAttribute("transform",`translate(${MG_X},${H85-300}) rotate(${t*20}) scale(${Math.max(0.01,out((t-b.brass)/0.2))})`)}
-  // FAAAH bursts (behind the manager)
-  {const h1=t>=b.faaah-0.03&&t<b.faaahE+0.05, h2=t>=b.faaah2-0.03&&t<b.faaah2E+0.05; const on=h1||h2, t0=h1?b.faaah:b.faaah2;
-   const [hx,hy]=MG.headW(); const k=Math.max(0.01,back((t-t0+0.03)/0.18)); burst.style.display=burstT.style.display=on?"":"none";
-   burst.setAttribute("transform",`translate(${hx},${hy}) scale(${0.8*k}) rotate(${(t-t0)*30})`);
-   burstT.setAttribute("transform",`translate(${hx+10},${hy-150*MG.st.s}) scale(${0.62*k}) rotate(-6)`)}
-  {const on=g2&&t>=b.bonk&&t<b.bonk+0.45; const [hx,hy]=MG.headW(); impact.setAttribute("opacity",on?1-clamp((t-b.bonk-0.25)/0.2):0);
-   impact.setAttribute("transform",`translate(${hx+40},${hy-10}) scale(${0.6+0.6*out((t-b.bonk)/0.15)})`)}
-  // birds + stars circling his head after the glass door
-  {const on=g2&&t>=b.bonk+0.1; const [hx,hy]=MG.headW();
-   birds.forEach((g_,i)=>{const a=t*5+i*Math.PI/2; g_.setAttribute("opacity",on?clamp((t-b.bonk-0.1)/0.15):0);
-     g_.setAttribute("transform",`translate(${hx+Math.cos(a)*95},${hy-95+Math.sin(a)*26}) scale(${0.8+0.2*Math.sin(a)}) ${Math.cos(a)<0?"scale(-1,1)":""}`)})}
-  // mug steam ('villain smoke') in the entry
-  steam.forEach((p_,i)=>{const f=fract(t*0.9+i/8); const on=sc1&&t<b.r1; const mm=MG.st;
-    p_.setAttribute("cx",mm.x-75*mm.s+Math.sin(f*6+i)*20); p_.setAttribute("cy",H85-175*S85-40-f*220); p_.setAttribute("r",10+f*20); p_.setAttribute("opacity",on?(1-f)*0.7:0)});
+  // props: the phone, its speaker waves, the bulb, the pat lines, the tears
+  phoneG.style.display=phone?"":"none";
+  if(phone){ phoneG.setAttribute("transform",`translate(${phone.x},${phone.y}) rotate(${phone.rot}) scale(.9)`); phoneScr.setAttribute("fill",phone.scr>0.9?"#B3E5FC":"#4FC3F7");
+    const bossT=talkOf("boss",t); waves.forEach((w,k)=>{const on=t>=b.boss&&t<b.r8; w.setAttribute("opacity",on?clamp(bossT*2-k*0.4):0)}) }
+  {const [hx,hy]=MG.headW(); bulbG.style.display=bulbK&&t<b.wh0?"":"none"; const k=Math.max(0.01,back((t-b.bulb)/0.3)); bulbG.setAttribute("transform",`translate(${hx},${hy-240*S85}) scale(${0.85*k}) rotate(${Math.sin(t*4)*4})`)}
+  {const [hx,hy]=RM.headW(); patFx.setAttribute("opacity",patK&&!cabin&&t<b.shloop?Math.abs(Math.sin((t-b.pat0)*Math.PI*3.2)):0); patFx.setAttribute("transform",`translate(${hx},${hy-96*S85})`)}
+  {const on=reactOn&&cabin; const [hx,hy]=RM.headW(); const rs=RM.st.s, rr=RM.st.headRot*Math.PI/180;
+   tears.forEach((g_,k)=>{ if(!on){g_.setAttribute("opacity",0);return}
+     const side=k%2?1:-1, ph=fract((t-b.react)*1.7+hash(k)*1.0), vx=200+hash(k+5)*120, up=150+hash(k+9)*80;
+     const ex=hx+side*21*rs, ey=hy-8*rs; const x=ex+side*vx*ph, y=ey-up*ph+520*ph*ph;
+     g_.setAttribute("opacity",ph<0.92?1:0); g_.setAttribute("transform",`translate(${x},${y}) rotate(${side*(60+ph*80)}) scale(${0.9+0.5*ph})`)})}
+  // the FAAAH burst behind Ramesh's head
+  {const on=t>=b.faaah-0.03&&t<b.faaahE+0.05; const [hx,hy]=RM.headW(); const k=Math.max(0.01,back((t-b.faaah+0.03)/0.18)); burst.style.display=burstT.style.display=on?"":"none";
+   burst.setAttribute("transform",`translate(${hx},${hy}) scale(${0.8*k}) rotate(${(t-b.faaah)*30})`);
+   burstT.setAttribute("transform",`translate(${hx+10},${hy-170*RM.st.s}) scale(${0.62*k}) rotate(-6)`)}
 
-  // ---------------- Gopi (narrator badge): the comment + the tag ----------------
-  const g=GOPI.st;
-  const cmOn=t>b.c16&&t<b.s17, tgOn=t>=b.s17&&t<b.end0, narOn=cmOn||tgOn; const narT=tgOn?b.s17:b.c16;
-  let BX=930, BY=760, bsc=0.8; if(tgOn){ BX=920; BY=1390 }
+  // ---------------- flashback insets ----------------
+  const fbShow=(F,a,bb)=>{const on=t>=a&&t<bb; F.g.setAttribute("opacity",on?clamp(Math.min((t-a)/0.12,(bb-t)/0.12)):0);
+    const k=Math.max(0.01,back((t-a)/0.3)); F.g.setAttribute("transform",`translate(${F.x+F.w/2},${F.y+F.h/2}) scale(${k}) rotate(${-2+Math.sin(t*2)*0.8}) translate(${-F.w/2},${-F.h/2})`); return on};
+  if(fbShow(F1,b.fb1a,b.fb1b)){ const r1=R(RM1,null,IW/2,410,0.5); r1.sad=1; r1.brow="w"; r1.look=0; r1.lookY=0.8; r1.blink=((t*0.8)%1.6)<0.2?1:0;
+    const ty=Math.sin(t*38), ty2=Math.sin(t*41+1); RM1.aim("L",IW/2-50+ty*10,300+ty2*6); RM1.aim("R",IW/2+50-ty2*10,300+ty*6); RM1.draw();
+    glow1.setAttribute("opacity",0.22+0.06*Math.sin(t*20));
+    code1.forEach((c_,k)=>{const f=fract(t*0.7+k/5); c_.setAttribute("x",80+k*80+Math.sin(f*6+k)*12); c_.setAttribute("y",300-f*220); c_.setAttribute("opacity",(1-f)*0.9)}) }
+  if(fbShow(F2,b.fb2a,b.fb2b)){ const r2=R(RM2,null,IW/2,470,0.5); r2.gasp=1; r2.wide=1; r2.sweat=1; r2.brow="u"; r2.look=Math.sin(t*6)*0.8; r2.lookY=-0.6; r2.headRot=Math.sin(t*6)*5;
+    const ang=t*5.5; const pts=[0,1,2].map(k=>[IW/2+Math.cos(ang+k*2.09)*120, 170+Math.sin(ang+k*2.09)*44]);
+    RM2.aim("L",pts[0][0],pts[0][1]+60); RM2.aim("R",pts[1][0],pts[1][1]+60); RM2.draw();
+    ph2.forEach((g_,k)=>g_.setAttribute("transform",`translate(${pts[k][0]},${pts[k][1]}) rotate(${Math.sin(t*40+k)*10+(k-1)*20})`)) }
+
+  // ---------------- Gopi (narrator badge): the comment ----------------
+  const g=GOPI.st; const narOn=t>b.c11&&t<b.end0;
   Object.assign(g,{x:0,y:400*0.55+12,s:0.55,talk:talkOf("gopi",t),blink:((t*0.7)%3.1)<0.12?1:0,wink:0,look:-0.5,lookY:0,brow:"q",smile:1,headRot:Math.sin(t*2.2)*3,item:"",armL:200,armR:160,lenL:115,lenR:115,hop:0,itemRot:0});
   GOPI.draw();
-  const bs=narOn?Math.max(0.001,back((t-narT)/0.35)):0;
-  badge.setAttribute("transform",`translate(${BX},${BY}) scale(${bs*bsc}) rotate(${Math.sin(t*2)*2})`); badge.style.opacity=narOn?1:0;
+  const bs=narOn?Math.max(0.001,back((t-b.c11)/0.35)):0;
+  badge.setAttribute("transform",`translate(930,660) scale(${bs*0.8}) rotate(${Math.sin(t*2)*2})`); badge.style.opacity=narOn?1:0;
 
   // ---------------- camera ----------------
   const pu=(t0,a_=0.1,k=5)=>t>t0?a_*Math.exp(-(t-t0)*k)*clamp((t-t0)/0.04):0;
-  const HY=H85-392*S85;   // head height (standing, s 0.85)
+  const HY=H85-392*S85;
+  const CAB=focus(1.0,1840,1080,540,1000);
   const shots=[
-    [0,focus(1.05,1160,1010,540,1040,-3)],                                               // low angle: out of the cabin
-    [0.85,focus(0.95,960,1080,540,1040),0.9],                                             // follow the slow-mo walk
-    [b.dhoom,focus(1.6+pu(b.dhoom,0.14),MG_X,HY+40,540,920,-2),0.05],                      // DHOOM punch-in on 'ఛాలెంజ్!'
-    [b.dhoom+0.9,focus(0.8,560,1180,540,1060),0.35],                                      // wide: the team + the boss
-    [b.r1,focus(1.45,RAM_X+80,1010,540,980),0.01],                                        // Ramesh, too sweet
-    [b.m2,focus(1.3,MG_X,1030,540,980),0.01],                                             // the boast
-    [b.brass,focus(1.45+pu(b.brass,0.05),MG_X,1010,540,960),0.06],
-    [b.ting-0.05,focus(2.5,RAM_X,HY+15,540,900),0.08],                                    // Ramesh's secret smile
-    [b.g1,focus(1.2,540,1090,540,1070),0.01],                                             // GAME 1: Priya + the boss
-    [b.gulp,focus(1.85+pu(b.gulp,0.05),MG_X,HY+40,540,920),0.06],                         // the gulp
-    [b.m4,focus(1.35,MG_X-30,1040,540,980),0.15],                                         // the dodge
-    [b.r5,focus(0.98,440,1110,540,1040),0.01],                                            // Ramesh's jab
-    [b.laugh1,focus(0.8,560,1180,540,1060),0.2],                                          // the laugh
-    [b.g2,focus(0.66,620,1250,540,1090),0.01],                                            // GAME 2 wide: the chair (left), the cooler, the door (right)
-    [b.tie0,focus(1.15,830,1060,540,1000),0.3],                                           // Suresh ties the blindfold
-    [b.shuf0,focus(0.95,540,1130,540,1040),0.3],                                          // the shuffle
-    [b.donk,focus(1.5+pu(b.donk,0.1,8),COOL_X+90,1060,540,1000),0.03],                    // DONK
-    [b.s9,focus(0.92,1090,1130,540,1050),0.15],                                            // 'Straight!' -> the door
-    [b.bonk,focus(1.3+pu(b.bonk,0.12),DOOR_X+60,1070,540,1000),0.03],                     // BOINNG
-    [b.faaah,focus(2.3,DOOR_X+40,HY+30,540,920),0.07],                                   // FAAAH #1 slow-mo zoom
-    [b.faaahE,focus(1.15,DOOR_X+20,1060,540,1000),0.25],                                 // dazed, birds
-    [b.g3,focus(0.98,545,1190,540,1130),0.01],                                            // GAME 3 under the stopwatch
-    [b.buzz,focus(1.2+pu(b.buzz,0.1),MG_X-60,1100,540,1100),0.04],                        // the explosion
-    [b.faaah2,focus(2.2,MG_X,HY+30,540,960),0.07],                                        // FAAAH #2
-    [b.r12-0.02,focus(0.98,520,1130,540,1070),0.01],                                      // Ramesh's verdict + OUT!
-    [b.m13,focus(1.3+0.04*(t-b.m13),MG_X,1040,540,990),0.15],                             // chest out, fishing
-    [b.ch-0.02,focus(0.8,560,1180,540,1060),0.01],                                        // 'మీరే సార్!' + the dance
-    [b.r15,focus(1.45,RAM_X+60,900,330,860),0.01],                                        // Ramesh to camera (the dance blurred behind)
+    [0,focus(1.05,900,1060,540,1040,-3)],                                                  // low angle: the villain walk in
+    [b.dhoom,focus(1.6+pu(b.dhoom,0.14),MG_X,HY+40,540,920,-2),0.05],                      // DHOOM punch-in on 'గైస్!'
+    [b.wide1,focus(0.8,300,1180,540,1060),0.35],                                           // wide: the whole team, arms wide, claps
+    [b.r2,focus(1.15,RAM_X+190,1040,540,1000),0.3],                                        // Ramesh's claim, the manager walking over
+    [b.m3,focus(1.3,(RAM_X+MG_P)/2,1010,540,990),0.2],                                     // the pat
+    [b.shloop,focus(1.38+pu(b.shloop,0.05),(RAM_X+MG_P)/2,1010,540,990),0.05],
+    [b.r4,focus(1.15,RAM_X+190,1040,540,1000),0.2],                                        // claim 2
+    [b.m5,focus(1.3,MG_P,1020,540,1000),0.2],                                              // 'చాలా మంచి విషయం'
+    [b.bulb,focus(1.12+pu(b.bulb,0.06),MG_P,960,540,1040),0.12],                            // VISION
+    [b.ooh,focus(0.8,300,1180,540,1060),0.2],                                              // ooooh
+    [b.wh0,CAB,b.wh1-b.wh0],                                                               // whoosh to the cabin
+    [b.m6,focus(1.12,1850,1060,540,1000),0.4],                                             // 'I delivered...'
+    [b.faaah-0.12,focus(2.3,RC_X,HY+30,540,930),0.08],                                     // crash zoom: Ramesh's jaw drop
+    [b.faaahE,focus(1.05,1840,1090,540,1010),0.25],                                        // the boss on speaker
+    [b.r8,focus(1.25,RC_X+140,1040,540,1000),0.2],                                         // the doubt
+    [b.m9,focus(1.4,MC_X-60,1020,540,990),0.12],                                           // 'ఏంటి రమేష్?'
+    [b.r10,focus(1.1,1835,1060,540,1060),0.25],                                            // the finger count (chips top-left)
+    [b.m11,focus(1.35,MC_X-90,1010,540,980),0.1],                                          // the punch
+    [b.react,focus(2.1,RC_X,HY+10,540,900),0.01],                                          // the laugh-cry reaction
+    [b.c11,focus(1.0,1840,1080,540,1000),0.01],                                            // Gopi + comment
   ];
   let cm=shots[0][1];
   {let i=0; while(i+1<shots.length&&t>=shots[i+1][0]) i++;
@@ -395,64 +401,54 @@ function frame(t){
    if(i>0&&tr&&t<t0+tr){ const prev=shots[i-1][1]; cm=mixCam(prev,c,ease((t-t0)/tr)) }}
   if(frozen) cm={...cm,z:cm.z*(1+0.04*clamp((t-b.frz)/0.25))};
   let sx=0,sy=0; const shake=(t0,d,a_)=>{if(t>t0&&t<t0+d){const q=(1-(t-t0)/d)*a_; sx+=Math.sin(t*90)*q; sy+=Math.cos(t*77)*q}};
-  shake(b.dhoom,0.45,22); shake(b.donk,0.25,12); shake(b.bonk,0.35,22); shake(b.faaah,0.25,10); shake(b.buzz,0.3,14); shake(b.faaah2,0.25,10); shake(b.stamp,0.35,24); shake(b.frz,0.12,10); shake(b.door,0.2,8);
+  shake(b.dhoom,0.45,22); shake(b.faaah,0.3,12); shake(b.frz,0.12,10); shake(b.stamp1,0.2,16); shake(b.stamp2,0.2,16); shake(b.stamp3,0.25,20);
   cam.setAttribute("transform",`translate(${540+sx},${1000+sy}) rotate(${cm.r||0}) scale(${cm.z}) translate(${-cm.fx},${-cm.fy})`);
   const scr=(wx,wy)=>{const r_=(cm.r||0)*Math.PI/180, dx=(wx-cm.fx)*cm.z, dy=(wy-cm.fy)*cm.z; return [540+dx*Math.cos(r_)-dy*Math.sin(r_)+sx, 1000+dx*Math.sin(r_)+dy*Math.cos(r_)+sy]};
-  // fake sparkles round the scoreboard's 'MANAGER 1'
-  SPK.forEach((s_,i)=>{const on=t>=b.mgr1&&t<b.mgr1+1.3&&!frozen; const a=i/6*Math.PI*2+(t-b.mgr1)*2.5;
-    s_.setAttribute("opacity",on?1-clamp((t-b.mgr1-0.9)/0.4):0); s_.setAttribute("transform",`translate(${400+Math.cos(a)*150},${186+Math.sin(a)*40}) scale(${Math.max(0.01,pop(t,b.mgr1+i*0.05,0.25))*0.8}) rotate(${(t-b.mgr1)*120})`)});
-  // the stopwatch
-  {const on=g3&&t<b.faaah2; const sk=on?Math.max(0.01,back((t-b.g3-0.25)/0.3)):0.01; swG.setAttribute("opacity",on&&t>=b.g3+0.25?1:0);
-   const sec=t<b.tick1?0:t<b.tick2?1:2; swHand.setAttribute("transform",`rotate(${sec*6})`); swTxt.textContent=["01:00","00:59","00:58"][sec];
-   const red=t>=b.buzz&&t<b.buzz+0.5&&(Math.floor((t-b.buzz)*12)%2===0); swFace.setAttribute("fill",t>=b.buzz?(red?"#FF5252":"#FFCDD2"):"#FFFDF5");
-   const jit=t>=b.buzz&&t<b.buzz+0.4?Math.sin(t*90)*6:0; swG.setAttribute("transform",`translate(${SWX+jit},${SWY}) scale(${sk*0.85}) rotate(${t>=b.buzz?Math.sin(t*50)*3*Math.exp(-(t-b.buzz)*4):0})`)}
+  // speed lines in the whoosh
+  SPD.forEach((s_,k)=>{const on=t>=b.wh0&&t<b.wh1; const f=clamp((t-b.wh0)/(b.wh1-b.wh0)); s_.setAttribute("opacity",on?0.7*Math.sin(f*Math.PI):0);
+    s_.setAttribute("x",1100-f*1700-hash(k)*500); s_.setAttribute("y",200+k*120+hash(k+3)*60); s_.setAttribute("width",300+hash(k+1)*500)});
+  // sparkles round the BONUS
+  {const [hx,hy]=scr(...MG.headW()); SPK.forEach((s_,i)=>{const on=t>=b.kaching&&t<b.r8; const a=i/8*Math.PI*2+(t-b.kaching)*2.5;
+    s_.setAttribute("opacity",on?1-clamp((t-b.r8+0.3)/0.3):0); s_.setAttribute("transform",`translate(${hx+Math.cos(a)*190},${hy+Math.sin(a)*150}) scale(${Math.max(0.01,pop(t,b.kaching+i*0.04,0.25))*0.9}) rotate(${(t-b.kaching)*120})`)})}
 
   // ---------------- HTML overlays ----------------
-  {const dm=$("dim"); let a=0, bg="#10141E";
-   if(t>=b.c16&&t<b.s17){ a=0.5*clamp((t-b.c16)/0.25) }
-   dm.style.opacity=a; dm.style.background=bg}
-  {const on=t<b.dhoom-0.05; $("hook").style.opacity=on?clamp((b.dhoom-0.05-t)/0.1):0;
-   $("hook").style.transform=`rotate(${-1.5+Math.sin(t*3)*0.6}deg) scale(${t<0.25?1+0.08*Math.sin(t/0.25*Math.PI):1})`;
-   const ti=$("title"), ton=t>b.titleIn&&t<b.dhoom-0.05; ti.style.opacity=ton?1:0; ti.style.transform=`scale(${Math.max(0.01,back((t-b.titleIn)/0.3))}) rotate(-2deg)`}
-  // scoreboard
-  {const sc=$("score"), on=t>=b.dhoom&&t<b.s17; sc.style.opacity=on?1:0;
-   const tm=t>=b.team3?3:t>=b.team2?2:t>=b.team1?1:0, mg=t>=b.mgr1?1:0; $("sT").textContent=tm; $("sM").textContent=mg+(mg?" ✨":"");
-   const last=Math.max(...[b.team1,b.team2,b.team3,b.mgr1].filter(x=>t>=x),-9); const pk=t-last<0.3?1+0.18*Math.sin((t-last)/0.3*Math.PI):1;
-   sc.style.transform=`translateY(${lerp(-260,0,out((t-b.dhoom)/0.3))}px) scale(${pk})`}
-  // game cards: slam big, then settle as a label under the scoreboard
-  [["g1",b.g1,b.g2],["g2",b.g2,b.g3],["g3",b.g3,b.ch]].forEach(([id,t0,t1])=>{const e=$(id); const on=t>=t0&&t<t1&&!(id==="g3"&&t>=b.sw0&&t<b.r12);
-    if(!on){e.style.opacity=0;return} const k=out((t-t0-1.0)/0.3), sl=lerp(1.9,1,out((t-t0)/0.12));
-    e.style.opacity=1; e.style.top=lerp(330,232,k)+"px"; e.style.transform=`scale(${sl*lerp(1,0.46,k)}) rotate(${lerp(-3,0,k)}deg)`; e.style.transformOrigin="50% 0"});
-  const schip=(id,on,px,py,t0,rot,s=1)=>{const e=$(id); if(!on){e.style.opacity=0;return} e.style.opacity=1; e.style.left=px+"px"; e.style.top=py+"px"; e.style.transform=`translate(-50%,-50%) scale(${Math.max(0.01,pop(t,t0,0.3))*s}) rotate(${rot}deg)`};
-  schip("cOff",g1&&t>b.offChip&&t<b.r5+0.3,560,560,b.offChip,-3);
-  schip("c404",g1&&t>b.c404&&t<b.g2,540,580,b.c404,3);
-  schip("cPend",g2&&t>b.pend&&t<b.s9,560,560,b.pend,-3);
-  // OUT! stamp over the manager
-  {const on=g3&&t>=b.stamp-0.06&&t<b.m13; const e=$("outS"); const [px,py]=scr(MG_X,H85-250);
-   e.style.opacity=on?Math.min(1,clamp((b.m13-t)/0.1)):0; e.style.left=Math.min(px,790)+"px"; e.style.top=py+"px";
-   e.style.transform=`translate(-50%,-50%) rotate(${-12+(t>=b.stamp&&t<b.stamp+0.3?Math.sin(t*80)*1.5:0)}deg) scale(${lerp(2.6,1,clamp((t-b.stamp+0.06)/0.06))})`}
-  show("frz",frozen&&t<b.c16,1,"");
-  show("frzT",frozen&&t<b.c16,pop(t,b.frz+0.05,0.3),`rotate(-3deg)`);
-  // follow tap (silent, inside the Game 2 card)
+  {const dm=$("dim"); let a=0; if(t>=b.c11&&t<b.end0) a=0.5*clamp((t-b.c11)/0.25); dm.style.opacity=a; dm.style.background="#10141E"}
+  {const on=t<b.hookOff; $("hook").style.opacity=on?clamp((b.hookOff-t)/0.15):0;
+   $("hook").style.transform=`rotate(${-1.5+Math.sin(t*3)*0.6}deg) scale(${t<0.25?1+0.08*Math.sin(t/0.25*Math.PI):1+0.06*Math.exp(-Math.max(0,t-b.dhoom)*8)*(t>b.dhoom?1:0)})`;
+   const ti=$("title"), ton=t>b.titleIn&&t<b.hookOff; ti.style.opacity=ton?clamp((b.hookOff-t)/0.15):0; ti.style.transform=`scale(${Math.max(0.01,back((t-b.titleIn)/0.3))}) rotate(-2deg)`}
+  const schip=(id,on,px,py,t0,rot,s=1,sx_=1)=>{const e=$(id); if(!on){e.style.opacity=0;return} e.style.opacity=1; e.style.left=px+"px"; e.style.top=py+"px"; e.style.transform=`translate(-50%,-50%) scale(${Math.max(0.01,pop(t,t0,0.3))*s*sx_},${Math.max(0.01,pop(t,t0,0.3))*s}) rotate(${rot}deg)`};
+  // 'RAMESH' name chip -> SHLOOP into the TEAM bubble
+  {const [rx,ry]=scr(RAM_X,H85-560*S85), [tx,ty]=scr(MG_P+170,H85-600*S85); const tb=[Math.min(Math.max(tx,330),760),Math.max(ty,420)];
+   const sk=clamp((t-b.shloop)/0.3), suck=sk*sk;
+   schip("cName",!cabin&&t>=b.name&&t<b.shloop+0.3,lerp(rx,tb[0],suck),lerp(Math.max(ry,400),tb[1],suck),b.name,-3,1-0.95*suck,1+1.2*Math.sin(sk*Math.PI));
+   const tp=t>=b.shloop+0.25&&t<b.shloop+0.55?1+0.15*Math.sin((t-b.shloop-0.25)/0.3*Math.PI):1;
+   schip("cTeam",!cabin&&t>=b.team&&t<b.r4+0.2,tb[0],tb[1],b.team,2,tp)}
+  schip("cBonus",cabin&&t>=b.kaching&&t<b.r8,...(()=>{const [hx,hy]=scr(...MG.headW()); return [Math.min(hx+60,860),Math.max(hy-200,420)]})(),b.kaching,-4,1+0.04*Math.sin(t*12));
+  // the caller card (boss: voice only)
+  {const on=t>=b.dial&&t<b.r10; const e=$("call"); e.style.opacity=on?clamp(Math.min((t-b.dial)/0.15,(b.r10-t)/0.2)):0;
+   const glow=t>=b.boss&&t<b.r8; e.style.transform=`scale(${Math.max(0.01,back((t-b.dial)/0.3))*(glow?1+0.05*talkOf("boss",t):1)})`;
+   const ct="00:"+String(Math.min(59,Math.floor(t-S(5)+1))).padStart(2,"0"); $("callS").textContent=t<S(5)-0.1?"Calling…":t<b.boss?ct:t<b.r8?"ON SPEAKER 🔊":t<b.m9?ct:"MUTED 🤫";
+   e.querySelector(".cc").style.boxShadow=glow?`0 0 ${30+40*talkOf("boss",t)}px #81C784, 0 10px 0 rgba(0,0,0,.45)`:"0 10px 0 rgba(0,0,0,.45)"}
+  // the finger count
+  [["k1",b.k1],["k2",b.k2],["k3",b.k3]].forEach(([id,t0])=>{const e=$(id); const on=t>=t0&&t<b.react; e.style.opacity=on?1:0;
+    const flip=id==="k3"&&t>=b.flip; const fk=id==="k3"?clamp((t-b.flip)/0.2):0;
+    e.style.transform=`translateX(${lerp(60,0,out((t-t0)/0.25))}px) scale(${Math.max(0.01,pop(t,t0,0.3))},${id==="k3"&&t>=b.flip-0.1&&t<b.flip+0.1?Math.abs(Math.cos((t-b.flip+0.1)/0.2*Math.PI)):1}) rotate(${id==="k2"?1.5:-1.5}deg)`;
+    if(id==="k3"){ $("k3v").textContent=flip?"COMPANY 🏢":"???"; e.className="kc"+(flip?" co":"") }});
+  show("frz",frozen,1,"");
+  // the ending card: three stamps (owner's words, verbatim)
+  {const ec=$("endT"); ec.style.opacity=card?clamp(Math.min((t-b.card0)/0.12,(b.card1-t)/0.12)):0;
+   [["st1",b.stamp1,-4],["st2",b.stamp2,3],["st3",b.stamp3,-2]].forEach(([id,t0,rot])=>{const e=$(id); const on=t>=t0; e.style.opacity=on?1:0;
+     e.style.transform=`scale(${lerp(2.4,1,out((t-t0)/0.1))*(1+0.02*Math.sin((t-t0)*6))}) rotate(${rot}deg)`})}
+  // follow tap (silent): pops in after the ooooh, tapped in the whoosh
   const fA=b.fol0, fB=b.fol1; const fOn=t>fA&&t<fB; const fol=$("fol"); fol.style.opacity=fOn?clamp(Math.min((t-fA)/0.15,(fB-t)/0.1)):0;
   fol.style.transform=`scale(${Math.max(0.01,back((t-fA)/0.3))*(Math.abs(t-b.tFol)<0.1?0.9:1)})`;
   const bF=$("bF"); bF.textContent=t<b.tFol?"+ FOLLOW":"FOLLOWING ✓"; bF.className="btn"+(t<b.tFol?"":" done");
-  {const FX=955, FY=1335; const hand=$("tapHand"); const hk=ease((t-fA-0.05)/Math.max(0.3,b.tFol-fA-0.1)); const dip=Math.max(0,1-Math.abs(t-b.tFol)/0.1);
+  {const FX=455, FY=1335; const hand=$("tapHand"); const hk=ease((t-fA-0.05)/Math.max(0.3,b.tFol-fA-0.1)); const dip=Math.max(0,1-Math.abs(t-b.tFol)/0.1);
    hand.style.opacity=fOn?clamp(Math.min((t-fA-0.05)/0.12,(fB-t)/0.1)):0; hand.style.transform=`translate(${lerp(1000,FX,hk)-50}px,${lerp(1560,FY,hk)+dip*12}px) rotate(${-8+dip*6}deg)`;
    const rg_=$("ring"), rk=(t-b.tFol)/0.4; rg_.style.opacity=fOn&&rk>0&&rk<1?1-rk:0; rg_.style.left=FX+"px"; rg_.style.top=FY+"px"; rg_.style.transform=`scale(${1+rk*6})`}
-  // confetti on 'మీరే సార్!' (stops in the silence + the freeze)
-  CONF.forEach((r_,i)=>{const tc=frozen?b.frz:silent?b.sil0:t; const t0=b.ch+0.1+hash(i)*0.25, k=tc-t0; const on=k>0&&k<2.6&&t<b.c16;
-    if(!on){r_.setAttribute("opacity",0);return} const side=i%2?1:-1; const x=540+side*(470-k*(260+hash(i+7)*300))+Math.sin(k*3+i)*30, y=1500-k*900*(0.6+hash(i+3)*0.6)+k*k*700;
-    r_.setAttribute("opacity",1); r_.setAttribute("transform",`translate(${x},${y}) rotate(${k*360*(hash(i+11)-0.5)*2+i*20})`)});
   // comment prompt + bubbles
-  show("cq",t>b.c16+0.1&&t<b.s17,pop(t,b.c16+0.1,0.35)*(1+0.03*Math.sin(t*10)),`rotate(-1.5deg)`);
-  CB.forEach((_,i)=>{const e=$("cb"+i), t0=b.tCm+0.05+i*0.11; const v=t>t0&&t<b.s17; e.style.opacity=v?1:0; e.style.transform=`translateY(${-(t-t0)*14}px) scale(${Math.max(0.01,pop(t,t0,0.3))}) rotate(${(i%2?3:-3)}deg)`});
-  // share: tag your office manager
-  {const shOn=t>b.s17&&t<b.end0+0.1; const sh=$("share"); sh.style.opacity=shOn?clamp(Math.min((t-b.s17)/0.2,(b.end0+0.1-t)/0.12)):0;
-   $("sq").style.transform=`scale(${Math.max(0.01,back((t-b.s17)/0.4))})`;
-   const tA=b.s17+0.25; $("cin").innerHTML=t>tA?(t>b.tTag+0.05?'<em>@My Manager 👔</em> 😅':"@"+(t>tA+0.2?"My M":"")):"";
-   ["ct1","ct2","ct3"].forEach((id,i)=>{const e=$(id), t0=tA+0.05+i*0.07; e.style.opacity=t>t0?1:0; e.style.transform=`translateY(${lerp(30,0,out((t-t0)/0.25))}px) scale(${id==="ct1"&&Math.abs(t-b.tTag)<0.1?0.94:1})`; e.style.background=id==="ct1"&&t>b.tTag?"#FFF3B0":"#fff"});
-   $("ok1").style.opacity=t>b.tTag+0.05?1:0}
+  show("cq",t>b.c11+0.1&&t<b.end0,pop(t,b.c11+0.1,0.35)*(1+0.03*Math.sin(t*10)),`rotate(-1.5deg)`);
+  CB.forEach((_,i)=>{const e=$("cb"+i), t0=b.tCm+0.05+i*0.11; const v=t>t0&&t<b.end0; e.style.opacity=v?1:0; e.style.transform=`translateY(${-(t-t0)*14}px) scale(${Math.max(0.01,pop(t,t0,0.3))}) rotate(${(i%2?3:-3)}deg)`});
   // end card
   {const ec=$("endc"), eOn=t>b.end0; ec.style.opacity=eOn?clamp((t-b.end0)/0.12):0;
    $("eF").textContent=t<b.tEF?"FOLLOW @_REELRASAM":"FOLLOWING ✓  @_REELRASAM"; $("eF").style.transform=`scale(${Math.abs(t-b.tEF)<0.1?0.92:1})`; $("eF").style.background=t<b.tEF?"":"#6D6875";
@@ -461,12 +457,12 @@ function frame(t){
   // flashes
   {const fl=(t0,d,a_)=>t>t0&&t<t0+d?a_*(1-(t-t0)/d):0; let a=0,col="#FFFFFF";
    const add=(t0,d,a_,c)=>{const v=fl(t0,d,a_); if(v>a){a=v;col=c}};
-   add(b.door,0.1,0.3,"#FFFFFF"); add(b.dhoom,0.12,0.5,"#FF5A3C"); add(b.g1,0.1,0.35,"#FFFFFF"); add(b.g2,0.1,0.35,"#FFFFFF"); add(b.g3,0.1,0.35,"#FFFFFF");
-   add(b.bonk,0.1,0.5,"#FFFFFF"); add(b.faaah,0.12,0.6,"#E53935"); add(b.buzz,0.12,0.45,"#E53935"); add(b.faaah2,0.12,0.6,"#E53935"); add(b.stamp,0.1,0.45,"#FFFFFF"); add(b.frz,0.16,0.85,"#FFFFFF");
+   add(b.dhoom,0.12,0.5,"#FF5A3C"); add(b.bulb,0.1,0.35,"#FFF59D"); add(b.faaah,0.12,0.6,"#E53935"); add(b.kaching,0.1,0.3,"#FFE082"); add(b.frz,0.16,0.85,"#FFFFFF");
+   add(b.stamp1,0.08,0.25,"#FFFFFF"); add(b.stamp2,0.08,0.25,"#FFFFFF"); add(b.stamp3,0.1,0.35,"#FFFFFF");
    $("flash").style.opacity=a; $("flash").style.background=col}
-  // subtitles (… -> ...)
-  const sub=$("sub"), L=curLine(t);
-  if(L&&!(t>b.end0)){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${subFix(L.text)}`} else sub.style.opacity=0;
+  // subtitles (the punch stays up through the freeze + the silence; no subtitle for the laugh-cry or the card)
+  const sub=$("sub"); const L=TL.lines.find(l=>t>=l.start-0.1&&t<(l.i===10?b.sil1:l.start+l.dur+0.25));
+  if(L&&!(t>b.end0)&&!card){sub.style.opacity=1; sub.innerHTML=`<span class="who" style="background:${COLORS[L.who]}">${NAMES[L.who]}</span><br>${subFix(L.text)}`} else sub.style.opacity=0;
 }
 function show(id,on,s=1,extra=""){const e=$(id); e.style.opacity=on?1:0; if(on) e.style.transform=`${extra} scale(${Math.max(0.01,s)})`}
 
