@@ -1,0 +1,79 @@
+{
+ "L0": {
+  "expected": "ఆదివారం రాత్రి తొమ్మిది గంటలకి… చిన్న టాస్కా? ఏంట్రా ఇది!",
+  "heard": "ఆదివారం రాత్రి తొమ్మిది గంటలకి చిన్న task-ఆ? ఏంట్రా ఇది!",
+  "issue": "none",
+  "sim": 0.88,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "expected": "గుడ్ మార్నింగ్ రమేష్! టాస్క్ కంప్లీట్ చేశావా?",
+  "heard": "Good morning రమేష్, task complete చేశావా?",
+  "issue": "none",
+  "sim": 0.31,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "expected": "చేశాను సార్.",
+  "heard": "చేశాను సార్",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "expected": "వెరీ గుడ్! నువ్వు చాలా… డెడికేటెడ్ ఎంప్లాయ్‌వి.",
+  "heard": "Very good. నువ్వు చాలా dedicated employee వి.",
+  "issue": "none",
+  "sim": 0.32,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "expected": "థాంక్యూ సార్. మరి ఈరోజు… కొంచెం త్వరగా వెళ్లొచ్చా?",
+  "heard": "Thank you సార్. మరి ఈరోజు కొంచెం త్వరగా వెళ్ళొచ్చా?",
+  "issue": "none",
+  "sim": 0.8,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "expected": "ఎందుకు?",
+  "heard": "ఎందుకు?",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L6": {
+  "expected": "నిన్న ఆదివారం కూడా… పని చేశాను కదా సార్!",
+  "heard": "నిన్న ఆదివారం కూడా పని చేశాను కదా సార్.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "expected": "రమేష్… మనం ఫ్యామిలీ లాంటివాళ్లం కదా!",
+  "heard": "రమేష్, మనం family లాంటివాళ్ళం కదా?",
+  "issue": "none",
+  "sim": 0.72,
+  "by": "gemini-3-flash-preview"
+ },
+ "L8": {
+  "expected": "అయితే సార్… ఫ్యామిలీ ఫంక్షన్‌కి వెళ్లినట్టు… జీతం కూడా పెంచండి సార్!",
+  "heard": "అయితే సార్, family function కి వెళ్ళినట్టు జీతం కూడా పెంచండి సార్.",
+  "issue": "none",
+  "sim": 0.72,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "expected": "ఫ్యామిలీ అంటారు… కానీ జీతం దగ్గరికి వచ్చేసరికి… కంపెనీ అంటారు!",
+  "heard": "Family అంటారు. కానీ జీతం దగ్గరికి వచ్చేసరికి company అంటారు.",
+  "issue": "none",
+  "sim": 0.74,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "expected": "Sunday కూడా పని చేసే friend ని… tag చేయండి!",
+  "heard": "Sunday కూడా పనిచేసే friend ని tag చేయండి.",
+  "issue": "Instructions/Call to action",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ }
+}

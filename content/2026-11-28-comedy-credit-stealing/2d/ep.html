@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Office comedy Ep 4 "మీటింగ్‌లో మేనేజర్ మాయ!" (the owner's own script; series "Office Politics"), built on Ep 2's page
+     (content/2026-11-23-comedy-manager-mind-game/2d/). FLAT skin for the whole reel (series look). Sets in world.js: the same
+     office's meeting room (whiteboard with a plain rising arrow, the meeting table) and the manager's glass cabin (Ep 1 garland on
+     the door). Cast via office_cast.js (unchanged): manager, Ramesh, Suresh (silent), 3 colleagues. The BOSS is voice only: a
+     caller card 'BOSS 📞' with a grey silhouette, never drawn. Freezes = still + white flash + slight desaturation. -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#EAF3F8}
+svg{display:block}
+#s,#nar,#fx{position:absolute;left:0;top:0}
+#fx{z-index:4}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,20,30,.74);z-index:8;text-wrap:balance}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:7}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center;background:rgba(16,20,30,.82);padding:4px 18px 4px 6px;border-radius:30px}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8553D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;opacity:0;z-index:1;pointer-events:none}
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* text hook (frame 1) + series title (a beat later) */
+#hook{position:absolute;top:150px;left:24px;right:24px;text-align:center;z-index:6}
+#hook .pill{font-family:Rama,NotoTe;font-size:82px;line-height:1.2;padding:8px 34px 14px;color:#10141E}
+#hook .en{font-family:Anton;font-weight:normal;letter-spacing:2px;color:#D32F2F;font-size:88px}
+#hook .te{letter-spacing:0}
+#title{position:absolute;top:400px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;letter-spacing:0;color:#fff;background:#2D6CDF;border:6px solid #10141E;border-radius:18px;padding:0 26px 4px;box-shadow:0 8px 0 #10141E}
+/* chips (name -> TEAM bubble, BONUS, the finger count) */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:900;font-size:50px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:20px;padding:4px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
+.chip .te{font-family:Rama,NotoTe;font-weight:normal}
+#cName{background:#9CCBF0;font-family:Anton;font-weight:normal;letter-spacing:2px;font-size:46px}
+#cTeam{background:#FFFDF5;font-family:Anton;font-weight:normal;letter-spacing:3px;font-size:78px;border-radius:60px;padding:6px 44px 12px;border-width:8px}
+#cBonus{background:linear-gradient(135deg,#FFE082,#FFC107 60%,#FFB300);font-family:Anton;font-weight:normal;letter-spacing:3px;font-size:64px}
+.kc{position:absolute;left:40px;opacity:0;white-space:nowrap;font-family:InterB;font-weight:900;font-size:50px;color:#10141E;border:6px solid #10141E;border-radius:20px;padding:2px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
+.kc .te{font-family:Rama,NotoTe;font-weight:normal;font-size:52px}
+.kc .n{font-family:Anton;font-weight:normal;letter-spacing:1px}
+#k1{top:330px;background:#C8E6C9} #k2{top:440px;background:#FFCDD2} #k3{top:550px;background:#FFF59D}
+#k3.co{background:#B3E5FC}
+/* caller card (the boss: voice only) */
+#call{position:absolute;top:150px;left:0;right:0;text-align:center;opacity:0;z-index:6}
+#call .cc{display:inline-flex;align-items:center;gap:22px;background:#1E2430;border:6px solid #10141E;border-radius:34px;padding:14px 34px 14px 16px;box-shadow:0 10px 0 rgba(0,0,0,.45)}
+#call .av{width:104px;height:104px;border-radius:50%;background:#9AA3AE;border:5px solid #fff;position:relative;overflow:hidden;flex:none}
+#call .av:before{content:"";position:absolute;left:31px;top:16px;width:42px;height:42px;border-radius:50%;background:#5F6872}
+#call .av:after{content:"";position:absolute;left:14px;top:64px;width:76px;height:70px;border-radius:38px 38px 0 0;background:#5F6872}
+#call .nm{font-family:Anton;font-size:60px;letter-spacing:3px;color:#fff;line-height:1.05;text-align:left}
+#call .stt{font-family:InterB;font-weight:800;font-size:32px;color:#81C784;text-align:left}
+/* the FREEZE label */
+#frz{position:absolute;top:1400px;left:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
+/* the ending card (owner's words, verbatim): three stamps */
+#endT{position:absolute;inset:0;opacity:0;z-index:7;background:rgba(16,20,30,.86)}
+#endT .st{position:absolute;left:0;right:0;text-align:center;opacity:0}
+#endT .st span{display:inline-block;font-family:Rama,NotoTe;font-size:96px;line-height:1.25;padding:6px 40px 16px;border:12px solid;border-radius:26px;background:rgba(255,255,255,.06)}
+#st1{top:520px} #st1 span{color:#90CAF9;border-color:#90CAF9}
+#st2{top:780px} #st2 span{color:#FFAB91;border-color:#FFAB91}
+#st3{top:1040px} #st3 span{color:#FFE066;border-color:#FFE066}
+/* follow */
+#fol{position:absolute;top:1250px;left:520px;width:540px;white-space:nowrap;text-align:center;opacity:0;z-index:5}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:9}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:9}
+/* comment prompt + bubbles */
+#cq{position:absolute;top:880px;left:30px;right:30px;text-align:center;opacity:0;z-index:6}
+#cq span{display:inline-block;font-family:Rama,NotoTe;font-size:58px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 30px 12px;box-shadow:0 10px 0 #10141E}
+#cq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.cb{position:absolute;opacity:0;background:#fff;border:5px solid #10141E;border-radius:26px;padding:8px 22px 10px;box-shadow:0 8px 0 rgba(16,20,30,.85);white-space:nowrap;z-index:6}
+.cb:after{content:"";position:absolute;left:34px;bottom:-22px;border:12px solid transparent;border-top:14px solid #10141E}
+.cb b{display:block;font-family:Anton;font-size:28px;letter-spacing:1px;font-weight:normal}
+.cb i{display:block;font-style:normal;font-family:InterB,Rama,NotoTe;font-weight:800;font-size:38px;line-height:1.2;color:#10141E}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.9);z-index:7}
+#endc .box{position:absolute;top:470px;left:90px;right:90px;text-align:center}
+#endc .ser{display:inline-block;font-family:Anton;font-size:50px;letter-spacing:3px;color:#10141E;background:#FFE066;border:6px solid #10141E;border-radius:20px;padding:4px 28px 8px;margin-bottom:56px;box-shadow:0 8px 0 #000}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:44px;color:#F5B347;letter-spacing:4px;margin-bottom:36px}
+#endc .nx{font-family:Rama,NotoTe;font-size:60px;color:#fff;margin-top:14px}
+#endc .nx b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.flash{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:7"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE POLITICS · EP 4</div></div>
+<div id="hook"><span class="pill"><b class="en">PROJECT</b> <span class="te">నాది…</span><br><b class="en">CREDIT</b> <span class="te">ఎవరిది?</span> 🤨</span></div>
+<div id="title"><span class="te">మీటింగ్‌లో మేనేజర్ మాయ! 😂</span></div>
+<div id="call"><span class="cc"><span class="av"></span><span><div class="nm">BOSS 📞</div><div class="stt" id="callS">Calling…</div></span></span></div>
+<div class="chip" id="cName">RAMESH</div>
+<div class="chip" id="cTeam">TEAM 🤝</div>
+<div class="chip" id="cBonus">BONUS ✨</div>
+<div class="kc" id="k1"><span class="n">1.</span> PROJECT: <span class="te">రమేష్</span></div>
+<div class="kc" id="k2"><span class="n">2.</span> CREDIT: <span class="te">మేనేజర్</span></div>
+<div class="kc" id="k3"><span class="n">3.</span> INCREMENT: <span id="k3v">???</span></div>
+<div id="frz">❚❚ FREEZE</div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="cq"><span>మీ <b>CREDIT</b> ఎవరు<br>కొట్టేశారు? 👇</span></div>
+<div id="cbs"></div>
+<div id="endT"><div class="st" id="st1"><span>పని మనది...</span></div><div class="st" id="st2"><span>పేరు మేనేజర్‌ది...</span></div><div class="st" id="st3"><span>లాభం కంపెనీది!</span></div></div>
+<div id="endc"><div class="box"><span class="ser">SERIES: OFFICE POLITICS · EP 4</span><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span></div></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style: flat for the whole reel (series look); the freeze is a colour/saturation effect, not a new skin</script>
+<script src="skins.js"></script>
+<script src="office_cast.js"></script>
+<script src="world.js"></script>
+</body></html>

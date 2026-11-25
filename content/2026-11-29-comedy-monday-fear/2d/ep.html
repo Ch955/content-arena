@@ -1,0 +1,136 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Office Politics Ep 5 "సోమవారం భయం!" (the owner's own script), built on Ep 2's page. 2D animated, FLAT skin for the whole
+     reel (series look). Sets (world.js): NEW Ramesh's small rented flat at night (couch, a generic TV with an abstract glow, wall
+     clock, window with city lights; no brand), then the same office as Ep 0-2. The manager's message is shown on a generic phone
+     screen (HTML, never mirrored). Cast: office_cast.js (Ep 2's, looks unchanged; Ramesh's home look = colour/outfit override). -->
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton-Regular.ttf)}
+@font-face{font-family:Rama;src:url(fonts/Ramabhadra-Regular.ttf)}
+@font-face{font-family:NotoTe;src:url(fonts/NotoSansTelugu.ttf)}
+@font-face{font-family:InterB;src:url(fonts/Inter.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#EAF3F8}
+svg{display:block}
+#s,#nar,#fx{position:absolute;left:0;top:0}
+#fx{z-index:4}
+.sub{position:absolute;left:30px;right:30px;bottom:170px;padding:16px 30px 20px;text-align:center;font-family:Rama,NotoTe;font-size:54px;line-height:1.35;color:#fff;
+  text-shadow:0 4px 0 #000,0 0 14px rgba(0,0,0,.9);opacity:0;border-radius:40px;background:rgba(16,20,30,.74);z-index:8;text-wrap:balance}
+.who{display:inline-block;font-family:Anton;font-size:32px;letter-spacing:2px;padding:3px 16px;border-radius:10px;margin-bottom:8px;text-shadow:none;color:#10141E}
+.top{position:absolute;top:64px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;z-index:7}
+.brand{font-family:Anton;font-size:38px;letter-spacing:3px;color:#fff;text-shadow:0 3px 0 #000;display:flex;gap:12px;align-items:center;background:rgba(16,20,30,.82);padding:4px 18px 4px 6px;border-radius:30px}
+.brand i{width:48px;height:48px;border-radius:50%;background:#F5B347;color:#10141E;display:grid;place-items:center;font-style:normal;font-size:26px;text-shadow:none;border:3px solid #10141E}
+.tag{font-family:Anton;font-size:30px;letter-spacing:2px;background:#E8553D;color:#fff;padding:6px 16px;border-radius:8px;border:4px solid #10141E}
+.pill{display:inline-block;color:#10141E;background:#FFFDF5;border:6px solid #10141E;border-radius:20px;box-shadow:0 9px 0 #10141E}
+#dim{position:absolute;inset:0;opacity:0;z-index:1;pointer-events:none}
+.te{font-family:Rama,NotoTe;letter-spacing:0;font-weight:normal}
+/* text hook (frame 1) + series title (a beat later) */
+#hook{position:absolute;top:150px;left:24px;right:24px;text-align:center;z-index:6}
+#hook .pill{font-family:Anton;font-size:84px;letter-spacing:2px;line-height:1.08;padding:6px 30px 10px;color:#D32F2F}
+#title{position:absolute;top:400px;left:40px;right:40px;text-align:center;opacity:0;z-index:6}
+#title span{display:inline-block;font-family:Rama,NotoTe;font-size:64px;letter-spacing:0;color:#fff;background:#2D6CDF;border:6px solid #10141E;border-radius:18px;padding:0 26px 4px;box-shadow:0 8px 0 #10141E}
+/* MONDAY card (slams big, then a small label under the top bar) */
+.gcard{position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;z-index:6}
+.gcard .bd{display:inline-block;background:#10141E;border:8px solid #FFE066;border-radius:26px;padding:8px 40px 16px;box-shadow:0 12px 0 rgba(0,0,0,.45)}
+.gcard .k{display:block;font-family:Anton;font-size:46px;letter-spacing:6px;color:#FFE066}
+.gcard .a{display:block;font-family:Anton;font-size:104px;letter-spacing:3px;line-height:1.02;color:#fff}
+/* chips */
+.chip{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;font-family:InterB,Rama,NotoTe;font-weight:900;font-size:50px;color:#10141E;background:#FFF59D;border:6px solid #10141E;border-radius:20px;padding:4px 24px 8px;box-shadow:0 8px 0 #10141E;z-index:5}
+#cSun{background:#B2EBF2} #c3am{background:#FFCDD2}
+#emo{position:absolute;left:0;top:0;opacity:0;font-size:150px;z-index:6;filter:drop-shadow(0 8px 0 rgba(0,0,0,.35))}
+/* the manager's message on a generic phone (no brand) */
+#phone{position:absolute;left:0;top:0;width:620px;opacity:0;z-index:6;transform-origin:50% 50%}
+#phone .fr{background:#1E222B;border-radius:64px;padding:22px;box-shadow:0 16px 0 rgba(0,0,0,.45),0 0 0 6px #10141E}
+#phone .scr{background:#EEF2F7;border-radius:46px;overflow:hidden;min-height:620px}
+#phone .bar{display:flex;justify-content:space-between;font-family:InterB;font-weight:800;font-size:26px;color:#10141E;padding:14px 34px 4px}
+#phone .hd{display:flex;align-items:center;gap:18px;background:#2D6CDF;color:#fff;padding:16px 26px;font-family:InterB;font-weight:800;font-size:38px}
+#phone .hd .av{width:70px;height:70px;border-radius:50%;background:#7B1E2B;border:4px solid #fff;display:grid;place-items:center;font-family:Anton;font-weight:normal;font-size:36px}
+#phone .hd small{display:block;font-size:24px;font-weight:600;opacity:.85}
+#phone .body{padding:34px 26px 40px}
+#phone .day{text-align:center;font-family:InterB;font-weight:700;font-size:24px;color:#6A7184;margin-bottom:22px}
+#phone .bb{position:relative;display:inline-block;max-width:520px;background:#fff;border:4px solid #10141E;border-radius:10px 34px 34px 34px;padding:18px 26px 14px;font-family:InterB;font-weight:700;font-size:40px;line-height:1.28;color:#10141E;box-shadow:0 6px 0 rgba(16,20,30,.25)}
+#phone .bb .tm{display:block;text-align:right;font-size:22px;color:#6A7184;margin-top:6px}
+#phone .dots{display:inline-block;background:#fff;border:4px solid #10141E;border-radius:10px 34px 34px 34px;padding:10px 26px;font-family:Anton;font-size:50px;letter-spacing:6px;color:#6A7184}
+#phone .bb b{color:#C62828}
+/* soft focus for the fake family drama */
+#soft{position:absolute;inset:0;opacity:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(255,240,245,0) 35%,rgba(255,182,213,.55) 75%,rgba(255,160,200,.8) 100%)}
+/* the FREEZE label */
+#frz{position:absolute;top:1400px;left:56px;opacity:0;z-index:6;font-family:Anton;font-size:40px;letter-spacing:3px;color:#fff;background:#10141E;border:5px solid #fff;border-radius:12px;padding:0 16px}
+/* the ending card (owner's words) */
+#ecard{position:absolute;inset:0;opacity:0;z-index:7;background:rgba(16,20,30,.93)}
+#ecard .box{position:absolute;left:50px;right:50px;top:560px;text-align:center}
+#ecard .l1{display:inline-block;font-family:Rama,NotoTe;font-size:78px;line-height:1.3;color:#10141E;background:#FFE066;border:7px solid #10141E;border-radius:26px;padding:6px 34px 16px;box-shadow:0 10px 0 #000;margin-bottom:50px}
+#ecard .l2{display:block;font-family:Rama,NotoTe;font-size:74px;line-height:1.36;color:#fff;text-shadow:0 5px 0 #000}
+#ecard .l2 em{font-style:normal;color:#FF8A80}
+/* follow */
+#fol{position:absolute;top:1250px;left:520px;width:540px;white-space:nowrap;text-align:center;opacity:0;z-index:5}
+.btn{display:inline-block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:10px 46px;border-radius:22px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E}
+#bF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.btn.done{background:#6D6875 !important}
+.hand{position:absolute;left:0;top:0;font-size:130px;opacity:0;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45));z-index:9}
+.ring{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:8px solid #fff;opacity:0;z-index:9}
+/* share: tag your manager */
+#share{position:absolute;inset:0;opacity:0;z-index:6}
+#share .dim2{position:absolute;inset:0;background:rgba(16,20,30,.78)}
+#sq{position:absolute;top:240px;left:30px;right:30px;text-align:center}
+#sq span{display:inline-block;font-family:Rama,NotoTe;font-size:60px;line-height:1.25;color:#10141E;background:#F5B347;border:7px solid #10141E;border-radius:24px;padding:4px 34px 12px;box-shadow:0 10px 0 #10141E}
+#sq b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+#cbox{position:absolute;left:90px;right:90px;top:540px;background:#fff;border:6px solid #10141E;border-radius:30px;box-shadow:0 10px 0 #10141E;padding:20px 26px}
+#cbox .lbl{font-family:InterB;font-weight:700;font-size:24px;color:#6A7184}
+#cbox .in{font-family:InterB,Rama,NotoTe;font-weight:800;font-size:42px;color:#10141E;margin-top:6px;min-height:56px}
+#cbox .in em{font-style:normal;color:#1E6FD9;background:#E3EEFF;border-radius:10px;padding:0 8px}
+.ct{position:absolute;left:150px;right:150px;display:flex;align-items:center;gap:20px;font-family:InterB;font-weight:800;font-size:42px;color:#10141E;background:#fff;border:5px solid #10141E;border-radius:26px;padding:14px 24px;box-shadow:0 7px 0 #10141E;opacity:0}
+.ct .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:32px;color:#fff;flex:none}
+#ct1{top:740px} #ct2{top:870px} #ct3{top:1000px}
+#ct1 .av{background:#7B1E2B} #ct2 .av{background:#00ACC1} #ct3 .av{background:#43A047}
+.ct .ok{margin-left:auto;font-size:34px;color:#2E7D32;opacity:0}
+/* end card */
+#endc{position:absolute;inset:0;opacity:0;background:rgba(16,20,30,.9);z-index:7}
+#endc .box{position:absolute;top:470px;left:90px;right:90px;text-align:center}
+#endc .ser{display:inline-block;font-family:Anton;font-size:50px;letter-spacing:3px;color:#10141E;background:#FFE066;border:6px solid #10141E;border-radius:20px;padding:4px 28px 8px;margin-bottom:56px;box-shadow:0 8px 0 #000}
+#endc .eb{display:block;font-family:Anton;font-size:64px;letter-spacing:3px;color:#fff;padding:12px 0;border-radius:24px;border:6px solid #10141E;box-shadow:0 9px 0 #10141E;margin-bottom:40px}
+#eF{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)} #eS{background:#FF0000}
+#endc .lg{font-family:Anton;font-size:44px;color:#F5B347;letter-spacing:4px;margin-bottom:36px}
+#endc .nx{font-family:Rama,NotoTe;font-size:60px;color:#fff;margin-top:14px}
+#endc .nx b{font-family:Anton;font-weight:normal;letter-spacing:2px}
+.flash{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="dim"></div>
+<svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<svg id="nar" width="1080" height="1920" viewBox="0 0 1080 1920" style="z-index:7"></svg>
+<div class="top"><div class="brand"><i>R</i>REEL RASAM</div><div class="tag">OFFICE POLITICS · EP 5</div></div>
+<div id="hook"><span class="pill">SUNDAY 9 PM…<br>MANAGER MESSAGE 😱</span></div>
+<div id="title"><span class="te">సోమవారం భయం! 😱</span></div>
+<div class="gcard" id="mon"><div class="bd"><span class="k">NEXT DAY</span><span class="a">MONDAY 9:00 AM</span></div></div>
+<div class="chip" id="cSun">SUNDAY 😌</div>
+<div class="chip" id="c3am">3:00 AM 😵</div>
+<div id="emo">😳</div>
+<div id="soft"></div>
+<div id="phone"><div class="fr"><div class="scr">
+  <div class="bar"><span id="pClock">9:00 PM</span><span>▮▮▮ ◔</span></div>
+  <div class="hd"><div class="av">M</div><div>MANAGER 👔<small id="pSt">online</small></div></div>
+  <div class="body"><div class="day">SUNDAY</div><div class="dots" id="pDots">• • •</div>
+    <div class="bb" id="pMsg">Hi Team,<br>Just a small task.<br>Please complete before <b>Monday 9 AM.</b><span class="tm">9:00 PM</span></div></div>
+</div></div></div>
+<div id="frz">❚❚ FREEZE</div>
+<div id="fol"><div class="btn" id="bF">+ FOLLOW</div></div>
+<div class="ring" id="ring"></div>
+<div id="ecard"><div class="box"><span class="l1">ఉద్యోగికి వీకెండ్ ఉండదు...</span><span class="l2">మేనేజర్‌కి మాత్రం ఎంప్లాయ్<br><em>ఎప్పుడూ ఆన్‌లైన్‌లో ఉండాలి!</em> 😂</span></div></div>
+<div id="share"><div class="dim2"></div>
+  <div id="sq"><span><b>SUNDAY</b> కూడా పని చేసే<br><b>FRIEND</b> ని <b>TAG</b> చేయండి! 😅</span></div>
+  <div id="cbox"><div class="lbl">Add a comment...</div><div class="in" id="cin"></div></div>
+  <div class="ct" id="ct1"><div class="av">O</div>Office Bestie 💼<span class="ok" id="ok1">✓ tagged</span></div>
+  <div class="ct" id="ct2"><div class="av">W</div>Weekend Warrior ☕</div>
+  <div class="ct" id="ct3"><div class="av">T</div>Team Buddy 🎧</div>
+</div>
+<div id="endc"><div class="box"><span class="ser">SERIES: OFFICE POLITICS · EP 5</span><div class="lg">REEL RASAM · OFFICE COMEDY</div><span class="eb" id="eF">FOLLOW @_REELRASAM</span><span class="eb" id="eS">▶ SUBSCRIBE @REEL_RASAM</span></div></div>
+<div class="hand" id="tapHand">👆</div>
+<div class="hand" id="eHand">👆</div>
+<div class="flash" id="flash"></div>
+<div class="sub" id="sub"></div>
+<script>const SKIN = "flat";  // art style: flat for the whole reel (series look); freezes are colour/saturation effects, not a new skin</script>
+<script src="skins.js"></script>
+<script src="office_cast.js"></script>
+<script src="world.js"></script>
+</body></html>

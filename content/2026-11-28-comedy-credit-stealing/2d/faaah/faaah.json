@@ -1,0 +1,16 @@
+{
+ "file": "/home/user/content-arena/tools/anim2d/sfx/faaah.wav",
+ "onset_s": 0.4,
+ "dur_s": 1.6,
+ "takes": [
+  "faaah/take_1_0.wav",
+  "faaah/take_0_0.wav",
+  "faaah/take_2_0.wav"
+ ],
+ "voices": [
+  "Rasalgethi",
+  "Alnilam",
+  "Gacrux"
+ ],
+ "build": "offsets 0/25/50 ms, pitch -3/0/+2 st, hall 1.2 s 20% wet, reverse cymbal 0.4 s, sub 70->40 Hz 0.6 s, phone body"
+}

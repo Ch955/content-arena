@@ -1,0 +1,93 @@
+{
+ "L0": {
+  "expected": "గైస్! ఈ ప్రాజెక్ట్ సక్సెస్ అవ్వడానికి… మన టీమ్ అందరి కృషి ఉంది.",
+  "heard": "Guys, ఈ ప్రాజెక్ట్ సక్సెస్ అవ్వడానికి మన టీం అందరి కృషి ఉంది.",
+  "issue": "none",
+  "sim": 0.89,
+  "by": "gemini-3-flash-preview"
+ },
+ "L1": {
+  "expected": "సార్, ముఖ్యంగా… ఆ కోడ్ మొత్తం నేనే రాశాను సార్.",
+  "heard": "సర్, ముఖ్యంగా ఆ కోడ్ మొత్తం నేనే రాశాను సార్.",
+  "issue": "none",
+  "sim": 0.99,
+  "by": "gemini-3-flash-preview"
+ },
+ "L2": {
+  "expected": "అవును రమేష్… టీమ్‌వర్క్ అంటే అదే!",
+  "heard": "అవును రమేష్, టీం వర్క్ అంటే అదే.",
+  "issue": "none",
+  "sim": 0.94,
+  "by": "gemini-3-flash-preview"
+ },
+ "L3": {
+  "expected": "సార్, క్లయింట్ కాల్స్ కూడా… నేనే అటెండ్ అయ్యాను.",
+  "heard": "సర్, క్లైంట్ కాల్స్ కూడా నేనే అటెండ్ అయ్యాను.",
+  "issue": "none",
+  "sim": 0.95,
+  "by": "gemini-3-flash-preview"
+ },
+ "L4": {
+  "expected": "చాలా మంచి విషయం. కానీ… ప్రాజెక్ట్ విజన్ నాది!",
+  "heard": "చాలా మంచి విషయం, కానీ ప్రాజెక్ట్ విజన్ నాది.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L5": {
+  "expected": "సార్! Finally… I delivered the project successfully!",
+  "heard": "సర్, ఫైనల్లీ I delivered the project successfully.",
+  "issue": "none",
+  "sim": 0.82,
+  "by": "gemini-3-flash-preview"
+ },
+ "L6": {
+  "expected": "Excellent! Well done!",
+  "heard": "Excellent, well done.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L7": {
+  "expected": "సార్… ఒక్క చిన్న డౌట్.",
+  "heard": "సర్ ఒక చిన్న డౌట్.",
+  "issue": "none",
+  "sim": 0.9,
+  "by": "gemini-3-flash-preview"
+ },
+ "L8": {
+  "expected": "ఏంటి రమేష్?",
+  "heard": "ఏంటి రమేష్?",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L9": {
+  "expected": "ప్రాజెక్ట్ నేను చేశాను… క్రెడిట్ మీరు తీసుకున్నారు… మరి ఇన్క్రిమెంట్… ఎవరికొస్తుంది సార్?",
+  "heard": "ప్రాజెక్ట్ నేను చేశాను, క్రెడిట్ మీరు తీసుకున్నారు. మరి ఇంక్రిమెంట్ ఎవరికి వస్తుంది సర్?",
+  "issue": "none",
+  "sim": 0.95,
+  "by": "gemini-3-flash-preview"
+ },
+ "L10": {
+  "expected": "కంపెనీకి… వస్తుంది రమేష్!",
+  "heard": "కంపెనీ కి వస్తుంది రమేష్.",
+  "issue": "none",
+  "sim": 1.0,
+  "by": "gemini-3-flash-preview"
+ },
+ "L11": {
+  "expected": "మీ credit ఎవరు కొట్టేశారు? Comment లో చెప్పండి!",
+  "heard": "మీ క్రెడిట్ ఎవరు కొట్టేశారో కామెంట్లో చెప్పండి.",
+  "issue": "Call to action/instruction",
+  "sim": 0.62,
+  "by": "gemini-3-flash-preview"
+ },
+ "vo/ramesh_react_raw.wav": {
+  "heard": "A short sequence of theatrical sobbing that transitions immediately into laughter.",
+  "kind": "LAUGH-CRY",
+  "words": "none",
+  "clean": true,
+  "note": "A single voice making non-verbal sounds; a classic comic transition from a cry to a laugh."
+ }
+}
