@@ -1,0 +1,359 @@
+{
+ "lines": [
+  {
+   "who": "manager",
+   "text": "గైస్! ఈ ప్రాజెక్ట్ సక్సెస్ అవ్వడానికి మన టీమ్ అందరి కృషి ఉంది.",
+   "say": "[proudly] గైస్! ఈ ప్రాజెక్ట్ సక్సెస్ అవ్వడానికి… [warmly] మన టీమ్ అందరి కృషి ఉంది.",
+   "act": "a politician's speech at the meeting table, arms wide, fake-humble; stress on అందరి",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "villain-entry",
+     "sound": "slow-mo footsteps + low villain brass swell as he enters the meeting room",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": -0.6,
+     "note": "starts at 0.0 s under the text hook"
+    },
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM: sub boom + cymbal tail; punch-in",
+     "on": "గైస్!",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "clap",
+     "sound": "three limp, flat claps from the team",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 5.0
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, ముఖ్యంగా ఆ కోడ్ మొత్తం నేనే రాశాను సార్.",
+   "say": "[politely] సార్, ముఖ్యంగా… ఆ కోడ్ మొత్తం [proudly] నేనే రాశాను సార్.",
+   "act": "a polite raised hand, quietly proud; stress on నేనే",
+   "beat": "claim1",
+   "sfx": [
+    {
+     "cue": "keyboard",
+     "sound": "fast keyboard clatter (2 AM coding flashback chip)",
+     "on": "కోడ్",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.6
+  },
+  {
+   "who": "manager",
+   "text": "అవును రమేష్... టీమ్‌వర్క్ అంటే అదే!",
+   "say": "[smugly] అవును రమేష్… [chuckles] టీమ్‌వర్క్ అంటే అదే!",
+   "act": "patting Ramesh's head like a kid's, folding his credit into 'team'; stress on టీమ్‌వర్క్",
+   "beat": "absorb1",
+   "sfx": [
+    {
+     "cue": "shloop",
+     "sound": "vacuum 'SHLOOP': Ramesh's name chip gets sucked into a 'TEAM' bubble",
+     "on": "టీమ్‌వర్క్",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, క్లయింట్ కాల్స్ కూడా నేనే అటెండ్ అయ్యాను.",
+   "say": "[deadpan] సార్, క్లయింట్ కాల్స్ కూడా… [frustrated] నేనే అటెండ్ అయ్యాను.",
+   "act": "pushing harder, a little louder; stress on నేనే",
+   "beat": "claim2",
+   "sfx": [
+    {
+     "cue": "phone-rings",
+     "sound": "three overlapping phone rings (night-calls flashback chip)",
+     "on": "క్లయింట్ కాల్స్",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "manager",
+   "text": "చాలా మంచి విషయం. కానీ ప్రాజెక్ట్ విజన్ నాది!",
+   "say": "[calmly] చాలా మంచి విషయం. [dramatic pause] కానీ… [proudly] ప్రాజెక్ట్ విజన్ నాది!",
+   "act": "calm, then a grand claim, tapping his temple; stress on నాది",
+   "beat": "vision",
+   "sfx": [
+    {
+     "cue": "heroic-brass",
+     "sound": "mock-heroic brass 'ta-da-DAAA' + lightbulb 'ding'",
+     "on": "విజన్ నాది!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 1.0
+    },
+    {
+     "cue": "crowd-ooooh",
+     "sound": "team 'ooooh?!' (in-house crowd)",
+     "on": "end of line",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": 0.2
+    },
+    {
+     "cue": "phone-dial",
+     "sound": "whoosh to his cabin + speed-dial beeps",
+     "on": "after the ooooh",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.6,
+     "offset_s": 0.9
+    },
+    {
+     "cue": "follow-pop",
+     "sound": "FOLLOW button pops in (silent follow tap, corner)",
+     "on": "after the ooooh",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.2,
+     "offset_s": 0.2,
+     "note": "mid-reel follow beat, visual + sound only (as Ep 2)"
+    },
+    {
+     "cue": "follow-tap",
+     "sound": "finger tap + 'ding'",
+     "on": "after the ooooh",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4,
+     "offset_s": 0.7
+    }
+   ],
+   "est_s": 4.2
+  },
+  {
+   "who": "manager",
+   "text": "సార్! Finally, I delivered the project successfully!",
+   "say": "[excited] సార్! [proudly] Finally… I delivered the project successfully!",
+   "act": "on the phone to his boss, voice suddenly sugary and loud, chest out; stress on I",
+   "beat": "steal",
+   "sfx": [
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — the series FAAAH (tools/anim2d/sfx/faaah.wav); music cut",
+     "on": "successfully!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.2,
+     "note": "FAAAH #1 (the only one): Ramesh, beside him, jaw drop + crash zoom"
+    }
+   ],
+   "est_s": 4.8
+  },
+  {
+   "who": "boss",
+   "text": "Excellent! Well done!",
+   "say": "[impressed] Excellent! [warmly] Well done!",
+   "act": "a big boss on speakerphone: booming, brief, pleased; phone-filtered",
+   "beat": "boss",
+   "sfx": [
+    {
+     "cue": "phone-eq",
+     "sound": "telephone band-pass 300–3400 Hz on the boss voice",
+     "on": "whole line",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.8,
+     "note": "processing, not a sound"
+    },
+    {
+     "cue": "ka-ching",
+     "sound": "cash-register 'KA-CHING' (the manager's bonus glows)",
+     "on": "Well done!",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.5
+    }
+   ],
+   "est_s": 1.8
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, ఒక్క చిన్న డౌట్.",
+   "say": "[innocently] సార్… ఒక్క చిన్న డౌట్.",
+   "act": "too-sweet, hand up like a schoolboy; stress on చిన్న",
+   "beat": "doubt",
+   "sfx": [
+    {
+     "cue": "bloop",
+     "sound": "tiny cartoon 'bloop'",
+     "on": "డౌట్.",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.2
+    }
+   ],
+   "est_s": 2.0
+  },
+  {
+   "who": "manager",
+   "text": "ఏంటి రమేష్?",
+   "say": "[annoyed] ఏంటి రమేష్?",
+   "act": "covering the mouthpiece, irritated, quick",
+   "beat": "doubt-ack",
+   "sfx": [],
+   "est_s": 1.2
+  },
+  {
+   "who": "ramesh",
+   "text": "ప్రాజెక్ట్ నేను చేశాను... క్రెడిట్ మీరు తీసుకున్నారు... మరి ఇన్క్రిమెంట్ ఎవరికొస్తుంది సార్?",
+   "say": "[deadpan] ప్రాజెక్ట్ నేను చేశాను… క్రెడిట్ మీరు తీసుకున్నారు… [dramatic pause] మరి ఇన్క్రిమెంట్… ఎవరికొస్తుంది సార్?",
+   "act": "calm, counting on his fingers, one point at a time; stress on ఇన్క్రిమెంట్",
+   "beat": "question",
+   "sfx": [
+    {
+     "cue": "count-dings",
+     "sound": "a 'ding' per clause (finger count 1, 2)",
+     "on": "చేశాను… / తీసుకున్నారు…",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "drumroll",
+     "sound": "short drumroll",
+     "on": "మరి ఇన్క్రిమెంట్… ఎవరికొస్తుంది సార్?",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.4
+    }
+   ],
+   "est_s": 5.6
+  },
+  {
+   "who": "manager",
+   "text": "కంపెనీకి వస్తుంది రమేష్!",
+   "say": "[proudly] కంపెనీకి… వస్తుంది రమేష్!",
+   "act": "totally straight-faced, proud, as if it's great news; stress on కంపెనీకి",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "freeze",
+     "sound": "record scratch + FREEZE FRAME (camera-flash white pop)",
+     "on": "రమేష్!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.4,
+     "offset_s": 0.1
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out for 0.3 s: the start of the 1.5 s no-dialogue punch pause",
+     "on": "freeze",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.3,
+     "offset_s": 0.5
+    },
+    {
+     "cue": "funny-bg",
+     "sound": "sad trombone 'wah-wah-waaah' under Ramesh's laugh-cry",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2,
+     "offset_s": 0.8,
+     "note": "reaction shot = the owner's 😭😂: Ramesh laugh-cries, tears squirting sideways while he laughs; voice it as a NON-VERBAL Sadachbia take ('a wailing sob that collapses into helpless laughter, no words', ~1.2 s), not a dialogue line"
+    },
+    {
+     "cue": "comedy-sting",
+     "sound": "comedy sting: bouncy tuba 'bom-bom-ba-BOM' (series signature, Ep 1-2)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.0
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "big laugh track (in-house layered Gemini crowd)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.1
+    },
+    {
+     "cue": "card-slam",
+     "sound": "ending-text card slams in: whoosh + a stamp per part (x3)",
+     "on": "ending card",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2,
+     "offset_s": 2.0,
+     "note": "hold the card ~3 s; the laugh tails under it"
+    }
+   ],
+   "est_s": 6.4
+  },
+  {
+   "who": "gopi",
+   "text": "మీ credit ఎవరు కొట్టేశారు? Comment లో చెప్పండి!",
+   "say": "[laughs] మీ credit ఎవరు కొట్టేశారు? [whispers] Comment లో చెప్పండి!",
+   "act": "laughing with the viewer, then a hushed, cheeky whisper as if the manager might hear",
+   "beat": "comment-close",
+   "sfx": [
+    {
+     "cue": "bubble-pops",
+     "sound": "three comment-bubble pops",
+     "on": "Comment",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card sting + sparkle",
+     "on": "end card",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.2
+  }
+ ],
+ "ending_text": "పని మనది... పేరు మేనేజర్‌ది... లాభం కంపెనీది!",
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (series look). Settings: the same office's meeting room (whiteboard with a plain rising arrow, no logos) and the manager's glass cabin. Silent continuity eggs: 'SECONDARY ⭐' sticky on Ramesh's laptop lid; the Ep 1 garland on the cabin door. Freeze frames = still + white flash pop + slight desaturation.",
+  "CAST (office_cast.js from content/2026-11-23-comedy-manager-mind-game/2d/, unchanged): MANAGER = makeManager; RAMESH = makeRamesh; SURESH = makeSuresh (silent here: nods and claps hardest); extras = makeColleague(0..2). NEW one-off BOSS: voice only, never drawn; on screen just the manager's phone on speaker with a caller card 'BOSS 📞' and a grey silhouette avatar. Priya not in this episode. Gopi: corner cut-out for his line only.",
+  "Intro 0.0–0.6 s (no voice): text hook 'Project నాది… Credit ఎవరిది? 🤨'; slow-mo villain walk into the meeting room.",
+  "L1: arms wide at the table; DHOOM on 'గైస్!'; limp claps (Suresh claps hardest, bobble nod).",
+  "L2: Ramesh raises his hand; flashback chip: Ramesh coding at 2 AM, clock '2:00 AM'.",
+  "L3: the manager pats his head; Ramesh's name chip 'RAMESH' gets sucked into a big 'TEAM' bubble.",
+  "L4: flashback chip: Ramesh juggling three ringing phones at night.",
+  "L5: the manager taps his temple, a cheesy lightbulb 'VISION 💡' over his head; team 'ooooh?!'. Whoosh to the cabin; FOLLOW button pops in and is tapped (silent follow beat).",
+  "L6: the manager on the phone, chest out; Ramesh standing right beside him; on 'successfully!' crash-zoom on Ramesh's jaw drop, FAAAH #1.",
+  "L7: the phone on speaker, caller card 'BOSS 📞' glows; 'KA-CHING' and a gold 'BONUS ✨' shimmer round the manager.",
+  "L8–L9: Ramesh's schoolboy hand; the manager covers the mouthpiece, annoyed.",
+  "L10: Ramesh counts on his fingers: chips '1. PROJECT: రమేష్' → '2. CREDIT: మేనేజర్' → '3. INCREMENT: ???'.",
+  "L11 punch: the manager, proud and straight-faced; the '???' chip flips to 'COMPANY 🏢'; FREEZE on 'రమేష్!'. PAUSE 1.5 s: reaction shot = Ramesh laugh-crying (😭😂: tears squirting sideways while he laughs), sad trombone, tuba sting, laugh.",
+  "ENDING CARD (owner's text, verbatim, ~3 s), three beats with a stamp each: 'పని మనది...' → 'పేరు మేనేజర్‌ది...' → 'లాభం కంపెనీది!'.",
+  "L12 Gopi: bubbles 'మీ credit ఎవరు కొట్టేశారు? 👇' (no real usernames); end card 'Series: Office Politics · Ep 4' + FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM."
+ ]
+}

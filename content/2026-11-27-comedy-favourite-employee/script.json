@@ -1,0 +1,382 @@
+{
+ "lines": [
+  {
+   "who": "manager",
+   "text": "సురేష్! నువ్వు ఈ టీమ్‌కి చాలా ఇంపార్టెంట్ రా. నీ మీద నాకు చాలా నమ్మకం ఉంది.",
+   "say": "[warmly] సురేష్! నువ్వు ఈ టీమ్‌కి… చాలా ఇంపార్టెంట్ రా. [proudly] నీ మీద నాకు… చాలా నమ్మకం ఉంది.",
+   "act": "syrupy, fatherly praise for his favourite, an arm round his shoulder; slow and sweet; stress on నమ్మకం",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "harp-gliss",
+     "sound": "harp glissando + a soft romantic violin swell (pink 'favourite' glow, original synth)",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": -0.6,
+     "note": "starts at 0.0 s under the text hook"
+    },
+    {
+     "cue": "heart-pops",
+     "sound": "three little heart 'pops' round Suresh",
+     "on": "నమ్మకం",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    },
+    {
+     "cue": "nod-boings",
+     "sound": "Suresh's bobble-nod 'boing-boing'",
+     "on": "end of line",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 5.0
+  },
+  {
+   "who": "suresh",
+   "text": "థాంక్యూ సార్!",
+   "say": "[excited] థాంక్యూ సార్!",
+   "act": "the eager yes-man, gushing, a deep grateful nod",
+   "beat": "favourite",
+   "sfx": [
+    {
+     "cue": "sparkle",
+     "sound": "teacher's-pet sparkle 'ting'",
+     "on": "సార్!",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.3
+    }
+   ],
+   "est_s": 1.4
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, నా ప్రమోషన్ గురించి మాట్లాడాలి.",
+   "say": "[hopefully] సార్… నా ప్రమోషన్ గురించి… మాట్లాడాలి.",
+   "act": "walks in clutching a thick appraisal file, hopeful but firm; stress on ప్రమోషన్",
+   "beat": "ask",
+   "sfx": [
+    {
+     "cue": "door-swing",
+     "sound": "glass cabin door swings open + squeak",
+     "on": "సార్…",
+     "at": "before",
+     "level": "mid",
+     "dur_s": 0.4,
+     "offset_s": -0.4
+    },
+    {
+     "cue": "dhoom",
+     "sound": "DHOOM: sub boom + cymbal tail; camera punch-in on Ramesh",
+     "on": "ప్రమోషన్",
+     "at": "on",
+     "level": "max",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "manager",
+   "text": "ఇప్పుడు టైమ్ లేదు రమేష్. తర్వాత చూద్దాం.",
+   "say": "[dismissively] ఇప్పుడు టైమ్ లేదు రమేష్. [sighs] తర్వాత చూద్దాం.",
+   "act": "without looking up, waving him off like a fly; stress on తర్వాత",
+   "beat": "brush-off",
+   "sfx": [
+    {
+     "cue": "swat-whoosh",
+     "sound": "hand-swat whoosh",
+     "on": "లేదు",
+     "at": "on",
+     "level": "low",
+     "dur_s": 0.3
+    },
+    {
+     "cue": "sad-bloop",
+     "sound": "sad descending 'bloop'",
+     "on": "చూద్దాం.",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "ramesh",
+   "text": "సార్, గత సంవత్సరం కూడా తర్వాత అన్నారు.",
+   "say": "[deadpan] సార్… గత సంవత్సరం కూడా… [sarcastically] తర్వాత అన్నారు.",
+   "act": "dry and wounded, flat; stress on కూడా",
+   "beat": "callback",
+   "sfx": [
+    {
+     "cue": "calendar-flip",
+     "sound": "calendar pages flip (flashback chip)",
+     "on": "గత సంవత్సరం",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "stamp",
+     "sound": "STAMP ×2 'తర్వాత' on 2024 and 2025",
+     "on": "అన్నారు.",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.6
+    }
+   ],
+   "est_s": 3.2
+  },
+  {
+   "who": "manager",
+   "text": "నీకు ఓపిక ఉండాలి రమేష్!",
+   "say": "[smugly] నీకు… ఓపిక ఉండాలి రమేష్!",
+   "act": "a guru's sermon: finger raised, slow, self-satisfied; stress on ఓపిక",
+   "beat": "sermon",
+   "sfx": [
+    {
+     "cue": "wise-chime",
+     "sound": "mock-wise chime 'ting-ting' (generic, non-religious)",
+     "on": "ఓపిక",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.5
+    },
+    {
+     "cue": "door-whoosh",
+     "sound": "cabin door shuts on Ramesh's face: thud + whoosh to the corridor",
+     "on": "end of line",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.5,
+     "offset_s": 0.2
+    },
+    {
+     "cue": "follow-pop",
+     "sound": "FOLLOW button pops in (silent follow tap, corner)",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.2,
+     "offset_s": 0.2,
+     "note": "mid-reel follow beat, visual + sound only (as Ep 2)"
+    },
+    {
+     "cue": "follow-tap",
+     "sound": "finger tap + 'ding'",
+     "on": "end of line",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4,
+     "offset_s": 0.7
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "ramesh",
+   "text": "ఏంట్రా సురేష్! నీకు ప్రమోషన్ వచ్చిందా?",
+   "say": "[curious] ఏంట్రా సురేష్! [whispers] నీకు ప్రమోషన్ వచ్చిందా?",
+   "act": "pulls Suresh aside at the water cooler, a jealous-curious whisper; stress on ప్రమోషన్",
+   "beat": "twist-setup",
+   "sfx": [
+    {
+     "cue": "tension-tick",
+     "sound": "tension ticks",
+     "on": "whole line",
+     "at": "under",
+     "level": "low",
+     "dur_s": 2.4
+    }
+   ],
+   "est_s": 2.8
+  },
+  {
+   "who": "suresh",
+   "text": "లేదురా... నాకు ఇంకో పని ఇచ్చాడు.",
+   "say": "[sighs] లేదురా… [proudly] నాకు ఇంకో పని ఇచ్చాడు.",
+   "act": "a tired sigh that flips into odd pride; stress on పని",
+   "beat": "twist-tease",
+   "sfx": [
+    {
+     "cue": "drumroll",
+     "sound": "short snare drumroll",
+     "on": "ఇంకో పని",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.2
+    }
+   ],
+   "est_s": 2.6
+  },
+  {
+   "who": "ramesh",
+   "text": "అదేంట్రా?",
+   "say": "[curious] అదేంట్రా?",
+   "act": "leaning in, eyebrows up, one quick word",
+   "beat": "tease",
+   "sfx": [
+    {
+     "cue": "dun",
+     "sound": "suspense 'DUN!' stab",
+     "on": "అదేంట్రా?",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 1.0
+  },
+  {
+   "who": "suresh",
+   "text": "మేనేజర్ కొడుకు పెళ్లికి వెడ్డింగ్ ప్లానింగ్!",
+   "say": "[proudly] మేనేజర్ కొడుకు పెళ్లికి… [excited] వెడ్డింగ్ ప్లానింగ్!",
+   "act": "beaming as if it were a promotion, unrolling a long checklist; stress on వెడ్డింగ్",
+   "beat": "twist",
+   "sfx": [
+    {
+     "cue": "scroll-unroll",
+     "sound": "paper scroll unrolls to the floor: long whoosh + flap",
+     "on": "వెడ్డింగ్ ప్లానింగ్!",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.6
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — the series FAAAH (tools/anim2d/sfx/faaah.wav); music cut",
+     "on": "after the unroll",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.3,
+     "note": "FAAAH #1 (the only one): Ramesh's jaw hits the floor"
+    },
+    {
+     "cue": "dhol",
+     "sound": "comic wedding-band toot + dhol loop (generic synth, no real song)",
+     "on": "after the FAAAH",
+     "at": "after",
+     "level": "low",
+     "dur_s": 1.0,
+     "offset_s": 1.5
+    }
+   ],
+   "est_s": 4.4
+  },
+  {
+   "who": "ramesh",
+   "text": "ఒరేయ్! నువ్వు ఎంప్లాయ్‌వా? లేక ఫ్యామిలీ మెంబర్‌వా రా?",
+   "say": "[shocked] ఒరేయ్! [dramatic pause] నువ్వు ఎంప్లాయ్‌వా? [sarcastically] లేక… ఫ్యామిలీ మెంబర్‌వా రా?",
+   "act": "stunned, then a slow, cutting question; stress on ఫ్యామిలీ",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "freeze",
+     "sound": "record scratch + FREEZE FRAME (camera-flash white pop)",
+     "on": "రా?",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.4,
+     "offset_s": 0.1
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out for 0.3 s: the start of the 1.5 s no-dialogue punch pause",
+     "on": "freeze",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.3,
+     "offset_s": 0.5
+    },
+    {
+     "cue": "funny-bg",
+     "sound": "comic wedding-band 'pee-pee DUM-DUM' toot + dhol hit (generic synth)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2,
+     "offset_s": 0.8,
+     "note": "reaction shot: Suresh blinks twice, then proudly bobble-nods 'yes' holding a plain paper wedding card"
+    },
+    {
+     "cue": "comedy-sting",
+     "sound": "comedy sting: bouncy tuba 'bom-bom-ba-BOM' (series signature, Ep 1-2)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.0
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "big laugh track (in-house layered Gemini crowd)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.1
+    },
+    {
+     "cue": "card-slam",
+     "sound": "ending-text card slams in: whoosh + a stamp",
+     "on": "ending card",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.4,
+     "offset_s": 2.0,
+     "note": "hold the card ~3 s; the laugh tails under it"
+    }
+   ],
+   "est_s": 6.2
+  },
+  {
+   "who": "gopi",
+   "text": "మీ office సురేష్ ని… comment లో tag చేయండి!",
+   "say": "[laughs] మీ office సురేష్ ని… [mischievously] comment లో tag చేయండి!",
+   "act": "laughing with the viewer, then a cheeky conspiratorial nudge",
+   "beat": "tag-close",
+   "sfx": [
+    {
+     "cue": "tag-swoosh",
+     "sound": "swoosh + pop as a contact card gets tagged",
+     "on": "tag",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card sting + sparkle",
+     "on": "end card",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.4
+  }
+ ],
+ "ending_text": "ఆఫీస్‌లో టాలెంట్ కంటే ఫేవరెటిజం ఎక్కువ! 😂",
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (the Office Politics series look). Setting: the same generic office as Ep 0–2 (open cubicles, big wall clock, the manager's glass cabin 'MANAGER', no company name, logos or brands). Silent continuity eggs: the 'SECONDARY ⭐' sticky on Ramesh's monitor; the red garland (Ep 1) still on the cabin door. Freeze frames = still + white flash pop + slight desaturation, not a skin switch.",
+  "CAST (load content/2026-11-23-comedy-manager-mind-game/2d/office_cast.js unchanged): MANAGER = makeManager (MANAGER_OPT, white mug in his LEFT hand); RAMESH = makeRamesh (RAMESH_OPT, badge RAMESH · STAFF); SURESH = makeSuresh (SURESH_OFFICE_OPT: oiled side part, too-tight lavender shirt, notepad, bobble() nod; NOT the 15 Nov TL); extras = makeColleague(0..2), silent. Priya is not in this episode. Gopi: corner cut-out for his line only.",
+  "Intro 0.0–0.6 s (no voice): text hook 'Manager కి ఫేవరెట్ ఎవరు? 👀' from frame 1; inside the cabin a pink glow + floating hearts round Suresh, the manager's arm on his shoulder.",
+  "L1: the manager pats Suresh like a son; hearts pop on 'నమ్మకం'. L2: Suresh bows deep, bobble-nod, sparkle.",
+  "L3: the door swings; Ramesh with a fat file 'APPRAISAL 2026'; DHOOM punch-in on 'ప్రమోషన్'.",
+  "L4: the manager waves him off without looking; chip 'తర్వాత చూద్దాం ⏳'.",
+  "L5: flashback chip, flat sepia: wall calendar flips 2024 → 2025, a red 'తర్వాత' stamp on each.",
+  "L6: finger raised, guru pose; the glass door shuts on Ramesh's face; whoosh to the corridor; FOLLOW button pops in the corner and is tapped (silent follow beat).",
+  "L7–L9: the water cooler; Suresh walks out; Ramesh pulls him aside; a drumroll as Suresh sighs.",
+  "L10: Suresh unrolls a checklist that rolls to the floor and down the aisle: 'కొడుకు పెళ్లి ✔ Catering ✔ Mehendi ✔ Band ✔ Return gifts ✔' (generic items, no brands); FAAAH #1 with Ramesh's jaw literally dropping; a tiny dhol toot.",
+  "L11 punch: close-up on Ramesh; FREEZE on 'రా?' (white flash). PAUSE 1.5 s: reaction shot, Suresh blinks twice, then proudly bobble-nods holding a plain paper wedding card; wedding toot + tuba sting + laugh.",
+  "ENDING CARD (owner's text, verbatim, full screen over the frozen office, ~3 s): 'ఆఫీస్‌లో టాలెంట్ కంటే ఫేవరెటిజం ఎక్కువ! 😂'.",
+  "L12 Gopi: 'మీ OFFICE సురేష్ ని TAG చేయండి! 😅' with a contact card being tagged (no real usernames); end card 'Series: Office Politics · Ep 3' + FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM."
+ ]
+}

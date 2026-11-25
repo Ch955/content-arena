@@ -1,0 +1,346 @@
+{
+ "lines": [
+  {
+   "who": "ramesh",
+   "text": "ఆదివారం రాత్రి 9 గంటలకి చిన్న టాస్కా? ఏంట్రా ఇది!",
+   "say": "[shocked] ఆదివారం రాత్రి తొమ్మిది గంటలకి… చిన్న టాస్కా? [frustrated] ఏంట్రా ఇది!",
+   "act": "bliss shattered: disbelief rising into a wail; stress on చిన్న",
+   "beat": "hook",
+   "sfx": [
+    {
+     "cue": "bliss-bed",
+     "sound": "lazy Sunday lo-fi bed + a long happy sigh 'aaah' (original synth; Sadachbia non-verbal)",
+     "on": "pre-roll (silent intro)",
+     "at": "before",
+     "level": "low",
+     "dur_s": 1.0,
+     "offset_s": -3.6,
+     "note": "0.0–1.0 s: Ramesh blissful on the couch, text hook"
+    },
+    {
+     "cue": "ping-dhoom",
+     "sound": "phone PING + DHOOM: sub boom + cymbal; popcorn freezes mid-air",
+     "on": "pre-roll (message)",
+     "at": "before",
+     "level": "max",
+     "dur_s": 1.0,
+     "offset_s": -2.6
+    },
+    {
+     "cue": "typing",
+     "sound": "message bubble types in: soft clicks",
+     "on": "pre-roll (message)",
+     "at": "before",
+     "level": "low",
+     "dur_s": 0.8,
+     "offset_s": -2.2,
+     "note": "hold the message ~2 s so it can be read"
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — the series FAAAH (tools/anim2d/sfx/faaah.wav); music cut",
+     "on": "ఇది!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 0.2,
+     "note": "FAAAH #1: the popcorn bowl explodes upward"
+    },
+    {
+     "cue": "clock-whirr",
+     "sound": "time-lapse whirr: clock 9 PM → 3 AM, coffee cups pile up",
+     "on": "after the FAAAH",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.2,
+     "offset_s": 1.4
+    },
+    {
+     "cue": "follow-pop",
+     "sound": "FOLLOW button pops in (silent follow tap, corner)",
+     "on": "after the FAAAH",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.2,
+     "offset_s": 0.2,
+     "note": "mid-reel follow beat, visual + sound only (as Ep 2)"
+    },
+    {
+     "cue": "follow-tap",
+     "sound": "finger tap + 'ding'",
+     "on": "after the FAAAH",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 0.4,
+     "offset_s": 0.7
+    }
+   ],
+   "est_s": 6.2
+  },
+  {
+   "who": "manager",
+   "text": "గుడ్ మార్నింగ్ రమేష్! టాస్క్ కంప్లీట్ చేశావా?",
+   "say": "[cheerfully] గుడ్ మార్నింగ్ రమేష్! [smugly] టాస్క్ కంప్లీట్ చేశావా?",
+   "act": "fresh and well-rested, sipping from the mug, spinning round in Ramesh's own chair; stress on కంప్లీట్",
+   "beat": "monday",
+   "sfx": [
+    {
+     "cue": "chair-spin",
+     "sound": "villain chair-spin reveal + 'dun-dunn'",
+     "on": "గుడ్ మార్నింగ్",
+     "at": "before",
+     "level": "high",
+     "dur_s": 0.6,
+     "offset_s": -0.6
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "ramesh",
+   "text": "చేశాను సార్.",
+   "say": "[exhausted] చేశాను సార్.",
+   "act": "a zombie: panda eyes, wild hair, one flat breath",
+   "beat": "zombie",
+   "sfx": [
+    {
+     "cue": "fly-buzz",
+     "sound": "a fly buzzing round his head",
+     "on": "whole line",
+     "at": "under",
+     "level": "low",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 1.6
+  },
+  {
+   "who": "manager",
+   "text": "వెరీ గుడ్! నువ్వు చాలా డెడికేటెడ్ ఎంప్లాయ్‌వి.",
+   "say": "[proudly] వెరీ గుడ్! [warmly] నువ్వు చాలా… డెడికేటెడ్ ఎంప్లాయ్‌వి.",
+   "act": "a gracious king handing out praise instead of money; stress on డెడికేటెడ్",
+   "beat": "praise",
+   "sfx": [
+    {
+     "cue": "sticker-slap",
+     "sound": "sticker SLAP: a 'DEDICATED ⭐' sticker on Ramesh's forehead + sparkle",
+     "on": "డెడికేటెడ్",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    }
+   ],
+   "est_s": 3.2
+  },
+  {
+   "who": "ramesh",
+   "text": "థాంక్యూ సార్. మరి ఈరోజు కొంచెం త్వరగా వెళ్లొచ్చా?",
+   "say": "[hopefully] థాంక్యూ సార్. [innocently] మరి ఈరోజు… కొంచెం త్వరగా వెళ్లొచ్చా?",
+   "act": "seizing the good mood, hopeful and sweet; stress on త్వరగా",
+   "beat": "ask",
+   "sfx": [
+    {
+     "cue": "bloop",
+     "sound": "tiny cartoon 'bloop'",
+     "on": "వెళ్లొచ్చా?",
+     "at": "after",
+     "level": "low",
+     "dur_s": 0.2
+    }
+   ],
+   "est_s": 3.4
+  },
+  {
+   "who": "manager",
+   "text": "ఎందుకు?",
+   "say": "[suspiciously] ఎందుకు?",
+   "act": "the mug stops mid-sip; one eyebrow up; one cold word",
+   "beat": "freeze-up",
+   "sfx": [
+    {
+     "cue": "needle-stop",
+     "sound": "music needle-stop (pattern interrupt)",
+     "on": "ఎందుకు?",
+     "at": "on",
+     "level": "high",
+     "dur_s": 0.3
+    }
+   ],
+   "est_s": 1.2
+  },
+  {
+   "who": "ramesh",
+   "text": "నిన్న ఆదివారం కూడా పని చేశాను కదా సార్!",
+   "say": "[pleading] నిన్న ఆదివారం కూడా… పని చేశాను కదా సార్!",
+   "act": "pleading, holding up his phone with the 9 PM message; stress on ఆదివారం",
+   "beat": "plea",
+   "sfx": [],
+   "est_s": 3.0
+  },
+  {
+   "who": "manager",
+   "text": "రమేష్... మనం ఫ్యామిలీ లాంటివాళ్లం కదా!",
+   "say": "[softly] రమేష్… [warmly] మనం ఫ్యామిలీ లాంటివాళ్లం కదా!",
+   "act": "fake family-drama emotion, an arm round Ramesh, moist eyes; stress on ఫ్యామిలీ",
+   "beat": "family-card",
+   "sfx": [
+    {
+     "cue": "serial-violin",
+     "sound": "over-the-top sentimental violin swell (TV-serial style, generic synth)",
+     "on": "whole line",
+     "at": "under",
+     "level": "mid",
+     "dur_s": 2.6
+    }
+   ],
+   "est_s": 3.0
+  },
+  {
+   "who": "ramesh",
+   "text": "అయితే సార్... ఫ్యామిలీ ఫంక్షన్‌కి వెళ్లినట్టు జీతం కూడా పెంచండి సార్!",
+   "say": "[mischievously] అయితే సార్… ఫ్యామిలీ ఫంక్షన్‌కి వెళ్లినట్టు… [excited] జీతం కూడా పెంచండి సార్!",
+   "act": "turning the manager's own card on him, bright and sweet; stress on జీతం",
+   "beat": "turn",
+   "sfx": [
+    {
+     "cue": "needle-stop",
+     "sound": "the violin needle-stops",
+     "on": "సార్!",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.3
+    },
+    {
+     "cue": "dhan-dhan",
+     "sound": "DHAN-DHAN-DHAN triple crash-zoom on the manager's 😳 face (the owner's reaction beat, no voice)",
+     "on": "after the needle-stop",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.9,
+     "offset_s": 0.3
+    },
+    {
+     "cue": "FAAAH",
+     "sound": "FAAAAH! — the series FAAAH (tools/anim2d/sfx/faaah.wav); music cut",
+     "on": "after the zooms",
+     "at": "after",
+     "level": "max",
+     "dur_s": 1.2,
+     "offset_s": 1.2,
+     "note": "FAAAH #2: the manager's 😳; moustache bristles"
+    }
+   ],
+   "est_s": 6.2
+  },
+  {
+   "who": "ramesh",
+   "text": "ఫ్యామిలీ అంటారు... కానీ జీతం దగ్గరికి వచ్చేసరికి కంపెనీ అంటారు!",
+   "say": "[deadpan] ఫ్యామిలీ అంటారు… [dramatic pause] కానీ జీతం దగ్గరికి వచ్చేసరికి… [sarcastically] కంపెనీ అంటారు!",
+   "act": "to the camera, calm and knowing, a slow sweet knife; stress on కంపెనీ",
+   "beat": "punch",
+   "sfx": [
+    {
+     "cue": "freeze",
+     "sound": "record scratch + FREEZE FRAME (camera-flash white pop)",
+     "on": "అంటారు!",
+     "at": "after",
+     "level": "max",
+     "dur_s": 0.4,
+     "offset_s": 0.1
+    },
+    {
+     "cue": "silence",
+     "sound": "ALL sound out for 0.3 s: the start of the 1.5 s no-dialogue punch pause",
+     "on": "freeze",
+     "at": "after",
+     "level": "silence",
+     "dur_s": 0.3,
+     "offset_s": 0.5
+    },
+    {
+     "cue": "funny-bg",
+     "sound": "slide-whistle down + coffee 'drip… drip'",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.2,
+     "offset_s": 0.8,
+     "note": "reaction shot: the manager's moustache slowly droops, his mug tilts and coffee drips on his shoe"
+    },
+    {
+     "cue": "comedy-sting",
+     "sound": "comedy sting: bouncy tuba 'bom-bom-ba-BOM' (series signature, Ep 1-2)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.0
+    },
+    {
+     "cue": "laugh-track",
+     "sound": "big laugh track (in-house layered Gemini crowd)",
+     "on": "reaction shot",
+     "at": "after",
+     "level": "high",
+     "dur_s": 1.6,
+     "offset_s": 1.1
+    },
+    {
+     "cue": "card-slam",
+     "sound": "ending-text card slams in: whoosh + a stamp",
+     "on": "ending card",
+     "at": "after",
+     "level": "high",
+     "dur_s": 0.4,
+     "offset_s": 2.0,
+     "note": "hold the card ~3 s; the laugh tails under it"
+    }
+   ],
+   "est_s": 6.6
+  },
+  {
+   "who": "gopi",
+   "text": "Sunday కూడా పని చేసే friend ని… tag చేయండి!",
+   "say": "[laughs] Sunday కూడా పని చేసే friend ని… [mischievously] tag చేయండి!",
+   "act": "laughing with the viewer, then a cheeky nudge",
+   "beat": "tag-close",
+   "sfx": [
+    {
+     "cue": "tag-swoosh",
+     "sound": "swoosh + pop as a contact card gets tagged",
+     "on": "tag",
+     "at": "on",
+     "level": "mid",
+     "dur_s": 0.4
+    },
+    {
+     "cue": "end-sting",
+     "sound": "end-card sting + sparkle",
+     "on": "end card",
+     "at": "after",
+     "level": "mid",
+     "dur_s": 1.0
+    }
+   ],
+   "est_s": 3.2
+  }
+ ],
+ "ending_text": "ఉద్యోగికి వీకెండ్ ఉండదు... మేనేజర్‌కి మాత్రం ఎంప్లాయ్ ఎప్పుడూ ఆన్‌లైన్‌లో ఉండాలి! 😂",
+ "visual_plan": [
+  "style: FLAT skin for the whole reel (series look). Settings: NEW Ramesh's small rented flat (sofa, a TV with a plain abstract cartoon glow, no show, film or brand; wall clock; window with night city lights), then the same office as Ep 0–2. Silent continuity egg: the 'SECONDARY ⭐' sticky on Ramesh's monitor, next to the new 'DEDICATED ⭐'.",
+  "CAST (office_cast.js from content/2026-11-23-comedy-manager-mind-game/2d/): RAMESH = makeRamesh; at home the same face/hair/stubble with a plain grey round-neck T-shirt and checked shorts (shirt colour override only), barefoot, feet up; on Monday his usual light-blue shirt, messy hair messier, panda eyes. MANAGER = makeManager. Suresh and Priya not in this episode (an extra may pass by silently). Gopi: corner cut-out for his line only.",
+  "Intro 0.0–1.0 s (no voice), the funny hook: Ramesh blissful on the couch, popcorn bowl on his belly, eyes closed, chip 'SUNDAY 😌', clock 9:00 PM; text hook 'Sunday 9 PM… Manager message 😱'.",
+  "1.0–3.6 s: PING + DHOOM; popcorn freezes mid-air; a chat bubble types in on his phone, big and readable, from 'MANAGER 👔': 'Hi Team, Just a small task. Please complete before Monday 9 AM.' (owner's text verbatim).",
+  "L1: Ramesh sits bolt upright; on 'ఇది!' FAAAH #1, the popcorn explodes upward. Time-lapse: clock spins 9 PM → 3 AM, coffee cups stack, his hair goes wild; FOLLOW button pops in and is tapped (silent follow beat). Card 'MONDAY 9:00 AM'.",
+  "L2: the office; the manager is waiting in Ramesh's own chair, spins round villain-style, sipping the mug.",
+  "L3: zombie Ramesh, panda eyes, a fly circling. L4: a 'DEDICATED ⭐' sticker slapped on his forehead.",
+  "L5–L6: hopeful ask; the music needle-stops, the mug freezes mid-sip, one eyebrow up.",
+  "L7: Ramesh holds up his phone showing the 9 PM message.",
+  "L8: fake family-drama mode: soft focus, sparkle, violin, the manager's arm round Ramesh, a fake tear.",
+  "L9: Ramesh flips it, bright and sweet; needle-stop; DHAN-DHAN-DHAN triple crash-zoom on the manager's 😳 face (the owner's reaction beat, no voice); FAAAH #2.",
+  "L10 punch: Ramesh to the camera; FREEZE on 'అంటారు!'. PAUSE 1.5 s: reaction shot, the manager's moustache slowly droops, the mug tilts and coffee drips on his shoe; slide-whistle + drips + tuba sting + laugh.",
+  "ENDING CARD (owner's text, verbatim, ~3.4 s, two lines): 'ఉద్యోగికి వీకెండ్ ఉండదు...' / 'మేనేజర్‌కి మాత్రం ఎంప్లాయ్ ఎప్పుడూ ఆన్‌లైన్‌లో ఉండాలి! 😂'.",
+  "L11 Gopi: 'SUNDAY కూడా పని చేసే FRIEND ని TAG చేయండి! 😅' with a contact card tagged (no real usernames); end card 'Series: Office Politics · Ep 5' + FOLLOW @_REELRASAM · SUBSCRIBE @REEL_RASAM."
+ ],
+ "opening_message": "Hi Team, Just a small task. Please complete before Monday 9 AM."
+}
