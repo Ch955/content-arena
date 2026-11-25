@@ -1,0 +1,86 @@
+{
+ "L0": {
+  "expected": "సురేష్! నువ్వు ఈ టీమ్‌కి… చాలా ఇంపార్టెంట్ రా. నీ మీద నాకు… చాలా నమ్మకం ఉంది.",
+  "heard": "Suresh! నువ్వు team కి చాలా important రా. నీ మీద నాకు చాలా నమ్మకం ఉంది.",
+  "issue": "none",
+  "sim": 0.64,
+  "by": "gemini-3.5-flash"
+ },
+ "L1": {
+  "expected": "థాంక్యూ సార్!",
+  "heard": "Thank you sir.",
+  "issue": "none",
+  "sim": 0.0,
+  "by": "gemini-3.5-flash"
+ },
+ "L2": {
+  "expected": "సార్… నా ప్రమోషన్ గురించి… మాట్లాడాలి.",
+  "heard": "Sir! నా promotion గురించి మాట్లాడాలి.",
+  "issue": "none",
+  "sim": 0.61,
+  "by": "gemini-3.5-flash"
+ },
+ "L3": {
+  "expected": "ఇప్పుడు టైమ్ లేదు రమేష్. తర్వాత చూద్దాం.",
+  "heard": "ఇప్పుడు time లేదు Ramesh! తర్వాత చూద్దాం.",
+  "issue": "none",
+  "sim": 0.72,
+  "by": "gemini-3.5-flash"
+ },
+ "L4": {
+  "expected": "సార్… గత సంవత్సరం కూడా… తర్వాత అన్నారు.",
+  "heard": "Sir! గత సంవత్సరం కూడా తర్వాత అన్నారు.",
+  "issue": "none",
+  "sim": 0.89,
+  "by": "gemini-3.5-flash"
+ },
+ "L5": {
+  "expected": "నీకు… ఓపిక ఉండాలి రమేష్!",
+  "heard": "నీకు ఓపిక ఉండాలి Ramesh! ఏంట్రా Suresh! నీకు promotion వచ్చిందా?",
+  "issue": "contains two speakers",
+  "sim": 0.42,
+  "by": "gemini-3.5-flash"
+ },
+ "L6": {
+  "expected": "ఏంట్రా సురేష్! నీకు ప్రమోషన్ వచ్చిందా?",
+  "heard": "లేదురా! నాకు ఇంకో పని ఇచ్చాడు.",
+  "issue": "none",
+  "sim": 0.39,
+  "by": "gemini-3.5-flash"
+ },
+ "L7": {
+  "expected": "లేదురా… నాకు ఇంకో పని ఇచ్చాడు.",
+  "heard": "అదేంట్రా?",
+  "issue": "none",
+  "sim": 0.19,
+  "by": "gemini-3.5-flash"
+ },
+ "L8": {
+  "expected": "అదేంట్రా?",
+  "heard": "ఒరేయ్!",
+  "issue": "none",
+  "sim": 0.15,
+  "by": "gemini-3.5-flash"
+ },
+ "L9": {
+  "expected": "మేనేజర్ కొడుకు పెళ్లికి… వెడ్డింగ్ ప్లానింగ్!",
+  "heard": "Manager కొడుకు wedding కి... wedding planning!",
+  "issue": "none",
+  "sim": 0.21,
+  "by": "gemini-3.5-flash"
+ },
+ "L10": {
+  "expected": "ఒరేయ్! నువ్వు ఎంప్లాయ్‌వా? లేక… ఫ్యామిలీ మెంబర్‌వా రా?",
+  "heard": "నువ్వు employee వా లేక family member వా?",
+  "issue": "none",
+  "sim": 0.35,
+  "by": "gemini-3.5-flash"
+ },
+ "L11": {
+  "expected": "మీ office సురేష్ ని… comment లో tag చేయండి!",
+  "heard": "మీ office Suresh ని comment లో tag చేయండి.",
+  "issue": "none",
+  "sim": 0.82,
+  "by": "gemini-3.5-flash"
+ }
+}

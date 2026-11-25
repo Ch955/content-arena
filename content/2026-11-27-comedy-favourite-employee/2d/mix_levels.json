@@ -1,0 +1,299 @@
+{
+ "integrated_lufs": -17.3,
+ "true_peak_dbtp": -3.5,
+ "lra": 7.4,
+ "master_gain_db": 2.4,
+ "max_gr_db": -10.81,
+ "cues": [
+  {
+   "cue": "harp gliss (pink glow)",
+   "level": "high",
+   "t": 0.0,
+   "dur": 1.0,
+   "cue_peak_dbfs": -7.7,
+   "mix_peak_in_window_dbfs": -7.3
+  },
+  {
+   "cue": "heart pops (నమ్మకం)",
+   "level": "mid",
+   "t": 5.6,
+   "dur": 0.5,
+   "cue_peak_dbfs": -17.2,
+   "mix_peak_in_window_dbfs": -6.3
+  },
+  {
+   "cue": "bobble-nod boings",
+   "level": "low",
+   "t": 6.27,
+   "dur": 0.62,
+   "cue_peak_dbfs": -27.3,
+   "mix_peak_in_window_dbfs": -19.1
+  },
+  {
+   "cue": "sparkle ting (సార్!)",
+   "level": "low",
+   "t": 7.67,
+   "dur": 0.5,
+   "cue_peak_dbfs": -23.7,
+   "mix_peak_in_window_dbfs": -7.4
+  },
+  {
+   "cue": "door swing + squeak",
+   "level": "mid",
+   "t": 8.03,
+   "dur": 0.5,
+   "cue_peak_dbfs": -8.9,
+   "mix_peak_in_window_dbfs": -7.4
+  },
+  {
+   "cue": "DHOOM (ప్రమోషన్)",
+   "level": "max",
+   "t": 10.09,
+   "dur": 1.1,
+   "cue_peak_dbfs": -3.7,
+   "mix_peak_in_window_dbfs": -3.6
+  },
+  {
+   "cue": "hand-swat whoosh (లేదు)",
+   "level": "low",
+   "t": 12.61,
+   "dur": 0.3,
+   "cue_peak_dbfs": -22.5,
+   "mix_peak_in_window_dbfs": -11.1
+  },
+  {
+   "cue": "sad bloop (చూద్దాం.)",
+   "level": "mid",
+   "t": 13.95,
+   "dur": 0.4,
+   "cue_peak_dbfs": -20.5,
+   "mix_peak_in_window_dbfs": -18.9
+  },
+  {
+   "cue": "calendar flip (గత సంవత్సరం)",
+   "level": "mid",
+   "t": 14.98,
+   "dur": 0.4,
+   "cue_peak_dbfs": -6.5,
+   "mix_peak_in_window_dbfs": -5.1
+  },
+  {
+   "cue": "STAMP x2 'తర్వాత' (2024, 2025)",
+   "level": "high",
+   "t": 16.79,
+   "dur": 1.02,
+   "cue_peak_dbfs": -8.9,
+   "mix_peak_in_window_dbfs": -8.1
+  },
+  {
+   "cue": "mock-wise chime ting-ting (ఓపిక)",
+   "level": "mid",
+   "t": 18.97,
+   "dur": 0.7,
+   "cue_peak_dbfs": -16.3,
+   "mix_peak_in_window_dbfs": -5.2
+  },
+  {
+   "cue": "door slam on Ramesh's face",
+   "level": "high",
+   "t": 20.22,
+   "dur": 0.5,
+   "cue_peak_dbfs": -8.0,
+   "mix_peak_in_window_dbfs": -8.0
+  },
+  {
+   "cue": "follow pop",
+   "level": "mid",
+   "t": 20.35,
+   "dur": 0.2,
+   "cue_peak_dbfs": -18.2,
+   "mix_peak_in_window_dbfs": -10.8
+  },
+  {
+   "cue": "follow tap + ding",
+   "level": "mid",
+   "t": 20.73,
+   "dur": 0.5,
+   "cue_peak_dbfs": -15.7,
+   "mix_peak_in_window_dbfs": -15.7
+  },
+  {
+   "cue": "whip-pan whoosh (to the cooler)",
+   "level": "low",
+   "t": 21.01,
+   "dur": 0.32,
+   "cue_peak_dbfs": -22.3,
+   "mix_peak_in_window_dbfs": -21.8
+  },
+  {
+   "cue": "tension ticks (under L7)",
+   "level": "low",
+   "t": 22.23,
+   "dur": 1.95,
+   "cue_peak_dbfs": -13.1,
+   "mix_peak_in_window_dbfs": -6.7
+  },
+  {
+   "cue": "snare drumroll (ఇంకో పని)",
+   "level": "low",
+   "t": 25.47,
+   "dur": 1.2,
+   "cue_peak_dbfs": -11.1,
+   "mix_peak_in_window_dbfs": -7.1
+  },
+  {
+   "cue": "DUN! (అదేంట్రా?)",
+   "level": "mid",
+   "t": 27.2,
+   "dur": 0.45,
+   "cue_peak_dbfs": -9.8,
+   "mix_peak_in_window_dbfs": -7.7
+  },
+  {
+   "cue": "scroll unrolls to the floor",
+   "level": "mid",
+   "t": 29.37,
+   "dur": 0.7,
+   "cue_peak_dbfs": -7.3,
+   "mix_peak_in_window_dbfs": -4.3
+  },
+  {
+   "cue": "FAAAH (wedding planning!)",
+   "level": "max",
+   "t": 30.4,
+   "dur": 1.2,
+   "cue_peak_dbfs": -3.5,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "wedding toot + dhol (after the FAAAH)",
+   "level": "low",
+   "t": 31.6,
+   "dur": 1.2,
+   "cue_peak_dbfs": -20.3,
+   "mix_peak_in_window_dbfs": -6.8
+  },
+  {
+   "cue": "FREEZE: record scratch + flash pop",
+   "level": "max",
+   "t": 35.65,
+   "dur": 0.3,
+   "cue_peak_dbfs": -3.8,
+   "mix_peak_in_window_dbfs": -3.5
+  },
+  {
+   "cue": "reaction: wedding toot pee-pee DUM-DUM",
+   "level": "high",
+   "t": 36.38,
+   "dur": 0.91,
+   "cue_peak_dbfs": -4.4,
+   "mix_peak_in_window_dbfs": -3.6
+  },
+  {
+   "cue": "comedy sting: tuba bom-bom-ba-BOM (series)",
+   "level": "high",
+   "t": 36.82,
+   "dur": 1.35,
+   "cue_peak_dbfs": -5.6,
+   "mix_peak_in_window_dbfs": -4.2
+  },
+  {
+   "cue": "laugh track (reaction)",
+   "level": "high",
+   "t": 36.97,
+   "dur": 1.9,
+   "cue_peak_dbfs": -8.8,
+   "mix_peak_in_window_dbfs": -4.2
+  },
+  {
+   "cue": "ending card slam",
+   "level": "high",
+   "t": 37.87,
+   "dur": 0.5,
+   "cue_peak_dbfs": -9.0,
+   "mix_peak_in_window_dbfs": -5.8
+  },
+  {
+   "cue": "tag swoosh + pop",
+   "level": "mid",
+   "t": 42.52,
+   "dur": 0.4,
+   "cue_peak_dbfs": -18.3,
+   "mix_peak_in_window_dbfs": -6.6
+  },
+  {
+   "cue": "end-card sting",
+   "level": "mid",
+   "t": 43.56,
+   "dur": 1.1,
+   "cue_peak_dbfs": -16.0,
+   "mix_peak_in_window_dbfs": -15.5
+  }
+ ],
+ "voices": [
+  {
+   "line": 0,
+   "who": "manager",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 1,
+   "who": "suresh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 2,
+   "who": "ramesh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 3,
+   "who": "manager",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 4,
+   "who": "ramesh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 5,
+   "who": "manager",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 6,
+   "who": "ramesh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 7,
+   "who": "suresh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 8,
+   "who": "ramesh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 9,
+   "who": "suresh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 10,
+   "who": "ramesh",
+   "final_peak_dbfs": -6.6
+  },
+  {
+   "line": 11,
+   "who": "gopi",
+   "final_peak_dbfs": -6.6
+  }
+ ],
+ "music_bed_peak_under_voice_dbfs": -22.6,
+ "music_bed_peak_open_dbfs": -13.6,
+ "silence_after_freeze_s": 0.3,
+ "silence_max_abs": 0.0
+}

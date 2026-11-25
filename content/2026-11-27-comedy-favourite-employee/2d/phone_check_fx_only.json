@@ -1,0 +1,292 @@
+{
+ "full": {
+  "voice_p90": -13.4,
+  "hits": {
+   "harp gliss (pink glow)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": -1.1
+   },
+   "heart pops (నమ్మకం)": {
+    "level": "mid",
+    "t": 5.6,
+    "vs_voice_p90_db": -7.8
+   },
+   "bobble-nod boings": {
+    "level": "low",
+    "t": 6.27,
+    "vs_voice_p90_db": -16.6
+   },
+   "sparkle ting (సార్!)": {
+    "level": "low",
+    "t": 7.67,
+    "vs_voice_p90_db": -7.9
+   },
+   "door swing + squeak": {
+    "level": "mid",
+    "t": 8.03,
+    "vs_voice_p90_db": -7.9
+   },
+   "DHOOM (ప్రమోషన్)": {
+    "level": "max",
+    "t": 10.09,
+    "vs_voice_p90_db": 9.8
+   },
+   "hand-swat whoosh (లేదు)": {
+    "level": "low",
+    "t": 12.61,
+    "vs_voice_p90_db": -16.9
+   },
+   "sad bloop (చూద్దాం.)": {
+    "level": "mid",
+    "t": 13.95,
+    "vs_voice_p90_db": -7.2
+   },
+   "calendar flip (గత సంవత్సరం)": {
+    "level": "mid",
+    "t": 14.98,
+    "vs_voice_p90_db": -7.8
+   },
+   "STAMP x2 'తర్వాత' (2024, 2025)": {
+    "level": "high",
+    "t": 16.79,
+    "vs_voice_p90_db": 1.4
+   },
+   "mock-wise chime ting-ting (ఓపిక)": {
+    "level": "mid",
+    "t": 18.97,
+    "vs_voice_p90_db": -7.8
+   },
+   "door slam on Ramesh's face": {
+    "level": "high",
+    "t": 20.22,
+    "vs_voice_p90_db": 3.9
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 20.35,
+    "vs_voice_p90_db": -3.9
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 20.73,
+    "vs_voice_p90_db": -7.8
+   },
+   "whip-pan whoosh (to the cooler)": {
+    "level": "low",
+    "t": 21.01,
+    "vs_voice_p90_db": -16.6
+   },
+   "tension ticks (under L7)": {
+    "level": "low",
+    "t": 22.23,
+    "vs_voice_p90_db": -16.7
+   },
+   "snare drumroll (ఇంకో పని)": {
+    "level": "low",
+    "t": 26.27,
+    "vs_voice_p90_db": -10.8
+   },
+   "DUN! (అదేంట్రా?)": {
+    "level": "mid",
+    "t": 27.2,
+    "vs_voice_p90_db": -1.4
+   },
+   "scroll unrolls to the floor": {
+    "level": "mid",
+    "t": 29.37,
+    "vs_voice_p90_db": -7.8
+   },
+   "FAAAH (wedding planning!)": {
+    "level": "max",
+    "t": 30.4,
+    "vs_voice_p90_db": 5.4
+   },
+   "wedding toot + dhol (after the FAAAH)": {
+    "level": "low",
+    "t": 31.6,
+    "vs_voice_p90_db": -11.4
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 35.65,
+    "vs_voice_p90_db": 4.7
+   },
+   "reaction: wedding toot pee-pee DUM-DUM": {
+    "level": "high",
+    "t": 36.38,
+    "vs_voice_p90_db": 4.1
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (series)": {
+    "level": "high",
+    "t": 36.82,
+    "vs_voice_p90_db": 2.1
+   },
+   "laugh track (reaction)": {
+    "level": "high",
+    "t": 36.97,
+    "vs_voice_p90_db": 1.7
+   },
+   "ending card slam": {
+    "level": "high",
+    "t": 37.87,
+    "vs_voice_p90_db": 1.6
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 42.52,
+    "vs_voice_p90_db": -7.7
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 43.56,
+    "vs_voice_p90_db": -7.7
+   }
+  }
+ },
+ "phone>250Hz": {
+  "voice_p90": -16.1,
+  "hits": {
+   "harp gliss (pink glow)": {
+    "level": "high",
+    "t": 0.0,
+    "vs_voice_p90_db": 1.6
+   },
+   "heart pops (నమ్మకం)": {
+    "level": "mid",
+    "t": 5.6,
+    "vs_voice_p90_db": -5.1
+   },
+   "bobble-nod boings": {
+    "level": "low",
+    "t": 6.27,
+    "vs_voice_p90_db": -14.1
+   },
+   "sparkle ting (సార్!)": {
+    "level": "low",
+    "t": 7.67,
+    "vs_voice_p90_db": -5.2
+   },
+   "door swing + squeak": {
+    "level": "mid",
+    "t": 8.03,
+    "vs_voice_p90_db": -5.2
+   },
+   "DHOOM (ప్రమోషన్)": {
+    "level": "max",
+    "t": 10.09,
+    "vs_voice_p90_db": 6.9
+   },
+   "hand-swat whoosh (లేదు)": {
+    "level": "low",
+    "t": 12.61,
+    "vs_voice_p90_db": -14.2
+   },
+   "sad bloop (చూద్దాం.)": {
+    "level": "mid",
+    "t": 13.95,
+    "vs_voice_p90_db": -5.1
+   },
+   "calendar flip (గత సంవత్సరం)": {
+    "level": "mid",
+    "t": 14.98,
+    "vs_voice_p90_db": -5.1
+   },
+   "STAMP x2 'తర్వాత' (2024, 2025)": {
+    "level": "high",
+    "t": 16.79,
+    "vs_voice_p90_db": 1.5
+   },
+   "mock-wise chime ting-ting (ఓపిక)": {
+    "level": "mid",
+    "t": 18.97,
+    "vs_voice_p90_db": -5.1
+   },
+   "door slam on Ramesh's face": {
+    "level": "high",
+    "t": 20.22,
+    "vs_voice_p90_db": 1.5
+   },
+   "follow pop": {
+    "level": "mid",
+    "t": 20.35,
+    "vs_voice_p90_db": -3.6
+   },
+   "follow tap + ding": {
+    "level": "mid",
+    "t": 20.73,
+    "vs_voice_p90_db": -5.1
+   },
+   "whip-pan whoosh (to the cooler)": {
+    "level": "low",
+    "t": 21.01,
+    "vs_voice_p90_db": -13.9
+   },
+   "tension ticks (under L7)": {
+    "level": "low",
+    "t": 22.23,
+    "vs_voice_p90_db": -14.1
+   },
+   "snare drumroll (ఇంకో పని)": {
+    "level": "low",
+    "t": 26.27,
+    "vs_voice_p90_db": -8.1
+   },
+   "DUN! (అదేంట్రా?)": {
+    "level": "mid",
+    "t": 27.2,
+    "vs_voice_p90_db": -5.1
+   },
+   "scroll unrolls to the floor": {
+    "level": "mid",
+    "t": 29.37,
+    "vs_voice_p90_db": -5.2
+   },
+   "FAAAH (wedding planning!)": {
+    "level": "max",
+    "t": 30.4,
+    "vs_voice_p90_db": 7.1
+   },
+   "wedding toot + dhol (after the FAAAH)": {
+    "level": "low",
+    "t": 31.6,
+    "vs_voice_p90_db": -14.1
+   },
+   "FREEZE: record scratch + flash pop": {
+    "level": "max",
+    "t": 35.65,
+    "vs_voice_p90_db": 6.5
+   },
+   "reaction: wedding toot pee-pee DUM-DUM": {
+    "level": "high",
+    "t": 36.38,
+    "vs_voice_p90_db": 1.4
+   },
+   "comedy sting: tuba bom-bom-ba-BOM (series)": {
+    "level": "high",
+    "t": 36.82,
+    "vs_voice_p90_db": 1.7
+   },
+   "laugh track (reaction)": {
+    "level": "high",
+    "t": 36.97,
+    "vs_voice_p90_db": 1.7
+   },
+   "ending card slam": {
+    "level": "high",
+    "t": 37.87,
+    "vs_voice_p90_db": 1.8
+   },
+   "tag swoosh + pop": {
+    "level": "mid",
+    "t": 42.52,
+    "vs_voice_p90_db": -5.1
+   },
+   "end-card sting": {
+    "level": "mid",
+    "t": 43.56,
+    "vs_voice_p90_db": -5.1
+   }
+  }
+ }
+}
